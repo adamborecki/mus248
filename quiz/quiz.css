@@ -50,8 +50,19 @@ a.btn { text-decoration:none; }
 .choice-pair { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:.9rem; }
 .option { min-height:3rem; padding:.6rem .8rem; border:1.5px solid var(--line); border-radius:.6rem; background:var(--surface); color:var(--ink); font:inherit; font-weight:600; cursor:pointer; }
 .option.is-on { border-color:var(--accent); background:var(--accent); color:#fff; }
-.card-list dt { margin-top:1rem; font-weight:700; }
-.card-list dd { margin:.2rem 0 0; color:var(--muted); }
+.card-list { margin:0; }
+.card-row { padding:.75rem 0; border-top:1px solid var(--line); }
+.card-row:first-child { border-top:0; }
+.card-list dt { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; font-weight:700; }
+.card-list dd { margin:.25rem 0 0; color:var(--muted); }
+.chips { display:flex; flex-wrap:wrap; gap:.4rem; margin:.25rem 0 .6rem; }
+.chip { display:inline-flex; gap:.35rem; align-items:center; padding:.35rem .75rem; border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink); font:inherit; font-size:.85rem; font-weight:600; cursor:pointer; }
+.chip span { color:var(--muted); font-weight:500; font-variant-numeric:tabular-nums; }
+.chip.is-on { border-color:var(--ink); background:var(--ink); color:var(--paper); }
+.chip.is-on span { color:inherit; opacity:.7; }
+.study-tools { display:flex; flex-wrap:wrap; gap:.1rem 1.25rem; align-items:center; margin-bottom:.5rem; font-size:.92rem; }
+.flashcard { position:relative; }
+.flashcard > .badge { position:absolute; top:.85rem; left:.85rem; }
 
 /* Start screen */
 .step { padding:1.25rem 0; border-bottom:1px solid var(--line); }

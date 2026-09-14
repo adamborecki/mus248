@@ -114,7 +114,7 @@ function renderStart(options) {
   const missing = missingSteps();
 
   show(`
-    <p class="notice">Want to review first? <a href="../study/">Study cards</a> take about 5 minutes.</p>
+    <p class="notice">Want to review first? The <a href="../study/">study cards</a> are sorted by topic and marked Core or Practice.</p>
     ${askCode ? `
     <section class="step">
       <h2 tabindex="-1">${stepNumber(1)}Last quiz’s code</h2>
@@ -385,7 +385,7 @@ function submissionText(review) {
 }
 
 function reviewItem(skill) {
-  const cards = data.deck.cards.filter((card) => card.skill === skill);
+  const cards = data.deck.cards.filter((card) => card.skill === skill).slice(0, 2);
   const missed = attempt.answers.find((answer) => answer && !answer.correct && data.byId[answer.id]?.skill === skill);
   const detail = cards.length
     ? cards.map((card) => `${card.front}: ${card.back}`).join(' ')
