@@ -9,8 +9,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="masthead"><h1>MUS 248</h1><p>A/V Concert Recording &amp; Archiving</p></header>
+  <header class="masthead"><h1><a href="./">MUS 248</a></h1><p>A/V Concert Recording &amp; Archiving</p></header>
   <main>
+    <nav class="site-nav" aria-label="Sections">
+      <a class="nav-card" href="quiz/"><strong><span aria-hidden="true">📝</span> Weekly quiz</strong><small>Answer this week&rsquo;s questions, then paste your code into Canvas</small></a>
+      <a class="nav-card" href="study/"><strong><span aria-hidden="true">🗂️</span> Study cards</strong><small>Review the terms before you take the quiz</small></a>
+    </nav>
+    <h2 class="section-title">Activities</h2>
     <section class="filters" aria-label="Filter activities">
       <label for="skill-filter">Find a skill</label>
       <select id="skill-filter"><option value="all">All skill areas</option></select>
@@ -18,7 +23,7 @@
     </section>
     <section id="activity-list" class="activity-grid" aria-label="Activity directory"></section>
   </main>
-  <footer>Activities</footer>
+  <footer>Canvas remains the place for submissions, discussions, and grades.</footer>
   <script src="app.js"></script>
 </body>
 </html>

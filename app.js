@@ -14,16 +14,15 @@ async function loadDirectory() {
     const visible = activities.filter((activity) => selectedSkill === 'all' || activity.skills.includes(selectedSkill));
     count.textContent = `${visible.length} ${visible.length === 1 ? 'activity' : 'activities'}`;
     list.innerHTML = visible.map((activity) => {
-      const action = activity.contentFile
-        ? `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`
-        : activity.externalResource
-          ? `<a class="activity-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">Open instructions <span aria-hidden="true">↗</span></a>`
-          : `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`;
+      // Every card opens the activity's own page — never a direct external link — so the
+      // Canvas discussion and after-activity steps are never skipped for external activities.
+      const action = `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`;
+      const source = activity.contentFile ? 'In-app instructions' : 'External instructions ↗';
       const family = activity.family ? `<p class="activity-family">${activity.family}</p>` : '';
       return `<details class="activity-card">
         <summary>
           <span class="activity-emoji" aria-hidden="true">${activity.emoji}</span>
-          <span class="card-copy"><strong>${activity.title}</strong><small>${activity.time}</small></span>
+          <span class="card-copy"><strong>${activity.title}</strong><small>${activity.time} · ${source}</small></span>
           <span class="arrow" aria-hidden="true">⌄</span>
         </summary>
         <div class="card-details">
