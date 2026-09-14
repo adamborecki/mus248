@@ -45,12 +45,12 @@ This activity is that drill, repeated on three different cameras so the skill st
 By the end of this activity, you should be able to:
 
 - 📷 Set iris, gain/ISO, shutter, white balance, and focus to a known baseline on the G50, the GH5, and the AX100 — starting from whatever state you found them in.
-- 🎬 Demonstrate on video what each of those five settings actually does to the picture.
+- 🎬 Demonstrate on video what each of those five settings does to the picture, and say how big each change was in **stops**.
 - 💾 Verify your recorded files on a computer and return the camera to the baseline before you put it away.
 
 ## 🗝️ Key terms
 
-**iris / aperture (f-stop)** · **gain (dB)** · **ISO** · **shutter speed** · **white balance** · **color temperature (K)** · **autofocus (AF)** · **manual focus (MF)** · depth of field · motion blur · noise · **slate** (reading your settings aloud on camera) · **house default**
+**stop** · **iris / aperture (f-stop)** · **gain (dB)** · **ISO** · **shutter speed** · **white balance** · **color temperature (K)** · **autofocus (AF)** · **manual focus (MF)** · depth of field · motion blur · noise · **slate** (reading your settings aloud on camera) · **house default**
 
 ## 📍 Logistics
 
@@ -101,14 +101,39 @@ Every camera in this activity gets returned to the same baseline. Learn this —
 | Setting | House default | Notes |
 |---|---|---|
 | Iris / aperture | **F4.0** | |
-| Gain / ISO | **3 dB** (a.k.a. **ISO 400**) | Use whichever unit your camera displays |
+| Gain / ISO | **3 dB** — or **ISO 400** on the GH5 | House numbers for these bodies, not a conversion. See Stops below. |
 | Shutter | **1/60** | |
 | White balance | **3200 K** | Set as a color temperature, not auto |
 | Focus | **Autofocus** | |
 
 > 🚩 You will set the house default twice: once at the start, and once again before the camera goes back in the cabinet.
 
-**Q1 (fill in the blank).** Write the house default from memory before you continue: F______ · ______ dB (ISO ______) · 1/______ · ______ K · ______ focus.
+**Q1 (fill in the blank).** Write the house default from memory before you continue: F______ · ______ dB or ISO ______ · 1/______ · ______ K · ______ focus.
+
+## 📐 Stops — the one unit that ties this together
+
+The house default is where you start. **Stops** are how you move from it.
+
+A **stop** is a doubling or halving of the light reaching the sensor. Every exposure control on every camera is measured in stops, which is why an engineer can say "give me a stop more" to someone holding a camera they have never touched.
+
+| Control | One stop is… |
+|---|---|
+| Aperture | One step along the f-number scale: 2.8 · 4 · 5.6 · 8 · 11. **F4.0 → F5.6 is one stop less light.** |
+| Shutter | Double or halve the time. **1/60 → 1/30 is one stop more light.** |
+| Gain | **6 dB.** 3 dB → 9 dB is one stop more. |
+| ISO | **Double it.** ISO 400 → ISO 800 is one stop more. |
+
+Two things worth getting straight now, because they are easy to half-learn:
+
+- It is **6 dB per stop, not 3 dB.** Gain in dB is measured on the amplitude scale, where a doubling is 6 dB.
+- **dB and ISO are both gain, but they are not interchangeable numbers.** A camera sitting at 0 dB is at its own base sensitivity, and that base is different on every body. So 3 dB and ISO 400 are the house numbers for these particular cameras — not a conversion you can carry to the next camera you pick up. What always transfers is the stop: **+6 dB and ISO ×2 are the same amount of light on any camera.**
+
+**Q2 (multiple choice).** Your shot is one stop too dark and you are going to fix it with gain alone. You are currently at 3 dB. You set the camera to:
+
+- a) 4 dB
+- b) 6 dB
+- c) 9 dB
+- d) 12 dB
 
 ## 🚀 Get ready
 
@@ -198,7 +223,7 @@ Keep the framing identical across all clips. If the camera moves, your compariso
 
 Do not shoot the other nine clips before you know the card is actually recording. Students lose whole sessions this way.
 
-**Q2 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
+**Q3 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
 
 - a) To fill out the file count
 - b) So you can recognize soft footage on a small camera screen, where it is easy to miss
@@ -209,35 +234,37 @@ Do not shoot the other nine clips before you know the card is actually recording
 
 Return to the house default before each comparison, then change **only** the one setting listed. Record the "before" and the "after" as separate clips, or as one clip where you change the value on camera — either is fine, as long as the slate is read for each value.
 
-| # | Change | What to look for |
-|---|---|---|
-| 4 | Iris **F4.0 → F5.6** | Depth of field and brightness. Watch the near object against the far one. |
-| 5 | Gain **3 dB → 9 dB** (ISO 400 → 1600) | Brightness, and grain/noise in the dark parts of the picture |
-| 6 | Shutter **1/60 → 1/30** | Brightness, and motion blur — wave a hand through the frame on both |
-| 7 | White balance **3200 K → 5000 K** | Overall color cast of the whole picture |
+| # | Change | Size | What to look for |
+|---|---|---|---|
+| 4 | Iris **F4.0 → F5.6** | −1 stop | Depth of field and brightness. Watch the near object against the far one. |
+| 5 | Gain **3 dB → 15 dB**, or **ISO 400 → 1600** | +2 stops | Brightness, and grain/noise in the dark parts of the picture |
+| 6 | Shutter **1/60 → 1/30** | +1 stop | Brightness, and motion blur — wave a hand through the frame on both |
+| 7 | White balance **3200 K → 5000 K** | not exposure | Overall color cast. White balance does not change how much light hits the sensor. |
 
-**Q3 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
+Clip 5 is deliberately **two** stops so the noise is obvious on a small screen. Say the stop count out loud in your slate along with the values.
+
+**Q4 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
 
 - a) Brighter, with more of the scene in focus
 - b) Darker, with more of the scene in focus
 - c) Darker, with less of the scene in focus
 - d) Brighter, with less of the scene in focus
 
-**Q4 (multiple choice).** The hall is too dark and your iris is already wide open. You raise gain from 3 dB to 9 dB. What did that cost you?
+**Q5 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
 
-- a) Nothing — gain is free
-- b) Noise in the shadows
-- c) Focus accuracy
-- d) The white balance resets
+- a) One stop, and it cost nothing — gain is free
+- b) Two stops, and it cost noise in the shadows
+- c) Two stops, and it cost depth of field
+- d) Four stops, and it cost focus accuracy
 
-**Q5 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
+**Q6 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
 
 - a) The color gets warmer
 - b) Moving things blur more
 - c) Depth of field increases
 - d) Nothing else
 
-**Q6 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
+**Q7 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
 
 - a) More orange / warmer
 - b) More blue / cooler
@@ -292,6 +319,7 @@ Work in order. Do not skip to the exotic explanation.
 
 Only after the Definition of Done is met.
 
+- **Prove the exposure triangle.** Shoot F4.0 at 1/60, then F5.6 at 1/30. You took one stop away with the iris and handed one stop back with the shutter, so the two clips should be about **equally bright** — but one has more depth of field and more motion blur. Same exposure, different picture. That is the entire reason engineers think in stops.
 - Shoot the full white balance range: **2400 K vs 3200 K vs 5000 K** in the same light, and name which one looks correct.
 - Push the aperture comparison further — the widest the lens will open vs. the most closed-down it will go — and describe what happens to both depth of field and image sharpness at the extremes.
 - Shoot the same subject at 1/60 and a much faster shutter (1/250) and describe when you would actually want that.
@@ -325,7 +353,8 @@ Two prompts. Do not write an essay.
 
 Specific items to check:
 
-- **The dB ↔ ISO equivalence.** The original notes treat 3 dB and ISO 400 as the same baseline. That mapping is body-specific and has not been confirmed for these three cameras. Until it is, use whichever unit your camera actually displays.
+- **dB, ISO, and stops — resolved.** 6 dB is one stop and doubling ISO is one stop; both are definitional and safe to teach as written. What stays body-specific is which ISO a given camera's 0 dB sits at, so the house numbers (3 dB, ISO 400) should be confirmed on each body rather than converted between. The original notes treated 3 dB and ISO 400 as the same value, and paired 3 → 9 dB with ISO 400 → 1600; those are one stop and two stops respectively. The comparison is corrected here to two stops in both units.
+- **Gain range and step size.** Confirm each body actually reaches 15 dB / ISO 1600 and steps in 3 dB increments. If a body steps differently, keep the **+2 stops** instruction and adjust the numbers.
 - **GH5 units.** The GH5 shows ISO, not dB, so its house default is written here as ISO 400.
 - **GH5 white balance.** Reaching a specific Kelvin value may require selecting the **K** color-temperature preset before dialing the number. Confirm the exact button sequence on the body.
 - **GH5 lens cap.** Confirmed lost as of the original notes. Confirm whether it has since been replaced, and update this page if so.
@@ -337,4 +366,4 @@ Specific items to check:
 
 ## 🤖 AI use disclosure
 
-Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The camera control details come from the instructor's notes; the structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.
+Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The camera control details come from the instructor's notes. The stop relationships (6 dB per stop, ISO doubling per stop) were corrected by the instructor in September 2026, and the gain comparison was rebuilt around them. The structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.
