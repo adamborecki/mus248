@@ -1,6 +1,15 @@
 {
   "term": "Fall 2026",
-  "endOfActivityReminder": "Write in your MUS 248 Word Journal first. Then post the same entry and any useful updates or advice here.",
+  "afterActivity": {
+    "heading": "After this activity",
+    "note": "These happen later, once you're at a computer — not during the hands-on part.",
+    "steps": [
+      "Log it in your MUS 248 Journal spreadsheet.",
+      "Write the same entry in your MUS 248 Word Journal.",
+      "Post it in this activity's Canvas discussion — linked below.",
+      "Include it in that week's Weekly Report."
+    ]
+  },
   "discussions": [
     {"title":"Basic Stereo Recording","url":"https://canvas.chapman.edu/courses/89106/discussion_topics/671512","activityIds":["stereo"]},
     {"title":"DAW Training Circuit 1","url":"https://canvas.chapman.edu/courses/89106/discussion_topics/671496","activityIds":["daw"]},

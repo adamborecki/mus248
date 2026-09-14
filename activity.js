@@ -60,21 +60,32 @@ async function loadActivity() {
   const discussion = semester.discussions.find((item) => item.activityIds.includes(activity.id));
   let instructions = '';
 
+  let external = false;
   if (activity.contentFile) {
     const response = await fetch(`../content/activities/${activity.contentFile}.md`);
     if (response.ok) instructions = renderMarkdown(await response.text());
   }
   if (!instructions && activity.externalResource) {
-    instructions = `<p><a class="primary-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">Open instructions <span aria-hidden="true">↗</span></a></p>`;
+    external = true;
+    instructions = `<p class="quiet">This activity's instructions are hosted outside this site and will open in a new tab.</p><p><a class="primary-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">${activity.externalResource.label} <span aria-hidden="true">↗</span></a></p>`;
   }
   if (!instructions) instructions = '<p class="quiet">Instructions are being moved here.</p>';
+
+  const afterActivity = semester.afterActivity;
+  const completion = discussion && afterActivity ? `
+    <section class="completion">
+      <h2>${afterActivity.heading}</h2>
+      <p class="quiet">${afterActivity.note}</p>
+      <ol class="submission-steps">${afterActivity.steps.map((step) => `<li>${step}</li>`).join('')}</ol>
+      <a class="canvas-link" href="${discussion.url}" target="_blank" rel="noopener">Canvas discussion <span aria-hidden="true">↗</span></a>
+    </section>` : '';
 
   document.title = `${activity.title} · MUS 248`;
   document.getElementById('activity').innerHTML = `
     <a class="back" href="../">← Activities</a>
-    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${activity.time} · ${activity.access} · Groups of ${activity.group}</p></div></header>
+    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${activity.time} · ${activity.access} · Groups of ${activity.group}${external ? ' · Instructions hosted externally' : ''}</p></div></header>
     <article class="instructions">${instructions}</article>
-    ${discussion ? `<section class="completion"><h2>Afterwards</h2><p>${semester.endOfActivityReminder}</p><a class="canvas-link" href="${discussion.url}">Canvas discussion <span aria-hidden="true">↗</span></a></section>` : ''}
+    ${completion}
   `;
 }
 
