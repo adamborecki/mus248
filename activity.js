@@ -12,19 +12,39 @@ function renderMarkdown(markdown) {
   const output = [];
   let list = null;
   const closeList = () => { if (list) { output.push(`</${list}>`); list = null; } };
+  const cells = (line) => line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((cell) => cell.trim());
+  const isDivider = (line) => line.includes('|') && /^\|?[\s:|-]*-[\s:|-]*\|?$/.test(line.trim());
+  const row = (values, tag) => `<tr>${values.map((value) => `<${tag}>${inline(value)}</${tag}>`).join('')}</tr>`;
 
-  lines.forEach((line) => {
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
     const heading = line.match(/^(#{2,4})\s+(.+)$/);
     const bullet = line.match(/^[-*]\s+(.+)$/);
     const numbered = line.match(/^\d+\.\s+(.+)$/);
     const quote = line.match(/^>\s?(.+)$/);
-    if (heading) { closeList(); output.push(`<h${heading[1].length}>${inline(heading[2])}</h${heading[1].length}>`); }
-    else if (bullet) { if (list !== 'ul') { closeList(); list = 'ul'; output.push('<ul>'); } output.push(`<li>${inline(bullet[1])}</li>`); }
+
+    if (line.trim().startsWith('|') && isDivider(lines[index + 1] || '')) {
+      closeList();
+      const head = cells(line);
+      const body = [];
+      index += 2;
+      while (index < lines.length && lines[index].trim().startsWith('|')) { body.push(cells(lines[index])); index += 1; }
+      index -= 1;
+      output.push(`<div class="table-scroll"><table><thead>${row(head, 'th')}</thead><tbody>${body.map((values) => row(values, 'td')).join('')}</tbody></table></div>`);
+    }
+    else if (heading) { closeList(); output.push(`<h${heading[1].length}>${inline(heading[2])}</h${heading[1].length}>`); }
+    else if (bullet) {
+      if (list !== 'ul') { closeList(); list = 'ul'; output.push('<ul>'); }
+      const task = bullet[1].match(/^\[([ xX])\]\s+(.+)$/);
+      output.push(task
+        ? `<li class="task"><span aria-hidden="true">${task[1] === ' ' ? '☐' : '☑'}</span> ${inline(task[2])}</li>`
+        : `<li>${inline(bullet[1])}</li>`);
+    }
     else if (numbered) { if (list !== 'ol') { closeList(); list = 'ol'; output.push('<ol>'); } output.push(`<li>${inline(numbered[1])}</li>`); }
     else if (quote) { closeList(); output.push(`<aside>${inline(quote[1])}</aside>`); }
     else if (!line.trim()) { closeList(); }
     else { closeList(); output.push(`<p>${inline(line)}</p>`); }
-  });
+  }
   closeList();
   return output.join('');
 }
