@@ -14,10 +14,12 @@ async function loadDirectory() {
     const visible = activities.filter((activity) => selectedSkill === 'all' || activity.skills.includes(selectedSkill));
     count.textContent = `${visible.length} ${visible.length === 1 ? 'activity' : 'activities'}`;
     list.innerHTML = visible.map((activity) => {
-      const source = activity.externalResource
-        ? `<a class="source-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">${activity.externalResource.label} <span aria-hidden="true">↗</span></a>`
-        : '';
-      const family = activity.family ? `<span>${activity.family} · levels and variants welcome</span>` : '';
+      const action = activity.contentFile
+        ? `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`
+        : activity.externalResource
+          ? `<a class="activity-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">Open instructions <span aria-hidden="true">↗</span></a>`
+          : `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`;
+      const family = activity.family ? `<p class="activity-family">${activity.family}</p>` : '';
       return `<details class="activity-card">
         <summary>
           <span class="activity-emoji" aria-hidden="true">${activity.emoji}</span>
@@ -25,9 +27,9 @@ async function loadDirectory() {
           <span class="arrow" aria-hidden="true">⌄</span>
         </summary>
         <div class="card-details">
-          <p>${activity.skills.join(' · ')}<br>${activity.access} · ${activity.group}</p>
-          ${family ? `<p>${family}</p>` : ''}
-          <div class="card-actions"><a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>${source}</div>
+          <p class="activity-meta"><span>${activity.skills.join(' · ')}</span><span>${activity.access}</span><span>Groups of ${activity.group}</span></p>
+          ${family}
+          <div class="card-actions">${action}</div>
         </div>
       </details>`;
     }).join('');

@@ -45,14 +45,14 @@ async function loadActivity() {
     if (response.ok) instructions = renderMarkdown(await response.text());
   }
   if (!instructions && activity.externalResource) {
-    instructions = `<p><a class="primary-link" href="${activity.externalResource.url}">${activity.externalResource.label} <span aria-hidden="true">↗</span></a></p>`;
+    instructions = `<p><a class="primary-link" href="${activity.externalResource.url}" target="_blank" rel="noopener">Open instructions <span aria-hidden="true">↗</span></a></p>`;
   }
   if (!instructions) instructions = '<p class="quiet">Instructions are being moved here.</p>';
 
   document.title = `${activity.title} · MUS 248`;
   document.getElementById('activity').innerHTML = `
     <a class="back" href="../">← Activities</a>
-    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${activity.time} · ${activity.access} · ${activity.group}</p></div></header>
+    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${activity.time} · ${activity.access} · Groups of ${activity.group}</p></div></header>
     <article class="instructions">${instructions}</article>
     ${discussion ? `<section class="completion"><h2>Afterwards</h2><p>${semester.endOfActivityReminder}</p><a class="canvas-link" href="${discussion.url}">Canvas discussion <span aria-hidden="true">↗</span></a></section>` : ''}
   `;
