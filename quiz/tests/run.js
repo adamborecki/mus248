@@ -52,9 +52,13 @@ test('question bank is well-formed', () => {
 });
 
 test('curriculum and study deck reference things that exist', () => {
-  const cards = new Set(deck.cards.map(({ id }) => id));
-  curriculum.study_cards.forEach((id) => assert.ok(cards.has(id), `study card ${id} not in study-deck.json`));
-  deck.cards.forEach((card) => assert.ok(bank.skills[card.skill], `card ${card.id}: unknown skill ${card.skill}`));
+  assert.equal(new Set(deck.cards.map(({ id }) => id)).size, deck.cards.length, 'duplicate card id');
+  deck.cards.forEach((card) => {
+    assert.ok(bank.skills[card.skill], `card ${card.id}: unknown skill ${card.skill}`);
+    assert.ok(curriculum.skills[card.skill], `card ${card.id}: skill ${card.skill} missing from curriculum.json`);
+    assert.ok(deck.categories.includes(card.category), `card ${card.id}: unknown category ${card.category}`);
+    assert.ok(card.front && card.back, `card ${card.id} needs front and back`);
+  });
   Object.entries(curriculum.skills).forEach(([skill, status]) => {
     assert.ok(['core', 'practice', 'inactive'].includes(status), `${skill}: bad status ${status}`);
     assert.ok(bank.skills[skill], `curriculum skill ${skill} has no label`);
@@ -114,9 +118,11 @@ test('Quiz 1 with no activities: 20 questions, 9 Core, all common, no drafts, no
     assert.equal(byId[id].activity_gate, null, `${id} is activity-gated`);
     assert.ok(!byId[id].draft, `${id} is a draft`);
   });
-  const coreSkills = Object.entries(curriculum.skills).filter(([, status]) => status === 'core').map(([skill]) => skill);
+  const liveCoreSkills = new Set(bank.questions
+    .filter((question) => !question.draft && !question.activity_gate && curriculum.skills[question.skill] === 'core')
+    .map((question) => question.skill));
   const selectedCoreSkills = new Set(selection.filter(({ role }) => role === 'core').map(({ id }) => byId[id].skill));
-  coreSkills.forEach((skill) => assert.ok(selectedCoreSkills.has(skill), `Core skill ${skill} not covered`));
+  assert.equal(selectedCoreSkills.size, Math.min(9, liveCoreSkills.size), 'Core questions should each cover a different skill');
 });
 
 test('roles always come from curriculum.json', () => {

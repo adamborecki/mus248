@@ -1,77 +1,90 @@
 {
   "schema": 1,
+  "categories": [
+    "Audio basics",
+    "Mics & cables",
+    "DAW & files",
+    "Video",
+    "Live sound",
+    "Stereo recording",
+    "The job",
+    "X32",
+    "Dante",
+    "Live looping"
+  ],
   "cards": [
-    {
-      "id": "input_gain",
-      "skill": "input_gain",
-      "front": "Input gain",
-      "back": "The preamp level at the start of a channel. Set it first to get a healthy signal, then use faders to balance the mix."
-    },
-    {
-      "id": "clipping",
-      "skill": "clipping",
-      "front": "Clipping / 0 dBFS",
-      "back": "0 dBFS is the digital ceiling. A signal that hits it clips and distorts, and turning it down later won’t undo that. Leave headroom."
-    },
-    {
-      "id": "mono",
-      "skill": "mono_stereo",
-      "front": "Mono",
-      "back": "One audio channel. One mic into one input is a mono source."
-    },
-    {
-      "id": "stereo",
-      "skill": "mono_stereo",
-      "front": "Stereo",
-      "back": "Two audio channels, usually left and right. A stereo mic pair is panned one left, one right."
-    },
-    {
-      "id": "signal_flow",
-      "skill": "signal_flow",
-      "front": "Signal flow",
-      "back": "Where a signal starts, what it passes through, and where it ends up. When something’s wrong, follow it one stage at a time."
-    },
-    {
-      "id": "phantom_power",
-      "skill": "phantom_power",
-      "front": "48V phantom power",
-      "back": "Power sent to a mic through its cable. Condenser mics always need it. Dynamic mics don’t care whether it’s on or off. Ribbon mics must never get it."
-    },
-    {
-      "id": "mains",
-      "skill": "mains_monitors",
-      "front": "Mains",
-      "back": "The audience mix: what the room hears."
-    },
-    {
-      "id": "monitors",
-      "skill": "mains_monitors",
-      "front": "Monitors",
-      "back": "The performer mix: what musicians hear on stage. It can be different from the mains."
-    },
-    {
-      "id": "aperture",
-      "skill": "aperture_iris",
-      "front": "Aperture / iris",
-      "back": "The lens opening that controls how much light gets in. A higher f-number means a smaller opening and less light."
-    },
-    {
-      "id": "shutter",
-      "skill": "shutter_speed",
-      "front": "Shutter speed",
-      "back": "How long each frame is exposed. It affects brightness and how motion looks: slower shutter, more motion blur."
-    },
-    {
-      "id": "white_balance",
-      "skill": "white_balance_kelvin",
-      "front": "White balance / Kelvin",
-      "back": "Tells the camera what white looks like under the current light, so colors look right. It’s set in Kelvin; the Cameras activity used 3200 K."
-    },
-    {
-      "id": "speaker_power",
-      "skill": "safe_power_order",
-      "front": "Speaker power order",
-      "back": "Speakers ON last. Speakers OFF first. That keeps pops and thumps from upstream gear out of the speakers."
-    }
+    { "id": "signal_flow", "skill": "signal_flow", "category": "Audio basics", "front": "Signal flow", "back": "Where a signal starts, what it passes through, and where it ends up. When something’s wrong, follow it one stage at a time." },
+    { "id": "io", "skill": "io", "category": "Audio basics", "front": "Input/output (I/O)", "back": "Which device and channels audio comes in on and goes out through. In a DAW, choose the device in the audio settings, then the input on each track." },
+    { "id": "record_arm", "skill": "track_arming", "category": "Audio basics", "front": "Record arm", "back": "Enables a track to record. Arm the track you mean to record onto, and only that one." },
+    { "id": "input_gain", "skill": "input_gain", "category": "Audio basics", "front": "Input gain", "back": "The preamp level at the start of a channel. Set it first to get a healthy signal, then use faders to balance the mix." },
+    { "id": "gain_before_fader", "skill": "input_gain", "category": "Audio basics", "front": "Gain before fader", "back": "Get a healthy level with input gain first. Faders balance a mix; they can’t rescue a weak or distorted input." },
+    { "id": "clipping", "skill": "clipping", "category": "Audio basics", "front": "Clipping / 0 dBFS", "back": "0 dBFS is the digital ceiling. A signal that hits it clips and distorts, and turning it down later won’t undo that. Leave headroom." },
+    { "id": "goldilocks", "skill": "gain_target", "category": "Audio basics", "front": "The Goldilocks of gain", "back": "Too loud clips. Too quiet buries the sound in noise. Just right: peaks around −12 to −6 dBFS." },
+    { "id": "mono", "skill": "mono_stereo", "category": "Audio basics", "front": "Mono", "back": "One audio channel. One mic into one input is a mono source." },
+    { "id": "stereo", "skill": "mono_stereo", "category": "Audio basics", "front": "Stereo", "back": "Two audio channels, usually left and right. A stereo mic pair is panned one left, one right." },
+    { "id": "test_listen", "skill": "test_recording", "category": "Audio basics", "front": "Record a test, then listen", "back": "Meters can’t tell you about distortion, noise, or the wrong mic. Record a short test and listen back before the real take." },
+
+    { "id": "phantom_power", "skill": "phantom_power", "category": "Mics & cables", "front": "48V phantom power", "back": "Power sent to a mic through its cable. Condenser mics always need it. Dynamic mics don’t care whether it’s on or off. Ribbon mics must never get it. (Rare exceptions exist, like tube mics with their own power supply.)" },
+    { "id": "condenser", "skill": "microphone_types", "category": "Mics & cables", "front": "Condenser microphone", "back": "Sensitive and detailed. Needs 48V phantom power. A common choice for acoustic instruments and ensembles." },
+    { "id": "dynamic", "skill": "microphone_types", "category": "Mics & cables", "front": "Dynamic microphone", "back": "Rugged and handles loud sources well. Doesn’t need phantom power. A common choice for live vocals and amps." },
+    { "id": "ribbon", "skill": "microphone_types", "category": "Mics & cables", "front": "Ribbon microphone", "back": "Smooth-sounding and fragile, usually with a figure-8 pickup. Keep phantom power off (rare exception: some modern active ribbons need it)." },
+    { "id": "audio_interface", "skill": "audio_interface", "category": "Mics & cables", "front": "Audio interface", "back": "Gets mics and instruments into the computer and audio back out. Inside: preamps to raise mic level, and converters." },
+    { "id": "ad_conversion", "skill": "audio_interface", "category": "Mics & cables", "front": "A/D and D/A conversion", "back": "A/D turns the voltage from a mic or instrument into numbers the computer can record. D/A turns it back into voltage for speakers or headphones." },
+    { "id": "xlr", "skill": "connectors", "category": "Mics & cables", "front": "XLR", "back": "Three-pin, locking, balanced connector. The standard cable for microphones." },
+    { "id": "ts_trs", "skill": "connectors", "category": "Mics & cables", "front": "¼″ TS vs. TRS", "back": "TS (tip-sleeve, one black ring): unbalanced, like a guitar cable. TRS (tip-ring-sleeve, two rings): balanced line signals, or stereo headphones." },
+    { "id": "mini", "skill": "connectors", "category": "Mics & cables", "front": "3.5 mm (⅛″)", "back": "The small headphone-size plug on phones and laptops. Usually stereo." },
+    { "id": "combo", "skill": "connectors", "category": "Mics & cables", "front": "Combo jack", "back": "An input that takes either an XLR plug or a ¼″ plug. Common on audio interfaces." },
+
+    { "id": "mute_solo_pan", "skill": "daw_basics", "category": "DAW & files", "front": "Mute, solo, pan", "back": "Mute silences a track. Solo plays only that track (and any other soloed tracks). Pan places it between left and right." },
+    { "id": "export", "skill": "daw_basics", "category": "DAW & files", "front": "Export / bounce / render", "back": "Creates a finished audio file from your session, such as a WAV you can hand in or send." },
+    { "id": "project_deliverable", "skill": "file_management", "category": "DAW & files", "front": "Project vs. deliverable", "back": "The project (session) is your editable working file. The deliverable is the finished export someone else receives. Keep both." },
+    { "id": "know_where", "skill": "file_management", "category": "DAW & files", "front": "Know where it’s saving", "back": "Before you record, know which folder or drive your project and audio files go to, and name things so you can find them later." },
+
+    { "id": "exposure_triangle", "skill": "exposure", "category": "Video", "front": "Exposure triangle", "back": "Aperture, shutter speed, and ISO/gain together set how bright the image is. Change one and you may need to adjust another." },
+    { "id": "manual_exposure", "skill": "exposure", "category": "Video", "front": "Manual exposure", "back": "You set aperture, shutter, and gain yourself, so the brightness doesn’t drift on its own when the lighting or the shot changes." },
+    { "id": "aperture", "skill": "aperture_iris", "category": "Video", "front": "Aperture / iris", "back": "The lens opening that controls how much light gets in. A higher f-number means a smaller opening and less light." },
+    { "id": "shutter", "skill": "shutter_speed", "category": "Video", "front": "Shutter speed", "back": "How long each frame is exposed. It affects brightness and how motion looks: slower shutter, more motion blur." },
+    { "id": "iso_gain", "skill": "iso_gain", "category": "Video", "front": "ISO / gain", "back": "Brightens the image electronically. The tradeoff is more noise, or grain." },
+    { "id": "frame_rate", "skill": "frame_rate", "category": "Video", "front": "Frame rate", "back": "How many frames are recorded each second, such as 24, 30, or 60 fps. Choose it on purpose before you record." },
+    { "id": "shutter_frame_rate", "skill": "frame_rate", "category": "Video", "front": "Shutter and frame rate", "back": "A common starting point is a shutter about twice the frame rate: 1/60 at 30 fps, 1/50 at 24 fps." },
+    { "id": "white_balance", "skill": "white_balance_kelvin", "category": "Video", "front": "White balance / Kelvin", "back": "Tells the camera what white looks like under the current light, so colors look right. It’s set in Kelvin; the Cameras activity used 3200 K." },
+    { "id": "focus", "skill": "focus", "category": "Video", "front": "Manual vs. autofocus", "back": "Autofocus lets the camera choose what’s sharp, and it can hunt. Manual focus stays where you set it, which is safer for a fixed recital shot." },
+    { "id": "framing", "skill": "framing", "category": "Video", "front": "Framing", "back": "What’s in the shot and where it sits. Leave sensible room around the performers and keep the frame steady and level." },
+    { "id": "test_clip", "skill": "test_recording", "category": "Video", "front": "Record a test clip", "back": "Record a few seconds, then check focus, exposure, color, and sound, and confirm the file is really on the card." },
+
+    { "id": "live_flow", "skill": "live_signal_flow", "category": "Live sound", "front": "Live sound signal flow", "back": "Source → mic, DI, or playback → mixer → amplifier (if needed) → speakers." },
+    { "id": "di_box", "skill": "live_signal_flow", "category": "Live sound", "front": "DI box", "back": "Converts an instrument or line signal, like a keyboard, into a balanced mic-level signal for the run to the mixer." },
+    { "id": "mains", "skill": "mains_monitors", "category": "Live sound", "front": "Mains", "back": "The audience mix: what the room hears." },
+    { "id": "monitors", "skill": "mains_monitors", "category": "Live sound", "front": "Monitors", "back": "The performer mix: what musicians hear on stage. It can be different from the mains." },
+    { "id": "active_passive", "skill": "active_passive", "category": "Live sound", "front": "Active vs. passive speakers", "back": "Active (powered) speakers have an amplifier built in. Passive speakers need an external power amplifier." },
+    { "id": "feedback", "skill": "feedback", "category": "Live sound", "front": "Feedback", "back": "A howl or squeal when sound from a speaker gets back into a mic and loops. Lower the level, and keep mics behind the speakers and aimed away." },
+    { "id": "speaker_power", "skill": "safe_power_order", "category": "Live sound", "front": "Speaker power order", "back": "Speakers ON last. Speakers OFF first. That keeps pops and thumps from upstream gear out of the speakers." },
+    { "id": "know_outputs", "skill": "outputs_routing", "category": "Live sound", "front": "Know your outputs", "back": "Before turning anything up, know what feeds the mains, the monitors, and the recording." },
+    { "id": "line_check", "skill": "test_recording", "category": "Live sound", "front": "Line check", "back": "Test every important input, output, and playback source before the audience arrives, not during the first song." },
+
+    { "id": "xy", "skill": "xy", "category": "Stereo recording", "front": "XY", "back": "Two directional mics with their capsules together, angled apart (often 90°). Very mono-compatible." },
+    { "id": "ab", "skill": "ab", "category": "Stereo recording", "front": "A/B (spaced pair)", "back": "Two mics spaced apart, often omnis. A wide, spacious image, but it can have phase problems when summed to mono." },
+    { "id": "ortf", "skill": "ortf", "category": "Stereo recording", "front": "ORTF", "back": "Two cardioid mics about 17 cm apart, angled 110°. A near-coincident middle ground between XY and A/B." },
+    { "id": "stereo_pan", "skill": "lr_panning", "category": "Stereo recording", "front": "Panning a stereo pair", "back": "Pan one mic hard left and the other hard right. Both panned center collapses the stereo image." },
+    { "id": "matched_gain", "skill": "matched_gain", "category": "Stereo recording", "front": "Matched gain", "back": "Set both channels of a stereo pair to the same input gain, so the image isn’t pulled toward one side." },
+
+    { "id": "reliability", "skill": "professionalism_reliability", "category": "The job", "front": "Professionalism = reliability", "back": "Be ready on time, communicate early, stay engaged, take care of gear, help your group, and finish the whole job." },
+    { "id": "on_time", "skill": "professionalism_reliability", "category": "The job", "front": "On time means ready", "back": "If the call is 7:00, you’re set up and ready to work at 7:00, not just walking in." },
+    { "id": "skill_areas", "skill": "skill_areas", "category": "The job", "front": "The five core skill areas", "back": "Stereo audio capture · Video recording · Basic live sound · Data management & archiving · Post production." },
+
+    { "id": "bus", "skill": "buses", "category": "X32", "front": "Bus", "back": "A separate mix path. On the X32, buses feed things like Monitor 1 and Monitor 2, independent of Main L/R." },
+    { "id": "bus_master", "skill": "buses", "category": "X32", "front": "Bus master", "back": "The overall level of a bus, such as one monitor mix, separate from each channel’s send into it." },
+    { "id": "sends_on_fader", "skill": "sends_on_fader", "category": "X32", "front": "Sends on Fader", "back": "Turns the faders into send levels for one selected bus, so you can build that monitor mix with the faders." },
+    { "id": "wireless", "skill": "wireless_setup", "category": "X32", "front": "Wireless mic receiver", "back": "The mic or bodypack transmits to a paired receiver, and the receiver’s output goes to a mixer input. Check it’s paired and showing signal." },
+
+    { "id": "dante", "skill": "transmitter_receiver", "category": "Dante", "front": "Dante", "back": "Carries many channels of audio over a standard computer network instead of separate audio cables." },
+    { "id": "tx_rx", "skill": "transmitter_receiver", "category": "Dante", "front": "Transmitters and receivers", "back": "Transmit channels send audio onto the network. Receive channels pick it up." },
+    { "id": "dante_controller", "skill": "dante_controller", "category": "Dante", "front": "Dante Controller", "back": "The routing software. Click where a transmitter channel meets a receiver channel to make a route (a subscription)." },
+    { "id": "dvs", "skill": "dvs", "category": "Dante", "front": "Dante Virtual Soundcard (DVS)", "back": "Lets a computer send and receive Dante channels, so a DAW can use the network as its audio I/O." },
+
+    { "id": "looper", "skill": "looper_signal_flow", "category": "Live looping", "front": "Looper", "back": "Records a phrase and plays it back on repeat so you can play over it. In our rig, that’s the Boss RC-30." },
+    { "id": "looping_path", "skill": "looper_signal_flow", "category": "Live looping", "front": "Looping rig signal path", "back": "Live: guitar or uke → Zoom G3X → B205D Channel 3. Loop: G3X balanced out → RC-30 → B205D Channel 2." },
+    { "id": "vocals_last", "skill": "looper_signal_flow", "category": "Live looping", "front": "Vocals last", "back": "Bring up the headset vocal channel last because it’s the most feedback-prone, and lower it first if feedback starts." },
+    { "id": "looping_power", "skill": "looper_power", "category": "Live looping", "front": "Power supplies", "back": "Keep each adapter with its own device. The RC-30 and MicroKorg both use 9V adapters with opposite polarity, so never swap them." }
   ]
 }

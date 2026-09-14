@@ -16,20 +16,6 @@
   "include_drafts": false,
   "review_next_max": 4,
   "coming_to_core": ["mains_monitors", "active_passive", "safe_power_order"],
-  "study_cards": [
-    "input_gain",
-    "clipping",
-    "mono",
-    "stereo",
-    "signal_flow",
-    "phantom_power",
-    "mains",
-    "monitors",
-    "aperture",
-    "shutter",
-    "white_balance",
-    "speaker_power"
-  ],
   "activities": [
     { "id": "daw", "label": "DAW Training Circuit" },
     { "id": "stereo", "label": "Stereo Recording" },
@@ -50,6 +36,12 @@
     "phantom_power": "core",
     "audio_interface": "core",
     "professionalism_reliability": "core",
+    "gain_target": "core",
+    "microphone_types": "core",
+    "connectors": "core",
+    "test_recording": "core",
+    "file_management": "core",
+    "daw_basics": "core",
 
     "aperture_iris": "practice",
     "shutter_speed": "practice",
@@ -60,6 +52,12 @@
     "active_passive": "practice",
     "safe_power_order": "practice",
     "feedback": "practice",
+    "exposure": "practice",
+    "frame_rate": "practice",
+    "framing": "practice",
+    "live_signal_flow": "practice",
+    "outputs_routing": "practice",
+    "skill_areas": "practice",
 
     "xy": "practice",
     "ab": "practice",
@@ -72,6 +70,8 @@
     "dvs": "practice",
     "routing_matrix": "practice",
     "transmitter_receiver": "practice",
-    "looper_signal_flow": "practice"
+    "looper_signal_flow": "practice",
+    "wireless_setup": "practice",
+    "looper_power": "practice"
   }
 }
