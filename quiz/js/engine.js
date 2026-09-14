@@ -47,13 +47,13 @@ export function randomId(length = 6) {
   return Array.from(values, (value) => ID_ALPHABET[value % ID_ALPHABET.length]).join('');
 }
 
-// Activity-gated questions need the activity once; level 2+ variants need it twice.
+// Activity-gated questions need the activity once; a level-N variant needs it N times (3 = "3+").
 function isEligible(question, curriculum, activities, includeDrafts) {
   if (question.draft && !includeDrafts) return false;
   if (statusOf(curriculum, question.skill) === 'inactive') return false;
   if (!question.activity_gate) return question.level <= (curriculum.max_common_level ?? 1);
   const count = activities[question.activity_gate] || 0;
-  return count >= 1 && question.level <= (count >= 2 ? 3 : 1);
+  return count >= 1 && question.level <= Math.min(count, 3);
 }
 
 // What last week's code tells us. With no code, everything here is empty and

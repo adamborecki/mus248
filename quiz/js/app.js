@@ -1,13 +1,14 @@
 import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectQuiz, statusOf } from './engine.js';
-import { decodeStateCode, encodeStateCode } from './state-code.js';
+import { escapeHtml } from './html.js';
+import { decodeStateCode, encodeStateCode, findStateCodes } from './state-code.js';
 
-const APP_VERSION = '0.1.0';
+const APP_VERSION = '0.2.0';
 const ATTEMPT_KEY = 'mus248-quiz:attempt';
 const LAST_CODE_KEY = 'mus248-quiz:last-code';
 const ATTEMPTS_KEY = 'mus248-quiz:attempts';
 const params = new URLSearchParams(location.search);
 const DEBUG = params.has('debug');
-const ACTIVITY_CHOICES = [[0, 'Not yet'], [1, 'Once'], [2, '2+ times']];
+const ACTIVITY_CHOICES = [[0, '0'], [1, '1'], [2, '2'], [3, '3+']];
 const PRIOR_ERRORS = {
   missing: 'We couldn’t find a quiz code in that text. Codes start with M248Q.',
   incomplete: 'That code looks cut off. Copy the whole thing, all the way to the end, and try again.',
@@ -17,9 +18,6 @@ const PRIOR_ERRORS = {
 };
 
 const app = document.getElementById('app');
-const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
-}[character]));
 const on = (selector, event, handler) => app.querySelector(selector)?.addEventListener(event, handler);
 
 // localStorage can be missing (private browsing); the quiz still works, it just can't resume.
@@ -35,6 +33,7 @@ let setup = null;
 
 const save = () => storage.write(ATTEMPT_KEY, attempt);
 const label = (skill) => data.bank.skills?.[skill] || skill.replace(/_/g, ' ');
+const timesLabel = (count) => (count >= 3 ? '3+' : String(count));
 const formatDate = (iso) => new Date(iso).toLocaleString('en-US', {
   weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
 });
@@ -59,7 +58,7 @@ async function init() {
   const [curriculum, bank, deck] = await Promise.all(
     ['data/curriculum.json', 'data/questions.json', 'data/study-deck.json'].map(loadJson),
   );
-  data = { curriculum, bank, deck, byId: indexQuestions(bank), cardsById: Object.fromEntries(deck.cards.map((card) => [card.id, card])) };
+  data = { curriculum, bank, deck, byId: indexQuestions(bank) };
   document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
   document.title = `${curriculum.quiz_label} · MUS 248`;
 
@@ -76,71 +75,94 @@ async function init() {
 function startFresh() {
   storage.remove(ATTEMPT_KEY);
   attempt = null;
-  setup = { prior: null, priorStatus: null, message: '', code: '', activities: {} };
+  setup = { prior: null, priorMode: null, priorStatus: null, message: '', code: '', activities: {} };
   renderStart();
 }
 
 // ---------- Start: previous code + activities ----------
 
-const isSetupReady = () => ['loaded', 'none'].includes(setup.priorStatus)
-  && data.curriculum.activities.every(({ id }) => Number.isInteger(setup.activities[id]));
+// Quiz 1 has no earlier quiz, so there is no code to ask about.
+const asksForCode = () => data.curriculum.quiz_number > 1;
+
+function missingSteps() {
+  const missing = [];
+  if (asksForCode() && setup.priorMode !== 'none' && setup.priorStatus !== 'loaded') {
+    missing.push(setup.priorMode === 'have'
+      ? 'Step 1: paste a code that checks out, or choose “I don’t have it.”'
+      : 'Step 1: choose “I have my code” or “I don’t have it.”');
+  }
+  const left = data.curriculum.activities.filter(({ id }) => !Number.isInteger(setup.activities[id])).length;
+  if (left) missing.push(`${asksForCode() ? 'Step 2: ' : ''}answer ${left} more ${left === 1 ? 'activity' : 'activities'}.`);
+  return missing.map((line) => line[0].toUpperCase() + line.slice(1)).join(' ');
+}
 
 function renderStart(options) {
   const { curriculum } = data;
-  const firstQuiz = curriculum.quiz_number === 1;
+  const askCode = asksForCode();
   const last = storage.read(LAST_CODE_KEY);
   const offerSaved = last?.code && last.quiz < curriculum.quiz_number && setup.priorStatus !== 'loaded';
-  const statusClass = { loaded: 'ok', error: 'error', none: 'quiet' }[setup.priorStatus] || '';
+  const statusClass = { loaded: 'ok', error: 'error' }[setup.priorStatus] || 'quiet';
+  const stepNumber = (n) => (askCode ? `<span class="step-number">${n}</span>` : '');
+  const option = (mode, text) => `<button class="option${setup.priorMode === mode ? ' is-on' : ''}" id="mode-${mode}" aria-pressed="${setup.priorMode === mode}">${text}</button>`;
   const activityRows = curriculum.activities.map(({ id, label: name }) => `
     <div class="activity" role="radiogroup" aria-labelledby="act-${id}-label">
       <span class="activity-name" id="act-${id}-label">${escapeHtml(name)}</span>
       <div class="segmented">
-        ${ACTIVITY_CHOICES.map(([value, text]) => `<label><input type="radio" name="act-${id}" value="${value}"${setup.activities[id] === value ? ' checked' : ''}><span>${text}</span></label>`).join('')}
+        ${ACTIVITY_CHOICES.map(([value, text]) => `<label><input type="radio" name="act-${id}" value="${value}"${setup.activities[id] === value ? ' checked' : ''} aria-label="${text === '3+' ? '3 or more' : text} times"><span>${text}</span></label>`).join('')}
       </div>
     </div>`).join('');
+  const missing = missingSteps();
 
   show(`
+    <p class="notice">Want to review first? <a href="../study/">Study cards</a> take about 5 minutes.</p>
+    ${askCode ? `
     <section class="step">
-      <h2 tabindex="-1"><span class="step-number">1</span>Previous quiz code</h2>
-      <p class="quiet">${firstQuiz
-        ? 'This is the first quiz, so you probably don’t have one yet.'
-        : 'Paste the code from your last quiz’s Canvas submission. Pasting the whole submission works too.'}</p>
-      ${offerSaved ? `<p class="notice">Your Quiz ${Number(last.quiz)} code is saved on this device. <button class="text-button" id="use-saved">Use it</button></p>` : ''}
-      <label class="sr-only" for="prior-code">Previous quiz code</label>
-      <textarea id="prior-code" rows="3" spellcheck="false" autocomplete="off" placeholder="M248Q…">${escapeHtml(setup.code)}</textarea>
-      <div class="row">
-        <button class="btn secondary" id="load-prior">Load previous quiz</button>
-        <button class="btn ${setup.priorStatus === 'none' ? 'primary' : 'secondary'}" id="no-prior" aria-pressed="${setup.priorStatus === 'none'}">I don’t have one yet</button>
+      <h2 tabindex="-1">${stepNumber(1)}Last quiz’s code</h2>
+      <p class="quiet">Your Canvas submission from last week ends with a quiz code. Pasting it lets this quiz pick up where you left off.</p>
+      <div class="choice-pair" role="group" aria-label="Do you have last quiz’s code?">
+        ${option('have', 'I have my code')}
+        ${option('none', 'I don’t have it')}
       </div>
+      ${setup.priorMode === 'have' ? `
+        ${offerSaved ? `<p class="notice">Your Quiz ${Number(last.quiz)} code is saved on this device. <button class="text-button" id="use-saved">Use it</button></p>` : ''}
+        <label class="field" for="prior-code">Paste your code (or your whole Canvas submission)</label>
+        <textarea id="prior-code" rows="3" spellcheck="false" autocomplete="off" placeholder="M248Q…">${escapeHtml(setup.code)}</textarea>
+        <div class="row"><button class="btn secondary" id="load-prior">Check code</button></div>` : ''}
       <p class="status ${statusClass}" id="prior-status" role="status">${escapeHtml(setup.message)}</p>
-    </section>
+    </section>` : ''}
     <section class="step">
-      <h2><span class="step-number">2</span>Activities you’ve done</h2>
+      <h2 tabindex="-1">${stepNumber(2)}Activities you’ve done</h2>
       <p class="quiet">${setup.priorStatus === 'loaded'
         ? 'Filled in from your last quiz. Update anything you’ve done since.'
-        : 'Count every time this semester, including today. This decides which questions you see.'}</p>
+        : 'How many times have you done each one this semester? Count today too.'}</p>
       ${activityRows}
     </section>
     <div class="start">
-      <button class="btn primary wide big" id="start"${isSetupReady() ? '' : ' disabled'}>Start study cards →</button>
-      <p class="quiet small center" id="start-hint">${isSetupReady() ? '' : 'Finish steps 1 and 2 to start.'}</p>
+      <button class="btn primary wide big" id="start"${missing ? ' disabled' : ''}>Continue →</button>
+      <p class="quiet small center" id="start-hint">${escapeHtml(missing)}</p>
     </div>`, options);
 
-  const codeBox = app.querySelector('#prior-code');
-  codeBox.addEventListener('input', () => { setup.code = codeBox.value; });
-  on('#load-prior', 'click', () => loadPrior(codeBox.value));
-  on('#use-saved', 'click', () => { setup.code = last.code; loadPrior(last.code); });
-  on('#no-prior', 'click', () => {
-    setup.prior = null;
-    setup.priorStatus = 'none';
-    setup.message = firstQuiz ? 'No problem. On to step 2.' : 'Okay. This quiz won’t adapt to last week, and that’s fine.';
+  on('#mode-have', 'click', () => {
+    if (setup.priorMode !== 'have') setup.message = '';
+    setup.priorMode = 'have';
+    renderStart({ focus: '#prior-code', scroll: false });
+  });
+  on('#mode-none', 'click', () => {
+    Object.assign(setup, { priorMode: 'none', prior: null, priorStatus: null, message: 'Okay. This quiz won’t adapt to last week, and that’s fine.' });
     renderStart({ focus: null, scroll: false });
   });
+  const codeBox = app.querySelector('#prior-code');
+  codeBox?.addEventListener('input', () => {
+    setup.code = codeBox.value;
+    if (findStateCodes(codeBox.value).length) loadPrior(codeBox.value);
+  });
+  on('#load-prior', 'click', () => loadPrior(codeBox.value));
+  on('#use-saved', 'click', () => { setup.code = last.code; loadPrior(last.code); });
   app.querySelectorAll('.segmented input').forEach((input) => input.addEventListener('change', () => {
     setup.activities[input.name.slice(4)] = Number(input.value);
-    const ready = isSetupReady();
-    app.querySelector('#start').disabled = !ready;
-    app.querySelector('#start-hint').textContent = ready ? '' : 'Finish steps 1 and 2 to start.';
+    const stillMissing = missingSteps();
+    app.querySelector('#start').disabled = Boolean(stillMissing);
+    app.querySelector('#start-hint').textContent = stillMissing;
   }));
   on('#start', 'click', startAttempt);
 }
@@ -151,19 +173,19 @@ function loadPrior(text) {
   setup.prior = null;
   if (!text.trim()) {
     setup.priorStatus = 'error';
-    setup.message = 'Paste a code first, or choose “I don’t have one yet.”';
+    setup.message = 'Paste your code first, or choose “I don’t have it.”';
   } else if (!result.ok) {
     setup.priorStatus = 'error';
-    setup.message = `${PRIOR_ERRORS[result.reason]} You can also continue without it.`;
+    setup.message = `${PRIOR_ERRORS[result.reason]} Or choose “I don’t have it” to continue without it.`;
   } else if (result.state.q >= curriculum.quiz_number) {
     setup.priorStatus = 'error';
-    setup.message = `That code is from Quiz ${result.state.q}. Paste the code from an earlier quiz, or continue without one.`;
+    setup.message = `That code is from Quiz ${result.state.q}. Paste the code from an earlier quiz, or choose “I don’t have it.”`;
   } else {
     setup.prior = result.state;
     setup.priorStatus = 'loaded';
     setup.message = `Previous quiz loaded ✓ (Quiz ${result.state.q}, ${formatDate(result.state.t)})`;
     curriculum.activities.forEach(({ id }) => {
-      if (!Number.isInteger(setup.activities[id])) setup.activities[id] = Math.min(result.state.act?.[id] || 0, 2);
+      if (!Number.isInteger(setup.activities[id])) setup.activities[id] = Math.min(result.state.act?.[id] || 0, 3);
     });
   }
   renderStart({ focus: null, scroll: false });
@@ -197,73 +219,28 @@ function startAttempt() {
     selection,
     answers: [],
     index: 0,
-    phase: 'deck',
-    deck: { queue: curriculum.study_cards.filter((id) => data.cardsById[id]), done: 0 },
+    phase: 'intro',
   };
   save();
-  renderDeck();
+  renderIntro();
 }
 
 function renderResume() {
   const where = attempt.phase === 'quiz'
     ? `question ${attempt.index + 1} of ${attempt.selection.length}`
-    : 'the study cards';
+    : 'the start of the quiz';
   show(`
     <section class="stage">
       <h2 tabindex="-1">Pick up where you left off?</h2>
-      <p>You have an unfinished ${escapeHtml(data.curriculum.quiz_label)} on this device. You were on ${where}.</p>
+      <p>You have an unfinished ${escapeHtml(data.curriculum.quiz_label)} on this device. You were at ${where}.</p>
       <div class="row">
         <button class="btn primary" id="resume">Resume</button>
         <button class="btn secondary" id="restart">Start over</button>
       </div>
     </section>`);
-  on('#resume', 'click', () => ({ deck: renderDeck, intro: renderIntro, quiz: renderQuestion }[attempt.phase] || renderDeck)());
+  on('#resume', 'click', () => (attempt.phase === 'quiz' ? renderQuestion() : renderIntro()));
   on('#restart', 'click', () => {
     if (confirm('Start over? Your answers so far on this device will be cleared.')) startFresh();
-  });
-}
-
-// ---------- Study cards ----------
-
-function renderDeck(revealed = false) {
-  const { queue, done } = attempt.deck;
-  if (!queue.length) {
-    attempt.phase = 'intro';
-    save();
-    return renderIntro();
-  }
-  const card = data.cardsById[queue[0]];
-  const total = done + queue.length;
-  show(`
-    <section class="stage">
-      <h2 class="eyebrow" tabindex="-1"><span>Study cards</span><span>${done + 1} of ${total}</span></h2>
-      ${progressBar(done, total)}
-      <button class="flashcard${revealed ? ' is-revealed' : ''}" id="flip" aria-expanded="${revealed}">
-        <span class="flashcard-front">${escapeHtml(card.front)}</span>
-        ${revealed ? `<span class="flashcard-back">${escapeHtml(card.back)}</span>` : '<span class="flashcard-hint">Tap to reveal</span>'}
-      </button>
-      <div class="row split"${revealed ? '' : ' hidden'}>
-        <button class="btn secondary" id="again">Review again</button>
-        <button class="btn primary" id="got">Got it</button>
-      </div>
-      <p class="center"><button class="text-button" id="skip-deck">Skip to the quiz</button></p>
-    </section>`, { focus: revealed ? '#got' : 'h2' });
-
-  on('#flip', 'click', () => renderDeck(!revealed));
-  on('#got', 'click', () => {
-    queue.shift();
-    attempt.deck.done += 1;
-    save();
-    renderDeck();
-  });
-  on('#again', 'click', () => {
-    queue.push(queue.shift());
-    save();
-    renderDeck();
-  });
-  on('#skip-deck', 'click', () => {
-    attempt.deck.queue = [];
-    renderDeck();
   });
 }
 
@@ -290,13 +267,14 @@ function renderIntro() {
 function feedback(question, role, answer) {
   const correctText = escapeHtml(question.choices[question.answer_index]);
   const explanation = escapeHtml(question.explanation);
-  if (role === 'core') {
-    return answer.correct
-      ? `<div class="feedback good" tabindex="-1"><h3>✓ Correct</h3><p>${explanation}</p></div>`
-      : `<div class="feedback miss" tabindex="-1"><h3>Not quite. The answer is: ${correctText}</h3><p>${explanation}</p></div>`;
+  if (answer.correct) {
+    return `<div class="feedback good" tabindex="-1"><h3>✓ Correct${role === 'core' ? '' : ' · Practice complete'}</h3><p>${explanation}</p></div>`;
   }
-  return `<div class="feedback practice" tabindex="-1"><h3>Practice complete${answer.correct ? ' · You got it' : ''}</h3>
-    <p>${answer.correct ? '' : `<strong>Answer: ${correctText}.</strong> `}${explanation}</p></div>`;
+  if (role === 'core') {
+    return `<div class="feedback miss" tabindex="-1"><h3>Not quite. The answer is: ${correctText}</h3><p>${explanation}</p></div>`;
+  }
+  return `<div class="feedback practice" tabindex="-1"><h3>Practice complete</h3>
+    <p><strong>The answer is: ${correctText}.</strong> ${explanation}</p></div>`;
 }
 
 function renderQuestion(options) {
@@ -383,7 +361,7 @@ function submissionText(review) {
   const [coreCorrect, coreTotal, practiceDone, practiceTotal, points, max] = payload.sc;
   const activities = data.curriculum.activities
     .filter(({ id }) => payload.act[id])
-    .map(({ id, label: name }) => `${name} ×${payload.act[id] >= 2 ? '2+' : 1}`);
+    .map(({ id, label: name }) => `${name} ×${timesLabel(payload.act[id])}`);
   return [
     `MUS 248 Weekly Quiz ${payload.q}: completed`,
     `Completed: ${formatDate(payload.t)}`,
@@ -477,6 +455,7 @@ function renderResults() {
       <h2>Review next</h2>
       ${review.length ? `<ul class="review-list">${review.map(reviewItem).join('')}</ul>` : '<p>Nothing missed. Nice work.</p>'}
       ${soon.length ? `<p class="quiet">Likely to become Core soon: ${soon.map((skill) => escapeHtml(label(skill))).join(', ')}.</p>` : ''}
+      <p><a class="text-link" href="../study/">Open the study cards →</a></p>
     </section>
     <section class="step">
       <details class="answers"><summary>See all ${attempt.selection.length} questions and answers</summary>${answerList()}</details>

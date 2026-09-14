@@ -35,7 +35,7 @@
       "id": "phantom_power",
       "skill": "phantom_power",
       "front": "48V phantom power",
-      "back": "Power sent to a mic through its cable. Condenser mics commonly need it; dynamic mics generally don’t."
+      "back": "Power sent to a mic through its cable. Condenser mics always need it. Dynamic mics don’t care whether it’s on or off. Ribbon mics must never get it."
     },
     {
       "id": "mains",

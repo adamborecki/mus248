@@ -76,7 +76,7 @@
       "type": "multiple_choice",
       "prompt": "A DAW is showing no microphone signal. Which should you check first?",
       "choices": [
-        "Whether the right input device and track input are selected",
+        "Whether the correct input device and track input are selected",
         "Whether the track is panned center",
         "Whether the master fader is at 0 dB",
         "Whether the track has EQ on it"
@@ -99,7 +99,7 @@
         "The export file format"
       ],
       "answer_index": 0,
-      "explanation": "The DAW records from whichever input device is selected in its audio settings. Choose the interface there, then pick the right input on the track."
+      "explanation": "The DAW records from whichever input device is selected in its audio settings. Choose the interface there, then pick the corresponding input on the track."
     },
     {
       "id": "AUD_ARM_001",
@@ -244,15 +244,15 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "Which microphone type commonly requires 48V phantom power?",
+      "prompt": "Which microphone type requires 48V phantom power?",
       "choices": [
         "Condenser",
         "Dynamic",
-        "Every microphone",
+        "Ribbon",
         "No microphones need it"
       ],
       "answer_index": 0,
-      "explanation": "Condenser microphones commonly need phantom power. Dynamic microphones generally do not."
+      "explanation": "Condenser mics need 48V phantom power. Dynamic mics work whether it’s on or off, and ribbon mics must never get it."
     },
     {
       "id": "AUD_48V_002",
@@ -269,7 +269,24 @@
         "The monitor mix"
       ],
       "answer_index": 0,
-      "explanation": "Many condenser microphones require 48V phantom power to operate."
+      "explanation": "Condenser microphones need 48V phantom power to work. With it off, you get no signal."
+    },
+    {
+      "id": "AUD_48V_003",
+      "skill": "phantom_power",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which kind of microphone must never be given phantom power?",
+      "choices": [
+        "Ribbon",
+        "Condenser",
+        "Dynamic",
+        "Any mic used for stereo"
+      ],
+      "answer_index": 0,
+      "explanation": "Phantom power can damage ribbon mics, so keep 48V off on their channels. Condensers need it; dynamics don’t care either way."
     },
     {
       "id": "AUD_INTERFACE_001",
@@ -297,13 +314,13 @@
       "type": "multiple_choice",
       "prompt": "When you record into a computer through an audio interface, where does the microphone plug in?",
       "choices": [
-        "An XLR/combo input on the interface",
+        "An XLR input on the interface",
         "The computer’s headphone jack",
         "The interface’s main outputs",
         "A USB hub"
       ],
       "answer_index": 0,
-      "explanation": "Microphones connect to the interface’s inputs, usually XLR/combo jacks. The interface’s preamp and converter then send the signal to the computer."
+      "explanation": "Microphones plug into the interface’s XLR inputs. On many interfaces those are combo jacks that also take a ¼-inch plug."
     },
     {
       "id": "PRO_REL_001",

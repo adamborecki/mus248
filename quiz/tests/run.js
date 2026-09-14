@@ -144,6 +144,17 @@ test('several activities are spread across rather than one dominating', () => {
   assert.equal(new Set(gates).size, 4);
 });
 
+test('an activity count of 3+ survives the code and unlocks up to level 3', () => {
+  const selection = selectQuiz({ ...base, activities: { stereo: 3 } });
+  const payload = buildPayload({ curriculum, bank, attempt: attemptFor({ selection, answers: answerAll(selection), activities: { stereo: 3, daw: 1 } }), appVersion: 'test' });
+  assert.deepEqual(decodeStateCode(encodeStateCode(payload)).state.act, { stereo: 3, daw: 1 });
+  const levelThree = { ...bank, questions: [...bank.questions, { ...byId.ST_PAN_002, id: 'TEST_L3', level: 3 }] };
+  const picks = (count) => Array.from({ length: 30 }, (_, i) => selectQuiz({ curriculum, bank: levelThree, seed: `l3-${i}`, activities: { stereo: count } }))
+    .some((quiz) => quiz.some(({ id }) => id === 'TEST_L3'));
+  assert.equal(picks(2), false, 'level 3 offered after only 2 repetitions');
+  assert.equal(picks(3), true, 'level 3 never offered at 3+');
+});
+
 test('level 2 questions need the activity twice', () => {
   const once = selectQuiz({ ...base, includeDrafts: true, activities: { stereo: 1 } });
   assert.ok(once.every(({ id }) => byId[id].level <= 1));

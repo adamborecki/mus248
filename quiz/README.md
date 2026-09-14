@@ -4,13 +4,16 @@ A static, front-end-only weekly quiz at `/mus248/quiz/`. No backend, accounts, d
 
 ## Student flow
 
-1. Paste last week’s quiz code, or choose **I don’t have one yet**.
-2. Mark each activity: Not yet / Once / 2+ times.
-3. Flip through a short set of study cards (skippable).
-4. Answer ~20 questions. Each shows a badge first and an explanation after:
+Study cards have their own page, `/mus248/study/` (source in `../study/`), and the quiz links to it. The quiz itself:
+
+1. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
+2. Say how many times they’ve done each activity: 0, 1, 2, or 3+.
+3. Answer ~20 questions. Each shows a badge first and an explanation after:
    - 🟢 **Core — graded**: 1 point if correct.
-   - 🟡 **Practice — full credit this week**: 1 point for answering.
-5. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
+   - 🟡 **Practice — full credit this week**: 1 point for answering. Correct answers still show green.
+4. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
+
+Until everything is answered, the text under **Continue** names exactly what’s still missing.
 
 Progress is saved in the browser, so a refresh or accidental close offers **Resume**. The finished code also stays on the device, and next week’s quiz offers to reuse it.
 
@@ -20,7 +23,7 @@ All of it lives in `data/curriculum.json`:
 
 1. Bump `quiz_number`, `quiz_label`, and `quiz_version`.
 2. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
-3. Optionally adjust `study_cards` (ids from `data/study-deck.json`), `coming_to_core`, and `targets`.
+3. Optionally adjust `study_cards` (ids from `data/study-deck.json`; this is the set shown on `/study/`), `coming_to_core`, and `targets`.
 
 Then run the tests and preview with `?debug=1` (see below).
 
@@ -31,7 +34,7 @@ Because the start of a new quiz number invalidates unfinished attempts from the 
 Each question has a stable `id`, a `skill`, a `level` (0 recognition, 1 recall/basic application, 2 troubleshooting, 3 independent scenario), an optional `activity_gate`, `choices` with `answer_index`, and a 1–2 sentence `explanation`. Choices are shuffled per student, so writing every answer first is fine. Set `"shuffle": false` for choices like “All of the above”.
 
 - **Drafts:** questions marked `"draft": true` are never used. Review one, then delete that line. Or set `"include_drafts": true` in the curriculum to use them all. (Every question in the bank is approved as of Quiz 1.)
-- **Activity gates** use the site’s activity ids (`stereo`, `cameras`, `x32compact`, `live-looping`, `dante`, …). Gated questions go only to students who report the activity. Level 2+ gated questions need the activity **2+ times**.
+- **Activity gates** use the site’s activity ids (`stereo`, `cameras`, `x32compact`, `live-looping`, `dante`, …). Gated questions go only to students who report the activity. A level-N gated question needs the activity N times (level 2 → twice, level 3 → 3+).
 - Common (ungated) questions above `max_common_level` are skipped.
 - Every `skill` needs a label in the `skills` map at the top of the file and a status in the curriculum. The tests check this.
 

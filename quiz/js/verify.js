@@ -1,10 +1,8 @@
 import { decodeStateCode, findStateCodes } from './state-code.js';
 import { indexQuestions } from './engine.js';
+import { escapeHtml } from './html.js';
 
 const byId = (id) => document.getElementById(id);
-const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
-}[character]));
 const REASONS = {
   missing: 'No quiz code found',
   incomplete: 'Code is cut off',
@@ -40,7 +38,7 @@ async function main() {
       const { state } = row;
       const [coreCorrect, coreTotal, practiceDone, practiceTotal, points, max] = state.sc;
       const shared = codesById[`${state.q}:${state.id}`].size > 1;
-      const activities = Object.entries(state.act || {}).map(([id, count]) => `${activityLabels[id] || id} ×${count >= 2 ? '2+' : count}`).join(', ');
+      const activities = Object.entries(state.act || {}).map(([id, count]) => `${activityLabels[id] || id} ×${count >= 3 ? '3+' : count}`).join(', ');
       return `<tr${shared ? ' class="flag"' : ''}>
         <td>${escapeHtml(row.name)}</td><td>${state.q}</td><td>${escapeHtml(new Date(state.t).toLocaleString())}</td><td>${Number(state.n) || 1}</td>
         <td>${coreCorrect}/${coreTotal}</td><td>${practiceDone}/${practiceTotal}</td><td><strong>${points}/${max}</strong></td>
