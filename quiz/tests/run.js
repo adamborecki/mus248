@@ -216,6 +216,11 @@ test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   assert.equal(payload.n, 1);
   assert.equal(payload.a[missed.id], 'c0');
   const prior = decodeStateCode(encodeStateCode(payload)).state;
+  // Guarantee mains_monitors was practiced last week, regardless of whether quiz1's
+  // random draw happened to include it — the assertion below is about the promotion
+  // boost, not about quiz1's luck with an ever-growing Practice pool.
+  prior.a.LIVE_MM_001 = 'p1';
+  prior.sk.mains_monitors = '1';
 
   const week2 = { ...curriculum, quiz_number: 2, skills: { ...curriculum.skills, mains_monitors: 'core' } };
   for (let i = 0; i < 20; i += 1) {

@@ -71,15 +71,15 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "A receiver shows microphone signal, but the mixer input meter shows nothing. What troubleshooting approach best follows signal flow?",
+      "prompt": "A wireless receiver shows microphone signal, but the mixer input meter shows nothing. What troubleshooting approach best follows signal flow?",
       "choices": [
-        "Check the cable and routing from the receiver to the mixer input",
+        "Check the cable and routing from the wireless receiver to the mixer input",
         "Swap in a different microphone",
         "Turn up the main fader",
         "Turn up the speakers"
       ],
       "answer_index": 0,
-      "explanation": "Follow the signal in order. The receiver shows signal, so the mic is working; the problem is somewhere between the receiver output and the mixer input."
+      "explanation": "Follow the signal in order. The wireless receiver shows signal, so the mic and transmitter are working; the problem is somewhere between the receiver output and the mixer input."
     },
     {
       "id": "AUD_IO_001",
@@ -207,7 +207,7 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "Your input meter hits the red clip light during the loudest passages. What should you do before the real take?",
+      "prompt": "You’re doing a test recording before the show, and the input meter hits the red clip light during the loudest passages. What should you do?",
       "choices": [
         "Turn down the input gain and test again",
         "Turn down only the main fader",
@@ -215,7 +215,25 @@
         "Switch the track to stereo"
       ],
       "answer_index": 0,
-      "explanation": "The clipping is happening at the input, so lower the input gain. Turning down a fader later won’t remove distortion that was already recorded."
+      "explanation": "Since this is a test, fix it now: turn down the input gain and record another test. Don’t wait until the real take to find out."
+    },
+    {
+      "id": "AUD_CLIP_004",
+      "draft": true,
+      "skill": "clipping",
+      "topic": "audio_fundamentals",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re recording a live concert and a mic starts clipping a little on the loudest passages. What should you do?",
+      "choices": [
+        "Pull the gain down just slightly, and note the time and how much you changed it",
+        "Leave it alone; fixing clipping in post works fine",
+        "Pull the gain down a lot right away to be safe",
+        "Stop the recording and restart it"
+      ],
+      "answer_index": 0,
+      "explanation": "We prefer not to change gain mid-concert unless it’s really clipping. If you do, change it just a little and log the time and amount, so it can be corrected in post."
     },
     {
       "id": "AUD_MONO_ST_001",
@@ -311,7 +329,7 @@
       "type": "multiple_choice",
       "prompt": "What is a basic job of an audio interface?",
       "choices": [
-        "Connect mics and instruments to the computer, and send audio back out",
+        "Connect music hardware — mics, instruments, speakers — to the computer",
         "Automatically mix and master a song",
         "Replace the need for a DAW",
         "Power passive speakers"
@@ -916,7 +934,6 @@
     },
     {
       "id": "AUD_TARGET_001",
-      "draft": true,
       "skill": "gain_target",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -934,7 +951,6 @@
     },
     {
       "id": "AUD_TARGET_002",
-      "draft": true,
       "skill": "gain_target",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -952,7 +968,6 @@
     },
     {
       "id": "AUD_TARGET_003",
-      "draft": true,
       "skill": "gain_target",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -970,7 +985,6 @@
     },
     {
       "id": "MIC_TYPE_001",
-      "draft": true,
       "skill": "microphone_types",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -988,7 +1002,6 @@
     },
     {
       "id": "MIC_TYPE_002",
-      "draft": true,
       "skill": "microphone_types",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1006,7 +1019,6 @@
     },
     {
       "id": "AUD_48V_004",
-      "draft": true,
       "skill": "phantom_power",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1024,7 +1036,6 @@
     },
     {
       "id": "CONN_001",
-      "draft": true,
       "skill": "connectors",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1042,7 +1053,6 @@
     },
     {
       "id": "CONN_002",
-      "draft": true,
       "skill": "connectors",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1060,7 +1070,6 @@
     },
     {
       "id": "CONN_003",
-      "draft": true,
       "skill": "connectors",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1078,7 +1087,6 @@
     },
     {
       "id": "CONN_004",
-      "draft": true,
       "skill": "connectors",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1096,7 +1104,6 @@
     },
     {
       "id": "TEST_001",
-      "draft": true,
       "skill": "test_recording",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1114,7 +1121,6 @@
     },
     {
       "id": "TEST_002",
-      "draft": true,
       "skill": "test_recording",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1132,7 +1138,6 @@
     },
     {
       "id": "FILE_001",
-      "draft": true,
       "skill": "file_management",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1150,7 +1155,6 @@
     },
     {
       "id": "FILE_002",
-      "draft": true,
       "skill": "file_management",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1168,7 +1172,6 @@
     },
     {
       "id": "FILE_003",
-      "draft": true,
       "skill": "file_management",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1186,7 +1189,6 @@
     },
     {
       "id": "DAW_001",
-      "draft": true,
       "skill": "daw_basics",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1204,7 +1206,6 @@
     },
     {
       "id": "DAW_002",
-      "draft": true,
       "skill": "daw_basics",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1222,7 +1223,6 @@
     },
     {
       "id": "DAW_003",
-      "draft": true,
       "skill": "daw_basics",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1240,7 +1240,6 @@
     },
     {
       "id": "AUD_IO_003",
-      "draft": true,
       "skill": "io",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1248,7 +1247,7 @@
       "type": "multiple_choice",
       "prompt": "In a DAW, where do you choose which audio device (like your interface) to record from?",
       "choices": [
-        "The DAW’s audio/device settings",
+        "The DAW’s audio preferences/settings",
         "The track’s pan control",
         "The export dialog",
         "The master fader"
@@ -1258,7 +1257,6 @@
     },
     {
       "id": "AUD_INTERFACE_003",
-      "draft": true,
       "skill": "audio_interface",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1276,7 +1274,6 @@
     },
     {
       "id": "AUD_SIGNAL_003",
-      "draft": true,
       "skill": "signal_flow",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1294,7 +1291,6 @@
     },
     {
       "id": "AUD_CLIP_003",
-      "draft": true,
       "skill": "clipping",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1312,7 +1308,6 @@
     },
     {
       "id": "AUD_ARM_003",
-      "draft": true,
       "skill": "track_arming",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1330,7 +1325,6 @@
     },
     {
       "id": "AUD_MONO_ST_003",
-      "draft": true,
       "skill": "mono_stereo",
       "topic": "audio_fundamentals",
       "level": 1,
@@ -1348,13 +1342,12 @@
     },
     {
       "id": "AUD_INPUT_GAIN_003",
-      "draft": true,
       "skill": "input_gain",
       "topic": "audio_fundamentals",
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "What does “gain before fader” mean?",
+      "prompt": "If you hear an audio engineer say “gain before fader,” what are they probably talking about?",
       "choices": [
         "Set a healthy input level first, then use faders to balance",
         "Keep every fader above its gain knob",
@@ -1366,7 +1359,6 @@
     },
     {
       "id": "PRO_REL_004",
-      "draft": true,
       "skill": "professionalism_reliability",
       "topic": "professionalism",
       "level": 1,
