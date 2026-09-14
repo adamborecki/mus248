@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "cards": [
+    {
+      "id": "input_gain",
+      "skill": "input_gain",
+      "front": "Input gain",
+      "back": "The preamp level at the start of a channel. Set it first to get a healthy signal, then use faders to balance the mix."
+    },
+    {
+      "id": "clipping",
+      "skill": "clipping",
+      "front": "Clipping / 0 dBFS",
+      "back": "0 dBFS is the digital ceiling. A signal that hits it clips and distorts, and turning it down later won’t undo that. Leave headroom."
+    },
+    {
+      "id": "mono",
+      "skill": "mono_stereo",
+      "front": "Mono",
+      "back": "One audio channel. One mic into one input is a mono source."
+    },
+    {
+      "id": "stereo",
+      "skill": "mono_stereo",
+      "front": "Stereo",
+      "back": "Two audio channels, usually left and right. A stereo mic pair is panned one left, one right."
+    },
+    {
+      "id": "signal_flow",
+      "skill": "signal_flow",
+      "front": "Signal flow",
+      "back": "Where a signal starts, what it passes through, and where it ends up. When something’s wrong, follow it one stage at a time."
+    },
+    {
+      "id": "phantom_power",
+      "skill": "phantom_power",
+      "front": "48V phantom power",
+      "back": "Power sent to a mic through its cable. Condenser mics commonly need it; dynamic mics generally don’t."
+    },
+    {
+      "id": "mains",
+      "skill": "mains_monitors",
+      "front": "Mains",
+      "back": "The audience mix: what the room hears."
+    },
+    {
+      "id": "monitors",
+      "skill": "mains_monitors",
+      "front": "Monitors",
+      "back": "The performer mix: what musicians hear on stage. It can be different from the mains."
+    },
+    {
+      "id": "aperture",
+      "skill": "aperture_iris",
+      "front": "Aperture / iris",
+      "back": "The lens opening that controls how much light gets in. A higher f-number means a smaller opening and less light."
+    },
+    {
+      "id": "shutter",
+      "skill": "shutter_speed",
+      "front": "Shutter speed",
+      "back": "How long each frame is exposed. It affects brightness and how motion looks: slower shutter, more motion blur."
+    },
+    {
+      "id": "white_balance",
+      "skill": "white_balance_kelvin",
+      "front": "White balance / Kelvin",
+      "back": "Tells the camera what white looks like under the current light, so colors look right. It’s set in Kelvin; the Cameras activity used 3200 K."
+    },
+    {
+      "id": "speaker_power",
+      "skill": "safe_power_order",
+      "front": "Speaker power order",
+      "back": "Speakers ON last. Speakers OFF first. That keeps pops and thumps from upstream gear out of the speakers."
+    }
+  ]
+}

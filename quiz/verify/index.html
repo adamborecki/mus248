@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Check Quiz Codes · MUS 248</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../quiz.css">
+</head>
+<body>
+  <header class="masthead wide"><h1>MUS 248</h1><p>Check quiz codes</p></header>
+  <main class="quiz wide">
+    <p class="quiet">Paste Canvas submissions or bare codes (as many as you like), or choose the files from a Canvas “Download submissions” zip. Nothing leaves this browser.</p>
+    <label class="sr-only" for="codes">Submissions or codes</label>
+    <textarea id="codes" rows="8" spellcheck="false" placeholder="Paste one or more submissions…"></textarea>
+    <div class="row">
+      <button class="btn primary" id="check">Check</button>
+      <label class="btn secondary file">Choose files…<input type="file" id="files" class="sr-only" multiple accept=".html,.htm,.txt"></label>
+    </div>
+    <p class="status" id="summary" role="status"></p>
+    <div id="results"></div>
+  </main>
+  <script type="module" src="../js/verify.js"></script>
+</body>
+</html>
