@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hands-on activities for MUS 248: AV Concert Recording.">
+  <title>MUS 248 Activities</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead"><h1>MUS 248</h1><p>A/V Concert Recording &amp; Archiving</p></header>
+  <main>
+    <section class="filters" aria-label="Filter activities">
+      <label for="skill-filter">Find a skill</label>
+      <select id="skill-filter"><option value="all">All skill areas</option></select>
+      <p id="activity-count" aria-live="polite"></p>
+    </section>
+    <section id="activity-list" class="activity-grid" aria-label="Activity directory"></section>
+  </main>
+  <footer>Activities</footer>
+  <script src="app.js"></script>
+</body>
+</html>

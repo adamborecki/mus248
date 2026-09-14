@@ -1,0 +1,10 @@
+[
+  {"id":"stereo","title":"Stereo Recording","emoji":"🎙️","skills":["Audio Capture"],"time":"20–30 min","access":"In class / on campus","group":"1–2","route":"stereo","externalResource":{"label":"Current instructions","url":"https://docs.google.com/document/d/1VvSACp670AeqwC2mtHm2zBEiFgfT8DpeRFddJt4jnjA/edit?usp=sharing"}},
+  {"id":"cameras","title":"Cameras","emoji":"📹","skills":["Video Capture"],"time":"45–75 min","access":"In class / on campus","group":"1–2","route":"cameras"},
+  {"id":"daw","title":"DAW Training Circuit","emoji":"💻","skills":["Post Production","Data Management"],"time":"30–60 min","access":"In class / on campus","group":"1–2","route":"daw","family":"DAW Training Circuit"},
+  {"id":"mixer","title":"Mixer","emoji":"🎚️","skills":["Live Sound"],"time":"30–60 min","access":"In class / on campus","group":"2–3","route":"mixer"},
+  {"id":"live-looping","title":"Live Looping Rig","emoji":"🔁","skills":["Audio Capture","Live Sound"],"time":"45–55 min","access":"B205D rig","group":"2–3","route":"live-looping","contentFile":"live-looping"},
+  {"id":"x32compact","title":"X32 Compact","emoji":"🔊","skills":["Live Sound"],"time":"30–60 min","access":"In class / on campus","group":"2–3","route":"x32compact","family":"X32 Compact"},
+  {"id":"mic-stands","title":"Mic Stand Yoga","emoji":"🧘","skills":["Audio Capture"],"time":"30–45 min","access":"In class / on campus","group":"1–2","route":"mic-stands"},
+  {"id":"dante","title":"Dante","emoji":"🌐","skills":["Audio Capture","Live Sound"],"time":"Varies","access":"In class / on campus","group":"2–3","route":"dante","family":"Dante Activities","contentFile":"dante"}
+]

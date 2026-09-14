@@ -1,0 +1,11 @@
+:root { color-scheme: light dark; --ink:#17211c; --muted:#506157; --paper:#f7faf7; --surface:#ffffff; --line:#d7e2d9; --accent:#0c6f4d; --tag:#e5f4eb; }
+@media (prefers-color-scheme: dark) { :root { --ink:#e8f1eb; --muted:#b9c8bd; --paper:#111914; --surface:#18221b; --line:#34483a; --accent:#76d5a6; --tag:#254d36; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:ui-rounded, "Avenir Next", Avenir, system-ui, sans-serif; font-size:16px; line-height:1.5; }
+.masthead, main, footer { width:min(100% - 2rem, 1100px); margin-inline:auto; }
+.masthead { display:flex; gap:.75rem; align-items:baseline; padding:2.25rem 0 1.75rem; }
+h1 { margin:0; font-size:clamp(1.65rem,6vw,2.25rem); letter-spacing:-.06em; line-height:1; }.masthead p { margin:0; color:var(--muted); }
+.filters { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin:0 0 1rem; } label { font-weight:700; }
+select { min-height:2.75rem; padding:.45rem .8rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); color:var(--ink); font:inherit; }#activity-count { margin:0 0 0 auto; color:var(--muted); }
+.activity-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.7rem; }.activity-card { display:flex; align-items:center; gap:.75rem; min-height:4.2rem; padding:.75rem .85rem; border:1px solid var(--line); border-radius:.85rem; background:var(--surface); color:inherit; text-decoration:none; }.activity-card:hover { border-color:var(--accent); }.activity-emoji { display:grid; place-items:center; width:2.55rem; height:2.55rem; flex:0 0 auto; border-radius:.65rem; background:var(--tag); font-size:1.25rem; }.card-copy { display:grid; gap:.05rem; min-width:0; }.card-copy strong { font-size:1rem; }.card-copy small { color:var(--muted); }.arrow { margin-left:auto; color:var(--muted); }.activity-card:focus-visible,select:focus-visible { outline:3px solid var(--accent); outline-offset:3px; } .error { color:var(--muted); }footer { padding:2rem 0 3rem; color:var(--muted); font-size:.85rem; }
+@media (max-width:520px) { .masthead { display:block; padding-top:1.5rem; }.masthead p { margin-top:.25rem; } #activity-count { width:100%; margin-left:0; } }@media print { .filters,footer { display:none; } body { background:#fff; color:#000; } .masthead { padding-top:0; } }
