@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "quiz_number": 1,
+  "quiz_label": "Quiz 1",
+  "quiz_version": "2026-09-14",
+  "targets": {
+    "total_questions": 20,
+    "core_questions": 9,
+    "activity_aware_questions": 5
+  },
+  "scoring": {
+    "core_correct": 1,
+    "practice_completed": 1
+  },
+  "max_common_level": 1,
+  "include_drafts": false,
+  "review_next_max": 4,
+  "coming_to_core": ["mains_monitors", "active_passive", "safe_power_order"],
+  "study_cards": [
+    "input_gain",
+    "clipping",
+    "mono",
+    "stereo",
+    "signal_flow",
+    "phantom_power",
+    "mains",
+    "monitors",
+    "aperture",
+    "shutter",
+    "white_balance",
+    "speaker_power"
+  ],
+  "activities": [
+    { "id": "daw", "label": "DAW Training Circuit" },
+    { "id": "stereo", "label": "Stereo Recording" },
+    { "id": "cameras", "label": "Portable Cameras" },
+    { "id": "mixer", "label": "Mixer" },
+    { "id": "x32compact", "label": "X32 Compact" },
+    { "id": "live-looping", "label": "Live Looping Rig" },
+    { "id": "dante", "label": "Dante" },
+    { "id": "mic-stands", "label": "Mic Stand Yoga" }
+  ],
+  "skills": {
+    "signal_flow": "core",
+    "io": "core",
+    "track_arming": "core",
+    "input_gain": "core",
+    "clipping": "core",
+    "mono_stereo": "core",
+    "phantom_power": "core",
+    "audio_interface": "core",
+    "professionalism_reliability": "core",
+
+    "aperture_iris": "practice",
+    "shutter_speed": "practice",
+    "iso_gain": "practice",
+    "white_balance_kelvin": "practice",
+    "focus": "practice",
+    "mains_monitors": "practice",
+    "active_passive": "practice",
+    "safe_power_order": "practice",
+    "feedback": "practice",
+
+    "xy": "practice",
+    "ab": "practice",
+    "ortf": "practice",
+    "matched_gain": "practice",
+    "lr_panning": "practice",
+    "buses": "practice",
+    "sends_on_fader": "practice",
+    "dante_controller": "practice",
+    "dvs": "practice",
+    "routing_matrix": "practice",
+    "transmitter_receiver": "practice",
+    "looper_signal_flow": "practice"
+  }
+}

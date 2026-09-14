@@ -1,0 +1,904 @@
+{
+  "schema": 1,
+  "skills": {
+    "signal_flow": "Signal flow",
+    "io": "Input/output (I/O) setup",
+    "track_arming": "Track arming",
+    "input_gain": "Input gain",
+    "clipping": "Clipping and 0 dBFS",
+    "mono_stereo": "Mono vs. stereo",
+    "phantom_power": "48V phantom power",
+    "audio_interface": "Audio interfaces",
+    "professionalism_reliability": "Professionalism = reliability",
+    "aperture_iris": "Aperture / iris",
+    "shutter_speed": "Shutter speed",
+    "iso_gain": "ISO / camera gain",
+    "white_balance_kelvin": "White balance / Kelvin",
+    "focus": "Focus",
+    "mains_monitors": "Mains vs. monitors",
+    "active_passive": "Active vs. passive speakers",
+    "safe_power_order": "Speaker power order",
+    "feedback": "Feedback",
+    "xy": "XY stereo",
+    "ab": "A/B stereo",
+    "ortf": "ORTF stereo",
+    "matched_gain": "Matched stereo gain",
+    "lr_panning": "Left/right panning",
+    "buses": "X32 buses",
+    "sends_on_fader": "X32 Sends on Fader",
+    "dante_controller": "Dante Controller",
+    "dvs": "Dante Virtual Soundcard",
+    "routing_matrix": "Dante routing matrix",
+    "transmitter_receiver": "Dante transmitters and receivers",
+    "looper_signal_flow": "Looper signal flow"
+  },
+  "questions": [
+    {
+      "id": "AUD_SIGNAL_001",
+      "skill": "signal_flow",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does “signal flow” describe?",
+      "choices": [
+        "The path a signal takes through a system",
+        "How loud a signal is",
+        "How much reverb is on a signal",
+        "The kind of cable a signal travels on"
+      ],
+      "answer_index": 0,
+      "explanation": "Signal flow is the path audio takes from its source through inputs, processing, routing, and outputs."
+    },
+    {
+      "id": "AUD_SIGNAL_002",
+      "skill": "signal_flow",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A receiver shows microphone signal, but the mixer input meter shows nothing. What troubleshooting approach best follows signal flow?",
+      "choices": [
+        "Check the cable and routing from the receiver to the mixer input",
+        "Swap in a different microphone",
+        "Turn up the main fader",
+        "Turn up the speakers"
+      ],
+      "answer_index": 0,
+      "explanation": "Follow the signal in order. The receiver shows signal, so the mic is working; the problem is somewhere between the receiver output and the mixer input."
+    },
+    {
+      "id": "AUD_IO_001",
+      "skill": "io",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A DAW is showing no microphone signal. Which should you check first?",
+      "choices": [
+        "Whether the correct input device and track input are selected",
+        "Whether the track is panned center",
+        "Whether the master fader is at 0 dB",
+        "Whether the track has EQ on it"
+      ],
+      "answer_index": 0,
+      "explanation": "Correct I/O is fundamental: the DAW must use the intended device and the track must listen to the correct input."
+    },
+    {
+      "id": "AUD_IO_002",
+      "skill": "io",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You want to record through an audio interface, but the DAW is still using the computer’s built-in microphone. What needs to change?",
+      "choices": [
+        "The DAW’s audio input device",
+        "The track’s pan position",
+        "The project tempo",
+        "The export file format"
+      ],
+      "answer_index": 0,
+      "explanation": "The DAW records from whichever input device is selected in its audio settings. Choose the interface there, then pick the corresponding input on the track."
+    },
+    {
+      "id": "AUD_ARM_001",
+      "skill": "track_arming",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before recording into a DAW track, what usually needs to be enabled on that track?",
+      "choices": [
+        "Record arm (record enable)",
+        "Solo",
+        "Mute",
+        "A limiter"
+      ],
+      "answer_index": 0,
+      "explanation": "Record-arming tells the DAW which track should receive and record the incoming signal."
+    },
+    {
+      "id": "AUD_ARM_002",
+      "skill": "track_arming",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You press Record and the playhead moves, but no new audio appears on your microphone track. What is a likely cause?",
+      "choices": [
+        "The track wasn’t record-armed",
+        "The track is panned center",
+        "The master fader is at 0 dB",
+        "The track is mono"
+      ],
+      "answer_index": 0,
+      "explanation": "Only record-armed tracks capture new audio. If the track isn’t armed, the DAW runs without recording onto it."
+    },
+    {
+      "id": "AUD_INPUT_GAIN_001",
+      "skill": "input_gain",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which control should you use first to get a healthy microphone level entering a mixer or interface?",
+      "choices": [
+        "Input gain / preamp",
+        "Main fader",
+        "Pan",
+        "Mute"
+      ],
+      "answer_index": 0,
+      "explanation": "Input gain sets the level entering the channel. Faders are normally used afterward to balance signals in a mix."
+    },
+    {
+      "id": "AUD_INPUT_GAIN_002",
+      "skill": "input_gain",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A microphone is extremely quiet at the channel input. Which control is the most direct first adjustment?",
+      "choices": [
+        "Input gain / preamp",
+        "Channel fader",
+        "Pan",
+        "Solo"
+      ],
+      "answer_index": 0,
+      "explanation": "Input gain sets how strongly the mic signal enters the channel. Faders come later, for balancing a signal that’s already healthy."
+    },
+    {
+      "id": "AUD_CLIP_001",
+      "skill": "clipping",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In a digital recording system, what is the main problem with reaching or exceeding 0 dBFS?",
+      "choices": [
+        "The signal clips and distorts",
+        "The signal gets quieter",
+        "The sample rate doubles",
+        "The track switches to stereo"
+      ],
+      "answer_index": 0,
+      "explanation": "0 dBFS is the digital ceiling. Trying to go beyond it causes clipping."
+    },
+    {
+      "id": "AUD_CLIP_002",
+      "skill": "clipping",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your input meter hits the red clip light during the loudest passages. What should you do before the real take?",
+      "choices": [
+        "Turn down the input gain and test again",
+        "Turn down only the main fader",
+        "Add reverb",
+        "Switch the track to stereo"
+      ],
+      "answer_index": 0,
+      "explanation": "The clipping is happening at the input, so lower the input gain. Turning down a fader later won’t remove distortion that was already recorded."
+    },
+    {
+      "id": "AUD_MONO_ST_001",
+      "skill": "mono_stereo",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the simplest difference between mono and stereo audio?",
+      "choices": [
+        "Mono uses one channel; stereo uses two channels",
+        "Mono is quiet; stereo is loud",
+        "Mono is analog; stereo is digital",
+        "Mono uses XLR; stereo uses USB"
+      ],
+      "answer_index": 0,
+      "explanation": "Mono is one channel. Stereo uses two channels, normally left and right."
+    },
+    {
+      "id": "AUD_MONO_ST_002",
+      "skill": "mono_stereo",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You are recording one microphone into Input 1. What track format is usually appropriate?",
+      "choices": [
+        "Mono",
+        "Stereo",
+        "5.1 surround",
+        "MIDI"
+      ],
+      "answer_index": 0,
+      "explanation": "One microphone feeding one interface input is a mono source, so a mono DAW track is normally appropriate."
+    },
+    {
+      "id": "AUD_48V_001",
+      "skill": "phantom_power",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which microphone type requires 48V phantom power?",
+      "choices": [
+        "Condenser",
+        "Dynamic",
+        "Ribbon",
+        "No microphones need it"
+      ],
+      "answer_index": 0,
+      "explanation": "Condenser mics need 48V phantom power. Dynamic mics work whether it’s on or off, and ribbon mics must never get it."
+    },
+    {
+      "id": "AUD_48V_002",
+      "skill": "phantom_power",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You connect a condenser microphone and the input meter shows nothing. Which setting is worth checking first?",
+      "choices": [
+        "48V phantom power",
+        "The track’s pan",
+        "The channel EQ",
+        "The monitor mix"
+      ],
+      "answer_index": 0,
+      "explanation": "Condenser microphones need 48V phantom power to work. With it off, you get no signal."
+    },
+    {
+      "id": "AUD_48V_003",
+      "skill": "phantom_power",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which kind of microphone must never be given phantom power?",
+      "choices": [
+        "Ribbon",
+        "Condenser",
+        "Dynamic",
+        "Any mic used for stereo"
+      ],
+      "answer_index": 0,
+      "explanation": "Phantom power can damage ribbon mics, so keep 48V off on their channels. Condensers need it; dynamics don’t care either way."
+    },
+    {
+      "id": "AUD_INTERFACE_001",
+      "skill": "audio_interface",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a basic job of an audio interface?",
+      "choices": [
+        "Connect mics and instruments to the computer, and send audio back out",
+        "Automatically mix and master a song",
+        "Replace the need for a DAW",
+        "Power passive speakers"
+      ],
+      "answer_index": 0,
+      "explanation": "An audio interface connects analog audio sources and outputs with the computer and commonly contains preamps and converters."
+    },
+    {
+      "id": "AUD_INTERFACE_002",
+      "skill": "audio_interface",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When you record into a computer through an audio interface, where does the microphone plug in?",
+      "choices": [
+        "An XLR input on the interface",
+        "The computer’s headphone jack",
+        "The interface’s main outputs",
+        "A USB hub"
+      ],
+      "answer_index": 0,
+      "explanation": "Microphones plug into the interface’s XLR inputs. On many interfaces those are combo jacks that also take a ¼-inch plug."
+    },
+    {
+      "id": "PRO_REL_001",
+      "skill": "professionalism_reliability",
+      "topic": "professionalism",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A recording call begins at 7:00 p.m. What best matches the course idea of being “on time”?",
+      "choices": [
+        "Be ready to work at 7:00",
+        "Walk into the building at 7:00",
+        "Send a message at 7:05 saying you are parking",
+        "Arrive whenever the performer arrives"
+      ],
+      "answer_index": 0,
+      "explanation": "For recording work, being on time means being ready to work at the scheduled time, not merely arriving at that moment."
+    },
+    {
+      "id": "PRO_REL_002",
+      "skill": "professionalism_reliability",
+      "topic": "professionalism",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A problem will make you late for a recording call. What best matches the course professionalism standard?",
+      "choices": [
+        "Communicate as early as possible",
+        "Wait until after the recording to mention it",
+        "Say nothing unless someone asks",
+        "Only tell another student after the start time"
+      ],
+      "answer_index": 0,
+      "explanation": "Reliability includes communicating early, before a scheduling problem becomes a larger problem."
+    },
+    {
+      "id": "PRO_REL_003",
+      "skill": "professionalism_reliability",
+      "topic": "professionalism",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your group finishes a camera activity. What best matches “finish the job”?",
+      "choices": [
+        "Restore default settings and return the gear and batteries",
+        "Leave as soon as your clips are recorded",
+        "Leave the camera on so the next group is ready",
+        "Keep the SD card in your bag to check later"
+      ],
+      "answer_index": 0,
+      "explanation": "The job isn’t done until the gear is reset and returned. The next person should find it ready to use, with batteries back where they belong."
+    },
+    {
+      "id": "LIVE_MM_001",
+      "skill": "mains_monitors",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Who is the monitor mix mainly for?",
+      "choices": [
+        "Performers",
+        "The audience",
+        "Only the recording engineer",
+        "The camera"
+      ],
+      "answer_index": 0,
+      "explanation": "Monitors help performers hear themselves. Their mix can be different from the audience’s Main L/R mix."
+    },
+    {
+      "id": "LIVE_MM_002",
+      "skill": "mains_monitors",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why might a monitor mix be different from the mains?",
+      "choices": [
+        "Performers may need different things emphasized than the audience does",
+        "Monitors can only play mono",
+        "Mains never contain vocals",
+        "Monitors cannot use a mixer"
+      ],
+      "answer_index": 0,
+      "explanation": "Performers often need a custom balance so they can hear what helps them perform, while mains are mixed for the audience."
+    },
+    {
+      "id": "LIVE_MM_003",
+      "skill": "mains_monitors",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer asks for more of their own voice on stage without making it louder for the audience. What should you adjust?",
+      "choices": [
+        "Their monitor mix",
+        "Only Main L/R",
+        "Camera aperture",
+        "DAW export format"
+      ],
+      "answer_index": 0,
+      "explanation": "The monitor mix is for the performer and can be adjusted independently from the audience mix."
+    },
+    {
+      "id": "LIVE_AP_001",
+      "skill": "active_passive",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the basic difference between an active speaker and a passive speaker?",
+      "choices": [
+        "An active speaker has amplification built in; a passive speaker needs an external amplifier",
+        "Active speakers use XLR; passive speakers use USB",
+        "Active speakers are always monitors",
+        "Passive speakers cannot play music"
+      ],
+      "answer_index": 0,
+      "explanation": "Active/powered speakers contain an amplifier. Passive speakers need an external power amplifier."
+    },
+    {
+      "id": "LIVE_AP_002",
+      "skill": "active_passive",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re setting up a passive speaker. What does it need between the mixer and the speaker?",
+      "choices": [
+        "A power amplifier",
+        "A DI box",
+        "48V phantom power",
+        "A USB audio interface"
+      ],
+      "answer_index": 0,
+      "explanation": "A passive speaker has no amplifier inside, so the mixer’s output has to go through a power amplifier first."
+    },
+    {
+      "id": "LIVE_POWER_001",
+      "skill": "safe_power_order",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the safe basic power rule for speakers?",
+      "choices": [
+        "Speakers ON last and OFF first",
+        "Speakers ON first and OFF last",
+        "Speakers must stay on all day",
+        "Power order never matters"
+      ],
+      "answer_index": 0,
+      "explanation": "Turning speakers on last and off first helps prevent loud pops and surprises from upstream equipment."
+    },
+    {
+      "id": "LIVE_POWER_002",
+      "skill": "safe_power_order",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You are shutting down a live sound system. Which should happen first?",
+      "choices": [
+        "Turn off the speakers/amplifiers",
+        "Turn off every microphone before anything else",
+        "Open Dante Controller",
+        "Raise the master fader"
+      ],
+      "answer_index": 0,
+      "explanation": "Speakers and amplifiers should be turned off first during shutdown to reduce the chance of loud pops."
+    },
+    {
+      "id": "LIVE_FB_001",
+      "skill": "feedback",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is feedback in a live sound system?",
+      "choices": [
+        "Sound from a speaker re-enters a microphone and loops through the system",
+        "A DAW exports a WAV file",
+        "A passive speaker receives amplifier power",
+        "A camera changes exposure automatically"
+      ],
+      "answer_index": 0,
+      "explanation": "Feedback occurs when amplified sound returns to a microphone and is amplified again in a loop."
+    },
+    {
+      "id": "LIVE_FB_002",
+      "skill": "feedback",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A vocal mic starts to squeal whenever the singer walks in front of the main speakers. What’s the best first fix?",
+      "choices": [
+        "Keep the mic behind the speakers and pointed away from them",
+        "Turn up the mic’s input gain",
+        "Turn on 48V phantom power",
+        "Switch the channel to stereo"
+      ],
+      "answer_index": 0,
+      "explanation": "Feedback happens when the speakers’ sound gets back into the mic. Keeping mics behind the speakers and aimed away from them breaks the loop."
+    },
+    {
+      "id": "VID_AP_001",
+      "skill": "aperture_iris",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Aperture/iris is primarily a control related to what?",
+      "choices": [
+        "How much light enters through the lens",
+        "Audio input gain",
+        "Monitor mix level",
+        "Dante routing"
+      ],
+      "answer_index": 0,
+      "explanation": "Aperture/iris changes the lens opening and therefore affects how much light reaches the camera sensor."
+    },
+    {
+      "id": "VID_AP_002",
+      "skill": "aperture_iris",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You change the aperture from F4 to F5.6. What happens?",
+      "choices": [
+        "Less light gets in, because the opening is smaller",
+        "More light gets in, because the opening is bigger",
+        "Only the colors change",
+        "Only the frame rate changes"
+      ],
+      "answer_index": 0,
+      "explanation": "A higher f-number means a smaller lens opening, so F5.6 lets in less light than F4."
+    },
+    {
+      "id": "VID_SH_001",
+      "skill": "shutter_speed",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Shutter speed is part of which general camera task?",
+      "choices": [
+        "Controlling exposure and motion rendering",
+        "Setting audio phantom power",
+        "Choosing a monitor bus",
+        "Selecting an XLR cable"
+      ],
+      "answer_index": 0,
+      "explanation": "Shutter speed affects exposure and also changes how motion is rendered."
+    },
+    {
+      "id": "VID_SH_002",
+      "skill": "shutter_speed",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What happens to moving subjects when you use a much slower shutter speed?",
+      "choices": [
+        "They look more blurred",
+        "They look sharper and more frozen",
+        "Their colors shift toward blue",
+        "They go out of focus"
+      ],
+      "answer_index": 0,
+      "explanation": "A slower shutter exposes each frame for longer, so movement smears into motion blur. The image also gets brighter."
+    },
+    {
+      "id": "VID_ISO_001",
+      "skill": "iso_gain",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the usual tradeoff when you raise a camera’s gain/ISO?",
+      "choices": [
+        "The image gets brighter but noisier (grainier)",
+        "The image gets darker but sharper",
+        "The audio gets louder",
+        "The colors get warmer"
+      ],
+      "answer_index": 0,
+      "explanation": "Gain/ISO brightens the image electronically, and that adds visible noise, or grain."
+    },
+    {
+      "id": "VID_WB_001",
+      "skill": "white_balance_kelvin",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "White balance is mainly used to control what?",
+      "choices": [
+        "Color interpretation",
+        "Microphone sensitivity",
+        "Stereo panning",
+        "Speaker impedance"
+      ],
+      "answer_index": 0,
+      "explanation": "White balance tells the camera how to interpret color under different lighting. Kelvin is commonly used to set color temperature."
+    },
+    {
+      "id": "VID_WB_002",
+      "skill": "white_balance_kelvin",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A shot looks unnaturally blue or orange under the room lighting. Which setting is most directly related?",
+      "choices": [
+        "White balance / Kelvin",
+        "Audio input gain",
+        "Main L/R fader",
+        "Track arming"
+      ],
+      "answer_index": 0,
+      "explanation": "White balance controls how the camera interprets color under the current lighting."
+    },
+    {
+      "id": "VID_FOCUS_001",
+      "skill": "focus",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the simplest purpose of focus?",
+      "choices": [
+        "Make the intended subject appear sharp",
+        "Increase microphone level",
+        "Route outputs to a bus",
+        "Avoid audio clipping"
+      ],
+      "answer_index": 0,
+      "explanation": "Focus determines what distance/subject appears sharp in the image."
+    },
+    {
+      "id": "ST_XY_001",
+      "skill": "xy",
+      "topic": "stereo_capture",
+      "level": 0,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "Which stereo technique uses two directional microphones with capsules very close together and angled apart?",
+      "choices": [
+        "XY",
+        "A/B",
+        "Single-mic mono",
+        "Dante"
+      ],
+      "answer_index": 0,
+      "explanation": "XY is a coincident stereo technique: the microphone capsules are placed very close together and angled apart."
+    },
+    {
+      "id": "ST_XY_002",
+      "skill": "xy",
+      "topic": "stereo_capture",
+      "level": 2,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "Why does an XY recording usually hold up well when it’s summed to mono?",
+      "choices": [
+        "The capsules are nearly in the same spot, so sound reaches both at the same time",
+        "XY always uses omnidirectional microphones",
+        "XY records only one channel",
+        "XY needs less input gain"
+      ],
+      "answer_index": 0,
+      "explanation": "With the capsules together there’s almost no time difference between the two mics, so combining them avoids the phase cancellation a spaced pair can have."
+    },
+    {
+      "id": "ST_AB_001",
+      "skill": "ab",
+      "topic": "stereo_capture",
+      "level": 0,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "Which technique is commonly described as a spaced pair of microphones?",
+      "choices": [
+        "A/B",
+        "XY",
+        "Single-mic mono",
+        "Mid/Side"
+      ],
+      "answer_index": 0,
+      "explanation": "A/B uses two microphones spaced apart to capture stereo information."
+    },
+    {
+      "id": "ST_ORTF_001",
+      "skill": "ortf",
+      "topic": "stereo_capture",
+      "level": 0,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "ORTF is best described as which kind of setup?",
+      "choices": [
+        "A near-coincident stereo microphone technique",
+        "A single mono microphone",
+        "A loudspeaker wiring standard",
+        "A Dante network mode"
+      ],
+      "answer_index": 0,
+      "explanation": "ORTF is a near-coincident stereo technique: two cardioid microphones about 17 cm apart, angled 110° from each other."
+    },
+    {
+      "id": "ST_MATCH_001",
+      "skill": "matched_gain",
+      "topic": "stereo_capture",
+      "level": 1,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "In the current basic stereo-recording activity, how should the two microphone input gains generally be treated?",
+      "choices": [
+        "Set to matching values unless there is a specific reason not to",
+        "One must always be at minimum",
+        "The right side must always be louder",
+        "Input gain does not matter"
+      ],
+      "answer_index": 0,
+      "explanation": "The activity calls for matching gains so the stereo pair begins from a balanced setup."
+    },
+    {
+      "id": "ST_PAN_001",
+      "skill": "lr_panning",
+      "topic": "stereo_capture",
+      "level": 1,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "For a basic two-channel stereo recording, how are the channels normally panned?",
+      "choices": [
+        "One left and one right",
+        "Both center",
+        "Both hard left",
+        "Both hard right"
+      ],
+      "answer_index": 0,
+      "explanation": "A basic stereo pair needs distinct left and right channels so the spatial information is preserved."
+    },
+    {
+      "id": "ST_PAN_002",
+      "skill": "lr_panning",
+      "topic": "stereo_capture",
+      "level": 2,
+      "activity_gate": "stereo",
+      "type": "multiple_choice",
+      "prompt": "Both stereo mic tracks recorded cleanly, but playback sounds like everything is in the middle. What’s the likely setup mistake?",
+      "choices": [
+        "Both tracks are panned center",
+        "The input gain is too high",
+        "48V is turned on",
+        "The files are WAV"
+      ],
+      "answer_index": 0,
+      "explanation": "With both channels panned center, the left/right differences collapse into the middle. Pan one hard left and the other hard right."
+    },
+    {
+      "id": "X32_BUS_001",
+      "skill": "buses",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": "x32compact",
+      "type": "multiple_choice",
+      "prompt": "In the X32 activity, buses are used for what important task?",
+      "choices": [
+        "Creating independent monitor mixes",
+        "Changing camera white balance",
+        "Converting XLR to USB",
+        "Saving Logic projects"
+      ],
+      "answer_index": 0,
+      "explanation": "Buses can create separate mixes, such as Monitor 1 and Monitor 2, that differ from the Main L/R mix."
+    },
+    {
+      "id": "X32_SOF_001",
+      "skill": "sends_on_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": "x32compact",
+      "type": "multiple_choice",
+      "prompt": "What does Sends on Fader help you adjust on the X32?",
+      "choices": [
+        "How much of each input is sent to a selected bus",
+        "Camera shutter speed",
+        "Dante sample rate only",
+        "The physical amplifier power switch"
+      ],
+      "answer_index": 0,
+      "explanation": "Sends on Fader lets the faders represent channel send levels into the selected bus, which is useful for monitor mixes."
+    },
+    {
+      "id": "DANTE_CTRL_001",
+      "skill": "dante_controller",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "What is Dante Controller mainly used for in these activities?",
+      "choices": [
+        "Routing network audio transmitters to receivers",
+        "Editing camera exposure",
+        "Applying EQ inside Logic",
+        "Changing microphone batteries"
+      ],
+      "answer_index": 0,
+      "explanation": "Dante Controller provides the routing matrix used to connect Dante transmit and receive channels."
+    },
+    {
+      "id": "DANTE_DVS_001",
+      "skill": "dvs",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "What role does Dante Virtual Soundcard (DVS) play?",
+      "choices": [
+        "It lets a computer send/receive audio channels on the Dante network",
+        "It powers condenser microphones",
+        "It controls camera focus",
+        "It amplifies passive speakers"
+      ],
+      "answer_index": 0,
+      "explanation": "DVS allows computer audio software to use Dante network channels as audio I/O."
+    },
+    {
+      "id": "DANTE_MATRIX_001",
+      "skill": "routing_matrix",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "In a Dante routing matrix, what are you creating when you click the intersection between a transmitter channel and receiver channel?",
+      "choices": [
+        "A network audio subscription/route",
+        "A camera preset",
+        "A monitor speaker amplifier",
+        "A WAV export"
+      ],
+      "answer_index": 0,
+      "explanation": "The matrix intersection connects a transmitting Dante channel to a receiving Dante channel."
+    },
+    {
+      "id": "DANTE_TXRX_001",
+      "skill": "transmitter_receiver",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "In Dante, what does a transmitter channel do?",
+      "choices": [
+        "Sends audio onto the network",
+        "Receives audio from the network",
+        "Supplies phantom power",
+        "Amplifies a speaker"
+      ],
+      "answer_index": 0,
+      "explanation": "Transmitters send audio onto the Dante network and receivers pick it up. The routing matrix connects a transmitter channel to a receiver channel."
+    },
+    {
+      "id": "LOOP_FLOW_001",
+      "skill": "looper_signal_flow",
+      "topic": "live_looping",
+      "level": 0,
+      "activity_gate": "live-looping",
+      "type": "multiple_choice",
+      "prompt": "Why is signal-flow thinking especially useful in a live-looping rig?",
+      "choices": [
+        "Several devices and effects must be connected in the correct order",
+        "Loopers work only with cameras",
+        "Input gain is never used",
+        "The rig has no outputs"
+      ],
+      "answer_index": 0,
+      "explanation": "A live-looping setup may pass through instruments, effects, a looper, vocal processing, and speakers, so following the signal path is essential."
+    }
+  ]
+}
