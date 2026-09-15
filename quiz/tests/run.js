@@ -42,6 +42,7 @@ test('question bank is well-formed', () => {
     ids.add(question.id);
     ['skill', 'topic', 'type', 'prompt', 'explanation'].forEach((field) => assert.ok(question[field], `${question.id} missing ${field}`));
     assert.ok(Number.isInteger(question.level), `${question.id} level`);
+    assert.equal(typeof question.verified, 'boolean', `${question.id}: verified should be true/false`);
     assert.ok(Array.isArray(question.choices) && question.choices.length >= 2, `${question.id} choices`);
     assert.ok(question.answer_index >= 0 && question.answer_index < question.choices.length, `${question.id} answer_index`);
     assert.equal(new Set(question.choices).size, question.choices.length, `${question.id} repeated choice`);
@@ -58,6 +59,7 @@ test('curriculum and study deck reference things that exist', () => {
     assert.ok(curriculum.skills[card.skill], `card ${card.id}: skill ${card.skill} missing from curriculum.json`);
     assert.ok(deck.categories.includes(card.category), `card ${card.id}: unknown category ${card.category}`);
     assert.ok(card.front && card.back, `card ${card.id} needs front and back`);
+    assert.equal(typeof card.verified, 'boolean', `card ${card.id}: verified should be true/false`);
   });
   Object.entries(curriculum.skills).forEach(([skill, status]) => {
     assert.ok(['core', 'practice', 'inactive'].includes(status), `${skill}: bad status ${status}`);

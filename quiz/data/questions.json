@@ -62,7 +62,8 @@
         "The kind of cable a signal travels on"
       ],
       "answer_index": 0,
-      "explanation": "Signal flow is the path audio takes from its source through inputs, processing, routing, and outputs."
+      "explanation": "Signal flow is the path audio takes from its source through inputs, processing, routing, and outputs.",
+      "verified": true
     },
     {
       "id": "AUD_SIGNAL_002",
@@ -79,7 +80,8 @@
         "Turn up the speakers"
       ],
       "answer_index": 0,
-      "explanation": "Follow the signal in order. The wireless receiver shows signal, so the mic and transmitter are working; the problem is somewhere between the receiver output and the mixer input."
+      "explanation": "Follow the signal in order. The wireless receiver shows signal, so the mic and transmitter are working; the problem is somewhere between the receiver output and the mixer input.",
+      "verified": false
     },
     {
       "id": "AUD_IO_001",
@@ -96,7 +98,8 @@
         "Whether the track has EQ on it"
       ],
       "answer_index": 0,
-      "explanation": "Correct I/O is fundamental: the DAW must use the intended device and the track must listen to the correct input."
+      "explanation": "Correct I/O is fundamental: the DAW must use the intended device and the track must listen to the correct input.",
+      "verified": true
     },
     {
       "id": "AUD_IO_002",
@@ -113,7 +116,8 @@
         "The export file format"
       ],
       "answer_index": 0,
-      "explanation": "The DAW records from whichever input device is selected in its audio settings. Choose the interface there, then pick the corresponding input on the track."
+      "explanation": "The DAW records from whichever input device is selected in its audio settings. Choose the interface there, then pick the corresponding input on the track.",
+      "verified": true
     },
     {
       "id": "AUD_ARM_001",
@@ -130,7 +134,8 @@
         "A limiter"
       ],
       "answer_index": 0,
-      "explanation": "Record-arming tells the DAW which track should receive and record the incoming signal."
+      "explanation": "Record-arming tells the DAW which track should receive and record the incoming signal.",
+      "verified": true
     },
     {
       "id": "AUD_ARM_002",
@@ -147,7 +152,8 @@
         "The track is mono"
       ],
       "answer_index": 0,
-      "explanation": "Only record-armed tracks capture new audio. If the track isn’t armed, the DAW runs without recording onto it."
+      "explanation": "Only record-armed tracks capture new audio. If the track isn’t armed, the DAW runs without recording onto it.",
+      "verified": true
     },
     {
       "id": "AUD_INPUT_GAIN_001",
@@ -164,7 +170,8 @@
         "Mute"
       ],
       "answer_index": 0,
-      "explanation": "Input gain sets the level entering the channel. Faders are normally used afterward to balance signals in a mix."
+      "explanation": "Input gain sets the level entering the channel. Faders are normally used afterward to balance signals in a mix.",
+      "verified": true
     },
     {
       "id": "AUD_INPUT_GAIN_002",
@@ -181,7 +188,8 @@
         "Solo"
       ],
       "answer_index": 0,
-      "explanation": "Input gain sets how strongly the mic signal enters the channel. Faders come later, for balancing a signal that’s already healthy."
+      "explanation": "Input gain sets how strongly the mic signal enters the channel. Faders come later, for balancing a signal that’s already healthy.",
+      "verified": true
     },
     {
       "id": "AUD_CLIP_001",
@@ -198,7 +206,8 @@
         "The track switches to stereo"
       ],
       "answer_index": 0,
-      "explanation": "0 dBFS is the digital ceiling. Trying to go beyond it causes clipping."
+      "explanation": "0 dBFS is the digital ceiling. Trying to go beyond it causes clipping.",
+      "verified": false
     },
     {
       "id": "AUD_CLIP_002",
@@ -215,7 +224,8 @@
         "Switch the track to stereo"
       ],
       "answer_index": 0,
-      "explanation": "Since this is a test, fix it now: turn down the input gain and record another test. Don’t wait until the real take to find out."
+      "explanation": "Since this is a test, fix it now: turn down the input gain and record another test. Don’t wait until the real take to find out.",
+      "verified": false
     },
     {
       "id": "AUD_CLIP_004",
@@ -233,7 +243,8 @@
         "Stop the recording and restart it"
       ],
       "answer_index": 0,
-      "explanation": "We prefer not to change gain mid-concert unless it’s really clipping. If you do, change it just a little and log the time and amount, so it can be corrected in post."
+      "explanation": "We prefer not to change gain mid-concert unless it’s really clipping. If you do, change it just a little and log the time and amount, so it can be corrected in post.",
+      "verified": false
     },
     {
       "id": "AUD_MONO_ST_001",
@@ -250,7 +261,8 @@
         "Mono uses XLR; stereo uses USB"
       ],
       "answer_index": 0,
-      "explanation": "Mono is one channel. Stereo uses two channels, normally left and right."
+      "explanation": "Mono is one channel. Stereo uses two channels, normally left and right.",
+      "verified": true
     },
     {
       "id": "AUD_MONO_ST_002",
@@ -267,7 +279,8 @@
         "MIDI"
       ],
       "answer_index": 0,
-      "explanation": "One microphone feeding one interface input is a mono source, so a mono DAW track is normally appropriate."
+      "explanation": "One microphone feeding one interface input is a mono source, so a mono DAW track is normally appropriate.",
+      "verified": true
     },
     {
       "id": "AUD_48V_001",
@@ -284,7 +297,8 @@
         "No microphones need it"
       ],
       "answer_index": 0,
-      "explanation": "Condenser mics need 48V phantom power (rare exceptions, like tube mics with their own power supply). Dynamic mics work either way, and ribbon mics must never get it."
+      "explanation": "Condenser mics need 48V phantom power (rare exceptions, like tube mics with their own power supply). Dynamic mics work either way, and ribbon mics must never get it.",
+      "verified": true
     },
     {
       "id": "AUD_48V_002",
@@ -301,7 +315,8 @@
         "The monitor mix"
       ],
       "answer_index": 0,
-      "explanation": "Condenser microphones need 48V phantom power to work. With it off, you get no signal."
+      "explanation": "Condenser microphones need 48V phantom power to work. With it off, you get no signal.",
+      "verified": true
     },
     {
       "id": "AUD_48V_003",
@@ -318,7 +333,8 @@
         "Any mic used for stereo"
       ],
       "answer_index": 0,
-      "explanation": "Phantom power can damage ribbon mics, so keep 48V off on their channels (rare exception: some modern active ribbons need it). Condensers need it; dynamics don’t care either way."
+      "explanation": "Phantom power can damage ribbon mics, so keep 48V off on their channels (rare exception: some modern active ribbons need it). Condensers need it; dynamics don’t care either way.",
+      "verified": true
     },
     {
       "id": "AUD_INTERFACE_001",
@@ -335,7 +351,8 @@
         "Power passive speakers"
       ],
       "answer_index": 0,
-      "explanation": "An audio interface connects analog audio sources and outputs with the computer and commonly contains preamps and converters."
+      "explanation": "An audio interface connects analog audio sources and outputs with the computer and commonly contains preamps and converters.",
+      "verified": false
     },
     {
       "id": "AUD_INTERFACE_002",
@@ -352,7 +369,8 @@
         "A USB hub"
       ],
       "answer_index": 0,
-      "explanation": "Microphones plug into the interface’s XLR inputs. On many interfaces those are combo jacks that also take a ¼-inch plug."
+      "explanation": "Microphones plug into the interface’s XLR inputs. On many interfaces those are combo jacks that also take a ¼-inch plug.",
+      "verified": true
     },
     {
       "id": "PRO_REL_001",
@@ -369,7 +387,8 @@
         "Arrive whenever the performer arrives"
       ],
       "answer_index": 0,
-      "explanation": "For recording work, being on time means being ready to work at the scheduled time, not merely arriving at that moment."
+      "explanation": "For recording work, being on time means being ready to work at the scheduled time, not merely arriving at that moment.",
+      "verified": true
     },
     {
       "id": "PRO_REL_002",
@@ -386,7 +405,8 @@
         "Only tell another student after the start time"
       ],
       "answer_index": 0,
-      "explanation": "Reliability includes communicating early, before a scheduling problem becomes a larger problem."
+      "explanation": "Reliability includes communicating early, before a scheduling problem becomes a larger problem.",
+      "verified": true
     },
     {
       "id": "PRO_REL_003",
@@ -403,7 +423,8 @@
         "Keep the SD card in your bag to check later"
       ],
       "answer_index": 0,
-      "explanation": "The job isn’t done until the gear is reset and returned. The next person should find it ready to use, with batteries back where they belong."
+      "explanation": "The job isn’t done until the gear is reset and returned. The next person should find it ready to use, with batteries back where they belong.",
+      "verified": true
     },
     {
       "id": "LIVE_MM_001",
@@ -420,7 +441,8 @@
         "The camera"
       ],
       "answer_index": 0,
-      "explanation": "Monitors help performers hear themselves. Their mix can be different from the audience’s Main L/R mix."
+      "explanation": "Monitors help performers hear themselves. Their mix can be different from the audience’s Main L/R mix.",
+      "verified": false
     },
     {
       "id": "LIVE_MM_002",
@@ -437,7 +459,8 @@
         "Monitors cannot use a mixer"
       ],
       "answer_index": 0,
-      "explanation": "Performers often need a custom balance so they can hear what helps them perform, while mains are mixed for the audience."
+      "explanation": "Performers often need a custom balance so they can hear what helps them perform, while mains are mixed for the audience.",
+      "verified": false
     },
     {
       "id": "LIVE_MM_003",
@@ -454,7 +477,8 @@
         "DAW export format"
       ],
       "answer_index": 0,
-      "explanation": "The monitor mix is for the performer and can be adjusted independently from the audience mix."
+      "explanation": "The monitor mix is for the performer and can be adjusted independently from the audience mix.",
+      "verified": false
     },
     {
       "id": "LIVE_AP_001",
@@ -471,7 +495,8 @@
         "Passive speakers cannot play music"
       ],
       "answer_index": 0,
-      "explanation": "Active/powered speakers contain an amplifier. Passive speakers need an external power amplifier."
+      "explanation": "Active/powered speakers contain an amplifier. Passive speakers need an external power amplifier.",
+      "verified": false
     },
     {
       "id": "LIVE_AP_002",
@@ -488,7 +513,8 @@
         "A USB audio interface"
       ],
       "answer_index": 0,
-      "explanation": "A passive speaker has no amplifier inside, so the mixer’s output has to go through a power amplifier first."
+      "explanation": "A passive speaker has no amplifier inside, so the mixer’s output has to go through a power amplifier first.",
+      "verified": false
     },
     {
       "id": "LIVE_POWER_001",
@@ -505,7 +531,8 @@
         "Power order never matters"
       ],
       "answer_index": 0,
-      "explanation": "Turning speakers on last and off first helps prevent loud pops and surprises from upstream equipment."
+      "explanation": "Turning speakers on last and off first helps prevent loud pops and surprises from upstream equipment.",
+      "verified": false
     },
     {
       "id": "LIVE_POWER_002",
@@ -522,7 +549,8 @@
         "Raise the master fader"
       ],
       "answer_index": 0,
-      "explanation": "Speakers and amplifiers should be turned off first during shutdown to reduce the chance of loud pops."
+      "explanation": "Speakers and amplifiers should be turned off first during shutdown to reduce the chance of loud pops.",
+      "verified": false
     },
     {
       "id": "LIVE_FB_001",
@@ -539,7 +567,8 @@
         "A camera changes exposure automatically"
       ],
       "answer_index": 0,
-      "explanation": "Feedback occurs when amplified sound returns to a microphone and is amplified again in a loop."
+      "explanation": "Feedback occurs when amplified sound returns to a microphone and is amplified again in a loop.",
+      "verified": false
     },
     {
       "id": "LIVE_FB_002",
@@ -556,7 +585,8 @@
         "Switch the channel to stereo"
       ],
       "answer_index": 0,
-      "explanation": "Feedback happens when the speakers’ sound gets back into the mic. Keeping mics behind the speakers and aimed away from them breaks the loop."
+      "explanation": "Feedback happens when the speakers’ sound gets back into the mic. Keeping mics behind the speakers and aimed away from them breaks the loop.",
+      "verified": false
     },
     {
       "id": "VID_AP_001",
@@ -573,7 +603,8 @@
         "Dante routing"
       ],
       "answer_index": 0,
-      "explanation": "Aperture/iris changes the lens opening and therefore affects how much light reaches the camera sensor."
+      "explanation": "Aperture/iris changes the lens opening and therefore affects how much light reaches the camera sensor.",
+      "verified": false
     },
     {
       "id": "VID_AP_002",
@@ -590,7 +621,8 @@
         "Only the frame rate changes"
       ],
       "answer_index": 0,
-      "explanation": "A higher f-number means a smaller lens opening, so F5.6 lets in less light than F4."
+      "explanation": "A higher f-number means a smaller lens opening, so F5.6 lets in less light than F4.",
+      "verified": false
     },
     {
       "id": "VID_SH_001",
@@ -607,7 +639,8 @@
         "Selecting an XLR cable"
       ],
       "answer_index": 0,
-      "explanation": "Shutter speed affects exposure and also changes how motion is rendered."
+      "explanation": "Shutter speed affects exposure and also changes how motion is rendered.",
+      "verified": false
     },
     {
       "id": "VID_SH_002",
@@ -624,7 +657,8 @@
         "They go out of focus"
       ],
       "answer_index": 0,
-      "explanation": "A slower shutter exposes each frame for longer, so movement smears into motion blur. The image also gets brighter."
+      "explanation": "A slower shutter exposes each frame for longer, so movement smears into motion blur. The image also gets brighter.",
+      "verified": false
     },
     {
       "id": "VID_ISO_001",
@@ -641,7 +675,8 @@
         "The colors get warmer"
       ],
       "answer_index": 0,
-      "explanation": "Gain/ISO brightens the image electronically, and that adds visible noise, or grain."
+      "explanation": "Gain/ISO brightens the image electronically, and that adds visible noise, or grain.",
+      "verified": false
     },
     {
       "id": "VID_WB_001",
@@ -658,7 +693,8 @@
         "Speaker impedance"
       ],
       "answer_index": 0,
-      "explanation": "White balance tells the camera how to interpret color under different lighting. Kelvin is commonly used to set color temperature."
+      "explanation": "White balance tells the camera how to interpret color under different lighting. Kelvin is commonly used to set color temperature.",
+      "verified": false
     },
     {
       "id": "VID_WB_002",
@@ -675,7 +711,8 @@
         "Track arming"
       ],
       "answer_index": 0,
-      "explanation": "White balance controls how the camera interprets color under the current lighting."
+      "explanation": "White balance controls how the camera interprets color under the current lighting.",
+      "verified": false
     },
     {
       "id": "VID_FOCUS_001",
@@ -692,7 +729,8 @@
         "Avoid audio clipping"
       ],
       "answer_index": 0,
-      "explanation": "Focus determines what distance/subject appears sharp in the image."
+      "explanation": "Focus determines what distance/subject appears sharp in the image.",
+      "verified": false
     },
     {
       "id": "ST_XY_001",
@@ -709,7 +747,8 @@
         "Dante"
       ],
       "answer_index": 0,
-      "explanation": "XY is a coincident stereo technique: the microphone capsules are placed very close together and angled apart."
+      "explanation": "XY is a coincident stereo technique: the microphone capsules are placed very close together and angled apart.",
+      "verified": false
     },
     {
       "id": "ST_XY_002",
@@ -726,7 +765,8 @@
         "XY needs less input gain"
       ],
       "answer_index": 0,
-      "explanation": "With the capsules together there’s almost no time difference between the two mics, so combining them avoids the phase cancellation a spaced pair can have."
+      "explanation": "With the capsules together there’s almost no time difference between the two mics, so combining them avoids the phase cancellation a spaced pair can have.",
+      "verified": false
     },
     {
       "id": "ST_AB_001",
@@ -743,7 +783,8 @@
         "Mid/Side"
       ],
       "answer_index": 0,
-      "explanation": "A/B uses two microphones spaced apart to capture stereo information."
+      "explanation": "A/B uses two microphones spaced apart to capture stereo information.",
+      "verified": false
     },
     {
       "id": "ST_ORTF_001",
@@ -760,7 +801,8 @@
         "A Dante network mode"
       ],
       "answer_index": 0,
-      "explanation": "ORTF is a near-coincident stereo technique: two cardioid microphones about 17 cm apart, angled 110° from each other."
+      "explanation": "ORTF is a near-coincident stereo technique: two cardioid microphones about 17 cm apart, angled 110° from each other.",
+      "verified": false
     },
     {
       "id": "ST_MATCH_001",
@@ -777,7 +819,8 @@
         "Input gain does not matter"
       ],
       "answer_index": 0,
-      "explanation": "The activity calls for matching gains so the stereo pair begins from a balanced setup."
+      "explanation": "The activity calls for matching gains so the stereo pair begins from a balanced setup.",
+      "verified": false
     },
     {
       "id": "ST_PAN_001",
@@ -794,7 +837,8 @@
         "Both hard right"
       ],
       "answer_index": 0,
-      "explanation": "A basic stereo pair needs distinct left and right channels so the spatial information is preserved."
+      "explanation": "A basic stereo pair needs distinct left and right channels so the spatial information is preserved.",
+      "verified": false
     },
     {
       "id": "ST_PAN_002",
@@ -811,7 +855,8 @@
         "The files are WAV"
       ],
       "answer_index": 0,
-      "explanation": "With both channels panned center, the left/right differences collapse into the middle. Pan one hard left and the other hard right."
+      "explanation": "With both channels panned center, the left/right differences collapse into the middle. Pan one hard left and the other hard right.",
+      "verified": false
     },
     {
       "id": "X32_BUS_001",
@@ -828,7 +873,8 @@
         "Saving Logic projects"
       ],
       "answer_index": 0,
-      "explanation": "Buses can create separate mixes, such as Monitor 1 and Monitor 2, that differ from the Main L/R mix."
+      "explanation": "Buses can create separate mixes, such as Monitor 1 and Monitor 2, that differ from the Main L/R mix.",
+      "verified": false
     },
     {
       "id": "X32_SOF_001",
@@ -845,7 +891,8 @@
         "The physical amplifier power switch"
       ],
       "answer_index": 0,
-      "explanation": "Sends on Fader lets the faders represent channel send levels into the selected bus, which is useful for monitor mixes."
+      "explanation": "Sends on Fader lets the faders represent channel send levels into the selected bus, which is useful for monitor mixes.",
+      "verified": false
     },
     {
       "id": "DANTE_CTRL_001",
@@ -862,7 +909,8 @@
         "Changing microphone batteries"
       ],
       "answer_index": 0,
-      "explanation": "Dante Controller provides the routing matrix used to connect Dante transmit and receive channels."
+      "explanation": "Dante Controller provides the routing matrix used to connect Dante transmit and receive channels.",
+      "verified": false
     },
     {
       "id": "DANTE_DVS_001",
@@ -879,7 +927,8 @@
         "It amplifies passive speakers"
       ],
       "answer_index": 0,
-      "explanation": "DVS allows computer audio software to use Dante network channels as audio I/O."
+      "explanation": "DVS allows computer audio software to use Dante network channels as audio I/O.",
+      "verified": false
     },
     {
       "id": "DANTE_MATRIX_001",
@@ -896,7 +945,8 @@
         "A WAV export"
       ],
       "answer_index": 0,
-      "explanation": "The matrix intersection connects a transmitting Dante channel to a receiving Dante channel."
+      "explanation": "The matrix intersection connects a transmitting Dante channel to a receiving Dante channel.",
+      "verified": false
     },
     {
       "id": "DANTE_TXRX_001",
@@ -913,7 +963,8 @@
         "Amplifies a speaker"
       ],
       "answer_index": 0,
-      "explanation": "Transmitters send audio onto the Dante network and receivers pick it up. The routing matrix connects a transmitter channel to a receiver channel."
+      "explanation": "Transmitters send audio onto the Dante network and receivers pick it up. The routing matrix connects a transmitter channel to a receiver channel.",
+      "verified": false
     },
     {
       "id": "LOOP_FLOW_001",
@@ -930,7 +981,8 @@
         "The rig has no outputs"
       ],
       "answer_index": 0,
-      "explanation": "A live-looping setup may pass through instruments, effects, a looper, vocal processing, and speakers, so following the signal path is essential."
+      "explanation": "A live-looping setup may pass through instruments, effects, a looper, vocal processing, and speakers, so following the signal path is essential.",
+      "verified": false
     },
     {
       "id": "AUD_TARGET_001",
@@ -947,7 +999,8 @@
         "Just above 0 dBFS"
       ],
       "answer_index": 0,
-      "explanation": "Peaks around −12 to −6 dBFS leave headroom for louder moments while staying well above the noise."
+      "explanation": "Peaks around −12 to −6 dBFS leave headroom for louder moments while staying well above the noise.",
+      "verified": true
     },
     {
       "id": "AUD_TARGET_002",
@@ -964,7 +1017,8 @@
         "The track needs to be stereo"
       ],
       "answer_index": 0,
-      "explanation": "−38 dBFS is far below the −12 to −6 target, so the recording will be noisy once it’s turned up. Raise the input gain and test again."
+      "explanation": "−38 dBFS is far below the −12 to −6 target, so the recording will be noisy once it’s turned up. Raise the input gain and test again.",
+      "verified": true
     },
     {
       "id": "AUD_TARGET_003",
@@ -981,7 +1035,8 @@
         "Meters stop working near 0 dBFS"
       ],
       "answer_index": 0,
-      "explanation": "Performances often get louder than the soundcheck, so leave headroom for the loudest moment."
+      "explanation": "Performances often get louder than the soundcheck, so leave headroom for the loudest moment.",
+      "verified": true
     },
     {
       "id": "MIC_TYPE_001",
@@ -998,7 +1053,8 @@
         "Tube condenser"
       ],
       "answer_index": 0,
-      "explanation": "Dynamic mics are the tough, loud-source workhorses. Condensers are more sensitive, and ribbons are fragile."
+      "explanation": "Dynamic mics are the tough, loud-source workhorses. Condensers are more sensitive, and ribbons are fragile.",
+      "verified": true
     },
     {
       "id": "MIC_TYPE_002",
@@ -1015,7 +1071,8 @@
         "A contact pickup"
       ],
       "answer_index": 0,
-      "explanation": "Condensers are sensitive and detailed, which suits quiet acoustic music."
+      "explanation": "Condensers are sensitive and detailed, which suits quiet acoustic music.",
+      "verified": true
     },
     {
       "id": "AUD_48V_004",
@@ -1032,7 +1089,8 @@
         "That the track is stereo"
       ],
       "answer_index": 0,
-      "explanation": "Phantom power can damage ribbon mics, so make sure 48V is off first (rare exception: some modern active ribbons need it)."
+      "explanation": "Phantom power can damage ribbon mics, so make sure 48V is off first (rare exception: some modern active ribbons need it).",
+      "verified": true
     },
     {
       "id": "CONN_001",
@@ -1049,7 +1107,8 @@
         "USB-C"
       ],
       "answer_index": 0,
-      "explanation": "XLR is three-pin, locking, and balanced: the standard for microphones."
+      "explanation": "XLR is three-pin, locking, and balanced: the standard for microphones.",
+      "verified": true
     },
     {
       "id": "CONN_002",
@@ -1066,7 +1125,8 @@
         "There’s no difference"
       ],
       "answer_index": 0,
-      "explanation": "Count the black rings: TS has one, TRS has two. TS carries unbalanced signals like a guitar; TRS carries balanced line signals or stereo headphones."
+      "explanation": "Count the black rings: TS has one, TRS has two. TS carries unbalanced signals like a guitar; TRS carries balanced line signals or stereo headphones.",
+      "verified": true
     },
     {
       "id": "CONN_003",
@@ -1083,7 +1143,8 @@
         "A breakout cable"
       ],
       "answer_index": 0,
-      "explanation": "A combo jack has an XLR socket with a ¼″ hole in the middle, so it takes either kind of plug."
+      "explanation": "A combo jack has an XLR socket with a ¼″ hole in the middle, so it takes either kind of plug.",
+      "verified": true
     },
     {
       "id": "CONN_004",
@@ -1100,7 +1161,8 @@
         "Speakon"
       ],
       "answer_index": 0,
-      "explanation": "Phones and laptops use the small 3.5 mm (⅛″) plug, usually stereo."
+      "explanation": "Phones and laptops use the small 3.5 mm (⅛″) plug, usually stereo.",
+      "verified": true
     },
     {
       "id": "TEST_001",
@@ -1117,7 +1179,8 @@
         "The DAW won’t record without one"
       ],
       "answer_index": 0,
-      "explanation": "Meters only show level. Listening back is how you catch distortion, noise, a dead channel, or the wrong mic before the real take."
+      "explanation": "Meters only show level. Listening back is how you catch distortion, noise, a dead channel, or the wrong mic before the real take.",
+      "verified": true
     },
     {
       "id": "TEST_002",
@@ -1134,7 +1197,8 @@
         "Only if something sounds wrong"
       ],
       "answer_index": 0,
-      "explanation": "Line-check everything before the event. Problems found during the show are much harder, and much more public, to fix."
+      "explanation": "Line-check everything before the event. Problems found during the show are much harder, and much more public, to fix.",
+      "verified": true
     },
     {
       "id": "FILE_001",
@@ -1151,7 +1215,8 @@
         "Project: only the raw WAVs. Deliverable: the DAW file."
       ],
       "answer_index": 0,
-      "explanation": "The project keeps everything editable. The deliverable is the finished file someone else receives, like a WAV. Keep both."
+      "explanation": "The project keeps everything editable. The deliverable is the finished file someone else receives, like a WAV. Keep both.",
+      "verified": true
     },
     {
       "id": "FILE_002",
@@ -1168,7 +1233,8 @@
         "How many plugins you’ll use"
       ],
       "answer_index": 0,
-      "explanation": "Know which folder or drive the project and audio are going to, so nothing gets lost or saved somewhere you can’t find."
+      "explanation": "Know which folder or drive the project and audio are going to, so nothing gets lost or saved somewhere you can’t find.",
+      "verified": true
     },
     {
       "id": "FILE_003",
@@ -1185,7 +1251,8 @@
         "Exports expire after a week"
       ],
       "answer_index": 0,
-      "explanation": "The export is fixed. The project is what lets you go back and change the mix without starting over."
+      "explanation": "The export is fixed. The project is what lets you go back and change the mix without starting over.",
+      "verified": true
     },
     {
       "id": "DAW_001",
@@ -1202,7 +1269,8 @@
         "Pans it to the center"
       ],
       "answer_index": 0,
-      "explanation": "Solo isolates a track so you can hear it alone. Mute is the one that silences a track."
+      "explanation": "Solo isolates a track so you can hear it alone. Mute is the one that silences a track.",
+      "verified": true
     },
     {
       "id": "DAW_002",
@@ -1219,7 +1287,8 @@
         "Solo every track"
       ],
       "answer_index": 0,
-      "explanation": "Exporting (bouncing or rendering) turns the mix into a finished audio file, like a WAV."
+      "explanation": "Exporting (bouncing or rendering) turns the mix into a finished audio file, like a WAV.",
+      "verified": true
     },
     {
       "id": "DAW_003",
@@ -1236,7 +1305,8 @@
         "Input gain"
       ],
       "answer_index": 0,
-      "explanation": "Pan sets left-right position. Faders set level."
+      "explanation": "Pan sets left-right position. Faders set level.",
+      "verified": true
     },
     {
       "id": "AUD_IO_003",
@@ -1253,7 +1323,8 @@
         "The master fader"
       ],
       "answer_index": 0,
-      "explanation": "The input and output device is chosen in the DAW’s audio settings. Each track then picks an input on that device."
+      "explanation": "The input and output device is chosen in the DAW’s audio settings. Each track then picks an input on that device.",
+      "verified": false
     },
     {
       "id": "AUD_INTERFACE_003",
@@ -1270,7 +1341,8 @@
         "Turns stereo into mono"
       ],
       "answer_index": 0,
-      "explanation": "A/D means analog-to-digital. The D/A converter does the reverse for your speakers or headphones."
+      "explanation": "A/D means analog-to-digital. The D/A converter does the reverse for your speakers or headphones.",
+      "verified": true
     },
     {
       "id": "AUD_SIGNAL_003",
@@ -1287,7 +1359,8 @@
         "Speakers → amplifier → mixer → mic"
       ],
       "answer_index": 0,
-      "explanation": "Sound starts at the source, is picked up by the mic, is mixed, is amplified if needed, and comes out of the speakers."
+      "explanation": "Sound starts at the source, is picked up by the mic, is mixed, is amplified if needed, and comes out of the speakers.",
+      "verified": true
     },
     {
       "id": "AUD_CLIP_003",
@@ -1304,7 +1377,8 @@
         "Yes, panning it center removes it"
       ],
       "answer_index": 0,
-      "explanation": "Once a signal clips, the distortion is part of the recording. Prevent it with input gain and headroom before you record."
+      "explanation": "Once a signal clips, the distortion is part of the recording. Prevent it with input gain and headroom before you record.",
+      "verified": true
     },
     {
       "id": "AUD_ARM_003",
@@ -1321,7 +1395,8 @@
         "Nothing; just press Record"
       ],
       "answer_index": 0,
-      "explanation": "Arm only the track you mean to record onto, so you don’t record over or add to the others by accident."
+      "explanation": "Arm only the track you mean to record onto, so you don’t record over or add to the others by accident.",
+      "verified": true
     },
     {
       "id": "AUD_MONO_ST_003",
@@ -1338,7 +1413,8 @@
         "It depends on the sample rate"
       ],
       "answer_index": 0,
-      "explanation": "A stereo pair is two mics feeding two inputs: one for left, one for right."
+      "explanation": "A stereo pair is two mics feeding two inputs: one for left, one for right.",
+      "verified": true
     },
     {
       "id": "AUD_INPUT_GAIN_003",
@@ -1355,7 +1431,8 @@
         "Gain and faders do the same job"
       ],
       "answer_index": 0,
-      "explanation": "Input gain gets the signal to a healthy level at the start of the channel. Faders come afterward, for balancing the mix."
+      "explanation": "Input gain gets the signal to a healthy level at the start of the channel. Faders come afterward, for balancing the mix.",
+      "verified": false
     },
     {
       "id": "PRO_REL_004",
@@ -1372,7 +1449,8 @@
         "Work on something for another class"
       ],
       "answer_index": 0,
-      "explanation": "Reliability includes helping your group get the whole job done, not just your own part."
+      "explanation": "Reliability includes helping your group get the whole job done, not just your own part.",
+      "verified": true
     },
     {
       "id": "VID_EXP_001",
@@ -1389,7 +1467,8 @@
         "Aperture, focus, framing"
       ],
       "answer_index": 0,
-      "explanation": "Aperture, shutter speed, and ISO/gain together set how bright the image is."
+      "explanation": "Aperture, shutter speed, and ISO/gain together set how bright the image is.",
+      "verified": false
     },
     {
       "id": "VID_EXP_002",
@@ -1406,7 +1485,8 @@
         "Autofocus only works in manual exposure"
       ],
       "answer_index": 0,
-      "explanation": "In auto, the camera keeps re-guessing brightness as lights and movement change. Manual keeps it where you set it."
+      "explanation": "In auto, the camera keeps re-guessing brightness as lights and movement change. Manual keeps it where you set it.",
+      "verified": false
     },
     {
       "id": "VID_EXP_003",
@@ -1423,7 +1503,8 @@
         "Change the white balance"
       ],
       "answer_index": 0,
-      "explanation": "Raising gain adds noise and slowing the shutter adds blur. Opening the aperture lets in more light without either."
+      "explanation": "Raising gain adds noise and slowing the shutter adds blur. Opening the aperture lets in more light without either.",
+      "verified": false
     },
     {
       "id": "VID_FPS_001",
@@ -1440,7 +1521,8 @@
         "How long the battery lasts"
       ],
       "answer_index": 0,
-      "explanation": "Frame rate is frames per second (fps), like 24, 30, or 60."
+      "explanation": "Frame rate is frames per second (fps), like 24, 30, or 60.",
+      "verified": false
     },
     {
       "id": "VID_FPS_002",
@@ -1457,7 +1539,8 @@
         "1/8"
       ],
       "answer_index": 0,
-      "explanation": "A shutter about twice the frame rate (1/60 at 30 fps) gives natural-looking motion. It’s also what the Cameras activity used."
+      "explanation": "A shutter about twice the frame rate (1/60 at 30 fps) gives natural-looking motion. It’s also what the Cameras activity used.",
+      "verified": false
     },
     {
       "id": "VID_SH_003",
@@ -1474,7 +1557,8 @@
         "The focus gets softer"
       ],
       "answer_index": 0,
-      "explanation": "A faster shutter lets in less light per frame and freezes motion, which can look choppy in video."
+      "explanation": "A faster shutter lets in less light per frame and freezes motion, which can look choppy in video.",
+      "verified": false
     },
     {
       "id": "VID_WB_003",
@@ -1491,7 +1575,8 @@
         "About 1000 K"
       ],
       "answer_index": 0,
-      "explanation": "Around 3200 K suits warm indoor light. Around 5600 K suits daylight."
+      "explanation": "Around 3200 K suits warm indoor light. Around 5600 K suits daylight.",
+      "verified": false
     },
     {
       "id": "VID_FOCUS_002",
@@ -1508,7 +1593,8 @@
         "Manual focus improves the audio"
       ],
       "answer_index": 0,
-      "explanation": "Autofocus may wander when someone walks through the frame or the light changes. Manual focus stays where you set it."
+      "explanation": "Autofocus may wander when someone walks through the frame or the light changes. Manual focus stays where you set it.",
+      "verified": false
     },
     {
       "id": "VID_FRAME_001",
@@ -1525,7 +1611,8 @@
         "The video file format"
       ],
       "answer_index": 0,
-      "explanation": "Framing is composition: what the shot includes, and where the performers sit in it."
+      "explanation": "Framing is composition: what the shot includes, and where the performers sit in it.",
+      "verified": false
     },
     {
       "id": "VID_ISO_002",
@@ -1542,7 +1629,8 @@
         "Changing the white balance"
       ],
       "answer_index": 0,
-      "explanation": "Gain/ISO brightens electronically, and the tradeoff is noise."
+      "explanation": "Gain/ISO brightens electronically, and the tradeoff is noise.",
+      "verified": false
     },
     {
       "id": "LIVE_FLOW_001",
@@ -1559,7 +1647,8 @@
         "An audio interface"
       ],
       "answer_index": 0,
-      "explanation": "Passive speakers have no amplifier inside, so the mixer feeds a power amplifier, which drives the speakers."
+      "explanation": "Passive speakers have no amplifier inside, so the mixer feeds a power amplifier, which drives the speakers.",
+      "verified": false
     },
     {
       "id": "LIVE_FLOW_002",
@@ -1576,7 +1665,8 @@
         "Removes feedback"
       ],
       "answer_index": 0,
-      "explanation": "A DI lets a keyboard, guitar, or playback device connect to a mixer’s mic input over a balanced cable."
+      "explanation": "A DI lets a keyboard, guitar, or playback device connect to a mixer’s mic input over a balanced cable.",
+      "verified": false
     },
     {
       "id": "LIVE_MM_004",
@@ -1593,7 +1683,8 @@
         "Nobody; mains are only for recording"
       ],
       "answer_index": 0,
-      "explanation": "Mains are the audience mix. Monitors are the performer mix."
+      "explanation": "Mains are the audience mix. Monitors are the performer mix.",
+      "verified": false
     },
     {
       "id": "LIVE_POWER_003",
@@ -1610,7 +1701,8 @@
         "The playback laptop"
       ],
       "answer_index": 0,
-      "explanation": "Speakers on last, off first, so pops from other gear powering up never reach them."
+      "explanation": "Speakers on last, off first, so pops from other gear powering up never reach them.",
+      "verified": false
     },
     {
       "id": "LIVE_FB_003",
@@ -1627,7 +1719,8 @@
         "Turn on phantom power"
       ],
       "answer_index": 0,
-      "explanation": "Feedback is a loop. Lowering the level, or moving the mic away from the speakers, breaks it."
+      "explanation": "Feedback is a loop. Lowering the level, or moving the mic away from the speakers, breaks it.",
+      "verified": false
     },
     {
       "id": "LIVE_ROUTE_001",
@@ -1644,7 +1737,8 @@
         "Which fader is longest"
       ],
       "answer_index": 0,
-      "explanation": "Know where each output goes before turning things up, so nothing surprises the audience, the performers, or the recording."
+      "explanation": "Know where each output goes before turning things up, so nothing surprises the audience, the performers, or the recording.",
+      "verified": false
     },
     {
       "id": "JOB_AREAS_001",
@@ -1661,7 +1755,8 @@
         "Video recording"
       ],
       "answer_index": 0,
-      "explanation": "Organizing, backing up, and archiving files is data management & archiving."
+      "explanation": "Organizing, backing up, and archiving files is data management & archiving.",
+      "verified": false
     },
     {
       "id": "JOB_AREAS_002",
@@ -1678,7 +1773,8 @@
         "Basic live sound"
       ],
       "answer_index": 0,
-      "explanation": "Work done on the recording afterward, like editing and mixing, is post production."
+      "explanation": "Work done on the recording afterward, like editing and mixing, is post production.",
+      "verified": false
     },
     {
       "id": "ST_ORTF_002",
@@ -1695,7 +1791,8 @@
         "About 17 cm apart, pointing straight ahead"
       ],
       "answer_index": 0,
-      "explanation": "ORTF uses two cardioid mics about 17 cm apart, angled 110° from each other."
+      "explanation": "ORTF uses two cardioid mics about 17 cm apart, angled 110° from each other.",
+      "verified": false
     },
     {
       "id": "ST_AB_002",
@@ -1712,7 +1809,8 @@
         "It can’t be used for classical music"
       ],
       "answer_index": 0,
-      "explanation": "Spacing the mics widens the image, but the time differences between them can cause phase problems when summed to mono."
+      "explanation": "Spacing the mics widens the image, but the time differences between them can cause phase problems when summed to mono.",
+      "verified": false
     },
     {
       "id": "ST_XY_003",
@@ -1729,7 +1827,8 @@
         "One above the stage, one at the back of the hall"
       ],
       "answer_index": 0,
-      "explanation": "XY is coincident: the capsules sit together and point in different directions."
+      "explanation": "XY is coincident: the capsules sit together and point in different directions.",
+      "verified": false
     },
     {
       "id": "ST_MATCH_002",
@@ -1746,7 +1845,8 @@
         "Whether the files are WAV"
       ],
       "answer_index": 0,
-      "explanation": "If one channel has more input gain than the other, the image pulls toward that side."
+      "explanation": "If one channel has more input gain than the other, the image pulls toward that side.",
+      "verified": false
     },
     {
       "id": "X32_BUS_002",
@@ -1763,7 +1863,8 @@
         "The Main L/R pan"
       ],
       "answer_index": 0,
-      "explanation": "Each channel sends some level into the bus; the bus master sets the level of the whole mix, like one monitor."
+      "explanation": "Each channel sends some level into the bus; the bus master sets the level of the whole mix, like one monitor.",
+      "verified": false
     },
     {
       "id": "X32_SOF_002",
@@ -1780,7 +1881,8 @@
         "Nothing until you press Mute"
       ],
       "answer_index": 0,
-      "explanation": "In Sends on Fader mode, the channel faders control sends into the selected bus, not the main mix."
+      "explanation": "In Sends on Fader mode, the channel faders control sends into the selected bus, not the main mix.",
+      "verified": false
     },
     {
       "id": "X32_BUS_003",
@@ -1797,7 +1899,8 @@
         "Phantom power on the vocal"
       ],
       "answer_index": 0,
-      "explanation": "Since the mains work, the input is fine. The problem is in the monitor path: the send into the bus, the bus master, or the bus output."
+      "explanation": "Since the mains work, the input is fine. The problem is in the monitor path: the send into the bus, the bus master, or the bus output.",
+      "verified": false
     },
     {
       "id": "X32_WL_001",
@@ -1814,7 +1917,8 @@
         "The mic connects to the mixer over USB"
       ],
       "answer_index": 0,
-      "explanation": "The transmitter and receiver must be paired; then the receiver’s output is patched into a mixer channel like any other source."
+      "explanation": "The transmitter and receiver must be paired; then the receiver’s output is patched into a mixer channel like any other source.",
+      "verified": false
     },
     {
       "id": "DANTE_WHAT_001",
@@ -1831,7 +1935,8 @@
         "Records video"
       ],
       "answer_index": 0,
-      "explanation": "Dante sends many audio channels over standard network cabling instead of one cable per channel."
+      "explanation": "Dante sends many audio channels over standard network cabling instead of one cable per channel.",
+      "verified": false
     },
     {
       "id": "DANTE_TXRX_002",
@@ -1848,7 +1953,8 @@
         "Neither; the network switch transmits"
       ],
       "answer_index": 0,
-      "explanation": "The device sending the audio is the transmitter. Computer B receives it."
+      "explanation": "The device sending the audio is the transmitter. Computer B receives it.",
+      "verified": false
     },
     {
       "id": "DANTE_DVS_002",
@@ -1865,7 +1971,8 @@
         "BlackHole"
       ],
       "answer_index": 0,
-      "explanation": "DVS appears to the DAW as an audio device. Dante Controller is the routing software, not an audio device."
+      "explanation": "DVS appears to the DAW as an audio device. Dante Controller is the routing software, not an audio device.",
+      "verified": false
     },
     {
       "id": "DANTE_MATRIX_002",
@@ -1882,7 +1989,8 @@
         "That the network cable is XLR"
       ],
       "answer_index": 0,
-      "explanation": "Audio only flows on Dante once a transmitter channel is subscribed to a receiver channel in the routing matrix."
+      "explanation": "Audio only flows on Dante once a transmitter channel is subscribed to a receiver channel in the routing matrix.",
+      "verified": false
     },
     {
       "id": "LOOP_MIXER_001",
@@ -1899,7 +2007,8 @@
         "MicroKorg"
       ],
       "answer_index": 0,
-      "explanation": "The B205D is the mixer and speaker. Every path ends there."
+      "explanation": "The B205D is the mixer and speaker. Every path ends there.",
+      "verified": false
     },
     {
       "id": "LOOP_VOCAL_001",
@@ -1916,7 +2025,8 @@
         "The live guitar channel"
       ],
       "answer_index": 0,
-      "explanation": "The open headset mic is the one that can feed back, so it’s added last, and it’s the first to turn down if feedback starts."
+      "explanation": "The open headset mic is the one that can feed back, so it’s added last, and it’s the first to turn down if feedback starts.",
+      "verified": false
     },
     {
       "id": "LOOP_POWER_001",
@@ -1933,7 +2043,8 @@
         "Swapping them erases the loop memory"
       ],
       "answer_index": 0,
-      "explanation": "The Korg adapter is center-positive and the Boss adapter is center-negative. The wrong one can damage the device."
+      "explanation": "The Korg adapter is center-positive and the Boss adapter is center-negative. The wrong one can damage the device.",
+      "verified": false
     },
     {
       "id": "LOOP_TROUBLE_001",
@@ -1950,7 +2061,8 @@
         "The Channel 1 level"
       ],
       "answer_index": 0,
-      "explanation": "The loop path runs from the G3X balanced output through the RC-30 to Channel 2, so check each link in that path."
+      "explanation": "The loop path runs from the G3X balanced output through the RC-30 to Channel 2, so check each link in that path.",
+      "verified": false
     }
   ]
 }
