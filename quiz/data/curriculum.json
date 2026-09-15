@@ -3,6 +3,7 @@
   "quiz_number": 1,
   "quiz_label": "Quiz 1",
   "quiz_version": "2026-09-14",
+  "access_code": "phantompower",
   "targets": {
     "total_questions": 20,
     "core_questions": 9,

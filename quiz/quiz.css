@@ -41,6 +41,7 @@ p { margin:.5rem 0; }
 .row { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.9rem; }
 .row.split > * { flex:1; }
 textarea { width:100%; padding:.65rem .75rem; border:1px solid var(--line); border-radius:.5rem; background:var(--surface); color:var(--ink); font:.85rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; resize:vertical; }
+input[type="text"], input[type="search"] { width:100%; min-height:2.75rem; padding:.55rem .75rem; border:1px solid var(--line); border-radius:.5rem; background:var(--surface); color:var(--ink); font-size:1rem; }
 .status { min-height:1.5em; font-size:.92rem; font-weight:600; }
 .status.ok { color:var(--core); }
 .status.error { color:var(--miss); }

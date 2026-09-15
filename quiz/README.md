@@ -4,14 +4,15 @@ A static, front-end-only weekly quiz at `/mus248/quiz/`. No backend, accounts, d
 
 ## Student flow
 
-Study cards have their own page, `/mus248/study/` (source in `../study/`), and the quiz links to it. Cards live in `data/study-deck.json`, each with a `category` (topic chips on the page) and a `skill`; a card shows whenever its skill isn’t `inactive` in the curriculum, tagged Core or Practice to match. Students flip, go Previous/Next (buttons, arrow keys, or swipe), shuffle, or read them as a list. The quiz itself:
+Study cards have their own page, `/mus248/study/` (source in `../study/`), and the quiz links to it. Cards live in `data/study-deck.json`, each with a `category` (topic chips on the page) and a `skill`; a card shows whenever its skill isn’t `inactive` in the curriculum, tagged Core or Practice to match. Students flip, go Previous/Next (buttons, arrow keys, or swipe), shuffle, or read them as a list. Study cards are not access-gated. The quiz itself:
 
-1. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
-2. Say how many times they’ve done each activity: 0, 1, 2, or 3+.
-3. Answer ~20 questions. Each shows a badge first and an explanation after:
+1. **If `curriculum.json` sets an `access_code`,** the quiz asks for it before anything else. A student who has the right code for this quiz number stays unlocked on that device, so they only enter it once.
+2. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
+3. Say how many times they’ve done each activity: 0, 1, 2, or 3+.
+4. Answer ~20 questions. Each shows a badge first and an explanation after:
    - 🟢 **Core — graded**: 1 point if correct.
    - 🟡 **Practice — full credit this week**: 1 point for answering. Correct answers still show green.
-4. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
+5. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
 
 Until everything is answered, the text under **Continue** names exactly what’s still missing.
 
@@ -22,8 +23,9 @@ Progress is saved in the browser, so a refresh or accidental close offers **Resu
 All of it lives in `data/curriculum.json`:
 
 1. Bump `quiz_number`, `quiz_label`, and `quiz_version`.
-2. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
-3. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
+2. Set `access_code` to whatever you’re announcing in class that week (any case, spaces ignored — `"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Leave it out, or set it to `""`, to run the quiz with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
+3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
+4. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
 
 Then run the tests and preview with `?debug=1` (see below).
 

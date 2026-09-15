@@ -6,6 +6,7 @@ const APP_VERSION = '0.2.0';
 const ATTEMPT_KEY = 'mus248-quiz:attempt';
 const LAST_CODE_KEY = 'mus248-quiz:last-code';
 const ATTEMPTS_KEY = 'mus248-quiz:attempts';
+const UNLOCK_KEY = 'mus248-quiz:unlocked';
 const params = new URLSearchParams(location.search);
 const DEBUG = params.has('debug');
 const ACTIVITY_CHOICES = [[0, '0'], [1, '1'], [2, '2'], [3, '3+']];
@@ -54,6 +55,59 @@ async function loadJson(path) {
   return response.json();
 }
 
+// Not real security — a normalized string compared in the browser. It only
+// keeps the quiz from being stumbled into; don't rely on it for anything more.
+const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
+
+function isUnlocked(curriculum) {
+  if (!curriculum.access_code) return true;
+  const wanted = normalizeCode(curriculum.access_code);
+  const fromUrl = normalizeCode(params.get('code'));
+  if (fromUrl && fromUrl === wanted) {
+    storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: wanted });
+    return true;
+  }
+  const unlocked = storage.read(UNLOCK_KEY);
+  return unlocked?.quiz === curriculum.quiz_number && normalizeCode(unlocked.code) === wanted;
+}
+
+function renderGate() {
+  show(`
+    <section class="step">
+      <h2 tabindex="-1">Enter this week’s access code</h2>
+      <p class="quiet">Ask your instructor for the ${escapeHtml(data.curriculum.quiz_label)} access code.</p>
+      <label class="field" for="access-code">Access code</label>
+      <input id="access-code" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+      <div class="row"><button class="btn primary wide" id="unlock">Continue →</button></div>
+      <p class="status" id="access-status" role="status"></p>
+    </section>`, { focus: '#access-code' });
+  const input = app.querySelector('#access-code');
+  const tryUnlock = () => {
+    if (normalizeCode(input.value) === normalizeCode(data.curriculum.access_code)) {
+      storage.write(UNLOCK_KEY, { quiz: data.curriculum.quiz_number, code: normalizeCode(input.value) });
+      afterUnlock();
+    } else {
+      const status = app.querySelector('#access-status');
+      status.className = 'status error';
+      status.textContent = 'That code doesn’t match. Check with your instructor and try again.';
+      input.select();
+    }
+  };
+  on('#unlock', 'click', tryUnlock);
+  input.addEventListener('keydown', (event) => { if (event.key === 'Enter') tryUnlock(); });
+}
+
+function afterUnlock() {
+  const saved = storage.read(ATTEMPT_KEY);
+  const usable = saved?.quiz === data.curriculum.quiz_number
+    && (saved.phase === 'done' || saved.selection.every(({ id }) => data.byId[id]));
+  if (usable) {
+    attempt = saved;
+    return attempt.phase === 'done' ? renderResults() : renderResume();
+  }
+  startFresh();
+}
+
 async function init() {
   const [curriculum, bank, deck] = await Promise.all(
     ['data/curriculum.json', 'data/questions.json', 'data/study-deck.json'].map(loadJson),
@@ -62,14 +116,8 @@ async function init() {
   document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
   document.title = `${curriculum.quiz_label} · MUS 248`;
 
-  const saved = storage.read(ATTEMPT_KEY);
-  const usable = saved?.quiz === curriculum.quiz_number
-    && (saved.phase === 'done' || saved.selection.every(({ id }) => data.byId[id]));
-  if (usable) {
-    attempt = saved;
-    return attempt.phase === 'done' ? renderResults() : renderResume();
-  }
-  startFresh();
+  if (!isUnlocked(curriculum)) return renderGate();
+  afterUnlock();
 }
 
 function startFresh() {
