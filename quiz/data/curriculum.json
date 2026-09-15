@@ -19,7 +19,7 @@
   "coming_to_core": ["mains_monitors", "active_passive", "safe_power_order"],
   "activities": [
     { "id": "daw", "label": "DAW Training Circuit" },
-    { "id": "stereo", "label": "Stereo Recording" },
+    { "id": "stereo", "label": "Basic Stereo Recording" },
     { "id": "cameras", "label": "Portable Cameras" },
     { "id": "mixer", "label": "What can you do with a mixer?" },
     { "id": "x32compact", "label": "X32 Compact" },
