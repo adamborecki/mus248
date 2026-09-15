@@ -9,10 +9,7 @@
     "core_questions": 9,
     "activity_aware_questions": 5
   },
-  "scoring": {
-    "core_correct": 1,
-    "practice_completed": 1
-  },
+  "target_total_points": 10,
   "max_common_level": 1,
   "include_drafts": false,
   "review_next_max": 4,

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, reviewSkills, scoreAttempt, selectQuiz } from '../js/engine.js';
+import { buildPayload, choiceOrder, resolveScoring, reviewSkills, scoreAttempt, selectQuiz } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -194,10 +194,24 @@ test('a tiny bank does not crash', () => {
 
 test('Practice gets full credit even when wrong; Core only when right', () => {
   const selection = selectQuiz(base);
-  const score = scoreAttempt(selection, answerAll(selection, () => false), curriculum.scoring);
+  const evenScoring = { core_correct: 1, practice_completed: 1 };
+  const score = scoreAttempt(selection, answerAll(selection, () => false), evenScoring);
   assert.deepEqual(score, { coreCorrect: 0, coreTotal: 9, practiceDone: 11, practiceTotal: 11, points: 11, max: 20 });
-  const perfect = scoreAttempt(selection, answerAll(selection), curriculum.scoring);
+  const perfect = scoreAttempt(selection, answerAll(selection), evenScoring);
   assert.equal(perfect.points, 20);
+});
+
+test('the quiz is worth target_total_points in Canvas, split evenly per question', () => {
+  assert.equal(curriculum.target_total_points, 10, 'update this test if the point target changes');
+  const scoring = resolveScoring(curriculum);
+  assert.equal(scoring.core_correct, 0.5);
+  assert.equal(scoring.practice_completed, 0.5);
+  const selection = selectQuiz(base);
+  assert.equal(scoreAttempt(selection, answerAll(selection), scoring).max, curriculum.target_total_points);
+  assert.equal(scoreAttempt(selection, answerAll(selection, () => false), scoring).points, selection.filter((s) => s.role !== 'core').length * 0.5);
+
+  // An explicit `scoring` block, if a future week ever needs one, overrides the automatic split.
+  assert.deepEqual(resolveScoring({ ...curriculum, scoring: { core_correct: 2, practice_completed: 1 } }), { core_correct: 2, practice_completed: 1 });
 });
 
 test('review list puts missed Core first and respects the limit', () => {

@@ -142,6 +142,21 @@ export function choiceOrder(question, seed) {
   return question.shuffle === false ? indexes : shuffle(indexes, createRng(`${seed}:${question.id}`));
 }
 
+// By default every question is worth the same fraction of curriculum.target_total_points
+// (e.g. 10 points over 20 questions = 0.5 each), so the Canvas assignment can be worth a
+// fixed amount regardless of how many questions a given week has. Set an explicit
+// `scoring: {core_correct, practice_completed}` in curriculum.json instead if Core and
+// Practice should ever be weighted differently.
+export function resolveScoring(curriculum) {
+  if (curriculum.scoring) return curriculum.scoring;
+  const total = curriculum.targets?.total_questions;
+  if (curriculum.target_total_points != null && total) {
+    const perQuestion = curriculum.target_total_points / total;
+    return { core_correct: perQuestion, practice_completed: perQuestion };
+  }
+  return {};
+}
+
 export function scoreAttempt(selection, answers, scoring = {}) {
   const corePoints = scoring.core_correct ?? 1;
   const practicePoints = scoring.practice_completed ?? 1;
@@ -150,13 +165,15 @@ export function scoreAttempt(selection, answers, scoring = {}) {
   const practiceTotal = selection.length - coreTotal;
   const coreCorrect = given.filter((answer) => answer.role === 'core' && answer.correct).length;
   const practiceDone = given.filter((answer) => answer.role !== 'core').length;
+  // Round away float noise (0.1 + 0.2-style residue) while keeping halves/quarters exact.
+  const round = (n) => Math.round(n * 100) / 100;
   return {
     coreCorrect,
     coreTotal,
     practiceDone,
     practiceTotal,
-    points: coreCorrect * corePoints + practiceDone * practicePoints,
-    max: coreTotal * corePoints + practiceTotal * practicePoints,
+    points: round(coreCorrect * corePoints + practiceDone * practicePoints),
+    max: round(coreTotal * corePoints + practiceTotal * practicePoints),
   };
 }
 
@@ -186,7 +203,7 @@ export function buildPayload({ curriculum, bank, attempt, appVersion, completedA
   });
   const seen = [...new Set([...Object.keys(prior?.a || {}), ...(prior?.seen || [])])].slice(0, SEEN_LIMIT);
   const activities = Object.fromEntries(Object.entries(attempt.activities || {}).filter(([, count]) => count > 0));
-  const score = scoreAttempt(attempt.selection, answers, curriculum.scoring);
+  const score = scoreAttempt(attempt.selection, answers, resolveScoring(curriculum));
   return {
     s: STATE_SCHEMA,
     app: appVersion,

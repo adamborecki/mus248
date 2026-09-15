@@ -9,9 +9,9 @@ Study cards have their own page, `/mus248/study/` (source in `../study/`), and t
 1. **If `curriculum.json` sets an `access_code`,** the quiz asks for it before anything else. A student who has the right code for this quiz number stays unlocked on that device, so they only enter it once.
 2. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
 3. Say how many times they’ve done each activity: 0, 1, 2, or 3+.
-4. Answer ~20 questions. Each shows a badge first and an explanation after:
-   - 🟢 **Core — graded**: 1 point if correct.
-   - 🟡 **Practice — full credit this week**: 1 point for answering. Correct answers still show green.
+4. Answer ~20 questions, each worth the same fraction of the quiz’s total points (`target_total_points ÷ total_questions` — 10 ÷ 20 = 0.5 apiece right now). Each shows a badge first and an explanation after:
+   - 🟢 **Core — graded**: full credit for that question if correct.
+   - 🟡 **Practice — full credit this week**: full credit for answering at all. Correct answers still show green.
 5. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
 
 Until everything is answered, the text under **Continue** names exactly what’s still missing.
@@ -26,6 +26,8 @@ All of it lives in `data/curriculum.json`:
 2. Set `access_code` to whatever you’re announcing in class that week (any case, spaces ignored — `"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Leave it out, or set it to `""`, to run the quiz with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
 3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
 4. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
+
+`target_total_points` sets what the whole quiz is worth in Canvas (10, to match a 10-point Canvas assignment), split evenly across however many questions that week has — change `targets.total_questions` and each question’s point value adjusts automatically, so the quiz always adds up to `target_total_points`. Pick a question count that divides evenly into it (20 → 0.5 each, 10 → 1 each) so scores don’t come out as long decimals. If Core and Practice should ever be weighted differently instead of split evenly, add an explicit `"scoring": {"core_correct": ..., "practice_completed": ...}` — its presence overrides the automatic split.
 
 Then run the tests and preview with `?debug=1` (see below).
 
