@@ -1,9 +1,16 @@
 // Study cards. Every card whose skill is active in quiz/data/curriculum.json appears,
-// grouped by category and tagged Core or Practice.
+// grouped by category and tagged Core or Practice. Students see both by default and can
+// narrow to just Core or just Practice; the topic chips work within that choice.
 import { escapeHtml } from '../quiz/js/html.js';
 
 const root = document.getElementById('study');
-const state = { cards: [], categories: [], category: 'All', order: [], index: 0, revealed: false, view: 'cards', shuffled: false };
+const state = { cards: [], categories: [], category: 'All', level: 'all', order: [], index: 0, revealed: false, view: 'cards', shuffled: false };
+const LEVELS = [['all', 'All'], ['core', 'Core'], ['practice', 'Practice']];
+const LEVEL_NOTES = {
+  all: 'Core cards are graded on the quiz. Practice cards get full credit and may become Core.',
+  core: 'Core: graded on the quiz.',
+  practice: 'Practice: full credit on the quiz this week, and may become Core.',
+};
 let statusOf = () => 'inactive';
 
 async function loadJson(path) {
@@ -21,18 +28,31 @@ function shuffle(items) {
   return copy;
 }
 
+const inLevel = (card) => state.level === 'all' || statusOf(card.skill) === state.level;
 const inCategory = (card) => state.category === 'All' || card.category === state.category;
+const visible = (card) => inLevel(card) && inCategory(card);
 const badge = (card) => (statusOf(card.skill) === 'core'
   ? '<span class="badge core">Core</span>'
   : '<span class="badge practice">Practice</span>');
 
-function setCategory(category) {
-  state.category = category;
-  const cards = state.cards.filter(inCategory);
+function rebuild() {
+  const cards = state.cards.filter(visible);
   state.order = state.shuffled ? shuffle(cards) : cards;
   state.index = 0;
   state.revealed = false;
   render();
+}
+
+function setCategory(category) {
+  state.category = category;
+  rebuild();
+}
+
+// Switching level keeps the chosen topic when it still has cards, otherwise falls back to All topics.
+function setLevel(level) {
+  state.level = level;
+  if (state.category !== 'All' && !state.cards.some((card) => inLevel(card) && card.category === state.category)) state.category = 'All';
+  rebuild();
 }
 
 function move(step) {
@@ -67,28 +87,38 @@ function cardView() {
 function listView() {
   return `
     <section class="stage">
-      <dl class="card-list">${state.cards.filter(inCategory).map((card) => `
+      <dl class="card-list">${state.cards.filter(visible).map((card) => `
         <div class="card-row"><dt>${escapeHtml(card.front)} ${badge(card)}</dt><dd>${escapeHtml(card.back)}</dd></div>`).join('')}
       </dl>
     </section>`;
 }
 
 function render(focus) {
-  const count = (category) => (category === 'All' ? state.cards.length : state.cards.filter((card) => card.category === category).length);
-  const chips = ['All', ...state.categories].map((category) => `
+  const levelCount = (level) => state.cards.filter((card) => level === 'all' || statusOf(card.skill) === level).length;
+  const levelButtons = LEVELS.map(([level, text]) => {
+    const n = levelCount(level);
+    return `<button type="button" class="level-option" data-level="${level}" aria-pressed="${level === state.level}"${n === 0 ? ' disabled' : ''}>${text} <span>${n}</span></button>`;
+  }).join('');
+  const topicCards = state.cards.filter(inLevel);
+  const count = (category) => (category === 'All' ? topicCards.length : topicCards.filter((card) => card.category === category).length);
+  const chips = ['All', ...state.categories].filter((category) => category === 'All' || count(category) > 0).map((category) => `
     <button class="chip${category === state.category ? ' is-on' : ''}" data-category="${escapeHtml(category)}" aria-pressed="${category === state.category}">${escapeHtml(category)} <span>${count(category)}</span></button>`).join('');
   root.innerHTML = `
+    <div class="level-toggle" role="group" aria-label="Which cards to study">${levelButtons}</div>
+    <p class="quiet small level-note">${LEVEL_NOTES[state.level]}</p>
     <nav class="chips" aria-label="Card topics">${chips}</nav>
     <div class="study-tools">
       <button class="text-button" id="toggle-view">${state.view === 'list' ? 'Show as flashcards' : 'Show as a list'}</button>
       ${state.view === 'cards' ? `<button class="text-button" id="shuffle" aria-pressed="${state.shuffled}">${state.shuffled ? 'Shuffled ✓' : 'Shuffle'}</button>` : ''}
       <a class="text-link" href="../quiz/">Take the quiz →</a>
     </div>
-    ${state.view === 'list' ? listView() : cardView()}`;
+    ${state.order.length === 0 ? '<p class="quiet">No cards match.</p>' : state.view === 'list' ? listView() : cardView()}`;
   if (focus) root.querySelector(focus)?.focus({ preventScroll: true });
 }
 
 root.addEventListener('click', (event) => {
+  const levelButton = event.target.closest('[data-level]');
+  if (levelButton) return setLevel(levelButton.dataset.level);
   const chip = event.target.closest('[data-category]');
   if (chip) return setCategory(chip.dataset.category);
   const id = event.target.closest('button')?.id;
@@ -102,7 +132,7 @@ root.addEventListener('click', (event) => {
     render();
   } else if (id === 'shuffle') {
     state.shuffled = !state.shuffled;
-    setCategory(state.category);
+    rebuild();
   }
 });
 
