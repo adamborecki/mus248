@@ -19,6 +19,8 @@ async function loadDirectory() {
       const action = `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`;
       const source = activity.contentFile ? 'In-app instructions' : 'External instructions ↗';
       const family = activity.family ? `<p class="activity-family">${activity.family}</p>` : '';
+      const skillChips = activity.skills.map((skill) => `<span class="chip"><span aria-hidden="true">🛠️</span>${skill}</span>`).join('');
+      const meta = `<div class="activity-meta">${skillChips}<span class="chip"><span aria-hidden="true">📍</span>${activity.access}</span><span class="chip"><span aria-hidden="true">👥</span>Groups of ${activity.group}</span></div>`;
       return `<details class="activity-card">
         <summary>
           <span class="activity-emoji" aria-hidden="true">${activity.emoji}</span>
@@ -26,7 +28,7 @@ async function loadDirectory() {
           <span class="arrow" aria-hidden="true">⌄</span>
         </summary>
         <div class="card-details">
-          <p class="activity-meta"><span>${activity.skills.join(' · ')}</span><span>${activity.access}</span><span>Groups of ${activity.group}</span></p>
+          ${meta}
           ${family}
           <div class="card-actions">${action}</div>
         </div>
