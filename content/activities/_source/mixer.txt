@@ -1,0 +1,146 @@
+﻿🏃🏽‍♀️ Activity: What can you do with a mixer? MUS 248
+by Adam Borecki
+
+
+
+
+→ Tutorial Videos
+(Key for Difficulty)
+→ Essential skills / getting started
+Inputs, Mains, & Feedback
+● 🟢 Single mic PA
+● 🟦 Controlled Feedback
+● ⬥⬥ Ring out the room
+● 🟢 Stereo playback
+● 🟢 Multitrack PA (real mics, imaginary music)
+● 🟢 Use a DI (Direct Input) box
+● 🟦 Multitrack PA (imaginary mics, real music)
+Signal Flow
+● 🟦 Stage Monitors with main mix
+● ⬥ Stage Monitors with custom mixes
+● 🟢 Board feed recording
+● ⁉️ Multitrack recording
+Audio Effects
+● 🟢 FX: EQ
+● ⁉️ FX: Compressor
+● ⬥ FX: Reverb
+  
+
+→ Tutorial Videos
+Tutorial videos are available here: OLD
+ 📁What Can You Do With a Mixer
+(Key for Difficulty)
+Based on ski slope difficulty levels
+🟢 = Easy
+🟦 = Intermediate
+⬥ = Hard
+⬥⬥ = Expert
+⁉️= Unknown or variable difficulty depending on hardware
+
+
+→ Essential skills / getting started
+* If you’re getting started, do this order:
+   * 1️⃣ Single mic PA
+   * 2️⃣ Controlled feedback
+   * 3️⃣ Stereo playback
+   * 4️⃣ Stage monitors with main mix
+   * 5️⃣ Multitrack PA (imaginary mics, real music)
+* After you can do those, see how many other things you can accomplish!
+* Mix & Match
+   * Note that these tasks are not mutually exclusive.
+      * E.g. to get “controlled feedback”, you need a mic and speaker set up, even though that isn’t explicitly stated in the instructions.
+Inputs, Mains, & Feedback
+* 🟢 Single mic PA
+   *  → 1️⃣
+   * Overview
+      * Connect 1 mic and at least 1 speaker to a mixing board
+   * Essential Pro Tips:
+      * In live sound setup:
+         * Always turn speakers ON last
+      * In live sound teardown:
+         * Always turn speakers OFF first
+   * Prove it works
+      * Take a video that demonstrates talking 
+      * Upload that video to OneDrive and turn it in on Canvas when you submit your activity report
+   * Details
+      * 48V required for condensers
+      * Know your cables types
+* 🟦 Controlled Feedback
+   * →  2️⃣
+   * Overview:
+      * Try to get feedback on the mic
+   * Prove it works:
+      * Record a video demonstrating controlled feedback
+      * Find out which frequency is feeding back
+   * Details:
+      * You’ll pretty much always want your mains in front of the band (not behind) to reduce the likelihood of feedback.
+* ⬥⬥ Ring out the room
+   * Overview:
+      * Using a mixer that has a digital EQ on the main fader (e.g. the Yamaha 01V or Behringer x32) to apply one or more notch filters
+   * Prove it works:
+      * Record a video that has controlled feedback that’s removed when the EQ is applied.
+* 🟢 Stereo playback
+   * → 3️⃣
+   * Overview:
+      * Connect a stereo playback device (e.g. laptop, 3.5mm phone connector)
+   * Prove it works:
+      * Record a video of playing a “Stereo test video” on youtube (or anything similar) coming across on the PA
+      * It should clearly show the left channel vs. the right channel
+* 🟢 Multitrack PA (real mics, imaginary music)
+   * Overview:
+      * Connect multiple real microphones to a mixer and test them out
+      * Make sure at least 1 mic requires 48V phantom power
+   * Prove it works:
+      * Record a video demonstrating multiple mics connected to PA
+* 🟢 Use a DI (Direct Input) box
+   * Overview
+      * Use a DI box to capture the signal from a guitar, bass, or guest 3.5mm aux cable
+   * Prove it works
+      * Record a video that shows the signal flow
+   * Details
+      * Active DIs require 48V, passive DIs do not
+* 🟦 Multitrack PA (imaginary mics, real music)
+   *  → 5️⃣
+   * Overview:
+      * Use a computer with a DAW and audio interface that has multitrack outputs
+      * Get multitrack stems (from somewhere like Cambridge Mixing stems)
+      * Assign 1 output for each track to a discrete output on the audio interface
+      * Mix as if there was a live band
+   * Prove it works
+      * Record a video that demonstrates the “imaginary mics” working with your PA
+Signal Flow
+* 🟦 Stage Monitors with main mix (less common)
+   * → 4️⃣
+   * Overview
+      * Connect a stage monitor and send the main mix to it
+* ⬥ Stage Monitors with custom mixes (more common!)
+   * Overview
+      * Use your mixing board to send custom mixes (different than main mix) to the monitors
+* 🟢 Board feed recording
+   * Overview
+      * Record audio from the board onto a separate 2 track recorder
+* ⁉️ Multitrack recording
+   * Overview
+      * Get a recording that has every channel.
+   * Details
+      * Depending on the board, this could be easy or difficult
+   * Prove it works
+      * Record a video demonstrating it and record the multitrack stems
+Audio Effects
+* 🟢 FX: EQ
+   * Overview
+      * Try using a low cut on everything except bass and line level (guest 3.5mm) inputs
+      * Try using EQ on each channel
+   * Prove it works
+      * Record a video demonstrating the color change by using an EQ
+* ⁉️ FX: Compressor
+   * Overview
+      * Try using a compressor on the channel
+   * Prove it works
+      * Do a demo of something that’s very dynamic (ie.., you whispering “quiet” then screaming “LOUD”) to show that the compressor works.
+      * Record that dynamic thing (whisper “quiet” then scream “loud) first without the compressor, then with it
+* ⬥ FX: Reverb
+   * Overview
+      * Set up an aux bus with a reverb send
+   * Prove it works
+      * Record a video demonstrating something without reverb then with reverb

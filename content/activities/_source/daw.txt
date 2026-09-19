@@ -1,0 +1,368 @@
+﻿Instructions
+IN > FX > OUT
+DAW Training Circuit
+
+
+MUS 244 Principles of Music Technology - Prof Borecki
+Overview
+Dive right into using DAWs. Get lots of repetitions of creating a basic workflow (new DAW project, recording audio, adding an effect, and exporting).
+Roles
+You’ll be in 2-3 person groups
+
+
+1. Driver - sit at the mouse and keyboard
+2. Scribe - write all steps on a notecard (one notecard per training circuit)
+3. (optional) Agent of Chaos - starts/stops timer, flip coin, roll die, picks cards from deck, regularly asks “are you sure about that?”
+
+
+If you’re in a 2-person group, then the “Scribe” will also be the “Agent of Chaos”.
+The basic loop
+
+
+Each round has 3 stages:
+Stage A: IN
+Get sound into the DAW. First, the “Agent of Chaos” flips a coin.
+
+
+If “heads”, do “Goldilocks of Gain”:
+1. Make a new DAW project
+   * [Agent of Chaos starts the stopwatch]
+   * [Scribe writers driver’s name at top of notecard]
+2. Save it to the “Emergency Save Area”
+   * Make sure there’s a folder with your name on it
+   * Inside of your folder, make another folder called “DAW Training Circuit”
+   * Inside of that folder, make a new folder for this one
+   * Inside of that, save your project
+   * [Scribe writes where it was saved on notecard]
+3. Set DAW I/O to the hardware audio interface that has mic & headphones connected
+   * [Scribe writes I/O on notecard]
+4. If the mic is a “condenser” mic, ensure 48V is enabled on audio interface
+   * [Scribe writes 48V status]
+5. If the mic has a “Pad”, ensure it is disabled (0 not -20)
+   * [Scribe writes pad status]
+6. Locate the “preamp gain” knob. You’ll need to change it for the following recordings:
+7. Record your voice (or an instrument) 3x times
+   * First, “too loud”: clearly clipping
+   * Second, “too quiet”: peak about -20 dB FS
+   * Third, “just right”: peak around -12 to -6 dB FS
+8. You’ll likely need to delete and redo recordings until you hit the correct
+9. For your 1st time doing this, show Borecki to make sure you did it right
+10. Before moving on:
+   * [Scribe writes 3x peak amplitudes]
+
+
+If “tails”, do “Go with the Flow”
+1. Make a new DAW project
+2. Save it to the “Emergency Save Area”
+   * Make sure there’s a folder with your name on it
+   * Inside of your folder, make another folder called “DAW Training Circuit”
+   * Inside of that folder, save this project
+   * [Scribe writes where it was saved on notecard]
+3. Set your Operating Sytem audio output to “Blackhole 2ch”
+   * [Scribe writes OS output]
+4. Set your DAW I/O so the input is “Blackhole 2ch” and the output is the audio interface
+   * [Scribe writes DAW input and output]
+5. Record a “Stereo Test” from youtube
+   * Fix any problems as needed
+   * In Ableton, the input should be 1/2
+   * In Logic, the track must be stereo LR, click the single circle to turn it into a double circle
+   * [Scribe writes down troubleshooting steps]
+6. Record a 5 second sample of music from YouTube
+7. For your 1st time doing this, show Borecki to make sure you did it right.
+
+
+
+
+STAGE B: EFFECT
+Draw a card from a deck.
+
+Use the Lookup table in the separate “Document tab” of this Google doc to determine which effect to apply. 
+
+
+Scribe writes:
+* Plugin name 
+* All Parameters changed
+STAGE C: OUT
+Roll a die to choose an output format.
+1. MP3
+   * If in Logic, do the lowest possible quality
+2. MP3
+   * If in Logic, do the highest possible quality
+3. WAV 24 bit
+   * If in Logic, set it to 48 kHz
+4. WAV 16 bit
+   * If in Logic, set it to 44.1 kHz
+5. AIFF 24 bit
+   * If in Logic, set it to 48 kHz
+6. AIFF 16 bit
+   * If in Logic, set it to 44.1 kHz
+
+
+Agend of Chaos listens back to the rendered file to make sure
+* Tip: You may need to set System output back to audio interface (not Blackhole)
+
+
+Scribe writes the export settings.
+
+
+Agent of Chaos stops the timer.
+
+
+Scribe writes the total time.
+Important saving rule
+
+
+You must save your work correctly:
+        •        Save everything in the Emergency Save Area
+        •        Put it inside a folder with your own name, and then make a folder within that called “DAW Training Circuit”
+
+
+        •        Make a new folder for each separate project / round
+
+
+“Bribery”
+
+
+If you come to class, participate fully, and complete notecards both today and Thursday, that in-class repetition can count in place of the equivalent homework practice.
+
+
+(i.e., you can “bribe” your way out of doing homework by getting experience from in-class exercises.)
+Goal
+
+
+The goal is not to make something perfect.
+The goal is to get lots of repetitions with the basic workflow:
+input → effect → export → save properly → repeat
+
+
+FX Lookup
+DAW Reps Filter Card Lookup Table
+Card
+	Task
+	Ace of Hearts
+	High-pass filter at 250 Hz, low resonance
+	2 of Hearts
+	High-pass filter at 500 Hz, medium resonance
+	3 of Hearts
+	High-pass filter at 1 kHz, high resonance
+	4 of Hearts
+	High-pass filter at 2 kHz, medium resonance
+	5 of Hearts
+	High-pass filter at 4 kHz, high resonance
+	6 of Hearts
+	High-pass filter at 250 Hz, high resonance
+	7 of Hearts
+	High-pass filter at 500 Hz, low resonance
+	8 of Hearts
+	High-pass filter at 1 kHz, medium resonance
+	9 of Hearts
+	High-pass filter at 2 kHz, high resonance
+	10 of Hearts
+	High-pass filter at 4 kHz, low resonance
+	Jack of Hearts
+	High-pass filter at 500 Hz, sweep the cutoff upward while audio plays
+	Queen of Hearts
+	High-pass filter at 1 kHz, adjust resonance until the effect is obvious but not broken
+	King of Hearts
+	High-pass filter at 2 kHz, Agent of Chaos chooses the resonance
+	
+
+Card
+	Task
+	Ace of Diamonds
+	Low-pass filter at 4 kHz, low resonance
+	2 of Diamonds
+	Low-pass filter at 2 kHz, medium resonance
+	3 of Diamonds
+	Low-pass filter at 1 kHz, high resonance
+	4 of Diamonds
+	Low-pass filter at 500 Hz, medium resonance
+	5 of Diamonds
+	Low-pass filter at 250 Hz, high resonance
+	6 of Diamonds
+	Low-pass filter at 4 kHz, high resonance
+	7 of Diamonds
+	Low-pass filter at 2 kHz, low resonance
+	8 of Diamonds
+	Low-pass filter at 1 kHz, medium resonance
+	9 of Diamonds
+	Low-pass filter at 500 Hz, high resonance
+	10 of Diamonds
+	Low-pass filter at 250 Hz, low resonance
+	Jack of Diamonds
+	Low-pass filter at 2 kHz, sweep the cutoff downward while audio plays
+	Queen of Diamonds
+	Low-pass filter at 1 kHz, adjust resonance until the effect is obvious but not broken
+	King of Diamonds
+	Low-pass filter at 500 Hz, Agent of Chaos chooses the resonance
+	
+
+Card
+	Task
+	Ace of Clubs
+	Band-pass filter centered at 250 Hz, wide width
+	2 of Clubs
+	Band-pass filter centered at 500 Hz, medium width
+	3 of Clubs
+	Band-pass filter centered at 1 kHz, narrow width
+	4 of Clubs
+	Band-pass filter centered at 2 kHz, medium width
+	5 of Clubs
+	Band-pass filter centered at 4 kHz, narrow width
+	6 of Clubs
+	Band-pass filter centered at 250 Hz, narrow width
+	7 of Clubs
+	Band-pass filter centered at 500 Hz, wide width
+	8 of Clubs
+	Band-pass filter centered at 1 kHz, medium width
+	9 of Clubs
+	Band-pass filter centered at 2 kHz, narrow width
+	10 of Clubs
+	Band-pass filter centered at 4 kHz, wide width
+	Jack of Clubs
+	Band-pass filter centered at 500 Hz, start wide, then make it narrower while audio plays
+	Queen of Clubs
+	Band-pass filter centered at 2 kHz, start narrow, then make it wider while audio plays
+	King of Clubs
+	Band-pass filter centered at 1 kHz, Agent of Chaos chooses the width
+	
+
+Card
+	Task
+	Ace of Spades
+	Parametric EQ: boost 250 Hz with medium Q
+	2 of Spades
+	Parametric EQ: cut 250 Hz with medium Q
+	3 of Spades
+	Parametric EQ: boost 500 Hz with narrow Q
+	4 of Spades
+	Parametric EQ: cut 500 Hz with wide Q
+	5 of Spades
+	Parametric EQ: boost 1 kHz with medium Q
+	6 of Spades
+	Parametric EQ: cut 1 kHz with narrow Q
+	7 of Spades
+	Parametric EQ: boost 2 kHz with wide Q
+	8 of Spades
+	Parametric EQ: cut 2 kHz with medium Q
+	9 of Spades
+	Parametric EQ: boost 4 kHz with narrow Q
+	10 of Spades
+	Parametric EQ: cut 4 kHz with wide Q
+	Jack of Spades
+	Parametric EQ: boost 500 Hz, then move the frequency to 1 kHz while audio plays
+	Queen of Spades
+	Parametric EQ: cut 2 kHz, then adjust the Q until the change becomes very obvious
+	King of Spades
+	Parametric EQ: choose 250 Hz, 500 Hz, 1 kHz, 2 kHz, or 4 kHz; then boost or cut it; Agent of Chaos chooses the Q
+	________________
+
+
+If you want it, here’s a cleaner compact version too, with no repeated header rows:
+Card
+	Task
+	Ace of Hearts
+	High-pass filter at 250 Hz, low resonance
+	2 of Hearts
+	High-pass filter at 500 Hz, medium resonance
+	3 of Hearts
+	High-pass filter at 1 kHz, high resonance
+	4 of Hearts
+	High-pass filter at 2 kHz, medium resonance
+	5 of Hearts
+	High-pass filter at 4 kHz, high resonance
+	6 of Hearts
+	High-pass filter at 250 Hz, high resonance
+	7 of Hearts
+	High-pass filter at 500 Hz, low resonance
+	8 of Hearts
+	High-pass filter at 1 kHz, medium resonance
+	9 of Hearts
+	High-pass filter at 2 kHz, high resonance
+	10 of Hearts
+	High-pass filter at 4 kHz, low resonance
+	Jack of Hearts
+	High-pass filter at 500 Hz; sweep the cutoff upward while audio plays
+	Queen of Hearts
+	High-pass filter at 1 kHz; adjust resonance until the effect is obvious but not broken
+	King of Hearts
+	High-pass filter at 2 kHz; Agent of Chaos chooses the resonance
+	Ace of Diamonds
+	Low-pass filter at 4 kHz, low resonance
+	2 of Diamonds
+	Low-pass filter at 2 kHz, medium resonance
+	3 of Diamonds
+	Low-pass filter at 1 kHz, high resonance
+	4 of Diamonds
+	Low-pass filter at 500 Hz, medium resonance
+	5 of Diamonds
+	Low-pass filter at 250 Hz, high resonance
+	6 of Diamonds
+	Low-pass filter at 4 kHz, high resonance
+	7 of Diamonds
+	Low-pass filter at 2 kHz, low resonance
+	8 of Diamonds
+	Low-pass filter at 1 kHz, medium resonance
+	9 of Diamonds
+	Low-pass filter at 500 Hz, high resonance
+	10 of Diamonds
+	Low-pass filter at 250 Hz, low resonance
+	Jack of Diamonds
+	Low-pass filter at 2 kHz; sweep the cutoff downward while audio plays
+	Queen of Diamonds
+	Low-pass filter at 1 kHz; adjust resonance until the effect is obvious but not broken
+	King of Diamonds
+	Low-pass filter at 500 Hz; Agent of Chaos chooses the resonance
+	Ace of Clubs
+	Band-pass filter centered at 250 Hz, wide width
+	2 of Clubs
+	Band-pass filter centered at 500 Hz, medium width
+	3 of Clubs
+	Band-pass filter centered at 1 kHz, narrow width
+	4 of Clubs
+	Band-pass filter centered at 2 kHz, medium width
+	5 of Clubs
+	Band-pass filter centered at 4 kHz, narrow width
+	6 of Clubs
+	Band-pass filter centered at 250 Hz, narrow width
+	7 of Clubs
+	Band-pass filter centered at 500 Hz, wide width
+	8 of Clubs
+	Band-pass filter centered at 1 kHz, medium width
+	9 of Clubs
+	Band-pass filter centered at 2 kHz, narrow width
+	10 of Clubs
+	Band-pass filter centered at 4 kHz, wide width
+	Jack of Clubs
+	Band-pass filter centered at 500 Hz; start wide, then make it narrower while audio plays
+	Queen of Clubs
+	Band-pass filter centered at 2 kHz; start narrow, then make it wider while audio plays
+	King of Clubs
+	Band-pass filter centered at 1 kHz; Agent of Chaos chooses the width
+	Ace of Spades
+	Parametric EQ: boost 250 Hz with medium Q
+	2 of Spades
+	Parametric EQ: cut 250 Hz with medium Q
+	3 of Spades
+	Parametric EQ: boost 500 Hz with narrow Q
+	4 of Spades
+	Parametric EQ: cut 500 Hz with wide Q
+	5 of Spades
+	Parametric EQ: boost 1 kHz with medium Q
+	6 of Spades
+	Parametric EQ: cut 1 kHz with narrow Q
+	7 of Spades
+	Parametric EQ: boost 2 kHz with wide Q
+	8 of Spades
+	Parametric EQ: cut 2 kHz with medium Q
+	9 of Spades
+	Parametric EQ: boost 4 kHz with narrow Q
+	10 of Spades
+	Parametric EQ: cut 4 kHz with wide Q
+	Jack of Spades
+	Parametric EQ: boost 500 Hz, then move the frequency to 1 kHz while audio plays
+	Queen of Spades
+	Parametric EQ: cut 2 kHz, then adjust the Q until the change becomes very obvious
+	King of Spades
+	Parametric EQ: choose 250 Hz, 500 Hz, 1 kHz, 2 kHz, or 4 kHz; then boost or cut it; Agent of Chaos chooses the Q
+	t.

@@ -1,0 +1,717 @@
+﻿OH B01 — X32 Compact PA Setup & Dante Practice System
+Goal
+Starting with the X32 Compact in an unknown configuration, build a complete working PA system with:
+* 3 wireless microphones
+* 2 M-Audio Studiophile AV40 speakers as Main L/R
+* 2 Asceno Acoustics passive speakers as independent monitors
+* Bus 1 controlling Monitor 1
+* Bus 2 controlling Monitor 2
+* Main L/R routed to X32 Outputs 7 and 8
+* 8 separate stems from Logic routed through Dante to X32 Channels 9–16
+At the end, you should be able to:
+* Pair the wireless microphones with the Phenyx Pro PTU-6000 receiver
+* Get all 3 microphones into the X32
+* Send all 3 microphones to Main L/R
+* Build two different monitor mixes using Bus 1 and Bus 2
+* Independently control Main L/R, Bus 1, and Bus 2
+* Use Sends on Fader
+* Route 8 separate Logic stems through Dante
+* Receive those stems on X32 Channels 9–16
+* Explain the basic signal flow through the entire system
+________________
+
+
+PART 1 — BASIC PA SETUP
+Step 1 — Read This Before Factory Resetting
+Normally, DO NOT factory reset an X32.
+A factory reset can erase routing, scenes, presets, and other settings that someone may have spent a long time creating.
+For this OH B01 exercise only, we intentionally want to start from a clean/default console.
+Before continuing:
+* Confirm that you are working on the OH B01 X32 Compact
+* Confirm that this exercise specifically tells you to factory reset it
+* Make sure the M-Audio speakers and QSC power amplifier are OFF
+________________
+
+
+Step 2 — Factory Reset the X32 Compact
+On the X32 Compact:
+1. Press SETUP.
+2. Go to the Global tab.
+3. Find the Reset section toward the right side of the screen.
+4. Scroll to Factory Reset.
+5. Select it and follow the confirmation prompt.
+The console should now be back in its default configuration.
+________________
+
+
+Step 3 — Gather the Equipment
+Mixer and Wireless Equipment
+* 1 × Behringer X32 Compact
+* 1 × Phenyx Pro PTU-6000 wireless receiver
+* 3 × Phenyx wireless handheld microphones
+* 6 × AA batteries
+   * 2 per microphone
+Speakers and Amplifier
+* 2 × M-Audio Studiophile AV40 speakers
+   * Main Left and Main Right
+* 2 × Asceno Acoustics passive speakers
+   * Monitor 1 and Monitor 2
+* 1 × QSC CX702 power amplifier
+Audio Cables
+* 5 × XLR cables
+   * 3 for PTU-6000 → X32
+   * 2 for X32 → QSC amplifier
+* 2 × XLR-F to ¼-inch cables
+   * X32 Output 7 → Main Left
+   * X32 Output 8 → Main Right
+* 3 × speaker cables
+   * 1 between the M-Audio speakers
+   * 1 QSC → Monitor 1
+   * 1 QSC → Monitor 2
+Important: Speaker cables are not the same as ordinary instrument or line-level ¼-inch cables.
+________________
+
+
+Step 4 — Keep Speakers and Amplifier OFF
+Before making audio connections:
+* M-Audio speakers OFF
+* QSC CX702 OFF
+Power-On Order
+1. Mixer and source equipment first
+2. Speakers and power amplifiers last
+Power-Off Order
+1. Speakers and power amplifiers first
+2. Mixer and source equipment last
+This reduces the chance of loud pops reaching the speakers.
+________________
+
+
+PART 2 — WIRELESS MICROPHONES
+Step 5 — Connect the Wireless Receiver
+Use three XLR cables:
+* Receiver Channel 1 → X32 Input 1
+* Receiver Channel 2 → X32 Input 2
+* Receiver Channel 3 → X32 Input 3
+Signal Flow
+Mic 1 → Receiver Ch. 1 → X32 Input 1
+Mic 2 → Receiver Ch. 2 → X32 Input 2
+Mic 3 → Receiver Ch. 3 → X32 Input 3
+________________
+
+
+Step 6 — Install Batteries
+Each microphone requires 2 AA batteries.
+Install:
+* Mic 1 — 2 AA
+* Mic 2 — 2 AA
+* Mic 3 — 2 AA
+Turn on the PTU-6000 receiver.
+Pair and test one microphone at a time.
+________________
+
+
+Step 7 — Pair Mic 1
+Select Receiver Channel 1
+1. Select Channel 1 on the PTU-6000.
+2. Confirm you are editing the correct receiver channel.
+Scan for a Frequency
+1. Use the appropriate SET control to begin the scan.
+2. Allow the receiver to search for an available frequency.
+3. Wait for the scan to finish.
+IR Sync
+1. Turn on Mic 1.
+2. Locate the IR window on the microphone.
+3. Locate the IR window on the receiver.
+4. Activate IR synchronization.
+5. Hold the microphone’s IR window close to and directly facing the receiver’s IR window.
+6. Wait for synchronization to complete.
+Speak into Mic 1 and confirm Receiver Channel 1 shows activity.
+________________
+
+
+Step 8 — Pair Mics 2 and 3
+Repeat the same procedure:
+* Mic 2 → Receiver Channel 2
+* Mic 3 → Receiver Channel 3
+Do one microphone at a time.
+When finished:
+* Mic 1 communicates with Receiver Ch. 1
+* Mic 2 communicates with Receiver Ch. 2
+* Mic 3 communicates with Receiver Ch. 3
+________________
+
+
+Step 9 — Verify the Wireless Receiver First
+Speak into each microphone and watch the PTU-6000.
+Confirm:
+* Mic 1 → activity on Receiver Ch. 1
+* Mic 2 → activity on Receiver Ch. 2
+* Mic 3 → activity on Receiver Ch. 3
+If the receiver doesn’t show activity, troubleshoot:
+* Batteries
+* Frequency
+* Pairing
+* Microphone
+If the receiver does show activity but the X32 doesn’t, troubleshoot:
+* XLR cable
+* X32 input
+* Input routing
+* Channel selection
+* Gain
+Important Troubleshooting Rule
+Follow the signal path and find the exact point where the signal disappears.
+________________
+
+
+PART 3 — SPEAKER CONNECTIONS
+Step 10 — Connect the Main Speakers
+The M-Audio Studiophile AV40 speakers are the Main L/R speakers.
+Connect:
+* X32 Output 7 → Main Left
+* X32 Output 8 → Main Right
+Use the XLR-F to ¼-inch cables.
+Connect the M-Audio speakers to one another using the appropriate speaker cable.
+Keep their volume low and leave them OFF for now.
+________________
+
+
+Step 11 — Connect the Monitors
+The Asceno speakers are passive and require the QSC CX702 amplifier.
+X32 → QSC
+* X32 Output 1 → QSC input for Monitor 1
+* X32 Output 2 → QSC input for Monitor 2
+QSC → Monitors
+* QSC Channel for Monitor 1 → Asceno Monitor 1
+* QSC Channel for Monitor 2 → Asceno Monitor 2
+Signal Flow
+Bus 1 → Output 1 → QSC → Monitor 1
+Bus 2 → Output 2 → QSC → Monitor 2
+________________
+
+
+PART 4 — X32 INPUTS AND MAIN MIX
+Step 12 — Confirm Local Input Routing
+For the wireless microphones:
+* X32 Channel 1 → Local Input 1
+* X32 Channel 2 → Local Input 2
+* X32 Channel 3 → Local Input 3
+The Dante setup later will use Channels 9–16, so Channels 1–3 can remain assigned to the local microphone inputs.
+________________
+
+
+Step 13 — Set Microphone Gain
+Start with Channel 1.
+1. Select Channel 1.
+2. Speak into Mic 1.
+3. Watch the channel meter.
+4. Adjust input gain until you have a healthy signal.
+5. Avoid clipping.
+Repeat for Channels 2 and 3.
+Think through the signal flow:
+Microphone → Wireless Receiver → X32 Input → Channel → Mix → Output → Speaker
+________________
+
+
+Step 14 — Send Microphones to Main L/R
+For Channels 1–3:
+1. Make sure each channel is assigned to Main L/R.
+2. Make sure none are muted.
+3. Bring the channel faders to reasonable levels.
+4. Keep the Main L/R master low while testing.
+The final main path is:
+Channels 1–3 → Main L/R → Outputs 7 & 8 → M-Audio speakers
+________________
+
+
+PART 5 — OUTPUT ROUTING
+Step 15 — Route the X32 Outputs
+Configure the console so:
+* Bus 1 → X32 Output 1
+* Bus 2 → X32 Output 2
+* Main Left → X32 Output 7
+* Main Right → X32 Output 8
+Remember that one input channel can feed several destinations simultaneously.
+For example, Mic 1 can go to:
+* Main L/R
+* Bus 1
+* Bus 2
+Each destination can receive a different amount.
+________________
+
+
+PART 6 — MONITOR MIXES
+Step 16 — Understand Bus 1 and Bus 2
+Think of each bus as its own completely separate mix.
+Main L/R
+* Mic 1 — Medium
+* Mic 2 — Loud
+* Mic 3 — Medium
+Bus 1 / Monitor 1
+* Mic 1 — Loud
+* Mic 2 — Quiet
+* Mic 3 — Off
+Bus 2 / Monitor 2
+* Mic 1 — Quiet
+* Mic 2 — Off
+* Mic 3 — Loud
+All three mixes can exist at the same time.
+________________
+
+
+Step 17 — Build Bus 1 With Sends on Fader
+Bus 1 feeds Monitor 1.
+Select Bus 1
+1. Select the BUS 1–8 fader layer.
+2. Locate Bus 1.
+3. Press SELECT on Bus 1.
+Activate Sends on Fader
+Press:
+SENDS ON FADER
+The button should illuminate.
+Normally:
+Channel 1 fader = Channel 1 level in Main L/R
+With Bus 1 selected and Sends on Fader active:
+Channel 1 fader = Channel 1 → Bus 1
+Channel 2 fader = Channel 2 → Bus 1
+Channel 3 fader = Channel 3 → Bus 1
+The faders have temporarily changed jobs.
+________________
+
+
+Step 18 — Create the Bus 1 Mix
+While Bus 1 is selected and Sends on Fader is active:
+1. Adjust Channel 1.
+2. Adjust Channel 2.
+3. Adjust Channel 3.
+4. Listen to Monitor 1.
+For practice, make the differences obvious:
+* Mic 1 — Loud
+* Mic 2 — Medium
+* Mic 3 — Low
+________________
+
+
+Step 19 — Individual Sends vs. Bus Master
+These controls do two different things.
+Individual Channel Send
+Controls:
+How much of this specific channel goes into this bus?
+Example:
+Channel 1 → Bus 1 controls how much Mic 1 is in Monitor 1.
+Bus Master
+Controls:
+How loud is the entire monitor mix?
+So:
+* One microphone too loud compared with another → adjust its send
+* Whole monitor mix too loud → adjust the Bus master
+Signal Flow
+Channel Sends → Bus 1 → Bus 1 Master → Output 1 → QSC → Monitor 1
+________________
+
+
+Step 20 — Build Bus 2
+1. Select Bus 2.
+2. Keep Sends on Fader active.
+3. Adjust Channels 1–3 again.
+The channel faders now represent:
+* Channel 1 → Bus 2
+* Channel 2 → Bus 2
+* Channel 3 → Bus 2
+They are no longer showing the Bus 1 mix.
+________________
+
+
+Step 21 — Make Bus 2 Different
+For example:
+Bus 1
+* Mic 1 — Loud
+* Mic 2 — Medium
+* Mic 3 — Low
+Bus 2
+* Mic 1 — Low
+* Mic 2 — Off
+* Mic 3 — Loud
+You should clearly hear that the two monitors have different mixes.
+________________
+
+
+Step 22 — Test Bus Independence
+Change Mic 3’s level in Bus 2.
+Then select Bus 1.
+Mic 3 can have a completely different level there.
+Changing:
+Mic 3 → Bus 1
+should not automatically change:
+Mic 3 → Bus 2
+This independence is the point of separate buses.
+________________
+
+
+Step 23 — Exit Sends on Fader
+Press SENDS ON FADER again.
+The light should turn off.
+Your channel faders now return to their normal jobs.
+Troubleshooting Tip
+If a fader seems to be controlling the wrong thing:
+CHECK SENDS ON FADER FIRST.
+________________
+
+
+Step 24 — Remember This Mental Model
+Normal Mode
+Channel faders → Main mix
+Bus 1 + Sends on Fader
+Channel faders → Bus 1 sends
+Bus 2 + Sends on Fader
+Channel faders → Bus 2 sends
+Bus Master
+Controls the overall level of that bus.
+Basic Workflow
+Select destination → Sends on Fader → Build the mix
+________________
+
+
+PART 7 — TEST THE BASIC PA
+Step 25 — Check Everything Before Powering Speakers
+Wireless
+* Mic 1 → Receiver 1 → X32 Input 1
+* Mic 2 → Receiver 2 → X32 Input 2
+* Mic 3 → Receiver 3 → X32 Input 3
+Monitors
+* Bus 1 → Output 1 → QSC → Monitor 1
+* Bus 2 → Output 2 → QSC → Monitor 2
+Mains
+* Main Left → Output 7
+* Main Right → Output 8
+Mixer
+Confirm:
+* Channels 1–3 show signal
+* Nothing is clipping
+* Channels 1–3 feed Main L/R
+* Bus 1 is routed correctly
+* Bus 2 is routed correctly
+* Main L/R is routed correctly
+* Sends on Fader is OFF
+* Output levels are low
+________________
+
+
+Step 26 — Turn On the Sound System
+Once everything is checked:
+1. Turn on the M-Audio speakers.
+2. Turn on the QSC CX702.
+3. Slowly increase levels.
+Do not immediately turn the system up loudly.
+________________
+
+
+Step 27 — Test Main L/R
+Confirm:
+* Mic 1 works
+* Mic 2 works
+* Mic 3 works
+* Main Left works
+* Main Right works
+* Main L/R master controls the overall main level
+________________
+
+
+Step 28 — Test Monitor 1
+Confirm:
+* Bus 1 reaches Monitor 1
+* Mic 1 can be independently adjusted
+* Mic 2 can be independently adjusted
+* Mic 3 can be independently adjusted
+* Bus 1 master controls the overall Monitor 1 level
+________________
+
+
+Step 29 — Test Monitor 2
+Confirm:
+* Bus 2 reaches Monitor 2
+* Mic 1 can be independently adjusted
+* Mic 2 can be independently adjusted
+* Mic 3 can be independently adjusted
+* Bus 2 master controls the overall Monitor 2 level
+* Changing Bus 2 does not automatically change Bus 1
+________________
+
+
+PART 8 — DANTE MULTITRACK PRACTICE
+Once the basic PA is working, Dante can provide a constant 8-track recording for practicing mixing.
+The goal is:
+Logic Stems → Dante → X32 Channels 9–16
+This allows someone to practice faders, buses, EQ, compression, routing, and mixing without needing eight people constantly playing instruments.
+________________
+
+
+Step 30 — Understand the Dante Signal Flow
+We will use 8 stems.
+The complete path is:
+Logic Stem 1 → Output 1 → Dante Ch. 1 → X32 Card 1 → X32 Ch. 9
+Logic Stem 2 → Output 2 → Dante Ch. 2 → X32 Card 2 → X32 Ch. 10
+Logic Stem 3 → Output 3 → Dante Ch. 3 → X32 Card 3 → X32 Ch. 11
+Logic Stem 4 → Output 4 → Dante Ch. 4 → X32 Card 4 → X32 Ch. 12
+Logic Stem 5 → Output 5 → Dante Ch. 5 → X32 Card 5 → X32 Ch. 13
+Logic Stem 6 → Output 6 → Dante Ch. 6 → X32 Card 6 → X32 Ch. 14
+Logic Stem 7 → Output 7 → Dante Ch. 7 → X32 Card 7 → X32 Ch. 15
+Logic Stem 8 → Output 8 → Dante Ch. 8 → X32 Card 8 → X32 Ch. 16
+________________
+
+
+Step 31 — Open Dante Controller
+On the computer:
+1. Open Dante Controller.
+2. Find your computer in the list of Dante devices.
+3. Find the X32 Compact.
+Your computer will be the transmitter.
+The X32 Compact will be the receiver.
+You do not need to open Dante Virtual Soundcard separately for this exercise.
+________________
+
+
+Step 32 — Connect the Computer to the X32 in Dante Controller
+In Dante Controller, use the routing grid.
+Route:
+* Computer Tx 1 → X32 Rx 1
+* Computer Tx 2 → X32 Rx 2
+* Computer Tx 3 → X32 Rx 3
+* Computer Tx 4 → X32 Rx 4
+* Computer Tx 5 → X32 Rx 5
+* Computer Tx 6 → X32 Rx 6
+* Computer Tx 7 → X32 Rx 7
+* Computer Tx 8 → X32 Rx 8
+You create these connections by clicking the appropriate intersections in the Dante Controller routing grid.
+Make sure each connection is successfully established before continuing.
+________________
+
+
+Step 33 — Set Logic to Dante
+Open Logic Pro.
+Before creating the eight tracks, set Logic’s audio output device to Dante.
+This is important because we want Logic’s Outputs 1–8 to correspond with Dante’s output channels.
+Do not simply leave Logic using the computer’s normal built-in output.
+________________
+
+
+Step 34 — Create 8 Tracks in Logic
+Create 8 tracks for the eight stems.
+When creating them, use Logic’s Ascending option so the tracks are automatically assigned sequential outputs.
+The goal is:
+* Track 1 → Output 1
+* Track 2 → Output 2
+* Track 3 → Output 3
+* Track 4 → Output 4
+* Track 5 → Output 5
+* Track 6 → Output 6
+* Track 7 → Output 7
+* Track 8 → Output 8
+Using Ascending is much faster than manually changing the output of every track afterward.
+________________
+
+
+Step 35 — Put One Stem on Each Logic Track
+Import the practice stems into Logic.
+Place one stem on each track.
+For example:
+* Track 1 — Drums
+* Track 2 — Bass
+* Track 3 — Guitar
+* Track 4 — Keys
+* Track 5 — Lead Vocal
+* Track 6 — Background Vocals
+* Track 7 — Additional Instrument
+* Track 8 — Additional Instrument
+The exact instruments can change depending on the practice session.
+The important part is:
+One stem = one Logic track = one Dante output = one X32 channel.
+________________
+
+
+Step 36 — Route X32 Channels 9–16 to the Dante Card
+Now tell the X32 where Channels 9–16 should get their audio.
+On the X32:
+1. Press ROUTING.
+2. Go to the input-routing section.
+3. Find the routing block for Channels 9–16.
+4. Set that block to:
+Card 1–8
+Do not change Channels 1–8 to Card.
+We want:
+X32 Channels 1–8 → Local inputs
+and:
+X32 Channels 9–16 → Card 1–8
+This keeps the wireless microphones available on Channels 1–3 while Dante uses Channels 9–16.
+________________
+
+
+Step 37 — Play the Logic Session
+Press Play in Logic.
+You should now see separate signal on X32 Channels 9–16.
+For example:
+* Logic Track 1 → X32 Ch. 9
+* Logic Track 2 → X32 Ch. 10
+* Logic Track 3 → X32 Ch. 11
+* Logic Track 4 → X32 Ch. 12
+* Logic Track 5 → X32 Ch. 13
+* Logic Track 6 → X32 Ch. 14
+* Logic Track 7 → X32 Ch. 15
+* Logic Track 8 → X32 Ch. 16
+Each stem should have its own X32 channel.
+________________
+
+
+Step 38 — Troubleshoot Dante Using the Signal Path
+If you don’t see signal on the X32, don’t randomly change settings.
+Follow the signal.
+Check in this order:
+1. Is Logic playing?
+2. Does each Logic track contain audio?
+3. Is Logic set to Dante?
+4. Are the Logic tracks using Outputs 1–8?
+5. Are the outputs ascending correctly?
+6. Does Dante Controller show the computer as the transmitter?
+7. Does Dante Controller show the X32 as the receiver?
+8. Are Tx 1–8 connected to Rx 1–8?
+9. Is the X32 routing Channels 9–16 from Card 1–8?
+10. Are you looking at X32 Channels 9–16?
+Again, the troubleshooting rule is:
+Find the point where the signal disappears.
+________________
+
+
+PART 9 — PRACTICE MIXING WITH DANTE
+Step 39 — Use the Stems Like a Live Band
+Once Logic is playing, Channels 9–16 act like eight separate live inputs.
+Practice:
+* Setting channel levels
+* Muting and unmuting channels
+* Panning
+* EQ
+* Compression
+* Gates
+* Main L/R mixing
+* Bus sends
+* Monitor mixes
+* Sends on Fader
+* Bus master levels
+The recording can continuously play while you experiment with the console.
+________________
+
+
+Step 40 — Practice Sending Dante Channels to Bus 1
+Select Bus 1 and activate Sends on Fader.
+Now Channels 9–16 can be used to create a completely separate Monitor 1 mix.
+For example:
+* Drums — Loud
+* Bass — Medium
+* Guitar — Low
+* Keys — Off
+* Vocal — Loud
+Listen to how changing the individual sends changes Monitor 1 without requiring you to change the Main L/R mix.
+________________
+
+
+Step 41 — Practice Sending Dante Channels to Bus 2
+Select Bus 2.
+With Sends on Fader active, build another mix.
+Make it intentionally different from Bus 1.
+This is one of the easiest ways to understand monitor mixing because the Logic recording provides a constant signal while you work.
+________________
+
+
+PART 10 — FINAL PRACTICAL TEST
+Step 42 — Demonstrate the Complete System
+You are finished when you can demonstrate:
+Wireless
+* All 3 wireless microphones are paired
+* Each receiver channel works
+* Mics reach X32 Channels 1–3
+* Input gain is set correctly
+Mains
+* Main Left works
+* Main Right works
+* Main L/R master controls both
+Monitor 1
+* Bus 1 reaches Monitor 1
+* Individual channels can be changed independently
+* Bus 1 master controls overall Monitor 1 volume
+Monitor 2
+* Bus 2 reaches Monitor 2
+* Individual channels can be changed independently
+* Bus 2 master controls overall Monitor 2 volume
+Dante
+* Logic is configured for Dante
+* 8 tracks are created
+* Outputs ascend from 1–8
+* Dante Controller recognizes the computer and X32
+* Computer Tx 1–8 are routed to X32 Rx 1–8
+* X32 Channels 9–16 receive Card 1–8
+* Eight Logic stems appear independently on Channels 9–16
+Understanding
+You can explain:
+* What an input is
+* What Main L/R is
+* What a bus is
+* What a bus master does
+* What Sends on Fader does
+* Why monitor mixes can be different
+* How X32 outputs are routed
+* How Dante gets audio from Logic to the X32
+* How to troubleshoot by following the signal path
+________________
+
+
+COMPLETE SIGNAL FLOW CHEAT SHEET
+Wireless Microphones
+Mic 1 → PTU-6000 Ch. 1 → X32 Input 1 → X32 Ch. 1
+Mic 2 → PTU-6000 Ch. 2 → X32 Input 2 → X32 Ch. 2
+Mic 3 → PTU-6000 Ch. 3 → X32 Input 3 → X32 Ch. 3
+Monitor 1
+X32 Channels → Bus 1 → Output 1 → QSC CX702 → Monitor 1
+Monitor 2
+X32 Channels → Bus 2 → Output 2 → QSC CX702 → Monitor 2
+Main Speakers
+X32 Channels → Main L/R → Outputs 7 & 8 → M-Audio AV40 System
+Dante
+Logic Tracks 1–8 → Outputs 1–8 → Dante Controller → X32 Card 1–8 → X32 Channels 9–16
+Channel Map
+Logic
+	Dante/Card
+	X32
+	Track 1 / Output 1
+	Card 1
+	Ch. 9
+	Track 2 / Output 2
+	Card 2
+	Ch. 10
+	Track 3 / Output 3
+	Card 3
+	Ch. 11
+	Track 4 / Output 4
+	Card 4
+	Ch. 12
+	Track 5 / Output 5
+	Card 5
+	Ch. 13
+	Track 6 / Output 6
+	Card 6
+	Ch. 14
+	Track 7 / Output 7
+	Card 7
+	Ch. 15
+	Track 8 / Output 8
+	Card 8
+	Ch. 16
+	________________
+
+
+Step 43 — Shut Down Safely
+When finished:
+1. Turn down the system.
+2. Turn OFF the M-Audio speakers.
+3. Turn OFF the QSC CX702.
+4. Then shut down the mixer and other source equipment as appropriate.
+Remember:
+Speakers and amplifiers ON LAST.
+Speakers and amplifiers OFF FIRST.
