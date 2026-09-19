@@ -46,11 +46,13 @@ A **fixed wall-clock window**, not a fixed question count. The clock starts when
 code is entered and the quiz closes when the window ends, so the instructor controls class
 flow ("we all come back at 8:15") instead of waiting on the slowest submission.
 
-- `expected_minutes` — what the graded Core set should take. **Start at 8**, then calibrate
-  from real `actual_minutes` after Quiz 2.
-- `window_minutes` — the hard outer limit, `expected × 1.5`. **Start at 12.** Everyone gets
-  the same window, so extended time is already built in and nobody is visibly on a separate
-  track. Assume accommodations exist even if none are on file.
+- `expected_minutes` — what the graded Core set should take. **6.**
+- `window_minutes` — the outer limit. **9** (about 10 minutes wall clock once code entry and
+  the closing feedback are counted). Everyone gets the same window, so extended time is built
+  in and nobody is visibly on a separate track. Assume accommodations exist even if none are
+  on file.
+- **At the window, a student finishes the question they're on, then submits.** Never a cut
+  mid-question.
 - Finish Core early and questions **keep coming** until the window closes. They're ungraded,
   so a fast student can't out-score anyone; they just get more practice.
 - Extras get progressively harder as the window runs on, drawn by existing `level` (0–3).
@@ -58,14 +60,18 @@ flow ("we all come back at 8:15") instead of waiting on the slowest submission.
   items can stay unverified longer than graded ones, clearly labeled as not counted.
 - Pace check every few questions decides when to slot an extra in, so extras interleave with
   Core rather than arriving as a block at the end.
-- **When the window ends:** stop offering *new* items, but always let a student finish the
-  Core questions still in front of them. Failing someone on graded questions because a timer
-  ran out is the one outcome worth avoiding, especially with accommodations in play.
 - Warn on screen at `expected_minutes` ("you should be wrapping up the graded part").
 
-Only real unknown: Quiz 1 recorded no durations. Recollection is most students finished in
-4–6 minutes and some took 8–10, for 20 questions. Core grows to ~15 questions under A1, hence
-8/12 as the starting pair.
+**Does ~15 Core questions fit in 6 minutes?** Probably, and by a wider margin than "1 minute
+per question" suggests. Quiz 1 put 20 questions away in roughly 4–6 minutes — call it 15–20
+seconds each — so 15 Core lands near 4–5 minutes. Troubleshooting-style items run longer than
+Quiz 1's recall items, which is what the headroom is for. Recalibrate off real `actual_minutes`
+after Quiz 2 rather than guessing again.
+
+**Slow students are protected by the pace rule itself.** Extras only appear for someone *ahead*
+of schedule, so anyone behind never sees one and gets the entire 9 minutes for Core alone —
+roughly 36 seconds per question. The student at risk of running out of time is, by construction,
+never the student being handed extra questions.
 
 ### C. Scoring
 - **C1.** Bonus items ungraded, data-only, not part of the 10 points (default), or graded?
