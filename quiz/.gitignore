@@ -1,2 +1,5 @@
 # The handoff bundle contains student names; keep it out of the public repo.
 mus248_quiz_handoff.zip
+
+# Student quiz feedback (anonymized Canvas exports, one file per quiz). Never commit.
+feedback/
