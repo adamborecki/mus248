@@ -40,23 +40,48 @@ Defaults marked. Anything not overridden gets built the default way.
 - **A2.** All ~15 Core skills means a longer quiz than 9. Accept the length (default), or cap core
   around 12 and rotate the remainder?
 
-### B. Timing (new model, from the pacing brief)
-- **B1.** `Y` (target core-completion minutes) set manually per week (default), or auto-calibrated
-  from live pacing?
-- **B2.** Total window = `Y × 1.5` for everyone, no separate accommodated track (default: yes).
-- **B3.** Bonus insertion: checkpoint every N core items, N=3 (default), or probabilistic?
-- **B4.** When the window ends: stop feeding *bonus* items but always let core finish (default),
-  or hard stop?
+### B. Timing — DECIDED
+
+A **fixed wall-clock window**, not a fixed question count. The clock starts when the access
+code is entered and the quiz closes when the window ends, so the instructor controls class
+flow ("we all come back at 8:15") instead of waiting on the slowest submission.
+
+- `expected_minutes` — what the graded Core set should take. **Start at 8**, then calibrate
+  from real `actual_minutes` after Quiz 2.
+- `window_minutes` — the hard outer limit, `expected × 1.5`. **Start at 12.** Everyone gets
+  the same window, so extended time is already built in and nobody is visibly on a separate
+  track. Assume accommodations exist even if none are on file.
+- Finish Core early and questions **keep coming** until the window closes. They're ungraded,
+  so a fast student can't out-score anyone; they just get more practice.
+- Extras get progressively harder as the window runs on, drawn by existing `level` (0–3).
+  **No new "reach" category** — level 3 *is* reach. Since nothing rides on them, level-3
+  items can stay unverified longer than graded ones, clearly labeled as not counted.
+- Pace check every few questions decides when to slot an extra in, so extras interleave with
+  Core rather than arriving as a block at the end.
+- **When the window ends:** stop offering *new* items, but always let a student finish the
+  Core questions still in front of them. Failing someone on graded questions because a timer
+  ran out is the one outcome worth avoiding, especially with accommodations in play.
+- Warn on screen at `expected_minutes` ("you should be wrapping up the graded part").
+
+Only real unknown: Quiz 1 recorded no durations. Recollection is most students finished in
+4–6 minutes and some took 8–10, for 20 questions. Core grows to ~15 questions under A1, hence
+8/12 as the starting pair.
 
 ### C. Scoring
 - **C1.** Bonus items ungraded, data-only, not part of the 10 points (default), or graded?
 - **C2.** Does bonus *replace* the current Practice tier, or sit alongside it as a third tier
   (default: replaces — core graded, bonus data-only, two tiers not three)?
 
-### D. Capture (approved in principle: wrong answer, timing, feedback box)
-- **D1.** Free-text feedback box plus a one-tap pacing item (too rushed / fine / too slow)
-  (default: both).
-- **D2.** Per-question timing grows the Canvas code roughly 10–15% (default: accept).
+### D. Capture — DECIDED
+
+Keep it minimal, and put all of it **after the timer stops** so none of it eats quiz time.
+
+- One **optional** free-text box: "Anything confusing? How did the quiz go?"
+- One **one-tap** pacing question: too rushed / just right / too slow.
+- Nothing else. No "what went well" prompt — that reflection belongs on the activity
+  worksheet's "Before you leave" section, which the activity template already calls for,
+  not inside a timed quiz.
+- Which wrong answer a student picked, and per-question timing, are recorded silently.
 
 ### E. Study guides
 - **E1.** Class review list (instructor-facing, after each quiz): skill + miss rate + instructor's
@@ -65,15 +90,24 @@ Defaults marked. Anything not overridden gets built the default way.
   sends the link (default), or a PDF?
 
 ### F. Activities, worksheets, tracker
-- **F1.** Ownership — worksheets and instruction imports live in the activities site, which the
-  other session has been building. Does this session take that on? **Blocks all of F.**
+- **F1.** ~~Ownership~~ — **settled: this session works in `content/activities/` too**, using
+  its own judgment, aimed at worksheets.
 - **F2.** Worksheet generated from the activity markdown, with correct answers marked inline so
   the answer key generates from the same file (default: yes).
 - **F3.** Does the student keep the printed worksheet or turn it in, and who prints it?
 - **F4.** Tracker: a Course Map artifact that computes itself from repo data, plus a short manual
   to-do list (default), or GitHub issues?
-- **F5.** Next instruction import — X32 Compact (default), DAW, mixer, or mic stands? Needs the
-  source doc pasted; those four still point at external links.
+- **F5.** ~~Next instruction import~~ — **done.** All eight activities now have plain-text
+  instructions in `content/activities/_source/`. DAW, mixer, and X32 exported straight from
+  their link-shared Google Docs via `tools/import-activity-doc.sh`; Mic Stand Yoga's slide
+  text came out of the deck. Mic Stand Yoga still needs image work before migration.
+
+## Deadline
+
+**Worksheets are required by Monday, Sept 21** and will be built in a fresh chat. Everything
+that work depends on is already in place: all eight activities have their instructions in the
+repo, and the migrated `.md` files already carry the 🚩 checkpoints and `**Qn (type).**`
+markers a generated worksheet needs.
 
 ## Recommended sequence
 
