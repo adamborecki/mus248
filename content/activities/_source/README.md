@@ -28,7 +28,17 @@ a file after editing the doc.
 | DAW Training Circuit | ✅ `daw.txt` | not yet |
 | What can you do with a mixer? | ✅ `mixer.txt` | not yet |
 | X32 Compact | ✅ `x32compact.txt` | not yet |
-| Mic Stand Yoga | ❌ SharePoint returns 403 | not yet |
+| Mic Stand Yoga | ✅ `mic-stands.txt` (slide text) | not yet |
 
-Mic Stand Yoga is a slide deck on SharePoint and is heavily image-based. Its text still
-needs exporting by hand; the images will need separate handling when it's migrated.
+## Mic Stand Yoga needs image work
+
+Its text is here, but the activity is carried by pictures: 22 slides holding 37 photos and
+2 demo videos. The deck itself is `_media/mic-stands.pptx` — gitignored, because at 125 MB
+it doesn't belong in git. Before that activity can be migrated:
+
+- **Photos** — 59.5 MB as exported (several single PNGs are 3–5 MB). Downscaled to sensible
+  web JPEGs they should land near 5–8 MB total, which is fine to commit.
+- **Videos** — 65.4 MB across two clips showing the "hold the thing, twist the shaft" trick.
+  These want a host outside git.
+
+Extract with any unzip tool: the media lives under `ppt/media/` inside the .pptx.

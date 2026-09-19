@@ -1,0 +1,127 @@
+MIC STAND YOGA — slide text
+
+Extracted verbatim from 'mic stand yoga.pptx' (22 slides).
+This activity is heavily visual: 37 photos and 2 demo videos carry most of the
+instruction, and they are NOT reproduced here. Image/video markers below show
+where they sit. The source deck is in _media/ (gitignored, too large for the repo).
+
+======================================================================
+
+--- Slide 1
+    Mic Stand Yoga
+    Prof Borecki
+    MUS 248 A/V Concert Recording & Archiving
+
+--- Slide 2
+    About "Mic Stand Yoga"
+    Get comfortable using mic stands!
+    Overview:
+    Warm-ups
+    More sample positions
+    Required Materials:
+    2x mic stands with boom arms
+
+--- Slide 3
+    Doing this as a class activity?
+    If you're going to "submit" this, please:
+    Take photos of all the "Warm ups" to demonstrate you can do those positions
+    Come up with 2 or 3 of your own 'yoga positions' (or do some from the "sample positions")
+    (See Slide #15)  Take a video of you screwing & unscrewing the boom arm by holding the thing and twisting the shaft.
+
+--- Slide 4
+    Warm-Ups (required)
+    Do all of these "warm-up poses" before creating your own
+
+--- Slide 5  [5 images]
+    Warm-Up 1: Upward Salute & Child's Pose
+    Extend mic stands as much as possible (a.k.a. "Upward Salute")
+    Collapse mic stands as much as possible (a.k.a. "Child's pose")
+    Repeat 2-3x total
+
+--- Slide 6  [3 images]
+    Warm-Up 1: Upward Salute & Child's Pose
+    Important:
+    Change all the joints of the mic stand when going from fully collapsed to fully extended
+
+--- Slide 7  [2 images]
+    Warm-Up 2: Warrior Pose
+    Horizontal on top, like an uppercase T.
+    (FYI, technically, in Yoga, this is "Warrior 3", a.k.a. 3rd variation of the warrior pose)
+
+--- Slide 8  [3 images]
+    Warm-up 3: Triangle & Fallen Triangle Poses
+    Fully extend the boom arms on both mic stands
+    Position the 1st mic stand so that the boom arm is above a leg (a.k.a. "triangle pose")
+    Position the 2nd mic stand so that the boom arm is hovering above the space between legs (a.k.a. "fallen triangle pose")
+    1).
+    2).
+
+--- Slide 9  [3 images]
+    Warm-up 3: Triangle & Fallen Triangle Poses
+    Fully extend the boom arms on both mic stands
+    Position the 1st mic stand so that the boom arm is above a leg (a.k.a. "triangle pose")
+    Position the 2nd mic stand so that the boom arm is hovering above the space between legs (a.k.a. "fallen triangle pose")
+    1).
+    2).
+
+--- Slide 10  [2 images]
+    Seriously, be careful!
+    When fully extended, the center of weight changes: if a mic is on the boom arm and the leg is in the wrong position, the entire stand could fall over.
+    In fact, this is why some stands have "counterweights".
+    counterweight
+
+--- Slide 11  [2 images]
+    Warm-Up 4: Downward Facing Dog Pose
+    The boom arm and 2 legs make contact with the floor.
+
+--- Slide 12  [2 images]
+    Warm-Up 5: Humble Flamingo Pose
+    Adjust the leg housing knob to allow the mic stand to go below the legs.
+    Adjust the boom arm to balance above the
+    You may need to readjust the leg housing knob and/or boom arm to get this to balance.
+
+--- Slide 13  [8 images, 1 video]
+    Screwing tip:Hold the thing, twist the shaft.
+    IMG_0753 mic clip screw and unscrew.MOV
+    In the movie, the first part (0:00-0:14) shows twisting the mic clip.
+    But there's a better way!
+    At 0:14-0:30, you can see that unscrewing the knob on the boom arm allows you to twist the shaft to quickly attach the mic clip.
+    :(
+    :)
+
+--- Slide 14  [2 images]
+    Warm-Up 6: Gorilla Pose
+    Remove one boom arm
+    Screw it into the other boom
+
+--- Slide 15  [8 images, 1 video]
+    Screwing tip:Hold the thing, twist the shaft.
+    IMG_0764 boom arm screw and unscrew.MOV
+    In the movie, the first part (0:00-0:10) shows twisting the boom arm. Ooof. Not good.
+    At 0:11-0:30, you can see that unscrewing the knob on the boom arm allows you to twist the shaft to quickly attach the mic clip.
+    :(
+    :)
+
+--- Slide 16  [2 images]
+    Warm-Up 7: Pidgeon Pose
+    Remove both boom arms
+    Screw the 1st boom arm into the 2nd boom arm
+    Adjust, then screw the 2nd boom arm into the 1st boom arm
+
+--- Slide 17
+    Sample Positions
+
+--- Slide 18  [1 image]
+    House
+
+--- Slide 19  [1 image]
+    The Letter M
+
+--- Slide 20  [1 image]
+    Angular
+
+--- Slide 21  [1 image]
+    The "beheading"
+
+--- Slide 22  [1 image]
+    "D.I." stands for "Direct Injection"
