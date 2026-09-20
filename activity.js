@@ -14,7 +14,7 @@ async function loadActivity() {
   let external = false;
   if (activity.contentFile) {
     const response = await fetch(`../content/activities/${activity.contentFile}.md`);
-    if (response.ok) instructions = renderMarkdown(await response.text());
+    if (response.ok) instructions = renderMarkdown(await response.text(), { assetBase: '../content/activities/' });
   }
   if (!instructions && activity.externalResource) {
     external = true;

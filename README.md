@@ -82,21 +82,35 @@ That's deliberate, not a limitation:
 ## 🗺️ Repository map
 
 ```
-content/activities/    reusable activity Markdown (source of truth)
-data/activities.json   directory metadata that drives the front page
-data/semesters/        per-term Canvas links and reminders
-quiz/                  the weekly quiz app — see quiz/README.md
-study/                 the study-card app
-worksheets/            index of the printable worksheets
-tools/                 import and check scripts
-markdown.js            the Markdown renderer, shared by page and worksheet
-activity.js, activity.css     the activity page
-worksheet.js, worksheet.css   the worksheet + answer key
-index.html, app.js,
-styles.css             the front page itself
+PAGES — every folder here is a URL on the live site
+  index.html           the front page
+  cameras/             one folder per activity: /cameras/, /stereo/, /daw/ …
+    worksheet/           its printable worksheet
+    worksheet/key/       the instructor answer key (noindex)
+  quiz/                the weekly quiz app — see quiz/README.md
+  study/               the study-card app
+  worksheets/          index of every printable worksheet
+
+SOURCE — never served as a page
+  content/activities/  activity Markdown (the source of truth) and its media/
+  content/activities/_source/   imported instructions awaiting migration
+  data/activities.json directory metadata that drives the front page
+  data/semesters/      per-term Canvas links and reminders
+  tools/               import and check scripts
+
+SHARED FRONT-END
+  markdown.js          the Markdown renderer, used by page and worksheet alike
+  activity.js/.css     the activity page
+  worksheet.js/.css    the worksheet and answer key
+  app.js, styles.css   the front page
 ```
 
-Each top-level folder like `stereo/`, `x32compact/`, or `dante-broadcast/` is a rendered activity page — one URL per activity, no router needed. An activity written out in Markdown also gets `<activity>/worksheet/` and, for instructors, `<activity>/worksheet/key/`.
+**Why activity folders sit at the top level next to `content/` and `data/`:** the folder path *is*
+the URL. `cameras/index.html` is what makes `…/cameras/` work with no router, no build step, and no
+server. Tidying them into something like `activity/cameras/` would change every activity URL —
+including any already pasted into Canvas or printed on the QR-coded manuals in the recording rooms —
+for a purely cosmetic gain in the GitHub file list. So they stay, and this map is the signpost
+instead.
 
 ---
 

@@ -74,9 +74,10 @@ Blackmagic recorder", which was close but imprecise. Two multiviews on stacked S
 - **HDMI2 — ATEM Mini Extreme ISO.** Preview/Program plus Camera 1–7 and Media Player 1.
 - A taped label reads **"select HDMI1 for MULTIVIEW source"**.
 
-So the two RovoCams are two inputs among up to eight — which means **the handheld cameras from
-this activity plausibly plug into the same switcher**. Worth confirming, because it would join the
-two halves of the activity into one job.
+The switcher has eight camera inputs, but **the room is run as a single locked-off wide plus one
+alternate angle** — the two RovoCams. The handhelds *could* be patched in, but in practice they
+are not (instructor, September 2026). Do not write the activity as though a recital here is an
+eight-camera production.
 
 **At the desk:** Genelec monitors, an ATEM Mini Extreme ISO control panel, a Mackie Big Knob
 (source select / mono / volume), outboard VU meters, a Furman power conditioner in the rack, and a
@@ -96,6 +97,14 @@ Engineer Manual — Quick…* (carries QR codes) and a *Live-Streaming Guide*, b
 RovoControl is Intel-only and **"will not open in a future release of macOS."** The room loses
 camera control the day that Mac updates past it. Worth checking whether AJA ships an Apple-silicon
 build before an OS upgrade happens, not after.
+
+## Photographs
+
+Cropped and downscaled copies live in `content/activities/media/bh209/` and are used on the
+activity page: `rovocontrol.jpg`, `joystick.jpg`, `multiview.jpg`, `desk.jpg`. The RovoControl
+shot is cropped to the application window on purpose — the full frame showed a desktop file
+listing that included `vimeo login password.rtf`, and this repo is public. Keep that in mind
+before adding more: check the whole frame, not just the subject.
 
 ## Getting the documentation in
 

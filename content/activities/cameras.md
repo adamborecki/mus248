@@ -228,7 +228,7 @@ have to work in it.
 
 | | BH 209's installed cameras |
 |---|---|
-| The cameras | **AJA RovoCam** — fixed installed cameras, not camcorders. Two of them, which arrive at the switcher as two of its camera inputs alongside whatever else is plugged in. |
+| The cameras | **AJA RovoCam** — fixed installed cameras, not camcorders. **Two of them, and in practice that is the whole shoot:** one locked-off wide, and a second for an alternate angle. The switcher has eight camera inputs, but a recital here is not an eight-camera production. |
 | How you drive them | **AJA RovoControl**, an app on the room's Mac (the one named *BH209-LivestreamAndDanteRecord*), plus a physical **Pan/Tilt joystick** on the desk with a **Camera 1 / Camera 2** selector and its own speed control. |
 | Exposure | Real controls, in units you already know: **iris** (f14 → f1.8), **gain** (0 → 33 dB), **shutter speed**, **focus** (10 → 1500 mm), and zoom. An **A / S / M / B** mode selector picks who decides — **M** is full manual, the same idea as `[M]` on the G50. |
 | Framing | Up to **16 saved presets**, plus an **ePTZ** tab. Presets are part of the room's setup for a given event — recall them, don't overwrite them. |
@@ -237,11 +237,25 @@ have to work in it.
 | Audio | The hall gives you **both**: audio embedded with the video, and a separate Dante recording on that same Mac. |
 | Getting in | A **key code** on the door, which most students in this course already have. |
 
+![The AJA RovoControl window on the room's Mac. Iris, gain, shutter, focus, and zoom, with the A/S/M/B mode selector at the right — here set to M.](media/bh209/rovocontrol.jpg)
+
 **The good news for everything you just practised:** the five settings did not go away, and they
 did not change units. An iris is still an iris and 6 dB is still a stop — you reach them through a
 window on a screen and a joystick instead of a dial under your thumb. What *is* genuinely
 different is that the picture is going somewhere live, and that the card you pull at the end is in
 a rack at the desk rather than in your hand.
+
+![The Pan/Tilt joystick, with its speed knob and the hardware Camera 1 / Camera 2 selector below it.](media/bh209/joystick.jpg)
+
+**Why a locked-off wide is not a lazy choice.** One camera that is correctly exposed, correctly
+white-balanced, in focus, and framed to hold the whole ensemble for forty minutes is worth more
+than four cameras that drift. Everything this activity drills — get to a known baseline, change one
+thing deliberately, know what it cost — is exactly what a static wide demands, because nobody is
+going to rescue the shot later by cutting away from it.
+
+![The multiview. Program and Preview, the camera inputs, the two record slots — reading NO DISK until media is inserted — and the stream status.](media/bh209/multiview.jpg)
+
+![The production desk. The joystick is centre, the switcher panel to the left, and the recorders are in the rack on the right.](media/bh209/desk.jpg)
 
 > 🧪 **The click-by-click procedure for BH 209 is not written here yet.** The room has its own
 > Salmon Recital Hall SOP and quick-start manual, which are being imported. Until that lands,
