@@ -132,6 +132,7 @@ Canvas already handles all of that; this repo only holds reusable instructional 
 - **Correct answers** are marked inline in the activity Markdown — `- ✅ c) 9 dB` on the right option, or a `✅ **Answer.** …` line for a question with no options. Both student renders strip the markers, so the answer key generates from the same file without leaking.
 - **Quiz content or scoring** → see `quiz/README.md`. It's a one-file JSON edit for a weekly update, no code changes needed.
 - **Found something wrong or missing?** → open an issue.
+- **Working on this with Claude?** → `CLAUDE.md` at the root carries the conventions: the two test commands to run before committing, the activity Markdown format, what must never be committed to a public repo, and why the activity folders sit where they do.
 
 ---
 
