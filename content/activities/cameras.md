@@ -230,8 +230,9 @@ have to work in it.
 |---|---|
 | The cameras | **AJA RovoCam** — fixed installed cameras, not camcorders. **Two of them, and in practice that is the whole shoot:** one locked-off wide, and a second for an alternate angle. The switcher has eight camera inputs, but a recital here is not an eight-camera production. |
 | How you drive them | **AJA RovoControl**, an app on the room's Mac (the one named *BH209-LivestreamAndDanteRecord*), plus a physical **Pan/Tilt joystick** on the desk with a **Camera 1 / Camera 2** selector and its own speed control. |
-| Exposure | Real controls, in units you already know: **iris** (f14 → f1.8), **gain** (0 → 33 dB), **shutter speed**, **focus** (10 → 1500 mm), and zoom. An **A / S / M / B** mode selector picks who decides — **M** is full manual, the same idea as `[M]` on the G50. |
-| Framing | Up to **16 saved presets**, plus an **ePTZ** tab. Presets are part of the room's setup for a given event — recall them, don't overwrite them. |
+| Exposure | The controls exist, in units you know: **iris** (f14 → f1.8), **gain** (0 → 33 dB), **shutter**, **focus**, and an **A / S / M / B** mode selector. **You do not touch them.** The room's SOP is explicit: *"Gain and F-stop do not change, only change zoom control at the bottom."* They are set for the hall and they stay set. |
+| What you *do* change | **Zoom**, in RovoControl, and **pan/tilt** on the joystick. That is the job: frame the shot *"as close as possible, but wide enough to have space on the edges while standing to bow."* |
+| Framing aids | Up to **16 saved presets** and an **ePTZ** tab. Presets are part of the room's setup for an event — recall them, don't overwrite them. |
 | Where the recording lands | Through the **Blackmagic ATEM** switchers to a **disk at the desk** — an SSD, or a fast SD card. There are **two record slots**, a main and a spare, and the multiview reads **NO DISK** when nothing is inserted. |
 | Streaming | The same desk streams the program feed to **Vimeo**, with its own on-screen data-rate and cache readout. |
 | Audio | The hall gives you **both**: audio embedded with the video, and a separate Dante recording on that same Mac. |
@@ -255,20 +256,62 @@ going to rescue the shot later by cutting away from it.
 
 ![The multiview. Program and Preview, the camera inputs, the two record slots — reading NO DISK until media is inserted — and the stream status.](media/bh209/multiview.jpg)
 
+#### The AX100 you just practised on is part of this room
+
+This is the part worth knowing before anything else. A recital in Salmon is recorded twice, on
+purpose:
+
+- the **primary centre wide**, which is a RovoCam through the switcher to the HyperDeck, and
+- the **backup centre wide**, which is **an AX100 on a stand, recording to its own 128 GB SD card**.
+
+The backup is deliberately **not** plugged into the switcher — the SOP says *"ensure that the HDMI
+is not plugged into the ATEM Extreme"* — so that one failure cannot take both recordings with it.
+
+Which means the drill you just did on the AX100 is not a warm-up for the real job. It **is** the
+real job, on the camera that catches the concert when the main chain fails. Its settings for the
+hall are:
+
+| AX100 in Salmon | Value |
+|---|---|
+| Iris · gain · shutter | **F4 · 3 dB · 1/60** — the house default, unchanged |
+| White balance | **3800 K, A5 G2**, Soft High Key |
+| Image size | **XAVC S 4K** (Menu → Image Quality/Size) |
+| Power | AC into the front of the camera, **plus a charged battery** as backup |
+| Card | a clean **128 GB** card, not the little ones |
+
+Note the white balance: the house default you memorised is **3200 K**, and Salmon runs
+**3800 K**. That is not a contradiction. The house default is the known state you return a camera
+to so the next person starts somewhere sane; the room number is what that particular hall's lights
+actually need. Knowing the difference between *a baseline* and *a measurement* is the whole skill.
+
+(If a recital ever runs multicam, the GH5s come out too, at **F4 · ISO 400 · 1/30** and
+**3700 K, B4 G/M0**.)
+
 ![The production desk. The joystick is centre, the switcher panel to the left, and the recorders are in the rack on the right.](media/bh209/desk.jpg)
+
+#### One button in that room deserves its own warning
+
+The battery backup under the desk powers the iMac. Its own label says it plainly: **holding the
+power button for two seconds enables or disables AC for everything on the battery backup circuit,
+and disabling it kills iMac power.** Mid-concert that is not an inconvenience, it is the recording.
+
+Read labels in this room before you press things. Somebody has already taped down the answer to
+most questions you will have.
+
+![The battery backup, with the warnings taped to it. "Holding power for 2 seconds will enable or disable AC for all devices on battery backup circuit."](media/bh209/battery-backup.jpg)
 
 > 🧪 **The click-by-click procedure for BH 209 is not written here yet.** The room has its own
 > Salmon Recital Hall SOP and quick-start manual, which are being imported. Until that lands,
 > treat this section as orientation and do the graded work on the three handhelds. See
 > **Technical verification** for exactly what is still open.
 
-**Q3 (multiple choice).** In BH 209 you find a camera preset framed differently from how you would
-have framed it. What do you do?
+**Q3 (multiple choice).** You are setting the primary wide in BH 209 and the shot looks a little
+dark to you on the monitor. According to the room's SOP, what are you allowed to change?
 
-- a) Re-frame it and save over the preset — that's what presets are for
-- ✅ b) Leave it. The room is set up for an event, and presets are part of that setup
-- c) Delete the preset so nobody uses a bad one
-- d) Change it, then change it back from memory afterwards
+- a) Gain, to lift it — that's what gain is for
+- b) Iris, since opening up costs less than gain
+- ✅ c) Zoom and framing only. Gain and f-stop are set for the hall and do not change
+- d) Nothing at all — the primary wide is not yours to touch
 
 🚩 **Checkpoint — all three cameras.** Before moving to Part 2, read all five values off the screen out loud: F4.0, 3 dB (ISO 400), 1/60, 3200 K, autofocus. If you cannot find one of them on the display, you are not ready to record yet.
 

@@ -75,9 +75,16 @@ Blackmagic recorder", which was close but imprecise. Two multiviews on stacked S
 - A taped label reads **"select HDMI1 for MULTIVIEW source"**.
 
 The switcher has eight camera inputs, but **the room is run as a single locked-off wide plus one
-alternate angle** — the two RovoCams. The handhelds *could* be patched in, but in practice they
-are not (instructor, September 2026). Do not write the activity as though a recital here is an
+alternate angle** — the two RovoCams. Do not write the activity as though a recital here is an
 eight-camera production.
+
+**Correction, from the SOP:** an earlier note here said the handhelds are not used in the room.
+That is wrong. The **AX100 is the backup centre wide**, on a stand, recording to its own 128 GB
+card — and it is deliberately kept *off* the switcher (*"ensure that the HDMI is not plugged into
+the ATEM Extreme"*) so one failure cannot take both recordings. The GH5s come out for multicam.
+The handhelds are not switcher inputs; they are independent parallel recordings. That is a much
+better fact for the activity than the one it replaced, because it makes the handheld drill the
+real job rather than a rehearsal for it.
 
 **At the desk:** Genelec monitors, an ATEM Mini Extreme ISO control panel, a Mackie Big Knob
 (source select / mono / volume), outboard VU meters, a Furman power conditioner in the rack, and a

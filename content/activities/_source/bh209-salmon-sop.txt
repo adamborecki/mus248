@@ -1,9 +1,369 @@
-Salmon Recital Hall (BH 209) — SOP checklist
-============================================
+BH 208 / 209 SOP — Salmon Checklist & S.O.P. — 2025
+Last Modified Sep 16, 2025
+Imported verbatim September 2026.
 
-PLACEHOLDER. The instructor's plain-text SOP checklist goes here, verbatim.
-Nothing else in the repo should be edited to match it until it lands; the
-BH 209 section of cameras.md is written as orientation only and says so.
+REDACTIONS. This repo is public. Three things were removed from the text below and
+replaced with a bracketed marker; everything else is as the instructor wrote it.
+Ask the instructor for any of them.
+  - the music recordings account address  -> [ACCOUNT — ask instructor]
+  - the livestream test password          -> [TEST PASSWORD — ask instructor]
+  - where the Vimeo password is stored    -> [PASSWORD LOCATION — ask instructor]
 
-See bh209-cameras.md in this folder for what is already confirmed about the
-room, and for the list of what this document is expected to answer.
+================================================================================
+CHECKLIST
+================================================================================
+
+Primary Engineer: ________   Concert: _________   Date: __________
+
+Pre-show:
+[] Get Checklist
+
+Prepare audio:
+Power: [] Battery backup [] "Salmon Audio Rec" Mac Mini [] 8PreX [] Genelec 8030's
+       [] H4n new batteries [] H4n AC
+Data: [] 8GB SD card for H4n [] 32GB SD card for iMac
+Setup H4n: [] Mic Input level of ext 1-2: 28 [] XLRs connected (Green: Left, Red: Right)
+Listen to H4n: [] Record Enable (to get signal) [] Clean sound [] Proper Stereo
+  Use headphones to check the audio signals of the H4n
+Logic Project: [] Opened from Template, [] Named "YYMMDD [abbr_concert_name]",
+  [] Saved as a Folder [] to the Desktop
+Logic Preferences: [] I/O Focusrite Thunderbolt [] 1024 Buffer Size
+8PreX: [] Preamps (1&2 "2:00", 3&4 "11:00", 5&6 "3:00", 7&8 "10:00")
+Listen to Logic: [] Rec Enable on all channels [] Clean Signal on Ch. 1_2 (& 3_4)
+  [] Clean Signal on Ch. 5-6
+Signature: As Primary Engineer, I, __________, bear responsibility for all
+  "prepare audio" checkboxes.
+
+Prepare video:
+Power: [] ATEM Master [] AC for AX100(s) [] Restart and Login Dell Touchscreen
+Data: [] SATA SSD for HyperDeck [] 128GB SD card(s) for backup wide
+Primary Center wide: [] Zoom on Dell with 'Rovocontrol', [] PTZ with Joystick
+  [] shot "as close as possible" BUT wide enough to have enough space on edges
+  while standing to bow
+Backup center wide: [] WB: 3800K A5 G2 [] Image Quality/Size: XAVCS 4K
+  [] Not into Extreme ISO [] shot "as close as possible" BUT wide enough to have
+  enough space on edges while standing to bow
+Signature: As Primary Engineer, I, __________, bear responsibility for all
+  "prepare video" checkboxes.
+
+Prepare multicam video: (Recording Tier 4)
+Multicam? [] No, unless [](Yes) if either of: () "Release" column of Rec Gigs 21_22
+  is "Broadcast", or () reason in writing from supervisor
+(if multicam:) [] Battery swap for GH5s
+(if multicam:) [] Frame all cameras and check exposure settings
+(if multicam:) [] 128 GB SD cards for all cameras [] USB-C SSD for ATEM Extreme
+
+Prepare Livestream Test
+Livestream? [] No, unless [] (Yes) if any of: () "PA or Live Sound Service" column
+  of Rec Gigs 21_22 states livestream, () you're doing it to learn & try it out,
+  or () reason in writing from supervisor
+(if livestream:) ATEM Extreme ISO - Hardware: [] Power On, [] Ethernet is Connected
+  [] USB-C is connected to iMac
+(if livestream:) Vimeo: [] Login ([ACCOUNT — ask instructor], pass
+  [PASSWORD LOCATION — ask instructor]) [] Switch to "College of Performing Arts"
+  [] Click "Live Events" [] Click "Salmon Recital Hall Livestream"
+  [] Update password to "[TEST PASSWORD — ask instructor]"
+  [] (Leave start date & time empty) [] Click "Manage Production" > "Stream via RTMP"
+  [] Check that stream key matches ATEM software
+(if livestream:) ATEM Control - Software for Extreme: [] Open "Atem Control"
+  [] Check that the stream key from vimeo is set up properly (?)
+  [] Set Media1 to pre-show image [] Be aware of faders and compressor
+(if livestream:) Canvas: [] check course 42430 (canvas.chapman.edu/courses/42430)
+  [] Edit text if necessary, but it shouldn't be necessary
+(if livestream:) Listening & Checking for clipping: [] Do not adjust 8PreX preamps
+  [] Logic mix gain can be changed, if necessary [] ATEM Extreme ISO input recording
+  level can be changed, if necessary. (mic gain level)
+
+Prepare Real Livestream
+(if livestream:) Vimeo: [] Redo steps as before, but change the password to the
+  password in Rec Gigs 21_22 "PA or Live Sound Service" column
+
+Lobby & Hall:
+Program: [] Get program [] Ask about changes [] Ask about encore
+Voice of God: [] Audio check [] Reset as "1 push" for recital manager
+Lobby Feed After doors Open: [] Hallway Audio [] Hallway TV camera
+
+Show:
+Start recording 3 minutes early:
+  If Single cam: [] ATEM HyperDeck Recorder [] Backup wide [] Logic [] H4n
+  If Multicam: [] ATEM HyperDeck Recorder [] Backup wide [] Logic [] H4n
+    [] ATEM Extreme [] Individual cameras
+Monitor recording statuses:
+  If single cam: [] Check H4n every 5-10 min [] Check Logic every 5-10 min
+    [] Check ATEM HyperDeck Recorder remaining space every 5-10min
+  If multicam: [] Check H4n every 5-10 min [] Check Logic every 5-10 min
+    [] Check ATEM HyperDeck Recorder remaining space every 5-10min
+    [] constantly check focus of DSLRs [] operate cameras (adjust framing for
+    variety, not adjust too much) [] use ATEM Extreme switcher for program feed
+Live stream monitoring: [] Watch & listen on a separate machine.
+
+Intermission:
+[] Pause all recordings
+[] Start all recordings again 3 minutes early
+
+Post-Show:
+Power Down
+[] Check all gear that you turned on, and turn it back off
+[] Don't turn off things that aren't supposed to be turned off
+Data Transfer & Transcoding in BOTH Post and Backup drives:
+[] Create concert folder using YYMMDD filename
+[] Copy files from SD cards into new folders titled "from [SD CARD NAME]"
+Clean-up:
+[] Turn off Lobby Feed
+[] Remove and put away any gear from Salmon
+[] Turn off audio and video equipment
+[] Leave BH 208/209 as tidy as possible and turn off lights
+
+Day after:
+[] Complete data transfer (if not completed day of)
+[] Delete files from SD cards using "Triplets Triple Triple Checked" procedure
+Handbrake ProRes 4K to h.265: [] Open Handbrake [] click "Open source" & select
+  video from Backups drive [] set Preset: H.265 MKV 2160p60 [] Go to "Video" tab,
+  set the quality (RF) to 22 [] Set "Save as" to the Backups drive, make an "e"
+  folder within there and put it there [] Set the filename to be the original
+  filename but with "- h265" appended before the extension (e.g. "Capture0001.mov"
+  becomes "Capture0001 - h265.mkv") [] Click "add to queue" [] Start queue
+
+Weeks after:
+[] Keep Microsoft Planner task updated
+Within 1 week:
+  Uploaded to Google Drive: [] Full concert single cam mixed edited video
+    [] Audio Only file
+  [] Email music recordings to confirm completion
+Within 3 weeks:
+  Uploaded to Google Drive: [] Individual mixed edited video files [] Audio Only files
+  [] Email music recordings to confirm completion
+  [] Upload all files to Post drive
+  [] Upload all files to Panopto
+
+================================================================================
+STANDARD OPERATING PROCEDURE (S.O.P.)
+================================================================================
+
+Pre-show:
+[] Get Checklist
+  Printed checklists should be available in BH 208.
+
+Prepare audio:
+Power: [] Battery backup ON [] "Salmon Audio Rec" Mac Mini ON [] 8PreX ON (down)
+  [] Genelec 8030's [] H4n new batteries [] H4n AC
+
+  Battery Backup
+  Battery backup: holding power button for two seconds will turn battery backup on
+  or off; if lightbulb indicator is lit, battery backup is on.
+
+  Genelec 8030's
+  The switch for the speakers power is on the rack, above the mic splitter.
+
+  iMac
+  Power button is located on the back left side; the computer may automatically turn
+  on when the backup battery is turned on.
+
+  H4n New Batteries & H4n AC
+  H4n requires two AA batteries inserted into the back of the device; batteries are
+  near the backup battery. AC power is plugged into the center of the bottom of the
+  H4n recorder. The power switch is on the bottom of the left side.
+
+Data: [] 8GB SD card for H4n [] 32GB SD card for iMac
+  Smaller SD cards are found in a clear plastic case; use 8GB for H4n and 32GB for
+  iMac. SD cards are stored on the left side (BH 209).
+
+Setup H4n: [] Mic Input level of ext 1-2: 28 [] XLRs connected (Green: Left, Red: Right)
+Listen to H4n: [] Record Enable (to get signal) [] Clean sound [] Proper Stereo
+  Use headphones to check the audio signals of the H4n.
+
+Logic Project: [] Opened from Template [] Named "YYMMDD [abbr_concert_name]"
+  [] Saved as a Folder [] to the Desktop
+  To Open a New Project in Logic: File > New from template > My templates >
+    "Salmon Concert Template"
+  To Save the Project: File > Save As > filename: [YYMMDD Concert Name]
+    (ex. 220117 TCO) > location: either desktop or directly onto 32GB SD card
+
+Logic Preferences: [] I/O Focusrite Thunderbolt [] 1024 Buffer Size
+  To Open Preferences: Logic Pro > Preferences > Audio
+  Check that input and output both list "Focusrite Thunderbolt".
+  Check that the I/O Buffer Size is 1024.
+
+8PreX: [] Preamps (1&2 "2:00", 3&4 "11:00", 5&6 "3:00", 7&8 "10:00")
+  Check the preamps on the Focusrite are pointing to the directions listed.
+
+Listen to Logic: [] Rec Enable on all channels [] Clean Signal on Ch. 1_2 (& 3_4)
+  [] Clean Signal on Ch. 5-6
+  Use the Speakers to check the logic project. If the speakers are off, turn them on
+  with the power conditioner at the top of the rack.
+  If there is no audio in Salmon, use the talkback to check signal.
+  H4n needs XLR cables in L and R.
+  Logic project should have channels armed and input monitoring on.
+  Channels 7&8 are for the "board feed" (i.e. signal from the "FOH" board, i.e. the
+  Mackie iPad mixer in the hall).
+
+Prepare video:
+Power: [] ATEM Master [] AC for AX100(s) [] Restart and Login Dell Touchscreen
+  Turn on ATEM Master switch to provide power for ATEM Extreme, ATEM HyperDeck, and
+  monitors.
+  AX100 cameras use AC power plugged into the front of the camera; also have a fully
+  charged battery for backup power.
+  Restart the Dell touchscreen computer and log in using the music recordings account
+  information (sheet of paper with password located in front of the computer).
+
+Data: [] SATA SSD for HyperDeck [] 128GB SD card(s) for backup wide
+  Plug in a clean SATA SSD to the HyperDeck for 4k backup recording.
+  Insert 128 GB SD card to AX100 backup wide; large SD cards are found in plastic
+  folders.
+
+Primary Center wide: [] Zoom on Dell with 'Rovocontrol' [] PTZ with Joystick
+  [] shot "as close as possible" BUT wide enough to have enough space on edges while
+  standing to bow
+  Use 'Rovocontrol' app to adjust the zoom of the camera; you can view your changes
+  on the monitors. GAIN AND F-STOP DO NOT CHANGE, only change zoom control at the
+  bottom.
+  Adjust framing (pan/tilt) with joystick.
+
+Backup center wide: [] WB: 3800K A5 G2 [] Image Quality/Size: XAVCS 4K
+  [] Not into Extreme ISO [] shot "as close as possible" BUT wide enough to have
+  enough space on edges while standing to bow
+  AX100 Exposure Settings: F4, 3dB, 1/60
+  AX100 White Balance: 3800K, A5 G2, Soft High Key
+  AX100 Image Size: Menu > Image Quality/Size > XAVC S 4K
+  Ensure that the HDMI is not plugged into the ATEM Extreme.
+
+Prepare multicam video: (Recording Tier 4)
+(if multicam:) [] Battery swap for GH5s
+  Put fresh batteries in GH5s and charge other batteries — "CHARGE" indicator light
+  turns off when battery is fully charged.
+(if multicam:) [] Frame all cameras and check exposure settings
+  GH5 Exposure Settings: F4, 400ISO, 1/30
+  GH5 White Balance: 3700K, B4 G/M0
+  GH5 Picture Effect: Menu > Photo Style > Picture Effect: CineD: -3, -2, 0, -4, -3
+  GH5 Image Size: Menu > Record format > 4K, 100M, 30fps
+  See also: "Multicam Exposure / Color / Formats Setting" (Google Doc)
+(if multicam:) [] 128 GB SD cards for all cameras [] USB-C SSD for ATEM Extreme
+  More clean 128 GB cards can be found in the same folders.
+  Plug in USB-C SSD for the ATEM Extreme; cable is located in the USB A slot.
+
+Prepare Livestream Test
+(if livestream:) ATEM Extreme ISO - Hardware: [] Power On [] Ethernet is Connected
+  [] USB-C is connected to iMac
+(if livestream:) Vimeo: [] Login ([ACCOUNT — ask instructor], pass
+  [PASSWORD LOCATION — ask instructor]) [] Switch to "College of Performing Arts"
+  [] Click "Live Events" [] Click "Salmon Recital Hall Livestream"
+  [] Update password to "[TEST PASSWORD — ask instructor]"
+  [] (Leave start date & time empty) [] Click "Manage Production" > "Stream via RTMP"
+  [] Check that stream key matches ATEM software
+  Misc notes: Chapman Red: #A50034. [Embed] Turn off viewer count numbers.
+(if livestream:) ATEM Control - Software for Extreme: [] Open "Atem Control"
+  [] Check that the stream key from vimeo is set up properly (?)
+  [] Set Media1 to pre-show image [] Be aware of faders and compressor
+(if livestream:) Canvas: [] check course 42430 (canvas.chapman.edu/courses/42430)
+  [] Edit text if necessary, but it shouldn't be necessary
+(if livestream:) Listening & Checking for clipping: [] Do not adjust 8PreX preamps
+  [] Logic mix gain can be changed, if necessary [] ATEM Extreme ISO input recording
+  level can be changed, if necessary. (mic gain level)
+
+Prepare Real Livestream
+(if livestream:) Vimeo: [] Redo steps as before, but change the password to the
+  password in Rec Gigs 21_22 "PA or Live Sound Service" column
+
+Lobby & Hall:
+Program: [] Get program [] Ask about changes [] Ask about encore
+  There are often physical printed programs and a QR code you can scan to open the
+  program.
+  Ask (the recital manager? the performer?) if there are any changes to the program.
+  Sometimes there are changes: a piece being omitted, or the order rearranged.
+  Sometimes there's an encore: an additional piece that isn't listed on the program.
+  If there are any files, be sure to get (1) title and (2) composer (and arranger,
+  if applicable).
+
+Voice of God: [] Audio check [] Reset as "1 push" for recital manager
+  Turn on the audio rack; make sure both the rack and the Mackie mixer are on. The
+  voice of god is in the "Numark" CD Player — press play to check audio levels. Use
+  the track knob to go to the beginning of Track 1 (the pre-show announcement) and
+  leave it set this way for the recital manager to play.
+
+Lobby Feed After doors Open: [] Hallway Audio [] Hallway TV camera
+  Once the doors open and the audience starts to enter, tap the CRESTRON controller
+  to view the touchscreen. Select "Salmon" for Hallway Audio and "Camera" for Hallway
+  TV. Sometimes the recital managers will come up to BH 209 and ask for these.
+  The lobby can be viewed using MON 2.
+
+Show:
+Start recording 3 minutes early:
+  ATEM HyperDeck: INSTRUCTIONS COMING
+  Backup wide: press red record button to the left of the viewfinder on the AX100
+  Logic: make sure all tracks are armed (the R is red) and input monitoring is on
+    (the I is yellow), then press record
+  H4n: press the record button and make sure the numbers begin moving
+  ATEM Extreme (multicam): press REC button in the top right corner and check the
+    monitor to make sure it is recording
+  GH5 (multicam): press the record button on the right (near the front) of the camera
+
+Monitor recording statuses:
+  Ensure all systems are still recording often, and that there is enough space
+  remaining on all storage devices.
+  (multicam) Occasionally adjust multicam view (or follow soloists).
+  (multicam) Use the ATEM Extreme switcher for program feed, variety of angles in
+  the main feed.
+
+Live stream monitoring: [] Watch & listen on a separate machine.
+
+Intermission:
+[] Pause all recordings — pause all recording devices as close together as possible.
+   If needed, replace SSD or SD cards if there is not enough space for the second half.
+[] Start all recordings again 3 minutes early.
+
+Post-Show:
+Power Down
+[] Check all gear that you turned on, and turn it back off
+[] Don't turn off things that aren't supposed to be turned off
+
+Data Transfer & Transcoding in BOTH Post and Backup drives:
+[] Create concert folder using YYMMDD filename
+   File > New Folder > Filename: YYMMDD [Concert Name] (ex. 220117 TCO)
+   In the backup drives add BAK after the concert name (ex. 220117 TCO BAK).
+   Create e/edited and r/raw folders inside the concert folder.
+[] Copy files from SD cards into new folders titled "from [SD CARD NAME]"
+   In the r/raw folder create a folder titled "from [SD CARD NAME]"
+   (ex. from ChapMus128G) for each SD or SSD used in the recording.
+
+Clean-up:
+[] Turn off Lobby Feed — set CRESTRON controller: select "Signage" for Hallway TV,
+   select "OFF" for Hallway Audio
+[] Remove and put away any gear from Salmon — if the gig used any gear (mic stands,
+   mics, cables, monitors, etc.) clean it up and return it to where it came from
+   (BH 208/209, instrument checkout room, etc.)
+[] Turn off audio and video equipment — ATEM Master power, backup battery, individual
+   cameras, etc.
+[] Leave BH 208/209 as tidy as possible and turn off lights
+
+Day after:
+[] Complete data transfer (if not completed day of). SD cards may have been moved to
+   a used SD card sleeve.
+[] Delete files from SD cards using "Triplets Triple Triple Checked" procedure.
+   Clean SD cards so the next gig will have enough.
+Handbrake ProRes 4K to h.265: as in the checklist above.
+
+Weeks after:
+[] Keep Microsoft Planner task updated — use tasks.office.com to move the gig from
+   one bucket to another to show progress in post production.
+
+Within 1 week:
+  Uploaded to Google Drive: [] Full concert single cam mixed edited video
+    [] Audio Only file
+  Within one week of the concert, upload a single cam mixed edited video of the gig.
+  This is uploaded into the Chapman Music Recording Archives on Google Drive.
+  Choose the correct time period, and create a folder with the conventional filename
+  (YYMMDD [Concert Name]). Upload the full concert video and audio only files.
+  [] Email music recordings to confirm completion
+
+Within 3 weeks:
+  Uploaded to Google Drive: [] Individual mixed edited video files [] Audio Only files
+  This can be done using transplitting — see procedure 4a.
+  Best Practice for naming: ## [Piece Name] [Take # (if applicable)]
+    (ex. 01 Moonlight Sonata) or (ex. 03 Rhapsody in Blue Take 2)
+  In the correct folder create subfolders for Individual Video and Individual Audio
+  Only, and upload corresponding files.
+  [] Email music recordings to confirm completion
+  [] Upload all files to Post drive — if edited from a home computer, upload all post
+     files and materials into the e/edited folder of the post drive. If edited in
+     BH 208/209, render to the e/edit folder.
+  [] Upload all files to Panopto. You may need to manually change the order.
