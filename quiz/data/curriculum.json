@@ -5,7 +5,7 @@
   "quiz_version": "2026-09-21",
   "access_codes": {
     "1": "phantompower",
-    "2": ["exposuretriangle", "phantompower"]
+    "2": "exposuretriangle"
   },
   "targets": {
     "total_questions": 20,

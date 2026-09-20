@@ -4,10 +4,10 @@ Working notes for picking this thread back up. Not student-facing.
 
 ## Quiz 2 is live (Sept 20, 2026)
 
-`curriculum.json` is set to **Quiz 2**, version `2026-09-21`, announcing **`exposuretriangle`**
-and still accepting `phantompower` so nobody is locked out over the old code. Verified end to
-end in a browser: the gate, the carried-over code, a `?code=` link, a Quiz 1 code pasted into
-Quiz 2, the no-code fallback, a full 20-question run, and the instructor verify page scoring the
+`curriculum.json` is set to **Quiz 2**, version `2026-09-21`. One code per quiz:
+`phantompower` is Quiz 1's, `exposuretriangle` is Quiz 2's, and Quiz 1's no longer opens Quiz 2.
+Verified end to end in a browser: the gate, a `?code=` link, a Quiz 1 code pasted into Quiz 2,
+the no-code fallback, a full 20-question run, and the instructor verify page scoring the
 resulting code and carrying the learner ID forward.
 
 **It still runs the Quiz 1 way.** None of the timing or capture design is built — see the
@@ -141,10 +141,9 @@ which is fine — but four fields in `data/curriculum.json` have to move:
 - `quiz_number` — **not optional.** Saved attempts and the access-code unlock are both keyed to
   it. Leave it at 1 and a returning student opens straight onto their Quiz 1 results screen
   instead of a new quiz, and never gets asked for the new code.
-- `access_codes` — **now keyed by quiz number**, and an entry may be one code or a list, where
-  the first is the one announced in class and the rest are deliberate carry-overs. Replaces the
-  single `access_code` field, so bumping `quiz_number` without issuing a new code is no longer a
-  silent failure: the quiz refuses to open and says so on screen.
+- `access_codes` — **now keyed by quiz number**, one code each. Replaces the single
+  `access_code` field, so bumping `quiz_number` without issuing a new code is no longer a silent
+  failure: the quiz refuses to open and says so on screen.
 - `quiz_label`, `quiz_version` — keep them honest.
 
 **`npm test` now enforces all of this.** Three pre-flight tests fail on a missing access code for

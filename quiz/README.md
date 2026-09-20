@@ -32,15 +32,13 @@ All of it lives in `data/curriculum.json`:
    "quiz_number": 2,
    "access_codes": {
      "1": "phantompower",
-     "2": ["exposuretriangle", "phantompower"]
+     "2": "exposuretriangle"
    }
    ```
 
-   The quiz reads the entry matching its own `quiz_number`, so bumping the number without issuing a new code can’t silently leave last week’s code working. If the current quiz number has no entry at all, the quiz refuses to open and says so on screen rather than letting a class in on a stale code.
+   One code per quiz. The quiz reads the entry matching its own `quiz_number`, so bumping the number without issuing a new code can’t silently leave last week’s code working. If the current quiz number has no entry at all, the quiz refuses to open and says so on screen rather than letting a class in on a stale code.
 
-   An entry can be **one code or a list**. The first is the one you announce in class; any others are deliberate carry-overs, for a week when an older code is still on the board and nobody should be locked out over it. Quiz 2 above announces `exposuretriangle` and still accepts `phantompower`.
-
-   `npm test` fails on a missing entry, an announced code repeated from another quiz (the sign an entry was copied forward and never changed), a carry-over that no earlier quiz ever used (a typo), and a `quiz_label` or `quiz_version` that has fallen out of step with `quiz_number` — which is the point at which you actually want to find out.
+   `npm test` fails on a missing entry, a code reused between two quizzes (the sign an entry was copied forward and never changed), and a `quiz_label` or `quiz_version` that has fallen out of step with `quiz_number` — which is the point at which you actually want to find out.
 
    Codes are matched with case and spaces ignored (`"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Set a quiz’s entry to `""` to run that week with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
 3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.

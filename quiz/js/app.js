@@ -59,37 +59,33 @@ async function loadJson(path) {
 // keeps the quiz from being stumbled into; don't rely on it for anything more.
 const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
 
-// Each quiz gets its own code, keyed by quiz number. Bumping quiz_number without
-// issuing a new code used to silently leave last week's code working; now the
-// quiz has no code at all and says so, and `npm test` catches it days earlier.
-//
-// An entry may be one code or a list. The first is the one announced in class;
-// any extra is a deliberate carry-over, for a week when last term's code is
-// still on the board and nobody should be locked out over it.
+// One code per quiz, keyed by quiz number. Bumping quiz_number without issuing a
+// new code used to silently leave last week's code working; now the quiz has no
+// code at all and says so, and `npm test` catches it days earlier.
 //
 // Returns { ok: false } when this quiz number has no entry at all, and an empty
-// list when the week is deliberately open to anyone with the link.
-function codesFor(curriculum) {
+// code when the week is deliberately open to anyone with the link.
+function codeFor(curriculum) {
   const table = curriculum.access_codes;
   const key = String(curriculum.quiz_number);
   const raw = table
     ? (Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined)
     : curriculum.access_code ?? '';
-  if (raw === undefined) return { ok: false, codes: [] };
-  return { ok: true, codes: (Array.isArray(raw) ? raw : [raw]).map(normalizeCode).filter(Boolean) };
+  if (raw === undefined) return { ok: false, code: '' };
+  return { ok: true, code: normalizeCode(raw) };
 }
 
 function isUnlocked(curriculum) {
-  const { ok, codes } = codesFor(curriculum);
+  const { ok, code } = codeFor(curriculum);
   if (!ok) return false;
-  if (!codes.length) return true;
+  if (!code) return true;
   const fromUrl = normalizeCode(params.get('code'));
-  if (fromUrl && codes.includes(fromUrl)) {
+  if (fromUrl && fromUrl === code) {
     storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: fromUrl });
     return true;
   }
   const unlocked = storage.read(UNLOCK_KEY);
-  return unlocked?.quiz === curriculum.quiz_number && codes.includes(normalizeCode(unlocked.code));
+  return unlocked?.quiz === curriculum.quiz_number && normalizeCode(unlocked.code) === code;
 }
 
 // Loud on purpose. A student seeing this is the signal that the week's setup was
@@ -117,7 +113,7 @@ function renderGate() {
     </section>`, { focus: '#access-code' });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
-    if (codesFor(data.curriculum).codes.includes(normalizeCode(input.value))) {
+    if (normalizeCode(input.value) === codeFor(data.curriculum).code) {
       storage.write(UNLOCK_KEY, { quiz: data.curriculum.quiz_number, code: normalizeCode(input.value) });
       afterUnlock();
     } else {
@@ -150,7 +146,7 @@ async function init() {
   document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
   document.title = `${curriculum.quiz_label} · MUS 248`;
 
-  if (!codesFor(curriculum).ok) return renderNoCodeSet(curriculum);
+  if (!codeFor(curriculum).ok) return renderNoCodeSet(curriculum);
   if (!isUnlocked(curriculum)) return renderGate();
   afterUnlock();
 }

@@ -25,7 +25,8 @@ async function loadActivity() {
   // The worksheet is generated from this same Markdown file, so it exists exactly
   // when in-app instructions do.
   const worksheet = activity.contentFile
-    ? '<p class="worksheet-cue"><a class="primary-link" href="worksheet/">Printable worksheet <span aria-hidden="true">→</span></a><span class="quiet"> — the page to write on while you work.</span></p>'
+    ? `<p class="worksheet-cue"><a class="worksheet-cta" href="worksheet/"><span aria-hidden="true">🖨️</span> Print the worksheet</a>
+       <span class="quiet">The page to write on while you work — checkpoints, key terms, and this activity's questions.</span></p>`
     : '';
 
   const afterActivity = semester.afterActivity;
