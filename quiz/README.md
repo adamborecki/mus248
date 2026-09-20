@@ -6,8 +6,11 @@ A static, front-end-only weekly quiz at `/mus248/quiz/`. No backend, accounts, d
 
 Study cards have their own page, `/mus248/study/` (source in `../study/`), and the quiz links to it. Cards live in `data/study-deck.json`, each with a `category` (topic chips on the page) and a `skill`; a card shows whenever its skill isn’t `inactive` in the curriculum, tagged Core or Practice to match. Students see Core and Practice cards together by default and can switch to Core only or Practice only (topic chips then show just the topics that have cards at that level). They flip, go Previous/Next (buttons, arrow keys, or swipe), shuffle, or read them as a list. Study cards are not access-gated. The quiz itself:
 
-1. **If `curriculum.json` sets an `access_code`,** the quiz asks for it before anything else. A student who has the right code for this quiz number stays unlocked on that device, so they only enter it once.
+1. **If `curriculum.json` gives this quiz number an access code,** the quiz asks for it before anything else. A student who has the right code for this quiz number stays unlocked on that device, so they only enter it once. Last week's code never opens this week's quiz.
 2. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
+   - Pasting the whole Canvas submission is fine; the code is found inside it. Any *earlier* quiz's code works, not just last week's, so a student who missed one week can still use the one before it. A code from the current quiz or a later one is refused.
+   - **I don’t have it** is a full, unpenalised path — a student who missed class, lost the code, or is on a new device just self-reports their activity counts and takes the quiz. They lose only the adaptive follow-up on skills they previously missed; the quiz is scored out of the same points either way.
+   - A finished code is also kept on the device, so next week the quiz offers **Use it** without any pasting.
 3. Say how many times they’ve done each activity: 0, 1, 2, or 3+.
 4. Answer ~20 questions, each worth the same fraction of the quiz’s total points (`target_total_points ÷ total_questions` — 10 ÷ 20 = 0.5 apiece right now). Each shows a badge first and an explanation after:
    - 🟢 **Core — graded**: full credit for that question if correct.
@@ -23,7 +26,16 @@ Progress is saved in the browser, so a refresh or accidental close offers **Resu
 All of it lives in `data/curriculum.json`:
 
 1. Bump `quiz_number`, `quiz_label`, and `quiz_version`.
-2. Set `access_code` to whatever you’re announcing in class that week (any case, spaces ignored — `"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Leave it out, or set it to `""`, to run the quiz with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
+2. Add this week’s code to `access_codes`, keyed by the quiz number:
+
+   ```json
+   "quiz_number": 2,
+   "access_codes": { "1": "phantompower", "2": "ortf" }
+   ```
+
+   One code per quiz, and the quiz reads the one matching its own `quiz_number` — so bumping the number without issuing a new code can’t silently leave last week’s code working. If the current quiz number has no entry, the quiz refuses to open and says so on screen rather than letting a class in on a stale code. `npm test` fails on a missing entry, a reused code, and a `quiz_label` that no longer matches `quiz_number`, which is the point at which you actually want to find out.
+
+   Codes are matched with case and spaces ignored (`"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Set a quiz’s entry to `""` to run that week with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
 3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
 4. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
 

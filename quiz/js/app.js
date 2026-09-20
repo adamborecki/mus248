@@ -59,9 +59,24 @@ async function loadJson(path) {
 // keeps the quiz from being stumbled into; don't rely on it for anything more.
 const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
 
+// Each quiz gets its own code, keyed by quiz number. Bumping quiz_number without
+// issuing a new code used to silently leave last week's code working; now the
+// quiz has no code at all and says so, and `npm test` catches it days earlier.
+// Returns { ok: false } when this quiz number has no entry, an empty code when
+// the week is deliberately open, and a legacy single access_code if one is set.
+function codeFor(curriculum) {
+  const codes = curriculum.access_codes;
+  if (!codes) return { ok: true, code: curriculum.access_code ?? '' };
+  const key = String(curriculum.quiz_number);
+  if (!Object.prototype.hasOwnProperty.call(codes, key)) return { ok: false, code: '' };
+  return { ok: true, code: codes[key] ?? '' };
+}
+
 function isUnlocked(curriculum) {
-  if (!curriculum.access_code) return true;
-  const wanted = normalizeCode(curriculum.access_code);
+  const { ok, code } = codeFor(curriculum);
+  if (!ok) return false;
+  if (!code) return true;
+  const wanted = normalizeCode(code);
   const fromUrl = normalizeCode(params.get('code'));
   if (fromUrl && fromUrl === wanted) {
     storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: wanted });
@@ -69,6 +84,19 @@ function isUnlocked(curriculum) {
   }
   const unlocked = storage.read(UNLOCK_KEY);
   return unlocked?.quiz === curriculum.quiz_number && normalizeCode(unlocked.code) === wanted;
+}
+
+// Loud on purpose. A student seeing this is the signal that the week's setup was
+// missed — far better than a class quietly taking the wrong quiz.
+function renderNoCodeSet(curriculum) {
+  show(`
+    <section class="step">
+      <h2 tabindex="-1">This quiz isn’t open yet</h2>
+      <p>${escapeHtml(curriculum.quiz_label)} has not been given an access code, so it can’t be started.</p>
+      <p class="quiet">Tell your instructor you saw this — they’ll know what it means. Nothing is wrong on your end,
+        and nothing you do here counts against you.</p>
+      <p class="quiet small">In the meantime the <a href="../study/">study cards</a> are always open.</p>
+    </section>`);
 }
 
 function renderGate() {
@@ -83,7 +111,7 @@ function renderGate() {
     </section>`, { focus: '#access-code' });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
-    if (normalizeCode(input.value) === normalizeCode(data.curriculum.access_code)) {
+    if (normalizeCode(input.value) === normalizeCode(codeFor(data.curriculum).code)) {
       storage.write(UNLOCK_KEY, { quiz: data.curriculum.quiz_number, code: normalizeCode(input.value) });
       afterUnlock();
     } else {
@@ -116,6 +144,7 @@ async function init() {
   document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
   document.title = `${curriculum.quiz_label} · MUS 248`;
 
+  if (!codeFor(curriculum).ok) return renderNoCodeSet(curriculum);
   if (!isUnlocked(curriculum)) return renderGate();
   afterUnlock();
 }

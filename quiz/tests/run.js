@@ -32,6 +32,41 @@ const attemptFor = ({ selection, answers, activities = {}, prior = null, quiz = 
   quiz, quizVersion: 'test', learnerId: 'TEST01', seed: 'seed', activities, prior, selection, answers,
 });
 
+// ---------- Pre-flight: the things that must move before a quiz runs ----------
+// These used to be a checklist in NEXT.md. A checklist gets skipped at 7:50am;
+// a failing test does not.
+
+test('every quiz that has run has its own access code', () => {
+  const codes = curriculum.access_codes;
+  assert.ok(codes && typeof codes === 'object', 'curriculum.json needs an access_codes map, keyed by quiz number');
+  assert.equal(curriculum.access_code, undefined,
+    'access_code is superseded by access_codes — keeping both invites them to disagree');
+  for (let quiz = 1; quiz <= curriculum.quiz_number; quiz += 1) {
+    const code = codes[String(quiz)];
+    assert.ok(code !== undefined, `no access code for Quiz ${quiz} — add access_codes["${quiz}"]`);
+    assert.equal(typeof code, 'string', `Quiz ${quiz}'s access code must be a string ("" means no code that week)`);
+  }
+});
+
+test('no two quizzes share an access code', () => {
+  const normalize = (value) => value.trim().toLowerCase().replace(/\s+/g, '');
+  const seen = new Map();
+  Object.entries(curriculum.access_codes)
+    .filter(([, value]) => normalize(value))
+    .forEach(([quiz, value]) => {
+      const key = normalize(value);
+      assert.ok(!seen.has(key), `Quiz ${quiz} reuses Quiz ${seen.get(key)}'s access code — last week's code would open this week's quiz`);
+      seen.set(key, quiz);
+    });
+});
+
+test('quiz_label and quiz_version keep up with quiz_number', () => {
+  assert.match(curriculum.quiz_label, new RegExp(`\\b${curriculum.quiz_number}\\b`),
+    `quiz_label is "${curriculum.quiz_label}" but quiz_number is ${curriculum.quiz_number}`);
+  assert.match(curriculum.quiz_version, /^\d{4}-\d{2}-\d{2}$/,
+    `quiz_version should be the date this quiz runs, got "${curriculum.quiz_version}"`);
+});
+
 // ---------- Data files ----------
 
 test('question bank is well-formed', () => {

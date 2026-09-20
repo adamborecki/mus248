@@ -127,10 +127,25 @@ exactly as it did for Quiz 1. If a quiz runs before that work lands, it runs the
 which is fine — but four fields in `data/curriculum.json` have to move:
 
 - `quiz_number` — **not optional.** Saved attempts and the access-code unlock are both keyed to
-  it (`app.js` lines 102 and 71). Leave it at 1 and a returning student opens straight onto their
-  Quiz 1 results screen instead of a new quiz, and never gets asked for the new code.
-- `quiz_label`, `quiz_version` — cosmetic, but keep them honest.
-- `access_code` — currently `phantompower`. A new code per week is the whole point.
+  it. Leave it at 1 and a returning student opens straight onto their Quiz 1 results screen
+  instead of a new quiz, and never gets asked for the new code.
+- `access_codes` — **now keyed by quiz number**, e.g. `{"1": "phantompower", "2": "ortf"}`.
+  Replaces the single `access_code` field, so bumping `quiz_number` without issuing a new code
+  is no longer a silent failure: the quiz refuses to open and says so on screen.
+- `quiz_label`, `quiz_version` — keep them honest.
+
+**`npm test` now enforces all of this.** Three pre-flight tests fail on a missing access code for
+the current quiz number, a code reused between quizzes, and a `quiz_label` or `quiz_version` that
+has fallen out of step. The checklist below is still worth reading, but it is no longer the only
+thing standing between a forgotten field and a live class.
+
+**The previous-quiz flow is built and verified**, contrary to the timing/capture work, which is
+not. From Quiz 2 on, students choose "I have my code" or "I don't have it". Pasting a whole
+Canvas submission works, any *earlier* quiz's code is accepted (not just last week's), a saved
+code from the same device is offered with one tap, and truncated or tampered codes are rejected
+with a specific message. **"I don't have it" is a complete, unpenalised path** — a student who
+missed class self-reports their activity counts and takes the same quiz for the same points,
+losing only the adaptive follow-up on skills they previously missed.
 
 Worth doing at the same time, both still pending:
 
