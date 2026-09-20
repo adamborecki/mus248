@@ -106,13 +106,62 @@ Two of the three need equipment facts that aren't in this repo. Per the activity
 rule, uncertain gear details get verified before they become student instructions rather than
 guessed at — especially port labels, mounting threads, and where recordings are written.
 
+## Parsing — verified against the real files
+
+Checked, not assumed. These are the patterns the generator can rely on:
+
+**Questions** — a bolded marker, the type in parentheses, then the prompt on one line:
+```
+**Q2 (multiple choice).** Your shot is one stop too dark ...
+
+- a) 4 dB
+- b) 6 dB
+```
+Types seen in the wild: `(multiple choice)` and `(fill in the blank)`. Options follow as a
+blank line, then `- a)` / `- b)` / `- c)` / `- d)` items, ending at the next blank line.
+Fill-in-the-blank questions have no option list; the blanks are runs of underscores inside the
+prompt text (`F______ · ______ dB`), which should print as writable rules on paper.
+
+**Checkpoints** — two shapes, both need handling:
+```
+🚩 **Checkpoint.** You should now see a live picture ...
+> 🚩 You will set the house default twice ...
+```
+The second is inside a blockquote. Strip the leading `>` and the bold `**Checkpoint.**` label,
+keep the sentence, render as `☐`.
+
+**Correct answers are not marked anywhere yet.** No file records which option is right, so the
+answer key can't be generated until a convention is added — `- ✅ c) 9 dB` on the correct option
+is the recommendation, hidden from the student render. That decision is still open.
+
 ## Scope reality for Monday
 
 Three redesigns plus the generator is a lot for two days, and the redesigns are the expensive
-part — the generator is cheap once an activity is structured. A safe order:
+part — the generator is cheap once an activity is structured. **Confirmed order:**
 
 1. **Generator + print stylesheet**, proven against the seven already-migrated activities. This
-   is what makes "worksheets" a feature rather than one document.
-2. **X32 Compact**, drafted from the imported source — no waiting on anyone.
-3. **Portable Cameras + BH 209**, as soon as the room's camera details land.
+   is what makes "worksheets" a feature rather than one document. **Start here.**
+2. **Portable Cameras + BH 209** — the instructor's priority, because more camera options
+   unblocks the most students. Needs the room details below.
+3. **X32 Compact**, drafted from the imported source — no waiting on anyone, so it's the useful
+   fallback whenever BH 209 details haven't landed.
 4. **Stereo Recording**, last: it adds the most new equipment and carries the most unknowns.
+
+## Still needed from the instructor
+
+Neither of these is in the repo, and the activity template's own rule says gear details get
+verified rather than guessed before they become student instructions.
+
+**BH 209 (Salmon Recital Hall), for Cameras and later Stereo:**
+- What cameras are installed, and how does a student operate them — touch panel, web page,
+  software, a physical controller?
+- Where does footage land: internal storage, a drive, a network share?
+- What is the built-in audio recording system, and is it tied to the cameras or separate?
+- Does any of it need a login or a key?
+- Photos of the control surfaces would answer most of this faster than prose.
+
+**Recorder models, for Stereo:**
+- Which 32-bit-float Zoom — described as "no gain to set, mounts on 3/8-inch." Likely the F3
+  (two XLR, no gain knobs), an M4 MicTrak (built-in XY, stand-mounting), or an *essential*
+  model. The exact one matters because the procedure differs.
+- Is the F8 with KM 184s confirmed, or does the stereo pair depend on what's free that day?
