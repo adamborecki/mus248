@@ -115,6 +115,26 @@ that work depends on is already in place: all eight activities have their instru
 repo, and the migrated `.md` files already carry the 🚩 checkpoints and `**Qn (type).**`
 markers a generated worksheet needs.
 
+## Before running the next quiz — read this first
+
+**Nothing in the timing or capture design is built yet.** `expected_minutes`, `window_minutes`,
+wrong-answer capture, and the feedback box appear nowhere in `js/`. The live quiz still behaves
+exactly as it did for Quiz 1. If a quiz runs before that work lands, it runs the Quiz 1 way,
+which is fine — but four fields in `data/curriculum.json` have to move:
+
+- `quiz_number` — **not optional.** Saved attempts and the access-code unlock are both keyed to
+  it (`app.js` lines 102 and 71). Leave it at 1 and a returning student opens straight onto their
+  Quiz 1 results screen instead of a new quiz, and never gets asked for the new code.
+- `quiz_label`, `quiz_version` — cosmetic, but keep them honest.
+- `access_code` — currently `phantompower`. A new code per week is the whole point.
+
+Worth doing at the same time, both still pending:
+
+- Promote the skills that hit 100% in Quiz 1 (`active_passive`, `safe_power_order`, the camera
+  basics) from `practice` to `core` if they should be graded.
+- Rewrite the mains vs. monitors questions around stage monitors/wedges — 4 of 11 students
+  missed those, most likely because "monitors" reads as studio monitors.
+
 ## Recommended sequence
 
 1. **Measurement and capture.** Fix the core skill set, capture which wrong answer was picked,
