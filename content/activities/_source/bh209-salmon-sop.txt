@@ -2,6 +2,17 @@ BH 208 / 209 SOP — Salmon Checklist & S.O.P. — 2025
 Last Modified Sep 16, 2025
 Imported verbatim September 2026.
 
+KNOWN STALE. The instructor confirmed in September 2026 that parts of this have
+already changed. Do not follow the audio steps without checking:
+  - the multitrack front end is now a ZOOM F8, not the MOTU 8PreX described here,
+    so the preamp positions, I/O settings and buffer notes are all suspect
+  - the stereo handheld is probably a ZOOM H6, not the H4n named here (unconfirmed)
+  - "the computer in the room" is ambiguous: BH 208/209 holds several Macs
+  - the AX100 lives in BH 208/209 storage and is carried down to the hall per gig
+  - gain and f-stop are preset because the hall's lighting is constant; a rare
+    low-light piece is a real exception, and the engineer is expected to deviate
+    knowingly and put it back
+
 REDACTIONS. This repo is public. Three things were removed from the text below and
 replaced with a bracketed marker; everything else is as the instructor wrote it.
 Ask the instructor for any of them.

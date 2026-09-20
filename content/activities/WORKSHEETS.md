@@ -28,7 +28,7 @@ Shipped and proven against all seven migrated activities:
 Static, no build step, same as the rest of the site. The activity page and the worksheet run
 through **one** parser, so they cannot disagree about what the source file says.
 
-Current yield: **7 worksheets · 31 checkpoints · 33 questions · 32 key terms.** Longest
+Current yield: **8 worksheets · 38 checkpoints · 37 questions · 43 key terms.** Longest
 (Portable Cameras) prints at just under two pages; lightest (Dante Walkie-Talkie — Advanced)
 fits on one with room to spare.
 
@@ -86,7 +86,13 @@ from the checker, not from reading.
 Chosen by what students most need to learn, not by what's easiest to generate. All three point
 at the same real job: recording a recital in BH 209 (Salmon Recital Hall).
 
-**1. Portable Cameras — add the BH 209 built-in cameras.** *Partly done.* The activity now
+**1. Portable Cameras — add the BH 209 built-in cameras.** **Done, then split.** The BH 209
+material grew past what belonged in a camera activity, so on the instructor's call it became its
+own activity, **Salmon Recital Hall** (`salmon-sop.md`), built from the room's checklist and
+S.O.P. Portable Cameras is back to the three handhelds, and now says plainly that the AX100 drill
+*is* the backup-wide job rather than practice for it. Original note follows.
+
+*Previously:* The activity now
 covers the three handhelds plus an orientation to the hall's installed cameras. What the
 instructor confirmed in September 2026 is written in: they are **AJA RovoCam**, driven from
 **software on a computer in the room**; recording lands on an **SD card in a Blackmagic

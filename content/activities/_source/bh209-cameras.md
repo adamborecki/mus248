@@ -1,5 +1,28 @@
 # BH 209 (Salmon Recital Hall) — camera and audio intake
 
+> **Superseded in part.** This began as intake for a BH 209 section inside the Portable Cameras
+> activity. That section is now its own activity, `salmon-sop.md` — the instructor's call, and the
+> right one: a production-room run has nothing in common with a drill on cabinet cameras. What
+> stays here is the equipment research; the teaching decisions moved to that file.
+
+## Corrections from the instructor, September 2026
+
+- **The multitrack recorder is now a Zoom F8**, not the MOTU 8PreX the SOP describes. This is the
+  single biggest stale fact in the source, and it invalidates the preamp positions, the Logic I/O
+  settings, and possibly the Salmon Concert Template. The new activity deliberately gives **no**
+  audio steps until this is rewritten.
+- **The stereo handheld is probably a Zoom H6**, not the H4n. Unconfirmed. Still does not pin down
+  the 32-bit-float model that Stereo Recording (target 3) needs.
+- **There are several Macs in BH 208/209.** "The computer in the room" is not an instruction. This
+  also explains the Dante question below: the livestream/Dante machine and the Logic machine are
+  probably different boxes, not a contradiction in the SOP.
+- **The AX100 lives in BH 208/209 storage** with the other cameras and is carried down to the hall
+  for each gig. It is not installed.
+- **Gain and f-stop are preset because the hall's lighting is constant**, not because the controls
+  are forbidden. A low-light piece is rare but real, and then the engineer is expected to deviate
+  knowingly and put it back. Written into the new activity as the reason the stops drill matters.
+- **American spellings**: center, not centre.
+
 Working notes, not student-facing. This is the landing spot for the room's existing
 documentation, which is still outside the repo.
 

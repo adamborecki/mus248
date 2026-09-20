@@ -8,7 +8,7 @@ status: In Development
 estimatedTime: "25–35 minutes per camera"
 access:
   mode: On campus
-  location: "Handhelds live in BH 208; the installed cameras are in BH 209 (Salmon Recital Hall). Shoot anywhere with steady light; you also need a computer that can read an SD card."
+  location: "Cameras live in BH 208/209 storage. Shoot anywhere with steady light; you also need a computer that can read an SD card."
   supervision: "None required once you know where the cabinet is."
 groupSize:
   minimum: 1
@@ -40,7 +40,7 @@ A student recording engineer has to do two things quickly on **any** body, witho
 
 This activity is that drill, repeated on three different cameras so the skill sticks to you rather than to one specific camera.
 
-The same job also gets done by cameras you do **not** carry. BH 209 (Salmon Recital Hall) has its own cameras installed in the room, driven from software rather than from buttons on a body. Part 1 ends with an orientation to those, because the recital you are eventually recording happens in that hall.
+This is also not a toy exercise. The **AX100 you drill on here is the same camera that gets carried down to Salmon Recital Hall for every gig** and runs as the backup wide — the independent second recording that catches the concert if the main chain fails. Running a recital in that hall is its own activity, **Salmon Recital Hall**; this one is where you earn the right to.
 
 ## 🎯 What you'll practice
 
@@ -49,7 +49,6 @@ By the end of this activity, you should be able to:
 - 📷 Set iris, gain/ISO, shutter, white balance, and focus to a known baseline on the G50, the GH5, and the AX100 — starting from whatever state you found them in.
 - 🎬 Demonstrate on video what each of those five settings does to the picture, and say how big each change was in **stops**.
 - 💾 Verify your recorded files on a computer and return the camera to the baseline before you put it away.
-- 🏛️ Describe how BH 209's installed cameras differ from a camera you carry — what drives them, and where their recording lands.
 
 ## 🗝️ Key terms
 
@@ -60,8 +59,6 @@ By the end of this activity, you should be able to:
 **Estimated time:** 25–35 minutes per camera. About 75–110 minutes for all three. You do not have to do all three in one sitting — finish one camera completely, put it away, and come back.
 
 **Where:** The G50 and GH5 live in the white cabinet in **BH 208**. The AX100 lives in the **Standard Gear Kit** (the red backpack) in the same cabinet. You can shoot anywhere with steady light, but you need a computer that reads SD cards before you finish.
-
-**BH 209 (Salmon Recital Hall)** is the other room in this activity. Its cameras are installed in the hall and are not taken anywhere. The door is on a **key code** — most students in this course already have it. If yours does not work, ask rather than propping the door.
 
 **Access:** Can be completed independently on campus. No instructor or TA supervision required once you know where the cabinet is. It cannot be done off campus.
 
@@ -87,7 +84,6 @@ Gather all of this **before** you start. If something is missing, you want to kn
 - [ ] A shooting spot with **something near and something far** in frame — you need both to see depth of field change
 - [ ] Steady, unchanging light. Do not do this next to a window with clouds moving past.
 - [ ] This page on your phone
-- [ ] For the BH 209 orientation only: the door key code, and a fast SD card if you are going to record
 
 ## ⚠️ Safety and handling — read this before you touch anything
 
@@ -99,7 +95,7 @@ You are encouraged to experiment with settings. You are **not** meant to discove
 - 🎒 **Do not force the G50 lens cover switch** or any card door. If something will not move, it is in the wrong position or the door is latched — stop and look.
 - 📼 **Do not reformat the SD card.** There may be somebody else's files on it.
 - 🧭 **Change only the five settings in this activity.** These cameras are shared. A stray menu change that you cannot undo costs the next person their shoot.
-- 🛑 **BH 209 is different from all of the above.** Everything in this activity's "experiment freely" spirit applies to the handhelds only. The production desk in BH 209 is configured for live recitals — there you change only what a procedure tells you to, and you put it back. See the BH 209 section in Part 1.
+- 🛑 **This freedom stops at the door of a production room.** Everything above applies to the cameras in storage. The desk in BH 208/209 is configured for live recitals — there you change only what a procedure names, and you put it back. See the **Salmon Recital Hall** activity.
 
 ## 🎚️ The house default
 
@@ -210,109 +206,6 @@ The GH5 displays **ISO**, not dB. Its house default is **ISO 400**.
 | Shutter | Tap **Shutter Speed**, then adjust with the same ring |
 | White balance | **White Balance** hardware button on the side of the camcorder → **Color Temp** → dial the K value |
 
-### BH 209 — the cameras already in the hall
-
-**Where they live:** installed in **BH 209, Salmon Recital Hall**, and driven from the production
-desk. You do not sign these out and you do not carry them. The door is on a key code.
-
-> 🛑 **BH 209 is a production room, not a practice room. The rule here is the opposite of the rest
-> of this activity.** On the handhelds you are *encouraged* to push settings around and see what
-> breaks — that is the whole drill, and the next person gets a camera you reset. In BH 209 you
-> touch only what the procedure tells you to touch, and **everything goes back exactly as you
-> found it.** This desk is patched, routed, and levelled for live recitals that are streaming to
-> an audience; a stray preset or a moved slider is not your experiment, it is somebody's concert.
-> If you are unsure whether you are allowed to change something, the answer is no.
-
-This is the orientation, not the drill. Read it so the room is not unfamiliar the first time you
-have to work in it.
-
-| | BH 209's installed cameras |
-|---|---|
-| The cameras | **AJA RovoCam** — fixed installed cameras, not camcorders. **Two of them, and in practice that is the whole shoot:** one locked-off wide, and a second for an alternate angle. The switcher has eight camera inputs, but a recital here is not an eight-camera production. |
-| How you drive them | **AJA RovoControl**, an app on the room's Mac (the one named *BH209-LivestreamAndDanteRecord*), plus a physical **Pan/Tilt joystick** on the desk with a **Camera 1 / Camera 2** selector and its own speed control. |
-| Exposure | The controls exist, in units you know: **iris** (f14 → f1.8), **gain** (0 → 33 dB), **shutter**, **focus**, and an **A / S / M / B** mode selector. **You do not touch them.** The room's SOP is explicit: *"Gain and F-stop do not change, only change zoom control at the bottom."* They are set for the hall and they stay set. |
-| What you *do* change | **Zoom**, in RovoControl, and **pan/tilt** on the joystick. That is the job: frame the shot *"as close as possible, but wide enough to have space on the edges while standing to bow."* |
-| Framing aids | Up to **16 saved presets** and an **ePTZ** tab. Presets are part of the room's setup for an event — recall them, don't overwrite them. |
-| Where the recording lands | Through the **Blackmagic ATEM** switchers to a **disk at the desk** — an SSD, or a fast SD card. There are **two record slots**, a main and a spare, and the multiview reads **NO DISK** when nothing is inserted. |
-| Streaming | The same desk streams the program feed to **Vimeo**, with its own on-screen data-rate and cache readout. |
-| Audio | The hall gives you **both**: audio embedded with the video, and a separate Dante recording on that same Mac. |
-| Getting in | A **key code** on the door, which most students in this course already have. |
-
-![The AJA RovoControl window on the room's Mac. Iris, gain, shutter, focus, and zoom, with the A/S/M/B mode selector at the right — here set to M.](media/bh209/rovocontrol.jpg)
-
-**The good news for everything you just practised:** the five settings did not go away, and they
-did not change units. An iris is still an iris and 6 dB is still a stop — you reach them through a
-window on a screen and a joystick instead of a dial under your thumb. What *is* genuinely
-different is that the picture is going somewhere live, and that the card you pull at the end is in
-a rack at the desk rather than in your hand.
-
-![The Pan/Tilt joystick, with its speed knob and the hardware Camera 1 / Camera 2 selector below it.](media/bh209/joystick.jpg)
-
-**Why a locked-off wide is not a lazy choice.** One camera that is correctly exposed, correctly
-white-balanced, in focus, and framed to hold the whole ensemble for forty minutes is worth more
-than four cameras that drift. Everything this activity drills — get to a known baseline, change one
-thing deliberately, know what it cost — is exactly what a static wide demands, because nobody is
-going to rescue the shot later by cutting away from it.
-
-![The multiview. Program and Preview, the camera inputs, the two record slots — reading NO DISK until media is inserted — and the stream status.](media/bh209/multiview.jpg)
-
-#### The AX100 you just practised on is part of this room
-
-This is the part worth knowing before anything else. A recital in Salmon is recorded twice, on
-purpose:
-
-- the **primary centre wide**, which is a RovoCam through the switcher to the HyperDeck, and
-- the **backup centre wide**, which is **an AX100 on a stand, recording to its own 128 GB SD card**.
-
-The backup is deliberately **not** plugged into the switcher — the SOP says *"ensure that the HDMI
-is not plugged into the ATEM Extreme"* — so that one failure cannot take both recordings with it.
-
-Which means the drill you just did on the AX100 is not a warm-up for the real job. It **is** the
-real job, on the camera that catches the concert when the main chain fails. Its settings for the
-hall are:
-
-| AX100 in Salmon | Value |
-|---|---|
-| Iris · gain · shutter | **F4 · 3 dB · 1/60** — the house default, unchanged |
-| White balance | **3800 K, A5 G2**, Soft High Key |
-| Image size | **XAVC S 4K** (Menu → Image Quality/Size) |
-| Power | AC into the front of the camera, **plus a charged battery** as backup |
-| Card | a clean **128 GB** card, not the little ones |
-
-Note the white balance: the house default you memorised is **3200 K**, and Salmon runs
-**3800 K**. That is not a contradiction. The house default is the known state you return a camera
-to so the next person starts somewhere sane; the room number is what that particular hall's lights
-actually need. Knowing the difference between *a baseline* and *a measurement* is the whole skill.
-
-(If a recital ever runs multicam, the GH5s come out too, at **F4 · ISO 400 · 1/30** and
-**3700 K, B4 G/M0**.)
-
-![The production desk. The joystick is centre, the switcher panel to the left, and the recorders are in the rack on the right.](media/bh209/desk.jpg)
-
-#### One button in that room deserves its own warning
-
-The battery backup under the desk powers the iMac. Its own label says it plainly: **holding the
-power button for two seconds enables or disables AC for everything on the battery backup circuit,
-and disabling it kills iMac power.** Mid-concert that is not an inconvenience, it is the recording.
-
-Read labels in this room before you press things. Somebody has already taped down the answer to
-most questions you will have.
-
-![The battery backup, with the warnings taped to it. "Holding power for 2 seconds will enable or disable AC for all devices on battery backup circuit."](media/bh209/battery-backup.jpg)
-
-> 🧪 **The click-by-click procedure for BH 209 is not written here yet.** The room has its own
-> Salmon Recital Hall SOP and quick-start manual, which are being imported. Until that lands,
-> treat this section as orientation and do the graded work on the three handhelds. See
-> **Technical verification** for exactly what is still open.
-
-**Q3 (multiple choice).** You are setting the primary wide in BH 209 and the shot looks a little
-dark to you on the monitor. According to the room's SOP, what are you allowed to change?
-
-- a) Gain, to lift it — that's what gain is for
-- b) Iris, since opening up costs less than gain
-- ✅ c) Zoom and framing only. Gain and f-stop are set for the hall and do not change
-- d) Nothing at all — the primary wide is not yours to touch
-
 🚩 **Checkpoint — all three cameras.** Before moving to Part 2, read all five values off the screen out loud: F4.0, 3 dB (ISO 400), 1/60, 3200 K, autofocus. If you cannot find one of them on the display, you are not ready to record yet.
 
 ## 🎬 Part 2 — Record the demo clips
@@ -335,7 +228,7 @@ Keep the framing identical across all clips. If the camera moves, your compariso
 
 Do not shoot the other nine clips before you know the card is actually recording. Students lose whole sessions this way.
 
-**Q4 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
+**Q3 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
 
 - a) To fill out the file count
 - ✅ b) So you can recognize soft footage on a small camera screen, where it is easy to miss
@@ -355,28 +248,28 @@ Return to the house default before each comparison, then change **only** the one
 
 Clip 5 is deliberately **two** stops so the noise is obvious on a small screen. Say the stop count out loud in your slate along with the values.
 
-**Q5 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
+**Q4 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
 
 - a) Brighter, with more of the scene in focus
 - ✅ b) Darker, with more of the scene in focus
 - c) Darker, with less of the scene in focus
 - d) Brighter, with less of the scene in focus
 
-**Q6 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
+**Q5 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
 
 - a) One stop, and it cost nothing — gain is free
 - ✅ b) Two stops, and it cost noise in the shadows
 - c) Two stops, and it cost depth of field
 - d) Four stops, and it cost focus accuracy
 
-**Q7 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
+**Q6 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
 
 - a) The color gets warmer
 - ✅ b) Moving things blur more
 - c) Depth of field increases
 - d) Nothing else
 
-**Q8 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
+**Q7 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
 
 - ✅ a) More orange / warmer
 - b) More blue / cooler
@@ -465,34 +358,6 @@ Two prompts. Do not write an essay.
 
 Specific items to check:
 
-**BH 209 (Salmon Recital Hall) — orientation only, pending the room's own SOP.** What the section
-says was confirmed by the instructor and read off photographs of the control surfaces in September
-2026. What it does *not* yet contain is a procedure, because the room's Salmon Recital Hall SOP and
-quick-start manual are still being imported. Full intake notes, including everything read off the
-screens, are in `content/activities/_source/bh209-cameras.md`. Still open:
-
-- **White balance.** Iris, gain, shutter, focus, and zoom are all on RovoControl's Camera Control
-  tab in familiar units, so the stops lesson transfers. White balance is *not* on that tab —
-  confirm whether it lives under **Settings** or is not exposed at all, and adjust the section.
-- **How many cameras, and which inputs they are.** RovoControl shows two camera buttons; the
-  switcher multiview has eight. Which are RovoCams, and do this activity's handhelds plug into the
-  same switcher? If they do, the two halves of this activity are one job and should say so.
-- **The recording media and the slots.** The desk checklist names an SSD or a fast 1667x Lexar SD,
-  a main slot and a spare in the top right. Confirm which is which on the hardware, and whether a
-  student brings a card or uses the room's.
-- **The data-transfer procedure.** Still wanted, still unwritten: which disk, which computer, where
-  files go, and how a student confirms the take is good before handing the room over.
-- **The separate audio feed.** The room Mac is named `BH209-LivestreamAndDanteRecord`, so Dante
-  recording happens there. Confirm what feeds it and whether starting it is its own action. This
-  also unblocks the Stereo Recording activity.
-- **The key code and the room's stored passwords** stay out of this repo, which is public. The page
-  says to ask; confirm who a student should ask.
-- **Not a page problem, but worth knowing:** macOS warns that the installed AJA RovoControl is an
-  Intel-only build that "will not open in a future release of macOS." The room loses camera control
-  the day that Mac updates past it.
-
-Portable cameras:
-
 - **dB, ISO, and stops — resolved.** 6 dB is one stop and doubling ISO is one stop; both are definitional and safe to teach as written. What stays body-specific is which ISO a given camera's 0 dB sits at, so the house numbers (3 dB, ISO 400) should be confirmed on each body rather than converted between. The original notes treated 3 dB and ISO 400 as the same value, and paired 3 → 9 dB with ISO 400 → 1600; those are one stop and two stops respectively. The comparison is corrected here to two stops in both units.
 - **Gain range and step size.** Confirm each body actually reaches 15 dB / ISO 1600 and steps in 3 dB increments. If a body steps differently, keep the **+2 stops** instruction and adjust the numbers.
 - **GH5 units.** The GH5 shows ISO, not dB, so its house default is written here as ISO 400.
@@ -506,4 +371,4 @@ Portable cameras:
 
 ## 🤖 AI use disclosure
 
-Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The BH 209 orientation was written in September 2026 from the instructor's answers about the hall; it deliberately stops at what was confirmed, and what it does not cover is itemized under Technical verification rather than filled in. The camera control details come from the instructor's notes. The stop relationships (6 dB per stop, ISO doubling per stop) were corrected by the instructor in September 2026, and the gain comparison was rebuilt around them. The structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.
+Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The camera control details come from the instructor's notes. The stop relationships (6 dB per stop, ISO doubling per stop) were corrected by the instructor in September 2026, and the gain comparison was rebuilt around them. The structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.
