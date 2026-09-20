@@ -22,9 +22,24 @@ Verified end to end in a browser: the gate, a `?code=` link, a Quiz 1 code paste
 the no-code fallback, a full 20-question run, and the instructor verify page scoring the
 resulting code and carrying the learner ID forward.
 
-**It still runs the Quiz 1 way.** None of the timing or capture design is built — see the
-pre-flight section below. That is a deliberate state, not an oversight: the quiz works, and the
-fields that had to move have moved.
+**The timing and capture design (sections B and D) is now built and on for Quiz 2** at the
+decided 6/9. The clock starts when the student presses "Start the quiz" rather than at code
+entry — the activity self-report before it is not quiz work and varies far too much between
+students — so wall clock for the room is code entry + 9 + the two closing questions, which is
+the ~10 minutes the decision assumed. The window never cuts anyone off mid-question. Bonus
+questions interleave every three graded questions, but only for a student ahead of the pace, so
+anyone behind never sees one. They are ungraded and outside the denominator, proven by test.
+
+**Still not built, and deliberately not bundled with a live-class debut:** section A (fixing the
+core *skill set* so every student gets all ~15 Core skills) and C2 (bonus *replacing* the
+Practice tier). Both change what is graded, and changing the clock and the grading basis in the
+same week is how you end up unable to tell which one broke. Bonus currently sits alongside
+Practice as a third tier rather than replacing it.
+
+**One real constraint found while building:** the design says extras get "progressively harder"
+and that "level 3 *is* reach", but the bank has **no level-3 questions at all** and only seven at
+level 2 — all activity-gated, and mostly consumed by the graded set. The climb is therefore
+shallow until harder items are written. That is a question-writing job, not a code change.
 
 ## Where it stands (Sept 18, 2026)
 
@@ -64,7 +79,7 @@ Defaults marked. Anything not overridden gets built the default way.
 - **A2.** All ~15 Core skills means a longer quiz than 9. Accept the length (default), or cap core
   around 12 and rotate the remainder?
 
-### B. Timing — DECIDED
+### B. Timing — DECIDED, and now BUILT
 
 A **fixed wall-clock window**, not a fixed question count. The clock starts when the access
 code is entered and the quiz closes when the window ends, so the instructor controls class
@@ -102,7 +117,7 @@ never the student being handed extra questions.
 - **C2.** Does bonus *replace* the current Practice tier, or sit alongside it as a third tier
   (default: replaces — core graded, bonus data-only, two tiers not three)?
 
-### D. Capture — DECIDED
+### D. Capture — DECIDED, and now BUILT
 
 Keep it minimal, and put all of it **after the timer stops** so none of it eats quiz time.
 

@@ -7,6 +7,29 @@ const HISTORY_LENGTH = 5;
 const SEEN_LIMIT = 40;
 const ID_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 
+// One answer, packed into the pasted code: role, right/wrong, which choice was
+// picked, and how long it took. Quiz 1 codes hold only the first two characters,
+// so both shapes have to parse — students paste last week's code into this week's
+// quiz, and a code from before this change must keep working.
+export const encodeResult = ({ role, correct, choice, seconds }) => [
+  role === 'core' ? 'c' : role === 'bonus' ? 'b' : 'p',
+  correct ? '1' : '0',
+  Number.isInteger(choice) ? choice.toString(36) : '0',
+  Number.isFinite(seconds) ? Math.min(Math.max(0, Math.round(seconds)), 46655).toString(36) : '',
+].join('');
+
+export function parseResult(value) {
+  const text = String(value ?? '');
+  return {
+    roleKey: text[0] === 'c' || text[0] === 'b' ? text[0] : 'p',
+    isCore: text[0] === 'c',
+    isBonus: text[0] === 'b',
+    correct: text[1] === '1',
+    choice: text.length > 2 ? Number.parseInt(text[2], 36) : null,
+    seconds: text.length > 3 ? Number.parseInt(text.slice(3), 36) : null,
+  };
+}
+
 export const statusOf = (curriculum, skill) => curriculum.skills?.[skill] || 'inactive';
 export const indexQuestions = (bank) => Object.fromEntries(bank.questions.map((question) => [question.id, question]));
 
@@ -66,8 +89,9 @@ export function readPrior(prior, bank) {
     context.seen.add(id);
     const skill = byId[id]?.skill;
     if (!skill) return;
-    (roles[skill] ||= new Set()).add(result[0]);
-    if (result === 'c0') context.missedCore.add(skill);
+    const parsed = parseResult(result);
+    (roles[skill] ||= new Set()).add(parsed.roleKey);
+    if (parsed.isCore && !parsed.correct) context.missedCore.add(skill);
   });
   Object.entries(roles).forEach(([skill, kinds]) => { if (!kinds.has('c')) context.practicedOnly.add(skill); });
   return context;
@@ -137,6 +161,41 @@ export function selectQuiz({ curriculum, bank, activities = {}, prior = null, se
   return spreadSkills(shuffle(chosen, rng)).map((question) => ({ id: question.id, role: status(question) }));
 }
 
+// Extras for a student who is ahead of the pace, drawn only from questions the
+// graded set didn't use. They are ungraded, so a fast student gets more practice
+// without being able to out-score anyone.
+//
+// Ordered easiest-first so difficulty climbs as the window runs on. The design
+// calls level 3 "reach", but the bank currently tops out at level 2 (and holds
+// only a handful), so in practice the climb is shallow — writing harder items is
+// what deepens it, not a change here. Activity-gated questions are held to the
+// same gate rule as the graded set, so nobody is asked about gear they haven't
+// touched.
+export function selectBonus({ curriculum, bank, activities = {}, prior = null, exclude = [], seed, limit = 8, includeDrafts = false }) {
+  const rng = createRng(`${seed}:bonus`);
+  const used = new Set(exclude);
+  const recent = new Set(readPrior(prior, bank).seen);
+  const eligible = bank.questions.filter((question) => !used.has(question.id)
+    && (includeDrafts || !question.draft)
+    && statusOf(curriculum, question.skill) !== 'inactive'
+    && (!question.activity_gate || (activities[question.activity_gate] || 0) >= 1));
+  // Take a share from each level rather than the first N of an ascending sort —
+  // otherwise the whole allowance comes out of the easiest bucket and difficulty
+  // never actually climbs. Within a level, unseen items come first.
+  const buckets = [...new Set(eligible.map((question) => question.level ?? 0))].sort((a, b) => a - b);
+  const byLevel = buckets.map((level) => shuffle(eligible.filter((question) => (question.level ?? 0) === level), rng)
+    .sort((a, b) => recent.has(a.id) - recent.has(b.id)));
+  const share = Math.ceil(limit / buckets.length);
+  const chosen = byLevel.flatMap((questions) => questions.slice(0, share));
+  // Any shortfall in a thin level is made up from whatever is left, hardest last.
+  const picked = new Set(chosen.map((question) => question.id));
+  const filler = byLevel.flat().filter((question) => !picked.has(question.id));
+  return [...chosen, ...filler.slice(0, Math.max(0, limit - chosen.length))]
+    .sort((a, b) => (a.level ?? 0) - (b.level ?? 0))
+    .slice(0, limit)
+    .map((question) => ({ id: question.id, role: 'bonus' }));
+}
+
 export function choiceOrder(question, seed) {
   const indexes = question.choices.map((_, i) => i);
   return question.shuffle === false ? indexes : shuffle(indexes, createRng(`${seed}:${question.id}`));
@@ -161,10 +220,15 @@ export function scoreAttempt(selection, answers, scoring = {}) {
   const corePoints = scoring.core_correct ?? 1;
   const practicePoints = scoring.practice_completed ?? 1;
   const given = answers.filter(Boolean);
-  const coreTotal = selection.filter((item) => item.role === 'core').length;
-  const practiceTotal = selection.length - coreTotal;
+  // Bonus questions are ungraded by design — they sit outside both the score and
+  // the denominator, so answering more of them can never change anyone's mark.
+  const graded = selection.filter((item) => item.role !== 'bonus');
+  const coreTotal = graded.filter((item) => item.role === 'core').length;
+  const practiceTotal = graded.length - coreTotal;
   const coreCorrect = given.filter((answer) => answer.role === 'core' && answer.correct).length;
-  const practiceDone = given.filter((answer) => answer.role !== 'core').length;
+  const practiceDone = given.filter((answer) => answer.role === 'practice').length;
+  const bonusDone = given.filter((answer) => answer.role === 'bonus').length;
+  const bonusCorrect = given.filter((answer) => answer.role === 'bonus' && answer.correct).length;
   // Round away float noise (0.1 + 0.2-style residue) while keeping halves/quarters exact.
   const round = (n) => Math.round(n * 100) / 100;
   return {
@@ -172,6 +236,8 @@ export function scoreAttempt(selection, answers, scoring = {}) {
     coreTotal,
     practiceDone,
     practiceTotal,
+    bonusDone,
+    bonusCorrect,
     points: round(coreCorrect * corePoints + practiceDone * practicePoints),
     max: round(coreTotal * corePoints + practiceTotal * practicePoints),
   };
@@ -196,8 +262,8 @@ export function buildPayload({ curriculum, bank, attempt, appVersion, completedA
   const answers = attempt.answers.filter(Boolean);
   const results = {};
   const history = { ...(prior?.sk || {}) };
-  answers.forEach(({ id, role, correct }) => {
-    results[id] = `${role === 'core' ? 'c' : 'p'}${correct ? 1 : 0}`;
+  answers.forEach(({ id, role, correct, choice }) => {
+    results[id] = encodeResult({ role, correct, choice, seconds: attempt.times?.[id] });
     const skill = byId[id]?.skill;
     if (skill) history[skill] = `${history[skill] || ''}${correct ? 1 : 0}`.slice(-HISTORY_LENGTH);
   });
@@ -218,5 +284,12 @@ export function buildPayload({ curriculum, bank, attempt, appVersion, completedA
     sk: history,
     seen,
     sc: [score.coreCorrect, score.coreTotal, score.practiceDone, score.practiceTotal, score.points, score.max],
+    // Timing and the pacing tap. `el` is the whole graded run in seconds; the
+    // per-question times ride inside each `a` value. The free-text note is
+    // deliberately NOT here — it belongs in the readable submission, where a
+    // person reads it, rather than bloating a code students have to paste.
+    ...(Number.isFinite(attempt.elapsedSeconds) ? { el: attempt.elapsedSeconds } : {}),
+    ...(attempt.capture?.pacing ? { pc: attempt.capture.pacing[0] } : {}),
+    ...(score.bonusDone ? { bn: [score.bonusDone, score.bonusCorrect] } : {}),
   };
 }

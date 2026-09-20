@@ -15,6 +15,7 @@ Study cards have their own page, `/mus248/study/` (source in `../study/`), and t
 4. Answer ~20 questions, each worth the same fraction of the quiz’s total points (`target_total_points ÷ total_questions` — 10 ÷ 20 = 0.5 apiece right now). Each shows a badge first and an explanation after:
    - 🟢 **Core — graded**: full credit for that question if correct.
    - 🟡 **Practice — full credit this week**: full credit for answering at all. Correct answers still show green.
+   - 🔵 **Bonus — not counted**: only on a timed quiz, and only for a student ahead of the pace. Ungraded in both directions.
 5. **Copy Canvas submission** and paste it into Canvas. It holds a readable summary plus a code for next week.
 
 Until everything is answered, the text under **Continue** names exactly what’s still missing.
@@ -48,8 +49,24 @@ All of it lives in `data/curriculum.json`:
 
    `npm test` fails on a `quiz_number` with no entry, a label that doesn’t name its own quiz, a version that isn’t a date, and two quizzes sharing a code (which would make a makeup ambiguous) — which is the point at which you actually want to find out.
 
-3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
-4. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
+3. **Optional: put a clock on it.** Add `expected_minutes` and `window_minutes` to the quiz's entry:
+
+   ```json
+   "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle",
+          "expected_minutes": 6, "window_minutes": 9 }
+   ```
+
+   A quiz with neither runs untimed, exactly as every quiz did before — which is also what a makeup of an older quiz gets, since its entry has no clock.
+
+   - **The clock starts when the student presses “Start the quiz”,** not when they enter the code. The activity self-report before it is not quiz work and takes wildly different amounts of time per student. Wall clock for the room is therefore roughly code entry + `window_minutes` + the two closing questions.
+   - `expected_minutes` is what the graded set should take. It drives an on-screen “you should be wrapping up” warning and the pace check below. It does not end anything.
+   - `window_minutes` is the hard stop, shown as a countdown in the corner. **It never cuts anyone off mid-question:** it is only consulted once the question on screen has been answered, and then the quiz submits itself.
+   - **Bonus questions** appear only for a student running *ahead* of `expected_minutes`, checked every three graded questions so they interleave rather than arriving in a lump. They are ungraded and sit outside both the score and the denominator, so a fast student cannot out-score anyone — and a student who is behind never sees one and keeps the whole window for the graded set. Difficulty climbs, but the bank currently tops out at level 2 with only a handful of items, most of which the graded set already uses; writing harder questions is what deepens this, not a setting.
+   - **After the clock stops** the student gets two optional questions: a one-tap pace check and a free-text box. Per-question timing and which wrong answer was picked are recorded silently.
+   - Rehearse it without editing data: `?debug=1&window=0.5&expected=0.2` overrides both, in minutes.
+
+4. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
+5. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
 
 `target_total_points` sets what the whole quiz is worth in Canvas (10, to match a 10-point Canvas assignment), split evenly across however many questions that week has — change `targets.total_questions` and each question’s point value adjusts automatically, so the quiz always adds up to `target_total_points`. Pick a question count that divides evenly into it (20 → 0.5 each, 10 → 1 each) so scores don’t come out as long decimals. If Core and Practice should ever be weighted differently instead of split evenly, add an explicit `"scoring": {"core_correct": ..., "practice_completed": ...}` — its presence overrides the automatic split.
 

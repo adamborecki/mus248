@@ -3,7 +3,7 @@
   "quiz_number": 2,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
-    "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle" }
+    "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 }
   },
   "targets": {
     "total_questions": 20,

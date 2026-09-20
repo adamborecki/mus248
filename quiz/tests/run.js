@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, resolveScoring, reviewSkills, scoreAttempt, selectQuiz } from '../js/engine.js';
+import { buildPayload, choiceOrder, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -236,9 +236,74 @@ test('Practice gets full credit even when wrong; Core only when right', () => {
   const selection = selectQuiz(base);
   const evenScoring = { core_correct: 1, practice_completed: 1 };
   const score = scoreAttempt(selection, answerAll(selection, () => false), evenScoring);
-  assert.deepEqual(score, { coreCorrect: 0, coreTotal: 9, practiceDone: 11, practiceTotal: 11, points: 11, max: 20 });
+  assert.deepEqual(score, { coreCorrect: 0, coreTotal: 9, practiceDone: 11, practiceTotal: 11, bonusDone: 0, bonusCorrect: 0, points: 11, max: 20 });
   const perfect = scoreAttempt(selection, answerAll(selection), evenScoring);
   assert.equal(perfect.points, 20);
+});
+
+test('bonus questions can never move anyone’s score', () => {
+  const selection = selectQuiz(base);
+  const scoring = resolveScoring(curriculum);
+  const before = scoreAttempt(selection, answerAll(selection), scoring);
+  const bonus = selectBonus({ curriculum, bank, activities: {}, exclude: selection.map(({ id }) => id), seed: 'b' });
+  assert.ok(bonus.length, 'no bonus questions were available to test with');
+  const withBonus = [...selection, ...bonus];
+  const allRight = scoreAttempt(withBonus, answerAll(withBonus), scoring);
+  const allWrong = scoreAttempt(withBonus, answerAll(withBonus, (q, role) => role !== 'bonus'), scoring);
+  assert.equal(allRight.points, before.points, 'answering bonus correctly changed the score');
+  assert.equal(allWrong.points, before.points, 'getting bonus wrong changed the score');
+  assert.equal(allRight.max, before.max, 'bonus changed the points the quiz is out of');
+  assert.equal(allRight.practiceTotal, before.practiceTotal, 'bonus leaked into the Practice denominator');
+  assert.equal(allRight.bonusDone, bonus.length);
+});
+
+test('bonus questions are unseen and climb in difficulty', () => {
+  const activities = { stereo: 2, dante: 1 };
+  const selection = selectQuiz({ ...base, activities });
+  const graded = new Set(selection.map(({ id }) => id));
+  const bonus = selectBonus({ curriculum, bank, activities, exclude: [...graded], seed: 'b2' });
+  assert.ok(bonus.every(({ id }) => !graded.has(id)), 'a bonus question repeated one from the graded set');
+  assert.ok(bonus.every(({ role }) => role === 'bonus'));
+  const levels = bonus.map(({ id }) => byId[id].level ?? 0);
+  assert.deepEqual(levels, [...levels].sort((a, b) => a - b), `bonus levels should not go backwards: ${levels}`);
+  const gated = bonus.map(({ id }) => byId[id].activity_gate).filter(Boolean);
+  assert.ok(gated.every((gate) => (activities[gate] || 0) >= 1), 'bonus asked about gear the student hasn’t touched');
+});
+
+test('a Quiz 1 code from before per-question timing still reads correctly', () => {
+  // Students paste last week's code into this week's quiz, so the old two-character
+  // result shape has to keep parsing — including the missed-Core flag that drives
+  // next week's spaced retrieval.
+  const old = parseResult('c0');
+  assert.ok(old.isCore && !old.correct, 'an old missed-Core result stopped reading as missed');
+  assert.equal(old.choice, null);
+  assert.equal(old.seconds, null);
+  assert.ok(parseResult('p1').correct);
+  assert.ok(!parseResult('p1').isCore);
+
+  const selection = selectQuiz(base);
+  const missed = selection.find(({ role }) => role === 'core');
+  const prior = { a: { [missed.id]: 'c0' }, sk: {}, seen: [] };
+  const week2 = { ...curriculum, quiz_number: 2 };
+  const quiz2 = selectQuiz({ curriculum: week2, bank, seed: 'w2-old', activities: {}, prior });
+  assert.ok(quiz2.length, 'selection failed on an old-format prior code');
+});
+
+test('per-question time and the chosen answer survive the round trip', () => {
+  const selection = selectQuiz(base);
+  const answers = answerAll(selection, () => false);
+  const times = Object.fromEntries(selection.map(({ id }, i) => [id, i + 7]));
+  const attempt = { ...attemptFor({ selection, answers }), times, elapsedSeconds: 372, capture: { pacing: 'rushed', note: 'x' } };
+  const payload = buildPayload({ curriculum, bank, attempt, appVersion: 'test' });
+  const state = decodeStateCode(encodeStateCode(payload)).state;
+  assert.equal(state.el, 372, 'total elapsed time was lost');
+  assert.equal(state.pc, 'r', 'the pacing tap was lost');
+  assert.equal(state.fb, undefined, 'the free-text note must stay out of the pasted code');
+  selection.forEach(({ id }, i) => {
+    const parsed = parseResult(state.a[id]);
+    assert.equal(parsed.seconds, i + 7, `time for ${id} was lost`);
+    assert.equal(parsed.choice, answers[i].choice, `chosen answer for ${id} was lost`);
+  });
 });
 
 test('the quiz is worth target_total_points in Canvas, split evenly per question', () => {
@@ -270,7 +335,8 @@ test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   const payload = buildPayload({ curriculum, bank, attempt: attemptFor({ selection: quiz1, answers, activities: { stereo: 1, daw: 0 } }), appVersion: 'test' });
   assert.deepEqual(payload.act, { stereo: 1 });
   assert.equal(payload.n, 1);
-  assert.equal(payload.a[missed.id], 'c0');
+  const missedResult = parseResult(payload.a[missed.id]);
+  assert.ok(missedResult.isCore && !missedResult.correct, `expected a missed Core result, got "${payload.a[missed.id]}"`);
   const prior = decodeStateCode(encodeStateCode(payload)).state;
   // Guarantee mains_monitors was practiced last week, regardless of whether quiz1's
   // random draw happened to include it — the assertion below is about the promotion

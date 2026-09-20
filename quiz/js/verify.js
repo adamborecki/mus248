@@ -1,5 +1,5 @@
 import { decodeStateCode, findStateCodes } from './state-code.js';
-import { indexQuestions } from './engine.js';
+import { indexQuestions, parseResult } from './engine.js';
 import { escapeHtml } from './html.js';
 
 const byId = (id) => document.getElementById(id);
@@ -51,9 +51,13 @@ async function main() {
       Object.entries(state.a || {}).forEach(([id, result]) => {
         const skill = questions[id]?.skill;
         if (!skill) return;
+        const parsed = parseResult(result);
+        // Bonus items are ungraded and optional, so they'd skew a miss rate the
+        // class review list is meant to read as "how did everyone do".
+        if (parsed.isBonus) return;
         const tally = (tallies[skill] ||= { c: [0, 0], p: [0, 0] });
-        tally[result[0]][1] += 1;
-        if (result[1] === '1') tally[result[0]][0] += 1;
+        tally[parsed.roleKey][1] += 1;
+        if (parsed.correct) tally[parsed.roleKey][0] += 1;
       });
     });
     const rate = ([right, asked]) => (asked ? right / asked : 2);

@@ -1,4 +1,4 @@
-import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectQuiz, statusOf } from './engine.js';
+import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectBonus, selectQuiz, statusOf } from './engine.js';
 import { escapeHtml } from './html.js';
 import { decodeStateCode, encodeStateCode, findStateCodes } from './state-code.js';
 
@@ -35,15 +35,43 @@ let announcedQuiz = null;
 
 const isMakeup = () => announcedQuiz !== null && data.curriculum.quiz_number !== announcedQuiz;
 
+// The clock, when a quiz sets one. `expected_minutes` is what the graded set
+// should take and only drives the on-screen warning and the pace check;
+// `window_minutes` is the hard stop. A quiz with neither runs untimed, exactly
+// as every quiz did before — which is also what a makeup of an older quiz gets.
+let tick = null;
+function timing() {
+  const config = quizConfig(data.curriculum, data.curriculum.quiz_number) || {};
+  // ?debug=1&window=0.5&expected=0.2 rehearses the clock without touching the
+  // data file — useful for seeing what students will see before a class runs.
+  if (!DEBUG) return config;
+  const override = (key) => (params.has(key) ? Number(params.get(key)) : undefined);
+  return {
+    ...config,
+    expected_minutes: override('expected') ?? config.expected_minutes,
+    window_minutes: override('window') ?? config.window_minutes,
+  };
+}
+const isTimed = () => Number(timing().window_minutes) > 0;
+const elapsedSeconds = () => (attempt?.clockStartedAt ? Math.max(0, Math.round((Date.now() - attempt.clockStartedAt) / 1000)) : 0);
+const windowSeconds = () => Number(timing().window_minutes || 0) * 60;
+const expectedSeconds = () => Number(timing().expected_minutes || 0) * 60;
+const windowIsOver = () => isTimed() && elapsedSeconds() >= windowSeconds();
+const clockText = (left) => `${Math.floor(Math.abs(left) / 60)}:${String(Math.abs(left) % 60).padStart(2, '0')}`;
+const stopTick = () => { if (tick) { clearInterval(tick); tick = null; } };
+
 const save = () => storage.write(ATTEMPT_KEY, attempt);
 const label = (skill) => data.bank.skills?.[skill] || skill.replace(/_/g, ' ');
 const timesLabel = (count) => (count >= 3 ? '3+' : String(count));
 const formatDate = (iso) => new Date(iso).toLocaleString('en-US', {
   weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
 });
-const badge = (role) => (role === 'core'
-  ? '<span class="badge core">🟢 Core — graded</span>'
-  : '<span class="badge practice">🟡 Practice — full credit this week</span>');
+const BADGES = {
+  core: '<span class="badge core">🟢 Core — graded</span>',
+  practice: '<span class="badge practice">🟡 Practice — full credit this week</span>',
+  bonus: '<span class="badge bonus">🔵 Bonus — not counted</span>',
+};
+const badge = (role) => BADGES[role] || BADGES.practice;
 const progressBar = (done, total) => `<div class="progress" aria-hidden="true"><span style="width:${total ? (done / total) * 100 : 0}%"></span></div>`;
 
 function show(html, { focus = 'h2', scroll = true } = {}) {
@@ -322,6 +350,21 @@ function startAttempt() {
     quiz: curriculum.quiz_number,
     quizVersion: curriculum.quiz_version,
     startedAt: new Date().toISOString(),
+    // Set when the questions begin, not now: the activity self-report above is
+    // not quiz work, and it takes a very different amount of time per student.
+    clockStartedAt: null,
+    questionShownAt: null,
+    times: {},
+    capture: {},
+    bonusPool: selectBonus({
+      curriculum,
+      bank,
+      activities,
+      prior: setup.prior,
+      exclude: selection.map((item) => item.id),
+      seed,
+      includeDrafts: Boolean(curriculum.include_drafts || (DEBUG && params.has('drafts'))),
+    }),
     learnerId: setup.prior?.id || randomId(6),
     seed,
     deviceAttempt: attempts[curriculum.quiz_number],
@@ -337,9 +380,9 @@ function startAttempt() {
 }
 
 function renderResume() {
-  const where = attempt.phase === 'quiz'
-    ? `question ${attempt.index + 1} of ${attempt.selection.length}`
-    : 'the start of the quiz';
+  const where = attempt.phase === 'capture' ? 'the questions after the quiz'
+    : attempt.phase === 'quiz' ? `question ${gradedPosition(attempt.index).done} of ${gradedPosition(attempt.index).graded}`
+      : 'the start of the quiz';
   show(`
     <section class="stage">
       <h2 tabindex="-1">Pick up where you left off?</h2>
@@ -349,7 +392,12 @@ function renderResume() {
         <button class="btn secondary" id="restart">Start over</button>
       </div>
     </section>`);
-  on('#resume', 'click', () => (attempt.phase === 'quiz' ? renderQuestion() : renderIntro()));
+  on('#resume', 'click', () => {
+    if (attempt.phase === 'capture') return renderCapture();
+    if (attempt.phase !== 'quiz') return renderIntro();
+    attempt.questionShownAt = Date.now();
+    return renderQuestion();
+  });
   on('#restart', 'click', () => {
     if (confirm('Start over? Your answers so far on this device will be cleared.')) startFresh();
   });
@@ -358,16 +406,26 @@ function renderResume() {
 function renderIntro() {
   const total = attempt.selection.length;
   const core = attempt.selection.filter(({ role }) => role === 'core').length;
+  const { expected_minutes: expected, window_minutes: window } = timing();
+  const clock = isTimed() ? `
+      <div class="kind"><span class="badge clock">⏱ ${escapeHtml(String(window))} minutes</span>
+        <p>The clock starts when you press the button below, and doesn’t start before that — take your time on this screen.
+        You should be through the graded questions in about ${escapeHtml(String(expected))}.
+        <strong>If the time runs out you’ll always get to finish the question you’re on</strong>, then the quiz submits itself.</p></div>` : '';
   show(`
     <section class="stage">
-      <h2 tabindex="-1">Two kinds of questions</h2>
+      <h2 tabindex="-1">Before you start</h2>
       <div class="kind">${badge('core')}<p>Graded for correctness. This is material you’re expected to know by now.</p></div>
       <div class="kind">${badge('practice')}<p>Full credit for answering. These help you learn material that may become Core on a future quiz.</p></div>
+      ${isTimed() ? `<div class="kind">${badge('bonus')}<p>Only appears if you’re running ahead of time, and never counts for or against you. It’s extra practice, not extra credit.</p></div>` : ''}
+      ${clock}
       <p>${total} questions, ${core} of them Core. After each one you’ll see the answer and a short explanation.</p>
       <button class="btn primary wide big" id="begin">Start the quiz →</button>
     </section>`);
   on('#begin', 'click', () => {
     attempt.phase = 'quiz';
+    attempt.clockStartedAt = Date.now();
+    attempt.questionShownAt = Date.now();
     save();
     renderQuestion();
   });
@@ -388,6 +446,38 @@ function feedback(question, role, answer) {
     <p><strong>The answer is: ${correctText}.</strong> ${explanation}</p></div>`;
 }
 
+// Bonus items are spliced in ahead of the cursor, so "Question 4 of 20" has to
+// keep counting the graded set only — otherwise the total would creep upward
+// mid-quiz and look like the quiz was growing as a punishment for being quick.
+function gradedPosition(index) {
+  const graded = attempt.selection.filter(({ role }) => role !== 'bonus').length;
+  const done = attempt.selection.slice(0, index + 1).filter(({ role }) => role !== 'bonus').length;
+  return { done, graded };
+}
+
+// Extras go only to students who are ahead of the pace, which is what keeps them
+// away from anyone at risk of running out of time: a student who is behind never
+// sees one and gets the whole window for the graded set alone. The check runs
+// every few questions so extras interleave rather than arriving as a block.
+function maybeAddBonus() {
+  if (!isTimed() || windowIsOver()) return;
+  const pool = attempt.bonusPool || [];
+  const expected = expectedSeconds();
+  if (!pool.length || !expected) return;
+  const { done, graded } = gradedPosition(attempt.index);
+  const finishedGraded = done >= graded;
+  if (!finishedGraded) {
+    // A bonus doesn't advance the graded count, so without this the same pace
+    // check passes again and again and the extras arrive as one block — the very
+    // thing interleaving is for. After a bonus, go back to the graded set.
+    if (attempt.selection[attempt.index]?.role === 'bonus') return;
+    if (done % 3 !== 0) return;
+    const onPace = (done / graded) * expected;
+    if (elapsedSeconds() >= onPace) return;
+  }
+  attempt.selection.splice(attempt.index + 1, 0, pool.shift());
+}
+
 function renderQuestion(options) {
   const i = attempt.index;
   const { id, role } = attempt.selection[i];
@@ -395,6 +485,10 @@ function renderQuestion(options) {
   const answer = attempt.answers[i];
   const total = attempt.selection.length;
   const isLast = i === total - 1;
+  const { done, graded } = gradedPosition(i);
+  const left = isTimed() ? windowSeconds() - elapsedSeconds() : 0;
+  const overExpected = isTimed() && expectedSeconds() > 0 && elapsedSeconds() >= expectedSeconds();
+  if (attempt.questionShownAt == null) attempt.questionShownAt = Date.now();
   const choiceClass = (index) => {
     if (!answer) return '';
     if (index === question.answer_index) return 'is-answer';
@@ -404,8 +498,11 @@ function renderQuestion(options) {
 
   show(`
     <section class="stage">
-      <p class="eyebrow"><span>Question ${i + 1} of ${total}</span></p>
-      ${progressBar(i + (answer ? 1 : 0), total)}
+      <p class="eyebrow"><span>${role === 'bonus' ? 'Bonus question' : `Question ${done} of ${graded}`}</span>${
+        isTimed() ? `<span class="clock${left <= 60 ? ' is-low' : ''}" id="clock" role="timer" aria-live="off">${left < 0 ? 'time’s up' : clockText(left)}</span>` : ''}</p>
+      ${progressBar(gradedPosition(i - (answer ? 0 : 1)).done, graded)}
+      ${overExpected && !windowIsOver() ? '<p class="notice warn">You should be wrapping up the graded questions about now.</p>' : ''}
+      ${windowIsOver() ? '<p class="notice warn">Time’s up — finish this question and the quiz will submit itself.</p>' : ''}
       ${badge(role)}
       <h2 class="prompt" tabindex="-1">${escapeHtml(question.prompt)}</h2>
       <fieldset class="choices${answer ? ' is-locked' : ''}"${answer ? ' disabled' : ''}>
@@ -420,7 +517,10 @@ function renderQuestion(options) {
       ${answer ? feedback(question, role, answer) : ''}
       <div class="row">
         ${answer
-          ? `<button class="btn primary wide" id="next">${isLast ? 'See results →' : 'Next question →'}</button>`
+          ? `<button class="btn primary wide" id="next">${
+            windowIsOver() ? 'Finish and submit →'
+              : (isLast && !(isTimed() && attempt.bonusPool?.length)) ? 'See results →'
+                : 'Next question →'}</button>`
           : '<button class="btn primary wide" id="check" disabled>Check answer</button>'}
       </div>
       ${DEBUG && !answer ? '<p class="center"><button class="text-button" id="debug-autofill">Debug: answer the rest randomly</button></p>' : ''}
@@ -430,17 +530,40 @@ function renderQuestion(options) {
     app.querySelectorAll('.choice').forEach((choice) => choice.classList.toggle('is-selected', choice.contains(input)));
     app.querySelector('#check').disabled = false;
   }));
+
+  stopTick();
+  if (isTimed() && !windowIsOver()) {
+    tick = setInterval(() => {
+      const node = app.querySelector('#clock');
+      if (!node) return stopTick();
+      const remaining = windowSeconds() - elapsedSeconds();
+      node.textContent = remaining < 0 ? 'time’s up' : clockText(remaining);
+      node.classList.toggle('is-low', remaining <= 60);
+      // Crossing a threshold changes what the screen should say, so re-render
+      // once rather than leaving a stale banner up.
+      if (remaining <= 0 || (expectedSeconds() && elapsedSeconds() === expectedSeconds())) {
+        stopTick();
+        renderQuestion({ focus: null, scroll: false });
+      }
+    }, 1000);
+  }
   on('#check', 'click', () => {
     const picked = app.querySelector('.choice input:checked');
     if (!picked) return;
     const choice = Number(picked.value);
+    attempt.times[id] = Math.max(0, Math.round((Date.now() - (attempt.questionShownAt || Date.now())) / 1000));
     attempt.answers[i] = { id, role, choice, correct: choice === question.answer_index };
     save();
     renderQuestion({ focus: '.feedback', scroll: false });
   });
   on('#next', 'click', () => {
-    if (isLast) return finish();
+    // The window never cuts anyone off mid-question: it is only consulted here,
+    // once the question on screen has been answered.
+    if (windowIsOver()) return finish();
+    maybeAddBonus();
+    if (attempt.index >= attempt.selection.length - 1) return finish();
     attempt.index += 1;
+    attempt.questionShownAt = Date.now();
     save();
     renderQuestion();
   });
@@ -450,12 +573,51 @@ function renderQuestion(options) {
       const q = data.byId[item.id];
       const choice = Math.floor(Math.random() * q.choices.length);
       attempt.answers[k] = { id: item.id, role: item.role, choice, correct: choice === q.answer_index };
+      attempt.times[item.id] = attempt.times[item.id] ?? 5;
     });
     finish();
   });
 }
 
 function finish() {
+  stopTick();
+  attempt.elapsedSeconds = elapsedSeconds();
+  attempt.phase = 'capture';
+  save();
+  renderCapture();
+}
+
+// Deliberately after the clock stops, so none of it eats quiz time. Both fields
+// are optional; skipping them costs nothing.
+function renderCapture() {
+  const PACE = [['rushed', 'Too rushed'], ['right', 'About right'], ['slow', 'Too slow']];
+  const chosen = attempt.capture?.pacing;
+  show(`
+    <section class="stage">
+      <h2 tabindex="-1">Two quick questions</h2>
+      <p class="quiet">The clock has stopped. This isn’t graded and isn’t part of your score — skip either one if you like.</p>
+      <div class="pacing" role="group" aria-label="How was the pace?">
+        <p class="field-label">How was the pace?</p>
+        <div class="choice-pair">
+          ${PACE.map(([value, text]) => `<button class="option${chosen === value ? ' is-on' : ''}" id="pace-${value}" aria-pressed="${chosen === value}">${text}</button>`).join('')}
+        </div>
+      </div>
+      <label class="field" for="note">Anything confusing? How did the quiz go?</label>
+      <textarea id="note" rows="3" maxlength="400" spellcheck="true" placeholder="Optional">${escapeHtml(attempt.capture?.note || '')}</textarea>
+      <div class="row"><button class="btn primary wide big" id="to-results">See your results →</button></div>
+    </section>`);
+  PACE.forEach(([value]) => on(`#pace-${value}`, 'click', () => {
+    attempt.capture = { ...attempt.capture, pacing: value };
+    save();
+    renderCapture({ focus: null, scroll: false });
+  }));
+  on('#to-results', 'click', () => {
+    attempt.capture = { ...attempt.capture, note: app.querySelector('#note').value.trim().slice(0, 400) };
+    completeAttempt();
+  });
+}
+
+function completeAttempt() {
   const payload = buildPayload({ curriculum: data.curriculum, bank: data.bank, attempt, appVersion: APP_VERSION });
   attempt.payload = payload;
   attempt.code = encodeStateCode(payload);
@@ -482,8 +644,14 @@ function submissionText(review) {
     'RESULTS',
     `Core: ${coreCorrect}/${coreTotal} correct`,
     `Practice: ${practiceDone}/${practiceTotal} completed`,
+    ...(payload.bn ? [`Bonus (not counted): ${payload.bn[1]}/${payload.bn[0]} correct`] : []),
     `Quiz score: ${points}/${max}`,
+    ...(Number.isFinite(payload.el) ? [`Time on the quiz: ${Math.floor(payload.el / 60)}m ${payload.el % 60}s`] : []),
+    ...(payload.pc ? [`Pace felt: ${{ r: 'too rushed', j: 'about right', s: 'too slow' }[payload.pc] || payload.pc}`] : []),
     '',
+    // The note is prose meant for a person to read, so it rides in the readable
+    // submission rather than inside the code students have to paste.
+    ...(attempt.capture?.note ? ['NOTE FROM STUDENT', attempt.capture.note, ''] : []),
     'REVIEW NEXT',
     ...(review.length ? review.map((skill) => `- ${label(skill)}`) : ['- Nothing missed']),
     '',
@@ -551,6 +719,7 @@ function renderResults() {
       <div class="score-grid">
         <div class="score"><strong>${coreCorrect}/${coreTotal}</strong><span>Core correct</span></div>
         <div class="score"><strong>${practiceDone}/${practiceTotal}</strong><span>Practice done</span></div>
+        ${attempt.payload.bn ? `<div class="score"><strong>${attempt.payload.bn[1]}/${attempt.payload.bn[0]}</strong><span>Bonus · not counted</span></div>` : ''}
         <div class="score total"><strong>${points}/${max}</strong><span>Quiz score</span></div>
       </div>
     </section>
