@@ -69,6 +69,8 @@ By the end of this activity, you should be able to:
 
 **Q1 (fill in the blank).** Write down the Dante device name of your Round 1 receiving computer here, so you can find it quickly when filtering: ______
 
+✅ **Answer.** The student's own — whichever Dante device name their Round 1 receiving computer is showing.
+
 4. Before you start routing, decide on a channel map (if you're in a pair, agree on this together):
 
 - Transmitter 1 → Receiver channels 1–2
@@ -84,7 +86,7 @@ By the end of this activity, you should be able to:
 
 **Q2 (multiple choice).** Why does each transmitter need its own receive channel pair?
 
-- a) So each source arrives on a separate track instead of overriding another source
+- ✅ a) So each source arrives on a separate track instead of overriding another source
 - b) Because Dante limits the whole network to 2 channels total
 - c) Because DAWs require every channel name to be unique
 - d) It doesn't matter — Dante automatically mixes everything together
@@ -102,7 +104,7 @@ By the end of this activity, you should be able to:
 
 - a) 1–2 (already used by Transmitter 1)
 - b) 3–4 (already used by Transmitter 2)
-- c) 5–6
+- ✅ c) 5–6
 - d) It doesn't matter — any channels work
 
 ## 📋 Round 1 — Part B: add a Multi-Output Device
@@ -135,7 +137,7 @@ Start your timer, then redo the entire procedure — Part A and Part B — from 
 **Q4 (multiple choice).** You only hear Transmitter 2's audio — Transmitter 1 should also be playing, but it's silent. What's the most likely cause?
 
 - a) Transmitter 1's audio interface is broken
-- b) Both transmitters got routed to the same receive channel pair, so Transmitter 2's connection silently overrode Transmitter 1's
+- ✅ b) Both transmitters got routed to the same receive channel pair, so Transmitter 2's connection silently overrode Transmitter 1's
 - c) The receiving computer needs more RAM
 - d) Dante Virtual Soundcard only supports one transmitter at a time
 
@@ -158,7 +160,7 @@ A student who tried an earlier version of this activity said the videos were gen
 **Q5 (multiple choice).** Two students' audio came out on the same track. What would you check FIRST?
 
 - a) Restart both computers
-- b) Whether the two transmitters were accidentally routed to the same receive channel pair
+- ✅ b) Whether the two transmitters were accidentally routed to the same receive channel pair
 - c) Buy new headphones
 - d) Reinstall Dante Virtual Soundcard
 

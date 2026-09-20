@@ -72,7 +72,7 @@ By the end of this activity, you should be able to:
 **Q1 (multiple choice).** Real walkie-talkies are technically half-duplex — they can't transmit and receive at the same instant. Is what you just built actually a walkie-talkie, or something else?
 
 - a) Yes, exactly the same thing
-- b) No — this is full-duplex, more like a phone call, since both directions work at once
+- ✅ b) No — this is full-duplex, more like a phone call, since both directions work at once
 - c) No — this isn't audio at all
 - d) There's no meaningful difference
 

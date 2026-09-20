@@ -70,6 +70,8 @@ Do NOT re-route or disconnect anything labeled **INST**. That's the instructor c
 
 **Q1 (fill in the blank).** DVS stands for ______.
 
+✅ **Answer.** Dante Virtual Soundcard.
+
 ## 📋 Round 1 — Part A: basic one-computer-to-another send
 
 1. Computer A (transmitter): set up a source that's clearly stereo — either two mono tracks panned hard left and hard right, or one stereo track (inputs 1/2). Either works, just make sure it isn't mono.
@@ -78,6 +80,8 @@ Do NOT re-route or disconnect anything labeled **INST**. That's the instructor c
 4. Use Filter Transmitters to show only Computer A — find it by the Local Hostname/iMac number you noted in Get Ready. Use Filter Receivers to show only Computer B the same way.
 
 **Q2 (fill in the blank).** The Local Hostname you noted for each computer is what you type into the Dante Controller ______ boxes to find the right transmitter/receiver.
+
+✅ **Answer.** Filter — the Filter Transmitters and Filter Receivers boxes.
 
 5. Click the routing cells to connect: Transmit ch. 1 → Receive ch. 1, and Transmit ch. 2 → Receive ch. 2.
 
@@ -92,13 +96,13 @@ Do NOT re-route or disconnect anything labeled **INST**. That's the instructor c
 
 - a) Built-in Output
 - b) Headphones
-- c) Dante Virtual Soundcard
+- ✅ c) Dante Virtual Soundcard
 - d) Whatever the other computer is using
 
 **Q4 (multiple choice).** You only hear sound in one ear when you expected stereo. What's the most likely cause?
 
 - a) The DAW crashed
-- b) The track is mono instead of stereo, or only one Dante channel got routed
+- ✅ b) The track is mono instead of stereo, or only one Dante channel got routed
 - c) Dante Controller needs to be reinstalled
 - d) The headphones are broken
 
@@ -108,6 +112,8 @@ Do NOT re-route or disconnect anything labeled **INST**. That's the instructor c
 9. In the Multi-Output Device, check the boxes for both "Dante Virtual Soundcard" and your local audio interface/headphone output.
 
 **Q5 (fill in the blank).** You should check the ______ box first, then your local interface box — otherwise your channel numbering will come out different than expected.
+
+✅ **Answer.** Dante Virtual Soundcard (DVS).
 
 🚩 **Checkpoint (order matters).** Check the DVS box before the local interface box, or your channel numbering will come out different than expected.
 
@@ -119,13 +125,13 @@ Do NOT re-route or disconnect anything labeled **INST**. That's the instructor c
 
 - a) Dante Virtual Soundcard only
 - b) Your headphone output only
-- c) The Multi-Output Device
+- ✅ c) The Multi-Output Device
 - d) Aggregate Device
 
 **Q7 (multiple choice).** In a Multi-Output Device, what determines each device's channel numbering?
 
 - a) Alphabetical order of device names
-- b) The order you check the boxes
+- ✅ b) The order you check the boxes
 - c) It's random
 - d) Every device always starts at channel 1
 
@@ -183,7 +189,7 @@ As of September 2026, the INST computer's Dante output is routed to Dante AVIO, 
 **Q8 (multiple choice).** A classmate says Dante Controller shows their connection as green/connected, but they still hear nothing. What's the most likely next thing to check?
 
 - a) Restart the whole computer
-- b) Whether their DAW's input device is actually set to Dante Virtual Soundcard
+- ✅ b) Whether their DAW's input device is actually set to Dante Virtual Soundcard
 - c) Buy new headphones
 - d) Reinstall Dante Controller
 

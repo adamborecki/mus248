@@ -110,6 +110,8 @@ Every camera in this activity gets returned to the same baseline. Learn this —
 
 **Q1 (fill in the blank).** Write the house default from memory before you continue: F______ · ______ dB or ISO ______ · 1/______ · ______ K · ______ focus.
 
+✅ **Answer.** F4.0 · 3 dB (ISO 400 on the GH5) · 1/60 · 3200 K · autofocus.
+
 ## 📐 Stops — the one unit that ties this together
 
 The house default is where you start. **Stops** are how you move from it.
@@ -132,7 +134,7 @@ Two things worth getting straight now, because they are easy to half-learn:
 
 - a) 4 dB
 - b) 6 dB
-- c) 9 dB
+- ✅ c) 9 dB
 - d) 12 dB
 
 ## 🚀 Get ready
@@ -226,7 +228,7 @@ Do not shoot the other nine clips before you know the card is actually recording
 **Q3 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
 
 - a) To fill out the file count
-- b) So you can recognize soft footage on a small camera screen, where it is easy to miss
+- ✅ b) So you can recognize soft footage on a small camera screen, where it is easy to miss
 - c) Because manual focus is always better than autofocus
 - d) To test the SD card
 
@@ -246,27 +248,27 @@ Clip 5 is deliberately **two** stops so the noise is obvious on a small screen. 
 **Q4 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
 
 - a) Brighter, with more of the scene in focus
-- b) Darker, with more of the scene in focus
+- ✅ b) Darker, with more of the scene in focus
 - c) Darker, with less of the scene in focus
 - d) Brighter, with less of the scene in focus
 
 **Q5 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
 
 - a) One stop, and it cost nothing — gain is free
-- b) Two stops, and it cost noise in the shadows
+- ✅ b) Two stops, and it cost noise in the shadows
 - c) Two stops, and it cost depth of field
 - d) Four stops, and it cost focus accuracy
 
 **Q6 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
 
 - a) The color gets warmer
-- b) Moving things blur more
+- ✅ b) Moving things blur more
 - c) Depth of field increases
 - d) Nothing else
 
 **Q7 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
 
-- a) More orange / warmer
+- ✅ a) More orange / warmer
 - b) More blue / cooler
 - c) Unchanged — white balance only affects stills
 - d) Black and white

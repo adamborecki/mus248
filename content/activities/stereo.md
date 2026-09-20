@@ -97,6 +97,8 @@ The reason you don't just record as loud as possible, right up against 0 dBFS: p
 
 **Q1 (fill in the blank).** The healthy peak-level target for this activity is **−______ to −______ dBFS.**
 
+✅ **Answer.** −12 to −6 dBFS.
+
 ## 🚀 Get ready
 
 1. Gather the kit: interface, mic pair, stereo bar, stands, cables, headphones.
@@ -140,7 +142,7 @@ Repeat the same steps with the mics spaced apart per the table (30–60 cm is a 
 
 **Q2 (multiple choice).** Which technique's stereo image usually holds up best when the recording is summed to mono?
 
-- a) XY
+- ✅ a) XY
 - b) AB
 - c) ORTF
 - d) All three are identical in mono
@@ -154,6 +156,8 @@ Set the spacing and angle exactly per the table (17 cm, 110°) — this one has 
 🚩 **Checkpoint.** Play back all three takes back to back. You should be able to hear XY as narrowest, AB as widest, and ORTF in between.
 
 **Q3 (fill in the blank).** ORTF spaces its two cardioid mics ______ cm apart, angled ______° from each other.
+
+✅ **Answer.** 17 cm apart, angled 110° from each other.
 
 ## 📉 Part 2 — The gain-staging drill ("Goldilocks")
 
@@ -170,7 +174,7 @@ Pick whichever technique from Part 1 was quickest to set up. Using that same set
 **Q4 (multiple choice).** Your too-quiet take peaks around −38 dBFS. If you raise that track's level after the fact to compensate, what do you also raise?
 
 - a) The sample rate
-- b) The noise floor
+- ✅ b) The noise floor
 - c) The stereo width
 - d) Nothing — this fixes the recording completely
 

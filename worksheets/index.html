@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Printable worksheets for the MUS 248 activities, generated from the activity instructions.">
+  <title>Worksheets · MUS 248</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Printable worksheets</p></header>
+  <main>
+    <p class="quiet">One page per activity, generated from that activity&rsquo;s own instructions. The phone page stays
+      the textbook; this is the part you write on and keep. Answer keys are instructor copies &mdash; they are not linked
+      from anywhere students see.</p>
+    <section id="worksheet-list" class="activity-grid" aria-label="Worksheets"></section>
+  </main>
+  <footer>Edit an activity&rsquo;s Markdown in <code>content/activities/</code> and its worksheet follows.</footer>
+  <script type="module">
+    const list = document.getElementById('worksheet-list');
+    fetch('../data/activities.json')
+      .then((response) => response.json())
+      .then((activities) => {
+        const ready = activities.filter((activity) => activity.contentFile);
+        list.innerHTML = ready.map((activity) => `
+          <div class="worksheet-row">
+            <span class="activity-emoji" aria-hidden="true">${activity.emoji}</span>
+            <span class="card-copy"><strong>${activity.title}</strong><small>${activity.time}</small></span>
+            <span class="worksheet-links">
+              <a class="activity-link" href="../${activity.route}/worksheet/">Worksheet</a>
+              <a class="activity-link quiet-link" href="../${activity.route}/worksheet/key/">Answer key</a>
+            </span>
+          </div>`).join('');
+      })
+      .catch(() => { list.innerHTML = '<p class="error">The worksheet list could not be loaded.</p>'; });
+  </script>
+  <style>
+    .worksheet-row { display:flex; gap:.75rem; align-items:center; padding:.75rem .25rem; border-bottom:1px solid var(--line); }
+    .worksheet-links { display:flex; gap:1rem; margin-left:auto; flex-wrap:wrap; justify-content:flex-end; }
+    .quiet-link { color:var(--muted); }
+    main p.quiet { max-width:60ch; }
+    @media (max-width:520px) { .worksheet-row { flex-wrap:wrap; } .worksheet-links { margin-left:3.1rem; width:100%; justify-content:flex-start; } }
+  </style>
+</body>
+</html>

@@ -8,3 +8,5 @@
 .primary-link,.canvas-link { display:inline-flex; align-items:center; gap:.35rem; padding:.2rem 0; border-radius:0; color:var(--accent); font-weight:650; text-decoration:none; }.primary-link:hover,.canvas-link:hover { text-decoration:underline; }.completion { margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line); }.completion h2 { margin:0; font-size:1.1rem; }.completion p { color:var(--muted); }
 .submission-steps { margin:.85rem 0 1rem; padding-left:1.3rem; }.submission-steps li { margin:.4rem 0; max-width:52ch; }
 @media print { .back { display:none; }.instructions .table-scroll,.instructions tr { break-inside:avoid; }.completion { break-inside:avoid; margin-top:1.75rem; }.activity-page { width:auto; padding:0; }.activity-header { padding-top:0; } }
+.worksheet-cue { margin:1rem 0 0; padding:.6rem .8rem; border:1px solid var(--line); border-radius:.35rem; background:var(--surface); font-size:.9rem; }.worksheet-cue .primary-link { font-size:.9rem; }
+@media print { .worksheet-cue { display:none; } }

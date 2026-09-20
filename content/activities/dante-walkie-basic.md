@@ -72,7 +72,7 @@ By the end of this activity, you should be able to:
 **Q1 (multiple choice).** What problem would happen if you left this track set to stereo, but your mic is only plugged into channel 1?
 
 - a) Nothing, it works exactly the same either way
-- b) You'd only get signal in one side of the stereo image, with the other side silent
+- ✅ b) You'd only get signal in one side of the stereo image, with the other side silent
 - c) Dante would refuse to route it
 - d) The DAW would crash
 
