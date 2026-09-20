@@ -79,7 +79,40 @@ there is nothing structured to generate from. Mic Stand Yoga is the heaviest lif
 slides of mostly photos, and its images need downscaling out of the deck first (see
 `_source/README.md`).
 
-**Critical path question: which activities actually need a worksheet by Monday?** If the answer
-is inside the migrated seven, this is a generator plus a print stylesheet. If it includes any of
-the four above, that activity has to be migrated first, and Mic Stand Yoga is a whole project of
-its own.
+## The three targets
+
+Chosen by what students most need to learn, not by what's easiest to generate. All three point
+at the same real job: recording a recital in BH 209 (Salmon Recital Hall).
+
+**1. Portable Cameras — add the BH 209 built-in cameras.** Today `cameras.md` covers the three
+handhelds (G50, GH5, AX100). Adding the room's installed cameras gives students more to pick
+from and connects the activity to the hall they'll actually shoot in. The existing file is well
+structured, so this is an addition, not a rewrite.
+*Blocked on:* what the installed cameras are, how they're operated, where footage lands.
+
+**2. X32 Compact — redesign.** No `.md` yet, but `_source/x32compact.txt` holds the full 716-line
+procedure (wireless pairing, mains, two monitor buses, Sends on Fader, Dante stems into channels
+9–16). Enough to draft a templated version without new information.
+*Blocked on:* nothing to start. Needs judgment about how much of a long procedure belongs in one
+activity versus split into rounds.
+
+**3. Stereo Recording — add more capture paths.** Today `stereo.md` is one interface plus a
+stereo pair through XY/AB/ORTF. Growing it toward: BH 209's built-in audio recording, a portable
+Zoom F8 with KM 184s (or another stereo SDC pair), and a handheld backup — an H4 plus a newer
+32-bit-float Zoom that needs no gain setting and mounts on a stand.
+*Blocked on:* which recorder models exactly, and what BH 209's built-in audio system is.
+
+Two of the three need equipment facts that aren't in this repo. Per the activity template's own
+rule, uncertain gear details get verified before they become student instructions rather than
+guessed at — especially port labels, mounting threads, and where recordings are written.
+
+## Scope reality for Monday
+
+Three redesigns plus the generator is a lot for two days, and the redesigns are the expensive
+part — the generator is cheap once an activity is structured. A safe order:
+
+1. **Generator + print stylesheet**, proven against the seven already-migrated activities. This
+   is what makes "worksheets" a feature rather than one document.
+2. **X32 Compact**, drafted from the imported source — no waiting on anyone.
+3. **Portable Cameras + BH 209**, as soon as the room's camera details land.
+4. **Stereo Recording**, last: it adds the most new equipment and carries the most unknowns.
