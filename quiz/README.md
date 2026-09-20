@@ -6,7 +6,7 @@ A static, front-end-only weekly quiz at `/mus248/quiz/`. No backend, accounts, d
 
 Study cards have their own page, `/mus248/study/` (source in `../study/`), and the quiz links to it. Cards live in `data/study-deck.json`, each with a `category` (topic chips on the page) and a `skill`; a card shows whenever its skill isn’t `inactive` in the curriculum, tagged Core or Practice to match. Students see Core and Practice cards together by default and can switch to Core only or Practice only (topic chips then show just the topics that have cards at that level). They flip, go Previous/Next (buttons, arrow keys, or swipe), shuffle, or read them as a list. Study cards are not access-gated. The quiz itself:
 
-1. **If `curriculum.json` gives this quiz number an access code,** the quiz asks for it before anything else. A student who has the right code for this quiz number stays unlocked on that device, so they only enter it once. Last week's code never opens this week's quiz.
+1. **If this week’s quiz has an access code,** the quiz asks for it before anything else. The code decides *which* quiz runs: this week’s code runs this week’s quiz and stays unlocked on that device, and an earlier quiz’s code runs that quiz as a makeup. Last week’s code never opens this week’s quiz.
 2. **From Quiz 2 on:** choose **I have my code**, which checks a pasted code the moment it lands, or **I don’t have it**. Quiz 1 skips this step because no earlier code can exist.
    - Pasting the whole Canvas submission is fine; the code is found inside it. Any *earlier* quiz's code works, not just last week's, so a student who missed one week can still use the one before it. A code from the current quiz or a later one is refused.
    - **I don’t have it** is a full, unpenalised path — a student who missed class, lost the code, or is on a new device just self-reports their activity counts and takes the quiz. They lose only the adaptive follow-up on skills they previously missed; the quiz is scored out of the same points either way.
@@ -25,22 +25,29 @@ Progress is saved in the browser, so a refresh or accidental close offers **Resu
 
 All of it lives in `data/curriculum.json`:
 
-1. Bump `quiz_number`, `quiz_label`, and `quiz_version`.
-2. Add this week’s code to `access_codes`, keyed by the quiz number:
+1. Add this week to `quizzes` and point `quiz_number` at it:
 
    ```json
    "quiz_number": 2,
-   "access_codes": {
-     "1": "phantompower",
-     "2": "exposuretriangle"
+   "quizzes": {
+     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
+     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle" }
    }
    ```
 
-   One code per quiz. The quiz reads the entry matching its own `quiz_number`, so bumping the number without issuing a new code can’t silently leave last week’s code working. If the current quiz number has no entry at all, the quiz refuses to open and says so on screen rather than letting a class in on a stale code.
+   `quiz_number` is the quiz the class takes this week. Each entry carries its own label, date, and code.
 
-   `npm test` fails on a missing entry, a code reused between two quizzes (the sign an entry was copied forward and never changed), and a `quiz_label` or `quiz_version` that has fallen out of step with `quiz_number` — which is the point at which you actually want to find out.
+2. **The access code selects which quiz runs, not just whether you get in.** Enter Quiz 1’s code and you take Quiz 1, even in a week when the class is on Quiz 2 — that is the makeup path for a student who missed a week. The makeup is labelled on screen (“Quiz 1 · makeup”), tells the student to submit it to *that* quiz’s Canvas assignment, and produces an `M248Q1…` code the verify page scores as Quiz 1.
 
-   Codes are matched with case and spaces ignored (`"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Set a quiz’s entry to `""` to run that week with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. A student who enters the right code for a given quiz number stays unlocked on that device (or share a link with `?code=phantompower` to skip typing it).
+   - **To close a makeup window, delete that quiz’s entry.** Its code stops working and the quiz becomes unreachable.
+   - A saved unlock only resumes the announced quiz, so sitting an earlier one always means deliberately typing its code. An in-progress makeup still survives a refresh — re-enter the code and it offers **Resume**.
+   - A makeup draws questions under the **current** `skills` statuses, not a snapshot of that week’s. If you later promote a skill from `practice` to `core`, a makeup of an earlier quiz grades under the new statuses. Students get different question variants anyway, so this is usually what you want — but it is worth knowing before you promote anything.
+   - If `quiz_number` points at an entry that doesn’t exist, the quiz refuses to open and says so on screen rather than letting a class in on a stale code.
+
+   Codes are matched with case and spaces ignored (`"phantompower"`, `"Phantom Power"`, and `"PHANTOM POWER"` all match). Set a quiz’s `access_code` to `""` to run that week with no code at all. **This is not real security** — it’s a normalized string compared in the browser, checked only to keep people from wandering into the quiz uninvited. Sharing a link with `?code=phantompower` skips the typing and routes the same way.
+
+   `npm test` fails on a `quiz_number` with no entry, a label that doesn’t name its own quiz, a version that isn’t a date, and two quizzes sharing a code (which would make a makeup ambiguous) — which is the point at which you actually want to find out.
+
 3. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
 4. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
 

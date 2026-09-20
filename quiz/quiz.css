@@ -168,3 +168,6 @@ tr.flag { background:var(--practice-bg); }
 .quiz.wide h2 { margin-top:2rem; }
 
 @media print { .row, .text-button, .debug { display:none; } body { background:#fff; color:#000; } }
+
+/* A makeup is a different quiz from the one the class is taking today; say so. */
+.notice.makeup { border-left:3px solid var(--accent, #0071e3); font-weight:600; }

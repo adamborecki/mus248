@@ -31,6 +31,9 @@ const storage = {
 let data;
 let attempt = null;
 let setup = null;
+let announcedQuiz = null;
+
+const isMakeup = () => announcedQuiz !== null && data.curriculum.quiz_number !== announcedQuiz;
 
 const save = () => storage.write(ATTEMPT_KEY, attempt);
 const label = (skill) => data.bank.skills?.[skill] || skill.replace(/_/g, ' ');
@@ -59,33 +62,41 @@ async function loadJson(path) {
 // keeps the quiz from being stumbled into; don't rely on it for anything more.
 const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
 
-// One code per quiz, keyed by quiz number. Bumping quiz_number without issuing a
-// new code used to silently leave last week's code working; now the quiz has no
-// code at all and says so, and `npm test` catches it days earlier.
+// Each quiz has its own entry in `quizzes` — label, date, and access code. The
+// code doesn't just unlock the week, it SELECTS it: entering Quiz 1's code runs
+// Quiz 1. That is what makes a makeup possible. Without it the site serves only
+// whatever quiz_number says, and a student who missed a week can never sit that
+// week's quiz no matter which code they are given.
 //
-// Returns { ok: false } when this quiz number has no entry at all, and an empty
-// code when the week is deliberately open to anyone with the link.
-function codeFor(curriculum) {
-  const table = curriculum.access_codes;
-  const key = String(curriculum.quiz_number);
-  const raw = table
-    ? (Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined)
-    : curriculum.access_code ?? '';
-  if (raw === undefined) return { ok: false, code: '' };
-  return { ok: true, code: normalizeCode(raw) };
+// To close a makeup window, delete that quiz's entry — its code stops working.
+const quizConfig = (curriculum, number) => curriculum.quizzes?.[String(number)];
+
+// The quiz number a code opens, or null if it opens nothing.
+function quizForCode(curriculum, value) {
+  const code = normalizeCode(value);
+  if (!code) return null;
+  const match = Object.entries(curriculum.quizzes || {})
+    .find(([, quiz]) => normalizeCode(quiz.access_code) === code);
+  return match ? Number(match[0]) : null;
 }
 
-function isUnlocked(curriculum) {
-  const { ok, code } = codeFor(curriculum);
-  if (!ok) return false;
-  if (!code) return true;
-  const fromUrl = normalizeCode(params.get('code'));
-  if (fromUrl && fromUrl === code) {
-    storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: fromUrl });
-    return true;
-  }
-  const unlocked = storage.read(UNLOCK_KEY);
-  return unlocked?.quiz === curriculum.quiz_number && normalizeCode(unlocked.code) === code;
+// Everything downstream reads curriculum.quiz_number/_label/_version, so pointing
+// those at the chosen quiz is all it takes to run an earlier one.
+function applyQuiz(number) {
+  const { curriculum } = data;
+  const config = quizConfig(curriculum, number) || {};
+  curriculum.quiz_number = number;
+  curriculum.quiz_label = config.label || `Quiz ${number}`;
+  curriculum.quiz_version = config.version || '';
+  const makeup = isMakeup();
+  document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}${makeup ? ' · makeup' : ''}`;
+  document.title = `${curriculum.quiz_label}${makeup ? ' (makeup)' : ''} · MUS 248`;
+}
+
+function enterQuiz(number) {
+  applyQuiz(number);
+  storage.write(UNLOCK_KEY, { quiz: number, code: normalizeCode(quizConfig(data.curriculum, number).access_code) });
+  afterUnlock();
 }
 
 // Loud on purpose. A student seeing this is the signal that the week's setup was
@@ -94,7 +105,7 @@ function renderNoCodeSet(curriculum) {
   show(`
     <section class="step">
       <h2 tabindex="-1">This quiz isn’t open yet</h2>
-      <p>${escapeHtml(curriculum.quiz_label)} has not been given an access code, so it can’t be started.</p>
+      <p>Quiz ${escapeHtml(String(curriculum.quiz_number))} has not been set up, so it can’t be started.</p>
       <p class="quiet">Tell your instructor you saw this — they’ll know what it means. Nothing is wrong on your end,
         and nothing you do here counts against you.</p>
       <p class="quiet small">In the meantime the <a href="../study/">study cards</a> are always open.</p>
@@ -106,6 +117,7 @@ function renderGate() {
     <section class="step">
       <h2 tabindex="-1">Enter this week’s access code</h2>
       <p class="quiet">Ask your instructor for the ${escapeHtml(data.curriculum.quiz_label)} access code.</p>
+      <p class="quiet small">Making up an earlier quiz? Enter <em>that</em> quiz’s code instead and you’ll take that one.</p>
       <label class="field" for="access-code">Access code</label>
       <input id="access-code" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
       <div class="row"><button class="btn primary wide" id="unlock">Continue →</button></div>
@@ -113,9 +125,9 @@ function renderGate() {
     </section>`, { focus: '#access-code' });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
-    if (normalizeCode(input.value) === codeFor(data.curriculum).code) {
-      storage.write(UNLOCK_KEY, { quiz: data.curriculum.quiz_number, code: normalizeCode(input.value) });
-      afterUnlock();
+    const opens = quizForCode(data.curriculum, input.value);
+    if (opens !== null) {
+      enterQuiz(opens);
     } else {
       const status = app.querySelector('#access-status');
       status.className = 'status error';
@@ -143,12 +155,25 @@ async function init() {
     ['data/curriculum.json', 'data/questions.json', 'data/study-deck.json'].map(loadJson),
   );
   data = { curriculum, bank, deck, byId: indexQuestions(bank) };
-  document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
-  document.title = `${curriculum.quiz_label} · MUS 248`;
 
-  if (!codeFor(curriculum).ok) return renderNoCodeSet(curriculum);
-  if (!isUnlocked(curriculum)) return renderGate();
-  afterUnlock();
+  const announced = quizConfig(curriculum, curriculum.quiz_number);
+  if (!announced) return renderNoCodeSet(curriculum);
+  announcedQuiz = curriculum.quiz_number;
+  applyQuiz(announcedQuiz);
+
+  // A week with no code is open to anyone with the link.
+  if (!normalizeCode(announced.access_code)) return afterUnlock();
+
+  const fromUrl = quizForCode(curriculum, params.get('code'));
+  if (fromUrl !== null) return enterQuiz(fromUrl);
+
+  // A saved unlock only resumes the announced quiz. Sitting an earlier one is a
+  // deliberate act, so a makeup asks for its code every time.
+  const saved = storage.read(UNLOCK_KEY);
+  if (saved?.quiz === announcedQuiz && quizForCode(curriculum, saved.code) === announcedQuiz) {
+    return afterUnlock();
+  }
+  renderGate();
 }
 
 function startFresh() {
@@ -193,6 +218,7 @@ function renderStart(options) {
   const missing = missingSteps();
 
   show(`
+    ${isMakeup() ? `<p class="notice makeup">You’re taking <strong>${escapeHtml(curriculum.quiz_label)}</strong> as a makeup. Submit it to that quiz’s Canvas assignment, not this week’s.</p>` : ''}
     <p class="notice">Want to review first? The <a href="../study/">study cards</a> are sorted by topic and marked Core or Practice.</p>
     ${askCode ? `
     <section class="step">

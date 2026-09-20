@@ -37,35 +37,39 @@ const attemptFor = ({ selection, answers, activities = {}, prior = null, quiz = 
 // a failing test does not.
 
 const normalizeCode = (value) => String(value).trim().toLowerCase().replace(/\s+/g, '');
+const quizzes = curriculum.quizzes || {};
 
-test('every quiz that has run has its own access code', () => {
-  const codes = curriculum.access_codes;
-  assert.ok(codes && typeof codes === 'object', 'curriculum.json needs an access_codes map, keyed by quiz number');
-  assert.equal(curriculum.access_code, undefined,
-    'access_code is superseded by access_codes — keeping both invites them to disagree');
-  for (let quiz = 1; quiz <= curriculum.quiz_number; quiz += 1) {
-    const code = codes[String(quiz)];
-    assert.ok(code !== undefined, `no access code for Quiz ${quiz} — add access_codes["${quiz}"]`);
-    assert.equal(typeof code, 'string', `Quiz ${quiz}'s access code must be a string ("" means no code that week)`);
-  }
+test('every quiz that has run is still set up', () => {
+  assert.ok(Object.keys(quizzes).length, 'curriculum.json needs a quizzes map, keyed by quiz number');
+  assert.equal(curriculum.access_codes, undefined, 'access_codes is superseded by quizzes[n].access_code');
+  assert.equal(curriculum.quiz_label, undefined, 'quiz_label now lives in quizzes[n].label');
+  assert.equal(curriculum.quiz_version, undefined, 'quiz_version now lives in quizzes[n].version');
+  assert.ok(quizzes[String(curriculum.quiz_number)],
+    `quiz_number is ${curriculum.quiz_number} but quizzes has no entry for it — the quiz would refuse to open`);
 });
 
-test('no two quizzes share an access code', () => {
-  const seen = new Map();
-  Object.entries(curriculum.access_codes).forEach(([quiz, value]) => {
-    const code = normalizeCode(value);
-    if (!code) return;
-    assert.ok(!seen.has(code),
-      `Quiz ${quiz} reuses Quiz ${seen.get(code)}'s access code — the entry was copied forward without changing it`);
-    seen.set(code, quiz);
+test('each quiz entry is complete and self-consistent', () => {
+  Object.entries(quizzes).forEach(([number, quiz]) => {
+    assert.match(quiz.label || '', new RegExp(`\\b${number}\\b`),
+      `quizzes["${number}"].label is "${quiz.label}", which doesn't name quiz ${number}`);
+    assert.match(quiz.version || '', /^\d{4}-\d{2}-\d{2}$/,
+      `quizzes["${number}"].version should be the date that quiz runs, got "${quiz.version}"`);
+    assert.equal(typeof quiz.access_code, 'string',
+      `quizzes["${number}"].access_code must be a string ("" means no code for that quiz)`);
   });
 });
 
-test('quiz_label and quiz_version keep up with quiz_number', () => {
-  assert.match(curriculum.quiz_label, new RegExp(`\\b${curriculum.quiz_number}\\b`),
-    `quiz_label is "${curriculum.quiz_label}" but quiz_number is ${curriculum.quiz_number}`);
-  assert.match(curriculum.quiz_version, /^\d{4}-\d{2}-\d{2}$/,
-    `quiz_version should be the date this quiz runs, got "${curriculum.quiz_version}"`);
+test('each access code opens exactly one quiz', () => {
+  // The code selects which quiz runs, so a duplicate would make a makeup
+  // ambiguous — and would mean an entry was copied forward unchanged.
+  const seen = new Map();
+  Object.entries(quizzes).forEach(([number, quiz]) => {
+    const code = normalizeCode(quiz.access_code);
+    if (!code) return;
+    assert.ok(!seen.has(code),
+      `Quiz ${number} and Quiz ${seen.get(code)} share an access code — which quiz should it open?`);
+    seen.set(code, number);
+  });
 });
 
 // ---------- Data files ----------

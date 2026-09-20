@@ -4,8 +4,20 @@ Working notes for picking this thread back up. Not student-facing.
 
 ## Quiz 2 is live (Sept 20, 2026)
 
-`curriculum.json` is set to **Quiz 2**, version `2026-09-21`. One code per quiz:
-`phantompower` is Quiz 1's, `exposuretriangle` is Quiz 2's, and Quiz 1's no longer opens Quiz 2.
+`curriculum.json` is set to **Quiz 2**, version `2026-09-21`. Each quiz now has its own entry in
+a `quizzes` map holding its label, date, and code, and **the code selects which quiz runs**:
+`phantompower` runs Quiz 1, `exposuretriangle` runs Quiz 2.
+
+**That is the makeup path.** A student who missed a week enters that week's code and sits that
+week's quiz, in a week when the class is on a later one. It is labelled "Quiz 1 · makeup" on
+screen, tells them which Canvas assignment to submit to, and produces an `M248Q1…` code the
+verify page scores as Quiz 1. To close a makeup window, delete that quiz's entry — its code
+stops working. Note that a makeup draws questions under the *current* skill statuses, not a
+snapshot of that week's, which matters the first time a skill is promoted from practice to core.
+
+Keeping an old code alive on the current quiz would **not** have done this: the site serves one
+quiz at a time, so the old code would just have been a second door into the current quiz. That
+was the state briefly shipped in 0735af8 and it is why routing exists.
 Verified end to end in a browser: the gate, a `?code=` link, a Quiz 1 code pasted into Quiz 2,
 the no-code fallback, a full 20-question run, and the instructor verify page scoring the
 resulting code and carrying the learner ID forward.
@@ -141,9 +153,9 @@ which is fine — but four fields in `data/curriculum.json` have to move:
 - `quiz_number` — **not optional.** Saved attempts and the access-code unlock are both keyed to
   it. Leave it at 1 and a returning student opens straight onto their Quiz 1 results screen
   instead of a new quiz, and never gets asked for the new code.
-- `access_codes` — **now keyed by quiz number**, one code each. Replaces the single
-  `access_code` field, so bumping `quiz_number` without issuing a new code is no longer a silent
-  failure: the quiz refuses to open and says so on screen.
+- `quizzes` — one entry per quiz, holding its `label`, `version`, and `access_code`. Replaces
+  the top-level `quiz_label`, `quiz_version`, and `access_code` fields. Bumping `quiz_number`
+  without adding an entry is no longer a silent failure: the quiz refuses to open and says so.
 - `quiz_label`, `quiz_version` — keep them honest.
 
 **`npm test` now enforces all of this.** Three pre-flight tests fail on a missing access code for
