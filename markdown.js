@@ -8,7 +8,10 @@ export const escapeHtml = (value) => value.replace(/[&<>'"]/g, (character) => ({
 export const inline = (value) => escapeHtml(value)
   .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2">$1</a>')
   .replace(/`([^`]+)`/g, '<code>$1</code>')
-  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  // Single-asterisk emphasis, after bold has consumed its pairs. Without this a
+  // source file's *emphasis* reached the page with the asterisks still in it.
+  .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
 
 // Answer-key markers. Correct answers live in the activity Markdown so the key
 // generates from the same file, and both student renders strip them out:

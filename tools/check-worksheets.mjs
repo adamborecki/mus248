@@ -27,6 +27,11 @@ check(wrapped[4] === '> a quote that wraps', `wrapped quote joined as: ${wrapped
 check(joinWrappedLines('| a | b |\n| 1 | 2 |') === '| a | b |\n| 1 | 2 |', 'table rows must not be joined');
 check(joinWrappedLines('## Heading\ntext').split('\n').length === 2, 'a heading must not absorb the next line');
 
+// Emphasis has to survive into the page rather than arriving as literal asterisks.
+check(renderMarkdown('a *word* here').includes('<em>word</em>'), 'single-asterisk emphasis did not render');
+check(renderMarkdown('a **word** here').includes('<strong>word</strong>'), 'bold stopped rendering');
+check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survived into the rendered page');
+
 const directory = JSON.parse(read('data', 'activities.json'));
 // The generator is driven by the directory, never by globbing the folder — so
 // _template.md and WORKSHEETS.md are never mistaken for activities.

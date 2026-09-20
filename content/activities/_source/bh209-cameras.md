@@ -9,40 +9,93 @@ gear details get verified before they become student instructions, and a click-p
 from recollection is exactly the thing that sends a student to the wrong menu at 7:50 on a
 recital night.
 
-## Confirmed (instructor, September 2026)
+## Confirmed
+
+### From the instructor, September 2026
 
 | | |
 | --- | --- |
 | Cameras | **AJA RovoCam**, installed in the hall |
-| Control | **Software on a computer in the room** — not a touch panel, not a joystick |
-| Recording | A **Blackmagic** recorder, to **SD card**; a higher-speed card is the norm |
+| Control | **Software on a computer in the room** |
+| Recording | To **SSD or SD card**; a higher-speed card is the norm |
 | Audio | **Both** — embedded in the video, and a separate feed |
 | Access | **Key code** on the door; most students in this course already have it |
-| Documentation | Exists, is old, and has not been imported |
 
-Not written down anywhere: the key code itself. This repo is public — it stays out.
+**The room is a production room, not a practice room** — the instructor's own framing, and the
+single most important thing this section has to get across. The handheld activity encourages
+students to push settings around; BH 209 is patched and levelled for live recitals that stream to
+an audience. Students touch only what a procedure names, and put everything back. That rule is now
+written into `cameras.md` twice: in the safety list and as a red-flag callout heading the BH 209
+section.
 
-## Still needed
+Not written down anywhere, deliberately: the key code, and the contents of the room's
+`vimeo login password.rtf`. This repo is public.
 
-Answering these turns the orientation section into a procedure. Roughly in the order that
-unblocks the most:
+### From photographs of the room, September 2026
 
-- [ ] **The control software** — its name, which computer it runs on, how a student opens it.
-      AJA's own application for RovoCam is RovoControl; confirm that is what the room uses and
-      not a browser pointed at the camera, or something third-party.
-- [ ] **How many cameras there are, and where they point.**
-- [ ] **Which exposure controls the software actually exposes**, and what they are called there.
-      If iris/gain/shutter/white balance are not all reachable, the BH 209 drill gets built
-      around the ones that are, rather than pretending the handheld five transfer intact.
-- [ ] **The Blackmagic recorder** — model, where the SD slot is, what card speed it needs, and
-      whether a card lives in it or students bring their own.
-- [ ] **The data-transfer procedure.** Explicitly wanted. After the take: which card, which
-      computer, where files go, how a student confirms the take is good before handing the room
-      over.
-- [ ] **The separate audio feed** — what it comes off, where it records, whether starting it is
-      its own action. This one also unblocks target 3 (Stereo Recording), which wants to know
-      what the hall's built-in audio system is.
-- [ ] **Who a student asks** when their key code does not work.
+Read off the control surfaces directly, so these are observed rather than recalled. Anything an
+angle made ambiguous is in **Still needed** below rather than here.
+
+**The Mac** is named **`BH209-LivestreamAndDanteRecord`** — so the livestream and the Dante
+recording are the same machine.
+
+**AJA RovoControl v3.0.1** (the desktop zip is `AJA_RovoControl_v3_0_1.zip`), three tabs:
+**Camera Control**, **ePTZ**, **Settings**. On Camera Control:
+
+| Control | Range as shown | Notes |
+| --- | --- | --- |
+| Iris | `Close` … `f14` → `f1.8` | Has an **AUTO** toggle |
+| Exposure mode | **A / S / M / B** | Observed on **M** |
+| Shutter speed | dropdown | Observed on `1/1` |
+| Gain | `0dB` → `33dB` | |
+| Focus | `10mm` → `1500mm` | Has an **AUTO** toggle |
+| Zoom | `Wide` → `Tele` | Observed at `3.2x`, with a rocker |
+| Presets | **1–16** | Observed on 2 |
+| Cameras | two buttons, both reading `Cam ?` | Unnamed or not connected at the time |
+
+Status line: `EPTZ Off · Joystick Off · Close/0dB · 1/1 · 1500mm · 1.0x`.
+
+**This answers the biggest open question:** the five settings this activity teaches *do* transfer,
+in the same units. Iris in f-stops, gain in dB, a real manual mode. **White balance is the
+exception** — it is not on the Camera Control tab, so it is either under **Settings** or not
+exposed at all. That one still needs checking.
+
+**Physical control** exists too, which the earlier "software on a computer" answer did not cover:
+a **Pan/Tilt joystick** on the desk with its own speed knob and a hardware **Camera 1 / Camera 2**
+selector, plus a second small unit with a 4-way pan pad and a Power / Pan / Remote / Control
+switch.
+
+**The video chain is Blackmagic ATEM, not a standalone deck** — the earlier note said "a
+Blackmagic recorder", which was close but imprecise. Two multiviews on stacked Samsung displays:
+
+- **HDMI1 — ATEM Production Studio 4K.** Camera 1–8, Preview, Program, audio meters for
+  `CAM1`–`CAM8`, `MIC1`, `MIC2`, `PGM`. Two record slots (`STOP 00:00:00`, both reading
+  **`NO DISK`** when idle) and a stream readout (`OFF`, `DATA RATE Mb/s`, `CACHE OK`, **Vimeo**).
+- **HDMI2 — ATEM Mini Extreme ISO.** Preview/Program plus Camera 1–7 and Media Player 1.
+- A taped label reads **"select HDMI1 for MULTIVIEW source"**.
+
+So the two RovoCams are two inputs among up to eight — which means **the handheld cameras from
+this activity plausibly plug into the same switcher**. Worth confirming, because it would join the
+two halves of the activity into one job.
+
+**At the desk:** Genelec monitors, an ATEM Mini Extreme ISO control panel, a Mackie Big Knob
+(source select / mono / volume), outboard VU meters, a Furman power conditioner in the rack, and a
+SanDisk **SSD PLUS** on a stand.
+
+**A handwritten setup checklist** on the desk, partly legible:
+
+1. Furman on
+2. SSD (or a "fast" 1667x Lexar SD) — **Mb for left**
+3. spare SSD (or SD) in **top right**
+4. adjust exposure with … *(cut off)*
+
+**Two printed manuals live at the desk** and are not in this repo: *Salmon Recital Hall Recording
+Engineer Manual — Quick…* (carries QR codes) and a *Live-Streaming Guide*, both annotated by hand.
+
+**An operational risk worth flagging to the instructor:** macOS warns that this build of AJA
+RovoControl is Intel-only and **"will not open in a future release of macOS."** The room loses
+camera control the day that Mac updates past it. Worth checking whether AJA ships an Apple-silicon
+build before an OS upgrade happens, not after.
 
 ## Getting the documentation in
 

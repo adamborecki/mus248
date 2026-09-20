@@ -1,0 +1,9 @@
+Salmon Recital Hall (BH 209) — SOP checklist
+============================================
+
+PLACEHOLDER. The instructor's plain-text SOP checklist goes here, verbatim.
+Nothing else in the repo should be edited to match it until it lands; the
+BH 209 section of cameras.md is written as orientation only and says so.
+
+See bh209-cameras.md in this folder for what is already confirmed about the
+room, and for the list of what this document is expected to answer.

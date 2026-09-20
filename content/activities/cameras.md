@@ -99,6 +99,7 @@ You are encouraged to experiment with settings. You are **not** meant to discove
 - 🎒 **Do not force the G50 lens cover switch** or any card door. If something will not move, it is in the wrong position or the door is latched — stop and look.
 - 📼 **Do not reformat the SD card.** There may be somebody else's files on it.
 - 🧭 **Change only the five settings in this activity.** These cameras are shared. A stray menu change that you cannot undo costs the next person their shoot.
+- 🛑 **BH 209 is different from all of the above.** Everything in this activity's "experiment freely" spirit applies to the handhelds only. The production desk in BH 209 is configured for live recitals — there you change only what a procedure tells you to, and you put it back. See the BH 209 section in Part 1.
 
 ## 🎚️ The house default
 
@@ -211,36 +212,49 @@ The GH5 displays **ISO**, not dB. Its house default is **ISO 400**.
 
 ### BH 209 — the cameras already in the hall
 
-**Where they live:** bolted into **BH 209, Salmon Recital Hall**. You do not sign these out and
-you do not carry them. The door is on a key code.
+**Where they live:** installed in **BH 209, Salmon Recital Hall**, and driven from the production
+desk. You do not sign these out and you do not carry them. The door is on a key code.
 
-This is the orientation, not the drill. Read it so the hall is not unfamiliar the first time you
-have to record in it.
+> 🛑 **BH 209 is a production room, not a practice room. The rule here is the opposite of the rest
+> of this activity.** On the handhelds you are *encouraged* to push settings around and see what
+> breaks — that is the whole drill, and the next person gets a camera you reset. In BH 209 you
+> touch only what the procedure tells you to touch, and **everything goes back exactly as you
+> found it.** This desk is patched, routed, and levelled for live recitals that are streaming to
+> an audience; a stray preset or a moved slider is not your experiment, it is somebody's concert.
+> If you are unsure whether you are allowed to change something, the answer is no.
 
-| What is different | BH 209's installed cameras |
+This is the orientation, not the drill. Read it so the room is not unfamiliar the first time you
+have to work in it.
+
+| | BH 209's installed cameras |
 |---|---|
-| The camera | **AJA RovoCam** — a fixed installed camera, not a camcorder |
-| How you drive it | **Software on a computer in the room.** There are no exposure buttons to find on a body. |
-| Where the recording lands | A **Blackmagic recorder**, onto an **SD card** — bring a fast card, a slow one will drop frames |
-| Audio | The hall gives you **both**: audio embedded in the video, and a separate feed you can record on its own |
-| Getting in | A **key code** on the door, which most students in this course already have |
+| The cameras | **AJA RovoCam** — fixed installed cameras, not camcorders. Two of them, which arrive at the switcher as two of its camera inputs alongside whatever else is plugged in. |
+| How you drive them | **AJA RovoControl**, an app on the room's Mac (the one named *BH209-LivestreamAndDanteRecord*), plus a physical **Pan/Tilt joystick** on the desk with a **Camera 1 / Camera 2** selector and its own speed control. |
+| Exposure | Real controls, in units you already know: **iris** (f14 → f1.8), **gain** (0 → 33 dB), **shutter speed**, **focus** (10 → 1500 mm), and zoom. An **A / S / M / B** mode selector picks who decides — **M** is full manual, the same idea as `[M]` on the G50. |
+| Framing | Up to **16 saved presets**, plus an **ePTZ** tab. Presets are part of the room's setup for a given event — recall them, don't overwrite them. |
+| Where the recording lands | Through the **Blackmagic ATEM** switchers to a **disk at the desk** — an SSD, or a fast SD card. There are **two record slots**, a main and a spare, and the multiview reads **NO DISK** when nothing is inserted. |
+| Streaming | The same desk streams the program feed to **Vimeo**, with its own on-screen data-rate and cache readout. |
+| Audio | The hall gives you **both**: audio embedded with the video, and a separate Dante recording on that same Mac. |
+| Getting in | A **key code** on the door, which most students in this course already have. |
 
-The five settings from this activity have not gone away — an installed camera still has exposure,
-white balance, and focus. What changes is that you reach them through a window on a screen instead
-of a dial under your thumb, and that the card you pull at the end is in a rack, not in your hand.
+**The good news for everything you just practised:** the five settings did not go away, and they
+did not change units. An iris is still an iris and 6 dB is still a stop — you reach them through a
+window on a screen and a joystick instead of a dial under your thumb. What *is* genuinely
+different is that the picture is going somewhere live, and that the card you pull at the end is in
+a rack at the desk rather than in your hand.
 
-> 🧪 **The click-by-click procedure for BH 209 is not written yet.** The room's existing
-> documentation predates this page and has not been imported. Until it is, treat this section as
-> orientation only and do the graded work on the three handhelds. See **Technical verification**
-> for exactly what is still open.
+> 🧪 **The click-by-click procedure for BH 209 is not written here yet.** The room has its own
+> Salmon Recital Hall SOP and quick-start manual, which are being imported. Until that lands,
+> treat this section as orientation and do the graded work on the three handhelds. See
+> **Technical verification** for exactly what is still open.
 
-**Q3 (multiple choice).** You finish a take on BH 209's installed cameras. Where do you go to get
-the file?
+**Q3 (multiple choice).** In BH 209 you find a camera preset framed differently from how you would
+have framed it. What do you do?
 
-- a) The SD card in the back of the RovoCam itself
-- ✅ b) The SD card in the Blackmagic recorder
-- c) It uploads to Canvas automatically
-- d) The computer running the camera software has it on its desktop
+- a) Re-frame it and save over the preset — that's what presets are for
+- ✅ b) Leave it. The room is set up for an event, and presets are part of that setup
+- c) Delete the preset so nobody uses a bad one
+- d) Change it, then change it back from memory afterwards
 
 🚩 **Checkpoint — all three cameras.** Before moving to Part 2, read all five values off the screen out loud: F4.0, 3 dB (ISO 400), 1/60, 3200 K, autofocus. If you cannot find one of them on the display, you are not ready to record yet.
 
@@ -394,31 +408,31 @@ Two prompts. Do not write an essay.
 
 Specific items to check:
 
-**BH 209 (Salmon Recital Hall) — the whole section is provisional.** What is written there came
-from the instructor in September 2026 and is correct as far as it goes; everything below is what
-the section still needs before it can become a procedure students follow:
+**BH 209 (Salmon Recital Hall) — orientation only, pending the room's own SOP.** What the section
+says was confirmed by the instructor and read off photographs of the control surfaces in September
+2026. What it does *not* yet contain is a procedure, because the room's Salmon Recital Hall SOP and
+quick-start manual are still being imported. Full intake notes, including everything read off the
+screens, are in `content/activities/_source/bh209-cameras.md`. Still open:
 
-- **The software.** The cameras are AJA RovoCam, driven from software on a computer in the room.
-  The application's name, where it runs, and how a student opens it are not recorded here. AJA's
-  own control application for these is RovoControl, but confirm that is what the room uses rather
-  than a web page on the camera's address or a third-party controller.
-- **How many cameras, and where.** Not recorded.
-- **Exposure control.** Confirm which of the five settings this activity teaches are actually
-  reachable from the software, and what they are called there. If some are not exposed, the
-  BH 209 drill has to be built around the ones that are.
-- **The recorder.** A Blackmagic deck recording to SD. Confirm the model, the card speed it
-  actually needs, where the slot is, and whether a card lives in it or students bring their own.
-- **The data-transfer procedure.** Wanted, and not written. What a student does after the take:
-  which card, which computer, where the files go, and how they confirm the take is good before
-  the room is handed to the next group.
-- **Audio.** The hall provides both embedded audio and a separate feed. Confirm what the separate
-  feed comes off, where it records, and whether starting it is a separate action. This one also
-  feeds the Stereo Recording activity later.
-- **The key code.** Deliberately not written down here — this repo is public. The page says to
-  ask; confirm who a student should ask.
-- **The existing documentation** is old and still outside the repo. Import it to
-  `content/activities/_source/bh209-cameras.txt` (see the intake notes in `_source/`), then the
-  section above can be rewritten from a real source rather than from recollection.
+- **White balance.** Iris, gain, shutter, focus, and zoom are all on RovoControl's Camera Control
+  tab in familiar units, so the stops lesson transfers. White balance is *not* on that tab —
+  confirm whether it lives under **Settings** or is not exposed at all, and adjust the section.
+- **How many cameras, and which inputs they are.** RovoControl shows two camera buttons; the
+  switcher multiview has eight. Which are RovoCams, and do this activity's handhelds plug into the
+  same switcher? If they do, the two halves of this activity are one job and should say so.
+- **The recording media and the slots.** The desk checklist names an SSD or a fast 1667x Lexar SD,
+  a main slot and a spare in the top right. Confirm which is which on the hardware, and whether a
+  student brings a card or uses the room's.
+- **The data-transfer procedure.** Still wanted, still unwritten: which disk, which computer, where
+  files go, and how a student confirms the take is good before handing the room over.
+- **The separate audio feed.** The room Mac is named `BH209-LivestreamAndDanteRecord`, so Dante
+  recording happens there. Confirm what feeds it and whether starting it is its own action. This
+  also unblocks the Stereo Recording activity.
+- **The key code and the room's stored passwords** stay out of this repo, which is public. The page
+  says to ask; confirm who a student should ask.
+- **Not a page problem, but worth knowing:** macOS warns that the installed AJA RovoControl is an
+  Intel-only build that "will not open in a future release of macOS." The room loses camera control
+  the day that Mac updates past it.
 
 Portable cameras:
 
