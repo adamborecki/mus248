@@ -1,10 +1,11 @@
 {
   "schema": 1,
-  "quiz_number": 1,
-  "quiz_label": "Quiz 1",
-  "quiz_version": "2026-09-14",
+  "quiz_number": 2,
+  "quiz_label": "Quiz 2",
+  "quiz_version": "2026-09-21",
   "access_codes": {
-    "1": "phantompower"
+    "1": "phantompower",
+    "2": ["exposuretriangle", "phantompower"]
   },
   "targets": {
     "total_questions": 20,

@@ -2,6 +2,18 @@
 
 Working notes for picking this thread back up. Not student-facing.
 
+## Quiz 2 is live (Sept 20, 2026)
+
+`curriculum.json` is set to **Quiz 2**, version `2026-09-21`, announcing **`exposuretriangle`**
+and still accepting `phantompower` so nobody is locked out over the old code. Verified end to
+end in a browser: the gate, the carried-over code, a `?code=` link, a Quiz 1 code pasted into
+Quiz 2, the no-code fallback, a full 20-question run, and the instructor verify page scoring the
+resulting code and carrying the learner ID forward.
+
+**It still runs the Quiz 1 way.** None of the timing or capture design is built — see the
+pre-flight section below. That is a deliberate state, not an oversight: the quiz works, and the
+fields that had to move have moved.
+
 ## Where it stands (Sept 18, 2026)
 
 Quiz 1 ran in class Sept 14 with 16 submissions, all codes valid. Mean 9.69/10, 8 perfect,
@@ -129,15 +141,27 @@ which is fine — but four fields in `data/curriculum.json` have to move:
 - `quiz_number` — **not optional.** Saved attempts and the access-code unlock are both keyed to
   it. Leave it at 1 and a returning student opens straight onto their Quiz 1 results screen
   instead of a new quiz, and never gets asked for the new code.
-- `access_codes` — **now keyed by quiz number**, e.g. `{"1": "phantompower", "2": "ortf"}`.
-  Replaces the single `access_code` field, so bumping `quiz_number` without issuing a new code
-  is no longer a silent failure: the quiz refuses to open and says so on screen.
+- `access_codes` — **now keyed by quiz number**, and an entry may be one code or a list, where
+  the first is the one announced in class and the rest are deliberate carry-overs. Replaces the
+  single `access_code` field, so bumping `quiz_number` without issuing a new code is no longer a
+  silent failure: the quiz refuses to open and says so on screen.
 - `quiz_label`, `quiz_version` — keep them honest.
 
 **`npm test` now enforces all of this.** Three pre-flight tests fail on a missing access code for
 the current quiz number, a code reused between quizzes, and a `quiz_label` or `quiz_version` that
 has fallen out of step. The checklist below is still worth reading, but it is no longer the only
 thing standing between a forgotten field and a live class.
+
+**On a student with no previous code — the learner ID stays generated, not typed.** It was worth
+considering, and it does not do what it looks like it does. The ID's only job is in `verify.js`,
+which flags *same ID, different code* to catch a shared submission; a self-typed name breaks that
+in both directions (two students typing the same name look like sharing, and one student typing
+"Adam B" then "adam b" looks like two people). It also would not restore the adaptive follow-up,
+which needs the per-question results and skill history carried inside the **code**, not the ID.
+Canvas already joins submissions to students by name, and this repo's privacy rule keeps names
+out. What changed instead is the copy: the fallback now tells students their code is at the end
+of their Canvas submission from that week, because "I don't have it" usually means "I didn't
+look."
 
 **The previous-quiz flow is built and verified**, contrary to the timing/capture work, which is
 not. From Quiz 2 on, students choose "I have my code" or "I don't have it". Pasting a whole

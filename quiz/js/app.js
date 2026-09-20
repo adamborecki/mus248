@@ -62,28 +62,34 @@ const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replac
 // Each quiz gets its own code, keyed by quiz number. Bumping quiz_number without
 // issuing a new code used to silently leave last week's code working; now the
 // quiz has no code at all and says so, and `npm test` catches it days earlier.
-// Returns { ok: false } when this quiz number has no entry, an empty code when
-// the week is deliberately open, and a legacy single access_code if one is set.
-function codeFor(curriculum) {
-  const codes = curriculum.access_codes;
-  if (!codes) return { ok: true, code: curriculum.access_code ?? '' };
+//
+// An entry may be one code or a list. The first is the one announced in class;
+// any extra is a deliberate carry-over, for a week when last term's code is
+// still on the board and nobody should be locked out over it.
+//
+// Returns { ok: false } when this quiz number has no entry at all, and an empty
+// list when the week is deliberately open to anyone with the link.
+function codesFor(curriculum) {
+  const table = curriculum.access_codes;
   const key = String(curriculum.quiz_number);
-  if (!Object.prototype.hasOwnProperty.call(codes, key)) return { ok: false, code: '' };
-  return { ok: true, code: codes[key] ?? '' };
+  const raw = table
+    ? (Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined)
+    : curriculum.access_code ?? '';
+  if (raw === undefined) return { ok: false, codes: [] };
+  return { ok: true, codes: (Array.isArray(raw) ? raw : [raw]).map(normalizeCode).filter(Boolean) };
 }
 
 function isUnlocked(curriculum) {
-  const { ok, code } = codeFor(curriculum);
+  const { ok, codes } = codesFor(curriculum);
   if (!ok) return false;
-  if (!code) return true;
-  const wanted = normalizeCode(code);
+  if (!codes.length) return true;
   const fromUrl = normalizeCode(params.get('code'));
-  if (fromUrl && fromUrl === wanted) {
-    storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: wanted });
+  if (fromUrl && codes.includes(fromUrl)) {
+    storage.write(UNLOCK_KEY, { quiz: curriculum.quiz_number, code: fromUrl });
     return true;
   }
   const unlocked = storage.read(UNLOCK_KEY);
-  return unlocked?.quiz === curriculum.quiz_number && normalizeCode(unlocked.code) === wanted;
+  return unlocked?.quiz === curriculum.quiz_number && codes.includes(normalizeCode(unlocked.code));
 }
 
 // Loud on purpose. A student seeing this is the signal that the week's setup was
@@ -111,7 +117,7 @@ function renderGate() {
     </section>`, { focus: '#access-code' });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
-    if (normalizeCode(input.value) === normalizeCode(codeFor(data.curriculum).code)) {
+    if (codesFor(data.curriculum).codes.includes(normalizeCode(input.value))) {
       storage.write(UNLOCK_KEY, { quiz: data.curriculum.quiz_number, code: normalizeCode(input.value) });
       afterUnlock();
     } else {
@@ -144,7 +150,7 @@ async function init() {
   document.getElementById('quiz-label').textContent = `Weekly Quiz · ${curriculum.quiz_label}`;
   document.title = `${curriculum.quiz_label} · MUS 248`;
 
-  if (!codeFor(curriculum).ok) return renderNoCodeSet(curriculum);
+  if (!codesFor(curriculum).ok) return renderNoCodeSet(curriculum);
   if (!isUnlocked(curriculum)) return renderGate();
   afterUnlock();
 }
@@ -195,7 +201,7 @@ function renderStart(options) {
     ${askCode ? `
     <section class="step">
       <h2 tabindex="-1">${stepNumber(1)}Last quiz’s code</h2>
-      <p class="quiet">Your Canvas submission from last week ends with a quiz code. Pasting it lets this quiz pick up where you left off.</p>
+      <p class="quiet">Your Canvas submission from last week ends with a quiz code. Pasting it lets this quiz pick up where you left off — any earlier quiz’s code works, not only last week’s. No code is fine too; it doesn’t affect your score.</p>
       <div class="choice-pair" role="group" aria-label="Do you have last quiz’s code?">
         ${option('have', 'I have my code')}
         ${option('none', 'I don’t have it')}
@@ -225,7 +231,13 @@ function renderStart(options) {
     renderStart({ focus: '#prior-code', scroll: false });
   });
   on('#mode-none', 'click', () => {
-    Object.assign(setup, { priorMode: 'none', prior: null, priorStatus: null, message: 'Okay. This quiz won’t adapt to last week, and that’s fine.' });
+    Object.assign(setup, {
+      priorMode: 'none',
+      prior: null,
+      priorStatus: null,
+      message: 'Okay — same quiz, same points. It just won’t bring back the skills you missed last time. '
+        + 'If you want that, your code is at the end of your Canvas submission from that week.',
+    });
     renderStart({ focus: null, scroll: false });
   });
   const codeBox = app.querySelector('#prior-code');

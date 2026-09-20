@@ -36,28 +36,49 @@ const attemptFor = ({ selection, answers, activities = {}, prior = null, quiz = 
 // These used to be a checklist in NEXT.md. A checklist gets skipped at 7:50am;
 // a failing test does not.
 
+const normalizeCode = (value) => String(value).trim().toLowerCase().replace(/\s+/g, '');
+const codeList = (entry) => (Array.isArray(entry) ? entry : [entry]).map(normalizeCode).filter(Boolean);
+
 test('every quiz that has run has its own access code', () => {
   const codes = curriculum.access_codes;
   assert.ok(codes && typeof codes === 'object', 'curriculum.json needs an access_codes map, keyed by quiz number');
   assert.equal(curriculum.access_code, undefined,
     'access_code is superseded by access_codes — keeping both invites them to disagree');
   for (let quiz = 1; quiz <= curriculum.quiz_number; quiz += 1) {
-    const code = codes[String(quiz)];
-    assert.ok(code !== undefined, `no access code for Quiz ${quiz} — add access_codes["${quiz}"]`);
-    assert.equal(typeof code, 'string', `Quiz ${quiz}'s access code must be a string ("" means no code that week)`);
+    const entry = codes[String(quiz)];
+    assert.ok(entry !== undefined, `no access code for Quiz ${quiz} — add access_codes["${quiz}"]`);
+    const shape = Array.isArray(entry) ? entry.every((code) => typeof code === 'string') : typeof entry === 'string';
+    assert.ok(shape, `Quiz ${quiz}'s access code must be a string or a list of strings ("" means no code that week)`);
   }
 });
 
-test('no two quizzes share an access code', () => {
-  const normalize = (value) => value.trim().toLowerCase().replace(/\s+/g, '');
-  const seen = new Map();
-  Object.entries(curriculum.access_codes)
-    .filter(([, value]) => normalize(value))
-    .forEach(([quiz, value]) => {
-      const key = normalize(value);
-      assert.ok(!seen.has(key), `Quiz ${quiz} reuses Quiz ${seen.get(key)}'s access code — last week's code would open this week's quiz`);
-      seen.set(key, quiz);
+test('no quiz reuses another quiz’s announced code', () => {
+  // A quiz may deliberately carry an older code as a secondary, so nobody is
+  // locked out over one still on the board. What must never repeat is the
+  // FIRST code — that's the one announced in class, and a duplicate there means
+  // the entry was copied forward and never changed.
+  const announced = new Map();
+  Object.entries(curriculum.access_codes).forEach(([quiz, entry]) => {
+    const [first] = codeList(entry);
+    if (!first) return;
+    assert.ok(!announced.has(first),
+      `Quiz ${quiz} announces Quiz ${announced.get(first)}'s code — the entry was copied forward without changing it`);
+    announced.set(first, quiz);
+  });
+});
+
+test('a carried-over access code is deliberate, not a leftover', () => {
+  // Every extra code on a quiz has to be one an earlier quiz actually used.
+  // A typo in a secondary would otherwise sit there unnoticed.
+  const earlier = (quiz) => new Set(Object.entries(curriculum.access_codes)
+    .filter(([other]) => Number(other) < Number(quiz))
+    .flatMap(([, entry]) => codeList(entry)));
+  Object.entries(curriculum.access_codes).forEach(([quiz, entry]) => {
+    codeList(entry).slice(1).forEach((code) => {
+      assert.ok(earlier(quiz).has(code),
+        `Quiz ${quiz} accepts "${code}", which no earlier quiz ever used — a secondary code is for carrying one forward`);
     });
+  });
 });
 
 test('quiz_label and quiz_version keep up with quiz_number', () => {
