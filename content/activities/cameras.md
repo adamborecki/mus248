@@ -8,7 +8,7 @@ status: In Development
 estimatedTime: "25–35 minutes per camera"
 access:
   mode: On campus
-  location: "Cameras live in BH 208. Shoot anywhere with steady light; you also need a computer that can read an SD card."
+  location: "Handhelds live in BH 208; the installed cameras are in BH 209 (Salmon Recital Hall). Shoot anywhere with steady light; you also need a computer that can read an SD card."
   supervision: "None required once you know where the cabinet is."
 groupSize:
   minimum: 1
@@ -40,6 +40,8 @@ A student recording engineer has to do two things quickly on **any** body, witho
 
 This activity is that drill, repeated on three different cameras so the skill sticks to you rather than to one specific camera.
 
+The same job also gets done by cameras you do **not** carry. BH 209 (Salmon Recital Hall) has its own cameras installed in the room, driven from software rather than from buttons on a body. Part 1 ends with an orientation to those, because the recital you are eventually recording happens in that hall.
+
 ## 🎯 What you'll practice
 
 By the end of this activity, you should be able to:
@@ -47,6 +49,7 @@ By the end of this activity, you should be able to:
 - 📷 Set iris, gain/ISO, shutter, white balance, and focus to a known baseline on the G50, the GH5, and the AX100 — starting from whatever state you found them in.
 - 🎬 Demonstrate on video what each of those five settings does to the picture, and say how big each change was in **stops**.
 - 💾 Verify your recorded files on a computer and return the camera to the baseline before you put it away.
+- 🏛️ Describe how BH 209's installed cameras differ from a camera you carry — what drives them, and where their recording lands.
 
 ## 🗝️ Key terms
 
@@ -57,6 +60,8 @@ By the end of this activity, you should be able to:
 **Estimated time:** 25–35 minutes per camera. About 75–110 minutes for all three. You do not have to do all three in one sitting — finish one camera completely, put it away, and come back.
 
 **Where:** The G50 and GH5 live in the white cabinet in **BH 208**. The AX100 lives in the **Standard Gear Kit** (the red backpack) in the same cabinet. You can shoot anywhere with steady light, but you need a computer that reads SD cards before you finish.
+
+**BH 209 (Salmon Recital Hall)** is the other room in this activity. Its cameras are installed in the hall and are not taken anywhere. The door is on a **key code** — most students in this course already have it. If yours does not work, ask rather than propping the door.
 
 **Access:** Can be completed independently on campus. No instructor or TA supervision required once you know where the cabinet is. It cannot be done off campus.
 
@@ -82,6 +87,7 @@ Gather all of this **before** you start. If something is missing, you want to kn
 - [ ] A shooting spot with **something near and something far** in frame — you need both to see depth of field change
 - [ ] Steady, unchanging light. Do not do this next to a window with clouds moving past.
 - [ ] This page on your phone
+- [ ] For the BH 209 orientation only: the door key code, and a fast SD card if you are going to record
 
 ## ⚠️ Safety and handling — read this before you touch anything
 
@@ -203,6 +209,39 @@ The GH5 displays **ISO**, not dB. Its house default is **ISO 400**.
 | Shutter | Tap **Shutter Speed**, then adjust with the same ring |
 | White balance | **White Balance** hardware button on the side of the camcorder → **Color Temp** → dial the K value |
 
+### BH 209 — the cameras already in the hall
+
+**Where they live:** bolted into **BH 209, Salmon Recital Hall**. You do not sign these out and
+you do not carry them. The door is on a key code.
+
+This is the orientation, not the drill. Read it so the hall is not unfamiliar the first time you
+have to record in it.
+
+| What is different | BH 209's installed cameras |
+|---|---|
+| The camera | **AJA RovoCam** — a fixed installed camera, not a camcorder |
+| How you drive it | **Software on a computer in the room.** There are no exposure buttons to find on a body. |
+| Where the recording lands | A **Blackmagic recorder**, onto an **SD card** — bring a fast card, a slow one will drop frames |
+| Audio | The hall gives you **both**: audio embedded in the video, and a separate feed you can record on its own |
+| Getting in | A **key code** on the door, which most students in this course already have |
+
+The five settings from this activity have not gone away — an installed camera still has exposure,
+white balance, and focus. What changes is that you reach them through a window on a screen instead
+of a dial under your thumb, and that the card you pull at the end is in a rack, not in your hand.
+
+> 🧪 **The click-by-click procedure for BH 209 is not written yet.** The room's existing
+> documentation predates this page and has not been imported. Until it is, treat this section as
+> orientation only and do the graded work on the three handhelds. See **Technical verification**
+> for exactly what is still open.
+
+**Q3 (multiple choice).** You finish a take on BH 209's installed cameras. Where do you go to get
+the file?
+
+- a) The SD card in the back of the RovoCam itself
+- ✅ b) The SD card in the Blackmagic recorder
+- c) It uploads to Canvas automatically
+- d) The computer running the camera software has it on its desktop
+
 🚩 **Checkpoint — all three cameras.** Before moving to Part 2, read all five values off the screen out loud: F4.0, 3 dB (ISO 400), 1/60, 3200 K, autofocus. If you cannot find one of them on the display, you are not ready to record yet.
 
 ## 🎬 Part 2 — Record the demo clips
@@ -225,7 +264,7 @@ Keep the framing identical across all clips. If the camera moves, your compariso
 
 Do not shoot the other nine clips before you know the card is actually recording. Students lose whole sessions this way.
 
-**Q3 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
+**Q4 (multiple choice).** Why does clip 2 exist at all, if out-of-focus footage is useless?
 
 - a) To fill out the file count
 - ✅ b) So you can recognize soft footage on a small camera screen, where it is easy to miss
@@ -245,28 +284,28 @@ Return to the house default before each comparison, then change **only** the one
 
 Clip 5 is deliberately **two** stops so the noise is obvious on a small screen. Say the stop count out loud in your slate along with the values.
 
-**Q4 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
+**Q5 (multiple choice).** Going from F4.0 to F5.6, the picture gets:
 
 - a) Brighter, with more of the scene in focus
 - ✅ b) Darker, with more of the scene in focus
 - c) Darker, with less of the scene in focus
 - d) Brighter, with less of the scene in focus
 
-**Q5 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
+**Q6 (multiple choice).** The hall is too dark and your iris is already wide open, so you go from ISO 400 to ISO 1600. How much brighter is that, and what did it cost you?
 
 - a) One stop, and it cost nothing — gain is free
 - ✅ b) Two stops, and it cost noise in the shadows
 - c) Two stops, and it cost depth of field
 - d) Four stops, and it cost focus accuracy
 
-**Q6 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
+**Q7 (multiple choice).** Dropping the shutter from 1/60 to 1/30 makes the picture brighter. What else changes?
 
 - a) The color gets warmer
 - ✅ b) Moving things blur more
 - c) Depth of field increases
 - d) Nothing else
 
-**Q7 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
+**Q8 (multiple choice).** The room is lit with roughly 3200 K tungsten light and you set the camera's white balance to 5000 K. The picture will look:
 
 - ✅ a) More orange / warmer
 - b) More blue / cooler
@@ -355,6 +394,34 @@ Two prompts. Do not write an essay.
 
 Specific items to check:
 
+**BH 209 (Salmon Recital Hall) — the whole section is provisional.** What is written there came
+from the instructor in September 2026 and is correct as far as it goes; everything below is what
+the section still needs before it can become a procedure students follow:
+
+- **The software.** The cameras are AJA RovoCam, driven from software on a computer in the room.
+  The application's name, where it runs, and how a student opens it are not recorded here. AJA's
+  own control application for these is RovoControl, but confirm that is what the room uses rather
+  than a web page on the camera's address or a third-party controller.
+- **How many cameras, and where.** Not recorded.
+- **Exposure control.** Confirm which of the five settings this activity teaches are actually
+  reachable from the software, and what they are called there. If some are not exposed, the
+  BH 209 drill has to be built around the ones that are.
+- **The recorder.** A Blackmagic deck recording to SD. Confirm the model, the card speed it
+  actually needs, where the slot is, and whether a card lives in it or students bring their own.
+- **The data-transfer procedure.** Wanted, and not written. What a student does after the take:
+  which card, which computer, where the files go, and how they confirm the take is good before
+  the room is handed to the next group.
+- **Audio.** The hall provides both embedded audio and a separate feed. Confirm what the separate
+  feed comes off, where it records, and whether starting it is a separate action. This one also
+  feeds the Stereo Recording activity later.
+- **The key code.** Deliberately not written down here — this repo is public. The page says to
+  ask; confirm who a student should ask.
+- **The existing documentation** is old and still outside the repo. Import it to
+  `content/activities/_source/bh209-cameras.txt` (see the intake notes in `_source/`), then the
+  section above can be rewritten from a real source rather than from recollection.
+
+Portable cameras:
+
 - **dB, ISO, and stops — resolved.** 6 dB is one stop and doubling ISO is one stop; both are definitional and safe to teach as written. What stays body-specific is which ISO a given camera's 0 dB sits at, so the house numbers (3 dB, ISO 400) should be confirmed on each body rather than converted between. The original notes treated 3 dB and ISO 400 as the same value, and paired 3 → 9 dB with ISO 400 → 1600; those are one stop and two stops respectively. The comparison is corrected here to two stops in both units.
 - **Gain range and step size.** Confirm each body actually reaches 15 dB / ISO 1600 and steps in 3 dB increments. If a body steps differently, keep the **+2 stops** instruction and adjust the numbers.
 - **GH5 units.** The GH5 shows ISO, not dB, so its house default is written here as ISO 400.
@@ -368,4 +435,4 @@ Specific items to check:
 
 ## 🤖 AI use disclosure
 
-Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The camera control details come from the instructor's notes. The stop relationships (6 dB per stop, ISO doubling per stop) were corrected by the instructor in September 2026, and the gain comparison was rebuilt around them. The structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.
+Based on an existing instructor-authored activity (the Fall 2026 portable cameras notes) and reorganized with AI assistance into the standard MUS 248 activity structure. The BH 209 orientation was written in September 2026 from the instructor's answers about the hall; it deliberately stops at what was confirmed, and what it does not cover is itemized under Technical verification rather than filled in. The camera control details come from the instructor's notes. The stop relationships (6 dB per stop, ISO doubling per stop) were corrected by the instructor in September 2026, and the gain comparison was rebuilt around them. The structure, checkpoints, troubleshooting, and questions were AI-drafted and are pending instructor review.

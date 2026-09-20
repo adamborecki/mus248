@@ -22,8 +22,33 @@ export const stripAnswerMark = (line) => line.replace(OPTION, (match, mark) => (
 
 export const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\s*/;
 
+// A hard-wrapped paragraph is still one paragraph, and a wrapped bullet is still
+// one bullet. Without this, a source file that wraps at 100 characters renders as
+// a stack of one-line paragraphs — and the worksheet generator reads a checkpoint
+// as just its first line.
+const STARTS_BLOCK = /^(\s*([-*+]|\d+\.)\s|#{1,6}\s|>|\||```|\s*$)/;
+const OPAQUE = /^(\||```|#{1,6}\s)/;
+
+export function joinWrappedLines(markdown) {
+  const joined = [];
+  markdown.split('\n').forEach((line) => {
+    const previous = joined[joined.length - 1];
+    const append = (text) => { joined[joined.length - 1] = `${previous.replace(/\s+$/, '')} ${text}`; };
+    const carries = previous !== undefined && Boolean(previous.trim()) && !OPAQUE.test(previous.trim());
+    if (!line.trim()) { joined.push(line); return; }
+    if (line.trimStart().startsWith('>')) {
+      if (carries && previous.trimStart().startsWith('>')) append(line.trim().replace(/^>\s?/, ''));
+      else joined.push(line);
+      return;
+    }
+    if (!STARTS_BLOCK.test(line) && carries) { append(line.trim()); return; }
+    joined.push(line);
+  });
+  return joined.join('\n');
+}
+
 export function renderMarkdown(markdown) {
-  const lines = markdown.replace(FRONTMATTER, '').split('\n');
+  const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
   const output = [];
   let list = null;
   const closeList = () => { if (list) { output.push(`</${list}>`); list = null; } };

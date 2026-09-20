@@ -41,6 +41,18 @@ Filter by skill area — **Audio Capture**, **Live Sound**, **Video Capture**, *
 
 Most activities are fully written out here; a few older ones still point to their original Google Doc while they wait to be migrated over.
 
+### 🖨️ Worksheets
+Each fully-written activity also has a **printable worksheet** at `/<activity>/worksheet/` — one
+page you write on while you work and keep afterwards: checkpoints to tick, key terms to define,
+and the activity's questions with blanks to fill and options to circle.
+
+The worksheet is **generated from the activity's own Markdown**, never maintained separately, so
+it can't drift from the instructions. The web page stays the textbook; the paper is the workbook.
+The procedure, photos, and troubleshooting deliberately stay on the phone — nobody should be
+copying text from a screen onto paper.
+
+`/worksheets/` lists them all, for printing a stack before class.
+
 ### 📝 Weekly quiz
 A short, no-account, no-server quiz you take alongside the activities:
 
@@ -75,11 +87,16 @@ data/activities.json   directory metadata that drives the front page
 data/semesters/        per-term Canvas links and reminders
 quiz/                  the weekly quiz app — see quiz/README.md
 study/                 the study-card app
+worksheets/            index of the printable worksheets
+tools/                 import and check scripts
+markdown.js            the Markdown renderer, shared by page and worksheet
+activity.js, activity.css     the activity page
+worksheet.js, worksheet.css   the worksheet + answer key
 index.html, app.js,
 styles.css             the front page itself
 ```
 
-Each top-level folder like `stereo/`, `x32compact/`, or `dante-broadcast/` is a rendered activity page — one URL per activity, no router needed.
+Each top-level folder like `stereo/`, `x32compact/`, or `dante-broadcast/` is a rendered activity page — one URL per activity, no router needed. An activity written out in Markdown also gets `<activity>/worksheet/` and, for instructors, `<activity>/worksheet/key/`.
 
 ---
 
@@ -97,7 +114,8 @@ Canvas already handles all of that; this repo only holds reusable instructional 
 
 ## ✏️ Contributing / editing
 
-- **New or updated activity** → edit its Markdown in `content/activities/` following `_template.md`'s section structure, and add/update the matching entry in `data/activities.json`.
+- **New or updated activity** → edit its Markdown in `content/activities/` following `_template.md`'s section structure, and add/update the matching entry in `data/activities.json`. The worksheet regenerates itself; run `node tools/check-worksheets.mjs` to confirm it still parses.
+- **Correct answers** are marked inline in the activity Markdown — `- ✅ c) 9 dB` on the right option, or a `✅ **Answer.** …` line for a question with no options. Both student renders strip the markers, so the answer key generates from the same file without leaking.
 - **Quiz content or scoring** → see `quiz/README.md`. It's a one-file JSON edit for a weekly update, no code changes needed.
 - **Found something wrong or missing?** → open an issue.
 
@@ -110,5 +128,6 @@ For the curious: this whole thing is **vibecoded** — built conversationally wi
 - **Stack:** vanilla HTML/CSS/JS, no framework, no build step. `app.js` fetches `data/activities.json` and renders the directory client-side.
 - **Hosting:** GitHub Pages, served from this repo (`.nojekyll` disables Jekyll processing so files starting with `_` or `.` still ship as-is).
 - **Quiz engine:** a deterministic, seed-based question selector (`quiz/js/engine.js`) — no AI calls at runtime, no backend. State round-trips through a checksummed, base64url-encoded code (`M248Q<n>.v<schema>.<payload>.<sha256 prefix>`) that a student pastes into Canvas as their submission. Full format and adaptive-selection rules are documented in `quiz/README.md`.
-- **Tests:** `cd quiz && npm test` — validates the data files, code round-trips, tamper detection, and selection logic. Node 18+, no other dependencies.
+- **Worksheets:** `worksheet.js` parses each activity's Markdown — frontmatter, `## ✅ Definition of done`, `## 🗝️ Key terms`, `🚩` checkpoints, and `**Qn (type).**` blocks — and renders both the student page and the instructor answer key from it, styled for paper with `@media print`. It shares `markdown.js` with the activity page so the two can't disagree.
+- **Tests:** `cd quiz && npm test` — validates the data files, code round-trips, tamper detection, and selection logic. `node tools/check-worksheets.mjs` proves the worksheet generator against every activity and fails on an unmarked answer or a leaked key. Node 18+, no other dependencies.
 - **Instructor tooling:** `quiz/verify/` scores pasted or downloaded Canvas submissions entirely in-browser; `?debug=1` on the quiz shows the selected question set and adds an auto-answer button for testing.

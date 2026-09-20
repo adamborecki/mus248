@@ -29,6 +29,15 @@ a file after editing the doc.
 | What can you do with a mixer? | ✅ `mixer.txt` | not yet |
 | X32 Compact | ✅ `x32compact.txt` | not yet |
 | Mic Stand Yoga | ✅ `mic-stands.txt` (slide text) | not yet |
+| BH 209 cameras and audio | ⏳ intake notes in `bh209-cameras.md` | part of `cameras.md` |
+
+## BH 209 is waiting on its documentation
+
+`bh209-cameras.md` is the one file here that is not a verbatim copy — it is intake notes for
+Salmon Recital Hall, holding what has been confirmed about the installed AJA RovoCams, the
+Blackmagic recorder, and the hall's audio, plus the list of what is still missing. The room's
+real documentation is old and still outside the repo. When it lands as
+`bh209-cameras.txt`, the BH 209 section of `cameras.md` gets rewritten from it.
 
 ## Mic Stand Yoga needs image work
 

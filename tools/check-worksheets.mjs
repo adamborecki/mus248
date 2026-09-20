@@ -8,7 +8,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import { inline, renderMarkdown } from '../markdown.js';
+import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -17,6 +17,15 @@ const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
 let failures = 0;
 const fail = (message) => { failures += 1; console.error(`FAIL  ${message}`); };
 const check = (condition, message) => { if (!condition) fail(message); };
+
+// A hard-wrapped source file has to render the same as an unwrapped one, or a
+// wrapped checkpoint reaches the worksheet as half a sentence.
+const wrapped = joinWrappedLines(['A paragraph that', 'wraps.', '', '- a bullet that', '  wraps too', '', '> a quote that', '> wraps'].join('\n')).split('\n');
+check(wrapped[0] === 'A paragraph that wraps.', `wrapped paragraph joined as: ${wrapped[0]}`);
+check(wrapped[2] === '- a bullet that wraps too', `wrapped bullet joined as: ${wrapped[2]}`);
+check(wrapped[4] === '> a quote that wraps', `wrapped quote joined as: ${wrapped[4]}`);
+check(joinWrappedLines('| a | b |\n| 1 | 2 |') === '| a | b |\n| 1 | 2 |', 'table rows must not be joined');
+check(joinWrappedLines('## Heading\ntext').split('\n').length === 2, 'a heading must not absorb the next line');
 
 const directory = JSON.parse(read('data', 'activities.json'));
 // The generator is driven by the directory, never by globbing the folder — so
@@ -39,6 +48,13 @@ generated.forEach((activity) => {
   check(existsSync(join(root, activity.route, 'worksheet', 'key', 'index.html')), `${id}: no ${activity.route}/worksheet/key/ page`);
   const key = read(activity.route, 'worksheet', 'key', 'index.html');
   check(/name="robots"[^>]*noindex/.test(key), `${id}: the answer key is not noindex`);
+
+  // A sentence that was wrapped in the source has to arrive whole.
+  [...parsed.checkpoints.map((checkpoint) => ['checkpoint', checkpoint.text]),
+    ...parsed.done.map((item) => ['definition of done item', item])]
+    .forEach(([kind, text]) => {
+      check(/[.!?:)"']$/.test(text.trim()), `${activity.id}: a ${kind} ends mid-sentence — "${text.slice(-45)}"`);
+    });
 
   // There has to be something to write on.
   check(parsed.questions.length + parsed.checkpoints.length + parsed.done.length > 0,

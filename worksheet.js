@@ -9,7 +9,7 @@
 // Deliberately NOT carried over: the step-by-step procedure, photos, and
 // troubleshooting. Those stay on the phone. Nobody should copy screen to paper.
 
-import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline } from './markdown.js';
+import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines } from './markdown.js';
 
 const BLANK = /_{3,}/g;
 const QUESTION = /^\*\*Q(\d+)\s*(?:\(([^)]*)\))?\s*[.:]\*\*\s*(.*)$/;
@@ -110,7 +110,7 @@ function parseQuestion(lines, index, section) {
 
 export function parseActivity(markdown) {
   const frontmatter = parseFrontmatter(markdown);
-  const lines = markdown.replace(FRONTMATTER, '').split('\n');
+  const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
   const result = {
     frontmatter, done: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [],
   };
@@ -202,9 +202,11 @@ export function renderWorksheet(activity, options = {}) {
   const time = front.estimatedTime || directory.time || '';
 
   const meta = [time && `⏱ ${time}`, group && `👥 Groups of ${group}`].filter(Boolean).join(' · ');
+  // Rounds only get their own box on activities that actually repeat.
+  const rounds = String(front.roundsSupported) === 'true' ? `<span>Round ${rule()}</span>` : '';
   const nameLine = showAnswers
     ? '<p class="key-banner">Answer key — instructor copy. Do not hand out.</p>'
-    : `<p class="name-line"><span>Name ${rule()}</span><span>Date ${rule()}</span><span>Camera / round ${rule()}</span></p>`;
+    : `<p class="name-line"><span>Name ${rule()}</span><span>Date ${rule()}</span>${rounds}</p>`;
 
   const block = (heading, hint, inner) => (inner
     ? `<section class="ws-block"><h2>${escapeHtml(heading)}${hint ? `<small>${escapeHtml(hint)}</small>` : ''}</h2>${inner}</section>`

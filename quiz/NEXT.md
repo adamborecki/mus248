@@ -98,9 +98,12 @@ Keep it minimal, and put all of it **after the timer stops** so none of it eats 
 ### F. Activities, worksheets, tracker
 - **F1.** ~~Ownership~~ — **settled: this session works in `content/activities/` too**, using
   its own judgment, aimed at worksheets.
-- **F2.** Worksheet generated from the activity markdown, with correct answers marked inline so
-  the answer key generates from the same file (default: yes).
-- **F3.** Does the student keep the printed worksheet or turn it in, and who prints it?
+- **F2.** ~~Worksheet generated from the activity markdown, with correct answers marked inline so
+  the answer key generates from the same file~~ — **done, the default way.** Built and shipped;
+  see `content/activities/WORKSHEETS.md`. The marking convention is `- ✅ c) 9 dB` on the correct
+  option and `✅ **Answer.** …` for questions with no options; both student renders strip it.
+- **F3.** Does the student keep the printed worksheet or turn it in, and who prints it? Built
+  assuming *keep*, and that the instructor prints a stack from `/worksheets/`. Still reversible.
 - **F4.** Tracker: a Course Map artifact that computes itself from repo data, plus a short manual
   to-do list (default), or GitHub issues?
 - **F5.** ~~Next instruction import~~ — **done.** All eight activities now have plain-text
@@ -110,10 +113,11 @@ Keep it minimal, and put all of it **after the timer stops** so none of it eats 
 
 ## Deadline
 
-**Worksheets are required by Monday, Sept 21** and will be built in a fresh chat. Everything
-that work depends on is already in place: all eight activities have their instructions in the
-repo, and the migrated `.md` files already carry the 🚩 checkpoints and `**Qn (type).**`
-markers a generated worksheet needs.
+**Worksheets were required by Monday, Sept 21 — the generator is built.** Seven activities print
+a worksheet at `/<id>/worksheet/` and an instructor answer key at `/<id>/worksheet/key/`, both
+generated from the activity's own markdown. What remains on that thread is activity content, not
+code: X32 Compact needs migrating, and Portable Cameras' BH 209 section needs the hall's
+documentation. Details in `content/activities/WORKSHEETS.md`.
 
 ## Recommended sequence
 
@@ -133,7 +137,8 @@ printed worksheet can be generated from the activity page rather than maintained
 which avoids the drift that made the previous Google Keep version turn into paperwork.
 
 Migrated: stereo, cameras, live-looping, 4× Dante. Still external links: DAW, mixer, X32 Compact,
-mic stands. `live-looping.md` predates the current template and needs its headings normalized.
+mic stands. ~~`live-looping.md` predates the current template and needs its headings normalized.~~
+Normalized.
 
 ## Idea worth keeping: one skill vocabulary
 

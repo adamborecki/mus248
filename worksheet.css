@@ -20,8 +20,10 @@
 /* A run of underscores in the source is somewhere to write. */
 .rule { flex:1 1 3rem; min-width:2.5rem; border-bottom:1px solid var(--muted); }
 .blank { display:inline-block; min-width:3.5rem; border-bottom:1px solid var(--muted); }
-.answer-lines { display:flex; flex-direction:column; gap:1.1rem; margin:.5rem 0 0; }
-.answer-lines .rule { min-height:1rem; }
+.answer-lines { display:flex; flex-direction:column; gap:.3rem; margin:.45rem 0 0 1.75rem; }
+/* .rule's flex-basis is a width in a row and a height in a column — pin it here. */
+.answer-lines .rule { flex:0 0 auto; height:1.15rem; }
+.prompts .rule { flex:0 0 auto; display:block; height:1.3rem; }
 
 .ws-block { margin-top:1.4rem; break-inside:avoid; }
 .ws-block h2 { display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline; margin:0 0 .5rem; padding-bottom:.2rem; border-bottom:1px solid var(--line); font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
@@ -50,8 +52,7 @@
 .key-answer { margin:.35rem 0 0 1.75rem; color:var(--accent); font-size:.82rem; font-weight:650; }
 .unmarked { color:var(--muted); font-weight:400; font-style:italic; }
 
-.prompts li { margin:.4rem 0; font-size:.88rem; }
-.prompts .rule { display:block; margin-top:.9rem; min-height:1rem; }
+.prompts li { margin:.5rem 0; font-size:.88rem; }
 
 .ws-foot { margin-top:1.75rem; padding-top:.5rem; border-top:1px solid var(--line); color:var(--muted); font-size:.7rem; }
 .ws-foot code { font-family:ui-monospace, monospace; }
