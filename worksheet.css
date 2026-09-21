@@ -30,17 +30,17 @@
 .ws-block h2 small { color:var(--muted); font-weight:500; letter-spacing:0; text-transform:none; }
 .ws-block ul, .ws-block ol { margin:0; padding:0; list-style:none; }
 
-.ticks li { position:relative; margin:.32rem 0; padding-left:1.5rem; font-size:.9rem; break-inside:avoid; }
-.ticks li::before { position:absolute; top:.02em; left:0; width:.95rem; height:.95rem; border:1.5px solid var(--ink); border-radius:.15rem; content:""; }
+.ticks li, .flow li.tick { position:relative; margin:.32rem 0; padding-left:1.5rem; font-size:.9rem; break-inside:avoid; }
+.ticks li::before, .flow li.tick::before { position:absolute; top:.02em; left:0; width:.95rem; height:.95rem; border:1.5px solid var(--ink); border-radius:.15rem; content:""; }
 .where { display:block; color:var(--muted); font-size:.7rem; font-style:normal; letter-spacing:.04em; text-transform:uppercase; }
-.ticks li:not(:first-child) .where { margin-top:.5rem; }
+.ticks li:not(:first-child) .where, .flow li:not(:first-child) .where { margin-top:.5rem; }
 
 .terms { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.15rem 1.5rem; }
 .terms li { display:flex; gap:.4rem; align-items:baseline; padding:.28rem 0; font-size:.85rem; }
 .terms b { white-space:nowrap; }
 .also { margin:.5rem 0 0; color:var(--muted); font-size:.78rem; }
 
-.questions > li { margin:.85rem 0 0; break-inside:avoid; }
+.questions > li, .flow > li.question { margin:.85rem 0 0; break-inside:avoid; }
 .q-prompt { margin:0; font-size:.9rem; }
 .q-number { display:inline-grid; place-items:center; width:1.35rem; height:1.35rem; margin-right:.4rem; border-radius:999px; background:var(--tag); font-size:.7rem; font-weight:700; vertical-align:baseline; }
 .options { display:grid; grid-template-columns:repeat(2,1fr); gap:.1rem 1.25rem; margin:.4rem 0 0 1.75rem !important; }
@@ -71,8 +71,8 @@
   .ws-emoji { width:1.9rem; height:1.9rem; border:1px solid #bbb; }
   .ws-block { margin-top:.85rem; }
   .ws-block h2 { margin-bottom:.3rem; }
-  .ticks li, .option, .terms li, .q-prompt { font-size:9.5pt; }
-  .questions > li { margin-top:.55rem; }
+  .ticks li, .flow li.tick, .option, .terms li, .q-prompt { font-size:9.5pt; }
+  .questions > li, .flow > li.question { margin-top:.55rem; }
   .q-number { border:1px solid #000; }
   .option.correct .letter { background:#000; color:#fff; }
   .key-answer { color:#000; }

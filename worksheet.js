@@ -64,7 +64,7 @@ function checkpointText(raw) {
   return rest || `${label[1].replace(/[.:]$/, '')}.`;
 }
 
-function parseQuestion(lines, index, section) {
+function parseQuestion(lines, index, section, order) {
   const match = lines[index].match(QUESTION);
   if (!match) return null;
   const question = {
@@ -75,6 +75,7 @@ function parseQuestion(lines, index, section) {
     answer: null,
     note: null,
     section,
+    order,
   };
   // A prompt may wrap; its options and its ✅ answer follow, separated by at most
   // a blank line. Anything else — a heading, a checkpoint, the next paragraph or
@@ -108,11 +109,15 @@ function parseQuestion(lines, index, section) {
   return question;
 }
 
+// Groups whose worksheet content lives under one heading rather than scattered
+// through the activity — they enter the flow once, at that heading's position.
+const GROUPS = { 'key terms': 'keyTerms', 'definition of done': 'done', 'before you leave': 'beforeYouLeave' };
+
 export function parseActivity(markdown) {
   const frontmatter = parseFrontmatter(markdown);
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
   const result = {
-    frontmatter, done: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [],
+    frontmatter, done: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
   };
   let section = '';
   let label = '';
@@ -121,12 +126,19 @@ export function parseActivity(markdown) {
     const heading = line.match(/^(#{2,4})\s+(.+)$/);
     if (heading) {
       label = heading[2].replace(/^[^\p{L}\p{N}]+/u, '').trim();
-      if (heading[1].length === 2) section = slug(heading[2]);
+      if (heading[1].length === 2) {
+        section = slug(heading[2]);
+        if (GROUPS[section]) result.flow.push({ type: 'group', key: GROUPS[section], order: index });
+      }
       return;
     }
 
-    const question = parseQuestion(lines, index, label);
-    if (question) { result.questions.push(question); return; }
+    const question = parseQuestion(lines, index, label, index);
+    if (question) {
+      result.questions.push(question);
+      result.flow.push({ type: 'question', question, order: index });
+      return;
+    }
 
     const bullet = line.match(/^\s*[-*]\s+(.+)$/);
     const isOption = bullet && OPTION.test(line.trim());
@@ -156,9 +168,14 @@ export function parseActivity(markdown) {
     }
 
     const checkpoint = line.match(CHECKPOINT);
-    if (checkpoint) result.checkpoints.push({ text: checkpointText(checkpoint[1]), section: label });
+    if (checkpoint) {
+      const entry = { text: checkpointText(checkpoint[1]), section: label, order: index };
+      result.checkpoints.push(entry);
+      result.flow.push({ type: 'checkpoint', checkpoint: entry, order: index });
+    }
   });
 
+  result.flow.sort((a, b) => a.order - b.order);
   return result;
 }
 
@@ -186,7 +203,7 @@ function renderQuestion(question, showAnswers) {
   const key = showAnswers && (spelledOut || !question.answer)
     ? `<p class="key-answer"><span aria-hidden="true">✅</span> ${spelledOut ? inline(spelledOut) : unanswered}</p>`
     : '';
-  return `<li class="question">${prompt}${body}${key}</li>`;
+  return `${prompt}${body}${key}`;
 }
 
 export function renderWorksheet(activity, options = {}) {
@@ -212,34 +229,60 @@ export function renderWorksheet(activity, options = {}) {
     ? `<section class="ws-block"><h2>${escapeHtml(heading)}${hint ? `<small>${escapeHtml(hint)}</small>` : ''}</h2>${inner}</section>`
     : '');
 
-  const done = block('Definition of done', 'tick each one before you pack up',
-    activity.done.length ? `<ul class="ticks">${activity.done.map((item) => `<li>${inline(item)}</li>`).join('')}</ul>` : '');
+  const renderGroup = (key) => {
+    if (key === 'done') {
+      return block('Definition of done', 'tick each one before you pack up',
+        activity.done.length ? `<ul class="ticks">${activity.done.map((item) => `<li>${inline(item)}</li>`).join('')}</ul>` : '');
+    }
+    if (key === 'keyTerms') {
+      return block('Key terms', 'write what each one means',
+        activity.keyTerms.length
+          ? `<ul class="terms">${activity.keyTerms.map((term) => `<li><b>${inline(term)}</b>${rule()}</li>`).join('')}</ul>${
+            activity.alsoKnow.length ? `<p class="also">Also know: ${activity.alsoKnow.map((term) => inline(term)).join(' · ')}</p>` : ''}`
+          : '');
+    }
+    return block('Before you leave', '',
+      activity.beforeYouLeave.length
+        ? `<ul class="prompts">${activity.beforeYouLeave.map((item) => `<li>${inline(item)}${rule(2)}</li>`).join('')}</ul>`
+        : '');
+  };
 
-  const terms = block('Key terms', 'write what each one means',
-    activity.keyTerms.length
-      ? `<ul class="terms">${activity.keyTerms.map((term) => `<li><b>${inline(term)}</b>${rule()}</li>`).join('')}</ul>${
-        activity.alsoKnow.length ? `<p class="also">Also know: ${activity.alsoKnow.map((term) => inline(term)).join(' · ')}</p>` : ''}`
-      : '');
+  // Checkpoints and questions interleave in the order they occur in the source,
+  // so the worksheet follows the same path as the real instructions instead of
+  // pulling them into two lists disconnected from where they happen. A run
+  // breaks — and a fresh "As you go" block opens — whenever a Key terms,
+  // Definition of done, or Before you leave block falls between them.
+  let flowOpen = false;
+  let previousWhere = null;
+  const parts = [];
+  const closeFlow = () => {
+    if (flowOpen) parts.push('</ul></section>');
+    flowOpen = false;
+    previousWhere = null;
+  };
 
-  let previous = null;
-  const checkpoints = block('Checkpoints', 'tick as you hit them',
-    activity.checkpoints.length
-      ? `<ul class="ticks">${activity.checkpoints.map(({ text, section }) => {
-        const tag = section && section !== previous ? `<em class="where">${escapeHtml(section)}</em>` : '';
-        previous = section;
-        return `<li>${tag}${inline(text)}</li>`;
-      }).join('')}</ul>`
-      : '');
-
-  const questions = block('Questions', showAnswers ? '' : 'circle or fill in',
-    activity.questions.length
-      ? `<ol class="questions">${activity.questions.map((question) => renderQuestion(question, showAnswers)).join('')}</ol>`
-      : '');
-
-  const leave = block('Before you leave', '',
-    activity.beforeYouLeave.length
-      ? `<ul class="prompts">${activity.beforeYouLeave.map((item) => `<li>${inline(item)}${rule(2)}</li>`).join('')}</ul>`
-      : '');
+  (activity.flow || []).forEach((entry) => {
+    if (entry.type === 'group') {
+      closeFlow();
+      const rendered = renderGroup(entry.key);
+      if (rendered) parts.push(rendered);
+      return;
+    }
+    const item = entry.type === 'checkpoint' ? entry.checkpoint : entry.question;
+    if (!flowOpen) {
+      parts.push('<section class="ws-block"><h2>As you go'
+        + `${showAnswers ? '' : '<small>tick checkpoints, answer questions</small>'}</h2><ul class="flow">`);
+      flowOpen = true;
+    }
+    const tag = item.section && item.section !== previousWhere ? `<em class="where">${escapeHtml(item.section)}</em>` : '';
+    previousWhere = item.section;
+    if (entry.type === 'checkpoint') {
+      parts.push(`<li class="tick">${tag}${inline(item.text)}</li>`);
+    } else {
+      parts.push(`<li class="question">${tag}${renderQuestion(item, showAnswers)}</li>`);
+    }
+  });
+  closeFlow();
 
   return `
     <header class="ws-head">
@@ -249,7 +292,7 @@ export function renderWorksheet(activity, options = {}) {
       </div>
       ${nameLine}
     </header>
-    ${done}${terms}${checkpoints}${questions}${leave}
+    ${parts.join('')}
     <footer class="ws-foot">Generated from <code>content/activities/${escapeHtml(front.id || directory.id || '')}.md</code> — edit the activity, not this page.</footer>
   `;
 }
