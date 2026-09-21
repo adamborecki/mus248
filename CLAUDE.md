@@ -90,8 +90,15 @@ know before touching it:
   status here directly, say so in the commit message, and expect the next sync to report a
   CONFLICT rather than overwrite it.
 
-Bonus questions are ungraded and sit outside the denominator. If a change lets them move
-someone's score, that is a bug, not a feature.
+The graded set is the denominator: a fixed count (`targets.graded_questions`) of verified
+questions on Core skills. Bonus questions sit outside it — they are extra credit only, worth
+`scoring.bonus_per_correct` each up to `scoring.bonus_max`, and a missed one costs nothing. If a
+change lets a bonus question lower someone's score, or lets bonus push the graded score itself
+around, that is a bug, not a feature.
+
+The editor's Delete is a soft delete: it flags `deleted: true` so `editor-sync.mjs` reports the
+question and a person decides, rather than silently dropping one the repo has. A question added
+in the editor and never synced has nothing to protect, so its Delete removes the row outright.
 
 Rehearse a timed quiz without editing data: `?debug=1&window=0.5&expected=0.2` (minutes).
 

@@ -244,7 +244,7 @@
       ],
       "answer_index": 0,
       "explanation": "We prefer not to change gain mid-concert unless it’s really clipping. If you do, change it just a little and log the time and amount, so it can be corrected in post.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "AUD_MONO_ST_001",
@@ -893,7 +893,7 @@
       ],
       "answer_index": 0,
       "explanation": "Sends on Fader lets the faders represent channel send levels into the selected bus, which is useful for monitor mixes.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_CTRL_001",
@@ -1739,7 +1739,7 @@
       ],
       "answer_index": 0,
       "explanation": "Know where each output goes before turning things up, so nothing surprises the audience, the performers, or the recording.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "JOB_AREAS_001",
@@ -1865,7 +1865,7 @@
       ],
       "answer_index": 0,
       "explanation": "Each channel sends some level into the bus; the bus master sets the level of the whole mix, like one monitor.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "X32_SOF_002",
@@ -1901,7 +1901,7 @@
       ],
       "answer_index": 0,
       "explanation": "Since the mains work, the input is fine. The problem is in the monitor path: the send into the bus, the bus master, or the bus output.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "X32_WL_001",
@@ -1919,7 +1919,7 @@
       ],
       "answer_index": 0,
       "explanation": "The transmitter and receiver must be paired; then the receiver’s output is patched into a mixer channel like any other source.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_WHAT_001",
