@@ -83,6 +83,12 @@ know before touching it:
 - **Students paste last week's code into this week's quiz.** Anything that changes how a state
   code is written must still parse codes written before the change. There is a test for this;
   keep it passing.
+- **The instructor edits questions, study cards, and skill status in a content-editor artifact**,
+  which saves to its own database, not to git. Nothing reaches `questions.json` or
+  `curriculum.json` until someone runs `node tools/editor-sync.mjs` (the instructor asks Claude
+  to "sync the editor"; the header of that file says how). If you change a question or a skill's
+  status here directly, say so in the commit message, and expect the next sync to report a
+  CONFLICT rather than overwrite it.
 
 Bonus questions are ungraded and sit outside the denominator. If a change lets them move
 someone's score, that is a bug, not a feature.

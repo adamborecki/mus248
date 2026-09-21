@@ -373,10 +373,10 @@ test('the quiz is worth target_total_points in Canvas, split evenly per question
 
 test('review list puts missed Core first and respects the limit', () => {
   const selection = selectQuiz(base);
-  const answers = answerAll(selection, (question) => !['phantom_power', 'mains_monitors'].includes(question.skill));
+  const answers = answerAll(selection, (question) => !['phantom_power', 'safe_power_order'].includes(question.skill));
   const review = reviewSkills(answers, bank, curriculum);
   assert.equal(review[0], 'phantom_power');
-  assert.ok(review.includes('mains_monitors'));
+  assert.ok(review.includes('safe_power_order'));
   assert.ok(reviewSkills(answerAll(selection, () => false), bank, curriculum).length <= curriculum.review_next_max);
 });
 
