@@ -196,6 +196,36 @@ export function selectBonus({ curriculum, bank, activities = {}, prior = null, e
     .map((question) => ({ id: question.id, role: 'bonus' }));
 }
 
+// Should this student be handed a bonus question right now?
+//
+// Two things have to be true. They must be ahead of the expected pace — that is
+// what keeps extras away from anyone at risk of running out of time. And the
+// graded questions they have left must still fit in the window AFTER the bonus,
+// at the pace they have actually been working at.
+//
+// The second test matters because a bonus costs window time, and the window is
+// what the graded set has to fit inside. Without it, a student who starts fast,
+// collects extras and then slows down can be cut off before finishing the graded
+// set and lose real points — which makes "ungraded" a lie.
+export function shouldOfferBonus({
+  done, graded, elapsed, expectedSeconds, windowSeconds,
+  poolLeft, currentIsBonus, checkEvery = 3, safety = 0.75,
+}) {
+  if (!poolLeft || !windowSeconds || elapsed >= windowSeconds) return false;
+  // Nothing left to protect once the graded set is done: keep them coming.
+  if (done >= graded) return true;
+  if (!expectedSeconds) return false;
+  // A bonus doesn't advance the graded count, so without this the same check
+  // passes again and again and the extras arrive as one block.
+  if (currentIsBonus) return false;
+  if (done <= 0 || done % checkEvery !== 0) return false;
+  if (elapsed >= (done / graded) * expectedSeconds) return false;
+
+  const perQuestion = elapsed / done;
+  const needed = (graded - done + 1) * perQuestion;
+  return needed <= (windowSeconds - elapsed) * safety;
+}
+
 export function choiceOrder(question, seed) {
   const indexes = question.choices.map((_, i) => i);
   return question.shuffle === false ? indexes : shuffle(indexes, createRng(`${seed}:${question.id}`));

@@ -1,4 +1,4 @@
-import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectBonus, selectQuiz, statusOf } from './engine.js';
+import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectBonus, selectQuiz, shouldOfferBonus, statusOf } from './engine.js';
 import { escapeHtml } from './html.js';
 import { decodeStateCode, encodeStateCode, findStateCodes } from './state-code.js';
 
@@ -404,7 +404,9 @@ function renderResume() {
 }
 
 function renderIntro() {
-  const total = attempt.selection.length;
+  // Count the graded set specifically: bonus questions get spliced in later, so
+  // "20 questions" would stop being true the moment a fast student earns one.
+  const graded = attempt.selection.filter(({ role }) => role !== 'bonus').length;
   const core = attempt.selection.filter(({ role }) => role === 'core').length;
   const { expected_minutes: expected, window_minutes: window } = timing();
   const clock = isTimed() ? `
@@ -419,7 +421,8 @@ function renderIntro() {
       <div class="kind">${badge('practice')}<p>Full credit for answering. These help you learn material that may become Core on a future quiz.</p></div>
       ${isTimed() ? `<div class="kind">${badge('bonus')}<p>Only appears if you’re running ahead of time, and never counts for or against you. It’s extra practice, not extra credit.</p></div>` : ''}
       ${clock}
-      <p>${total} questions, ${core} of them Core. After each one you’ll see the answer and a short explanation.</p>
+      <p>${graded} graded questions, ${core} of them Core. After each one you’ll see the answer and a short explanation.${
+        isTimed() ? ' If you run ahead you’ll also get bonus questions on top of those — they don’t count either way.' : ''}</p>
       <button class="btn primary wide big" id="begin">Start the quiz →</button>
     </section>`);
   on('#begin', 'click', () => {
@@ -460,22 +463,19 @@ function gradedPosition(index) {
 // sees one and gets the whole window for the graded set alone. The check runs
 // every few questions so extras interleave rather than arriving as a block.
 function maybeAddBonus() {
-  if (!isTimed() || windowIsOver()) return;
+  if (!isTimed()) return;
   const pool = attempt.bonusPool || [];
-  const expected = expectedSeconds();
-  if (!pool.length || !expected) return;
   const { done, graded } = gradedPosition(attempt.index);
-  const finishedGraded = done >= graded;
-  if (!finishedGraded) {
-    // A bonus doesn't advance the graded count, so without this the same pace
-    // check passes again and again and the extras arrive as one block — the very
-    // thing interleaving is for. After a bonus, go back to the graded set.
-    if (attempt.selection[attempt.index]?.role === 'bonus') return;
-    if (done % 3 !== 0) return;
-    const onPace = (done / graded) * expected;
-    if (elapsedSeconds() >= onPace) return;
-  }
-  attempt.selection.splice(attempt.index + 1, 0, pool.shift());
+  const offer = shouldOfferBonus({
+    done,
+    graded,
+    elapsed: elapsedSeconds(),
+    expectedSeconds: expectedSeconds(),
+    windowSeconds: windowSeconds(),
+    poolLeft: pool.length,
+    currentIsBonus: attempt.selection[attempt.index]?.role === 'bonus',
+  });
+  if (offer) attempt.selection.splice(attempt.index + 1, 0, pool.shift());
 }
 
 function renderQuestion(options) {

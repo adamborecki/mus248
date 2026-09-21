@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz } from '../js/engine.js';
+import { buildPayload, choiceOrder, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -239,6 +239,58 @@ test('Practice gets full credit even when wrong; Core only when right', () => {
   assert.deepEqual(score, { coreCorrect: 0, coreTotal: 9, practiceDone: 11, practiceTotal: 11, bonusDone: 0, bonusCorrect: 0, points: 11, max: 20 });
   const perfect = scoreAttempt(selection, answerAll(selection), evenScoring);
   assert.equal(perfect.points, 20);
+});
+
+// 20 graded questions, a 6-minute expected pace and a 9-minute window: Quiz 2.
+const paceCase = (over) => ({
+  done: 3, graded: 20, expectedSeconds: 360, windowSeconds: 540,
+  poolLeft: 5, currentIsBonus: false, ...over,
+});
+
+test('a bonus only goes to a student who is ahead of the pace', () => {
+  // On pace for 20 in 6 minutes, question 3 lands at 54s.
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 40 })), true, 'a student ahead of pace should get one');
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 54 })), false, 'exactly on pace is not ahead');
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 120 })), false, 'a student behind must never be interrupted');
+});
+
+test('a bonus is never offered if the graded questions would not still fit', () => {
+  // At Quiz 2's numbers the expected pace (360s/20 = 18s a question) is well
+  // inside the window (540s/20 = 27s), so anyone ahead of pace comfortably fits
+  // and this guard should never block them. Assert that, so a future change to
+  // the minutes cannot quietly start starving fast students of extras.
+  [3, 6, 9, 12, 15, 18].forEach((done) => {
+    const slowestStillAhead = (done / 20) * 360 - 1;
+    assert.equal(shouldOfferBonus(paceCase({ done, elapsed: slowestStillAhead })), true,
+      `at 6/9 a student ahead of pace should still get a bonus at question ${done}`);
+  });
+
+  // It binds when the window is tight, or when slow bonus questions have already
+  // dragged the student's average up — which is exactly when a bonus would start
+  // costing them graded questions, and "ungraded" would become a lie.
+  assert.equal(shouldOfferBonus(paceCase({ done: 6, elapsed: 100, windowSeconds: 400 })), false,
+    'a tight window must stop extras before they eat the graded set');
+  assert.equal(shouldOfferBonus(paceCase({ done: 6, elapsed: 107, windowSeconds: 250 })), false,
+    'an inflated average must stop extras before they eat the graded set');
+});
+
+test('extras keep coming once the graded set is finished', () => {
+  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300 })), true);
+  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300, currentIsBonus: true })), true,
+    'after the graded set, one bonus should lead straight to the next');
+  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 540 })), false, 'not once the window is over');
+  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300, poolLeft: 0 })), false, 'nothing left to give');
+});
+
+test('bonus questions interleave rather than arriving in a block', () => {
+  assert.equal(shouldOfferBonus(paceCase({ done: 3, elapsed: 40 })), true);
+  assert.equal(shouldOfferBonus(paceCase({ done: 3, elapsed: 40, currentIsBonus: true })), false,
+    'a bonus must not immediately trigger another while graded questions remain');
+  assert.equal(shouldOfferBonus(paceCase({ done: 4, elapsed: 50 })), false, 'checked every few questions, not every one');
+});
+
+test('an untimed quiz never offers a bonus', () => {
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 10, windowSeconds: 0, expectedSeconds: 0 })), false);
 });
 
 test('bonus questions can never move anyone’s score', () => {
