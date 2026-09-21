@@ -6,11 +6,15 @@
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 }
   },
   "targets": {
-    "total_questions": 20,
-    "core_questions": 9,
-    "activity_aware_questions": 5
+    "graded_questions": 12
   },
   "target_total_points": 10,
+  "scoring": {
+    "participation_points": 4,
+    "correct_points": 6,
+    "bonus_per_correct": 0.1,
+    "bonus_max": 0.5
+  },
   "max_common_level": 1,
   "include_drafts": false,
   "review_next_max": 4,

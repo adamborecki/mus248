@@ -142,15 +142,28 @@ function spreadSkills(questions) {
 // Returns [{ id, role }]. Role comes from the instructor's weekly curriculum only;
 // student history changes which variants appear, never what counts as Core.
 export function selectQuiz({ curriculum, bank, activities = {}, prior = null, seed, includeDrafts = false }) {
-  const targets = curriculum.targets;
+  const targets = curriculum.targets || {};
   const rng = createRng(`${seed}:select`);
   const context = { ...readPrior(prior, bank), rng };
   const status = (question) => statusOf(curriculum, question.skill);
   const score = (question) => priority(question, context, curriculum, activities);
+
+  // A fixed number of graded questions, Core only, and only ones the instructor
+  // has verified: an AI-drafted question nobody has checked must never cost a
+  // student marks. Everything else — Practice skills, unverified items, harder
+  // levels — becomes bonus material instead. The count stays the same however
+  // many skills become Core, so the quiz never outgrows its own clock.
+  if (targets.graded_questions) {
+    const pool = gradedPool({ curriculum, bank, activities, includeDrafts });
+    const chosen = pick(pool, targets.graded_questions, { skill: {}, gate: {} }, score);
+    return spreadSkills(shuffle(chosen, rng)).map((question) => ({ id: question.id, role: 'core' }));
+  }
+
+  // Legacy shape, kept so a curriculum written before the fixed graded set still
+  // builds the quiz it used to.
   const eligible = bank.questions.filter((question) => isEligible(question, curriculum, activities, includeDrafts));
   const common = eligible.filter((question) => !question.activity_gate);
   const tally = { skill: {}, gate: {} };
-
   const chosen = pick(eligible.filter((question) => question.activity_gate), targets.activity_aware_questions, tally, score);
   const coreNeeded = targets.core_questions - chosen.filter((question) => status(question) === 'core').length;
   chosen.push(...pick(common.filter((question) => status(question) === 'core'), coreNeeded, tally, score));
@@ -161,39 +174,47 @@ export function selectQuiz({ curriculum, bank, activities = {}, prior = null, se
   return spreadSkills(shuffle(chosen, rng)).map((question) => ({ id: question.id, role: status(question) }));
 }
 
-// Extras for a student who is ahead of the pace, drawn only from questions the
-// graded set didn't use. They are ungraded, so a fast student gets more practice
-// without being able to out-score anyone.
+// What may be graded: eligible, Core, and verified.
+export function gradedPool({ curriculum, bank, activities = {}, includeDrafts = false }) {
+  return bank.questions.filter((question) => isEligible(question, curriculum, activities, includeDrafts)
+    && statusOf(curriculum, question.skill) === 'core'
+    && (question.verified || includeDrafts));
+}
+
+// Extras for a student who is ahead of the pace, drawn from everything the graded
+// set didn't use: Practice skills, questions not yet verified, and the harder
+// levels the graded set deliberately excludes. They carry only a small capped
+// bonus, so a fast reader gets more practice without out-ranking a careful one.
 //
-// Ordered easiest-first so difficulty climbs as the window runs on. The design
-// calls level 3 "reach", but the bank currently tops out at level 2 (and holds
-// only a handful), so in practice the climb is shallow — writing harder items is
-// what deepens it, not a change here. Activity-gated questions are held to the
-// same gate rule as the graded set, so nobody is asked about gear they haven't
-// touched.
-export function selectBonus({ curriculum, bank, activities = {}, prior = null, exclude = [], seed, limit = 8, includeDrafts = false }) {
+// Order: what this student got wrong in earlier weeks comes back first, because a
+// second look at a miss is worth more than a fresh question. Within that, a
+// different question on the skill beats an exact repeat — but an exact repeat is
+// allowed rather than letting a thin skill go unrevisited. Then difficulty climbs
+// as the window runs on.
+export function selectBonus({
+  curriculum, bank, activities = {}, prior = null, exclude = [], seed, limit = 30, includeDrafts = false,
+}) {
   const rng = createRng(`${seed}:bonus`);
   const used = new Set(exclude);
-  const recent = new Set(readPrior(prior, bank).seen);
+  const context = readPrior(prior, bank);
   const eligible = bank.questions.filter((question) => !used.has(question.id)
     && (includeDrafts || !question.draft)
     && statusOf(curriculum, question.skill) !== 'inactive'
     && (!question.activity_gate || (activities[question.activity_gate] || 0) >= 1));
-  // Take a share from each level rather than the first N of an ascending sort —
-  // otherwise the whole allowance comes out of the easiest bucket and difficulty
-  // never actually climbs. Within a level, unseen items come first.
-  const buckets = [...new Set(eligible.map((question) => question.level ?? 0))].sort((a, b) => a - b);
-  const byLevel = buckets.map((level) => shuffle(eligible.filter((question) => (question.level ?? 0) === level), rng)
-    .sort((a, b) => recent.has(a.id) - recent.has(b.id)));
-  const share = Math.ceil(limit / buckets.length);
-  const chosen = byLevel.flatMap((questions) => questions.slice(0, share));
-  // Any shortfall in a thin level is made up from whatever is left, hardest last.
-  const picked = new Set(chosen.map((question) => question.id));
-  const filler = byLevel.flat().filter((question) => !picked.has(question.id));
-  return [...chosen, ...filler.slice(0, Math.max(0, limit - chosen.length))]
-    .sort((a, b) => (a.level ?? 0) - (b.level ?? 0))
-    .slice(0, limit)
-    .map((question) => ({ id: question.id, role: 'bonus' }));
+
+  const wasMissed = (question) => context.missedCore.has(question.skill)
+    || (context.history[question.skill] || '').endsWith('0');
+  const rank = (question) => [
+    wasMissed(question) ? 0 : 1,
+    context.seen.has(question.id) ? 1 : 0,
+    question.level ?? 0,
+  ];
+  const ordered = shuffle(eligible, rng).sort((a, b) => {
+    const left = rank(a);
+    const right = rank(b);
+    return left[0] - right[0] || left[1] - right[1] || left[2] - right[2];
+  });
+  return ordered.slice(0, limit).map((question) => ({ id: question.id, role: 'bonus' }));
 }
 
 // Should this student be handed a bonus question right now?
@@ -206,7 +227,7 @@ export function selectBonus({ curriculum, bank, activities = {}, prior = null, e
 // The second test matters because a bonus costs window time, and the window is
 // what the graded set has to fit inside. Without it, a student who starts fast,
 // collects extras and then slows down can be cut off before finishing the graded
-// set and lose real points — which makes "ungraded" a lie.
+// set and lose real points.
 export function shouldOfferBonus({
   done, graded, elapsed, expectedSeconds, windowSeconds,
   poolLeft, currentIsBonus, checkEvery = 3, safety = 0.75,
@@ -231,12 +252,24 @@ export function choiceOrder(question, seed) {
   return question.shuffle === false ? indexes : shuffle(indexes, createRng(`${seed}:${question.id}`));
 }
 
-// By default every question is worth the same fraction of curriculum.target_total_points
-// (e.g. 10 points over 20 questions = 0.5 each), so the Canvas assignment can be worth a
-// fixed amount regardless of how many questions a given week has. Set an explicit
-// `scoring: {core_correct, practice_completed}` in curriculum.json instead if Core and
-// Practice should ever be weighted differently.
+// How the 10 points are made up. Participation is spread across the graded
+// questions a student actually reaches, correctness across the ones they get
+// right, and bonus questions add a small capped amount on top.
+//
+// Falls back to the old even-split shape so a curriculum written before this
+// change still scores the way it used to.
 export function resolveScoring(curriculum) {
+  const scoring = curriculum.scoring || {};
+  if (scoring.participation_points != null || scoring.correct_points != null) {
+    return {
+      participation_points: scoring.participation_points ?? 0,
+      correct_points: scoring.correct_points ?? 0,
+      bonus_per_correct: scoring.bonus_per_correct ?? 0,
+      bonus_max: scoring.bonus_max ?? 0,
+      total_points: curriculum.target_total_points
+        ?? (scoring.participation_points ?? 0) + (scoring.correct_points ?? 0),
+    };
+  }
   if (curriculum.scoring) return curriculum.scoring;
   const total = curriculum.targets?.total_questions;
   if (curriculum.target_total_points != null && total) {
@@ -247,42 +280,66 @@ export function resolveScoring(curriculum) {
 }
 
 export function scoreAttempt(selection, answers, scoring = {}) {
-  const corePoints = scoring.core_correct ?? 1;
-  const practicePoints = scoring.practice_completed ?? 1;
   const given = answers.filter(Boolean);
-  // Bonus questions are ungraded by design — they sit outside both the score and
-  // the denominator, so answering more of them can never change anyone's mark.
+  // Bonus questions sit outside the graded set entirely. They can add a small
+  // capped amount on top, but they are never part of the denominator, so no one
+  // can raise their own ceiling by reading faster than the person next to them.
   const graded = selection.filter((item) => item.role !== 'bonus');
+  const gradedTotal = graded.length;
   const coreTotal = graded.filter((item) => item.role === 'core').length;
-  const practiceTotal = graded.length - coreTotal;
+  const practiceTotal = gradedTotal - coreTotal;
+  const isGraded = (answer) => answer.role !== 'bonus';
+  const reached = given.filter(isGraded).length;
   const coreCorrect = given.filter((answer) => answer.role === 'core' && answer.correct).length;
+  const gradedCorrect = given.filter((answer) => isGraded(answer) && answer.correct).length;
   const practiceDone = given.filter((answer) => answer.role === 'practice').length;
   const bonusDone = given.filter((answer) => answer.role === 'bonus').length;
   const bonusCorrect = given.filter((answer) => answer.role === 'bonus' && answer.correct).length;
-  // Round away float noise (0.1 + 0.2-style residue) while keeping halves/quarters exact.
   const round = (n) => Math.round(n * 100) / 100;
+
+  if (scoring.participation_points == null && scoring.correct_points == null) {
+    // Legacy even split, kept so older curricula score unchanged.
+    const corePoints = scoring.core_correct ?? 1;
+    const practicePoints = scoring.practice_completed ?? 1;
+    return {
+      coreCorrect, coreTotal, practiceDone, practiceTotal, bonusDone, bonusCorrect,
+      reached,
+      points: round(coreCorrect * corePoints + practiceDone * practicePoints),
+      max: round(coreTotal * corePoints + practiceTotal * practicePoints),
+    };
+  }
+
+  const totalPoints = scoring.total_points ?? 10;
+  const perParticipation = gradedTotal ? scoring.participation_points / gradedTotal : 0;
+  const perCorrect = gradedTotal ? scoring.correct_points / gradedTotal : 0;
+  const earned = reached * perParticipation + gradedCorrect * perCorrect;
+  // Scored on what they reached, so running out of time costs nobody a mark they
+  // had no chance to earn. Someone cut off at 6 of 12, all correct, gets 100%.
+  const possible = reached * (perParticipation + perCorrect);
+  const share = possible ? earned / possible : 0;
+  const extra = Math.min(bonusCorrect * (scoring.bonus_per_correct ?? 0), scoring.bonus_max ?? 0);
+
   return {
-    coreCorrect,
-    coreTotal,
-    practiceDone,
-    practiceTotal,
-    bonusDone,
-    bonusCorrect,
-    points: round(coreCorrect * corePoints + practiceDone * practicePoints),
-    max: round(coreTotal * corePoints + practiceTotal * practicePoints),
+    coreCorrect, coreTotal, practiceDone, practiceTotal, bonusDone, bonusCorrect,
+    reached,
+    extra: round(extra),
+    points: round(share * totalPoints + extra),
+    max: round(totalPoints),
   };
 }
 
-// Missed Core skills first, then missed Practice skills (ones headed for Core first).
+// Missed Core skills first, then anything else they got wrong — skills headed for
+// Core first. Bonus counts here even though it barely counts for marks: a student
+// wants to know what they got wrong, not what it was worth.
 export function reviewSkills(answers, bank, curriculum, limit = curriculum.review_next_max ?? 4) {
   const byId = indexQuestions(bank);
   const soon = new Set(curriculum.coming_to_core || []);
-  const missed = (role) => [...new Set(answers
-    .filter((answer) => answer && answer.role === role && !answer.correct)
+  const missed = (match) => [...new Set(answers
+    .filter((answer) => answer && match(answer.role) && !answer.correct)
     .map((answer) => byId[answer.id]?.skill)
     .filter(Boolean))];
-  const practice = missed('practice').sort((a, b) => soon.has(b) - soon.has(a));
-  return [...new Set([...missed('core'), ...practice])].slice(0, limit);
+  const rest = missed((role) => role !== 'core').sort((a, b) => soon.has(b) - soon.has(a));
+  return [...new Set([...missed((role) => role === 'core'), ...rest])].slice(0, limit);
 }
 
 // Compact keys keep the pasted code short. See README for the field list.
@@ -321,5 +378,7 @@ export function buildPayload({ curriculum, bank, attempt, appVersion, completedA
     ...(Number.isFinite(attempt.elapsedSeconds) ? { el: attempt.elapsedSeconds } : {}),
     ...(attempt.capture?.pacing ? { pc: attempt.capture.pacing[0] } : {}),
     ...(score.bonusDone ? { bn: [score.bonusDone, score.bonusCorrect] } : {}),
+    ...(score.extra ? { xc: score.extra } : {}),
+    ...(score.reached != null ? { rc: score.reached } : {}),
   };
 }

@@ -151,63 +151,55 @@ test('damaged, edited, and cut-off codes are rejected with a reason', () => {
 
 const base = { curriculum, bank, seed: 'fixed-seed' };
 
-test('Quiz 1 with no activities: 20 questions, 9 Core, all common, no drafts, no repeats', () => {
+test('the graded set is a fixed 12, all Core, all verified, one per skill', () => {
   const selection = selectQuiz(base);
-  assert.equal(selection.length, 20);
-  assert.equal(new Set(selection.map(({ id }) => id)).size, 20);
-  assert.equal(selection.filter(({ role }) => role === 'core').length, 9);
-  selection.forEach(({ id }) => {
-    assert.equal(byId[id].activity_gate, null, `${id} is activity-gated`);
+  assert.equal(selection.length, curriculum.targets.graded_questions);
+  assert.equal(new Set(selection.map(({ id }) => id)).size, selection.length, 'a question was repeated');
+  selection.forEach(({ id, role }) => {
+    assert.equal(role, 'core', `${id} is graded but not Core`);
+    assert.equal(curriculum.skills[byId[id].skill], 'core', `${id}'s skill is not Core`);
+    assert.ok(byId[id].verified, `${id} is graded but not verified — an unchecked question must never cost marks`);
     assert.ok(!byId[id].draft, `${id} is a draft`);
   });
-  const liveCoreSkills = new Set(bank.questions
-    .filter((question) => !question.draft && !question.activity_gate && curriculum.skills[question.skill] === 'core')
-    .map((question) => question.skill));
-  const selectedCoreSkills = new Set(selection.filter(({ role }) => role === 'core').map(({ id }) => byId[id].skill));
-  assert.equal(selectedCoreSkills.size, Math.min(9, liveCoreSkills.size), 'Core questions should each cover a different skill');
+  const skills = selection.map(({ id }) => byId[id].skill);
+  assert.equal(new Set(skills).size, skills.length, 'two graded questions covered the same skill');
 });
 
-test('roles always come from curriculum.json', () => {
-  for (let i = 0; i < 25; i += 1) {
-    selectQuiz({ ...base, seed: `s${i}`, activities: { stereo: 2, dante: 1, x32compact: 1, 'live-looping': 1 } })
-      .forEach(({ id, role }) => assert.equal(role, curriculum.skills[byId[id].skill]));
-  }
+test('the graded count stays fixed however many skills become Core', () => {
+  // The whole point of a fixed count: promoting skills must not lengthen the quiz
+  // past its own clock.
+  const everythingCore = {
+    ...curriculum,
+    skills: Object.fromEntries(Object.keys(curriculum.skills).map((skill) => [skill, 'core'])),
+  };
+  const selection = selectQuiz({ ...base, curriculum: everythingCore });
+  assert.equal(selection.length, curriculum.targets.graded_questions);
 });
 
-test('activity questions appear only for students who did the activity', () => {
-  const stereo = selectQuiz({ ...base, activities: { stereo: 1 } });
-  const gated = stereo.filter(({ id }) => byId[id].activity_gate);
-  assert.ok(gated.length >= 3 && gated.length <= curriculum.targets.activity_aware_questions);
-  gated.forEach(({ id }) => {
-    assert.equal(byId[id].activity_gate, 'stereo');
-    assert.ok(byId[id].level <= 1);
+test('graded questions never ask about gear a student has not touched', () => {
+  const none = selectQuiz(base);
+  none.forEach(({ id }) => assert.equal(byId[id].activity_gate, null, `${id} is gated but no activity was reported`));
+
+  const dante = selectQuiz({ ...base, activities: { dante: 2 } });
+  dante.forEach(({ id }) => {
+    const gate = byId[id].activity_gate;
+    if (gate) assert.equal(gate, 'dante', `${id} is gated on ${gate}, which was not done`);
   });
-  assert.equal(stereo.length, 20);
+  assert.equal(dante.length, curriculum.targets.graded_questions);
 });
 
-test('several activities are spread across rather than one dominating', () => {
-  const selection = selectQuiz({ ...base, activities: { stereo: 1, dante: 1, x32compact: 1, 'live-looping': 1 } });
-  const gates = selection.map(({ id }) => byId[id].activity_gate).filter(Boolean);
-  assert.equal(gates.length, 5);
-  assert.equal(new Set(gates).size, 4);
-});
-
-test('an activity count of 3+ survives the code and unlocks up to level 3', () => {
-  const selection = selectQuiz({ ...base, activities: { stereo: 3 } });
-  const payload = buildPayload({ curriculum, bank, attempt: attemptFor({ selection, answers: answerAll(selection), activities: { stereo: 3, daw: 1 } }), appVersion: 'test' });
-  assert.deepEqual(decodeStateCode(encodeStateCode(payload)).state.act, { stereo: 3, daw: 1 });
-  const levelThree = { ...bank, questions: [...bank.questions, { ...byId.ST_PAN_002, id: 'TEST_L3', level: 3 }] };
-  const picks = (count) => Array.from({ length: 30 }, (_, i) => selectQuiz({ curriculum, bank: levelThree, seed: `l3-${i}`, activities: { stereo: count } }))
+test('gated difficulty still climbs with repetitions', () => {
+  const harder = { ...bank, questions: [...bank.questions, { ...byId.DANTE_MATRIX_001, id: 'TEST_L3', level: 3, verified: true }] };
+  const reached = (count) => Array.from({ length: 30 }, (_, i) => selectQuiz({ curriculum, bank: harder, seed: `l3-${i}`, activities: { dante: count } }))
     .some((quiz) => quiz.some(({ id }) => id === 'TEST_L3'));
-  assert.equal(picks(2), false, 'level 3 offered after only 2 repetitions');
-  assert.equal(picks(3), true, 'level 3 never offered at 3+');
+  assert.equal(reached(2), false, 'a level-3 question was offered after only 2 repetitions');
+  assert.equal(reached(3), true, 'a level-3 question was never offered at 3+ repetitions');
 });
 
-test('level 2 questions need the activity twice', () => {
-  const once = selectQuiz({ ...base, includeDrafts: true, activities: { stereo: 1 } });
-  assert.ok(once.every(({ id }) => byId[id].level <= 1));
-  const twice = Array.from({ length: 20 }, (_, i) => selectQuiz({ ...base, seed: `t${i}`, includeDrafts: true, activities: { stereo: 2 } }));
-  assert.ok(twice.some((selection) => selection.some(({ id }) => byId[id].level === 2)), 'no level-2 question ever chosen for a repeat student');
+test('ungated graded questions stay at the everyday level', () => {
+  const selection = selectQuiz({ ...base, activities: { dante: 1 } });
+  selection.filter(({ id }) => !byId[id].activity_gate)
+    .forEach(({ id }) => assert.ok(byId[id].level <= (curriculum.max_common_level ?? 1), `${id} is level ${byId[id].level}`));
 });
 
 test('same seed gives the same quiz; different seeds shuffle', () => {
@@ -232,26 +224,74 @@ test('a tiny bank does not crash', () => {
 
 // ---------- Scoring, review, next-week state ----------
 
-test('Practice gets full credit even when wrong; Core only when right', () => {
+test('the grade is 4 for turning up plus 6 for knowing it', () => {
+  const scoring = resolveScoring(curriculum);
   const selection = selectQuiz(base);
-  const evenScoring = { core_correct: 1, practice_completed: 1 };
-  const score = scoreAttempt(selection, answerAll(selection, () => false), evenScoring);
-  assert.deepEqual(score, { coreCorrect: 0, coreTotal: 9, practiceDone: 11, practiceTotal: 11, bonusDone: 0, bonusCorrect: 0, points: 11, max: 20 });
-  const perfect = scoreAttempt(selection, answerAll(selection), evenScoring);
-  assert.equal(perfect.points, 20);
+  const n = selection.length;
+  const some = (reached, correct) => selection.slice(0, reached)
+    .map(({ id, role }, i) => ({ id, role, choice: 0, correct: i < correct }));
+
+  assert.equal(scoreAttempt(selection, some(n, n), scoring).points, 10, 'everything right should be full marks');
+  assert.equal(scoreAttempt(selection, some(n, 0), scoring).points, 4, 'answering everything and getting it all wrong is the floor');
+  assert.equal(scoreAttempt(selection, some(n, n / 2).slice(0, n), scoring).points, 7, 'half right should sit halfway between the floor and full marks');
+  assert.equal(scoreAttempt(selection, [], scoring).points, 0, 'answering nothing earns nothing');
 });
 
-// 20 graded questions, a 6-minute expected pace and a 9-minute window: Quiz 2.
+test('running out of time costs nobody a mark they had no chance to earn', () => {
+  const scoring = resolveScoring(curriculum);
+  const selection = selectQuiz(base);
+  const cutOff = (reached, correct) => selection.slice(0, reached)
+    .map(({ id, role }, i) => ({ id, role, choice: 0, correct: i < correct }));
+
+  // Scored on what they reached: 6 of 12, all correct, is still full marks.
+  assert.equal(scoreAttempt(selection, cutOff(6, 6), scoring).points, 10);
+  assert.equal(scoreAttempt(selection, cutOff(6, 3), scoring).points, 7, 'half of what they reached is still half');
+  assert.equal(scoreAttempt(selection, cutOff(6, 0), scoring).points, 4, 'the floor holds however far they got');
+  assert.equal(scoreAttempt(selection, cutOff(6, 6), scoring).reached, 6);
+});
+
+test('bonus adds a little and is capped', () => {
+  const scoring = resolveScoring(curriculum);
+  const graded = selectQuiz(base);
+  const bonus = Array.from({ length: 9 }, (_, i) => ({ id: `B${i}`, role: 'bonus' }));
+  const selection = [...graded, ...bonus];
+  const answers = (correctBonus) => [
+    ...graded.map(({ id, role }) => ({ id, role, choice: 0, correct: true })),
+    ...bonus.slice(0, correctBonus).map(({ id, role }) => ({ id, role, choice: 0, correct: true })),
+  ];
+
+  assert.equal(scoreAttempt(selection, answers(0), scoring).points, 10);
+  assert.equal(scoreAttempt(selection, answers(2), scoring).points, 10.2, 'two right should add 0.2');
+  assert.equal(scoreAttempt(selection, answers(9), scoring).points, 10.5, 'nine right should still stop at the cap');
+  assert.equal(scoreAttempt(selection, answers(9), scoring).extra, scoring.bonus_max);
+});
+
+test('bonus never changes the denominator or the graded share', () => {
+  const scoring = resolveScoring(curriculum);
+  const graded = selectQuiz(base);
+  const bonus = Array.from({ length: 6 }, (_, i) => ({ id: `B${i}`, role: 'bonus' }));
+  const gradedAnswers = graded.map(({ id, role }, i) => ({ id, role, choice: 0, correct: i < 9 }));
+  const alone = scoreAttempt(graded, gradedAnswers, scoring);
+  // Getting every bonus WRONG must leave the mark exactly where it was.
+  const withWrongBonus = scoreAttempt([...graded, ...bonus], [
+    ...gradedAnswers, ...bonus.map(({ id, role }) => ({ id, role, choice: 0, correct: false })),
+  ], scoring);
+  assert.equal(withWrongBonus.points, alone.points, 'wrong bonus answers moved the grade');
+  assert.equal(withWrongBonus.max, alone.max, 'bonus leaked into the denominator');
+  assert.equal(withWrongBonus.reached, alone.reached, 'bonus counted as a graded question');
+});
+
+// 12 graded questions, a 6-minute expected pace and a 9-minute window: Quiz 2.
 const paceCase = (over) => ({
-  done: 3, graded: 20, expectedSeconds: 360, windowSeconds: 540,
+  done: 3, graded: 12, expectedSeconds: 360, windowSeconds: 540,
   poolLeft: 5, currentIsBonus: false, ...over,
 });
 
 test('a bonus only goes to a student who is ahead of the pace', () => {
-  // On pace for 20 in 6 minutes, question 3 lands at 54s.
-  assert.equal(shouldOfferBonus(paceCase({ elapsed: 40 })), true, 'a student ahead of pace should get one');
-  assert.equal(shouldOfferBonus(paceCase({ elapsed: 54 })), false, 'exactly on pace is not ahead');
-  assert.equal(shouldOfferBonus(paceCase({ elapsed: 120 })), false, 'a student behind must never be interrupted');
+  // On pace for 12 in 6 minutes, question 3 lands at 90s.
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 60 })), true, 'a student ahead of pace should get one');
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 90 })), false, 'exactly on pace is not ahead');
+  assert.equal(shouldOfferBonus(paceCase({ elapsed: 200 })), false, 'a student behind must never be interrupted');
 });
 
 test('a bonus is never offered if the graded questions would not still fit', () => {
@@ -259,8 +299,8 @@ test('a bonus is never offered if the graded questions would not still fit', () 
   // inside the window (540s/20 = 27s), so anyone ahead of pace comfortably fits
   // and this guard should never block them. Assert that, so a future change to
   // the minutes cannot quietly start starving fast students of extras.
-  [3, 6, 9, 12, 15, 18].forEach((done) => {
-    const slowestStillAhead = (done / 20) * 360 - 1;
+  [3, 6, 9].forEach((done) => {
+    const slowestStillAhead = (done / 12) * 360 - 1;
     assert.equal(shouldOfferBonus(paceCase({ done, elapsed: slowestStillAhead })), true,
       `at 6/9 a student ahead of pace should still get a bonus at question ${done}`);
   });
@@ -268,18 +308,18 @@ test('a bonus is never offered if the graded questions would not still fit', () 
   // It binds when the window is tight, or when slow bonus questions have already
   // dragged the student's average up — which is exactly when a bonus would start
   // costing them graded questions, and "ungraded" would become a lie.
-  assert.equal(shouldOfferBonus(paceCase({ done: 6, elapsed: 100, windowSeconds: 400 })), false,
+  assert.equal(shouldOfferBonus(paceCase({ done: 3, elapsed: 85, windowSeconds: 400 })), false,
     'a tight window must stop extras before they eat the graded set');
-  assert.equal(shouldOfferBonus(paceCase({ done: 6, elapsed: 107, windowSeconds: 250 })), false,
+  assert.equal(shouldOfferBonus(paceCase({ done: 3, elapsed: 85, windowSeconds: 250 })), false,
     'an inflated average must stop extras before they eat the graded set');
 });
 
 test('extras keep coming once the graded set is finished', () => {
-  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300 })), true);
-  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300, currentIsBonus: true })), true,
+  assert.equal(shouldOfferBonus(paceCase({ done: 12, elapsed: 300 })), true);
+  assert.equal(shouldOfferBonus(paceCase({ done: 12, elapsed: 300, currentIsBonus: true })), true,
     'after the graded set, one bonus should lead straight to the next');
-  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 540 })), false, 'not once the window is over');
-  assert.equal(shouldOfferBonus(paceCase({ done: 20, elapsed: 300, poolLeft: 0 })), false, 'nothing left to give');
+  assert.equal(shouldOfferBonus(paceCase({ done: 12, elapsed: 540 })), false, 'not once the window is over');
+  assert.equal(shouldOfferBonus(paceCase({ done: 12, elapsed: 300, poolLeft: 0 })), false, 'nothing left to give');
 });
 
 test('bonus questions interleave rather than arriving in a block', () => {
@@ -293,22 +333,6 @@ test('an untimed quiz never offers a bonus', () => {
   assert.equal(shouldOfferBonus(paceCase({ elapsed: 10, windowSeconds: 0, expectedSeconds: 0 })), false);
 });
 
-test('bonus questions can never move anyone’s score', () => {
-  const selection = selectQuiz(base);
-  const scoring = resolveScoring(curriculum);
-  const before = scoreAttempt(selection, answerAll(selection), scoring);
-  const bonus = selectBonus({ curriculum, bank, activities: {}, exclude: selection.map(({ id }) => id), seed: 'b' });
-  assert.ok(bonus.length, 'no bonus questions were available to test with');
-  const withBonus = [...selection, ...bonus];
-  const allRight = scoreAttempt(withBonus, answerAll(withBonus), scoring);
-  const allWrong = scoreAttempt(withBonus, answerAll(withBonus, (q, role) => role !== 'bonus'), scoring);
-  assert.equal(allRight.points, before.points, 'answering bonus correctly changed the score');
-  assert.equal(allWrong.points, before.points, 'getting bonus wrong changed the score');
-  assert.equal(allRight.max, before.max, 'bonus changed the points the quiz is out of');
-  assert.equal(allRight.practiceTotal, before.practiceTotal, 'bonus leaked into the Practice denominator');
-  assert.equal(allRight.bonusDone, bonus.length);
-});
-
 test('bonus questions are unseen and climb in difficulty', () => {
   const activities = { stereo: 2, dante: 1 };
   const selection = selectQuiz({ ...base, activities });
@@ -320,6 +344,32 @@ test('bonus questions are unseen and climb in difficulty', () => {
   assert.deepEqual(levels, [...levels].sort((a, b) => a - b), `bonus levels should not go backwards: ${levels}`);
   const gated = bonus.map(({ id }) => byId[id].activity_gate).filter(Boolean);
   assert.ok(gated.every((gate) => (activities[gate] || 0) >= 1), 'bonus asked about gear the student hasn’t touched');
+});
+
+test('every Core skill has verified questions to draw on', () => {
+  // The graded set is verified-only, so a Core skill with nothing verified can
+  // never be tested — and one with a single verified question gives every student
+  // the same item, which leaks. Fail on the first, warn on the second.
+  const thin = [];
+  Object.entries(curriculum.skills).filter(([, status]) => status === 'core').forEach(([skill]) => {
+    const available = bank.questions.filter((question) => question.skill === skill
+      && question.verified && !question.draft);
+    assert.ok(available.length > 0, `Core skill "${skill}" has no verified question, so it can never be graded`);
+    if (available.length < 2) thin.push(skill);
+  });
+  if (thin.length) console.log(`      (thin — only one verified question each: ${thin.join(', ')})`);
+});
+
+test('the graded set fits the time it is given', () => {
+  const quiz = curriculum.quizzes[String(curriculum.quiz_number)];
+  if (!quiz?.window_minutes) return;
+  const count = curriculum.targets.graded_questions;
+  const perQuestion = (quiz.window_minutes * 60) / count;
+  assert.ok(perQuestion >= 20,
+    `${count} questions in ${quiz.window_minutes} minutes is ${perQuestion.toFixed(0)}s each — too tight`);
+  assert.ok(quiz.expected_minutes < quiz.window_minutes,
+    'the expected pace should be inside the window, not equal to it');
+  console.log(`      (${count} graded in ${quiz.expected_minutes}/${quiz.window_minutes} min = ${((quiz.expected_minutes * 60) / count).toFixed(0)}s expected, ${perQuestion.toFixed(0)}s allowed)`);
 });
 
 test('a Quiz 1 code from before per-question timing still reads correctly', () => {
@@ -358,26 +408,31 @@ test('per-question time and the chosen answer survive the round trip', () => {
   });
 });
 
-test('the quiz is worth target_total_points in Canvas, split evenly per question', () => {
+test('the quiz is worth target_total_points in Canvas', () => {
   assert.equal(curriculum.target_total_points, 10, 'update this test if the point target changes');
   const scoring = resolveScoring(curriculum);
-  assert.equal(scoring.core_correct, 0.5);
-  assert.equal(scoring.practice_completed, 0.5);
+  assert.equal(scoring.participation_points + scoring.correct_points, curriculum.target_total_points,
+    'participation and correctness should add up to the Canvas total');
   const selection = selectQuiz(base);
   assert.equal(scoreAttempt(selection, answerAll(selection), scoring).max, curriculum.target_total_points);
-  assert.equal(scoreAttempt(selection, answerAll(selection, () => false), scoring).points, selection.filter((s) => s.role !== 'core').length * 0.5);
 
-  // An explicit `scoring` block, if a future week ever needs one, overrides the automatic split.
-  assert.deepEqual(resolveScoring({ ...curriculum, scoring: { core_correct: 2, practice_completed: 1 } }), { core_correct: 2, practice_completed: 1 });
+  // The legacy even split still works for a curriculum written before this change.
+  const legacy = { target_total_points: 10, targets: { total_questions: 20 } };
+  assert.deepEqual(resolveScoring(legacy), { core_correct: 0.5, practice_completed: 0.5 });
 });
 
-test('review list puts missed Core first and respects the limit', () => {
-  const selection = selectQuiz(base);
-  const answers = answerAll(selection, (question) => !['phantom_power', 'safe_power_order'].includes(question.skill));
+test('review list puts missed Core first, then bonus misses', () => {
+  const graded = selectQuiz(base);
+  const missedSkill = byId[graded[0].id].skill;
+  const answers = [
+    ...graded.map(({ id, role }) => ({ id, role, correct: byId[id].skill !== missedSkill })),
+    // A bonus question they got wrong is still worth telling them about.
+    { id: 'LIVE_MM_001', role: 'bonus', correct: false },
+  ];
   const review = reviewSkills(answers, bank, curriculum);
-  assert.equal(review[0], 'phantom_power');
-  assert.ok(review.includes('safe_power_order'));
-  assert.ok(reviewSkills(answerAll(selection, () => false), bank, curriculum).length <= curriculum.review_next_max);
+  assert.equal(review[0], missedSkill, 'a missed Core skill should lead the list');
+  assert.ok(review.includes('mains_monitors'), 'a missed bonus skill should still be reviewable');
+  assert.ok(reviewSkills(answers, bank, curriculum).length <= curriculum.review_next_max);
 });
 
 test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
@@ -396,13 +451,14 @@ test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   prior.a.LIVE_MM_001 = 'p1';
   prior.sk.mains_monitors = '1';
 
-  const week2 = { ...curriculum, quiz_number: 2, skills: { ...curriculum.skills, mains_monitors: 'core' } };
+  const week2 = { ...curriculum, quiz_number: 2 };
   for (let i = 0; i < 20; i += 1) {
     const quiz2 = selectQuiz({ curriculum: week2, bank, seed: `w2-${i}`, activities: { stereo: 1 }, prior });
     const phantom = quiz2.filter(({ id }) => byId[id].skill === 'phantom_power');
+    // Only 12 of the Core skills are drawn each week, so a missed skill coming
+    // back is the strongest guarantee the design makes — and it has to hold.
     assert.equal(phantom.length, 1, 'missed Core skill should come back');
     assert.notEqual(phantom[0].id, missed.id, 'missed skill should return as a different question');
-    assert.ok(quiz2.some(({ id, role }) => byId[id].skill === 'mains_monitors' && role === 'core'), 'newly promoted skill should appear as Core');
   }
 
   const quiz2 = selectQuiz({ curriculum: week2, bank, seed: 'w2', activities: { stereo: 1 }, prior });
@@ -411,12 +467,21 @@ test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   assert.ok(Object.keys(prior.a).every((id) => payload2.seen.includes(id)));
 });
 
-test('the Canvas code stays a reasonable length', () => {
-  const selection = selectQuiz({ ...base, activities: { stereo: 2, dante: 1, x32compact: 1 } });
-  const payload = buildPayload({ curriculum, bank, attempt: attemptFor({ selection, answers: answerAll(selection) }), appVersion: '0.1.0' });
-  const code = encodeStateCode(payload);
-  assert.ok(code.length < 2000, `code is ${code.length} characters`);
-  console.log(`      (Quiz 1 code length: ${code.length} characters)`);
+test('the Canvas code stays a reasonable length, even for a student who answers everything', () => {
+  const graded = selectQuiz({ ...base, activities: { stereo: 2, dante: 1, x32compact: 1 } });
+  const typical = buildPayload({ curriculum, bank, attempt: attemptFor({ selection: graded, answers: answerAll(graded) }), appVersion: '0.1.0' });
+  const typicalCode = encodeStateCode(typical);
+  assert.ok(typicalCode.length < 1500, `a graded-only code is ${typicalCode.length} characters`);
+
+  // The worst case is a fast student who gets through the graded set and then
+  // every bonus question the window allows. Students copy this into Canvas by
+  // hand if the button fails, so it has to stay something a person can handle.
+  const bonus = selectBonus({ curriculum, bank, activities: { stereo: 2, dante: 1, x32compact: 1 }, exclude: graded.map(({ id }) => id), seed: 'max' });
+  const everything = [...graded, ...bonus];
+  const full = buildPayload({ curriculum, bank, attempt: attemptFor({ selection: everything, answers: answerAll(everything) }), appVersion: '0.1.0' });
+  const fullCode = encodeStateCode(full);
+  assert.ok(fullCode.length < 3000, `answering all ${everything.length} questions gives a ${fullCode.length}-character code`);
+  console.log(`      (code length: ${typicalCode.length} graded only, ${fullCode.length} with all ${bonus.length} bonus)`);
 });
 
 if (failures) {

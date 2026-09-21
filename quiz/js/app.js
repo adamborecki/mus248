@@ -69,7 +69,7 @@ const formatDate = (iso) => new Date(iso).toLocaleString('en-US', {
 const BADGES = {
   core: '<span class="badge core">🟢 Core — graded</span>',
   practice: '<span class="badge practice">🟡 Practice — full credit this week</span>',
-  bonus: '<span class="badge bonus">🔵 Bonus — not counted</span>',
+  bonus: '<span class="badge bonus">🔵 Bonus — can only help</span>',
 };
 const badge = (role) => BADGES[role] || BADGES.practice;
 const progressBar = (done, total) => `<div class="progress" aria-hidden="true"><span style="width:${total ? (done / total) * 100 : 0}%"></span></div>`;
@@ -409,6 +409,12 @@ function renderIntro() {
   const graded = attempt.selection.filter(({ role }) => role !== 'bonus').length;
   const core = attempt.selection.filter(({ role }) => role === 'core').length;
   const { expected_minutes: expected, window_minutes: window } = timing();
+  const scoring = data.curriculum.scoring || {};
+  const total = data.curriculum.target_total_points;
+  const points = scoring.participation_points && total ? `
+      <p><strong>How it's scored.</strong> ${scoring.participation_points} of the ${total} points are for answering —
+      you get those for turning up and working through it. The other ${scoring.correct_points} are for getting them right.
+      If the clock beats you, you're scored on the questions you actually reached, not the ones you never saw.</p>` : '';
   const clock = isTimed() ? `
       <div class="kind"><span class="badge clock">⏱ ${escapeHtml(String(window))} minutes</span>
         <p>The clock starts when you press the button below, and doesn’t start before that — take your time on this screen.
@@ -417,12 +423,11 @@ function renderIntro() {
   show(`
     <section class="stage">
       <h2 tabindex="-1">Before you start</h2>
-      <div class="kind">${badge('core')}<p>Graded for correctness. This is material you’re expected to know by now.</p></div>
-      <div class="kind">${badge('practice')}<p>Full credit for answering. These help you learn material that may become Core on a future quiz.</p></div>
-      ${isTimed() ? `<div class="kind">${badge('bonus')}<p>Only appears if you’re running ahead of time, and never counts for or against you. It’s extra practice, not extra credit.</p></div>` : ''}
+      <div class="kind">${badge('core')}<p>${graded} questions on material you’re expected to know. These are your grade.</p></div>
+      ${isTimed() ? `<div class="kind">${badge('bonus')}<p>Extra questions once you’re ahead of the clock. They can only ever <strong>help</strong> — a small amount of extra credit, capped, so nobody can out-score you by reading faster.</p></div>` : ''}
       ${clock}
-      <p>${graded} graded questions, ${core} of them Core. After each one you’ll see the answer and a short explanation.${
-        isTimed() ? ' If you run ahead you’ll also get bonus questions on top of those — they don’t count either way.' : ''}</p>
+      ${points}
+      <p class="quiet">After each question you’ll see the answer and a short explanation.</p>
       <button class="btn primary wide big" id="begin">Start the quiz →</button>
     </section>`);
   on('#begin', 'click', () => {
@@ -440,12 +445,14 @@ function feedback(question, role, answer) {
   const correctText = escapeHtml(question.choices[question.answer_index]);
   const explanation = escapeHtml(question.explanation);
   if (answer.correct) {
-    return `<div class="feedback good" tabindex="-1"><h3>✓ Correct${role === 'core' ? '' : ' · Practice complete'}</h3><p>${explanation}</p></div>`;
+    const extra = role === 'core' ? '' : role === 'bonus' ? ' · Bonus' : ' · Practice complete';
+    return `<div class="feedback good" tabindex="-1"><h3>✓ Correct${extra}</h3><p>${explanation}</p></div>`;
   }
   if (role === 'core') {
     return `<div class="feedback miss" tabindex="-1"><h3>Not quite. The answer is: ${correctText}</h3><p>${explanation}</p></div>`;
   }
-  return `<div class="feedback practice" tabindex="-1"><h3>Practice complete</h3>
+  const heading = role === 'bonus' ? 'Bonus — doesn’t count against you' : 'Practice complete';
+  return `<div class="feedback practice" tabindex="-1"><h3>${heading}</h3>
     <p><strong>The answer is: ${correctText}.</strong> ${explanation}</p></div>`;
 }
 
@@ -642,9 +649,9 @@ function submissionText(review) {
     `App version: ${payload.app}`,
     '',
     'RESULTS',
-    `Core: ${coreCorrect}/${coreTotal} correct`,
-    `Practice: ${practiceDone}/${practiceTotal} completed`,
-    ...(payload.bn ? [`Bonus (not counted): ${payload.bn[1]}/${payload.bn[0]} correct`] : []),
+    `Graded: ${coreCorrect}/${payload.rc ?? coreTotal} correct${payload.rc != null && payload.rc < coreTotal ? ` (reached ${payload.rc} of ${coreTotal})` : ''}`,
+    ...(practiceTotal ? [`Practice: ${practiceDone}/${practiceTotal} completed`] : []),
+    ...(payload.bn ? [`Bonus: ${payload.bn[1]}/${payload.bn[0]} correct${payload.xc ? ` (+${payload.xc})` : ''}`] : []),
     `Quiz score: ${points}/${max}`,
     ...(Number.isFinite(payload.el) ? [`Time on the quiz: ${Math.floor(payload.el / 60)}m ${payload.el % 60}s`] : []),
     ...(payload.pc ? [`Pace felt: ${{ r: 'too rushed', j: 'about right', s: 'too slow' }[payload.pc] || payload.pc}`] : []),
@@ -717,9 +724,9 @@ function renderResults() {
     <section class="stage">
       <h2 tabindex="-1">Quiz ${attempt.quiz} complete</h2>
       <div class="score-grid">
-        <div class="score"><strong>${coreCorrect}/${coreTotal}</strong><span>Core correct</span></div>
-        <div class="score"><strong>${practiceDone}/${practiceTotal}</strong><span>Practice done</span></div>
-        ${attempt.payload.bn ? `<div class="score"><strong>${attempt.payload.bn[1]}/${attempt.payload.bn[0]}</strong><span>Bonus · not counted</span></div>` : ''}
+        <div class="score"><strong>${coreCorrect}/${coreTotal}</strong><span>Graded correct</span></div>
+        ${practiceTotal ? `<div class="score"><strong>${practiceDone}/${practiceTotal}</strong><span>Practice done</span></div>` : ''}
+        ${attempt.payload.bn ? `<div class="score"><strong>${attempt.payload.bn[1]}/${attempt.payload.bn[0]}</strong><span>Bonus right${attempt.payload.xc ? ` · +${attempt.payload.xc}` : ''}</span></div>` : ''}
         <div class="score total"><strong>${points}/${max}</strong><span>Quiz score</span></div>
       </div>
     </section>
