@@ -4,11 +4,11 @@ title: Basic Stereo Recording
 emoji: "🎙️"
 coreSkillAreas:
   - Audio Capture
-status: In Development
+status: Ready
 estimatedTime: "40–55 minutes"
 access:
   mode: On campus
-  location: "Anywhere with a stable, quiet-ish sound source. Needs the stereo recording kit and a computer with recording software."
+  location: "Anywhere with a stable, quiet-ish sound source. Needs the stereo recording kit — default kit lives in the kitchen at the back of the classroom (OH B01); additional kits are in the storage closet (OH B00) — and a computer with recording software, or a portable recorder."
   supervision: "None required once you know where the kit lives."
 groupSize:
   minimum: 1
@@ -23,7 +23,7 @@ externalResource:
   url: "https://docs.google.com/document/d/1VvSACp670AeqwC2mtHm2zBEiFgfT8DpeRFddJt4jnjA/edit?usp=sharing"
 ---
 
-> 🧪 **Status: In Development.** Reorganized with AI assistance from a short internal design outline. The three mic-technique definitions and the −12 to −6 dBFS target are cross-checked against this course's own quiz content and are solid; the equipment and room details below still need a hands-on check — see **Technical verification** at the bottom.
+> ✅ **Status: Ready.** Reorganized with AI assistance from a short internal design outline, then checked against the actual kit and rooms by the instructor. Equipment, storage locations, and the three mic-technique details are all confirmed.
 
 ## 🎚️ Core skill area
 
@@ -43,13 +43,13 @@ By the end of this activity, you should be able to:
 
 ## 🗝️ Key terms
 
-**XY** · **AB (spaced pair)** · **ORTF** · coincident / near-coincident · **phase** · mono compatibility · **stereo image** · **panning** · **gain staging** · **phantom power (48V)** · **clipping** · **dBFS** · **headroom** · peak level · stereo bar
+**XY** · **AB (spaced pair)** · **ORTF** · coincident / near-coincident · **phase** · mono compatibility · **stereo image** · **panning** · **gain staging** · **phantom power (48V)** · **clipping** · **dBFS** · **headroom** · peak level · stereo bar · dual-channel (safety) recording
 
 ## 📍 Logistics
 
 **Estimated time:** 40–55 minutes for all three techniques plus the gain-staging drill. Budget more the first time through; the second and third rounds go faster.
 
-**Where:** Anywhere reasonably quiet with a sound source (your voice, an instrument, a phone playing music) works. You need the stereo recording kit — computer, audio interface, matched mic pair, stereo bar — in one place.
+**Where:** Anywhere reasonably quiet with a sound source (your voice, an instrument, a phone playing music) works. You need the stereo recording kit — computer, audio interface, matched mic pair, stereo bar — in one place. The default kit lives in the kitchen at the back of the classroom (OH B01); additional kits are in the storage closet (OH B00). See **Equipment and materials** below for details, including the portable-recorder alternative.
 
 **Access:** On campus, independently, once you have the kit. No instructor or TA needed for the base activity.
 
@@ -64,16 +64,20 @@ By the end of this activity, you should be able to:
 
 ## 🧰 Equipment and materials
 
+**Where to find it:** the default kit — Focusrite 2i4, matched mic pair, stereo bar — lives in the kitchen at the back of the classroom (OH B01). Additional kits are in the storage closet, OH B00.
+
 - [ ] Computer with recording software (a DAW, or any app that records two channels to a stereo or two mono WAV files)
 - [ ] Audio interface (this kit defaults to a **Focusrite 2i4**)
-- [ ] A matched pair of microphones
-- [ ] Stereo bar, with two mic clips
-- [ ] Two mic stands
+- [ ] A matched pair of small-diaphragm condenser microphones (generic brand — LyxPro, Neewer, or similar; any matched pair from the kit works)
+- [ ] Stereo bar, with two mic clips (for XY and ORTF)
+- [ ] Two mic stands (also used on their own for AB, in place of the bar — see Round 2)
 - [ ] Two XLR cables
 - [ ] Headphones
 - [ ] A phone or camera to photograph your setup
 - [ ] Somewhere to save WAV files as you go
 - [ ] A sound source you can repeat consistently — your own voice reading the same sentence works well, since it makes the three techniques directly comparable
+
+> 💡 You don't need a computer, interface, and DAW to do this activity — a portable recorder (Zoom H4n, H6, F8, etc.) with two mic inputs works just as well. The same three checks (panning, matched gain, −12 to −6 dBFS peak) apply no matter what you're recording to.
 
 ## ⚠️ Safety and handling — read this before you touch anything
 
@@ -94,6 +98,8 @@ Every recording you make in this activity gets judged by where its peak lands on
 | **Too quiet** | Well below −12 dBFS (for example, around −38 dBFS) | Technically clean, but you'll need to raise the level significantly afterward — which raises the noise floor right along with it. |
 
 The reason you don't just record as loud as possible, right up against 0 dBFS: performances get louder than soundchecks. A quiet passage during setup can turn into a loud passage during the actual performance, and you want headroom in reserve for that moment, not zero margin.
+
+**A note for classical repertoire:** it's normal — and fine — for a healthy classical take to peak toward the bottom of this range, or even a little under. Classical music's dynamic range is wide enough that the loudest moment of the actual piece can significantly exceed anything you heard in a quick soundcheck, so when in doubt, err toward the quiet end of the target rather than the loud end.
 
 **Q1 (fill in the blank).** The healthy peak-level target for this activity is **−______ to −______ dBFS.**
 
@@ -116,7 +122,7 @@ Do all three. Each one is a full round: set up, connect, gain-match, record, ver
 | Technique | Setup | Stereo image | Mono compatibility |
 |---|---|---|---|
 | **XY** | Two directional mics, capsules as close together as possible ("coincident"), angled apart (roughly 90°–135° between them) | Narrower, tightly focused | Excellent — capsules are nearly in the same spot, so there's almost no time difference between channels |
-| **AB** | Two mics spaced apart (try 30–60 cm to start), facing the source | Wide, spacious | Weakest of the three — spacing creates real time-of-arrival differences that can partially cancel when summed to mono |
+| **AB** | Two mics on separate mic stands (not the stereo bar — AB's spacing is wider than the bar allows), spaced apart (try 30–60 cm to start), facing the source | Wide, spacious | Weakest of the three — spacing creates real time-of-arrival differences that can partially cancel when summed to mono |
 | **ORTF** | Two cardioid mics spaced **17 cm** apart, angled **110°** from each other ("near-coincident") | A standard compromise between XY and AB | Good — better than AB, not quite as strong as XY |
 
 ### Round 1 — XY
@@ -136,7 +142,7 @@ Do all three. Each one is a full round: set up, connect, gain-match, record, ver
 
 ### Round 2 — AB
 
-Repeat the same steps with the mics spaced apart per the table (30–60 cm is a reasonable starting point — try adjusting the spacing and listening to what it does to the width). Reconnect, re-check panning (this is a fresh setup — don't assume last round's routing carried over), re-match gain, record, play back, photograph.
+Break down the stereo bar for this round — AB uses two separate mic stands instead, one mic on each, spaced apart per the table (30–60 cm is a reasonable starting point — try adjusting the spacing and listening to what it does to the width). Reconnect, re-check panning (this is a fresh setup — don't assume last round's routing carried over), re-match gain, record, play back, photograph.
 
 🚩 **Checkpoint.** Play back your AB take against your XY take. The AB image should sound noticeably wider.
 
@@ -220,6 +226,8 @@ The Focusrite 2i4 is this kit's default interface, but the skill transfers to an
 
 The controls will be in different places, but the same three checks — panning, matched gain, and a −12 to −6 dBFS peak — apply no matter what you're holding.
 
+**Dual-channel ("safety") recording.** Some recorders — the Zoom F8 above, for example — can record two copies of the same input at once: one at your normal gain, and a second copy several dB quieter as a backup. If the loud copy clips, the quiet copy usually doesn't, so you can recover the take from it instead of losing it. A standard DAW recording through an audio interface doesn't do this automatically — you'd have to set up and record two separate tracks at two different gains yourself to fake it. Not required for this activity, but worth knowing exists.
+
 ## 🧹 Finish, reset, put away
 
 1. Stop and save your recordings. Confirm the files are actually on disk before you break anything down.
@@ -232,16 +240,6 @@ The controls will be in different places, but the same three checks — panning,
 - Which of the three techniques would you reach for first if you only had five minutes to set up? Why?
 - What's the one thing you'd check first if a stereo recording came back sounding mono?
 
-## ⚙️ Technical verification
-
-**Last verified:** the three mic-technique definitions and the −12 to −6 dBFS peak target are cross-checked against this course's own quiz question bank (which already tests them) and are solid. Everything below is transcribed from a short internal design outline and has not been re-checked against the physical kit.
-
-- **Kit storage location.** The outline names the Focusrite 2i4 and the alternate interfaces' rooms (Kitchen/Pantry #4/Pantry #6 of OH B01) but not where the *default* kit — interface, mic pair, stereo bar — actually lives. Confirm and add it above.
-- **Microphone model.** The outline says "stereo mics" without naming a model. Confirm which mics this kit actually pairs, and whether they're condensers (phantom power required) — the safety note above assumes they might be and instructs students to check.
-- **Recording software.** The procedure is written DAW-agnostic (create a track, set its input, arm it) because no specific software is named in the source material. If this course standardizes on one, add its exact menu names and screenshots.
-- **AB spacing.** "30–60 cm" is a reasonable common starting range, not a value from the source material, which left AB spacing open. Confirm or adjust.
-- **Room/cabinet names for the alternate interfaces.** Confirm "Kitchen of OH B01," "Pantry #6 of OH B01," and "Pantry #4 of OH B01" are still current.
-
 ## 🤖 AI use disclosure
 
-Based on a short internal design outline (required materials, deliverables, and a numbered instruction list) and substantially AI-drafted from there into the standard MUS 248 activity structure — the equipment list, safety notes, gain-staging framing, procedure, troubleshooting, and questions are new. The three mic-technique definitions and the −12 to −6 dBFS target were cross-checked against this course's existing quiz content rather than invented. Pending instructor review.
+Based on a short internal design outline (required materials, deliverables, and a numbered instruction list) and substantially AI-drafted from there into the standard MUS 248 activity structure — the equipment list, safety notes, gain-staging framing, procedure, troubleshooting, and questions are new. The three mic-technique definitions and the −12 to −6 dBFS target were cross-checked against this course's existing quiz content rather than invented. Kit storage locations, mic model, AB's use of separate stands, and the classical-music peak-level note were confirmed by the instructor's own hands-on check before this activity was marked Ready. The recording-software steps stay DAW-agnostic by design, since the kit isn't tied to one app.
