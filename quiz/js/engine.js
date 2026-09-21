@@ -323,7 +323,9 @@ export function scoreAttempt(selection, answers, scoring = {}) {
     coreCorrect, coreTotal, practiceDone, practiceTotal, bonusDone, bonusCorrect,
     reached,
     extra: round(extra),
-    points: round(share * totalPoints + extra),
+    // Bonus can only help someone recover points they missed on the graded set —
+    // it never lifts a perfect score past the total, so nobody scores over 100%.
+    points: round(Math.min(share * totalPoints + extra, totalPoints)),
     max: round(totalPoints),
   };
 }

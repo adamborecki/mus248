@@ -72,7 +72,6 @@ const BADGES = {
   bonus: '<span class="badge bonus">🔵 Bonus — can only help</span>',
 };
 const badge = (role) => BADGES[role] || BADGES.practice;
-const progressBar = (done, total) => `<div class="progress" aria-hidden="true"><span style="width:${total ? (done / total) * 100 : 0}%"></span></div>`;
 
 function show(html, { focus = 'h2', scroll = true } = {}) {
   app.innerHTML = html + (DEBUG ? debugPanel() : '');
@@ -492,7 +491,6 @@ function renderQuestion(options) {
   const answer = attempt.answers[i];
   const total = attempt.selection.length;
   const isLast = i === total - 1;
-  const { done, graded } = gradedPosition(i);
   const left = isTimed() ? windowSeconds() - elapsedSeconds() : 0;
   const overExpected = isTimed() && expectedSeconds() > 0 && elapsedSeconds() >= expectedSeconds();
   if (attempt.questionShownAt == null) attempt.questionShownAt = Date.now();
@@ -505,9 +503,7 @@ function renderQuestion(options) {
 
   show(`
     <section class="stage">
-      <p class="eyebrow"><span>${role === 'bonus' ? 'Bonus question' : `Question ${done} of ${graded}`}</span>${
-        isTimed() ? `<span class="clock${left <= 60 ? ' is-low' : ''}" id="clock" role="timer" aria-live="off">${left < 0 ? 'time’s up' : clockText(left)}</span>` : ''}</p>
-      ${progressBar(gradedPosition(i - (answer ? 0 : 1)).done, graded)}
+      ${isTimed() ? `<p class="eyebrow clock-only"><span class="clock${left <= 60 ? ' is-low' : ''}" id="clock" role="timer" aria-live="off">${left < 0 ? 'time’s up' : clockText(left)}</span></p>` : ''}
       ${overExpected && !windowIsOver() ? '<p class="notice warn">You should be wrapping up the graded questions about now.</p>' : ''}
       ${windowIsOver() ? '<p class="notice warn">Time’s up — finish this question and the quiz will submit itself.</p>' : ''}
       ${badge(role)}

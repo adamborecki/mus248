@@ -253,17 +253,24 @@ test('running out of time costs nobody a mark they had no chance to earn', () =>
 test('bonus adds a little and is capped', () => {
   const scoring = resolveScoring(curriculum);
   const graded = selectQuiz(base);
+  const n = graded.length;
   const bonus = Array.from({ length: 9 }, (_, i) => ({ id: `B${i}`, role: 'bonus' }));
   const selection = [...graded, ...bonus];
-  const answers = (correctBonus) => [
-    ...graded.map(({ id, role }) => ({ id, role, choice: 0, correct: true })),
+  const answers = (correctGraded, correctBonus) => [
+    ...graded.map(({ id, role }, i) => ({ id, role, choice: 0, correct: i < correctGraded })),
     ...bonus.slice(0, correctBonus).map(({ id, role }) => ({ id, role, choice: 0, correct: true })),
   ];
 
-  assert.equal(scoreAttempt(selection, answers(0), scoring).points, 10);
-  assert.equal(scoreAttempt(selection, answers(2), scoring).points, 10.2, 'two right should add 0.2');
-  assert.equal(scoreAttempt(selection, answers(9), scoring).points, 10.5, 'nine right should still stop at the cap');
-  assert.equal(scoreAttempt(selection, answers(9), scoring).extra, scoring.bonus_max);
+  // A perfect graded score has no room left: bonus can never push it past 100%.
+  assert.equal(scoreAttempt(selection, answers(n, 0), scoring).points, 10);
+  assert.equal(scoreAttempt(selection, answers(n, 2), scoring).points, 10, 'bonus cannot push a perfect score past 100%');
+  assert.equal(scoreAttempt(selection, answers(n, 9), scoring).points, 10, 'nine right should still stop at the cap');
+  assert.equal(scoreAttempt(selection, answers(n, 9), scoring).extra, scoring.bonus_max);
+
+  // Short of full marks, bonus helps recover — but the total still can't cross 10.
+  assert.equal(scoreAttempt(selection, answers(n - 2, 0), scoring).points, 9, 'missing two graded questions costs marks');
+  assert.equal(scoreAttempt(selection, answers(n - 2, 9), scoring).points, 9.5, 'max bonus recovers some of it, capped at bonus_max');
+  assert.equal(scoreAttempt(selection, answers(n - 4, 9), scoring).points, 8.5, 'bonus can only help, never fully erase a bigger miss');
 });
 
 test('bonus never changes the denominator or the graded share', () => {
