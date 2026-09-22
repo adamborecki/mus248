@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-estimatedTime: "20–30 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
+estimatedTime: "20–45 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
 access:
   mode: On campus
   location: "Control room BH 208/209, hall below."
@@ -52,11 +52,12 @@ boring things in the right order, early, and then watching.
 ## 🎯 What you'll practice
 
 - 📋 Run the actual order of operations — power, media, framing, both audio chains, video, a short
-  recording, and a clean stop — the same order you would use on a real gig, compressed to 20–30
-  minutes.
+  recording, and a clean stop — the same order you would use on a real gig, compressed to
+  20–45 minutes.
 - 🎚️ Get clean levels on two independent audio recorders and verify them by listening, not by
   assuming.
-- 🎥 Frame a primary wide shot correctly, and know when you have to redo it mid-show.
+- 🎥 Frame a primary wide shot correctly, and know when you have to redo it, and when to leave it
+  alone.
 - 💾 Get the files off the cards and onto two drives, named so somebody else can find them, and
   prove — not assume — that it's safe to wipe the cards after.
 - 🤝 Hand the room back in the state you would want to find it.
@@ -64,13 +65,13 @@ boring things in the right order, early, and then watching.
 ## 🗝️ Key terms
 
 **primary wide** · **backup wide** · **redundancy** · **program feed** · **board feed** ·
-**switcher** · **multitrack** · **ISO recording** · **gain / ISO** · **preset** · **transcode** ·
-downbeat · encore
+**switcher** · **multitrack** · **dual-channel recording** · **ISO recording** · **gain / ISO** ·
+**preset** · **transcode** · downbeat · encore
 
 ## 📍 Logistics
 
 **Time:** running this procedure once — audio, video, a short test recording, and the data pass —
-takes about **20–30 minutes**. On an actual gig, budget the whole evening and arrive **1 hour
+takes about **20–45 minutes**. On an actual gig, budget the whole evening and arrive **1 hour
 before downbeat**; if it's your first gig, arrive **90 minutes before**.
 
 **Where:** the control room is **BH 208/209**; the hall is below.
@@ -84,13 +85,15 @@ running this solo after your first time through.
 ## 🧰 Equipment and materials
 
 - [ ] The **AX100** and its tripod, from the standard gear kit (red backpack) in BH 208/209 — the
-  kit has its own checklist inside; use it
-- [ ] AC for the AX100, **plus a charged battery** as backup power — bonus step only, see below
+  kit has its own checklist inside, an inventory of everything that's supposed to be in the kit;
+  use it to make sure nothing's missing
+- [ ] AC for the AX100, **plus a charged battery** as backup power — always used on a real gig; in
+  this activity it's a bonus step, see below
 - [ ] A clean **SATA SSD** for the HyperDeck
 - [ ] A clean **32 GB SD card** for the Zoom F8
-- [ ] A clean SD card for the Zoom H6 — card size not yet confirmed; grab one from the small-cards
-  case for now
-- [ ] A clean **128 GB SD card** for the AX100 backup wide — bonus step only, see below
+- [ ] A clean **8 GB SD card** for the Zoom H6
+- [ ] A clean **128 GB SD card** for the AX100 backup wide — always used on a real gig; in this
+  activity it's a bonus step, see below
 - [ ] The program, once you can get hold of it
 
 ## ⚠️ Before you touch anything
@@ -98,8 +101,10 @@ running this solo after your first time through.
 - 🔌 **The battery backup under the desk feeds more than you'd guess.** It powers the retired
   "Salmon Audio Rec" Mac Mini — but it also powers the **Zoom F8 and the Zoom H6**. Holding its
   power button for two seconds enables or disables AC for everything on that circuit. Mid-concert,
-  disabling it doesn't just kill an unused Mac, it kills both of your audio recorders. Read the
-  label before you touch it.
+  disabling it doesn't just kill an unused Mac, it kills both of your audio recorders. Both the F8
+  and the H6 also take their own batteries, so they don't strictly depend on this circuit — but
+  that doesn't make powering them up (and back down at the end) any less of a real step. Don't
+  assume either one is already on, or already off. Read the label before you touch the backup.
 - 🏷️ **Read the labels.** Somebody has already taped down the answer to most questions you will
   have, including which HDMI feeds the multiview.
 - 🖥️ **There is more than one Mac in this room.** Check which machine you are on before you start
@@ -119,8 +124,8 @@ This is the same order you'd use on a real gig, run once, fast, on a short test 
 plays or talks for under a minute so you have something to check afterward.
 
 1. **Power up.** Battery backup, the Zoom F8, the Zoom H6 (fresh batteries or AC), the ATEM Master.
-2. **Load media.** A clean 32 GB card in the F8, a clean card in the H6, a clean SATA SSD in the
-   HyperDeck.
+2. **Load media.** A clean 32 GB card in the F8, a clean 8 GB card in the H6, a clean SATA SSD in
+   the HyperDeck.
 3. **Frame the primary wide.** Zoom in **RovoControl** on the computer, pan and tilt on the
    **joystick**. Leave gain and f-stop where they are preset — see **Framing and exposure** below.
 4. **Set up the F8.** Power is the switch at the lower right of the unit; the SD card slot is on
@@ -130,9 +135,9 @@ plays or talks for under a minute so you have something to check afterward.
 6. **Listen before you trust either recorder.** Headphones on, check both sides, confirm it's
    actually stereo and not the same signal twice.
 7. 🎁 **Bonus, if the AX100 is free:** it's shared with the Portable Cameras activity, so only do
-   this if nobody else has it out. If the hall is open, carry the AX100 down, mount it on its
-   tripod inside the hall, and run a real test recording. If the hall isn't accessible right now,
-   set it up and test it from inside the booth instead.
+   this if nobody else has it out. If time allows and the hall is open, carry the AX100 down,
+   mount it on its tripod inside the hall, and run a real test recording. If you're short on time
+   or the hall isn't accessible, it's fine to test it from inside the booth instead.
 8. **Start main audio (F8), start backup audio (H6), start video (primary wide).** Let it run for
    under a minute.
 9. **Stop everything**, and check that each recorder actually has a file, not just that you pressed
@@ -179,22 +184,44 @@ way is redundancy, not that limitation.
 - ✅ c) So that a single failure in the switcher chain cannot destroy both recordings
 - d) Because the AX100's HDMI output doesn't work at all
 
+**A third layer, inside the F8 itself.** Each input the F8 records can come in **twice at once** —
+a "hot" level for normal use, and a lower "safe" level as a backstop. That's **dual-channel
+recording**, and it's built into the mic splitter, not something you configure. If a loud passage
+clips the hot level, the safe level still has usable signal.
+
+**Q2 (multiple choice).** The F8 can record an input twice at once, at two different levels. What's
+that for?
+
+- a) To create a stereo effect from a single mono mic
+- ✅ b) So a loud passage that clips the "hot" level still has clean signal on the lower "safe" level
+- c) To double the file count for easier backup
+- d) It's required for the Post drive's naming convention
+
 🚩 **Checkpoint.** Whichever chains you're running today have clean, empty media in them before you
 start. "NO DISK" on the multiview means exactly what it says.
 
 ## 📷 Framing and exposure
 
-**The primary wide is framed, not exposed.** Zoom lives in **RovoControl** on the computer; pan and
-tilt live on the **joystick**. The hall's lighting does not change from gig to gig, so gain and
-f-stop are preset and you leave them alone.
+**You adjust framing, not exposure.** Zoom, pan, and tilt are yours to set — zoom in **RovoControl**
+on the computer, pan and tilt on the **joystick**. Gain and f-stop are preset for the hall and you
+leave them alone, because the lighting here doesn't change from gig to gig.
 
 ![RovoControl. Zoom is the control at the bottom; the exposure sliders above it are set for the hall.](media/salmon/rovocontrol.jpg)
 
 ![The Pan/Tilt joystick, with its speed knob and the hardware Camera 1 / Camera 2 selector.](media/salmon/joystick.jpg)
 
-**Framing isn't a set-it-and-forget-it, pre-show task.** Do it again for every single piece. When
-the ensemble on stage changes size — a soloist, then a trio, then a full ensemble — the zoom has to
-change with it.
+**Framing isn't a set-it-and-forget-it, pre-show task — but it isn't a live adjustment either.**
+Redo it between pieces, in the pause before the next one starts, especially when the ensemble on
+stage changes size — a soloist, then a trio, then a full ensemble. Once a piece has started, leave
+it alone. And when you do reframe, err **slightly wide** rather than perfectly tight: a little
+extra room at the edges is fine, a performer's elbow cut off by the frame isn't.
+
+**Q3 (multiple choice).** When should you adjust the primary wide's framing?
+
+- a) Continuously, throughout each piece, following the soloist
+- ✅ b) Between pieces only — reframe if needed, then leave it alone once the piece starts
+- c) Only once, before the very first piece of the night
+- d) Whenever the switcher operator asks for a new angle
 
 > 🚩 **The exception, and why you still need the stops.** Occasionally a piece is staged in low
 > light — a candlelit set, a dimmed ballad. Rare, but it happens, and then the preset is wrong and
@@ -209,7 +236,7 @@ BUT wide enough to have enough space on edges while standing to bow."* Performer
 bow. They gesture at the accompanist. Frame for that, not for the seated position you can see right
 now.
 
-**Q2 (fill in the blank).** Write the framing rule in your own words, in one sentence, without
+**Q4 (fill in the blank).** Write the framing rule in your own words, in one sentence, without
 looking: ________________________________________________
 
 ✅ **Answer.** As tight as you can get while still leaving room at the edges for a performer
@@ -223,7 +250,7 @@ If you're doing the bonus AX100 step, it has its own settings for this hall:
 | White balance | **3800 K, A5 G2**, Soft High Key |
 | Image size | **XAVC S 4K** |
 
-**Q3 (multiple choice).** The Portable Cameras house default is 3200 K, and Salmon runs 3800 K.
+**Q5 (multiple choice).** The Portable Cameras house default is 3200 K, and Salmon runs 3800 K.
 Which is wrong?
 
 - a) The house default — it should be updated to 3800 K
@@ -239,8 +266,17 @@ without looking at the screen.
 
 Audio is captured on two independent devices for the same reason the video is: the **Zoom F8**
 (main, multitrack — every patched input recorded to its own track) and the **Zoom H6** (backup, a
-simple independent stereo capture), plus, on a real gig, a **board feed** — the signal from the
-FOH mixer in the hall — recorded as its own track(s) alongside the mics.
+simple independent stereo capture). On gigs with amplification there's a third source too: a
+**board feed** — the signal from the FOH mixer in the hall — recorded as its own track(s) alongside
+the mics. **Acoustic recitals don't need one.** No PA, no board feed to capture.
+
+**Q6 (multiple choice).** A student is capturing an unamplified solo piano recital. Do they need a
+board feed?
+
+- a) Yes, every gig needs one
+- ✅ b) No — a board feed only matters for gigs with amplification
+- c) Only if the piano is a digital keyboard
+- d) Only for the second half of the program
 
 > ⚠️ **The F8's exact input routing is still being written up.** It has 8 input sources, including
 > dual-channel recording, and basic operation is genuinely simple — power on (switch at the lower
@@ -255,13 +291,13 @@ What has not changed, and will not:
   knob you turn.
 - **Record-enable everything and confirm you see meters moving** before the audience is in.
 
-**Q4 (multiple choice).** You have signal, but both ears sound identical. What is the most likely
+**Q7 (multiple choice).** You have signal, but both ears sound identical. What is the most likely
 problem?
 
 - a) The room is genuinely mono
-- ✅ b) One of the two inputs is feeding both sides, or one XLR is in the wrong socket
-- c) The headphones are broken
-- d) The sample rate is wrong
+- ✅ b) The headphones aren't fully seated in the jack
+- c) One of the two inputs is feeding both sides, or one XLR is in the wrong socket
+- d) The headphones are broken
 
 🚩 **Checkpoint.** You have listened on headphones and confirmed clean, correct stereo on both
 recorders — not assumed it from a meter.
@@ -274,33 +310,40 @@ across the whole show:
 | Phase | What it is |
 |---|---|
 | **Pre-show** | Power, media, framing, levels. Most of the job, and all of the part you control. |
-| **Doors** | Program, lobby feed. |
-| **Show** | Start **three minutes early**, then watch. Check every 5–10 minutes. Re-frame for
-  every piece as the ensemble changes. |
-| **Intermission** | Pause everything together, swap media if needed, restart three minutes early. |
-| **Post-show** | Power down, transfer to **two** drives, tidy, lights off. |
+| **Doors** | Program, lobby feed — CRESTRON controller: Hallway TV from Signage to Camera, Hallway Audio on. |
+| **Show** | Start **at least 6–7 minutes early**, then watch. Check every 5–10 minutes. Re-frame between pieces as the ensemble changes. |
+| **Intermission** | Simplest and safest: leave everything recording. Only pause if a recorder is genuinely about to run out of space. |
+| **Post-show** | Power down, CRESTRON controller back to Signage, transfer to **two** drives, tidy, lights off. |
 
-**Start every recording three minutes early.** Not at downbeat. Three minutes early, so a late
-start, a surprise introduction, or an early entrance is already captured.
+**Q8 (multiple choice).** At doors, what do you do with the CRESTRON controller?
 
-**Q5 (multiple choice).** Why start recording three minutes before downbeat?
+- a) Nothing — it's not part of this job
+- ✅ b) Switch Hallway TV from Signage to Camera, and turn Hallway Audio on
+- c) Switch Hallway TV to Camera, but leave Hallway Audio off
+- d) Only touch it if the recital manager asks
+
+**Start every recording at least 6–7 minutes early.** Not at downbeat, and not just a couple of
+minutes early — err generous. A late start, a surprise introduction, or an early entrance is
+already captured, and a few extra minutes of recorded silence at the front costs you nothing.
+
+**Q9 (multiple choice).** Why start recording at least 6–7 minutes before downbeat?
 
 - a) The recorders need time to reach full speed
 - b) It makes the file sizes more consistent
 - ✅ c) Because the evening can start earlier than you expect, and you cannot record the past
 - d) It is required by the streaming platform
 
-## ✅ Definition of done
+The same logic applies at intermission: if you're not sure whether to pause a recorder, don't —
+just leave it running. Recording more than you needed is never the problem; not recording enough
+is. Only pause if a card or drive is genuinely about to run out of space before the second half
+ends, and if you do, restart at least 6–7 minutes before the second half.
 
-- 🚩 A short test recording exists on the primary wide, the F8, and the H6, and you've confirmed
-  each one is actually playable.
-- 🚩 If you did the AX100 bonus step, its recording is verified too.
-- 🚩 Files are copied into a `YYMMDD Full Event Name` folder, with `r`/`e`/`s` subfolders, on
-  **both** the Post and Backups drives — raw media inside `From [source name]` folders (for
-  example `From F8_03`).
-- 🚩 Every card and the SSD have passed the Triple Triple Check before anything gets wiped.
-- 🚩 Every piece of gear you turned on has been turned off, and nothing else has.
-- 🚩 Gear you carried down is back in BH 208/209, and the lights are off.
+**Q10 (multiple choice).** The safest thing to do with your recorders at intermission is:
+
+- a) Pause everything the moment the lights come up
+- ✅ b) Leave everything recording, unless a card or drive is actually about to run out of space
+- c) Power everything off to save battery
+- d) Switch to backup media just in case
 
 ## 💾 Data management
 
@@ -321,6 +364,21 @@ copying only what you need is an experienced-engineer move, not a beginner one.
 
 A hard drive can fail at any time — one copy is not enough. That's why there are two.
 
+**Before you even start checking — find Borecki.** Once files are copied to both drives, get
+Borecki's attention and have them look the data over before you touch delete. On a real gig this
+isn't optional, and it's worth building the habit here too.
+
+**Q11 (multiple choice).** You've copied everything to the Post and Backups drives. What's the very
+next thing to do, before you even think about deleting the cards?
+
+- a) Empty the trash immediately to free up space
+- ✅ b) Get Borecki to look over the data first
+- c) Format the cards so they're ready for the next gig
+- d) Nothing — deletion can happen anytime after copying
+
+🚩 **Checkpoint.** Borecki (or your supervisor) has looked over the copied files before you touch
+delete.
+
 **Before you wipe a card — Triple Triple Checked.** You need three things to match across all
 three copies (the original card, the Post copy, the Backups copy):
 
@@ -331,19 +389,32 @@ three copies (the original card, the Post copy, the Backups copy):
 If you are 99% sure, **do not delete.** Ask for help. Only once all three check out: Trash → Empty
 Trash → confirm the freed space actually shows up.
 
-**Q6 (short answer).** "Triple Triple Checked" means three things have to match before you delete a
-card. Name them: ________________________________________________
+**Q12 (short answer).** "Triple Triple Checked" means three things have to match before you delete
+a card. Name them: ________________________________________________
 
 ✅ **Answer.** Approximate file size (GB), the last three digits of the exact byte count, and the
 location — the source card plus both the Post and Backups drives.
 
-🚩 **Checkpoint.** Cards are only wiped after the files exist in **two** places and you have
-checked, by the Triple Triple Check, not by "it looked right."
+🚩 **Checkpoint.** Cards are only wiped after the files exist in **two** places, Borecki has seen
+them, and you've checked by the Triple Triple Check — not by "it looked right."
 
 On a real gig, the job continues past this point — transcoding, a Google Drive upload, an email
 confirming completion, Panopto, and a task board — with deadlines of one week and three weeks.
 There's nothing to actually upload from a test recording, so treat that part as reference for when
 it's a real gig.
+
+## ✅ Definition of done
+
+- 🚩 A short test recording exists on the primary wide, the F8, and the H6, and you've confirmed
+  each one is actually playable.
+- 🚩 If you did the AX100 bonus step, its recording is verified too.
+- 🚩 Files are copied into a `YYMMDD Full Event Name` folder, with `r`/`e`/`s` subfolders, on
+  **both** the Post and Backups drives — raw media inside `From [source name]` folders (for
+  example `From F8_03`).
+- 🚩 Borecki has looked over the copied files before any card was wiped.
+- 🚩 Every card and the SSD have passed the Triple Triple Check before anything gets wiped.
+- 🚩 Every piece of gear you turned on has been turned off, and nothing else has.
+- 🚩 Gear you carried down is back in BH 208/209, and the lights are off.
 
 ## 🛠️ Troubleshooting
 
@@ -351,8 +422,8 @@ it's a real gig.
 the audience is in, never during.
 
 **IF audio is silent:** check that the F8 and H6 both have power (remember, they're on the battery
-backup circuit), that a card is seated, and that you can hear something in headphones at the
-recorder itself before chasing it further downstream.
+backup circuit, though each also has its own batteries), that a card is seated, and that you can
+hear something in headphones at the recorder itself before chasing it further downstream.
 
 **IF the picture is too dark and it's a genuinely dark piece:** deviate knowingly. Say what you're
 changing and by how many stops, change one thing, and write it down.
@@ -362,7 +433,8 @@ you are considering. Note the problem, keep the take rolling, ask afterwards.
 
 ## 🧹 Finish, reset, put away
 
-1. If you ran a lobby feed for doors, turn it off.
+1. If you ran a lobby feed for doors, switch the CRESTRON controller back to Signage and turn off
+   Hallway Audio.
 2. Carry back anything you carried down.
 3. Power down what you powered up — **and nothing else.**
 4. Leave BH 208/209 tidy. Lights off.
@@ -388,15 +460,17 @@ authoritative.
 - The F8 has **8 input sources, including dual-channel recording**. Power is the switch at the
   lower right; the SD card goes in a slot on the side; it has a headphone jack for monitoring.
   Basic operation is: power on, card in, record.
-- The stereo handheld is the **Zoom H6**, not the H4n the source SOP names. XLR convention is
-  still Green: Left, Red: Right.
+- The stereo handheld is the **Zoom H6**, not the H4n the source SOP names. It uses an **8 GB SD
+  card**. XLR convention is still Green: Left, Red: Right.
+- **Both the F8 and the H6 also run on their own batteries**, independent of the battery-backup
+  circuit — but powering them up and down is still a deliberate step, not something to assume.
 - **"ISO recording" and "gain / ISO" are different things.** ISO recording is a video term — each
   camera recorded on its own — and doesn't apply to the F8. Gain / ISO is a sensitivity setting on
   a camera or preamp.
 - **Dante does not fit into this activity.** It may belong in Salmon: Livestream — unconfirmed,
   and that activity isn't written yet.
-- There is a checklist inside the standard gear kit (red backpack, BH 208/209) for the AX100 —
-  contents not reproduced here.
+- There is a checklist inside the standard gear kit (red backpack, BH 208/209) — an inventory of
+  what's supposed to be in the kit, not a procedure; contents not reproduced here.
 
 **Still open:**
 
@@ -410,8 +484,9 @@ authoritative.
 
 Assembled with AI assistance from the instructor's own Salmon Recital Hall checklist and S.O.P.,
 the instructor's September 2026 corrections (Zoom F8, Zoom H6, battery-backup wiring, key-card
-access, and the Triple Triple Check procedure), and the instructor's Data Management slide deck.
-The equipment facts, the framing rule, the redundancy design, and the data-management procedure are
-the instructor's. The structure, the checkpoints, the questions, and the troubleshooting order were
-AI-drafted and are pending instructor review. Exact F8 input routing is deliberately omitted rather
-than guessed.
+access, dual-channel recording, board-feed scoping, framing timing, intermission timing, the
+CRESTRON lobby-feed steps, and the Triple Triple Check procedure with instructor review before
+deletion), and the instructor's Data Management slide deck. The equipment facts, the framing rule,
+the redundancy design, and the data-management procedure are the instructor's. The structure, the
+checkpoints, the questions, and the troubleshooting order were AI-drafted and are pending
+instructor review. Exact F8 input routing is deliberately omitted rather than guessed.
