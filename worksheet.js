@@ -203,7 +203,10 @@ function renderQr(route, title) {
     alt: `QR code linking to the ${title} activity page`,
     title: `${title} — ${url}`,
   });
-  return `<div class="ws-qr">${svg}<span>/${escapeHtml(route)}/</span></div>`;
+  // Break opportunities after each slash, so a long URL wraps at path boundaries instead of
+  // wherever the browser's default line-breaking happens to land mid-word.
+  const displayUrl = escapeHtml(url.replace(/^https?:\/\//, '')).replace(/\//g, '/<wbr>');
+  return `<div class="ws-qr"><span class="ws-qr-cue">Scan for full instructions</span>${svg}<span class="ws-qr-url">${displayUrl}</span></div>`;
 }
 
 function renderQuestion(question, showAnswers) {
@@ -312,7 +315,7 @@ export function renderWorksheet(activity, options = {}) {
     <header class="ws-head">
       <div class="ws-headrow">
         <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(emoji)}</span>
-          <div><h1>${escapeHtml(title)}${showAnswers ? ' <span class="key-tag">Answer key</span>' : ''}</h1>
+          <div><h1>${escapeHtml(title)} <span class="${showAnswers ? 'key-tag' : 'ws-tag'}">${showAnswers ? 'Answer key' : 'Worksheet'}</span></h1>
           <p class="ws-meta">MUS 248${meta ? ` · ${meta}` : ''}</p></div>
         </div>
         ${renderQr(route, title)}

@@ -10,13 +10,15 @@
 .ws-head { padding-bottom:.75rem; border-bottom:2px solid var(--ink); }
 .ws-headrow { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:.75rem; }
 .ws-title { display:flex; flex:1 1 12rem; min-width:0; gap:.75rem; align-items:center; }
-.ws-qr { display:flex; flex:0 0 auto; flex-direction:column; align-items:center; gap:.15rem; width:5.2rem; }
+.ws-qr { display:flex; flex:0 0 auto; flex-direction:column; align-items:stretch; gap:.25rem; width:6.6rem; text-align:center; }
 .ws-qr svg { display:block; width:100%; height:auto; }
-.ws-qr span { color:var(--muted); font-size:.5rem; line-height:1.15; text-align:center; overflow-wrap:break-word; }
+.ws-qr-cue { color:var(--ink); font-size:.56rem; font-weight:700; line-height:1.2; letter-spacing:.01em; text-transform:uppercase; }
+.ws-qr-url { color:var(--muted); font-size:.52rem; line-height:1.2; overflow-wrap:break-word; hyphens:auto; }
 .ws-emoji { display:grid; place-items:center; width:2.4rem; height:2.4rem; flex:0 0 auto; border-radius:.3rem; background:var(--tag); font-size:1.2rem; }
 .ws-title h1 { font-size:clamp(1.35rem,4.5vw,1.75rem); letter-spacing:-.03em; }
 .ws-meta { margin:.15rem 0 0; color:var(--muted); font-size:.82rem; }
-.key-tag { padding:.1rem .4rem; border:1px solid var(--accent); border-radius:.2rem; color:var(--accent); font-size:.65em; letter-spacing:.04em; text-transform:uppercase; vertical-align:middle; }
+.key-tag, .ws-tag { padding:.1rem .4rem; border:1px solid var(--accent); border-radius:.2rem; color:var(--accent); font-size:.65em; letter-spacing:.04em; text-transform:uppercase; vertical-align:middle; }
+.ws-tag { border-color:var(--line); color:var(--muted); }
 .key-banner { margin:.7rem 0 0; padding:.35rem .6rem; border-left:3px solid var(--accent); background:var(--tag); font-size:.82rem; font-weight:650; }
 .name-line { display:flex; flex-wrap:wrap; gap:.4rem 1.25rem; margin:.85rem 0 0; font-size:.85rem; }
 .name-line > span { display:flex; flex:1 1 9rem; gap:.4rem; align-items:baseline; white-space:nowrap; color:var(--muted); }
@@ -73,8 +75,9 @@
   .no-print { display:none !important; }
   .worksheet-page { width:auto; padding:0; }
   .ws-emoji { width:1.9rem; height:1.9rem; border:1px solid #bbb; }
-  .ws-qr { width:4rem; }
-  .ws-qr span { font-size:6pt; }
+  .ws-qr { width:5rem; }
+  .ws-qr-cue { font-size:6.5pt; }
+  .ws-qr-url { font-size:6pt; }
   .ws-block { margin-top:.85rem; }
   .ws-block h2 { margin-bottom:.3rem; }
   .ticks li, .flow li.tick, .option, .terms li, .q-prompt { font-size:9.5pt; }
