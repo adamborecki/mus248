@@ -63,6 +63,9 @@ Every line below is something you do or check; the "why" lives in the other Salm
 
 ## 🚗 Pre-arrival
 
+- 🚩 Check for unfinished business from the last gig — SD cards that still need cleaning, or a
+  data transfer that never got finished. If there's something left over, finish that first,
+  before you start your own setup.
 - 🚩 If you're going to be late, text your fellow engineer(s) before your call time — don't leave
   them wondering.
 
@@ -169,13 +172,33 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 - 🚩 Go downstairs and stop the camcorder / backup wide.
 - 🚩 Power down what you turned on — and nothing else. (The F8 needs the same ~2 second hold to
   power off as it did to power on.)
-- 🚩 Start the data transfer.
-- 🚩 Include a copy of the program in the data transfer, alongside the recordings.
-- 🚩 Copy everything to **both** the Post and Backups drives, using the `YYMMDD Full Event Name`
-  folder naming convention — full detail is in **Salmon: Basic A/V Capture**'s data management
-  section if you need a refresher.
 - 🚩 Green room: turn off the TV.
 - 🚩 Lobby: CRESTRON — Hallway TV back to **Signage**, Hallway Audio **off**.
+
+## 💾 Data transfer
+
+- 🚩 Identify which drives you're using tonight — as of this writing that's **Post 43** and
+  **Backups 51**, but those numbers roll forward over time. Read the label, don't assume it's
+  still whatever's written here.
+- 🚩 Check the free space remaining on **both** drives. If **either** has less than **1 TB**
+  free, text Borecki — an actual text message, not a "should I ask." That's the one exception to
+  not texting over something small.
+- 🚩 Physically connect everything you'll need: both drives, and every card or SSD you're
+  transferring from.
+- 🚩 On **both** drives, inside the correct semester folder (whichever one the drive's existing
+  folders show is current), create the gig folder: `YYMMDD Full Event Name`.
+- 🚩 Inside each gig folder, create the lowercase `r [abbr]` folder (and `e [abbr]` if you're
+  editing tonight) — see **Technical verification** for what this looks like on disk.
+- 🚩 Create **all** of these destination folders first, on both drives, before you copy anything.
+- 🚩 Then copy: for each source card or SSD — program included — copy its files into a
+  `From [source name]` folder inside **both** `r [abbr]` folders. One source, two destinations,
+  every time.
+- 🚩 Triple Triple Check before you touch delete, on every file: (1) the approximate file size
+  matches, (2) the last 3 digits of the exact byte count match, (3) it landed in the source card
+  plus both drives — nowhere else.
+- 🚩 Get Borecki to look over the transferred files before anything gets deleted.
+- 🚩 Only once all of that checks out: move the source files to Trash, then **Empty Trash** — and
+  confirm the freed space actually shows up on the card.
 
 ## ✅ Definition of done
 
@@ -198,8 +221,18 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 - **CRESTRON Hallway TV/Audio sequencing** (Signage + audio off + 25% preset volume in Initial
   setup, then Camera + audio on at Doors, then back to Signage + audio off at End of show) is the
   instructor's own description of the intended state machine.
+- **The Data transfer folder structure**, from a photo of the actual drives: drive → semester
+  folder → `YYMMDD Full Event Name` → `r [abbr]` / `e [abbr]` → `From [source name]` (for example,
+  a gig abbreviated "MAN" had `r MAN` containing `from Chapman SSD 5`, `from F8_SD1`, and
+  `from MUS32_1075`). This matches the naming convention already documented in **Salmon: Basic
+  A/V Capture**. The 1 TB free-space threshold and the text-Borecki step are new, instructor-
+  confirmed policy.
 
 **Still open:**
+
+- **The exact semester-folder naming rule** (seen on disk as `2026a` / `2026b`) — what splits a
+  year into "a" and "b" isn't confirmed, so the checklist just says to match whichever the drive
+  already shows.
 
 - **The F8 preamp target level.** The instructor confirmed the *mechanism* — press **PFL** to
   check/adjust a channel's gain — but not what the correct level actually is. Don't adjust a
@@ -219,9 +252,10 @@ The verbatim source SOP is in `content/activities/_source/bh209-salmon-sop.txt`.
 ## 🤖 AI use disclosure
 
 Drafted by AI from the instructor's own dictated walkthrough of a real gig, restructured into the
-site's checklist/worksheet format, then revised twice more from the instructor's follow-up
-corrections — including a photo used to identify the exact HyperDeck card, and detailed operating
-notes for the battery backup, F8, H6, AX100, and CRESTRON sequencing. The step order, every
-equipment detail, the green-room courtesy rule, and the data-transfer steps are the instructor's.
-The F8's exact preamp target level is deliberately left unconfirmed rather than guessed. Pending
+site's checklist/worksheet format, then revised across several rounds of the instructor's
+follow-up corrections — including two photos (the HyperDeck's fast card, and the drives' actual
+folder structure) used to confirm exact details rather than guess them. The step order, every
+equipment detail, the green-room courtesy rule, the expanded Data transfer procedure, and the
+1 TB/text-Borecki threshold are the instructor's. The F8's exact preamp target level and the
+semester-folder naming rule are deliberately left unconfirmed rather than guessed. Pending
 instructor review before treating any of it as final.
