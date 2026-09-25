@@ -185,6 +185,9 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
   not texting over something small.
 - 🚩 Physically connect everything you'll need: both drives, and every card or SSD you're
   transferring from.
+- 🚩 Finder shortcuts that make this faster: **⇧⌘G** (Go to Folder) → type `/Volumes` to see
+  every card and drive currently connected, in one window. **⇧⌘N** makes a new folder. **Enter**
+  renames whatever's selected.
 - 🚩 On **both** drives, inside the correct semester folder (whichever one the drive's existing
   folders show is current), create the gig folder: `YYMMDD Full Event Name`.
 - 🚩 Inside each gig folder, create the lowercase `r [abbr]` folder (and `e [abbr]` if you're
