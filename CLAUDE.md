@@ -111,8 +111,18 @@ Rehearse a timed quiz without editing data: `?debug=1&window=0.5&expected=0.2` (
 
 ## Git
 
-Another agent also pushes to `main`. **Fetch and merge before you push**, every time. Work on a
-branch, merge to `main` when it should go live, and check the Pages deploy afterwards.
+Another agent also pushes to `main`. **Fetch and merge before you push**, every time.
+
+**Default: land it yourself, without asking first.** Adam reviews this site on his phone against
+the live production site — not by reading diffs or approving PRs — so don't leave finished work
+sitting on a branch waiting for a review that isn't coming. Once both test suites pass and you've
+checked anything user-visible in a browser, open a PR and merge it immediately (or push straight
+to `main`, whichever is simpler), then check the Pages deploy afterwards. This is standing
+authorization — you don't need to ask "should I merge this?" or "should I open a PR?" each time.
+`git log` is the safety net if something needs undoing.
+
+The exception is anything the note below already says to slow down on — a big, uncertain, or
+live-teaching-week quiz change is worth a pause and a question before it goes live, not after.
 
 ## Where things live
 

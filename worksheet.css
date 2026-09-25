@@ -8,7 +8,11 @@
 .worksheet-page .back:hover { color:var(--ink); }
 
 .ws-head { padding-bottom:.75rem; border-bottom:2px solid var(--ink); }
-.ws-title { display:flex; gap:.75rem; align-items:center; }
+.ws-headrow { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:.75rem; }
+.ws-title { display:flex; flex:1 1 12rem; min-width:0; gap:.75rem; align-items:center; }
+.ws-qr { display:flex; flex:0 0 auto; flex-direction:column; align-items:center; gap:.15rem; width:5.2rem; }
+.ws-qr svg { display:block; width:100%; height:auto; }
+.ws-qr span { color:var(--muted); font-size:.5rem; line-height:1.15; text-align:center; overflow-wrap:break-word; }
 .ws-emoji { display:grid; place-items:center; width:2.4rem; height:2.4rem; flex:0 0 auto; border-radius:.3rem; background:var(--tag); font-size:1.2rem; }
 .ws-title h1 { font-size:clamp(1.35rem,4.5vw,1.75rem); letter-spacing:-.03em; }
 .ws-meta { margin:.15rem 0 0; color:var(--muted); font-size:.82rem; }
@@ -69,6 +73,8 @@
   .no-print { display:none !important; }
   .worksheet-page { width:auto; padding:0; }
   .ws-emoji { width:1.9rem; height:1.9rem; border:1px solid #bbb; }
+  .ws-qr { width:4rem; }
+  .ws-qr span { font-size:6pt; }
   .ws-block { margin-top:.85rem; }
   .ws-block h2 { margin-bottom:.3rem; }
   .ticks li, .flow li.tick, .option, .terms li, .q-prompt { font-size:9.5pt; }

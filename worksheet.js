@@ -10,6 +10,10 @@
 // troubleshooting. Those stay on the phone. Nobody should copy screen to paper.
 
 import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines } from './markdown.js';
+import qrcode from './qrcode-generator.js';
+
+// Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
+const SITE_ORIGIN = 'https://adamborecki.github.io/248';
 
 const BLANK = /_{3,}/g;
 const QUESTION = /^\*\*Q(\d+)\s*(?:\(([^)]*)\))?\s*[.:]\*\*\s*(.*)$/;
@@ -184,6 +188,24 @@ export function parseActivity(markdown) {
 const writable = (text) => inline(text).replace(BLANK, '<span class="blank"></span>');
 const rule = (count = 1) => '<span class="rule"></span>'.repeat(count);
 
+// Links a printed worksheet back to its activity page — the phone has the procedure, photos, and
+// troubleshooting the paper deliberately leaves out.
+function renderQr(route, title) {
+  if (!route) return '';
+  const url = `${SITE_ORIGIN}/${route}/`;
+  const qr = qrcode(0, 'M');
+  qr.addData(url);
+  qr.make();
+  const svg = qr.createSvgTag({
+    cellSize: 4,
+    margin: 4,
+    scalable: true,
+    alt: `QR code linking to the ${title} activity page`,
+    title: `${title} — ${url}`,
+  });
+  return `<div class="ws-qr">${svg}<span>/${escapeHtml(route)}/</span></div>`;
+}
+
 function renderQuestion(question, showAnswers) {
   const number = `<span class="q-number">Q${question.number}</span>`;
   const prompt = `<p class="q-prompt">${number}${writable(question.prompt)}</p>`;
@@ -284,11 +306,16 @@ export function renderWorksheet(activity, options = {}) {
   });
   closeFlow();
 
+  const route = directory.route || front.id || directory.id || '';
+
   return `
     <header class="ws-head">
-      <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(emoji)}</span>
-        <div><h1>${escapeHtml(title)}${showAnswers ? ' <span class="key-tag">Answer key</span>' : ''}</h1>
-        <p class="ws-meta">MUS 248${meta ? ` · ${meta}` : ''}</p></div>
+      <div class="ws-headrow">
+        <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(emoji)}</span>
+          <div><h1>${escapeHtml(title)}${showAnswers ? ' <span class="key-tag">Answer key</span>' : ''}</h1>
+          <p class="ws-meta">MUS 248${meta ? ` · ${meta}` : ''}</p></div>
+        </div>
+        ${renderQr(route, title)}
       </div>
       ${nameLine}
     </header>
