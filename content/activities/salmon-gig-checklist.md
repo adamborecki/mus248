@@ -200,8 +200,9 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
   matches, (2) the last 3 digits of the exact byte count match, (3) it landed in the source card
   plus both drives — nowhere else.
 - 🚩 Get Borecki to look over the transferred files before anything gets deleted.
-- 🚩 Only once all of that checks out: move the source files to Trash, then **Empty Trash** — and
-  confirm the freed space actually shows up on the card.
+- 🚩 Only once all of that checks out: move the source files to Trash, then **Empty Trash**.
+- 🚩 Confirm it actually worked: **Get Info** (**⌘I**) on each card you just cleaned — the free
+  space shown should be close to the card's full rated size.
 
 ## ✅ Definition of done
 
