@@ -44,7 +44,9 @@ Every line below is something you do or check; the "why" lives in the other Salm
 
 - [ ] A clean **8 GB SD card** for the Zoom H6
 - [ ] A clean **32 GB SD card** for the Zoom F8
-- [ ] A fast SSD or SD card for the HyperDeck backup video — see the note in **Initial setup**
+- [ ] A fast SD card for the HyperDeck backup video — **Lexar Professional, 128 GB, SDXC UHS-II,
+  V60, U3, 250 MB/s (1667x)**. A second one is worth having too — see **Initial setup**.
+- [ ] A clean **128 GB SD card** for the AX100 backup camera
 - [ ] The program, once you can get hold of it
 - [ ] Access to both the **Post** and **Backups** drives for the data pass
 
@@ -54,6 +56,8 @@ Every line below is something you do or check; the "why" lives in the other Salm
   with Borecki, not a knob you turn.
 - 🔌 The battery backup circuit under the desk also feeds the **Zoom F8 and Zoom H6** — don't
   assume either one is already on or off.
+- ⏱️ **The Zoom F8's power switch needs about 2 seconds held down** to turn on or off — a quick
+  tap does nothing, either direction.
 - 🙋 **Ask when you're not sure.** The recital manager, the performer, and your supervisor all
   know things this checklist can't.
 
@@ -62,29 +66,52 @@ Every line below is something you do or check; the "why" lives in the other Salm
 - 🚩 If you're going to be late, text your fellow engineer(s) before your call time — don't leave
   them wondering.
 
-**Q1 (short answer).** Concert: ______ · Arrival time: ______
+**Q1 (short answer).** Call time: ______ · Concert: ______ · Arrival time: ______
 
-✅ **Answer.** There's no fixed answer — write in tonight's concert and when you actually got
-there. It's a log entry, not a test.
+✅ **Answer.** There's no fixed answer — write in tonight's call time, tonight's concert, and when
+you actually got there. It's a log entry, not a test.
 
 ## 🔌 Initial setup — audio and video
 
-- 🚩 Battery backup — hold the power button 2 seconds — **on**.
-- 🚩 Zoom F8 — power switch, lower right of the unit — **on**.
-- 🚩 Zoom H6 — power **on** (fresh batteries or AC).
+- 🚩 Battery backup — **a single tap** on the power button — on.
+- 🚩 Zoom F8 — power switch, lower right of the unit — hold **~2 seconds** — on.
+- 🚩 Zoom H6 — power on: **hold the switch on the left**.
 - 🚩 Insert a clean **8 GB** SD card into the H6.
-- 🚩 Insert a clean **32 GB** SD card into the F8.
+- 🚩 Insert a clean **32 GB** SD card into the F8 — the card slot is on the **far left** side of
+  the unit.
 - 🚩 Confirm audio: headphones on, check both the F8 and H6, confirm clean signal on both sides —
   not the same signal doubled.
-- 🚩 Grab a fresh SSD or SD card for the HyperDeck backup video — **only a fast one.** Look for
-  the "high write speed" card, not just any spare. Exact recommended model is still being
-  confirmed — see **Technical verification** — so if you're unsure which card counts as fast
-  enough, ask before you load it.
-- 🚩 Load that card into the HyperDeck.
+- 🚩 F8 preamps: check they're all set the same. If one looks off, press **PFL** to check/adjust
+  that channel's gain — the exact target level is still being confirmed, see **Technical
+  verification**.
+- 🚩 F8 record-enable: all **8** channels should show a **red light** underneath. If one isn't
+  lit, press that channel's button to record-enable it.
+- 🚩 Grab the fast SD card for the HyperDeck backup video — the **Lexar Professional 128 GB**
+  card, not just any spare (see **Equipment and materials**). The HyperDeck has two recorder
+  slots: load this card into the **top-left** slot. If a second fast card is available, it's fine
+  to load it into the **right** slot too — that one catches the overflow if the first runs out
+  mid-recording. ("Spills over" — Cary Trott.)
 - 🚩 Check the primary wide's framing — zoom in **RovoControl**, pan/tilt on the **joystick**.
   Leave gain and f-stop alone; they're preset for the hall.
-- 🚩 Check the CRESTRON panel and note whether Hallway TV is currently set to **Signage** or
-  **Camera** — that's your baseline before doors.
+- 🚩 CRESTRON: set Hallway TV to **Signage**, Hallway Audio **off** — and while it's off, preset
+  the Hallway volume to about **25%**, so it's neither silent nor blasting once it's switched on
+  at doors.
+- 🚩 Find the Samsung monitor on the far left of the rack — labeled **MON2** — and press its power
+  button so you can preview the lobby feed.
+- 🚩 Go down and grab a copy of the program.
+
+## 🎥 Initial setup — AX100 backup camera
+
+- 🚩 Carry the AX100 down to the hall.
+- 🚩 Mount it on its tripod, **fully extended** — as tall as it goes.
+- 🚩 Center it dead center, and check it's level — not tilted, not rotated.
+- 🚩 Frame it **wide**. Nobody operates this camera once it's rolling, so there's no reframing —
+  wide is the margin for error.
+- 🚩 Plug it into AC power.
+- 🚩 Insert a clean **128 GB** SD card.
+- 🚩 Confirm on the display: several hours of remaining recording time, and **no battery icon
+  showing** — the battery icon disappearing is how you know it's actually running on AC, not on a
+  battery that can die mid-show.
 
 ## 📡 Initial setup — livestream test
 
@@ -96,30 +123,32 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
   instructor]).
 - 🚩 Switch to "College of Performing Arts" → **Live Events** → "Salmon Recital Hall Livestream."
 - 🚩 Create (or open) a new **Test** event; set its password to [TEST PASSWORD — ask instructor].
-- 🚩 Manage Production → **Stream via RTMP** — confirm the stream key matches the ATEM software.
+- 🚩 Manage Production → **Stream via RTMP** — copy the stream key shown there, then paste it into
+  the ATEM Control software.
 - 🚩 Practice: start the test stream and confirm picture and sound actually reach Vimeo.
 - 🚩 Embed the stream on the Canvas page and confirm it plays there too.
 
 ## 📺 Green room feed
 
-- 🚩 If a performer is already in the green room, **ask before touching anything**: "Would you
-  like me to turn on the TV and show you where the volume is?"
+- 🚩 Before heading down, confirm the video system in BH 209 is turned on.
+- 🚩 Go down to the green room and **knock first** — don't just walk in.
+- 🚩 If a performer is already inside, **ask before touching anything**: "Would you like me to
+  turn on the TV and show you where the volume is?"
 - 🚩 Turn on the green room TV with its power switch.
 - 🚩 Point out the volume control if the performer is present.
 
 ## 🎟️ Doors and lobby
 
-- 🚩 Get the program; ask about any changes or an encore.
-- 🚩 Voice of God: audio check, reset to "1 push" for the recital manager.
+- 🚩 Ask about any changes to the program or an encore.
 - 🚩 Once doors open: CRESTRON — switch Hallway TV from Signage to **Camera**, turn Hallway Audio
-  **on**.
+  **on** (volume's already preset from Initial setup).
 
 ## 🎬 Start recording — 3 minutes before downbeat
 
 - 🚩 Go downstairs first and start the camera (primary wide) before anything else.
 - 🚩 Start the ATEM HyperDeck recorder.
 - 🚩 Start the backup wide (AX100), if one is running tonight.
-- 🚩 Start the F8.
+- 🚩 Start the F8 — press the **red RECORD button**, just to the right of the power button.
 - 🚩 Start the H6.
 - 🚩 If tonight is multicam or livestreamed: start the ATEM Extreme and the individual cameras
   too.
@@ -135,15 +164,18 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 
 ## 🏁 End of show
 
-- 🚩 Stop every recording device.
+- 🚩 Stop every recording device — on the F8, that's the **STOP** button, halfway between the
+  back/next buttons, **not** the red record button.
 - 🚩 Go downstairs and stop the camcorder / backup wide.
-- 🚩 Power down what you turned on — and nothing else.
+- 🚩 Power down what you turned on — and nothing else. (The F8 needs the same ~2 second hold to
+  power off as it did to power on.)
 - 🚩 Start the data transfer.
 - 🚩 Include a copy of the program in the data transfer, alongside the recordings.
 - 🚩 Copy everything to **both** the Post and Backups drives, using the `YYMMDD Full Event Name`
   folder naming convention — full detail is in **Salmon: Basic A/V Capture**'s data management
   section if you need a refresher.
-- 🚩 Green room and lobby: turn off, tidy up, CRESTRON back to Signage.
+- 🚩 Green room: turn off the TV.
+- 🚩 Lobby: CRESTRON — Hallway TV back to **Signage**, Hallway Audio **off**.
 
 ## ✅ Definition of done
 
@@ -154,12 +186,24 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 
 ## ⚙️ Technical verification
 
+**Confirmed since the last pass:**
+
+- **The fast SD card for the HyperDeck**: Lexar Professional, 128 GB, SDXC UHS-II, V60, U3,
+  250 MB/s (1667x) — identified from a photo of the actual card. The HyperDeck's two recorder
+  slots (top-left primary, right for overflow) are the instructor's description, not yet checked
+  against the unit itself.
+- **Green room feed**: a TV in the green room, powered on with its own power switch, no CRESTRON
+  routing involved. Knock-first and the ask-before-touching-anything line are the instructor's
+  own courtesy rule, not a technical requirement.
+- **CRESTRON Hallway TV/Audio sequencing** (Signage + audio off + 25% preset volume in Initial
+  setup, then Camera + audio on at Doors, then back to Signage + audio off at End of show) is the
+  instructor's own description of the intended state machine.
+
 **Still open:**
 
-- **The exact fast SSD/SD card model** for the HyperDeck backup — described by the instructor as
-  "shiny," meaning a visibly fast/high-write-speed card, possibly a Lexar model. The dictated name
-  didn't match a real product number, so it's deliberately not guessed here. Needs a confirmed
-  model (and ideally a photo of the correct card) before this line can name one.
+- **The F8 preamp target level.** The instructor confirmed the *mechanism* — press **PFL** to
+  check/adjust a channel's gain — but not what the correct level actually is. Don't adjust a
+  preamp based on a guess; ask Borecki.
 - **The ATEM HyperDeck's own start/stop button** — this checklist assumes it exists and works the
   way the rest of the room does; the source SOP marks this "INSTRUCTIONS COMING" and it still is.
   Same open item as in **Salmon: Basic A/V Capture**.
@@ -167,16 +211,17 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
   itself flags as known-stale in places. **Salmon: Livestream** is where this should eventually
   get independently verified; until then, treat this checklist's livestream section with the same
   caution.
-- **Green room feed** is confirmed for 2026: a TV in the green room, powered on with its own power
-  switch, no CRESTRON routing involved. A one-time walkthrough to confirm the TV's exact location
-  and volume control would still help a first-timer.
+- **The Samsung MON2 monitor's exact label and location** — written up from the instructor's
+  description, not yet independently checked against the room.
 
 The verbatim source SOP is in `content/activities/_source/bh209-salmon-sop.txt`.
 
 ## 🤖 AI use disclosure
 
 Drafted by AI from the instructor's own dictated walkthrough of a real gig, restructured into the
-site's checklist/worksheet format. The step order, the pre-arrival and green-room sections, the
-intermission policy, and the data-transfer steps are the instructor's. The exact SD/SSD card model
-is deliberately left unconfirmed rather than guessed. Pending instructor review before treating
-any of it as final.
+site's checklist/worksheet format, then revised twice more from the instructor's follow-up
+corrections — including a photo used to identify the exact HyperDeck card, and detailed operating
+notes for the battery backup, F8, H6, AX100, and CRESTRON sequencing. The step order, every
+equipment detail, the green-room courtesy rule, and the data-transfer steps are the instructor's.
+The F8's exact preamp target level is deliberately left unconfirmed rather than guessed. Pending
+instructor review before treating any of it as final.

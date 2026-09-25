@@ -42,8 +42,10 @@
 
 .ticks li, .flow li.tick { position:relative; margin:.32rem 0; padding-left:1.5rem; font-size:.9rem; break-inside:avoid; }
 .ticks li::before, .flow li.tick::before { position:absolute; top:.02em; left:0; width:.95rem; height:.95rem; border:1.5px solid var(--ink); border-radius:.15rem; content:""; }
-.where { display:block; color:var(--muted); font-size:.7rem; font-style:normal; letter-spacing:.04em; text-transform:uppercase; }
-.ticks li:not(:first-child) .where, .flow li:not(:first-child) .where { margin-top:.5rem; }
+/* A phase/section change reads as a small heading, not just a gray aside — a printed checklist
+   gets scanned top to bottom, and "what phase am I in" should answer itself at a glance. */
+.where { display:block; color:var(--ink); font-size:.72rem; font-style:normal; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+.ticks li:not(:first-child) .where, .flow li:not(:first-child) .where { margin-top:.9rem; padding-top:.5rem; border-top:1px solid var(--line); }
 
 .terms { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.15rem 1.5rem; }
 .terms li { display:flex; gap:.4rem; align-items:baseline; padding:.28rem 0; font-size:.85rem; }
