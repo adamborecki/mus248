@@ -17,10 +17,8 @@ async function loadDirectory() {
       // Every card opens the activity's own page — never a direct external link — so the
       // Canvas discussion and after-activity steps are never skipped for external activities.
       const action = `<a class="activity-link" href="${activity.route}/">Open activity <span aria-hidden="true">→</span></a>`;
-      // A worksheet exists exactly when the instructions are in-app, since it is generated from them.
-      const worksheet = activity.contentFile
-        ? `<a class="activity-link worksheet-button" href="${activity.route}/worksheet/"><span aria-hidden="true">🖨️</span> Worksheet</a>`
-        : '';
+      // The worksheet link lives on the activity page itself ("Print the worksheet"), not here —
+      // one primary action per card.
       const source = activity.contentFile ? 'In-app instructions' : 'External instructions ↗';
       const family = activity.family ? `<p class="activity-family">${activity.family}</p>` : '';
       const skillChips = activity.skills.map((skill) => `<span class="chip"><span aria-hidden="true">🛠️</span>${skill}</span>`).join('');
@@ -34,7 +32,7 @@ async function loadDirectory() {
         <div class="card-details">
           ${meta}
           ${family}
-          <div class="card-actions">${action}${worksheet}</div>
+          <div class="card-actions">${action}</div>
         </div>
       </details>`;
     }).join('');
