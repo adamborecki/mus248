@@ -6,6 +6,7 @@ coreSkillAreas:
   - Video Capture
   - Audio Capture
 status: Placeholder
+revised: "2026-09-22"
 estimatedTime: "Not yet written"
 access:
   mode: On campus

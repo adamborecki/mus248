@@ -5,6 +5,7 @@ emoji: "🎛️"
 coreSkillAreas:
   - Live Sound
 status: Ready
+revised: "2026-09-20"
 estimatedTime: "20–30 minutes per round (2 rounds)"
 access:
   mode: In class / on campus

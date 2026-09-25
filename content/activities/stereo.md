@@ -5,6 +5,7 @@ emoji: "🎙️"
 coreSkillAreas:
   - Audio Capture
 status: In Development
+revised: "2026-09-20"
 estimatedTime: "40–55 minutes"
 access:
   mode: On campus

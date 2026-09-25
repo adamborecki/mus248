@@ -242,8 +242,12 @@ export function renderWorksheet(activity, options = {}) {
     : sizes.ideal;
   const group = range || directory.group || '';
   const time = front.estimatedTime || directory.time || '';
+  const revised = front.revised || '';
 
-  const meta = [time && `⏱ ${time}`, group && `👥 Groups of ${group}`].filter(Boolean).join(' · ');
+  // The revision date is what tells a printed copy apart from a newer one once the activity
+  // changes — it comes first so it survives even if the rest of the meta line has to wrap away.
+  const meta = [revised && `🕓 Rev. ${revised}`, time && `⏱ ${time}`, group && `👥 Groups of ${group}`]
+    .filter(Boolean).join(' · ');
   // Rounds only get their own box on activities that actually repeat.
   const rounds = String(front.roundsSupported) === 'true' ? `<span>Round ${rule()}</span>` : '';
   const nameLine = showAnswers

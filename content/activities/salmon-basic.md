@@ -7,6 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
+revised: "2026-09-22"
 estimatedTime: "20–45 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
 access:
   mode: On campus

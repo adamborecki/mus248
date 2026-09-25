@@ -6,6 +6,7 @@ coreSkillAreas:
   - Live Sound
   - Post Production
 status: In Development
+revised: "2026-09-20"
 estimatedTime: "25–40 minutes"
 access:
   mode: In class

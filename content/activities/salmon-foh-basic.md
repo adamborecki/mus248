@@ -5,6 +5,7 @@ emoji: "🎚️"
 coreSkillAreas:
   - Live Sound
 status: Placeholder
+revised: "2026-09-22"
 estimatedTime: "Not yet written"
 access:
   mode: On campus

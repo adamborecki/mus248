@@ -8,6 +8,7 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
+revised: "2026-09-25"
 estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
 access:
   mode: On campus

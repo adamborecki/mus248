@@ -6,6 +6,7 @@ coreSkillAreas:
   - Audio Capture
   - Live Sound
 status: In Development
+revised: "2026-09-20"
 estimatedTime: "45–55 minutes"
 access:
   mode: On campus

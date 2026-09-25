@@ -5,6 +5,7 @@ emoji: "📹"
 coreSkillAreas:
   - Video Capture
 status: In Development
+revised: "2026-09-20"
 estimatedTime: "25–35 minutes per camera"
 access:
   mode: On campus

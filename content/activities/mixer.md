@@ -5,6 +5,7 @@ emoji: "🎚️"
 coreSkillAreas:
   - Live Sound
 status: In Development
+revised: "2026-09-22"
 estimatedTime: "30–60 minutes for the three essentials, open-ended beyond that"
 access:
   mode: In class / on campus

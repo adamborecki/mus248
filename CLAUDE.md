@@ -74,6 +74,13 @@ one — decide on purpose, not by accident.
 drift — that drift is what killed the previous Google Keep version. Fix the activity, not the
 worksheet.
 
+**Bump `revised: "YYYY-MM-DD"` in frontmatter whenever you edit an activity.** It prints on the
+worksheet ("Rev. 2026-09-25") next to the time/group-size line, on both the student copy and the
+key — the only way anyone holding a printed page, possibly weeks old, can tell it apart from a
+newer one. There's no automated check for this (it can't be — the field has to reflect the edit
+that's about to be committed, not the last one), so it's on whoever edits the file. Forgetting to
+bump it is worse than not having the field, since a stale date reads as confirmed-current.
+
 **What belongs where:** the web page is the textbook — full procedure, photos, troubleshooting.
 The worksheet is the workbook — definition of done, key terms, checkpoints, questions, "before
 you leave". Photos and step-by-step procedure deliberately stay off the paper so nobody copies a
