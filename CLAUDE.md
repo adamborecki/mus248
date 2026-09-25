@@ -48,6 +48,13 @@ generated or derived.
    existing trio and change `data-activity-id`
 4. both test suites passing
 
+`data/activities.json` and the quiz's own activity list (`quiz/data/curriculum.json`'s
+`activities` array, matched against by `activity_gate` in `quiz/data/questions.json`) are separate,
+hand-maintained lists — adding an activity here does not teach the quiz about it. Run
+`node tools/check-quiz-activity-links.mjs` after adding one; it's informational (never fails), and
+tells you if the new activity has no matching quiz activity id or gate. Not every activity needs
+one — decide on purpose, not by accident.
+
 **Markdown conventions the generator depends on:**
 
 - Emoji headings (`## ✅ Definition of done`, `## 🗝️ Key terms`, `## 💭 Before you leave`)
