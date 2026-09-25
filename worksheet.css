@@ -32,6 +32,10 @@
 .prompts .rule { flex:0 0 auto; display:block; height:1.3rem; }
 
 .ws-block { margin-top:1.4rem; break-inside:avoid; }
+/* "As you go" is often longer than one page — avoiding a break inside the whole section just
+   pushes it entirely onto the next page, leaving the rest of the current one blank. Individual
+   checkpoints and questions still avoid splitting (below); only the section itself is free to. */
+.ws-flow-block { break-inside:auto; }
 .ws-block h2 { display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline; margin:0 0 .5rem; padding-bottom:.2rem; border-bottom:1px solid var(--line); font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
 .ws-block h2 small { color:var(--muted); font-weight:500; letter-spacing:0; text-transform:none; }
 .ws-block ul, .ws-block ol { margin:0; padding:0; list-style:none; }

@@ -295,7 +295,7 @@ export function renderWorksheet(activity, options = {}) {
     }
     const item = entry.type === 'checkpoint' ? entry.checkpoint : entry.question;
     if (!flowOpen) {
-      parts.push('<section class="ws-block"><h2>As you go'
+      parts.push('<section class="ws-block ws-flow-block"><h2>As you go'
         + `${showAnswers ? '' : '<small>tick checkpoints, answer questions</small>'}</h2><ul class="flow">`);
       flowOpen = true;
     }
