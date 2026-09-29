@@ -13,7 +13,7 @@ import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines 
 import qrcode from './qrcode-generator.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
-const SITE_ORIGIN = 'https://adamborecki.github.io/248';
+const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
 
 const BLANK = /_{3,}/g;
 const QUESTION = /^\*\*Q(\d+)\s*(?:\(([^)]*)\))?\s*[.:]\*\*\s*(.*)$/;

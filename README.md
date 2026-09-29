@@ -1,6 +1,6 @@
 # 🎬 MUS 248: A/V Concert Recording
 
-**🔗 Live site: [adamborecki.github.io/248](https://adamborecki.github.io/248/)**
+**🔗 Live site: [adamborecki.github.io/mus248](https://adamborecki.github.io/mus248/)**
 
 The activity hub for MUS 248 — the hands-on side of learning to record concerts, on both audio and video.
 
