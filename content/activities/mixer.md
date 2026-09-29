@@ -107,6 +107,10 @@ With your group, identify these things on the actual equipment:
 
 ✅ **Answer.** The student's actual main output path. A powered speaker contains its amplifier; a passive speaker path requires a separate power amp.
 
+**Q3 (fill in the blank).** Where each borrowed item lives, so you can return it: mixer ________________ · speakers ________________ · cables ________________ · power supplies ________________
+
+✅ **Answer.** The student's own record of where each item came from (room, cabinet, shelf, or cart).
+
 > 🚩 **Checkpoint.** Before you connect a source, your group can point to the mic input, line input, Main output, Aux output, and the amplifier in each speaker path.
 
 ### 2. Dynamic microphone to the main speaker system
@@ -116,7 +120,7 @@ With your group, identify these things on the actual equipment:
 3. Starting with levels down, raise the channel gain/trim only as needed for a usable input signal. Then raise the relevant channel and main/output levels carefully.
 4. Speak into the mic at a normal presentation volume. Listen for clear output from the main speaker system.
 
-**Q3 (fill in the blank).** Which control on this mixer adjusted the microphone's input gain/trim? ________________________________
+**Q4 (fill in the blank).** Which control on this mixer adjusted the microphone's input gain/trim? ________________________________
 
 ✅ **Answer.** The student's own mixer-specific gain/trim control.
 
@@ -130,7 +134,7 @@ With your group, identify these things on the actual equipment:
 4. Bring the playback channel up gradually and confirm it reaches the main speaker system without obvious distortion.
 5. Adjust the microphone and playback independently. Confirm that the mixer gives each source its own channel control.
 
-**Q4 (fill in the blank).** Playback source and input path: ________________________________ → ________________________________
+**Q5 (fill in the blank).** Playback source and input path: ________________________________ → ________________________________
 
 ✅ **Answer.** The student's actual playback source and line/stereo input path.
 
@@ -144,13 +148,17 @@ With your group, identify these things on the actual equipment:
 4. Confirm that the second speaker produces signal.
 5. Change the selected channel's Aux send. The second speaker should change while the main speaker system remains essentially unchanged.
 
-**Q5 (fill in the blank).** Aux output path, including the amplifier location: mixer Aux output → ________________________________
+**Q6 (fill in the blank).** Aux output path, including the amplifier location: mixer Aux output → ________________________________
 
 ✅ **Answer.** The student's actual Aux path. A powered monitor contains its amplifier; a passive monitor requires a separate power amp.
 
-**Q6 (fill in the blank).** Which control sent a channel to the second speaker separately from the mains? ________________________________
+**Q7 (fill in the blank).** Which control sent a channel to the second speaker separately from the mains? ________________________________
 
 ✅ **Answer.** The student's own mixer-specific Aux/Monitor send control.
+
+**Q8 (fill in the blank).** Label the signal level (mic, line, or speaker) at each point: dynamic mic output ________ · laptop headphone jack ________ · mixer Main or Aux output to a powered speaker ________ · power amp output to a passive speaker ________
+
+✅ **Answer.** mic · line · line · speaker
 
 > 🚩 **Checkpoint.** A real second speaker receives signal from the Aux output, and your group can change that Aux send without changing the main speaker output.
 
@@ -192,24 +200,28 @@ With your group, identify these things on the actual equipment:
 
 Choose an extension only after the core path works and your worksheet is complete. Work from the most practical options down. Ask before changing a shared system.
 
-1. **Repeat the core path on another mixer.** Find the same functions on a different layout. Note what moved or changed names.
-2. **Use an instrument and DI box.** Route an instrument or other appropriate source through a DI, then into the mixer. Identify whether the DI needs power.
-3. **Add more inputs.** Build a small main mix with two microphones plus playback or an instrument. Keep each source independently controllable.
-4. **Build a real stereo main.** Use an assigned left/right powered-speaker pair and verify correct left/right playback.
-5. **Build a more useful Aux mix.** Put two or more sources into the second speaker and set a balance that differs from the mains.
-6. **Use PFL/Solo for troubleshooting.** Listen to or meter an input before you send it to the main speakers.
-7. **Use channel EQ or low cut.** Make a small audible change, then return it to a sensible setting.
-8. **Make a stereo board feed.** Send the finished mix to an instructor-approved recording/streaming destination and explain why that is different from the Aux monitor path.
-9. **Try an onboard effect or compressor.** Use it only when the assigned mixer has the feature and you can hear what it changes.
-10. **Explore multitrack or controlled feedback only with the instructor.** These belong to later live-sound work and need a system that has been prepared for them.
+1. 🚩 **Repeat the core path on another mixer.** Find the same functions on a different layout. Note what moved or changed names.
+2. 🚩 **Use an instrument and DI box.** Route an instrument or other appropriate source through a DI, then into the mixer. Identify whether the DI needs power.
+3. 🚩 **Add more inputs.** Build a small main mix with two microphones plus playback or an instrument. Keep each source independently controllable.
+4. 🚩 **Build a real stereo main.** Use an assigned left/right powered-speaker pair and verify correct left/right playback.
+5. 🚩 **Build a more useful Aux mix.** Put two or more sources into the second speaker and set a balance that differs from the mains.
+6. 🚩 **Use PFL/Solo for troubleshooting.** Listen to or meter an input before you send it to the main speakers.
+7. 🚩 **Use channel EQ or low cut.** Make a small audible change, then return it to a sensible setting.
+8. 🚩 **Make a stereo board feed.** Send the finished mix to an instructor-approved recording/streaming destination and explain why that is different from the Aux monitor path.
+9. 🚩 **Try an onboard effect or compressor.** Use it only when the assigned mixer has the feature and you can hear what it changes.
+10. 🚩 **Explore multitrack or controlled feedback only with the instructor.** These belong to later live-sound work and need a system that has been prepared for them.
+
+**Q9 (short answer).** Which extensions did you try, and what did you notice? Write down anything that surprised you or that you would do differently on a different mixer.
+
+✅ **Answer.** The student's own notes on the extensions they tried. Full credit for naming at least one extension and one specific observation.
 
 ## 🧹 Finish, reset, put away
 
-1. Lower the relevant channel, Aux, and main/output levels.
-2. Turn speakers or power amps off before disconnecting signal cables.
-3. Disconnect and coil cables properly. Do not leave a pile of cable at the station.
-4. Return each borrowed cable, speaker, mixer, and power supply to the location you recorded.
-5. Do not save over someone else's scene or leave an unfamiliar routing change in a shared system.
+1. 🚩 Lower the relevant channel, Aux, and main/output levels.
+2. 🚩 Turn speakers or power amps off before disconnecting signal cables.
+3. 🚩 Disconnect and coil cables properly. Do not leave a pile of cable at the station.
+4. 🚩 Return each borrowed cable, speaker, mixer, and power supply to the location you recorded.
+5. 🚩 Do not save over someone else's scene or leave an unfamiliar routing change in a shared system.
 
 > 🚩 **Final checkpoint.** The assigned speaker systems are off, levels are down, cables are returned, and the mixer is left in the state your instructor requested.
 

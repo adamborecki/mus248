@@ -17,7 +17,7 @@ const SITE_ORIGIN = 'https://adamborecki.github.io/248';
 
 const BLANK = /_{3,}/g;
 const QUESTION = /^\*\*Q(\d+)\s*(?:\(([^)]*)\))?\s*[.:]\*\*\s*(.*)$/;
-const CHECKPOINT = /^\s*(?:[-*]\s+)?(?:>\s*)?🚩\s*(.*)$/;
+const CHECKPOINT = /^\s*(?:(?:[-*]|\d+\.)\s+)?(?:>\s*)?🚩\s*(.*)$/;
 const CHECKPOINT_LABEL = /^\*\*((?:final\s+|last\s+)?checkpoint[^*]*?)\s*\*\*\s*/i;
 
 // Headings carry a leading emoji ("## ✅ Definition of done"); match on the words.
@@ -113,6 +113,18 @@ function parseQuestion(lines, index, section, order) {
   return question;
 }
 
+// Sections whose checkpoints and questions get a block of their own on the worksheet, rather than
+// being folded into "As you go" — the optional extensions and the pack-up, which a student reaches
+// at a different moment than the core procedure and should be able to find at a glance.
+const NAMED_BLOCKS = [
+  { match: /^explore/, hint: 'only after the core path works — tick what you tried' },
+  { match: /^finish/, hint: 'tick each one before you leave the room' },
+];
+const blockFor = (part) => {
+  const named = NAMED_BLOCKS.find((block) => block.match.test(slug(part || '')));
+  return named ? { title: part.replace(/^[^\p{L}\p{N}]+/u, '').trim(), hint: named.hint } : null;
+};
+
 // Groups whose worksheet content lives under one heading rather than scattered
 // through the activity — they enter the flow once, at that heading's position.
 const GROUPS = { 'key terms': 'keyTerms', 'definition of done': 'done', 'before you leave': 'beforeYouLeave' };
@@ -124,6 +136,7 @@ export function parseActivity(markdown) {
     frontmatter, done: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
   };
   let section = '';
+  let sectionTitle = '';
   let label = '';
 
   lines.forEach((line, index) => {
@@ -132,6 +145,7 @@ export function parseActivity(markdown) {
       label = heading[2].replace(/^[^\p{L}\p{N}]+/u, '').trim();
       if (heading[1].length === 2) {
         section = slug(heading[2]);
+        sectionTitle = heading[2];
         if (GROUPS[section]) result.flow.push({ type: 'group', key: GROUPS[section], order: index });
       }
       return;
@@ -139,6 +153,7 @@ export function parseActivity(markdown) {
 
     const question = parseQuestion(lines, index, label, index);
     if (question) {
+      question.part = sectionTitle;
       result.questions.push(question);
       result.flow.push({ type: 'question', question, order: index });
       return;
@@ -173,7 +188,7 @@ export function parseActivity(markdown) {
 
     const checkpoint = line.match(CHECKPOINT);
     if (checkpoint) {
-      const entry = { text: checkpointText(checkpoint[1]), section: label, order: index };
+      const entry = { text: checkpointText(checkpoint[1]), section: label, part: sectionTitle, order: index };
       result.checkpoints.push(entry);
       result.flow.push({ type: 'checkpoint', checkpoint: entry, order: index });
     }
@@ -282,11 +297,13 @@ export function renderWorksheet(activity, options = {}) {
   // breaks — and a fresh "As you go" block opens — whenever a Key terms,
   // Definition of done, or Before you leave block falls between them.
   let flowOpen = false;
+  let flowTitle = null;
   let previousWhere = null;
   const parts = [];
   const closeFlow = () => {
     if (flowOpen) parts.push('</ul></section>');
     flowOpen = false;
+    flowTitle = null;
     previousWhere = null;
   };
 
@@ -298,12 +315,19 @@ export function renderWorksheet(activity, options = {}) {
       return;
     }
     const item = entry.type === 'checkpoint' ? entry.checkpoint : entry.question;
+    const named = blockFor(item.part);
+    const title = named ? named.title : 'As you go';
+    if (flowOpen && title !== flowTitle) closeFlow();
     if (!flowOpen) {
-      parts.push('<section class="ws-block ws-flow-block"><h2>As you go'
-        + `${showAnswers ? '' : '<small>tick checkpoints, answer questions</small>'}</h2><ul class="flow">`);
+      const hint = named ? named.hint : 'tick checkpoints, answer questions';
+      parts.push(`<section class="ws-block ws-flow-block"><h2>${escapeHtml(title)}`
+        + `${showAnswers ? '' : `<small>${escapeHtml(hint)}</small>`}</h2><ul class="flow">`);
       flowOpen = true;
+      flowTitle = title;
     }
-    const tag = item.section && item.section !== previousWhere ? `<em class="where">${escapeHtml(item.section)}</em>` : '';
+    // The block heading already names its own section — repeating it as a tag is noise.
+    const tag = item.section && item.section !== previousWhere && item.section !== title
+      ? `<em class="where">${escapeHtml(item.section)}</em>` : '';
     previousWhere = item.section;
     if (entry.type === 'checkpoint') {
       parts.push(`<li class="tick">${tag}${inline(item.text)}</li>`);
