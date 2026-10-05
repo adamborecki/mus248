@@ -36,6 +36,7 @@ Filter by skill area — **Audio Capture**, **Live Sound**, **Video Capture**, *
 | 🎚️ Analog mixer basics | Live Sound |
 | 🔊 X32 Compact digital console | Live Sound |
 | 🧘 Mic stand setup | Audio Capture |
+| 🔌 Cable Safari | Audio Capture, Video Capture |
 | 🔁 Live-looping rig | Audio Capture, Live Sound |
 | 📡 Dante Broadcast, Jam Session, Walkie-Talkie (basic + advanced) | Audio Capture, Live Sound |
 
