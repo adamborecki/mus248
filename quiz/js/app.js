@@ -1,22 +1,15 @@
-import { buildPayload, choiceOrder, indexQuestions, randomId, reviewSkills, selectBonus, selectQuiz, shouldOfferBonus, statusOf } from './engine.js';
+import { buildPayload, choiceOrder, indexQuestions, missedSkills, randomId, reviewSkills, selectBonus, selectQuiz, shouldOfferBonus, statusOf } from './engine.js';
 import { escapeHtml } from './html.js';
+import { CODE_ERRORS, mountCodeBox, readSavedCode, writeSavedCode } from './saved-code.js';
 import { decodeStateCode, encodeStateCode, findStateCodes } from './state-code.js';
 
 const APP_VERSION = '0.2.0';
 const ATTEMPT_KEY = 'mus248-quiz:attempt';
-const LAST_CODE_KEY = 'mus248-quiz:last-code';
 const ATTEMPTS_KEY = 'mus248-quiz:attempts';
 const UNLOCK_KEY = 'mus248-quiz:unlocked';
 const params = new URLSearchParams(location.search);
 const DEBUG = params.has('debug');
 const ACTIVITY_CHOICES = [[0, '0'], [1, '1'], [2, '2'], [3, '3+']];
-const PRIOR_ERRORS = {
-  missing: 'We couldn’t find a quiz code in that text. Codes start with M248Q.',
-  incomplete: 'That code looks cut off. Copy the whole thing, all the way to the end, and try again.',
-  checksum: 'That code doesn’t check out. Part of it may be missing or changed. Try copying it again.',
-  format: 'That code couldn’t be read. Try copying it again.',
-  newer: 'That code came from a newer version of the quiz. Refresh this page and try again.',
-};
 
 const app = document.getElementById('app');
 const on = (selector, event, handler) => app.querySelector(selector)?.addEventListener(event, handler);
@@ -149,7 +142,14 @@ function renderGate() {
       <input id="access-code" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
       <div class="row"><button class="btn primary wide" id="unlock">Continue →</button></div>
       <p class="status" id="access-status" role="status"></p>
+    </section>
+    <section class="step">
+      <h2>Studying first? Paste last quiz’s code</h2>
+      <p class="quiet">You don’t need an access code for this. Paste the code from your Canvas submission and the
+        <a href="../study/">study cards</a> will put what you missed first. It’s also remembered for the quiz itself.</p>
+      <div id="code-panel"></div>
     </section>`, { focus: '#access-code' });
+  mountCodeBox(app.querySelector('#code-panel'), { summarize: reviewSummary });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
     const opens = quizForCode(data.curriculum, input.value);
@@ -164,6 +164,16 @@ function renderGate() {
   };
   on('#unlock', 'click', tryUnlock);
   input.addEventListener('keydown', (event) => { if (event.key === 'Enter') tryUnlock(); });
+}
+
+// What a pasted code says to study, shown wherever the code box is.
+function reviewSummary(state) {
+  const missed = missedSkills(state, data.bank).filter((skill) => statusOf(data.curriculum, skill) !== 'inactive');
+  if (!missed.length) return '<p>Nothing to review from that quiz. Nice work.</p>';
+  const names = missed.slice(0, 4).map((skill) => escapeHtml(label(skill))).join(', ');
+  const more = missed.length > 4 ? ` and ${missed.length - 4} more` : '';
+  return `<p>${missed.length} ${missed.length === 1 ? 'skill' : 'skills'} to review: ${names}${more}.</p>
+    <p><a class="text-link" href="../study/">Open your study cards →</a></p>`;
 }
 
 function afterUnlock() {
@@ -206,7 +216,12 @@ async function init() {
 function startFresh() {
   storage.remove(ATTEMPT_KEY);
   attempt = null;
-  setup = { prior: null, priorMode: null, priorStatus: null, message: '', code: '', activities: {} };
+  // A code already saved on this device (earned here, or pasted on the first
+  // screen or the study cards) means "I have my code" is almost certainly the
+  // answer, so open on it with the Use-it button showing.
+  const saved = readSavedCode();
+  const hasSaved = asksForCode() && saved && saved.quiz < data.curriculum.quiz_number;
+  setup = { prior: null, priorMode: hasSaved ? 'have' : null, priorStatus: null, message: '', code: '', activities: {} };
   renderStart();
 }
 
@@ -230,7 +245,7 @@ function missingSteps() {
 function renderStart(options) {
   const { curriculum } = data;
   const askCode = asksForCode();
-  const last = storage.read(LAST_CODE_KEY);
+  const last = readSavedCode();
   const offerSaved = last?.code && last.quiz < curriculum.quiz_number && setup.priorStatus !== 'loaded';
   const statusClass = { loaded: 'ok', error: 'error' }[setup.priorStatus] || 'quiet';
   const stepNumber = (n) => (askCode ? `<span class="step-number">${n}</span>` : '');
@@ -314,7 +329,7 @@ function loadPrior(text) {
     setup.message = 'Paste your code first, or choose “I don’t have it.”';
   } else if (!result.ok) {
     setup.priorStatus = 'error';
-    setup.message = `${PRIOR_ERRORS[result.reason]} Or choose “I don’t have it” to continue without it.`;
+    setup.message = `${CODE_ERRORS[result.reason]} Or choose “I don’t have it” to continue without it.`;
   } else if (result.state.q >= curriculum.quiz_number) {
     setup.priorStatus = 'error';
     setup.message = `That code is from Quiz ${result.state.q}. Paste the code from an earlier quiz, or choose “I don’t have it.”`;
@@ -626,7 +641,7 @@ function completeAttempt() {
   attempt.code = encodeStateCode(payload);
   attempt.phase = 'done';
   save();
-  storage.write(LAST_CODE_KEY, { quiz: attempt.quiz, code: attempt.code });
+  writeSavedCode(attempt.quiz, attempt.code);
   renderResults();
 }
 

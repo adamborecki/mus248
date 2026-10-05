@@ -1,17 +1,28 @@
 // Study cards. Every card whose skill is active in quiz/data/curriculum.json appears,
 // grouped by category and tagged Core or Practice. Students see both by default and can
 // narrow to just Core or just Practice; the topic chips work within that choice.
+// With a quiz code saved on the device (pasted here, on the quiz's first screen, or earned
+// by taking the quiz) a fourth level appears: Missed — the cards for skills the student
+// got wrong, most recent quiz first. The code never leaves the browser.
+import { missedSkills } from '../quiz/js/engine.js';
 import { escapeHtml } from '../quiz/js/html.js';
+import { mountCodeBox, savedState } from '../quiz/js/saved-code.js';
 
 const root = document.getElementById('study');
-const state = { cards: [], categories: [], category: 'All', level: 'all', order: [], index: 0, revealed: false, view: 'cards', shuffled: false };
-const LEVELS = [['all', 'All'], ['core', 'Core'], ['practice', 'Practice']];
+let body = root;
+const state = { cards: [], categories: [], missed: [], category: 'All', level: 'all', order: [], index: 0, revealed: false, view: 'cards', shuffled: false };
+const LEVELS = [['all', 'All'], ['core', 'Core'], ['practice', 'Practice'], ['missed', 'Missed']];
 const LEVEL_NOTES = {
   all: 'Core cards are graded on the quiz. Practice cards get full credit and may become Core.',
   core: 'Core: graded on the quiz.',
   practice: 'Practice: full credit on the quiz this week, and may become Core.',
+  missed: 'Missed: skills you got wrong on your quiz code, newest first. Answer one right on a later quiz and it drops off.',
 };
 let statusOf = () => 'inactive';
+let skillLabels = {};
+let curriculum = null;
+let bank = null;
+let deck = null;
 
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-cache' });
@@ -28,7 +39,9 @@ function shuffle(items) {
   return copy;
 }
 
-const inLevel = (card) => state.level === 'all' || statusOf(card.skill) === state.level;
+const isMissed = (card) => state.missed.includes(card.skill);
+const inLevel = (card) => state.level === 'all' || (state.level === 'missed' ? isMissed(card) : statusOf(card.skill) === state.level);
+const missedTag = (card) => (isMissed(card) ? '<span class="badge missed">↺ Missed</span>' : '');
 const inCategory = (card) => state.category === 'All' || card.category === state.category;
 const visible = (card) => inLevel(card) && inCategory(card);
 const badge = (card) => (statusOf(card.skill) === 'core'
@@ -37,6 +50,8 @@ const badge = (card) => (statusOf(card.skill) === 'core'
 
 function rebuild() {
   const cards = state.cards.filter(visible);
+  // In Missed, the most recent quiz's misses lead — unless the student shuffled.
+  if (state.level === 'missed') cards.sort((a, b) => state.missed.indexOf(a.skill) - state.missed.indexOf(b.skill));
   state.order = state.shuffled ? shuffle(cards) : cards;
   state.index = 0;
   state.revealed = false;
@@ -69,7 +84,7 @@ function cardView() {
   const isLast = state.index === total - 1;
   return `
     <section class="stage">
-      <p class="eyebrow"><span>${escapeHtml(card.category)}</span><span>${state.index + 1} of ${total}</span></p>
+      <p class="eyebrow"><span>${escapeHtml(card.category)}${isMissed(card) ? ' · <strong>missed</strong>' : ''}</span><span>${state.index + 1} of ${total}</span></p>
       <div class="progress" aria-hidden="true"><span style="width:${((state.index + 1) / total) * 100}%"></span></div>
       <button class="flashcard${state.revealed ? ' is-revealed' : ''}" id="flip" aria-expanded="${state.revealed}">
         ${badge(card)}
@@ -88,14 +103,14 @@ function listView() {
   return `
     <section class="stage">
       <dl class="card-list">${state.cards.filter(visible).map((card) => `
-        <div class="card-row"><dt>${escapeHtml(card.front)} ${badge(card)}</dt><dd>${escapeHtml(card.back)}</dd></div>`).join('')}
+        <div class="card-row"><dt>${escapeHtml(card.front)} ${badge(card)} ${missedTag(card)}</dt><dd>${escapeHtml(card.back)}</dd></div>`).join('')}
       </dl>
     </section>`;
 }
 
 function render(focus) {
-  const levelCount = (level) => state.cards.filter((card) => level === 'all' || statusOf(card.skill) === level).length;
-  const levelButtons = LEVELS.map(([level, text]) => {
+  const levelCount = (level) => state.cards.filter((card) => level === 'all' || (level === 'missed' ? isMissed(card) : statusOf(card.skill) === level)).length;
+  const levelButtons = LEVELS.filter(([level]) => level !== 'missed' || state.missed.length).map(([level, text]) => {
     const n = levelCount(level);
     return `<button type="button" class="level-option" data-level="${level}" aria-pressed="${level === state.level}"${n === 0 ? ' disabled' : ''}>${text} <span>${n}</span></button>`;
   }).join('');
@@ -103,7 +118,7 @@ function render(focus) {
   const count = (category) => (category === 'All' ? topicCards.length : topicCards.filter((card) => card.category === category).length);
   const chips = ['All', ...state.categories].filter((category) => category === 'All' || count(category) > 0).map((category) => `
     <button class="chip${category === state.category ? ' is-on' : ''}" data-category="${escapeHtml(category)}" aria-pressed="${category === state.category}">${escapeHtml(category)} <span>${count(category)}</span></button>`).join('');
-  root.innerHTML = `
+  body.innerHTML = `
     <div class="level-toggle" role="group" aria-label="Which cards to study">${levelButtons}</div>
     <p class="quiet small level-note">${LEVEL_NOTES[state.level]}</p>
     <nav class="chips" aria-label="Card topics">${chips}</nav>
@@ -112,8 +127,9 @@ function render(focus) {
       ${state.view === 'cards' ? `<button class="text-button" id="shuffle" aria-pressed="${state.shuffled}">${state.shuffled ? 'Shuffled ✓' : 'Shuffle'}</button>` : ''}
       <a class="text-link" href="../quiz/">Take the quiz →</a>
     </div>
+    ${state.level === 'missed' ? noCardNote() : ''}
     ${state.order.length === 0 ? '<p class="quiet">No cards match.</p>' : state.view === 'list' ? listView() : cardView()}`;
-  if (focus) root.querySelector(focus)?.focus({ preventScroll: true });
+  if (focus) body.querySelector(focus)?.focus({ preventScroll: true });
 }
 
 root.addEventListener('click', (event) => {
@@ -157,13 +173,67 @@ root.addEventListener('touchend', (event) => {
   }
 });
 
+// A missed skill can lack a card (not every skill has one yet); say so rather than
+// let the count in the code summary and the cards on screen quietly disagree.
+function noCardNote() {
+  const covered = new Set(state.cards.map((card) => card.skill));
+  const bare = state.missed.filter((skill) => !covered.has(skill));
+  return bare.length ? `<p class="quiet small">No study card yet for: ${bare.map((skill) => escapeHtml(skillLabels[skill] || skill.replace(/_/g, ' '))).join(', ')}.</p>` : '';
+}
+
+// Active skills only: a skill an instructor has switched off has no cards and no quiz questions.
+function loadMissed(code) {
+  state.missed = code ? missedSkills(code, bank).filter((skill) => statusOf(skill) !== 'inactive') : [];
+}
+
+function codeSummary(code) {
+  const missed = missedSkills(code, bank).filter((skill) => statusOf(skill) !== 'inactive');
+  return missed.length
+    ? `<p>${missed.length} ${missed.length === 1 ? 'skill' : 'skills'} to review. They’re under <strong>Missed</strong> below.</p>`
+    : '<p>Nothing to review from that quiz. Nice work.</p>';
+}
+
+function describeCode(code) {
+  document.getElementById('code-heading').textContent = code
+    ? `Your quiz code · ${state.missed.length} ${state.missed.length === 1 ? 'skill' : 'skills'} to review`
+    : 'Paste your quiz code to see what you missed';
+}
+
+function applyCode(code) {
+  loadMissed(code);
+  describeCode(code);
+  // New code: jump to what it says to study. Forgotten code: leave the Missed level behind.
+  state.level = state.missed.length ? 'missed' : (state.level === 'missed' ? 'all' : state.level);
+  state.category = 'All';
+  rebuild();
+}
+
 async function init() {
-  const [curriculum, deck] = await Promise.all([loadJson('../quiz/data/curriculum.json'), loadJson('../quiz/data/study-deck.json')]);
+  [curriculum, bank, deck] = await Promise.all(['../quiz/data/curriculum.json', '../quiz/data/questions.json', '../quiz/data/study-deck.json'].map(loadJson));
   statusOf = (skill) => curriculum.skills?.[skill] || 'inactive';
+  skillLabels = bank.skills || {};
   state.cards = deck.cards.filter((card) => statusOf(card.skill) !== 'inactive');
   state.categories = deck.categories.filter((category) => state.cards.some((card) => card.category === category));
-  document.getElementById('study-label').textContent = `Study cards · ${curriculum.quiz_label}`;
-  document.title = `Study Cards · ${curriculum.quiz_label} · MUS 248`;
+  // The label lives in the quizzes map, keyed by the announced quiz number.
+  const quizLabel = curriculum.quizzes?.[String(curriculum.quiz_number)]?.label || `Quiz ${curriculum.quiz_number}`;
+  document.getElementById('study-label').textContent = `Study cards · ${quizLabel}`;
+  document.title = `Study Cards · ${quizLabel} · MUS 248`;
+
+  root.innerHTML = `
+    <details class="code-details" id="code-details">
+      <summary id="code-heading"></summary>
+      <div id="code-panel"></div>
+    </details>
+    <div id="study-body"></div>`;
+  body = root.querySelector('#study-body');
+  const code = savedState();
+  mountCodeBox(root.querySelector('#code-panel'), {
+    summarize: codeSummary,
+    onChange: (next) => applyCode(next),
+  });
+  loadMissed(code);
+  describeCode(code);
+  state.level = state.missed.length ? 'missed' : 'all';
   setCategory('All');
 }
 

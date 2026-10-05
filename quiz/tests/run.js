@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus } from '../js/engine.js';
+import { buildPayload, choiceOrder, missedSkills, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -489,6 +489,37 @@ test('the Canvas code stays a reasonable length, even for a student who answers 
   const fullCode = encodeStateCode(full);
   assert.ok(fullCode.length < 3000, `answering all ${everything.length} questions gives a ${fullCode.length}-character code`);
   console.log(`      (code length: ${typicalCode.length} graded only, ${fullCode.length} with all ${bonus.length} bonus)`);
+});
+
+// ---------- Missed skills (study cards) ----------
+
+test('missedSkills: latest misses first, resolved misses drop off, any tier counts', () => {
+  const ids = (skill) => bank.questions.filter((question) => question.skill === skill).map(({ id }) => id);
+  const [clip, phantom, ortf] = ['clipping', 'phantom_power', 'ortf'];
+  const state = {
+    // Missed Core (c0), missed Practice (p0), and a Bonus answered right (b1).
+    a: { [ids(clip)[0]]: 'c0', [ids(ortf)[0]]: 'p0', [ids(phantom)[0]]: 'b1' },
+    // phantom_power: missed in Quiz 1, right since → resolved. mains_monitors: missed
+    // earlier, not asked this time → still outstanding.
+    sk: { clipping: '1110', ortf: '0', phantom_power: '01', mains_monitors: '10' },
+  };
+  assert.deepEqual(missedSkills(state, bank), ['clipping', 'ortf', 'mains_monitors']);
+});
+
+test('missedSkills reads every code shape, including bare Quiz 1 results and no code', () => {
+  assert.deepEqual(missedSkills(null, bank), []);
+  assert.deepEqual(missedSkills({}, bank), []);
+  const id = bank.questions.find((question) => question.skill === 'clipping').id;
+  assert.deepEqual(missedSkills({ a: { [id]: 'c0' } }, bank), ['clipping'], 'Quiz 1 results have only two characters');
+  assert.deepEqual(missedSkills({ a: { GONE_999: 'c0' } }, bank), [], 'a question since removed from the bank is skipped');
+});
+
+test('the saved-code helpers survive having no localStorage', async () => {
+  const { readSavedCode, writeSavedCode, forgetSavedCode, savedState } = await import('../js/saved-code.js');
+  assert.equal(readSavedCode(), null);
+  assert.equal(savedState(), null);
+  writeSavedCode(1, 'x');
+  forgetSavedCode();
 });
 
 if (failures) {

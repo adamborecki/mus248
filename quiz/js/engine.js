@@ -344,6 +344,24 @@ export function reviewSkills(answers, bank, curriculum, limit = curriculum.revie
   return [...new Set([...missed((role) => role === 'core'), ...rest])].slice(0, limit);
 }
 
+// What a pasted code says still needs work, for the study cards: any skill missed
+// on that quiz (any tier — a missed Practice or Bonus question is still a gap),
+// plus any skill whose latest recorded outcome is still a miss. A skill missed
+// once and answered right since has been resolved, so it drops off. Missed on
+// the most recent quiz comes first. Uses only fields every code since Quiz 1 has.
+export function missedSkills(state, bank) {
+  const byId = indexQuestions(bank);
+  const latest = [];
+  Object.entries(state?.a || {}).forEach(([id, result]) => {
+    const skill = byId[id]?.skill;
+    if (skill && !parseResult(result).correct && !latest.includes(skill)) latest.push(skill);
+  });
+  const lingering = Object.entries(state?.sk || {})
+    .filter(([skill, history]) => String(history).endsWith('0') && !latest.includes(skill))
+    .map(([skill]) => skill);
+  return [...latest, ...lingering];
+}
+
 // Compact keys keep the pasted code short. See README for the field list.
 export function buildPayload({ curriculum, bank, attempt, appVersion, completedAt = new Date().toISOString() }) {
   const byId = indexQuestions(bank);

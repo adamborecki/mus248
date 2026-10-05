@@ -181,7 +181,14 @@ tr.flag { background:var(--practice-bg); }
 .badge.clock { background:#f0efe9; color:#3d3a30; }
 .pacing { margin:1.25rem 0 .5rem; }
 .pacing .field-label { margin:0 0 .4rem; font-weight:650; }
+
+/* Pasting a quiz code at any time: the study page's collapsible panel, and the cards it flags. */
+.badge.missed { background:#fdeceb; color:#a4161a; }
+.code-details { margin:0 0 .9rem; padding:.55rem .9rem; border:1px solid var(--line); border-radius:.55rem; background:var(--surface); }
+.code-details summary { cursor:pointer; font-weight:650; }
+.code-details[open] summary { margin-bottom:.5rem; }
 @media (prefers-color-scheme: dark) {
+  .badge.missed { background:#4a1c1e; color:#ffd1d1; }
   .badge.bonus { background:#16314f; color:#cfe2ff; }
   .badge.clock { background:#2f2d26; color:#e6e2d4; }
   .eyebrow .clock.is-low { color:#ff6b6b; }
