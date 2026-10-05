@@ -73,7 +73,21 @@
     "salmon_audio_setup": "Salmon: audio setup",
     "salmon_recording": "Salmon: start, stop, intermission",
     "salmon_etiquette": "Salmon: green room and lobby",
-    "salmon_data_pass": "Salmon: data transfer"
+    "salmon_data_pass": "Salmon: data transfer",
+    "stops": "Stops of light",
+    "depth_of_field": "Depth of field",
+    "house_default": "The camera house default",
+    "camera_test_clip": "Test clips and one-change comparisons",
+    "nd_filters": "ND filters",
+    "focal_length": "Focal length",
+    "focus_distance": "Focus distance",
+    "dante_audio_over_ip": "Dante: audio over IP",
+    "dante_daw_io": "Dante: DAW I/O vs. Dante Controller",
+    "dante_stereo_routing": "Dante Broadcast: stereo routing",
+    "dante_multi_output": "Dante Broadcast: Multi-Output Device",
+    "dante_channel_planning": "Dante Jam Session: channel planning",
+    "dante_troubleshooting": "Dante troubleshooting",
+    "dante_signal_flow": "Dante signal flow: DAW to mixer"
   },
   "questions": [
     {
@@ -4054,6 +4068,1338 @@
       ],
       "answer_index": 0,
       "explanation": "A bus is an internal mix path. An output connector is where that path physically leaves the mixer.",
+      "verified": false
+    },
+    {
+      "id": "VID_EXP_004",
+      "skill": "exposure",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You go from F4.0 at 1/60 to F5.6 at 1/30. What happens to the overall brightness?",
+      "choices": [
+        "It gets two stops darker",
+        "About the same: you lost one stop and gained one back",
+        "It gets two stops brighter",
+        "There is no way to tell"
+      ],
+      "answer_index": 1,
+      "explanation": "F4.0 to F5.6 is one stop less light, and 1/60 to 1/30 is one stop more. They cancel.",
+      "verified": false
+    },
+    {
+      "id": "VID_EXP_005",
+      "skill": "exposure",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You compare F4.0 at 1/60 with F5.6 at 1/30. Both are about equally bright. What else is different?",
+      "choices": [
+        "The second has less depth of field and less motion blur",
+        "The second has a different color cast",
+        "The second has more depth of field and more motion blur",
+        "Nothing else is different"
+      ],
+      "answer_index": 2,
+      "explanation": "Same exposure, different picture. A smaller opening gives more depth of field, and a slower shutter gives more motion blur.",
+      "verified": false
+    },
+    {
+      "id": "VID_EXP_006",
+      "skill": "exposure",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The hall is bright and the picture is overexposed. You want to keep the same motion blur and the same noise. Which control do you change?",
+      "choices": [
+        "Slow the shutter down",
+        "Raise the ISO or gain",
+        "Change the white balance",
+        "Close the iris (a higher f-number)"
+      ],
+      "answer_index": 3,
+      "explanation": "Shutter speed controls motion blur and gain controls noise, so the iris is the control left to take light away.",
+      "verified": false
+    },
+    {
+      "id": "VID_EXP_007",
+      "skill": "exposure",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which exposure control changes both brightness and depth of field?",
+      "choices": [
+        "Aperture / iris",
+        "Shutter speed",
+        "ISO / gain",
+        "White balance"
+      ],
+      "answer_index": 0,
+      "explanation": "Aperture affects brightness and depth of field. Shutter speed affects brightness and motion blur. ISO or gain affects brightness and noise.",
+      "verified": false
+    },
+    {
+      "id": "VID_EXP_008",
+      "skill": "exposure",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The hall is dark and the iris is already wide open. Which fixes are left, and what does each cost?",
+      "choices": [
+        "Closing the iris, which costs nothing",
+        "A slower shutter (more motion blur) or more gain/ISO (more noise)",
+        "Changing white balance, which costs focus",
+        "A faster shutter, which costs noise"
+      ],
+      "answer_index": 1,
+      "explanation": "Once the iris is wide open, brightness has to come from the shutter or from gain. Each one trades something away.",
+      "verified": false
+    },
+    {
+      "id": "VID_AP_003",
+      "skill": "aperture_iris",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these apertures lets in the most light?",
+      "choices": [
+        "F4",
+        "F5.6",
+        "F2.8",
+        "F11"
+      ],
+      "answer_index": 2,
+      "explanation": "A lower f-number is a bigger opening. F2.8 is the biggest of these, and F11 the smallest.",
+      "verified": false
+    },
+    {
+      "id": "VID_AP_004",
+      "skill": "aperture_iris",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You change the aperture from F8 to F5.6. What happens?",
+      "choices": [
+        "One stop less light",
+        "Two stops more light",
+        "No change in brightness",
+        "One stop more light"
+      ],
+      "answer_index": 3,
+      "explanation": "Going down one step on the f-number scale (…2.8, 4, 5.6, 8, 11…) lets in one stop more light.",
+      "verified": false
+    },
+    {
+      "id": "VID_AP_005",
+      "skill": "aperture_iris",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On the f-number scale 2.8, 4, 5.6, 8, 11, what does each step toward the higher number do to the light?",
+      "choices": [
+        "Halves it: one stop less per step",
+        "Doubles it",
+        "Leaves it the same but changes color",
+        "Halves it, but only for the shutter"
+      ],
+      "answer_index": 0,
+      "explanation": "Each step on that scale is one stop. Moving to the higher number cuts the light in half.",
+      "verified": false
+    },
+    {
+      "id": "VID_SH_004",
+      "skill": "shutter_speed",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You change the shutter from 1/60 to 1/30. How much more light reaches the sensor?",
+      "choices": [
+        "One stop less",
+        "One stop more",
+        "Two stops more",
+        "None, shutter speed only affects blur"
+      ],
+      "answer_index": 1,
+      "explanation": "Doubling the exposure time doubles the light, which is one stop. Shutter is the control you change by doubling or halving the time.",
+      "verified": false
+    },
+    {
+      "id": "VID_SH_005",
+      "skill": "shutter_speed",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is the faster shutter speed, 1/60 or 1/250?",
+      "choices": [
+        "1/60",
+        "They are the same",
+        "1/250",
+        "It depends on the lens"
+      ],
+      "answer_index": 2,
+      "explanation": "1/250 of a second is a shorter exposure than 1/60. Faster means less light and less motion blur.",
+      "verified": false
+    },
+    {
+      "id": "VID_SH_006",
+      "skill": "shutter_speed",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Compared with 1/60, a much faster shutter like 1/250 gives…",
+      "choices": [
+        "A brighter image with more blur",
+        "A cooler color cast",
+        "More depth of field",
+        "A darker image with each moment looking crisper"
+      ],
+      "answer_index": 3,
+      "explanation": "A shorter exposure lets in less light and freezes motion more. You’d use it when you want crisp action and have light to spare.",
+      "verified": false
+    },
+    {
+      "id": "VID_ISO_003",
+      "skill": "iso_gain",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You go from ISO 400 to ISO 1600. How many stops brighter is that?",
+      "choices": [
+        "Two stops",
+        "One stop",
+        "Four stops",
+        "It isn’t brighter, only noisier"
+      ],
+      "answer_index": 0,
+      "explanation": "Each doubling of ISO is one stop: 400 to 800 is one, and 800 to 1600 is two.",
+      "verified": false
+    },
+    {
+      "id": "VID_ISO_004",
+      "skill": "iso_gain",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a camera that shows gain in dB, how many dB is one stop?",
+      "choices": [
+        "3 dB",
+        "6 dB",
+        "1 dB",
+        "12 dB"
+      ],
+      "answer_index": 1,
+      "explanation": "It is 6 dB per stop, not 3 dB. Gain in dB is measured on the amplitude scale, where a doubling is 6 dB.",
+      "verified": false
+    },
+    {
+      "id": "VID_ISO_005",
+      "skill": "iso_gain",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the cost of raising ISO or gain to brighten a dark shot?",
+      "choices": [
+        "Less depth of field",
+        "More motion blur",
+        "More visible noise, especially in the dark parts of the picture",
+        "A warmer color cast"
+      ],
+      "answer_index": 2,
+      "explanation": "Gain brightens the picture electronically, and that brings up noise too.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_001",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In photography and video, what is a “stop” of light?",
+      "choices": [
+        "A fixed number of lumens",
+        "The setting where autofocus stops",
+        "One step of white balance",
+        "A doubling or halving of the light reaching the sensor"
+      ],
+      "answer_index": 3,
+      "explanation": "Every exposure control is measured in stops, which is why an engineer can say “give me a stop more” to someone holding a camera they’ve never touched.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_002",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your shot is one stop too dark and you’ll fix it with gain alone. You are at 3 dB. What do you set?",
+      "choices": [
+        "9 dB",
+        "4 dB",
+        "6 dB",
+        "12 dB"
+      ],
+      "answer_index": 0,
+      "explanation": "One stop is 6 dB, so 3 dB plus 6 dB is 9 dB.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_003",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Going from ISO 400 to ISO 800 is how much of a change in light?",
+      "choices": [
+        "One stop less",
+        "One stop more",
+        "Two stops more",
+        "No change"
+      ],
+      "answer_index": 1,
+      "explanation": "ISO doubling is one stop. That is the quick way to remember it.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_004",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Raising gain from 3 dB to 15 dB is how many stops?",
+      "choices": [
+        "One stop",
+        "Four stops",
+        "Two stops",
+        "Twelve stops"
+      ],
+      "answer_index": 2,
+      "explanation": "15 minus 3 is 12 dB, and 12 dB at 6 dB per stop is two stops.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_005",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "F4.0 to F5.6 is…",
+      "choices": [
+        "One stop more light",
+        "Two stops less light",
+        "No change in light",
+        "One stop less light"
+      ],
+      "answer_index": 3,
+      "explanation": "F4.0 to F5.6 is one step along the f-number scale, which is one stop less light.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_006",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Is 3 dB on one camera the same as ISO 400 on another?",
+      "choices": [
+        "Not as a rule: those are house numbers for particular cameras. What transfers is the stop (+6 dB or ISO ×2)",
+        "Yes, 3 dB always equals ISO 400",
+        "Yes, as long as the cameras are the same brand",
+        "No, because dB is for audio only"
+      ],
+      "answer_index": 0,
+      "explanation": "A camera at 0 dB is at its own base sensitivity, which differs by body. Don’t convert between the two units; think in stops.",
+      "verified": false
+    },
+    {
+      "id": "VID_STOP_007",
+      "skill": "stops",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is NOT a way to give a shot “a stop more” light?",
+      "choices": [
+        "Opening the iris one step, such as F5.6 to F4",
+        "Changing the white balance from 3200 K to 5000 K",
+        "Doubling the exposure time, such as 1/60 to 1/30",
+        "Raising gain by 6 dB"
+      ],
+      "answer_index": 1,
+      "explanation": "White balance changes the color cast. It does not change how much light hits the sensor.",
+      "verified": false
+    },
+    {
+      "id": "VID_DOF_001",
+      "skill": "depth_of_field",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is depth of field?",
+      "choices": [
+        "How bright the picture is",
+        "How fast the shutter opens",
+        "How much of the scene, from near to far, appears acceptably sharp",
+        "How much noise is in the picture"
+      ],
+      "answer_index": 2,
+      "explanation": "A deep depth of field keeps both near and far things sharp. A shallow one keeps only a thin slice sharp.",
+      "verified": false
+    },
+    {
+      "id": "VID_DOF_002",
+      "skill": "depth_of_field",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You want more of the scene in focus, from the near object to the far one. Which aperture change helps?",
+      "choices": [
+        "Opening the iris, such as F8 to F4",
+        "Raising the ISO",
+        "Changing the white balance",
+        "Closing the iris, such as F4 to F8"
+      ],
+      "answer_index": 3,
+      "explanation": "A smaller opening gives more depth of field. Going from F4.0 to F5.6 makes the picture darker with more of the scene in focus.",
+      "verified": false
+    },
+    {
+      "id": "VID_DOF_003",
+      "skill": "depth_of_field",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A wide-open iris (a low f-number) tends to give…",
+      "choices": [
+        "More light and a shallower depth of field",
+        "Less light and a deeper depth of field",
+        "More noise",
+        "A cooler color cast"
+      ],
+      "answer_index": 0,
+      "explanation": "The bigger the opening, the more light, and the less of the scene stays in focus.",
+      "verified": false
+    },
+    {
+      "id": "VID_DOF_004",
+      "skill": "depth_of_field",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You close the iris for more depth of field in a dim room, and the picture gets too dark. What can you do to brighten it?",
+      "choices": [
+        "Close the iris further",
+        "Raise the gain or slow the shutter, accepting more noise or more motion blur",
+        "Change the white balance",
+        "Speed the shutter up"
+      ],
+      "answer_index": 1,
+      "explanation": "Brightness has to come from somewhere. Gain costs noise, and a slower shutter costs motion blur.",
+      "verified": false
+    },
+    {
+      "id": "VID_HOUSE_001",
+      "skill": "house_default",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the house default in the Portable Cameras activity?",
+      "choices": [
+        "F2.8, 0 dB, 1/30, 5600 K, manual focus",
+        "F8, 12 dB, 1/250, 3200 K, autofocus",
+        "F4.0, 3 dB (ISO 400 on the GH5), 1/60, 3200 K, autofocus",
+        "F4.0, 3 dB, 1/500, 5600 K, manual focus"
+      ],
+      "answer_index": 2,
+      "explanation": "The house default is the known baseline: F4.0 · 3 dB (ISO 400 on the GH5) · 1/60 · 3200 K · autofocus.",
+      "verified": false
+    },
+    {
+      "id": "VID_HOUSE_002",
+      "skill": "house_default",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When do you set a camera to the house default in the Cameras activity?",
+      "choices": [
+        "Only at the start",
+        "Only at the end",
+        "Never, you leave it as you found it",
+        "At the start, and again before the camera goes back in the cabinet"
+      ],
+      "answer_index": 3,
+      "explanation": "You set it twice: once to start from a known baseline, and once so the next person finds it that way.",
+      "verified": false
+    },
+    {
+      "id": "VID_HOUSE_003",
+      "skill": "house_default",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A camera comes out of the cabinet in whatever state the last person left it. What do you do before recording?",
+      "choices": [
+        "Set it to a known baseline and confirm all five values on the display",
+        "Start recording and fix it afterward",
+        "Leave it, because the last person set it up",
+        "Reset only the white balance"
+      ],
+      "answer_index": 0,
+      "explanation": "Nobody is going to walk you through the menus. Set the five values and read them off the screen before you record.",
+      "verified": false
+    },
+    {
+      "id": "VID_TEST_001",
+      "skill": "camera_test_clip",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After you record your first clip, what should you do before shooting the others?",
+      "choices": [
+        "Keep shooting and check at the end",
+        "Pull the SD card, open the file on a computer, and confirm it plays and has audio",
+        "Reformat the card",
+        "Delete the first clip"
+      ],
+      "answer_index": 1,
+      "explanation": "Do not shoot the other clips before you know the card is actually recording. Students lose whole sessions this way.",
+      "verified": false
+    },
+    {
+      "id": "VID_TEST_002",
+      "skill": "camera_test_clip",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When comparing what a setting does, why change only one setting at a time and keep the framing identical?",
+      "choices": [
+        "It saves battery",
+        "It makes the file smaller",
+        "Otherwise you can’t tell what caused the difference",
+        "The camera can only store one setting"
+      ],
+      "answer_index": 2,
+      "explanation": "If the framing, the light, or two settings changed, the comparison is worthless.",
+      "verified": false
+    },
+    {
+      "id": "VID_TEST_003",
+      "skill": "camera_test_clip",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The camera says the SD card is full, locked, or missing. What should you NOT do?",
+      "choices": [
+        "Check that the card is seated",
+        "Check the write-protect slider",
+        "Find a different card or ask",
+        "Reformat it"
+      ],
+      "answer_index": 3,
+      "explanation": "Do not reformat. Check the card is seated and the slider is up, then find a different card or ask.",
+      "verified": false
+    },
+    {
+      "id": "VID_TEST_004",
+      "skill": "camera_test_clip",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the Cameras activity, what is a “slate”?",
+      "choices": [
+        "Reading your settings aloud on camera",
+        "A clapperboard sound effect",
+        "A kind of SD card",
+        "The camera’s battery label"
+      ],
+      "answer_index": 0,
+      "explanation": "Reading the settings out loud on camera records which values each clip used, so you can match clips to settings later.",
+      "verified": false
+    },
+    {
+      "id": "VID_ND_001",
+      "skill": "nd_filters",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does an ND (neutral density) filter do?",
+      "choices": [
+        "Changes the white balance",
+        "Reduces the light reaching the sensor without changing the color",
+        "Increases the depth of field",
+        "Adds noise to the picture"
+      ],
+      "answer_index": 1,
+      "explanation": "Neutral means it dims the picture without tinting it.",
+      "verified": false
+    },
+    {
+      "id": "VID_ND_002",
+      "skill": "nd_filters",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "It’s bright daylight. You want a wide-open iris and 1/60 shutter, but the shot is overexposed. What helps?",
+      "choices": [
+        "A higher ISO",
+        "A warmer white balance",
+        "An ND filter",
+        "A slower shutter"
+      ],
+      "answer_index": 2,
+      "explanation": "The ND filter takes light away so you can keep the aperture and shutter speed you actually want.",
+      "verified": false
+    },
+    {
+      "id": "VID_ND_003",
+      "skill": "nd_filters",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why use an ND filter instead of just closing the iris?",
+      "choices": [
+        "An ND filter makes the shot sharper",
+        "Closing the iris adds noise",
+        "ND filters change the white balance for you",
+        "Closing the iris would change your depth of field, and an ND filter doesn’t"
+      ],
+      "answer_index": 3,
+      "explanation": "With ND you can keep the depth of field and motion blur you chose and still control brightness.",
+      "verified": false
+    },
+    {
+      "id": "VID_ND_004",
+      "skill": "nd_filters",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "It’s a dark recital hall. Will an ND filter help you get a brighter picture?",
+      "choices": [
+        "No, an ND filter only removes light",
+        "Yes, it brightens dark scenes",
+        "Yes, but only with autofocus",
+        "Only if the shutter is slow"
+      ],
+      "answer_index": 0,
+      "explanation": "ND filters are for too much light. In a dark hall you need the opposite.",
+      "verified": false
+    },
+    {
+      "id": "VID_ND_005",
+      "skill": "nd_filters",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An ND filter cuts the light by 3 stops. What fraction of the light gets through?",
+      "choices": [
+        "1/3",
+        "1/8",
+        "1/6",
+        "3/4"
+      ],
+      "answer_index": 1,
+      "explanation": "Each stop halves the light, so three stops is one half times one half times one half, which is one eighth.",
+      "verified": false
+    },
+    {
+      "id": "VID_FLEN_001",
+      "skill": "focal_length",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Focal length, in millimeters, mainly describes what about a lens?",
+      "choices": [
+        "How much light it lets in",
+        "How fast it focuses",
+        "How wide or narrow (zoomed in) a view it gives",
+        "How close the subject must be"
+      ],
+      "answer_index": 2,
+      "explanation": "A shorter focal length gives a wider view. A longer one is more zoomed in.",
+      "verified": false
+    },
+    {
+      "id": "VID_FLEN_002",
+      "skill": "focal_length",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You zoom in to fill the frame with a soloist. What changed?",
+      "choices": [
+        "The focal length got shorter",
+        "The aperture got bigger",
+        "The shutter got faster",
+        "The focal length got longer, so the field of view is narrower"
+      ],
+      "answer_index": 3,
+      "explanation": "Zooming in raises the focal length and narrows what the camera sees.",
+      "verified": false
+    },
+    {
+      "id": "VID_FLEN_003",
+      "skill": "focal_length",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these focal lengths gives the widest view?",
+      "choices": [
+        "18 mm",
+        "50 mm",
+        "100 mm",
+        "200 mm"
+      ],
+      "answer_index": 0,
+      "explanation": "The shorter the focal length, the wider the view.",
+      "verified": false
+    },
+    {
+      "id": "VID_FLEN_004",
+      "skill": "focal_length",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You need to fit a whole ensemble in the shot, and you can’t move the camera back. What helps?",
+      "choices": [
+        "A longer focal length",
+        "A shorter focal length (zoom out)",
+        "A faster shutter",
+        "A higher ISO"
+      ],
+      "answer_index": 1,
+      "explanation": "Zooming out gives a wider view. At a recital, wide framing also leaves room for performers when they bow.",
+      "verified": false
+    },
+    {
+      "id": "VID_FDIST_001",
+      "skill": "focus_distance",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is focus distance?",
+      "choices": [
+        "How far the camera can zoom",
+        "How much of the scene is sharp",
+        "The distance from the camera to the thing that is in sharp focus",
+        "How far the shutter travels"
+      ],
+      "answer_index": 2,
+      "explanation": "It’s where the lens is set to be sharp. Depth of field is how far the sharp zone extends from there.",
+      "verified": false
+    },
+    {
+      "id": "VID_FDIST_002",
+      "skill": "focus_distance",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A camera is on manual focus, set on a singer. The singer walks well forward. What happens?",
+      "choices": [
+        "They stay sharp, because focus follows people",
+        "The picture gets darker",
+        "The color shifts",
+        "They go soft, because they’re no longer at the distance the lens is set to"
+      ],
+      "answer_index": 3,
+      "explanation": "In manual focus the focus distance stays where you left it, so check focus whenever the subject moves.",
+      "verified": false
+    },
+    {
+      "id": "VID_FDIST_003",
+      "skill": "focus_distance",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You refocus from a near object to a far one. What did you change?",
+      "choices": [
+        "The focus distance",
+        "The focal length",
+        "The aperture",
+        "The shutter speed"
+      ],
+      "answer_index": 0,
+      "explanation": "Refocusing changes the distance the lens is sharp at. Focal length is how wide the view is.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_AOIP_001",
+      "skill": "dante_audio_over_ip",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does “AoIP” stand for?",
+      "choices": [
+        "Audio on Input Panel",
+        "Audio over IP",
+        "Analog output in parallel",
+        "Amplifier over IP"
+      ],
+      "answer_index": 1,
+      "explanation": "Dante is audio over IP: multichannel digital audio over a network.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_AOIP_002",
+      "skill": "dante_audio_over_ip",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What can a single Ethernet cable do on a Dante network?",
+      "choices": [
+        "Carry only one stereo pair",
+        "Carry video only",
+        "Carry many channels of audio, replacing a thick analog snake",
+        "Carry audio but never at full quality"
+      ],
+      "answer_index": 2,
+      "explanation": "Instead of a thick analog snake with oodles of cables, there is one Ethernet cable.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_AOIP_003",
+      "skill": "dante_audio_over_ip",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which statement about Dante Virtual Soundcard (DVS) is true?",
+      "choices": [
+        "It’s a free cable",
+        "It routes channels between devices",
+        "It only works with one DAW",
+        "It’s licensed software that makes your computer appear as an audio interface in a DAW’s I/O"
+      ],
+      "answer_index": 3,
+      "explanation": "Any DAW (Logic, Ableton, Reaper) can use DVS if it’s installed. Choose the correct audio I/O in the DAW.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_AOIP_004",
+      "skill": "dante_audio_over_ip",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Dante, what do TX and RX stand for?",
+      "choices": [
+        "Transmit and receive",
+        "Transfer and record",
+        "Timing and routing",
+        "Track and render"
+      ],
+      "answer_index": 0,
+      "explanation": "TX is transmit and RX is receive.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_AOIP_005",
+      "skill": "dante_audio_over_ip",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Dante Controller “does not make sound.” What does it do?",
+      "choices": [
+        "It plays audio over the network",
+        "It creates the subscription between transmit and receive channels, like a virtual patch bay across the network",
+        "It records the network",
+        "It amplifies the signal"
+      ],
+      "answer_index": 1,
+      "explanation": "It is the routing tool: it decides where network audio goes. The sound itself comes from the DAW through DVS.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_IO_001",
+      "skill": "dante_daw_io",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where do you choose which audio interface a DAW uses?",
+      "choices": [
+        "In Dante Controller",
+        "In the Dante routing matrix only",
+        "In the DAW’s audio I/O settings",
+        "On the Ethernet switch"
+      ],
+      "answer_index": 2,
+      "explanation": "DAW I/O is where you choose the audio interface. Dante Controller chooses where network audio goes.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_IO_002",
+      "skill": "dante_daw_io",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which tool chooses which transmit channel feeds which receive channel on the network?",
+      "choices": [
+        "The DAW’s I/O settings",
+        "The audio interface",
+        "The headphone output",
+        "Dante Controller"
+      ],
+      "answer_index": 3,
+      "explanation": "Dante Controller creates the subscriptions. It does not choose the DAW’s device.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_IO_003",
+      "skill": "dante_daw_io",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "To send audio from a DAW out over Dante, what should the DAW’s output device be set to?",
+      "choices": [
+        "Dante Virtual Soundcard",
+        "Built-in Output",
+        "Headphones",
+        "Whatever the other computer is using"
+      ],
+      "answer_index": 0,
+      "explanation": "The transmitting DAW’s output has to go to DVS, or nothing reaches the network.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_IO_004",
+      "skill": "dante_daw_io",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "On the receiving computer, how do you hear and record the incoming Dante audio?",
+      "choices": [
+        "Just turn up the headphones",
+        "Set the DAW’s input to Dante Virtual Soundcard, make a track with input Dante 1–2, and turn on input monitoring",
+        "Set the output to Dante Virtual Soundcard",
+        "Nothing is needed once routing is green"
+      ],
+      "answer_index": 1,
+      "explanation": "The receiving track needs its input set to the right Dante channels, and input monitoring on so you can hear it.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_IO_005",
+      "skill": "dante_daw_io",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "Dante Controller shows green routing, but a classmate hears nothing. What’s the most likely next thing to check?",
+      "choices": [
+        "Restart the computer",
+        "Buy new headphones",
+        "Whether their DAW’s input device is actually set to Dante Virtual Soundcard",
+        "Reinstall Dante Controller"
+      ],
+      "answer_index": 2,
+      "explanation": "Green routing means the network connection exists. The DAW still has to be listening to DVS.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_ST_001",
+      "skill": "dante_stereo_routing",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "To send a stereo signal from one computer to another, which routes do you make in Dante Controller?",
+      "choices": [
+        "Only transmit ch. 1 to receive ch. 1",
+        "Transmit ch. 1 to receive ch. 2 only",
+        "No routes: DVS does it automatically",
+        "Transmit ch. 1 to receive ch. 1, and transmit ch. 2 to receive ch. 2"
+      ],
+      "answer_index": 3,
+      "explanation": "Stereo is two channels, so both must be routed.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_ST_002",
+      "skill": "dante_stereo_routing",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "You hear sound in only one ear when you expected stereo. What’s the most likely cause?",
+      "choices": [
+        "The track is mono instead of stereo, or only one Dante channel got routed",
+        "The DAW crashed",
+        "Dante Controller needs to be reinstalled",
+        "The headphones are broken"
+      ],
+      "answer_index": 0,
+      "explanation": "Check that the source is actually stereo and that both Dante channels 1 and 2 are routed.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_ST_003",
+      "skill": "dante_stereo_routing",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "What should the routing squares look like once a route is made?",
+      "choices": [
+        "Gray",
+        "Green",
+        "Red",
+        "Blinking"
+      ],
+      "answer_index": 1,
+      "explanation": "Green means connected. Gray or red means something isn’t.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_ST_004",
+      "skill": "dante_stereo_routing",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "How do you tell your computer from others in Dante Controller?",
+      "choices": [
+        "By its IP address written on the monitor",
+        "By the color of the squares",
+        "By its Local Hostname (the iMac number), typed into the Filter boxes",
+        "It is always listed first"
+      ],
+      "answer_index": 2,
+      "explanation": "Note the Local Hostname in System Settings, then use Filter Transmitters and Filter Receivers to find it.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_MO_001",
+      "skill": "dante_multi_output",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "Why build a Multi-Output Device on the transmitting computer?",
+      "choices": [
+        "To receive audio from the network",
+        "To make the audio mono",
+        "To change the Dante clock",
+        "So it can send audio over Dante and still hear it locally"
+      ],
+      "answer_index": 3,
+      "explanation": "The Multi-Output Device combines Dante Virtual Soundcard with your local headphone output.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_MO_002",
+      "skill": "dante_multi_output",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "After building a Multi-Output Device, what should the DAW’s output be set to?",
+      "choices": [
+        "The Multi-Output Device",
+        "Dante Virtual Soundcard only",
+        "Your headphone output only",
+        "An Aggregate Device"
+      ],
+      "answer_index": 0,
+      "explanation": "The Multi-Output Device is what sends to both places at once.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_MO_003",
+      "skill": "dante_multi_output",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "In a Multi-Output Device, what determines each device’s channel numbering?",
+      "choices": [
+        "Alphabetical order of device names",
+        "The order you check the boxes",
+        "It’s random",
+        "Every device always starts at channel 1"
+      ],
+      "answer_index": 1,
+      "explanation": "Channel numbering follows the order of the checked boxes.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_MO_004",
+      "skill": "dante_multi_output",
+      "topic": "dante",
+      "level": 2,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "When you build a Multi-Output Device, which box do you check first?",
+      "choices": [
+        "Your headphone or local interface",
+        "Whichever is alphabetically first",
+        "Dante Virtual Soundcard",
+        "It doesn’t matter"
+      ],
+      "answer_index": 2,
+      "explanation": "Check the DVS box before the local interface, or your channel numbering will come out different than expected.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_001",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "Three computers each send a stereo source to one receiving computer. Which channel map avoids collisions?",
+      "choices": [
+        "All three to channels 1–2",
+        "Everyone to channel 1",
+        "It doesn’t matter, Dante mixes them",
+        "Transmitter 1 to channels 1–2, transmitter 2 to 3–4, transmitter 3 to 5–6"
+      ],
+      "answer_index": 3,
+      "explanation": "Each source needs its own receive channel pair so each lands on its own track.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_002",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "Why does each transmitter need its own receive channel pair?",
+      "choices": [
+        "So each source arrives on a separate track instead of overriding another",
+        "Dante limits the whole network to 2 channels",
+        "DAWs require unique channel names",
+        "Dante automatically mixes everything together"
+      ],
+      "answer_index": 0,
+      "explanation": "Dante doesn’t mix two sources into one destination.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_003",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 2,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "You route a second source to a channel pair that’s already in use. What happens?",
+      "choices": [
+        "The two are mixed together",
+        "The new route silently overrides the first one: Dante doesn’t mix them",
+        "Dante refuses and shows an error",
+        "Both are muted"
+      ],
+      "answer_index": 1,
+      "explanation": "Dante never lets two sources share one destination. The first source just stops arriving.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_004",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 2,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "You only hear Transmitter 2, and Transmitter 1 should also be playing. What’s the most likely cause?",
+      "choices": [
+        "Transmitter 1’s audio interface is broken",
+        "The receiving computer needs more RAM",
+        "Both were routed to the same receive channel pair, so Transmitter 2 overrode Transmitter 1",
+        "DVS supports only one transmitter at a time"
+      ],
+      "answer_index": 2,
+      "explanation": "Look at the full routing matrix, not just your own row.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_005",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "In the Dante Jam Session, which computer plays the “mixer”?",
+      "choices": [
+        "Whichever transmitter is loudest",
+        "The Ethernet switch",
+        "Dante Controller",
+        "The receiving computer, whose output would feed the room’s speakers"
+      ],
+      "answer_index": 3,
+      "explanation": "Everyone’s audio routes into one computer that acts as the mixer. That computer’s output is what feeds the room.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_JAM_006",
+      "skill": "dante_channel_planning",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "How is the Dante Jam Session different from Dante Broadcast?",
+      "choices": [
+        "In the jam, many senders go to one receiver; in Broadcast, one computer sends to one or more computers",
+        "The jam uses no computers",
+        "Broadcast uses many senders and one receiver",
+        "There is no difference"
+      ],
+      "answer_index": 0,
+      "explanation": "Broadcast is one computer to one or more computers. The jam session is many senders into one receiver.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_TS_001",
+      "skill": "dante_troubleshooting",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "The receiving computer hears nothing. What do you check first in Dante Controller?",
+      "choices": [
+        "Whether the computer is plugged into AC",
+        "Whether the routing squares are green or gray/red",
+        "The color of the Ethernet cable",
+        "The Dante Controller version"
+      ],
+      "answer_index": 1,
+      "explanation": "Start with the network connection. Then check the DAWs’ DVS settings, input monitoring, and the headphones.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_TS_002",
+      "skill": "dante_troubleshooting",
+      "topic": "dante",
+      "level": 2,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "Dante Controller shows a red square in the lower right, such as “Clock: No clock source found.” What does it mean?",
+      "choices": [
+        "Only your computer is broken",
+        "Your headphones are unplugged",
+        "A network-wide clock problem: a master clock source needs to be set and active",
+        "The routing is correct"
+      ],
+      "answer_index": 2,
+      "explanation": "This is a network-wide problem, not just your computer. Flag it to your instructor if you can’t resolve it.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_TS_003",
+      "skill": "dante_troubleshooting",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": "dante",
+      "type": "multiple_choice",
+      "prompt": "In OH B01, which device must you NOT re-route or disconnect in Dante Controller?",
+      "choices": [
+        "Your own computer",
+        "Any other iMac in the room",
+        "The receiving computer in a jam session",
+        "The one labeled INST, the instructor computer feeding the room’s main speakers"
+      ],
+      "answer_index": 3,
+      "explanation": "Breaking INST cuts the sound for the whole room, including other classes.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_FLOW_001",
+      "skill": "dante_signal_flow",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the DAW to X32 example, what connects the DVS transmit channels to the X32’s receive channels?",
+      "choices": [
+        "A subscription made in Dante Controller",
+        "The DAW’s I/O settings",
+        "A new XLR snake",
+        "The X32’s main fader"
+      ],
+      "answer_index": 0,
+      "explanation": "DAW to DVS to the Dante network, then Dante Controller subscribes transmit to receive, and the X32 Dante card receives.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_FLOW_002",
+      "skill": "dante_signal_flow",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Multitrack DAW outputs 1–8 are sent over Dante to an X32. What does each output end up as?",
+      "choices": [
+        "One mono mix on channel 1",
+        "Its own channel on the X32, on its own fader",
+        "A Dante Controller preset",
+        "A passive speaker output"
+      ],
+      "answer_index": 1,
+      "explanation": "If the routing works, each stem lands on its own X32 fader.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_FLOW_003",
+      "skill": "dante_signal_flow",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is the correct signal path for sending DAW audio to another computer over Dante?",
+      "choices": [
+        "DAW, then the network, then the other computer’s speakers directly",
+        "DVS, then the DAW, then Dante Controller, then the network",
+        "DAW, then DVS, then the network, then DVS, then the other DAW, then its output",
+        "Network, then DAW, then DVS, then Dante Controller"
+      ],
+      "answer_index": 2,
+      "explanation": "The activities’ diagram: source to DAW to DVS to network to DVS to DAW to output.",
       "verified": false
     }
   ]

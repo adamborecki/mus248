@@ -1305,6 +1305,350 @@
       "front": "Before wiping a card",
       "back": "Triple Triple Check, then get Borecki to look over the transferred files. Move to Trash, Empty Trash, then Get Info (⌘I) on the card. Free space should be close to its full size.",
       "verified": false
+    },
+    {
+      "id": "stop",
+      "skill": "stops",
+      "category": "Video",
+      "front": "A stop",
+      "back": "A doubling or halving of the light reaching the sensor. Every exposure control is measured in stops, so “give me a stop more” works on any camera.",
+      "verified": false
+    },
+    {
+      "id": "stop_aperture",
+      "skill": "stops",
+      "category": "Video",
+      "front": "One stop of aperture",
+      "back": "One step along the f-number scale: 2.8, 4, 5.6, 8, 11. F4.0 to F5.6 is one stop less light.",
+      "verified": false
+    },
+    {
+      "id": "stop_shutter",
+      "skill": "stops",
+      "category": "Video",
+      "front": "One stop of shutter",
+      "back": "Double or halve the time. 1/60 to 1/30 is one stop more light.",
+      "verified": false
+    },
+    {
+      "id": "stop_gain",
+      "skill": "stops",
+      "category": "Video",
+      "front": "One stop of gain",
+      "back": "6 dB, not 3 dB. 3 dB to 9 dB is one stop more.",
+      "verified": false
+    },
+    {
+      "id": "stop_iso",
+      "skill": "stops",
+      "category": "Video",
+      "front": "One stop of ISO",
+      "back": "Double it. ISO 400 to 800 is one stop more. ISO 400 to 1600 is two stops.",
+      "verified": false
+    },
+    {
+      "id": "stop_not_convertible",
+      "skill": "stops",
+      "category": "Video",
+      "front": "dB and ISO aren’t a conversion",
+      "back": "A camera at 0 dB is at its own base sensitivity, which differs by body. 3 dB and ISO 400 are house numbers for particular cameras. What transfers is the stop: +6 dB and ISO ×2 are the same light on any camera.",
+      "verified": false
+    },
+    {
+      "id": "stop_not_wb",
+      "skill": "stops",
+      "category": "Video",
+      "front": "White balance is not exposure",
+      "back": "It changes the color cast, not how much light hits the sensor.",
+      "verified": false
+    },
+    {
+      "id": "dof",
+      "skill": "depth_of_field",
+      "category": "Video",
+      "front": "Depth of field",
+      "back": "How much of the scene, near to far, looks acceptably sharp.",
+      "verified": false
+    },
+    {
+      "id": "dof_aperture",
+      "skill": "depth_of_field",
+      "category": "Video",
+      "front": "Aperture and depth of field",
+      "back": "A smaller opening (higher f-number) gives more depth of field and a darker picture. A wider opening (lower f-number) gives a shallower depth of field and more light.",
+      "verified": false
+    },
+    {
+      "id": "dof_brighten",
+      "skill": "depth_of_field",
+      "category": "Video",
+      "front": "If it gets too dark",
+      "back": "Brightness has to come from somewhere: more gain costs noise, and a slower shutter costs motion blur.",
+      "verified": false
+    },
+    {
+      "id": "exposure_tradeoff",
+      "skill": "exposure",
+      "category": "Video",
+      "front": "Same exposure, different picture",
+      "back": "F4.0 at 1/60 and F5.6 at 1/30 are about equally bright, but the second has more depth of field and more motion blur.",
+      "verified": false
+    },
+    {
+      "id": "exposure_costs",
+      "skill": "exposure",
+      "category": "Video",
+      "front": "What each control costs",
+      "back": "Aperture: depth of field. Shutter speed: motion blur. ISO or gain: noise. Once the iris is wide open, brightness has to come from the shutter or from gain.",
+      "verified": false
+    },
+    {
+      "id": "house_default",
+      "skill": "house_default",
+      "category": "Video",
+      "front": "House default",
+      "back": "F4.0 · 3 dB (ISO 400 on the GH5) · 1/60 · 3200 K · autofocus. Set it at the start and again before the camera goes back in the cabinet.",
+      "verified": false
+    },
+    {
+      "id": "slate",
+      "skill": "camera_test_clip",
+      "category": "Video",
+      "front": "Slate",
+      "back": "Reading your settings aloud on camera, so each clip records which values it used.",
+      "verified": false
+    },
+    {
+      "id": "test_first_clip",
+      "skill": "camera_test_clip",
+      "category": "Video",
+      "front": "Check the first clip",
+      "back": "Pull the SD card, open the file on a computer, and confirm it plays and has audio before you shoot the rest.",
+      "verified": false
+    },
+    {
+      "id": "one_change",
+      "skill": "camera_test_clip",
+      "category": "Video",
+      "front": "Change one thing at a time",
+      "back": "Keep the framing identical and change only one setting per comparison, or you can’t tell what caused the difference.",
+      "verified": false
+    },
+    {
+      "id": "card_problem",
+      "skill": "camera_test_clip",
+      "category": "Video",
+      "front": "Card full, locked, or missing",
+      "back": "Check it’s seated and the write-protect slider is up. Do not reformat. Find a different card or ask.",
+      "verified": false
+    },
+    {
+      "id": "nd_filter",
+      "skill": "nd_filters",
+      "category": "Video",
+      "front": "ND (neutral density) filter",
+      "back": "Reduces the light reaching the sensor without changing the color.",
+      "verified": false
+    },
+    {
+      "id": "nd_use",
+      "skill": "nd_filters",
+      "category": "Video",
+      "front": "Why use ND",
+      "back": "In bright light it lets you keep a wide aperture (shallow depth of field) and your chosen shutter speed without overexposing. It does not help in a dark hall.",
+      "verified": false
+    },
+    {
+      "id": "nd_stops",
+      "skill": "nd_filters",
+      "category": "Video",
+      "front": "ND strength in stops",
+      "back": "Each stop halves the light. A 3-stop ND lets through 1/8 of the light.",
+      "verified": false
+    },
+    {
+      "id": "focal_length",
+      "skill": "focal_length",
+      "category": "Video",
+      "front": "Focal length",
+      "back": "Measured in millimeters. A shorter focal length gives a wider view. A longer one is more zoomed in.",
+      "verified": false
+    },
+    {
+      "id": "focal_zoom",
+      "skill": "focal_length",
+      "category": "Video",
+      "front": "Zooming",
+      "back": "Zooming in lengthens the focal length and narrows the field of view. Zooming out widens it, which helps when you can’t move back.",
+      "verified": false
+    },
+    {
+      "id": "focus_distance",
+      "skill": "focus_distance",
+      "category": "Video",
+      "front": "Focus distance",
+      "back": "How far from the camera the sharpest thing is. In manual focus it stays where you left it, so recheck when the subject moves.",
+      "verified": false
+    },
+    {
+      "id": "dante_aoip",
+      "skill": "dante_audio_over_ip",
+      "category": "Dante",
+      "front": "AoIP",
+      "back": "Audio over IP: multichannel digital audio over a network. One Ethernet cable instead of a thick analog snake.",
+      "verified": false
+    },
+    {
+      "id": "dante_txrx_abbr",
+      "skill": "dante_audio_over_ip",
+      "category": "Dante",
+      "front": "TX and RX",
+      "back": "Transmit and receive.",
+      "verified": false
+    },
+    {
+      "id": "dante_dvs_license",
+      "skill": "dante_audio_over_ip",
+      "category": "Dante",
+      "front": "DVS is software",
+      "back": "Licensed software. Any DAW (Logic, Ableton, Reaper) can use it, and it appears as an audio interface in the DAW’s I/O.",
+      "verified": false
+    },
+    {
+      "id": "dante_no_sound",
+      "skill": "dante_audio_over_ip",
+      "category": "Dante",
+      "front": "Dante Controller doesn’t make sound",
+      "back": "It creates the subscription between transmit and receive channels, like a virtual patch bay across the network.",
+      "verified": false
+    },
+    {
+      "id": "dante_io_vs_controller",
+      "skill": "dante_daw_io",
+      "category": "Dante",
+      "front": "DAW I/O vs. Dante Controller",
+      "back": "DAW I/O is where you choose the audio interface. Dante Controller chooses where network audio goes.",
+      "verified": false
+    },
+    {
+      "id": "dante_send_setup",
+      "skill": "dante_daw_io",
+      "category": "Dante",
+      "front": "Sending from a DAW",
+      "back": "Set the transmitting DAW’s output device to Dante Virtual Soundcard.",
+      "verified": false
+    },
+    {
+      "id": "dante_receive_setup",
+      "skill": "dante_daw_io",
+      "category": "Dante",
+      "front": "Receiving in a DAW",
+      "back": "Set the DAW’s input to Dante Virtual Soundcard, make a track with input Dante channels 1–2, and enable input monitoring.",
+      "verified": false
+    },
+    {
+      "id": "dante_stereo",
+      "skill": "dante_stereo_routing",
+      "category": "Dante",
+      "front": "Routing stereo",
+      "back": "Route transmit ch. 1 to receive ch. 1 and transmit ch. 2 to receive ch. 2. Green squares mean connected.",
+      "verified": false
+    },
+    {
+      "id": "dante_one_ear",
+      "skill": "dante_stereo_routing",
+      "category": "Dante",
+      "front": "Sound in only one ear",
+      "back": "The track is probably mono instead of stereo, or only one Dante channel got routed.",
+      "verified": false
+    },
+    {
+      "id": "dante_hostname",
+      "skill": "dante_stereo_routing",
+      "category": "Dante",
+      "front": "Finding your computer",
+      "back": "Note the Local Hostname (the iMac number) in System Settings > General > Sharing, then type it into the Filter Transmitters and Filter Receivers boxes.",
+      "verified": false
+    },
+    {
+      "id": "dante_multi_output",
+      "skill": "dante_multi_output",
+      "category": "Dante",
+      "front": "Multi-Output Device",
+      "back": "Made in Audio MIDI Setup. It combines Dante Virtual Soundcard with your local headphones so the sending computer can hear itself while still sending. Set the DAW’s output to it.",
+      "verified": false
+    },
+    {
+      "id": "dante_multi_order",
+      "skill": "dante_multi_output",
+      "category": "Dante",
+      "front": "Check DVS first",
+      "back": "In a Multi-Output Device, channel numbering follows the order you check the boxes. Check Dante Virtual Soundcard before the local interface.",
+      "verified": false
+    },
+    {
+      "id": "dante_jam",
+      "skill": "dante_channel_planning",
+      "category": "Dante",
+      "front": "Dante Jam Session",
+      "back": "Many senders into one receiving computer, which acts as the mixer. Each sender lands on its own track.",
+      "verified": false
+    },
+    {
+      "id": "dante_channel_map",
+      "skill": "dante_channel_planning",
+      "category": "Dante",
+      "front": "Plan the channel map",
+      "back": "Transmitter 1 to receive 1–2, transmitter 2 to 3–4, transmitter 3 to 5–6. Every source needs its own receive pair.",
+      "verified": false
+    },
+    {
+      "id": "dante_override",
+      "skill": "dante_channel_planning",
+      "category": "Dante",
+      "front": "Dante doesn’t mix two sources",
+      "back": "Routing a second source to a channel pair already in use silently overrides the first. It doesn’t mix them.",
+      "verified": false
+    },
+    {
+      "id": "dante_ts_order",
+      "skill": "dante_troubleshooting",
+      "category": "Dante",
+      "front": "Hearing nothing",
+      "back": "Check the routing squares are green. Then check the transmitting DAW’s output and the receiving DAW’s input are both DVS, input monitoring is on, and the headphones are the selected output.",
+      "verified": false
+    },
+    {
+      "id": "dante_clock",
+      "skill": "dante_troubleshooting",
+      "category": "Dante",
+      "front": "Red square: no clock source",
+      "back": "A network-wide problem. A master clock source needs to be set and active. Flag it to your instructor if you can’t resolve it.",
+      "verified": false
+    },
+    {
+      "id": "dante_inst",
+      "skill": "dante_troubleshooting",
+      "category": "Dante",
+      "front": "Never touch INST",
+      "back": "The INST computer feeds the room’s main speakers. Breaking that route cuts sound for the whole room, including other classes.",
+      "verified": false
+    },
+    {
+      "id": "dante_to_x32",
+      "skill": "dante_signal_flow",
+      "category": "Dante",
+      "front": "DAW to X32",
+      "back": "DAW outputs 1–8, DVS transmit 1–8, the Dante network, Dante Controller subscribes TX to RX, the X32 Dante card receives 1–8, and they land on X32 faders 1–8.",
+      "verified": false
+    },
+    {
+      "id": "dante_path",
+      "skill": "dante_signal_flow",
+      "category": "Dante",
+      "front": "The path of the signal",
+      "back": "Source, DAW, DVS, network, DVS, DAW, output.",
+      "verified": false
     }
   ]
 }

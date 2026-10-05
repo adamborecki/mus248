@@ -113,6 +113,22 @@
     "salmon_audio_setup": "practice",
     "salmon_recording": "practice",
     "salmon_etiquette": "practice",
-    "salmon_data_pass": "practice"
+    "salmon_data_pass": "practice",
+
+    "stops": "practice",
+    "depth_of_field": "practice",
+    "house_default": "practice",
+    "camera_test_clip": "practice",
+    "nd_filters": "practice",
+    "focal_length": "practice",
+    "focus_distance": "practice",
+
+    "dante_audio_over_ip": "practice",
+    "dante_daw_io": "practice",
+    "dante_stereo_routing": "practice",
+    "dante_multi_output": "practice",
+    "dante_channel_planning": "practice",
+    "dante_troubleshooting": "practice",
+    "dante_signal_flow": "practice"
   }
 }
