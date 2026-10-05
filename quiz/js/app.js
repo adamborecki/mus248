@@ -133,7 +133,15 @@ function renderNoCodeSet(curriculum) {
 }
 
 function renderGate() {
+  // The code box comes first: it needs no access code, so a student can paste it
+  // (and get their study cards) before the instructor has said the week's code.
   show(`
+    <section class="step">
+      <h2>Paste your past quiz code (optional)</h2>
+      <p class="quiet">Paste the code from your last Canvas submission. It’s remembered on this device, so the quiz can
+        pick up where you left off and the <a href="../study/">study cards</a> will put what you missed first.</p>
+      <div id="code-panel"></div>
+    </section>
     <section class="step">
       <h2 tabindex="-1">Enter this week’s access code</h2>
       <p class="quiet">Ask your instructor for the ${escapeHtml(data.curriculum.quiz_label)} access code.</p>
@@ -142,13 +150,7 @@ function renderGate() {
       <input id="access-code" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
       <div class="row"><button class="btn primary wide" id="unlock">Continue →</button></div>
       <p class="status" id="access-status" role="status"></p>
-    </section>
-    <section class="step">
-      <h2>Studying first? Paste last quiz’s code</h2>
-      <p class="quiet">You don’t need an access code for this. Paste the code from your Canvas submission and the
-        <a href="../study/">study cards</a> will put what you missed first. It’s also remembered for the quiz itself.</p>
-      <div id="code-panel"></div>
-    </section>`, { focus: '#access-code' });
+    </section>`, { focus: null });
   mountCodeBox(app.querySelector('#code-panel'), { summarize: reviewSummary });
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {

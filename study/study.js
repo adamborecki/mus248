@@ -196,7 +196,7 @@ function codeSummary(code) {
 function describeCode(code) {
   document.getElementById('code-heading').textContent = code
     ? `Your quiz code · ${state.missed.length} ${state.missed.length === 1 ? 'skill' : 'skills'} to review`
-    : 'Paste your quiz code to see what you missed';
+    : 'Paste your past quiz code (optional)';
 }
 
 function applyCode(code) {
