@@ -44,7 +44,36 @@
     "outputs_routing": "Outputs and routing",
     "skill_areas": "The five core skill areas",
     "wireless_setup": "Wireless mic setup",
-    "looper_power": "Looping rig power"
+    "looper_power": "Looping rig power",
+    "signal_levels": "Signal levels (mic, line, speaker)",
+    "preamp_power_amp": "Preamp vs. power amp",
+    "mixer_orientation": "Reading an unfamiliar mixer",
+    "connector_signal": "Connectors vs. signal types",
+    "aux_sends": "Aux sends and monitor mixes",
+    "pre_post_fader": "Pre-fader and post-fader sends",
+    "pfl_solo": "PFL / Solo / Cue",
+    "mix_destinations": "Main, aux, and other destinations",
+    "ac_dc": "AC vs. DC power",
+    "ac_cable_safety": "AC power cables and ground",
+    "power_adapters": "Choosing a safe power adapter",
+    "f8_basics": "Zoom F8 basics",
+    "f8_workflow": "Zoom F8 channel workflow",
+    "f8_dual_channel": "Zoom F8 dual channel recording",
+    "record_verify": "Record is not done: verify",
+    "fcp_areas": "Final Cut Pro: Browser, Viewer, Timeline",
+    "fcp_workflow": "Final Cut Pro workflow",
+    "fcp_settings": "Final Cut Pro settings at Chapman",
+    "fcp_nondestructive": "Final Cut Pro leaves originals alone",
+    "gig_folders": "Gig folder naming",
+    "rse_stages": "r / e / s folders",
+    "two_destinations": "Copy to two drives",
+    "triple_check": "Triple Triple Check",
+    "empty_trash": "Empty the Trash",
+    "salmon_pre_gig": "Salmon: before the gig",
+    "salmon_audio_setup": "Salmon: audio setup",
+    "salmon_recording": "Salmon: start, stop, intermission",
+    "salmon_etiquette": "Salmon: green room and lobby",
+    "salmon_data_pass": "Salmon: data transfer"
   },
   "questions": [
     {
@@ -2064,6 +2093,1968 @@
       "answer_index": 0,
       "explanation": "The loop path runs from the G3X balanced output through the RC-30 to Channel 2, so check each link in that path.",
       "verified": true
+    },
+    {
+      "id": "LIVE_LEVEL_001",
+      "skill": "signal_levels",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these signals is the very small one that needs a preamp before a mixer can use it well?",
+      "choices": [
+        "The signal from a microphone",
+        "The signal from a mixer’s main output",
+        "The signal going to a passive speaker",
+        "The signal from a powered monitor"
+      ],
+      "answer_index": 0,
+      "explanation": "A microphone makes a very small signal. The preamp brings it up to a level the rest of the mixer can work with.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LEVEL_002",
+      "skill": "signal_levels",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What kind of signal normally leaves a mixer’s main output and goes to a powered speaker?",
+      "choices": [
+        "Mic level",
+        "Line level",
+        "Speaker level",
+        "There is no signal until the speaker is plugged in"
+      ],
+      "answer_index": 1,
+      "explanation": "Line level is the usual mixer-to-powered-device signal. The powered speaker has its own amplifier for the next step.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LEVEL_003",
+      "skill": "signal_levels",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A cable has an XLR connector on each end. What does that tell you for certain about the signal it carries?",
+      "choices": [
+        "It is always mic level",
+        "It is always line level",
+        "Nothing for certain, because XLR can carry mic or balanced line signals",
+        "It is always speaker level"
+      ],
+      "answer_index": 2,
+      "explanation": "The connector shape doesn’t settle the question. XLR is common for microphones and for balanced line connections, so confirm the signal and the destination before you patch.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_001",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does a microphone preamp do?",
+      "choices": [
+        "Gives a passive speaker the power to move",
+        "Removes feedback from the system",
+        "Turns a line-level signal into speaker level",
+        "Brings a small microphone signal up to a usable level"
+      ],
+      "answer_index": 3,
+      "explanation": "The preamp is the early stage that makes a tiny mic signal big enough to work with. It is not what drives a speaker.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_002",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where does the power to move a passive loudspeaker come from?",
+      "choices": [
+        "A power amplifier",
+        "The microphone preamp",
+        "The XLR cable",
+        "The mixer’s headphone output"
+      ],
+      "answer_index": 0,
+      "explanation": "A passive speaker has no amplifier inside. A power amp sits between the mixer’s line output and the speaker and creates the speaker-level power.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_003",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Someone plugs a mixer’s line output directly into a passive speaker. What’s wrong?",
+      "choices": [
+        "Nothing, passive speakers take line level",
+        "A power amp is missing: the mixer’s output is line level, not speaker level",
+        "The cable should have been XLR",
+        "The speaker needs phantom power"
+      ],
+      "answer_index": 1,
+      "explanation": "Don’t connect a mixer line output directly to a passive loudspeaker. The power amp is the part that creates speaker-level power.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_004",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which description fits a powered studio monitor?",
+      "choices": [
+        "It needs an external power amp",
+        "It runs on phantom power from the mixer",
+        "It needs AC power and a line input, because the power amp is inside the cabinet",
+        "It takes speaker-level signal through a SpeakON cable"
+      ],
+      "answer_index": 2,
+      "explanation": "In a powered (active) monitor the power amp lives in the cabinet, so the mixer only has to send it a line-level signal.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_MIXO_001",
+      "skill": "mixer_orientation",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On an analog mixer, which input feeds the microphone preamp?",
+      "choices": [
+        "The stereo line input",
+        "The headphone output",
+        "The main output",
+        "The XLR mic input"
+      ],
+      "answer_index": 3,
+      "explanation": "The XLR mic inputs feed the microphone preamps. Line inputs accept other source types, such as a keyboard or playback device.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_MIXO_002",
+      "skill": "mixer_orientation",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Along a channel strip, which control comes earliest in the signal path?",
+      "choices": [
+        "Input gain",
+        "The channel fader",
+        "Pan",
+        "Mute"
+      ],
+      "answer_index": 0,
+      "explanation": "Gain happens early in the channel path. EQ, aux sends, pan, mute, and the fader come along the path after it.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_MIXO_003",
+      "skill": "mixer_orientation",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You walk up to a mixer you’ve never used. Which four things should you find first?",
+      "choices": [
+        "The brand, the model, the year, and the serial number",
+        "A mic input, a line/stereo input, a main output, and a monitoring output",
+        "The reverb, the compressor, the gate, and the delay",
+        "The power switch, the fader, the knob, and the screen"
+      ],
+      "answer_index": 1,
+      "explanation": "Mixers look different, but the questions stay the same: where are the inputs, the input gain, the main output, and the monitoring paths?",
+      "verified": false
+    },
+    {
+      "id": "CONN_SIG_001",
+      "skill": "connector_signal",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which connector is a locking connector for speaker-level signal between an amplifier and a passive speaker?",
+      "choices": [
+        "XLR",
+        "RCA",
+        "SpeakON",
+        "3.5 mm TRS"
+      ],
+      "answer_index": 2,
+      "explanation": "SpeakON is the locking speaker-level connector between a power amp and a passive speaker.",
+      "verified": false
+    },
+    {
+      "id": "CONN_SIG_002",
+      "skill": "connector_signal",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which connector is the common stereo playback jack on a laptop or phone?",
+      "choices": [
+        "SpeakON",
+        "XLR",
+        "¼″ TS",
+        "3.5 mm TRS"
+      ],
+      "answer_index": 3,
+      "explanation": "A 3.5 mm TRS is the usual laptop or phone stereo playback connection. A mixer input needs the right adapter or cable for it.",
+      "verified": false
+    },
+    {
+      "id": "CONN_SIG_003",
+      "skill": "connector_signal",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which statement about connectors and signal types is true?",
+      "choices": [
+        "The same connector, such as XLR or ¼-inch, can carry different signals in different situations",
+        "Every XLR carries mic level",
+        "Every ¼-inch connector carries speaker level",
+        "RCA connectors only carry microphone signals"
+      ],
+      "answer_index": 0,
+      "explanation": "Connector shape is a clue, not an answer. Always confirm what signal is on the cable and what the destination expects.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ACDC_001",
+      "skill": "ac_dc",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which kind of power comes from a standard U.S. wall outlet?",
+      "choices": [
+        "DC (direct current)",
+        "AC (alternating current)",
+        "Phantom power",
+        "Battery power"
+      ],
+      "answer_index": 1,
+      "explanation": "Wall power in the United States is typically about 120V AC at 60 Hz.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ACDC_002",
+      "skill": "ac_dc",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which kind of power does a battery provide?",
+      "choices": [
+        "AC (alternating current)",
+        "Both AC and DC",
+        "DC (direct current)",
+        "Neither"
+      ],
+      "answer_index": 2,
+      "explanation": "Batteries provide DC, and many pieces of audio equipment run on DC.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ACDC_003",
+      "skill": "ac_dc",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does the power adapter for a piece of audio gear often do?",
+      "choices": [
+        "Converts DC from the wall into AC",
+        "Raises the volume of the device",
+        "Turns a balanced signal into an unbalanced one",
+        "Converts AC from the wall into the DC the device needs"
+      ],
+      "answer_index": 3,
+      "explanation": "The adapter takes AC from the wall and gives the device the DC it requires.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ACDC_004",
+      "skill": "ac_dc",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "About what voltage and frequency is typical U.S. wall power?",
+      "choices": [
+        "120V AC at 60 Hz",
+        "12V DC",
+        "48V DC",
+        "240V AC at 120 Hz"
+      ],
+      "answer_index": 0,
+      "explanation": "Typical U.S. wall power is about 120V AC at 60 Hz. The 12V and 48V numbers you see in audio belong to DC supplies and phantom power.",
+      "verified": false
+    },
+    {
+      "id": "PWR_SAFE_001",
+      "skill": "ac_cable_safety",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which conductor in an AC power cable is the safety connection?",
+      "choices": [
+        "Hot",
+        "Ground",
+        "Neutral",
+        "Signal"
+      ],
+      "answer_index": 1,
+      "explanation": "The ground is a safety connection that helps protect people if something goes wrong.",
+      "verified": false
+    },
+    {
+      "id": "PWR_SAFE_002",
+      "skill": "ac_cable_safety",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which conductor in an AC power cable carries the electrical power?",
+      "choices": [
+        "Neutral",
+        "Ground",
+        "Hot",
+        "Shield"
+      ],
+      "answer_index": 2,
+      "explanation": "Hot carries the power. Neutral is the normal return path, and ground is the safety connection.",
+      "verified": false
+    },
+    {
+      "id": "PWR_SAFE_003",
+      "skill": "ac_cable_safety",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the neutral conductor in an AC cable for?",
+      "choices": [
+        "It carries the electrical power",
+        "It is the safety connection",
+        "It carries the audio signal",
+        "It provides the normal return path"
+      ],
+      "answer_index": 3,
+      "explanation": "Hot carries the power out, neutral is the normal way back, and ground is there for safety.",
+      "verified": false
+    },
+    {
+      "id": "PWR_SAFE_004",
+      "skill": "ac_cable_safety",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A rig has an audio hum, and someone suggests snapping off the ground pin on a plug. What should you do?",
+      "choices": [
+        "Never remove or defeat the ground pin to solve an audio problem",
+        "Remove it, because it is harmless",
+        "Remove it only if the show is about to start",
+        "Cover it with tape and plug in anyway"
+      ],
+      "answer_index": 0,
+      "explanation": "The ground pin protects people. Find the cause of the hum another way, and ask for help if you can’t.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_001",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A power adapter fits a piece of equipment’s connector perfectly. What should you check before plugging it in?",
+      "choices": [
+        "Only whether the connector fits",
+        "AC or DC, voltage, polarity, and amperage",
+        "Only the voltage",
+        "The brand of the adapter"
+      ],
+      "answer_index": 1,
+      "explanation": "Fitting physically does not mean it is safe. Before plugging in: AC or DC, voltage matches, polarity matches, enough amperage, and the connector actually fits.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_002",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A device requires 12V DC, center-positive, 1A. Which adapter is safe to use?",
+      "choices": [
+        "12V DC, center-negative, 2A",
+        "9V DC, center-positive, 2A",
+        "12V DC, center-positive, 2A",
+        "12V DC, center-positive, 0.5A"
+      ],
+      "answer_index": 2,
+      "explanation": "Voltage and polarity must match exactly, and the amperage must be at least what the device needs. 2A is more than 1A, so it is fine.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_003",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A device says “9V DC, 500 mA, center-negative.” You find an adapter labeled “9V DC, 1A, center-negative.” Can you use it?",
+      "choices": [
+        "No, because the amperage is too high",
+        "No, because the amperage must match exactly",
+        "Yes, because any 9V adapter will work",
+        "Yes: voltage and polarity match and the adapter can provide enough current"
+      ],
+      "answer_index": 3,
+      "explanation": "500 mA is half an amp, so a 1A adapter has plenty. A higher amperage rating is fine; polarity still has to match.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_004",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A device requires 12V DC, 2A, center-positive. Which adapter should you NOT use?",
+      "choices": [
+        "12V DC, 1A, center-positive",
+        "12V DC, 2A, center-positive",
+        "12V DC, 3A, center-positive",
+        "12V DC, 5A, center-positive"
+      ],
+      "answer_index": 0,
+      "explanation": "The adapter has to provide at least the current the device needs. A 1A adapter can’t supply 2A.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_005",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why is it safe to power a 1A device from a 2A adapter?",
+      "choices": [
+        "The adapter lowers its voltage to match",
+        "The device only draws the current it needs; the adapter doesn’t force current into it",
+        "The device converts the extra current to sound",
+        "It isn’t safe, because amperage must match exactly"
+      ],
+      "answer_index": 1,
+      "explanation": "A 2A adapter does not “force” 2 amps into the device. The device draws what it needs. Voltage and polarity are what must match.",
+      "verified": false
+    },
+    {
+      "id": "PWR_ADPT_006",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How many amps is 1000 mA?",
+      "choices": [
+        "10 A",
+        "0.1 A",
+        "1 A",
+        "100 A"
+      ],
+      "answer_index": 2,
+      "explanation": "1000 mA = 1 A, so a 500 mA device needs half an amp.",
+      "verified": false
+    },
+    {
+      "id": "F8_BASIC_001",
+      "skill": "f8_basics",
+      "topic": "zoom_f8",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the Zoom F8?",
+      "choices": [
+        "A video camera",
+        "An 8-channel analog mixer with built-in speakers",
+        "A wireless microphone receiver",
+        "A portable multitrack recorder with 8 XLR inputs"
+      ],
+      "answer_index": 3,
+      "explanation": "The F8 is a portable multitrack recorder: 8 XLR inputs, recording to an SD card.",
+      "verified": false
+    },
+    {
+      "id": "F8_BASIC_002",
+      "skill": "f8_basics",
+      "topic": "zoom_f8",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where does the Zoom F8 record its audio?",
+      "choices": [
+        "To an SD card",
+        "To the connected computer’s hard drive",
+        "To a tape",
+        "Nowhere, it only monitors"
+      ],
+      "answer_index": 0,
+      "explanation": "The F8 records to SD cards, which is why the card has to be clean and the files have to be copied off afterward.",
+      "verified": false
+    },
+    {
+      "id": "F8_BASIC_003",
+      "skill": "f8_basics",
+      "topic": "zoom_f8",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How can the Zoom F8 be powered?",
+      "choices": [
+        "USB power only",
+        "8 AA batteries or 12V DC",
+        "Only 120V AC straight from the wall",
+        "Phantom power from a mixer"
+      ],
+      "answer_index": 1,
+      "explanation": "The F8 runs on 8 AA batteries or 12V DC power.",
+      "verified": false
+    },
+    {
+      "id": "F8_WORK_001",
+      "skill": "f8_workflow",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On the Zoom F8, what does turning a track on do?",
+      "choices": [
+        "It turns on 48V phantom power",
+        "It mutes the channel",
+        "It record-enables that track",
+        "It starts the recording"
+      ],
+      "answer_index": 2,
+      "explanation": "Turning the track on is what record-enables it. Recording starts later, with the record button.",
+      "verified": false
+    },
+    {
+      "id": "F8_WORK_002",
+      "skill": "f8_workflow",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does pressing PFL let you do on the F8?",
+      "choices": [
+        "Play the recording back",
+        "Turn on phantom power",
+        "Record a second copy of the channel",
+        "Focus on one channel and see its exact gain setting"
+      ],
+      "answer_index": 3,
+      "explanation": "PFL lets you focus on a single channel and see its exact gain setting while you check or set the level.",
+      "verified": false
+    },
+    {
+      "id": "F8_WORK_003",
+      "skill": "f8_workflow",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You plug a condenser mic into an F8 input, but there is no signal. Which step in the channel workflow might be missing?",
+      "choices": [
+        "Turning on +48V phantom power",
+        "Turning on dual channel recording",
+        "Pressing stop",
+        "Formatting the batteries"
+      ],
+      "answer_index": 0,
+      "explanation": "The per-microphone steps include turning on +48V phantom power if the mic needs it. Condenser microphones usually do.",
+      "verified": false
+    },
+    {
+      "id": "F8_WORK_004",
+      "skill": "f8_workflow",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "While setting gain on an F8 channel, what are you watching the meter for?",
+      "choices": [
+        "The battery level",
+        "Peaks, so the signal doesn’t clip",
+        "Whether the card is full",
+        "The time of day"
+      ],
+      "answer_index": 1,
+      "explanation": "Watch the meter and check for peaks. Then listen on headphones to catch problems a meter doesn’t show.",
+      "verified": false
+    },
+    {
+      "id": "F8_DUAL_001",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does dual channel recording do on the Zoom F8?",
+      "choices": [
+        "It records two microphones to one track",
+        "It doubles the number of XLR inputs",
+        "Input 1 also records to Track 5, input 2 to Track 6, and so on up to Track 8",
+        "It records video and audio together"
+      ],
+      "answer_index": 2,
+      "explanation": "With dual channel recording, inputs 1–4 are also recorded to tracks 5–8, giving each of them a second copy.",
+      "verified": false
+    },
+    {
+      "id": "F8_DUAL_002",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why record a second copy of a channel at a lower level?",
+      "choices": [
+        "It makes the recording sound wider",
+        "It saves space on the SD card",
+        "It replaces the need for phantom power",
+        "It is a safety track: if the main track clips, the quieter copy may still be usable"
+      ],
+      "answer_index": 3,
+      "explanation": "The second track can be recorded at a lower level as a safety. If the main one clips, the quiet copy may still be good.",
+      "verified": false
+    },
+    {
+      "id": "F8_DUAL_003",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "With dual channel recording on, the second copy of input 2 lands on which track?",
+      "choices": [
+        "Track 6",
+        "Track 2",
+        "Track 5",
+        "Track 8"
+      ],
+      "answer_index": 0,
+      "explanation": "Input 1 goes to Track 5, input 2 to Track 6, input 3 to Track 7, and input 4 to Track 8.",
+      "verified": false
+    },
+    {
+      "id": "F8_DUAL_004",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why is “Track 5” not always the same thing as “Input 5”?",
+      "choices": [
+        "Track numbers start at zero",
+        "With dual channel recording, Track 5 can be the second copy of input 1",
+        "The F8 only has four inputs",
+        "Track 5 is always reserved for the headphones"
+      ],
+      "answer_index": 1,
+      "explanation": "Track 5 is not always Input 5. When dual channel recording is on, tracks 5–8 hold the safety copies of inputs 1–4.",
+      "verified": false
+    },
+    {
+      "id": "F8_VERIFY_001",
+      "skill": "record_verify",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You pressed record on the F8. “Record is not done.” What should you also verify?",
+      "choices": [
+        "That the front panel is clean",
+        "That the batteries are the same brand",
+        "The meters are moving, it sounds good in headphones, and the recording actually saved",
+        "That the track names are alphabetical"
+      ],
+      "answer_index": 2,
+      "explanation": "Always verify: are the meters moving, does it sound good in headphones, and did the recording actually save?",
+      "verified": false
+    },
+    {
+      "id": "F8_VERIFY_002",
+      "skill": "record_verify",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does “RECORD ≠ DONE” mean?",
+      "choices": [
+        "You should never press record",
+        "Recording is finished when the red light goes out",
+        "The F8 can’t record and play at the same time",
+        "Pressing record doesn’t mean you’ve captured good audio, so you check it"
+      ],
+      "answer_index": 3,
+      "explanation": "A button press isn’t proof. Check that signal is arriving, that it sounds right, and that the file was saved.",
+      "verified": false
+    },
+    {
+      "id": "FCP_AREA_001",
+      "skill": "fcp_areas",
+      "topic": "final_cut",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Final Cut Pro, where does your imported media live?",
+      "choices": [
+        "The Browser",
+        "The Viewer",
+        "The Timeline",
+        "The Export window"
+      ],
+      "answer_index": 0,
+      "explanation": "The Browser is where imported media lives, the Viewer is where you watch, and the Timeline is where you edit.",
+      "verified": false
+    },
+    {
+      "id": "FCP_AREA_002",
+      "skill": "fcp_areas",
+      "topic": "final_cut",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Final Cut Pro, which area is where you watch the picture?",
+      "choices": [
+        "The Browser",
+        "The Viewer",
+        "The Timeline",
+        "The Library"
+      ],
+      "answer_index": 1,
+      "explanation": "The Viewer is where you watch. The Browser holds your media and the Timeline is where you edit.",
+      "verified": false
+    },
+    {
+      "id": "FCP_AREA_003",
+      "skill": "fcp_areas",
+      "topic": "final_cut",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Final Cut Pro, which area is where you edit?",
+      "choices": [
+        "The Browser",
+        "The Viewer",
+        "The Timeline",
+        "The Inspector"
+      ],
+      "answer_index": 2,
+      "explanation": "You edit in the Timeline: cutting at the playhead, trimming, adjusting audio level, and adding fades.",
+      "verified": false
+    },
+    {
+      "id": "FCP_FLOW_001",
+      "skill": "fcp_workflow",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do we use Final Cut Pro for in this class?",
+      "choices": [
+        "Recording the audio",
+        "Setting up the microphones",
+        "Copying files to the Backups drive",
+        "Combining the video with our better-recorded audio"
+      ],
+      "answer_index": 3,
+      "explanation": "Final Cut is the “video side” of post-production: we combine picture with the better-recorded audio.",
+      "verified": false
+    },
+    {
+      "id": "FCP_FLOW_002",
+      "skill": "fcp_workflow",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is the correct order for the basic Final Cut workflow?",
+      "choices": [
+        "Import, put clips on the timeline, sync the good audio to the video, trim, fade, check, export",
+        "Export, import, sync, trim, fade, check",
+        "Fade, trim, import, sync, export, check",
+        "Sync, export, import, trim, check, fade"
+      ],
+      "answer_index": 0,
+      "explanation": "The basic workflow: set up the Library, import video and audio, put clips on the timeline, sync, trim, add fades, check the result, then export.",
+      "verified": false
+    },
+    {
+      "id": "FCP_FLOW_003",
+      "skill": "fcp_workflow",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the Phase 1 pipeline, what does “QC” stand for?",
+      "choices": [
+        "Quick Cut",
+        "Quality Control",
+        "Quiet Check",
+        "Quantized Clip"
+      ],
+      "answer_index": 1,
+      "explanation": "Phase 1 runs: video plus good audio, sync, trim, fade, QC (quality control), then export H.264 video plus WAV audio.",
+      "verified": false
+    },
+    {
+      "id": "FCP_SET_001",
+      "skill": "fcp_settings",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When importing media into Final Cut Pro at Chapman, which option should you choose?",
+      "choices": [
+        "Copy to the Library",
+        "Move to the Trash",
+        "Leave files in place",
+        "Convert to ProRes"
+      ],
+      "answer_index": 2,
+      "explanation": "At Chapman we import using File → Import and choose “Leave files in place.”",
+      "verified": false
+    },
+    {
+      "id": "FCP_SET_002",
+      "skill": "fcp_settings",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What should you export your video as in our workflow?",
+      "choices": [
+        "ProRes, not H.264",
+        "A WAV file",
+        "An uncompressed AIFF",
+        "H.264, not ProRes"
+      ],
+      "answer_index": 3,
+      "explanation": "We export video as H.264, not ProRes. The audio deliverable is a WAV.",
+      "verified": false
+    },
+    {
+      "id": "FCP_SET_003",
+      "skill": "fcp_settings",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What resolution do we set the project to for individual movements or clips?",
+      "choices": [
+        "1080p",
+        "480p",
+        "720p only",
+        "4K"
+      ],
+      "answer_index": 0,
+      "explanation": "Set the project to 1080p for individual movements or clips.",
+      "verified": false
+    },
+    {
+      "id": "FCP_SET_004",
+      "skill": "fcp_settings",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which Final Cut setting do we turn off in our workflow?",
+      "choices": [
+        "Timeline zoom",
+        "Background Render",
+        "Audio fades",
+        "The Viewer"
+      ],
+      "answer_index": 1,
+      "explanation": "We disable Background Render as part of our Final Cut setup.",
+      "verified": false
+    },
+    {
+      "id": "FCP_NOND_001",
+      "skill": "fcp_nondestructive",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You trim a clip in Final Cut Pro. What usually happens to your original recording file?",
+      "choices": [
+        "The original is cut shorter",
+        "The original is deleted",
+        "Nothing: it is usually not changed",
+        "The original is converted to H.264"
+      ],
+      "answer_index": 2,
+      "explanation": "Final Cut is usually not changing your original recordings. It is keeping instructions about how to use them.",
+      "verified": false
+    },
+    {
+      "id": "FCP_NOND_002",
+      "skill": "fcp_nondestructive",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is Final Cut really building as you edit?",
+      "choices": [
+        "A copy of every file you imported",
+        "A backup of the SD card",
+        "A new set of microphone recordings",
+        "Instructions: “use this part of this file, starting here, ending here, at this level”"
+      ],
+      "answer_index": 3,
+      "explanation": "The edit is a set of instructions about which part of which file to use and at what level.",
+      "verified": false
+    },
+    {
+      "id": "FCP_NOND_003",
+      "skill": "fcp_nondestructive",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When does Final Cut Pro create the finished file?",
+      "choices": [
+        "When you export",
+        "When you import",
+        "When you press trim",
+        "When you open the Library"
+      ],
+      "answer_index": 0,
+      "explanation": "Then when you export, Final Cut creates the finished file from those instructions.",
+      "verified": false
+    },
+    {
+      "id": "FCP_NOND_004",
+      "skill": "fcp_nondestructive",
+      "topic": "final_cut",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where should you keep your original files organized?",
+      "choices": [
+        "Only inside the Final Cut Library",
+        "Outside Final Cut, on the drives",
+        "Anywhere, since Final Cut finds them",
+        "On the SD card, which you wipe afterward"
+      ],
+      "answer_index": 1,
+      "explanation": "Keep your original files organized outside Final Cut. Because we leave files in place, Final Cut points at them.",
+      "verified": false
+    },
+    {
+      "id": "DM_FOLDER_001",
+      "skill": "gig_folders",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What format does a gig folder name follow?",
+      "choices": [
+        "Event name, then the date written out",
+        "The card name and the date",
+        "YYMMDD Full Event Name",
+        "Your initials and a number"
+      ],
+      "answer_index": 2,
+      "explanation": "For example, 260914 The Chapman Orchestra: the date as YYMMDD, then the full event name.",
+      "verified": false
+    },
+    {
+      "id": "DM_FOLDER_002",
+      "skill": "gig_folders",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which gig folder name follows the convention?",
+      "choices": [
+        "Wind Symphony 10-6",
+        "10062026 WS",
+        "WS gig",
+        "261006 Wind Symphony"
+      ],
+      "answer_index": 3,
+      "explanation": "The gig folder uses the full event name after YYMMDD. Short names (such as WS) go on the folders inside it.",
+      "verified": false
+    },
+    {
+      "id": "DM_FOLDER_003",
+      "skill": "gig_folders",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Inside a gig folder, where do the files copied from the capture media go?",
+      "choices": [
+        "In the “r” folder, in a folder named From plus the card name",
+        "In the “s” folder",
+        "Directly on the desktop",
+        "In the “e” folder"
+      ],
+      "answer_index": 0,
+      "explanation": "Source material goes in the r (raw) subfolder, with one “From …” folder per card or SSD.",
+      "verified": false
+    },
+    {
+      "id": "DM_RSE_001",
+      "skill": "rse_stages",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do the r, e, and s subfolders in a gig folder stand for?",
+      "choices": [
+        "Record, export, and send",
+        "Raw, edit, and saved final deliverables",
+        "Real, extra, and spare",
+        "Room, engineer, and show"
+      ],
+      "answer_index": 1,
+      "explanation": "r is raw/source files, e is edit/post-production files, and s is saved final deliverables.",
+      "verified": false
+    },
+    {
+      "id": "DM_RSE_002",
+      "skill": "rse_stages",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You exported the finished video. Which subfolder holds saved final deliverables?",
+      "choices": [
+        "r",
+        "e",
+        "s",
+        "a"
+      ],
+      "answer_index": 2,
+      "explanation": "The s folder is where finished deliverables are saved.",
+      "verified": false
+    },
+    {
+      "id": "DM_RSE_003",
+      "skill": "rse_stages",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which statement about r, e, and s is correct?",
+      "choices": [
+        "They are three backup copies of each gig",
+        "They are the three drives used at a gig",
+        "They stand for three different cameras",
+        "They are stages and file types, not three backup copies of the same folder"
+      ],
+      "answer_index": 3,
+      "explanation": "The r/e/s folders describe stages and file types. A matching safe copy of the whole gig folder lives on the Backups drive.",
+      "verified": false
+    },
+    {
+      "id": "DM_RSE_004",
+      "skill": "rse_stages",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the optional “a” subfolder for?",
+      "choices": [
+        "Special archive or keep files",
+        "The audio recordings only",
+        "Anything you plan to delete",
+        "A third backup"
+      ],
+      "answer_index": 0,
+      "explanation": "An optional “a” subfolder can hold special “archival” files.",
+      "verified": false
+    },
+    {
+      "id": "DM_COPY_001",
+      "skill": "two_destinations",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You have a card full of recordings from a gig. Where should a beginner copy everything?",
+      "choices": [
+        "To the Post drive only",
+        "To both the Post drive and the Backups drive",
+        "To the Backups drive only",
+        "To a personal laptop only"
+      ],
+      "answer_index": 1,
+      "explanation": "The beginner default is to copy everything from the capture media to a Post drive and a Backups drive: one source, two destinations.",
+      "verified": false
+    },
+    {
+      "id": "DM_COPY_002",
+      "skill": "two_destinations",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why copy to two drives?",
+      "choices": [
+        "Two drives copy twice as fast",
+        "The card needs to be wiped",
+        "A hard drive can fail at any time, so one copy is not enough",
+        "A single drive can’t hold a gig folder"
+      ],
+      "answer_index": 2,
+      "explanation": "A hard drive can fail at any time — one copy is not enough.",
+      "verified": false
+    },
+    {
+      "id": "DM_COPY_003",
+      "skill": "two_destinations",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "As a beginner, how much of the card should you copy?",
+      "choices": [
+        "Only the files you think you need",
+        "Only the newest file",
+        "Only the video",
+        "Everything: the whole card"
+      ],
+      "answer_index": 3,
+      "explanation": "Copy everything by default. Experienced engineers may copy selectively, but only when they truly know what they are doing.",
+      "verified": false
+    },
+    {
+      "id": "DM_COPY_004",
+      "skill": "two_destinations",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A card is named Mus128_1842. What does the “128” mean?",
+      "choices": [
+        "The card’s capacity, in GB",
+        "The year it was bought",
+        "The number of files on it",
+        "The drive it belongs to"
+      ],
+      "answer_index": 0,
+      "explanation": "In Mus128_####, 128 is the card capacity and #### is the unique ID that matches the Data Volumes spreadsheet.",
+      "verified": false
+    },
+    {
+      "id": "DM_COPY_005",
+      "skill": "two_destinations",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A gig has several cards. How is each one copied into the gig folder?",
+      "choices": [
+        "All mixed together into one folder",
+        "Into its own “From [card name]” folder inside r, on both drives",
+        "Only the biggest card is copied",
+        "Into the e folder on the Post drive only"
+      ],
+      "answer_index": 1,
+      "explanation": "Each source gets its own From … folder inside the r folder, on both the Post and Backups drives.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRIP_001",
+      "skill": "triple_check",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When is it okay to delete files from the original card?",
+      "choices": [
+        "As soon as the copy finishes on one drive",
+        "Whenever the card is nearly full",
+        "Only when you can prove it exists safely in all three places",
+        "Whenever a classmate says it’s fine"
+      ],
+      "answer_index": 2,
+      "explanation": "The three places are the original card or SSD, the copy on the Post drive, and the copy on the Backups drive.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRIP_002",
+      "skill": "triple_check",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which three things make up the “Triple Triple Check”?",
+      "choices": [
+        "The file name, the color, and the date",
+        "The card brand, the drive brand, and the cable",
+        "The size in pages, the length in minutes, and the volume",
+        "The approximate GB, the last 3 digits of the exact bytes, and the locations all match"
+      ],
+      "answer_index": 3,
+      "explanation": "Check the approximate GB matches, the last 3 digits of the exact bytes match, and the files are in the expected source plus the two drives.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRIP_003",
+      "skill": "triple_check",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You are about 99% sure everything copied correctly. What should you do?",
+      "choices": [
+        "Do not delete, and ask for help",
+        "Delete the originals, since 99% is enough",
+        "Delete half now and half later",
+        "Reformat the card to be safe"
+      ],
+      "answer_index": 0,
+      "explanation": "If you are 99% sure, do not delete. Ask for help.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRIP_004",
+      "skill": "triple_check",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The checks all pass. What’s the next step to free the card?",
+      "choices": [
+        "Pull the card out immediately",
+        "Move the files to the Trash, empty the Trash, and confirm the free space",
+        "Rename the card",
+        "Copy the files a third time"
+      ],
+      "answer_index": 1,
+      "explanation": "Trash then Empty Trash, then confirm free space. Delete only when you can prove the source exists safely in all three places.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRASH_001",
+      "skill": "empty_trash",
+      "topic": "data_management",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You moved files to the Trash on a card. Are they deleted?",
+      "choices": [
+        "Yes, the space is free right away",
+        "Yes, but only on the card",
+        "No: trashed is not deleted until the Trash is emptied",
+        "No, they are on the Backups drive"
+      ],
+      "answer_index": 2,
+      "explanation": "“Trashed” is not deleted. The space doesn’t come back until the Trash is emptied.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRASH_002",
+      "skill": "empty_trash",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A 128 GB card shows only 106 GB available after you “deleted” everything. What’s the most likely cause?",
+      "choices": [
+        "The card is broken",
+        "The Post drive is full",
+        "The card is a 106 GB card",
+        "The Trash wasn’t emptied"
+      ],
+      "answer_index": 3,
+      "explanation": "The files are still in the Trash, so the space isn’t available yet.",
+      "verified": false
+    },
+    {
+      "id": "DM_TRASH_003",
+      "skill": "empty_trash",
+      "topic": "data_management",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After the Trash is emptied with the card still connected, about how much space should show as free on a 128 GB card?",
+      "choices": [
+        "About 127 GB",
+        "About 64 GB",
+        "About 106 GB",
+        "About 10 GB"
+      ],
+      "answer_index": 0,
+      "explanation": "It will probably show about 127 GB free or so. Older cards lose some maximum capacity.",
+      "verified": false
+    },
+    {
+      "id": "SAL_PRE_001",
+      "skill": "salmon_pre_gig",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You arrive for a gig and find SD cards that still need cleaning from the last one. What do you do?",
+      "choices": [
+        "Ignore it",
+        "Finish that leftover business first, before your own setup",
+        "Start your setup and get to it later",
+        "Wipe the cards without checking them"
+      ],
+      "answer_index": 1,
+      "explanation": "Check for unfinished business from the last gig. If there is something left over, finish it first.",
+      "verified": false
+    },
+    {
+      "id": "SAL_PRE_002",
+      "skill": "salmon_pre_gig",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re going to be late for a gig. What should you do?",
+      "choices": [
+        "Wait and see if anyone notices",
+        "Skip the gig without telling anyone",
+        "Text your fellow engineers before your call time",
+        "Show up and say nothing"
+      ],
+      "answer_index": 2,
+      "explanation": "Don’t leave your teammates wondering. Text them before your call time.",
+      "verified": false
+    },
+    {
+      "id": "SAL_PRE_003",
+      "skill": "salmon_pre_gig",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "For recording work, “on time” usually means:",
+      "choices": [
+        "Walking in at the scheduled time",
+        "Arriving a few minutes after the start",
+        "Being there by the end of sound check",
+        "Ready to work at the scheduled time"
+      ],
+      "answer_index": 3,
+      "explanation": "On time usually means ready to work at the scheduled time, not walking in at that time.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AUD_001",
+      "skill": "salmon_audio_setup",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At Salmon, what should you do about the audio preamps?",
+      "choices": [
+        "Don’t adjust them; if a level is wrong, talk to Borecki",
+        "Turn them all up for safety",
+        "Adjust them whenever you like",
+        "Mute them until the show"
+      ],
+      "answer_index": 0,
+      "explanation": "If a level is genuinely wrong, that’s a conversation with Borecki, not a knob you turn.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AUD_002",
+      "skill": "salmon_audio_setup",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How do you power the Zoom F8 on or off?",
+      "choices": [
+        "Tap it once",
+        "Hold the power switch for about 2 seconds",
+        "Hold the red record button",
+        "Pull the batteries"
+      ],
+      "answer_index": 1,
+      "explanation": "The F8’s power switch needs about 2 seconds held down to turn on or off. A quick tap does nothing, in either direction.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AUD_003",
+      "skill": "salmon_audio_setup",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When the F8 is set up for a gig, how many channels should show a red record-enable light?",
+      "choices": [
+        "None until the show starts",
+        "Only channel 1",
+        "All 8",
+        "Only the channels with a mic"
+      ],
+      "answer_index": 2,
+      "explanation": "All 8 channels should show a red light underneath. If one isn’t lit, press that channel’s button to record-enable it.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AUD_004",
+      "skill": "salmon_audio_setup",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You check both audio recorders with headphones. What should you hear?",
+      "choices": [
+        "Silence",
+        "The same signal on both, doubled",
+        "Only the F8",
+        "A clean signal on both, not the same signal doubled"
+      ],
+      "answer_index": 3,
+      "explanation": "Confirm clean signal on both the F8 and the H6, not the same signal doubled.",
+      "verified": false
+    },
+    {
+      "id": "SAL_REC_001",
+      "skill": "salmon_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When do you start recording for a gig?",
+      "choices": [
+        "About 3 minutes before the downbeat",
+        "At the downbeat",
+        "After the first piece",
+        "When the audience arrives"
+      ],
+      "answer_index": 0,
+      "explanation": "Start recording 3 minutes before the downbeat, so nothing is missed.",
+      "verified": false
+    },
+    {
+      "id": "SAL_REC_002",
+      "skill": "salmon_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At the end of the show, which button stops the F8?",
+      "choices": [
+        "The red RECORD button",
+        "STOP",
+        "The power switch, with a quick tap",
+        "The PFL button"
+      ],
+      "answer_index": 1,
+      "explanation": "On the F8 it is the STOP button, not the red record button.",
+      "verified": false
+    },
+    {
+      "id": "SAL_REC_003",
+      "skill": "salmon_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After pressing record on every device, what must you confirm?",
+      "choices": [
+        "Every card is full",
+        "Every device is the same brand",
+        "Every recorder is actually rolling: numbers moving, not just a button pressed",
+        "Every cable is coiled"
+      ],
+      "answer_index": 2,
+      "explanation": "Confirm every recorder is actually rolling — numbers moving, not just a button pressed.",
+      "verified": false
+    },
+    {
+      "id": "SAL_REC_004",
+      "skill": "salmon_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the default for intermission?",
+      "choices": [
+        "Stop everything and restart it",
+        "Stop only the audio",
+        "Power down the F8",
+        "Leave everything recording straight through"
+      ],
+      "answer_index": 3,
+      "explanation": "Don’t pause as a matter of course. It’s simpler and safer to record straight through.",
+      "verified": false
+    },
+    {
+      "id": "SAL_REC_005",
+      "skill": "salmon_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At intermission a device is low on space. What do you do?",
+      "choices": [
+        "Stop all recording devices together, fix it, and restart them all together right away",
+        "Stop only that device",
+        "Ignore it",
+        "Let it run out during the show"
+      ],
+      "answer_index": 0,
+      "explanation": "If anything is genuinely at risk, stop all recording devices together, fix it, and restart all of them together, immediately.",
+      "verified": false
+    },
+    {
+      "id": "SAL_ETQ_001",
+      "skill": "salmon_etiquette",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before you go into the green room, what do you do?",
+      "choices": [
+        "Walk straight in",
+        "Knock first",
+        "Turn off the lights",
+        "Call the performer’s phone"
+      ],
+      "answer_index": 1,
+      "explanation": "Knock first. Don’t just walk in.",
+      "verified": false
+    },
+    {
+      "id": "SAL_ETQ_002",
+      "skill": "salmon_etiquette",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A performer is already in the green room and you need the TV on. What do you do?",
+      "choices": [
+        "Turn it on quickly without asking",
+        "Leave and don’t set it up",
+        "Ask before touching anything, and offer to turn it on and show where the volume is",
+        "Change the channel yourself"
+      ],
+      "answer_index": 2,
+      "explanation": "If a performer is inside, ask before touching anything: offer to turn on the TV and show them where the volume is.",
+      "verified": false
+    },
+    {
+      "id": "SAL_ETQ_003",
+      "skill": "salmon_etiquette",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Once doors open, what do you do on the CRESTRON for the hallway?",
+      "choices": [
+        "Turn the Hallway TV off",
+        "Switch the TV to Signage and turn audio off",
+        "Nothing, it’s automatic",
+        "Switch the Hallway TV from Signage to Camera and turn Hallway Audio on"
+      ],
+      "answer_index": 3,
+      "explanation": "At doors, the Hallway TV goes from Signage to Camera and Hallway Audio goes on. At end of show it goes back to Signage with audio off.",
+      "verified": false
+    },
+    {
+      "id": "SAL_DATA_001",
+      "skill": "salmon_data_pass",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After a gig, at what point do you text Borecki about drive space?",
+      "choices": [
+        "If either the Post or the Backups drive has less than 1 TB free",
+        "Only if both drives are completely full",
+        "Never, you just email later",
+        "If you are curious how much is left"
+      ],
+      "answer_index": 0,
+      "explanation": "If either drive has less than 1 TB free, text Borecki. It’s an actual text, not a “should I ask.”",
+      "verified": false
+    },
+    {
+      "id": "SAL_DATA_002",
+      "skill": "salmon_data_pass",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before you copy anything from the cards, what do you do?",
+      "choices": [
+        "Copy first and make folders afterward",
+        "Create all of the destination folders on both drives first",
+        "Make the folders on one drive only",
+        "Wipe the cards"
+      ],
+      "answer_index": 1,
+      "explanation": "Create all of the destination folders first, on both drives, before you copy anything.",
+      "verified": false
+    },
+    {
+      "id": "SAL_DATA_003",
+      "skill": "salmon_data_pass",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which drives do you use for the transfer?",
+      "choices": [
+        "Always Post 43 and Backups 51",
+        "Any drive that is plugged in",
+        "The ones whose labels you read, because the numbers roll forward over time",
+        "Your own laptop"
+      ],
+      "answer_index": 2,
+      "explanation": "Read the label, don’t assume it’s still whatever was written in an older set of instructions.",
+      "verified": false
+    },
+    {
+      "id": "SAL_DATA_004",
+      "skill": "salmon_data_pass",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before any card is wiped, who looks over the transferred files?",
+      "choices": [
+        "Nobody, the Triple Triple Check is enough",
+        "The next performer",
+        "The hall manager",
+        "Borecki"
+      ],
+      "answer_index": 3,
+      "explanation": "Get Borecki to look over the transferred files before anything gets deleted.",
+      "verified": false
+    },
+    {
+      "id": "SAL_DATA_005",
+      "skill": "salmon_data_pass",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After wiping a card, how do you confirm it actually worked?",
+      "choices": [
+        "Get Info (⌘I) on the card and check the free space is close to its full size",
+        "Look at whether the card is warm",
+        "Check that the card’s name changed",
+        "Eject it and shake it"
+      ],
+      "answer_index": 0,
+      "explanation": "Get Info on each card you just cleaned. The free space should be close to the card’s full rated size.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_001",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does an aux send do?",
+      "choices": [
+        "Sends the channel to the audience only",
+        "Sends some of a channel to another mix, such as a monitor mix",
+        "Turns off the channel",
+        "Adds phantom power to the channel"
+      ],
+      "answer_index": 1,
+      "explanation": "An aux send takes some of a channel and sends it to another mix.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_002",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A drummer wants more vocal in their monitor, without the audience hearing more vocal. What do you adjust?",
+      "choices": [
+        "The Main L/R master",
+        "The vocal channel’s gain",
+        "The vocal channel’s aux send",
+        "The drum channel’s fader"
+      ],
+      "answer_index": 2,
+      "explanation": "Each channel can send a different amount to the aux, so the monitor changes while Main L/R stays the same.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_003",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A performer likes their monitor balance but everything in it is too quiet. What do you raise?",
+      "choices": [
+        "Every channel’s aux send",
+        "The Main L/R master",
+        "Every channel’s gain",
+        "The aux master or output level"
+      ],
+      "answer_index": 3,
+      "explanation": "The aux master changes the whole monitor mix. Raising every send would change things you don’t need to.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_004",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer says “more of my voice” in the monitor. What do you raise?",
+      "choices": [
+        "The aux send on the singer’s channel",
+        "The aux master",
+        "The Main L/R master",
+        "The preamp gain on every channel"
+      ],
+      "answer_index": 0,
+      "explanation": "“More of me” is one source inside the monitor mix, so raise that channel’s aux send.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_001",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does a pre-fader send do?",
+      "choices": [
+        "Taps the signal after the fader",
+        "Taps the signal before the channel fader, so moving the fader doesn’t change the send",
+        "Mutes the channel",
+        "Sends the signal to the audience"
+      ],
+      "answer_index": 1,
+      "explanation": "A pre-fader send stays the same when front-of-house moves the channel fader. It’s useful for performer monitors.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_002",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer’s monitor send is pre-fader. The audience says the vocal is too loud, so you lower the vocal fader. What happens in the singer’s monitor?",
+      "choices": [
+        "It gets quieter too",
+        "It gets louder",
+        "It stays about the same",
+        "It cuts out"
+      ],
+      "answer_index": 2,
+      "explanation": "With a pre-fader send, lowering the channel fader changes Main L/R but not the monitor. That is why monitor mixes often use pre-fader sends.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_003",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which kind of send follows the channel fader, and is useful for effects?",
+      "choices": [
+        "A pre-fader send",
+        "A headphone send",
+        "Phantom power",
+        "A post-fader send"
+      ],
+      "answer_index": 3,
+      "explanation": "A post-fader send follows the channel fader.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_004",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Can you assume every aux on every mixer is set up the same way?",
+      "choices": [
+        "No, check the mixer",
+        "Yes, aux sends are always pre-fader",
+        "Yes, aux sends are always post-fader",
+        "Yes, they are labeled the same on every mixer"
+      ],
+      "answer_index": 0,
+      "explanation": "Do not assume every aux is configured the same way. Check the mixer.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PFL_001",
+      "skill": "pfl_solo",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does PFL stand for?",
+      "choices": [
+        "Phantom-powered level",
+        "Pre-fader listen",
+        "Preamp feedback loop",
+        "Peak fade limit"
+      ],
+      "answer_index": 1,
+      "explanation": "PFL is pre-fader listen. AFL is after-fader listen, and some mixers call it Solo or Cue.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PFL_002",
+      "skill": "pfl_solo",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the basic purpose of PFL, Solo, or Cue?",
+      "choices": [
+        "To mute the audience mix",
+        "To record the channel",
+        "To listen to or meter a signal without necessarily sending it to the audience",
+        "To turn on phantom power"
+      ],
+      "answer_index": 2,
+      "explanation": "The labels vary, but the purpose stays the same: listen to or meter a signal without necessarily sending it to the audience.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PFL_003",
+      "skill": "pfl_solo",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When is PFL most useful?",
+      "choices": [
+        "Only during the show",
+        "Only for recording",
+        "Only on digital mixers",
+        "For setup and troubleshooting, before turning up the room"
+      ],
+      "answer_index": 3,
+      "explanation": "Use it for setup and troubleshooting before turning up the room.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_001",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Who is the Main L/R mix for?",
+      "choices": [
+        "The audience",
+        "The performer",
+        "The engineer only",
+        "The recorder only"
+      ],
+      "answer_index": 0,
+      "explanation": "Main L/R usually feeds the audience system. The main mix answers: what should the audience hear?",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_002",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An aux send is only an internal mix until...",
+      "choices": [
+        "The channel is muted",
+        "It reaches a physical output",
+        "The fader goes to zero",
+        "The mixer is turned off"
+      ],
+      "answer_index": 1,
+      "explanation": "A bus is an internal mix path. The output connector is where that path physically leaves the mixer.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_003",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What level of signal leaves an aux output?",
+      "choices": [
+        "Mic level",
+        "Speaker level",
+        "Line level",
+        "It depends on the singer"
+      ],
+      "answer_index": 2,
+      "explanation": "The aux output from the mixer is still line level, so a passive monitor needs a power amp.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_004",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which path correctly feeds a passive monitor wedge from Aux 1?",
+      "choices": [
+        "Aux 1 bus, then the monitor directly",
+        "Main L/R, then the power amp, then the preamp",
+        "The preamp, then the aux bus, then the microphone",
+        "Aux 1 bus, then Aux 1 output, then a power amp, then the passive monitor"
+      ],
+      "answer_index": 3,
+      "explanation": "Aux 1 bus → Aux 1 output → power amp → passive monitor. For a powered monitor, the power amp step is already inside the cabinet.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_005",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a bus on a mixer?",
+      "choices": [
+        "An internal mix path",
+        "A cable between two mixers",
+        "A type of microphone",
+        "A speaker"
+      ],
+      "answer_index": 0,
+      "explanation": "A bus is an internal mix path. An output connector is where that path physically leaves the mixer.",
+      "verified": false
     }
   ]
 }

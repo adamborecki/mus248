@@ -10,7 +10,12 @@
     "The job",
     "X32",
     "Dante",
-    "Live looping"
+    "Live looping",
+    "Power",
+    "Zoom F8",
+    "Final Cut",
+    "Data management",
+    "Salmon gigs"
   ],
   "cards": [
     {
@@ -523,6 +528,782 @@
       "category": "Live looping",
       "front": "Power supplies",
       "back": "Keep each adapter with its own device. The RC-30 and MicroKorg both use 9V adapters with opposite polarity, so never swap them.",
+      "verified": false
+    },
+    {
+      "id": "level_mic",
+      "skill": "signal_levels",
+      "category": "Live sound",
+      "front": "Mic level",
+      "back": "The very small signal from a microphone. It needs a preamp to bring it up.",
+      "verified": false
+    },
+    {
+      "id": "level_instrument",
+      "skill": "signal_levels",
+      "category": "Live sound",
+      "front": "Instrument level",
+      "back": "The signal from a pickup or other high-impedance source, such as an electric guitar. A DI box helps connect it to a mixer.",
+      "verified": false
+    },
+    {
+      "id": "level_line",
+      "skill": "signal_levels",
+      "category": "Live sound",
+      "front": "Line level",
+      "back": "The usual mixer-to-powered-device signal. A mixer’s main and aux outputs are line level.",
+      "verified": false
+    },
+    {
+      "id": "level_speaker",
+      "skill": "signal_levels",
+      "category": "Live sound",
+      "front": "Speaker level",
+      "back": "The power-amplified signal that a passive speaker needs. It comes from a power amp, not from a mixer’s output.",
+      "verified": false
+    },
+    {
+      "id": "preamp",
+      "skill": "preamp_power_amp",
+      "category": "Live sound",
+      "front": "Preamp",
+      "back": "Brings a small source, like a microphone, up to a usable level. It is the early stage of the channel.",
+      "verified": false
+    },
+    {
+      "id": "power_amp",
+      "skill": "preamp_power_amp",
+      "category": "Live sound",
+      "front": "Power amp",
+      "back": "Creates the speaker-driving power. It takes a line-level signal in and puts speaker level out.",
+      "verified": false
+    },
+    {
+      "id": "no_direct_passive",
+      "skill": "preamp_power_amp",
+      "category": "Live sound",
+      "front": "Mixer to passive speaker",
+      "back": "Never connect a mixer line output directly to a passive loudspeaker. A power amp goes between them.",
+      "verified": false
+    },
+    {
+      "id": "powered_monitor",
+      "skill": "preamp_power_amp",
+      "category": "Live sound",
+      "front": "Powered monitor",
+      "back": "Needs AC power and a line input. The power amp lives in the cabinet.",
+      "verified": false
+    },
+    {
+      "id": "mixer_first",
+      "skill": "mixer_orientation",
+      "category": "Live sound",
+      "front": "On an unfamiliar mixer, find first…",
+      "back": "A mic input, a line/stereo input, a main output, and a monitoring output.",
+      "verified": false
+    },
+    {
+      "id": "mixer_channel_path",
+      "skill": "mixer_orientation",
+      "category": "Live sound",
+      "front": "The channel path",
+      "back": "Gain happens early. EQ, aux sends, pan, mute, and the fader come along the path after it.",
+      "verified": false
+    },
+    {
+      "id": "mixer_inputs",
+      "skill": "mixer_orientation",
+      "category": "Live sound",
+      "front": "Mic inputs vs. line inputs",
+      "back": "XLR inputs feed the microphone preamps. ¼-inch and stereo line inputs take other source types.",
+      "verified": false
+    },
+    {
+      "id": "mixer_outputs",
+      "skill": "mixer_orientation",
+      "category": "Live sound",
+      "front": "Mixer outputs",
+      "back": "Main, aux, control-room, phones, and record outputs each do a different job. Know what feeds what before you raise levels.",
+      "verified": false
+    },
+    {
+      "id": "destinations",
+      "skill": "mix_destinations",
+      "category": "Live sound",
+      "front": "One channel, many destinations",
+      "back": "A channel can feed Main L/R (the audience), an aux or monitor mix (a performer), headphones or control room (the engineer), and a recording or streaming feed.",
+      "verified": false
+    },
+    {
+      "id": "main_lr",
+      "skill": "mix_destinations",
+      "category": "Live sound",
+      "front": "Main L/R",
+      "back": "Usually feeds the audience system. It answers: what should the audience hear?",
+      "verified": false
+    },
+    {
+      "id": "bus_vs_output",
+      "skill": "mix_destinations",
+      "category": "Live sound",
+      "front": "Bus vs. output",
+      "back": "A bus is an internal mix path. An output connector is where that path physically leaves the mixer.",
+      "verified": false
+    },
+    {
+      "id": "aux_path",
+      "skill": "mix_destinations",
+      "category": "Live sound",
+      "front": "Aux path",
+      "back": "Channel → aux send → aux bus → aux output → monitor. The aux output is still line level, so a passive monitor needs a power amp first.",
+      "verified": false
+    },
+    {
+      "id": "aux_send",
+      "skill": "aux_sends",
+      "category": "Live sound",
+      "front": "Aux send",
+      "back": "Takes some of a channel and sends it to another mix. Each channel can send a different amount.",
+      "verified": false
+    },
+    {
+      "id": "monitor_mix",
+      "skill": "aux_sends",
+      "category": "Live sound",
+      "front": "Monitor mix",
+      "back": "Answers: what does this performer need to hear? It doesn’t have to match the audience mix.",
+      "verified": false
+    },
+    {
+      "id": "more_of_me",
+      "skill": "aux_sends",
+      "category": "Live sound",
+      "front": "“More of me” vs. “everything is too quiet”",
+      "back": "“More of my voice”: raise that channel’s aux send. “My whole monitor is too quiet”: raise the aux master or output level.",
+      "verified": false
+    },
+    {
+      "id": "pre_fader",
+      "skill": "pre_post_fader",
+      "category": "Live sound",
+      "front": "Pre-fader send",
+      "back": "Taps the channel before the fader, so the send doesn’t change when front-of-house moves the fader. Useful for performer monitors.",
+      "verified": false
+    },
+    {
+      "id": "post_fader",
+      "skill": "pre_post_fader",
+      "category": "Live sound",
+      "front": "Post-fader send",
+      "back": "Follows the channel fader. Useful for effects and some recording or streaming situations.",
+      "verified": false
+    },
+    {
+      "id": "check_aux_config",
+      "skill": "pre_post_fader",
+      "category": "Live sound",
+      "front": "Check the aux setup",
+      "back": "Don’t assume every aux is configured the same way. Check the mixer.",
+      "verified": false
+    },
+    {
+      "id": "vocal_too_loud",
+      "skill": "pre_post_fader",
+      "category": "Live sound",
+      "front": "Vocal too loud in the house",
+      "back": "If the singer’s monitor send is pre-fader, lowering the vocal in Main L/R leaves their monitor about the same. That’s one reason monitor mixes use pre-fader sends.",
+      "verified": false
+    },
+    {
+      "id": "pfl",
+      "skill": "pfl_solo",
+      "category": "Live sound",
+      "front": "PFL, AFL, Solo, Cue",
+      "back": "PFL is pre-fader listen and AFL is after-fader listen. Different mixers use different labels for the same idea.",
+      "verified": false
+    },
+    {
+      "id": "pfl_purpose",
+      "skill": "pfl_solo",
+      "category": "Live sound",
+      "front": "What PFL is for",
+      "back": "Listen to or meter a signal without necessarily sending it to the audience. Use it for setup and troubleshooting before turning up the room.",
+      "verified": false
+    },
+    {
+      "id": "speakon",
+      "skill": "connector_signal",
+      "category": "Mics & cables",
+      "front": "SpeakON",
+      "back": "A locking speaker-level connector between a power amp and a passive speaker.",
+      "verified": false
+    },
+    {
+      "id": "rca",
+      "skill": "connector_signal",
+      "category": "Mics & cables",
+      "front": "RCA",
+      "back": "A common consumer unbalanced stereo connection.",
+      "verified": false
+    },
+    {
+      "id": "connector_no_signal",
+      "skill": "connector_signal",
+      "category": "Mics & cables",
+      "front": "A connector doesn’t define the signal",
+      "back": "XLR and ¼-inch connections can carry different signals depending on the situation. The connector is a clue, not an answer.",
+      "verified": false
+    },
+    {
+      "id": "ac",
+      "skill": "ac_dc",
+      "category": "Power",
+      "front": "AC (alternating current)",
+      "back": "Used for wall power. In the United States, about 120V AC at 60 Hz.",
+      "verified": false
+    },
+    {
+      "id": "dc",
+      "skill": "ac_dc",
+      "category": "Power",
+      "front": "DC (direct current)",
+      "back": "What batteries provide. Many pieces of audio equipment run on DC.",
+      "verified": false
+    },
+    {
+      "id": "adapter_job",
+      "skill": "ac_dc",
+      "category": "Power",
+      "front": "What a power adapter does",
+      "back": "Often converts AC from the wall into the DC a device needs.",
+      "verified": false
+    },
+    {
+      "id": "hot",
+      "skill": "ac_cable_safety",
+      "category": "Power",
+      "front": "Hot",
+      "back": "Carries the electrical power.",
+      "verified": false
+    },
+    {
+      "id": "neutral",
+      "skill": "ac_cable_safety",
+      "category": "Power",
+      "front": "Neutral",
+      "back": "Provides the normal return path.",
+      "verified": false
+    },
+    {
+      "id": "ground",
+      "skill": "ac_cable_safety",
+      "category": "Power",
+      "front": "Ground",
+      "back": "A safety connection that helps protect people if something goes wrong.",
+      "verified": false
+    },
+    {
+      "id": "never_defeat_ground",
+      "skill": "ac_cable_safety",
+      "category": "Power",
+      "front": "Never defeat the ground",
+      "back": "Never remove or defeat the ground pin to solve an audio problem.",
+      "verified": false
+    },
+    {
+      "id": "fits_not_safe",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "Fits ≠ safe",
+      "back": "Just because a power adapter fits physically does not mean it is safe. Check before you plug in.",
+      "verified": false
+    },
+    {
+      "id": "adapter_quick_rule",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "Adapter quick rule",
+      "back": "AC or DC? Voltage matches? Polarity matches? Enough amperage? Connector actually fits?",
+      "verified": false
+    },
+    {
+      "id": "adapter_voltage",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "Adapter voltage",
+      "back": "Must match. A device that requires 12V takes a 12V adapter, not 9V or 15V.",
+      "verified": false
+    },
+    {
+      "id": "adapter_polarity",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "Polarity",
+      "back": "For DC barrel connectors, check whether the device is center positive or center negative. Polarity must match.",
+      "verified": false
+    },
+    {
+      "id": "adapter_amperage",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "Amperage",
+      "back": "The adapter must provide at least the current the device needs. A 12V 1A device can use a 12V 1A or 2A adapter, but not a 0.5A one.",
+      "verified": false
+    },
+    {
+      "id": "adapter_2a",
+      "skill": "power_adapters",
+      "category": "Power",
+      "front": "A 2A adapter on a 1A device",
+      "back": "A 2A adapter does not force 2 amps into the device. The device draws the current it needs. 1000 mA = 1 A.",
+      "verified": false
+    },
+    {
+      "id": "f8_what",
+      "skill": "f8_basics",
+      "category": "Zoom F8",
+      "front": "Zoom F8",
+      "back": "A portable multitrack recorder with 8 XLR inputs. It records to an SD card.",
+      "verified": false
+    },
+    {
+      "id": "f8_power",
+      "skill": "f8_basics",
+      "category": "Zoom F8",
+      "front": "F8 power",
+      "back": "8 AA batteries, or 12V DC.",
+      "verified": false
+    },
+    {
+      "id": "f8_steps",
+      "skill": "f8_workflow",
+      "category": "Zoom F8",
+      "front": "For each microphone on the F8",
+      "back": "Plug into the correct input. Turn on the track. Press PFL. Check and set gain. Turn on +48V phantom power if needed. Watch the meter for peaks. Listen on headphones. Record and verify.",
+      "verified": false
+    },
+    {
+      "id": "f8_track_on",
+      "skill": "f8_workflow",
+      "category": "Zoom F8",
+      "front": "Turning on a track",
+      "back": "Turning on the track on the F8 record-enables it.",
+      "verified": false
+    },
+    {
+      "id": "f8_pfl",
+      "skill": "f8_workflow",
+      "category": "Zoom F8",
+      "front": "PFL",
+      "back": "Lets you focus on one channel and see the exact gain setting.",
+      "verified": false
+    },
+    {
+      "id": "f8_dual",
+      "skill": "f8_dual_channel",
+      "category": "Zoom F8",
+      "front": "Dual channel recording",
+      "back": "Input 1 also records to Track 5, input 2 to Track 6, input 3 to Track 7, and input 4 to Track 8.",
+      "verified": false
+    },
+    {
+      "id": "f8_dual_why",
+      "skill": "f8_dual_channel",
+      "category": "Zoom F8",
+      "front": "Why record a second track",
+      "back": "The second track can be recorded at a lower level as a safety. If the main track clips, the quieter copy may still be usable.",
+      "verified": false
+    },
+    {
+      "id": "f8_track5",
+      "skill": "f8_dual_channel",
+      "category": "Zoom F8",
+      "front": "Track 5 is not always Input 5",
+      "back": "With dual channel recording, tracks 5–8 hold the safety copies of inputs 1–4.",
+      "verified": false
+    },
+    {
+      "id": "record_not_done",
+      "skill": "record_verify",
+      "category": "Zoom F8",
+      "front": "RECORD ≠ DONE",
+      "back": "Always verify: Are the meters moving? Does it sound good in headphones? Did the recording actually save?",
+      "verified": false
+    },
+    {
+      "id": "fcp_what",
+      "skill": "fcp_workflow",
+      "category": "Final Cut",
+      "front": "Final Cut Pro",
+      "back": "Video editing software. We use it to combine picture with our better-recorded audio. It is the “video side” of post-production.",
+      "verified": false
+    },
+    {
+      "id": "fcp_steps",
+      "skill": "fcp_workflow",
+      "category": "Final Cut",
+      "front": "The basic workflow",
+      "back": "1. Create or open a Library and rename clips. 2. Create a Project. 3. Import video and audio. 4. Put clips on the timeline. 5. Sync the good audio to the camera video. 6. Trim the beginning and end. 7. Add fades. 8. Check the result. 9. Export.",
+      "verified": false
+    },
+    {
+      "id": "fcp_phase1",
+      "skill": "fcp_workflow",
+      "category": "Final Cut",
+      "front": "Phase 1 pipeline",
+      "back": "Video plus good audio → sync → trim → fade → QC (quality control) → export H.264 video plus WAV audio.",
+      "verified": false
+    },
+    {
+      "id": "fcp_browser",
+      "skill": "fcp_areas",
+      "category": "Final Cut",
+      "front": "Browser",
+      "back": "Where your imported media lives.",
+      "verified": false
+    },
+    {
+      "id": "fcp_viewer",
+      "skill": "fcp_areas",
+      "category": "Final Cut",
+      "front": "Viewer",
+      "back": "Where you watch.",
+      "verified": false
+    },
+    {
+      "id": "fcp_timeline",
+      "skill": "fcp_areas",
+      "category": "Final Cut",
+      "front": "Timeline",
+      "back": "Where you edit. Zoom in and out for precise edits, select clips, cut at the playhead, trim, adjust audio level, and add audio and video fades.",
+      "verified": false
+    },
+    {
+      "id": "fcp_import",
+      "skill": "fcp_settings",
+      "category": "Final Cut",
+      "front": "Importing at Chapman",
+      "back": "Import using File → Import, and choose “Leave files in place.”",
+      "verified": false
+    },
+    {
+      "id": "fcp_1080",
+      "skill": "fcp_settings",
+      "category": "Final Cut",
+      "front": "Project resolution",
+      "back": "Set the project to 1080p for individual movements or clips.",
+      "verified": false
+    },
+    {
+      "id": "fcp_render",
+      "skill": "fcp_settings",
+      "category": "Final Cut",
+      "front": "Background Render",
+      "back": "Disable it.",
+      "verified": false
+    },
+    {
+      "id": "fcp_export",
+      "skill": "fcp_settings",
+      "category": "Final Cut",
+      "front": "Export format",
+      "back": "Export video as H.264, not ProRes.",
+      "verified": false
+    },
+    {
+      "id": "fcp_originals",
+      "skill": "fcp_nondestructive",
+      "category": "Final Cut",
+      "front": "Final Cut leaves your originals alone",
+      "back": "Final Cut is usually not changing your original recording files. It is creating instructions: “use this part of this file, starting here, ending here, at this level.” When you export, it creates the finished file.",
+      "verified": false
+    },
+    {
+      "id": "fcp_organize",
+      "skill": "fcp_nondestructive",
+      "category": "Final Cut",
+      "front": "Keep originals organized",
+      "back": "Keep your original files organized outside Final Cut.",
+      "verified": false
+    },
+    {
+      "id": "dm_gig_folder",
+      "skill": "gig_folders",
+      "category": "Data management",
+      "front": "Gig folder name",
+      "back": "YYMMDD Full Event Name, for example 260914 The Chapman Orchestra. Use the full event name for the gig folder and short names inside it.",
+      "verified": false
+    },
+    {
+      "id": "dm_letter",
+      "skill": "gig_folders",
+      "category": "Data management",
+      "front": "Optional letter after the date",
+      "back": "Only add a letter after YYMMDD if that same letter is assigned in the Rec Gigs spreadsheet.",
+      "verified": false
+    },
+    {
+      "id": "dm_abbr",
+      "skill": "gig_folders",
+      "category": "Data management",
+      "front": "Short names",
+      "back": "The Chapman Orchestra → TCO. Wind Symphony → WS. A studio recital of several students → studioRecital.",
+      "verified": false
+    },
+    {
+      "id": "dm_r",
+      "skill": "rse_stages",
+      "category": "Data management",
+      "front": "r folder",
+      "back": "Raw / source files, straight from the cards.",
+      "verified": false
+    },
+    {
+      "id": "dm_e",
+      "skill": "rse_stages",
+      "category": "Data management",
+      "front": "e folder",
+      "back": "Edit / post-production files: projects and working files.",
+      "verified": false
+    },
+    {
+      "id": "dm_s",
+      "skill": "rse_stages",
+      "category": "Data management",
+      "front": "s folder",
+      "back": "Saved final deliverables.",
+      "verified": false
+    },
+    {
+      "id": "dm_a",
+      "skill": "rse_stages",
+      "category": "Data management",
+      "front": "a folder (optional)",
+      "back": "Special archive or keep files.",
+      "verified": false
+    },
+    {
+      "id": "dm_life",
+      "skill": "rse_stages",
+      "category": "Data management",
+      "front": "The life of the data",
+      "back": "r, e, and s describe stages and file types. They are not three backup copies of the same folder. A matching safe copy of the gig also lives on the Backups drive.",
+      "verified": false
+    },
+    {
+      "id": "dm_capture",
+      "skill": "two_destinations",
+      "category": "Data management",
+      "front": "Capture media names",
+      "back": "Mus128_#### means a card with a 128 GB capacity and a unique ID. IDs match the Data Volumes spreadsheet. Also Mus64_####, Mus32_####, SSDs, and so on.",
+      "verified": false
+    },
+    {
+      "id": "dm_two",
+      "skill": "two_destinations",
+      "category": "Data management",
+      "front": "One source, two destinations",
+      "back": "Copy everything from the capture media to the Post drive and to the Backups drive, using the same gig structure on both. A hard drive can fail at any time, so one copy is not enough.",
+      "verified": false
+    },
+    {
+      "id": "dm_from",
+      "skill": "two_destinations",
+      "category": "Data management",
+      "front": "From [card name] folders",
+      "back": "Each card or SSD gets its own From … folder inside the r folder, on both drives. Example: From Mus128_1842.",
+      "verified": false
+    },
+    {
+      "id": "dm_copy_all",
+      "skill": "two_destinations",
+      "category": "Data management",
+      "front": "Copy everything by default",
+      "back": "Experienced engineers may copy selectively, but only when they truly know what they are doing. For beginners, copy the whole card.",
+      "verified": false
+    },
+    {
+      "id": "dm_post_work",
+      "skill": "two_destinations",
+      "category": "Data management",
+      "front": "Post drive and Work drive",
+      "back": "“Post Drive” and “Work Drive” may be used synonymously. In current instructions, prefer “Post Drive.”",
+      "verified": false
+    },
+    {
+      "id": "dm_triple",
+      "skill": "triple_check",
+      "category": "Data management",
+      "front": "Triple Triple Check",
+      "back": "Delete only when you can prove the source exists safely in all three places: the original card or SSD, the Post drive, and the Backups drive.",
+      "verified": false
+    },
+    {
+      "id": "dm_triple_three",
+      "skill": "triple_check",
+      "category": "Data management",
+      "front": "The three checks",
+      "back": "1. The approximate GB must match. 2. The last 3 digits of the exact bytes must match. 3. The location must be the expected source plus the two drives.",
+      "verified": false
+    },
+    {
+      "id": "dm_99",
+      "skill": "triple_check",
+      "category": "Data management",
+      "front": "If you are 99% sure…",
+      "back": "Do not delete. Ask for help.",
+      "verified": false
+    },
+    {
+      "id": "dm_delete_order",
+      "skill": "triple_check",
+      "category": "Data management",
+      "front": "Deleting from a card",
+      "back": "Only after the checks pass: Trash, then Empty Trash, then confirm the free space.",
+      "verified": false
+    },
+    {
+      "id": "dm_trash",
+      "skill": "empty_trash",
+      "category": "Data management",
+      "front": "Trashed is not deleted",
+      "back": "Files in the Trash still take up space. Empty the Trash.",
+      "verified": false
+    },
+    {
+      "id": "dm_106",
+      "skill": "empty_trash",
+      "category": "Data management",
+      "front": "Only 106 GB free on a 128 GB card?",
+      "back": "The Trash wasn’t emptied. After it is emptied (with the card still connected), it should show about 127 GB free. Older cards lose some maximum capacity.",
+      "verified": false
+    },
+    {
+      "id": "sal_unfinished",
+      "skill": "salmon_pre_gig",
+      "category": "Salmon gigs",
+      "front": "Unfinished business",
+      "back": "Before you start, check for anything left from the last gig, such as SD cards that still need cleaning or a data transfer that never got finished. Finish that first.",
+      "verified": false
+    },
+    {
+      "id": "sal_late",
+      "skill": "salmon_pre_gig",
+      "category": "Salmon gigs",
+      "front": "Running late",
+      "back": "Text your fellow engineers before your call time. Don’t leave them wondering.",
+      "verified": false
+    },
+    {
+      "id": "sal_on_time",
+      "skill": "salmon_pre_gig",
+      "category": "Salmon gigs",
+      "front": "On time",
+      "back": "For recording work, on time usually means ready to work at the scheduled time, not walking in at that time.",
+      "verified": false
+    },
+    {
+      "id": "sal_preamps",
+      "skill": "salmon_audio_setup",
+      "category": "Salmon gigs",
+      "front": "Don’t adjust the audio preamps",
+      "back": "If a level is genuinely wrong, that’s a conversation with Borecki, not a knob you turn.",
+      "verified": false
+    },
+    {
+      "id": "sal_f8_power",
+      "skill": "salmon_audio_setup",
+      "category": "Salmon gigs",
+      "front": "F8 power switch",
+      "back": "Hold it for about 2 seconds to turn it on or off. A quick tap does nothing, in either direction.",
+      "verified": false
+    },
+    {
+      "id": "sal_f8_arm",
+      "skill": "salmon_audio_setup",
+      "category": "Salmon gigs",
+      "front": "F8 record-enable",
+      "back": "All 8 channels should show a red light underneath. If one isn’t lit, press that channel’s button.",
+      "verified": false
+    },
+    {
+      "id": "sal_confirm_audio",
+      "skill": "salmon_audio_setup",
+      "category": "Salmon gigs",
+      "front": "Confirm audio",
+      "back": "Headphones on. Check both the F8 and the H6 and confirm a clean signal on both, not the same signal doubled.",
+      "verified": false
+    },
+    {
+      "id": "sal_start",
+      "skill": "salmon_recording",
+      "category": "Salmon gigs",
+      "front": "Start recording",
+      "back": "Start 3 minutes before the downbeat. Confirm every recorder is actually rolling: numbers moving, not just a button pressed.",
+      "verified": false
+    },
+    {
+      "id": "sal_intermission",
+      "skill": "salmon_recording",
+      "category": "Salmon gigs",
+      "front": "Intermission",
+      "back": "Default: leave everything recording straight through. If something is genuinely at risk, stop all recording devices together, fix it, and restart all of them together, immediately.",
+      "verified": false
+    },
+    {
+      "id": "sal_f8_stop",
+      "skill": "salmon_recording",
+      "category": "Salmon gigs",
+      "front": "Stopping the F8",
+      "back": "Use the STOP button, not the red record button. The F8 power switch needs the same 2-second hold to turn off.",
+      "verified": false
+    },
+    {
+      "id": "sal_green",
+      "skill": "salmon_etiquette",
+      "category": "Salmon gigs",
+      "front": "Green room",
+      "back": "Knock first. If a performer is inside, ask before touching anything, and offer to turn on the TV and show where the volume is.",
+      "verified": false
+    },
+    {
+      "id": "sal_doors",
+      "skill": "salmon_etiquette",
+      "category": "Salmon gigs",
+      "front": "Doors and lobby",
+      "back": "Ask about changes to the program or an encore. When doors open, switch the Hallway TV from Signage to Camera and turn Hallway Audio on. At end of show, back to Signage with audio off.",
+      "verified": false
+    },
+    {
+      "id": "sal_drives",
+      "skill": "salmon_data_pass",
+      "category": "Salmon gigs",
+      "front": "Which drives",
+      "back": "Read the labels on the drives. The numbers roll forward over time, so don’t assume.",
+      "verified": false
+    },
+    {
+      "id": "sal_1tb",
+      "skill": "salmon_data_pass",
+      "category": "Salmon gigs",
+      "front": "Check free space",
+      "back": "If either drive has less than 1 TB free, text Borecki. An actual text.",
+      "verified": false
+    },
+    {
+      "id": "sal_folders_first",
+      "skill": "salmon_data_pass",
+      "category": "Salmon gigs",
+      "front": "Folders first, then copy",
+      "back": "Create all of the destination folders on both drives first. Then copy each card into a From … folder inside both r folders.",
+      "verified": false
+    },
+    {
+      "id": "sal_wipe",
+      "skill": "salmon_data_pass",
+      "category": "Salmon gigs",
+      "front": "Before wiping a card",
+      "back": "Triple Triple Check, then get Borecki to look over the transferred files. Move to Trash, Empty Trash, then Get Info (⌘I) on the card. Free space should be close to its full size.",
       "verified": false
     }
   ]

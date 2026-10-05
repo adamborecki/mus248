@@ -1,9 +1,10 @@
 {
   "schema": 1,
-  "quiz_number": 2,
+  "quiz_number": 3,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
-    "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 }
+    "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
+    "3": { "label": "Quiz 3", "version": "2026-10-05", "access_code": "passivemonitors", "expected_minutes": 6, "window_minutes": 9 }
   },
   "targets": {
     "graded_questions": 12
@@ -18,7 +19,7 @@
   "max_common_level": 1,
   "include_drafts": false,
   "review_next_max": 4,
-  "coming_to_core": ["active_passive", "safe_power_order"],
+  "coming_to_core": ["two_destinations", "triple_check", "signal_levels", "preamp_power_amp", "power_adapters", "f8_workflow"],
   "activities": [
     { "id": "daw", "label": "DAW Training Circuit" },
     { "id": "stereo", "label": "Basic Stereo Recording" },
@@ -27,7 +28,8 @@
     { "id": "x32compact", "label": "X32 Compact" },
     { "id": "live-looping", "label": "Live Looping Rig" },
     { "id": "dante", "label": "Dante" },
-    { "id": "mic-stands", "label": "Mic Stand Yoga" }
+    { "id": "mic-stands", "label": "Mic Stand Yoga" },
+    { "id": "salmon", "label": "Salmon Recital Hall (A/V capture, gig checklist)" }
   ],
   "skills": {
     "signal_flow": "core",
@@ -52,8 +54,8 @@
     "white_balance_kelvin": "practice",
     "focus": "core",
     "mains_monitors": "core",
-    "active_passive": "practice",
-    "safe_power_order": "practice",
+    "active_passive": "core",
+    "safe_power_order": "core",
     "feedback": "practice",
     "exposure": "core",
     "frame_rate": "practice",
@@ -75,6 +77,42 @@
     "transmitter_receiver": "core",
     "looper_signal_flow": "practice",
     "wireless_setup": "practice",
-    "looper_power": "practice"
+    "looper_power": "practice",
+
+    "signal_levels": "practice",
+    "preamp_power_amp": "practice",
+    "mixer_orientation": "practice",
+    "connector_signal": "practice",
+
+    "aux_sends": "practice",
+    "pre_post_fader": "practice",
+    "pfl_solo": "practice",
+    "mix_destinations": "practice",
+
+    "ac_dc": "practice",
+    "ac_cable_safety": "practice",
+    "power_adapters": "practice",
+
+    "f8_basics": "practice",
+    "f8_workflow": "practice",
+    "f8_dual_channel": "practice",
+    "record_verify": "practice",
+
+    "fcp_areas": "practice",
+    "fcp_workflow": "practice",
+    "fcp_settings": "practice",
+    "fcp_nondestructive": "practice",
+
+    "gig_folders": "practice",
+    "rse_stages": "practice",
+    "two_destinations": "practice",
+    "triple_check": "practice",
+    "empty_trash": "practice",
+
+    "salmon_pre_gig": "practice",
+    "salmon_audio_setup": "practice",
+    "salmon_recording": "practice",
+    "salmon_etiquette": "practice",
+    "salmon_data_pass": "practice"
   }
 }
