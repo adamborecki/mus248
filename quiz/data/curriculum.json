@@ -29,6 +29,7 @@
     { "id": "live-looping", "label": "Live Looping Rig" },
     { "id": "dante", "label": "Dante" },
     { "id": "mic-stands", "label": "Mic Stand Yoga" },
+    { "id": "cable-safari", "label": "Cable Safari" },
     { "id": "salmon", "label": "Salmon Recital Hall (A/V capture, gig checklist)" }
   ],
   "skills": {
@@ -129,6 +130,8 @@
     "dante_multi_output": "practice",
     "dante_channel_planning": "practice",
     "dante_troubleshooting": "practice",
-    "dante_signal_flow": "practice"
+    "dante_signal_flow": "practice",
+    "cable_ends": "practice",
+    "video_connectors": "practice"
   }
 }

@@ -1649,6 +1649,54 @@
       "front": "The path of the signal",
       "back": "Source, DAW, DVS, network, DVS, DAW, output.",
       "verified": false
+    },
+    {
+      "id": "male_female",
+      "skill": "cable_ends",
+      "category": "Mics & cables",
+      "front": "Male vs. female connectors",
+      "back": "Male has the pins (or the plug part that goes in); female has the holes (or the socket). Cables mate male to female.",
+      "verified": false
+    },
+    {
+      "id": "xlr_which_end",
+      "skill": "cable_ends",
+      "category": "Mics & cables",
+      "front": "Which XLR end goes where",
+      "back": "Microphones have male XLR, so the cable’s female end goes onto the mic. The male end goes into the mixer or interface, whose inputs are female.",
+      "verified": false
+    },
+    {
+      "id": "name_by_ends",
+      "skill": "cable_ends",
+      "category": "Mics & cables",
+      "front": "Name a cable by its ends",
+      "back": "Say the connector and gender at each end: “XLR female to ¼-inch TRS.” Color, length, and nicknames don’t say which cable you mean.",
+      "verified": false
+    },
+    {
+      "id": "hdmi_sizes",
+      "skill": "video_connectors",
+      "category": "Mics & cables",
+      "front": "HDMI sizes",
+      "back": "Full-size is the standard plug. Mini and micro are smaller, in that order, and are common on cameras and other small devices. Match the cable to the port on each end.",
+      "verified": false
+    },
+    {
+      "id": "sdi_bnc",
+      "skill": "video_connectors",
+      "category": "Mics & cables",
+      "front": "SDI and BNC",
+      "back": "SDI video travels on a cable with BNC connectors: round, with a twist-lock collar.",
+      "verified": false
+    },
+    {
+      "id": "mini_to_rca",
+      "skill": "connector_signal",
+      "category": "Mics & cables",
+      "front": "3.5 mm to dual RCA",
+      "back": "One stereo 3.5 mm plug splits into two RCA plugs: one for the left channel, one for the right.",
+      "verified": false
     }
   ]
 }

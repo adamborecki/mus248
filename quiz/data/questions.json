@@ -87,7 +87,9 @@
     "dante_multi_output": "Dante Broadcast: Multi-Output Device",
     "dante_channel_planning": "Dante Jam Session: channel planning",
     "dante_troubleshooting": "Dante troubleshooting",
-    "dante_signal_flow": "Dante signal flow: DAW to mixer"
+    "dante_signal_flow": "Dante signal flow: DAW to mixer",
+    "cable_ends": "Cable ends and gender",
+    "video_connectors": "Video connectors (HDMI, SDI)"
   },
   "questions": [
     {
@@ -5402,6 +5404,168 @@
       ],
       "answer_index": 2,
       "explanation": "The activities’ diagram: source to DAW to DVS to network to DVS to DAW to output.",
+      "verified": false
+    },
+    {
+      "id": "CAB_ENDS_001",
+      "skill": "cable_ends",
+      "topic": "audio_fundamentals",
+      "level": 0,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "On an XLR or other connector, which gender has the pins that stick out?",
+      "choices": [
+        "Male",
+        "Female",
+        "Both",
+        "Neither"
+      ],
+      "answer_index": 0,
+      "explanation": "Male connectors have the pins (or the plug part); female connectors have the holes (or the socket).",
+      "verified": false
+    },
+    {
+      "id": "CAB_ENDS_002",
+      "skill": "cable_ends",
+      "topic": "audio_fundamentals",
+      "level": 0,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "A microphone has a male XLR connector. Which end of an XLR cable goes onto the microphone?",
+      "choices": [
+        "The female end",
+        "The male end",
+        "Either end, because XLR has no gender",
+        "Neither; microphones use TRS"
+      ],
+      "answer_index": 0,
+      "explanation": "A male connector needs a female one to mate with it, so the cable’s female end plugs onto the mic. The male end goes into the mixer or interface.",
+      "verified": false
+    },
+    {
+      "id": "CAB_ENDS_003",
+      "skill": "cable_ends",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "An XLR input jack on a mixer or audio interface is normally which gender?",
+      "choices": [
+        "Female",
+        "Male",
+        "Neither; XLR inputs have no gender",
+        "It depends on the brand"
+      ],
+      "answer_index": 0,
+      "explanation": "Inputs are normally female, which is why the cable’s male end goes into them. (A combo jack takes either XLR or ¼-inch, but its XLR part is still female.)",
+      "verified": false
+    },
+    {
+      "id": "CAB_ENDS_004",
+      "skill": "cable_ends",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "You need a longer XLR run and want to join two XLR cables. How do they connect?",
+      "choices": [
+        "The male end of one into the female end of the other",
+        "Male to male, with a gender changer",
+        "Female to female, with a gender changer",
+        "They can’t be joined; you need one longer cable"
+      ],
+      "answer_index": 0,
+      "explanation": "Each cable has one male end and one female end, so they chain end to end: male into female.",
+      "verified": false
+    },
+    {
+      "id": "CAB_ENDS_005",
+      "skill": "cable_ends",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "How should you describe a cable to someone who needs to find it?",
+      "choices": [
+        "By both ends: the connector and gender at each, like “XLR female to ¼-inch TRS”",
+        "By its color and length",
+        "By what it’s usually used for, like “mic cable”",
+        "By the brand name on the jacket"
+      ],
+      "answer_index": 0,
+      "explanation": "A cable is defined by its two ends. Color, length, and nickname don’t tell the person which one to fetch.",
+      "verified": false
+    },
+    {
+      "id": "CAB_VID_001",
+      "skill": "video_connectors",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "Put the three HDMI sizes in order, largest connector to smallest.",
+      "choices": [
+        "Full-size, mini, micro",
+        "Micro, mini, full-size",
+        "Mini, full-size, micro",
+        "Full-size, micro, mini"
+      ],
+      "answer_index": 0,
+      "explanation": "Full-size HDMI is the standard plug; mini is smaller; micro is the smallest of the three.",
+      "verified": false
+    },
+    {
+      "id": "CAB_VID_002",
+      "skill": "video_connectors",
+      "topic": "video_fundamentals",
+      "level": 0,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "An SDI video cable ends in which kind of connector?",
+      "choices": [
+        "BNC",
+        "XLR",
+        "RCA",
+        "USB-A"
+      ],
+      "answer_index": 0,
+      "explanation": "SDI uses BNC connectors: round, with a twist-lock collar.",
+      "verified": false
+    },
+    {
+      "id": "CAB_VID_003",
+      "skill": "video_connectors",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "A camera’s HDMI output is a micro HDMI port, and the monitor’s input is a full-size HDMI port. Which cable do you need?",
+      "choices": [
+        "Micro HDMI to full-size HDMI",
+        "Full-size HDMI to full-size HDMI",
+        "Mini HDMI to full-size HDMI",
+        "SDI with BNC on both ends"
+      ],
+      "answer_index": 0,
+      "explanation": "The cable has to match the port at each end: micro at the camera, full-size at the monitor.",
+      "verified": false
+    },
+    {
+      "id": "CAB_SIG_001",
+      "skill": "connector_signal",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": "cable-safari",
+      "type": "multiple_choice",
+      "prompt": "A 3.5 mm to dual RCA cable ends in two RCA plugs. Why two?",
+      "choices": [
+        "One carries the left channel and one the right",
+        "One carries signal and one carries power",
+        "One is a spare",
+        "One is audio and one is video"
+      ],
+      "answer_index": 0,
+      "explanation": "The 3.5 mm stereo plug carries left and right; the cable splits them onto two RCA plugs, one per channel.",
       "verified": false
     }
   ]
