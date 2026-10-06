@@ -828,7 +828,7 @@
       "answer_index": 0,
       "explanation": "A/B uses two microphones spaced apart to capture stereo information.",
       "verified": true,
-      "draft": true
+      "draft": false
     },
     {
       "id": "ST_ORTF_001",
@@ -2304,7 +2304,7 @@
       ],
       "answer_index": 2,
       "explanation": "SpeakON is the locking speaker-level connector between a power amp and a passive speaker.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "CONN_SIG_002",
@@ -2322,7 +2322,7 @@
       ],
       "answer_index": 3,
       "explanation": "A 3.5 mm TRS is the usual laptop or phone stereo playback connection. A mixer input needs the right adapter or cable for it.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "CONN_SIG_003",
@@ -2340,7 +2340,7 @@
       ],
       "answer_index": 0,
       "explanation": "Connector shape is a clue, not an answer. Always confirm what signal is on the cable and what the destination expects.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ACDC_001",
@@ -2358,7 +2358,7 @@
       ],
       "answer_index": 1,
       "explanation": "Wall power in the United States is typically about 120V AC at 60 Hz.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ACDC_002",
@@ -2376,7 +2376,7 @@
       ],
       "answer_index": 2,
       "explanation": "Batteries provide DC, and many pieces of audio equipment run on DC.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ACDC_003",
@@ -2394,7 +2394,7 @@
       ],
       "answer_index": 3,
       "explanation": "The adapter takes AC from the wall and gives the device the DC it requires.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ACDC_004",
@@ -2412,7 +2412,7 @@
       ],
       "answer_index": 0,
       "explanation": "Typical U.S. wall power is about 120V AC at 60 Hz. The 12V and 48V numbers you see in audio belong to DC supplies and phantom power.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_SAFE_001",
@@ -2421,7 +2421,7 @@
       "level": 0,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "Which conductor in an AC power cable is the safety connection?",
+      "prompt": "Which of the 3 conductors in an AC power cable is the safety connection?",
       "choices": [
         "Hot",
         "Ground",
@@ -2430,7 +2430,7 @@
       ],
       "answer_index": 1,
       "explanation": "The ground is a safety connection that helps protect people if something goes wrong.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_SAFE_002",
@@ -2466,7 +2466,8 @@
       ],
       "answer_index": 3,
       "explanation": "Hot carries the power out, neutral is the normal way back, and ground is there for safety.",
-      "verified": false
+      "verified": false,
+      "draft": true
     },
     {
       "id": "PWR_SAFE_004",
@@ -2484,7 +2485,7 @@
       ],
       "answer_index": 0,
       "explanation": "The ground pin protects people. Find the cause of the hum another way, and ask for help if you can’t.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_001",
@@ -2496,13 +2497,13 @@
       "prompt": "A power adapter fits a piece of equipment’s connector perfectly. What should you check before plugging it in?",
       "choices": [
         "Only whether the connector fits",
-        "AC or DC, voltage, polarity, and amperage",
+        "AC or DC, voltage (same), polarity (same), and amperage (at least same or more)",
         "Only the voltage",
         "The brand of the adapter"
       ],
       "answer_index": 1,
       "explanation": "Fitting physically does not mean it is safe. Before plugging in: AC or DC, voltage matches, polarity matches, enough amperage, and the connector actually fits.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_002",
@@ -2520,7 +2521,7 @@
       ],
       "answer_index": 2,
       "explanation": "Voltage and polarity must match exactly, and the amperage must be at least what the device needs. 2A is more than 1A, so it is fine.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_003",
@@ -2538,7 +2539,7 @@
       ],
       "answer_index": 3,
       "explanation": "500 mA is half an amp, so a 1A adapter has plenty. A higher amperage rating is fine; polarity still has to match.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_004",
@@ -2556,7 +2557,7 @@
       ],
       "answer_index": 0,
       "explanation": "The adapter has to provide at least the current the device needs. A 1A adapter can’t supply 2A.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_005",
@@ -2574,7 +2575,7 @@
       ],
       "answer_index": 1,
       "explanation": "A 2A adapter does not “force” 2 amps into the device. The device draws what it needs. Voltage and polarity are what must match.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "PWR_ADPT_006",
@@ -2592,7 +2593,7 @@
       ],
       "answer_index": 2,
       "explanation": "1000 mA = 1 A, so a 500 mA device needs half an amp.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "F8_BASIC_001",
@@ -3222,7 +3223,7 @@
       ],
       "answer_index": 1,
       "explanation": "The beginner default is to copy everything from the capture media to a Post drive and a Backups drive: one source, two destinations.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DM_COPY_002",
@@ -3240,7 +3241,7 @@
       ],
       "answer_index": 2,
       "explanation": "A hard drive can fail at any time — one copy is not enough.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DM_COPY_003",
@@ -3258,7 +3259,7 @@
       ],
       "answer_index": 3,
       "explanation": "Copy everything by default. Experienced engineers may copy selectively, but only when they truly know what they are doing.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DM_COPY_004",
@@ -3276,7 +3277,7 @@
       ],
       "answer_index": 0,
       "explanation": "In Mus128_####, 128 is the card capacity and #### is the unique ID that matches the Data Volumes spreadsheet.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DM_COPY_005",
@@ -3294,7 +3295,7 @@
       ],
       "answer_index": 1,
       "explanation": "Each source gets its own From … folder inside the r folder, on both the Post and Backups drives.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DM_TRIP_001",
@@ -3786,7 +3787,7 @@
       "id": "LIVE_AUX_001",
       "skill": "aux_sends",
       "topic": "live_sound",
-      "level": 0,
+      "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
       "prompt": "What does an aux send do?",
@@ -3798,7 +3799,7 @@
       ],
       "answer_index": 1,
       "explanation": "An aux send takes some of a channel and sends it to another mix.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "LIVE_AUX_002",
@@ -3816,7 +3817,7 @@
       ],
       "answer_index": 2,
       "explanation": "Each channel can send a different amount to the aux, so the monitor changes while Main L/R stays the same.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "LIVE_AUX_003",
@@ -3834,7 +3835,7 @@
       ],
       "answer_index": 3,
       "explanation": "The aux master changes the whole monitor mix. Raising every send would change things you don’t need to.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "LIVE_AUX_004",
@@ -3852,7 +3853,7 @@
       ],
       "answer_index": 0,
       "explanation": "“More of me” is one source inside the monitor mix, so raise that channel’s aux send.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "LIVE_PREPOST_001",
@@ -4176,7 +4177,7 @@
       ],
       "answer_index": 2,
       "explanation": "A lower f-number is a bigger opening. F2.8 is the biggest of these, and F11 the smallest.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "VID_AP_004",
@@ -4194,7 +4195,7 @@
       ],
       "answer_index": 3,
       "explanation": "Going down one step on the f-number scale (…2.8, 4, 5.6, 8, 11…) lets in one stop more light.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "VID_AP_005",
@@ -4212,7 +4213,7 @@
       ],
       "answer_index": 0,
       "explanation": "Each step on that scale is one stop. Moving to the higher number cuts the light in half.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "VID_SH_004",
@@ -5058,7 +5059,7 @@
       ],
       "answer_index": 3,
       "explanation": "Stereo is two channels, so both must be routed.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_ST_002",
@@ -5076,7 +5077,7 @@
       ],
       "answer_index": 0,
       "explanation": "Check that the source is actually stereo and that both Dante channels 1 and 2 are routed.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_ST_003",
@@ -5085,7 +5086,7 @@
       "level": 1,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "What should the routing squares look like once a route is made?",
+      "prompt": "In Dante Controller, what should the routing squares look like once a route is made?",
       "choices": [
         "Gray",
         "Green",
@@ -5094,7 +5095,7 @@
       ],
       "answer_index": 1,
       "explanation": "Green means connected. Gray or red means something isn’t.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_ST_004",
@@ -5112,7 +5113,7 @@
       ],
       "answer_index": 2,
       "explanation": "Note the Local Hostname in System Settings, then use Filter Transmitters and Filter Receivers to find it.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_MO_001",
@@ -5121,7 +5122,7 @@
       "level": 1,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "Why build a Multi-Output Device on the transmitting computer?",
+      "prompt": "Why build a Multi-Output Device on the transmitting computer in a Dante computer to computer situation?",
       "choices": [
         "To receive audio from the network",
         "To make the audio mono",
@@ -5130,7 +5131,7 @@
       ],
       "answer_index": 3,
       "explanation": "The Multi-Output Device combines Dante Virtual Soundcard with your local headphone output.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_MO_002",
@@ -5139,7 +5140,7 @@
       "level": 1,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "After building a Multi-Output Device, what should the DAW’s output be set to?",
+      "prompt": "If you’re connecting two computers with Dante and you want the transmitter to be able to “hear itself”, you’ll open Audio MIDI Setup. After building a Multi-Output Device, what should the DAW’s output be set to?",
       "choices": [
         "The Multi-Output Device",
         "Dante Virtual Soundcard only",
@@ -5148,7 +5149,7 @@
       ],
       "answer_index": 0,
       "explanation": "The Multi-Output Device is what sends to both places at once.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_MO_003",
@@ -5157,7 +5158,7 @@
       "level": 1,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "In a Multi-Output Device, what determines each device’s channel numbering?",
+      "prompt": "In Audio MIDI Setup, in a Multi-Output Device, what determines each device’s channel numbering?",
       "choices": [
         "Alphabetical order of device names",
         "The order you check the boxes",
@@ -5166,7 +5167,7 @@
       ],
       "answer_index": 1,
       "explanation": "Channel numbering follows the order of the checked boxes.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_MO_004",
@@ -5184,7 +5185,8 @@
       ],
       "answer_index": 2,
       "explanation": "Check the DVS box before the local interface, or your channel numbering will come out different than expected.",
-      "verified": false
+      "verified": false,
+      "draft": true
     },
     {
       "id": "DANTE_JAM_001",
@@ -5202,7 +5204,7 @@
       ],
       "answer_index": 3,
       "explanation": "Each source needs its own receive channel pair so each lands on its own track.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_JAM_002",
@@ -5220,7 +5222,7 @@
       ],
       "answer_index": 0,
       "explanation": "Dante doesn’t mix two sources into one destination.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_JAM_003",
@@ -5238,7 +5240,7 @@
       ],
       "answer_index": 1,
       "explanation": "Dante never lets two sources share one destination. The first source just stops arriving.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_JAM_004",
@@ -5247,7 +5249,7 @@
       "level": 2,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "You only hear Transmitter 2, and Transmitter 1 should also be playing. What’s the most likely cause?",
+      "prompt": "In Dante: You only hear Transmitter 2, and Transmitter 1 should also be playing. What’s the most likely cause?",
       "choices": [
         "Transmitter 1’s audio interface is broken",
         "The receiving computer needs more RAM",
@@ -5256,7 +5258,7 @@
       ],
       "answer_index": 2,
       "explanation": "Look at the full routing matrix, not just your own row.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_JAM_005",
@@ -5265,7 +5267,7 @@
       "level": 1,
       "activity_gate": "dante",
       "type": "multiple_choice",
-      "prompt": "In the Dante Jam Session, which computer plays the “mixer”?",
+      "prompt": "In the Dante Jam Session, which computer acts as the “mixer” of the multiple software instruments on other computers?",
       "choices": [
         "Whichever transmitter is loudest",
         "The Ethernet switch",
@@ -5274,7 +5276,7 @@
       ],
       "answer_index": 3,
       "explanation": "Everyone’s audio routes into one computer that acts as the mixer. That computer’s output is what feeds the room.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_JAM_006",
@@ -5292,7 +5294,7 @@
       ],
       "answer_index": 0,
       "explanation": "Broadcast is one computer to one or more computers. The jam session is many senders into one receiver.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_TS_001",
@@ -5355,7 +5357,7 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "In the DAW to X32 example, what connects the DVS transmit channels to the X32’s receive channels?",
+      "prompt": "In the DAW to X32 example, what connects the DAW DVS transmit channels to the X32’s receive channels?",
       "choices": [
         "A subscription made in Dante Controller",
         "The DAW’s I/O settings",
@@ -5364,7 +5366,7 @@
       ],
       "answer_index": 0,
       "explanation": "DAW to DVS to the Dante network, then Dante Controller subscribes transmit to receive, and the X32 Dante card receives.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_FLOW_002",
@@ -5373,7 +5375,7 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "Multitrack DAW outputs 1–8 are sent over Dante to an X32. What does each output end up as?",
+      "prompt": "Multitrack DAW outputs 1–8 are sent over Dante to an X32 with a correctly configured Dante expansion card installed. What does each output end up as?",
       "choices": [
         "One mono mix on channel 1",
         "Its own channel on the X32, on its own fader",
@@ -5382,7 +5384,7 @@
       ],
       "answer_index": 1,
       "explanation": "If the routing works, each stem lands on its own X32 fader.",
-      "verified": false
+      "verified": true
     },
     {
       "id": "DANTE_FLOW_003",
