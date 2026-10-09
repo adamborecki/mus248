@@ -8,7 +8,7 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
-revised: "2026-09-25"
+revised: "2026-10-09"
 estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -117,20 +117,24 @@ you actually got there. It's a log entry, not a test.
   showing** — the battery icon disappearing is how you know it's actually running on AC, not on a
   battery that can die mid-show.
 
-## 📡 Initial setup — livestream test
+## 📡 Initial setup — livestream
 
-Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
+Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**. The full
+walkthrough is in **Salmon: Livestream**.
 
-- 🚩 ATEM Extreme ISO hardware: power on, Ethernet connected, USB-C connected to the iMac.
-- 🚩 Open the livestream computer.
-- 🚩 Go to Vimeo and log in ([ACCOUNT — ask instructor], password at [PASSWORD LOCATION — ask
-  instructor]).
-- 🚩 Switch to "College of Performing Arts" → **Live Events** → "Salmon Recital Hall Livestream."
-- 🚩 Create (or open) a new **Test** event; set its password to [TEST PASSWORD — ask instructor].
-- 🚩 Manage Production → **Stream via RTMP** — copy the stream key shown there, then paste it into
-  the ATEM Control software.
-- 🚩 Practice: start the test stream and confirm picture and sound actually reach Vimeo.
-- 🚩 Embed the stream on the Canvas page and confirm it plays there too.
+- 🚩 Vimeo on the livestream computer — it's normally already signed in (top right). If it isn't:
+  [VIMEO LOGIN — ask instructor].
+- 🚩 **Create** → **Event** → event type **Live broadcast**.
+- 🚩 Live broadcast settings: change **Stream from your browser** to **Use an external encoder** —
+  it always needs changing.
+- 🚩 Name it the gig's name (no date numbers) → **Create**.
+- 🚩 **Embed** (top right) → **Copy embed code**.
+- 🚩 Canvas livestream page → **Edit** → **HTML editor** → scroll to the bottom → replace **line 11
+  and below** with the embed code → **Save**.
+- 🚩 Vimeo event → **Settings** tab (right) → copy the **stream key** → paste it into **ATEM
+  Software Control**.
+- 🚩 ATEM Software Control → **On Air**. This is the go-live button — it starts sending to Vimeo.
+- 🚩 Confirm the stream is actually playing on the Canvas page.
 
 ## 📺 Green room feed
 
@@ -168,6 +172,7 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 
 ## 🏁 End of show
 
+- 🚩 If livestreamed: go **off air** in ATEM Software Control — that ends the stream.
 - 🚩 Stop every recording device — on the F8, that's the **STOP** button, halfway between the
   back/next buttons, **not** the red record button.
 - 🚩 Go downstairs and stop the camcorder / backup wide.
@@ -245,10 +250,11 @@ Only if tonight's gig is livestreamed. If it isn't, skip to **Green room feed**.
 - **The ATEM HyperDeck's own start/stop button** — this checklist assumes it exists and works the
   way the rest of the room does; the source SOP marks this "INSTRUCTIONS COMING" and it still is.
   Same open item as in **Salmon: Basic A/V Capture**.
-- **The livestream/Vimeo/Canvas steps** are carried over from the source SOP, which that document
-  itself flags as known-stale in places. **Salmon: Livestream** is where this should eventually
-  get independently verified; until then, treat this checklist's livestream section with the same
-  caution.
+- **The livestream steps** now follow the current Vimeo process (no account switch, no test-event
+  password; access is controlled on the Canvas side). Still open, and tracked in **Salmon:
+  Livestream**: the exact panel in ATEM Software Control for the stream key, the Canvas page and
+  who can edit it, whether "line 11" is a stable instruction, and when to go On Air relative to
+  doors.
 - **The Samsung MON2 monitor's exact label and location** — written up from the instructor's
   description, not yet independently checked against the room.
 
