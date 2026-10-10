@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-09-22"
+revised: "2026-10-10"
 estimatedTime: "20–45 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
 access:
   mode: On campus
@@ -365,20 +365,19 @@ copying only what you need is an experienced-engineer move, not a beginner one.
 
 A hard drive can fail at any time — one copy is not enough. That's why there are two.
 
-**Before you even start checking — find Borecki.** Once files are copied to both drives, get
-Borecki's attention and have them look the data over before you touch delete. On a real gig this
-isn't optional, and it's worth building the habit here too.
+**Before you touch delete — the check is yours.** Nobody signs off on your copies. On a real gig
+you're usually the only engineer in the room, and wiping cards to make space for the next gig is
+part of the job. That's what the Triple Triple Check below is for — build the habit here.
 
 **Q11 (multiple choice).** You've copied everything to the Post and Backups drives. What's the very
 next thing to do, before you even think about deleting the cards?
 
 - a) Empty the trash immediately to free up space
-- ✅ b) Get Borecki to look over the data first
+- ✅ b) Run the Triple Triple Check on every file yourself
 - c) Format the cards so they're ready for the next gig
-- d) Nothing — deletion can happen anytime after copying
+- d) Leave the cards full until the instructor can look over the files
 
-🚩 **Checkpoint.** Borecki (or your supervisor) has looked over the copied files before you touch
-delete.
+🚩 **Checkpoint.** Files are on both drives, and you haven't touched delete yet.
 
 **Before you wipe a card — Triple Triple Checked.** You need three things to match across all
 three copies (the original card, the Post copy, the Backups copy):
@@ -396,8 +395,8 @@ a card. Name them: ________________________________________________
 ✅ **Answer.** Approximate file size (GB), the last three digits of the exact byte count, and the
 location — the source card plus both the Post and Backups drives.
 
-🚩 **Checkpoint.** Cards are only wiped after the files exist in **two** places, Borecki has seen
-them, and you've checked by the Triple Triple Check — not by "it looked right."
+🚩 **Checkpoint.** Cards are only wiped after the files exist in **two** places and you've checked
+by the Triple Triple Check — not by "it looked right."
 
 On a real gig, the job continues past this point — transcoding, a Google Drive upload, an email
 confirming completion, Panopto, and a task board — with deadlines of one week and three weeks.
@@ -412,7 +411,6 @@ it's a real gig.
 - 🚩 Files are copied into a `YYMMDD Full Event Name` folder, with `r`/`e`/`s` subfolders, on
   **both** the Post and Backups drives — raw media inside `From [source name]` folders (for
   example `From F8_03`).
-- 🚩 Borecki has looked over the copied files before any card was wiped.
 - 🚩 Every card and the SSD have passed the Triple Triple Check before anything gets wiped.
 - 🚩 Every piece of gear you turned on has been turned off, and nothing else has.
 - 🚩 Gear you carried down is back in BH 208/209, and the lights are off.

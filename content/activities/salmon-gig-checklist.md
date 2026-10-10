@@ -8,7 +8,7 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
-revised: "2026-10-09"
+revised: "2026-10-10"
 estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -205,7 +205,8 @@ walkthrough is in **Salmon: Livestream**.
 - 🚩 Triple Triple Check before you touch delete, on every file: (1) the approximate file size
   matches, (2) the last 3 digits of the exact byte count match, (3) it landed in the source card
   plus both drives — nowhere else.
-- 🚩 Get Borecki to look over the transferred files before anything gets deleted.
+- 🚩 Nobody signs off on this but you. If any of the three doesn't match — or you're only 99%
+  sure — don't delete; leave the card as it is and ask for help.
 - 🚩 Only once all of that checks out: move the source files to Trash, then **Empty Trash**.
 - 🚩 Confirm it actually worked: **Get Info** (**⌘I**) on each card you just cleaned — the free
   space shown should be close to the card's full rated size.
@@ -214,7 +215,8 @@ walkthrough is in **Salmon: Livestream**.
 
 - 🚩 Every device that was turned on for this gig has been turned off, and nothing else has.
 - 🚩 Files are copied to **both** the Post and Backups drives, program included.
-- 🚩 Borecki has looked over the copied files before any card was wiped.
+- 🚩 Every card and SSD passed the Triple Triple Check before it was wiped — and the cleaned
+  cards are ready for the next gig.
 - 🚩 Green room, lobby, and control room are back to their resting state.
 
 ## ⚙️ Technical verification
