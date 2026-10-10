@@ -332,7 +332,7 @@ export function renderWorksheet(activity, options = {}) {
   let skipped = [];
   const flushSkipped = () => {
     if (!skipped.length) return;
-    const text = `📱 Check the web page for: ${skipped.map((title) => escapeHtml(title)).join(' · ')}`;
+    const text = `📱 Scan QR to see on the web page: ${skipped.map((title) => escapeHtml(title)).join(' · ')}`;
     parts.push(flowOpen ? `<li class="webref">${text}</li>` : `<p class="ws-webref">${text}</p>`);
     skipped = [];
   };
