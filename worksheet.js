@@ -8,6 +8,8 @@
 //
 // Deliberately NOT carried over: the step-by-step procedure, photos, and
 // troubleshooting. Those stay on the phone. Nobody should copy screen to paper.
+// What the paper does carry is a pointer, at each spot a section was skipped, naming
+// what the QR code leads to.
 
 import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines } from './markdown.js';
 import qrcode from './qrcode-generator.js';
@@ -129,6 +131,11 @@ const blockFor = (part) => {
 // through the activity — they enter the flow once, at that heading's position.
 const GROUPS = { 'key terms': 'keyTerms', 'definition of done': 'done', 'before you leave': 'beforeYouLeave' };
 
+// Sections that put nothing on the paper still exist on the web page — the worksheet says so at
+// the point they were skipped, so a student holding only the printout knows the QR has more
+// (troubleshooting above all). Instructor-facing sections are left out of that pointer.
+const NOT_FOR_STUDENTS = ['technical verification', 'ai use disclosure', 'core skill area'];
+
 export function parseActivity(markdown) {
   const frontmatter = parseFrontmatter(markdown);
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
@@ -138,12 +145,24 @@ export function parseActivity(markdown) {
   let section = '';
   let sectionTitle = '';
   let label = '';
+  let sectionStart = -1;
+  let sectionFlowLength = 0;
+  const noteIfSkipped = () => {
+    if (sectionStart < 0 || GROUPS[section] || NOT_FOR_STUDENTS.includes(section)) return;
+    if (result.flow.length > sectionFlowLength) return;
+    // "Safety and handling — read this before you touch anything": the pointer only needs the name.
+    const title = sectionTitle.replace(/^[^\p{L}\p{N}]+/u, '').split(' — ')[0].trim();
+    result.flow.push({ type: 'skipped', title, order: sectionStart });
+  };
 
   lines.forEach((line, index) => {
     const heading = line.match(/^(#{2,4})\s+(.+)$/);
     if (heading) {
       label = heading[2].replace(/^[^\p{L}\p{N}]+/u, '').trim();
       if (heading[1].length === 2) {
+        noteIfSkipped();
+        sectionStart = index;
+        sectionFlowLength = result.flow.length;
         section = slug(heading[2]);
         sectionTitle = heading[2];
         if (GROUPS[section]) result.flow.push({ type: 'group', key: GROUPS[section], order: index });
@@ -194,6 +213,7 @@ export function parseActivity(markdown) {
     }
   });
 
+  noteIfSkipped();
   result.flow.sort((a, b) => a.order - b.order);
   return result;
 }
@@ -307,7 +327,22 @@ export function renderWorksheet(activity, options = {}) {
     previousWhere = null;
   };
 
+  // Consecutive skipped sections collapse into one pointer, placed where they sat in the source:
+  // inside an open "As you go" list, or on its own line between blocks. The key leaves it off.
+  let skipped = [];
+  const flushSkipped = () => {
+    if (!skipped.length) return;
+    const text = `📱 Check the web page for: ${skipped.map((title) => escapeHtml(title)).join(' · ')}`;
+    parts.push(flowOpen ? `<li class="webref">${text}</li>` : `<p class="ws-webref">${text}</p>`);
+    skipped = [];
+  };
+
   (activity.flow || []).forEach((entry) => {
+    if (entry.type === 'skipped') {
+      if (!showAnswers) skipped.push(entry.title);
+      return;
+    }
+    flushSkipped();
     if (entry.type === 'group') {
       closeFlow();
       const rendered = renderGroup(entry.key);
@@ -335,6 +370,7 @@ export function renderWorksheet(activity, options = {}) {
       parts.push(`<li class="question">${tag}${renderQuestion(item, showAnswers)}</li>`);
     }
   });
+  flushSkipped();
   closeFlow();
 
   const route = directory.route || front.id || directory.id || '';

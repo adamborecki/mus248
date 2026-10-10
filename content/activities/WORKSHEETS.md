@@ -49,6 +49,12 @@ Pulled straight out of `<activity>.md`:
 Deliberately *not* on the page: the step-by-step procedure, photos, troubleshooting. Those stay
 on the phone. Students should never copy text from screen to paper.
 
+But the paper says what it left out. Any `##` section that contributes nothing to the worksheet
+becomes an italic "📱 Check the web page for: Logistics · Equipment and materials · …" line at the
+spot it was skipped, with back-to-back skipped sections merged into one line. Technical
+verification, AI use disclosure, and Core skill area are never listed (instructor-facing), and the
+answer key leaves the pointers off. Nothing to author: rename a heading and the pointer follows.
+
 Sections that are missing are skipped, not printed empty.
 
 ## Decisions that were open and are now closed

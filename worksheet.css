@@ -52,6 +52,9 @@
 .terms b { white-space:nowrap; }
 .also { margin:.5rem 0 0; color:var(--muted); font-size:.78rem; }
 
+/* Points at sections the paper leaves off — quieter than a checkpoint, but not gray enough to vanish in print. */
+.flow li.webref, .ws-webref { margin:.45rem 0; color:var(--ink); font-size:.78rem; font-style:italic; break-inside:avoid; }
+.ws-webref { margin-top:1rem; }
 .questions > li, .flow > li.question { margin:.85rem 0 0; break-inside:avoid; }
 .q-prompt { margin:0; font-size:.9rem; }
 .q-number { display:inline-grid; place-items:center; width:1.35rem; height:1.35rem; margin-right:.4rem; border-radius:999px; background:var(--tag); font-size:.7rem; font-weight:700; vertical-align:baseline; }
