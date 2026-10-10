@@ -3756,15 +3756,15 @@
       "level": 1,
       "activity_gate": null,
       "type": "multiple_choice",
-      "prompt": "Before any card is wiped, who looks over the transferred files?",
+      "prompt": "Before any card is wiped, who checks the transferred files?",
       "choices": [
-        "Nobody, the Triple Triple Check is enough",
+        "Nobody, copying to both drives is enough",
         "The next performer",
         "The hall manager",
-        "Borecki"
+        "You, the engineer, with the Triple Triple Check"
       ],
       "answer_index": 3,
-      "explanation": "Get Borecki to look over the transferred files before anything gets deleted.",
+      "explanation": "Nobody signs off on your copies. You run the Triple Triple Check yourself, then wipe the cards to make space for the next gig. That’s part of the engineer’s job.",
       "verified": false
     },
     {
