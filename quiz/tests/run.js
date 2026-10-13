@@ -374,7 +374,8 @@ test('bonus questions are unseen and climb in difficulty', () => {
   const activities = { stereo: 2, dante: 1 };
   const selection = selectQuiz({ ...base, activities });
   const graded = new Set(selection.map(({ id }) => id));
-  const bonus = selectBonus({ curriculum, bank, activities, exclude: [...graded], seed: 'b2' });
+  const quizzes = Object.fromEntries(Object.entries(curriculum.quizzes).map(([n, quiz]) => [n, { ...quiz, new_skills: [] }]));
+  const bonus = selectBonus({ curriculum: { ...curriculum, quizzes }, bank, activities, exclude: [...graded], seed: 'b2' });
   assert.ok(bonus.every(({ id }) => !graded.has(id)), 'a bonus question repeated one from the graded set');
   assert.ok(bonus.every(({ role }) => role === 'bonus'));
   // A short easy warm-up, then the harder levels, then the rest of the easy ones,
@@ -387,6 +388,23 @@ test('bonus questions are unseen and climb in difficulty', () => {
   assert.deepEqual(hardRun, [...hardRun].sort((a, b) => a - b), `hard levels should not go backwards: ${hardRun}`);
   const gated = bonus.map(({ id }) => byId[id].activity_gate).filter(Boolean);
   assert.ok(gated.every((gate) => (activities[gate] || 0) >= 1), 'bonus asked about gear the student hasn’t touched');
+});
+
+test('this week\'s new skills lead the bonus queue, ahead of missed review', () => {
+  const quiz = curriculum.quizzes[curriculum.quiz_number];
+  const fresh = new Set(quiz.new_skills);
+  const skill = curriculum.skills;
+  quiz.new_skills.forEach((name) => assert.ok(skill[name], `new_skills: ${name} missing from curriculum.json`));
+  const newIds = bank.questions.filter((question) => fresh.has(question.skill)).map(({ id }) => id);
+  assert.ok(newIds.length > 0, 'this week has new_skills but no questions on them');
+
+  const missedSkill = bank.questions.find((question) => !fresh.has(question.skill) && skill[question.skill] !== 'inactive').skill;
+  const missedId = bank.questions.find((question) => question.skill === missedSkill).id;
+  const prior = { a: { [missedId]: 'c0' } };
+  const bonus = selectBonus({ curriculum, bank, prior, seed: 'new', limit: 999 }).map(({ id }) => byId[id]);
+  const lead = bonus.slice(0, newIds.length);
+  assert.ok(lead.every((question) => fresh.has(question.skill)), 'something jumped ahead of this week\'s new questions');
+  assert.equal(bonus[newIds.length].skill, missedSkill, 'missed review should come right after the new questions');
 });
 
 test('every Core skill has verified questions to draw on', () => {

@@ -5,7 +5,9 @@
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
     "3": { "label": "Quiz 3", "version": "2026-10-05", "access_code": "passivemonitors", "expected_minutes": 6, "window_minutes": 9 },
-    "4": { "label": "Quiz 4", "version": "2026-10-12", "access_code": "muscomulticam", "expected_minutes": 6, "window_minutes": 9 }
+    "4": { "label": "Quiz 4", "version": "2026-10-12", "access_code": "muscomulticam", "expected_minutes": 6, "window_minutes": 9,
+           "new_skills": ["gig_families", "gig_workflow", "salmon_livestream", "musco_crew", "musco_recording",
+                          "sgk_kit", "sgk_audio", "sgk_cameras", "capture_types"] }
   },
   "targets": {
     "graded_questions": 12

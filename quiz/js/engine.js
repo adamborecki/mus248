@@ -204,6 +204,10 @@ export function gradedPool({ curriculum, bank, activities = {}, includeDrafts = 
 // whole pool easiest-first would bury them: there are hundreds of level 0–1
 // questions, and a fast student reaches about 50 bonus questions in a 9-minute window.
 //
+// A quiz's `new_skills` (this week's lecture) go ahead of everything else, missed
+// review included, so new material gets practiced the week it's taught. With
+// them, there's no need for the easy warm-up: they're mostly easy already.
+//
 // The limit sits above what anyone can answer in the window, so the quiz runs
 // until the clock stops rather than ending early when a fixed count runs out.
 // The fastest Quiz 3 student averaged ~9 s a question, which fits ~50 bonus
@@ -234,15 +238,20 @@ export function selectBonus({
     const right = rank(b);
     return left[0] - right[0] || left[1] - right[1] || left[2] - right[2];
   });
+  const newSkills = new Set(curriculum.quizzes?.[String(curriculum.quiz_number)]?.new_skills || []);
+  const isNew = (question) => newSkills.has(question.skill) && !context.seen.has(question.id);
+  const lead = ordered.filter(isNew);
+  const rest = ordered.filter((question) => !isNew(question));
   const isFresh = (question) => !wasMissed(question) && !context.seen.has(question.id);
-  const start = ordered.findIndex(isFresh);
+  const start = rest.findIndex(isFresh);
   if (start > -1) {
-    const fresh = ordered.filter(isFresh);
+    const warmup = lead.length ? 0 : BONUS_WARMUP;
+    const fresh = rest.filter(isFresh);
     const easy = fresh.filter((question) => (question.level ?? 0) < 2);
     const hard = fresh.filter((question) => (question.level ?? 0) >= 2);
-    ordered.splice(start, fresh.length, ...easy.slice(0, BONUS_WARMUP), ...hard, ...easy.slice(BONUS_WARMUP));
+    rest.splice(start, fresh.length, ...easy.slice(0, warmup), ...hard, ...easy.slice(warmup));
   }
-  return ordered.slice(0, limit).map((question) => ({ id: question.id, role: 'bonus' }));
+  return [...lead, ...rest].slice(0, limit).map((question) => ({ id: question.id, role: 'bonus' }));
 }
 
 // Should this student be handed a bonus question right now?

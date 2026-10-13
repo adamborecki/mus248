@@ -69,6 +69,7 @@ All of it lives in `data/curriculum.json`:
 
 4. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This, plus any per-question `tier` override (see Questions below), is the only thing that makes a question graded.** Student history never promotes a skill to Core.
 5. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
+6. Optionally list this week's lecture skills as `new_skills` in the quiz's entry. Fresh questions on them go to the front of the bonus queue, ahead of missed review, so new material gets practiced the week it's taught. Without it, they'd be lost among hundreds of older bonus questions.
 
 `target_total_points` sets what the whole quiz is worth in Canvas (10, to match a 10-point Canvas assignment), split evenly across however many questions that week has — change `targets.total_questions` and each question’s point value adjusts automatically, so the quiz always adds up to `target_total_points`. Pick a question count that divides evenly into it (20 → 0.5 each, 10 → 1 each) so scores don’t come out as long decimals. If Core and Practice should ever be weighted differently instead of split evenly, add an explicit `"scoring": {"core_correct": ..., "practice_completed": ...}` — its presence overrides the automatic split.
 
