@@ -1,6 +1,6 @@
 ---
-id: gear-kit-gig-checklist
-title: "Standard Gear Kit Gig Checklist"
+id: standard-gear-kit-checklist
+title: "Standard Gear Kit Checklist"
 emoji: "🎒"
 coreSkillAreas:
   - Audio Capture
