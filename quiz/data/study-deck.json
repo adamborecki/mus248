@@ -15,7 +15,8 @@
     "Zoom F8",
     "Final Cut",
     "Data management",
-    "Salmon gigs"
+    "Salmon gigs",
+    "Gigs & venues"
   ],
   "cards": [
     {
@@ -1696,6 +1697,158 @@
       "category": "Mics & cables",
       "front": "3.5 mm to dual RCA",
       "back": "One stereo 3.5 mm plug splits into two RCA plugs: one for the left channel, one for the right.",
+      "verified": false
+    },
+    {
+      "id": "gig_families_7",
+      "skill": "gig_families",
+      "category": "Gigs & venues",
+      "front": "The 7 gig families",
+      "back": "Salmon A/V + livestream · Salmon FOH · Musco · Standard Gear Kit recordings · portable live sound · studio and multitrack recording · specialty productions.",
+      "verified": false
+    },
+    {
+      "id": "venue_not_service",
+      "skill": "gig_families",
+      "category": "Gigs & venues",
+      "front": "Venue vs. service",
+      "back": "A venue doesn’t decide the service. A Salmon gig can be recording, livestream, FOH, or a combination.",
+      "verified": false
+    },
+    {
+      "id": "memorial_hall",
+      "skill": "gig_families",
+      "category": "Gigs & venues",
+      "front": "Memorial Hall / Chapman Auditorium",
+      "back": "The same venue. It and Fish Chapel use the Standard Gear Kit (portable recording).",
+      "verified": false
+    },
+    {
+      "id": "cob_csop",
+      "skill": "gig_families",
+      "category": "Gigs & venues",
+      "front": "COB and CSOP",
+      "back": "Student-run productions. We don’t officially staff them with recording engineers, but we often share our gear.",
+      "verified": false
+    },
+    {
+      "id": "gig_attire",
+      "skill": "gig_workflow",
+      "category": "Gigs & venues",
+      "front": "Gig attire",
+      "back": "Closed-toed shoes, no logos on shirts. All black at Musco.",
+      "verified": false
+    },
+    {
+      "id": "gig_phases",
+      "skill": "gig_workflow",
+      "category": "Gigs & venues",
+      "front": "Every gig: before, during, after",
+      "back": "Before: know the gig, check gear, dress right. During: communicate, ask early, check twice, protect the performance. After: power down, transfer and verify, return gear ready.",
+      "verified": false
+    },
+    {
+      "id": "salmon_livestream_default",
+      "skill": "salmon_livestream",
+      "category": "Salmon gigs",
+      "front": "Livestream nobody asked for",
+      "back": "Livestreaming is built into the Salmon workflow, so always practice it. If it wasn’t requested, don’t make it live.",
+      "verified": false
+    },
+    {
+      "id": "musco_crew",
+      "skill": "musco_crew",
+      "category": "Gigs & venues",
+      "front": "Musco crew",
+      "back": "1 switcher, 2 camera operators, 1 score reader. Multicam switching is the normal Musco workflow.",
+      "verified": false
+    },
+    {
+      "id": "musco_ssds",
+      "skill": "musco_recording",
+      "category": "Gigs & venues",
+      "front": "Musco: three SSDs",
+      "back": "One for the program (the multicam edit), one for the static wide ISO, one for the conductor cam ISO.",
+      "verified": false
+    },
+    {
+      "id": "iso_vs_program",
+      "skill": "musco_recording",
+      "category": "Video",
+      "front": "ISO vs. program",
+      "back": "An ISO is one camera recorded for the whole concert, like a multitrack stem. The program is the live edit between angles.",
+      "verified": false
+    },
+    {
+      "id": "musco_cl5",
+      "skill": "musco_recording",
+      "category": "Gigs & venues",
+      "front": "Big Band and Jazz Combo at Musco",
+      "back": "Audio mixes multitrack live on the CL5 in the basement. Practice on the CL3 in OH 207, its smaller sibling.",
+      "verified": false
+    },
+    {
+      "id": "sgk_core",
+      "skill": "sgk_kit",
+      "category": "Gigs & venues",
+      "front": "Standard Gear Kit",
+      "back": "Our portable concert-recording rig: a stereo pair of pencil condensers into a Zoom F8, a Zoom H4n backup, and two Sony AX100s.",
+      "verified": false
+    },
+    {
+      "id": "sgk_sd_cards",
+      "skill": "sgk_kit",
+      "category": "Gigs & venues",
+      "front": "Standard Gear Kit SD cards",
+      "back": "F8: 32 GB · H4n: 8 GB · each AX100: 128 GB. All clean before the gig.",
+      "verified": false
+    },
+    {
+      "id": "sgk_f8_inputs",
+      "skill": "sgk_audio",
+      "category": "Zoom F8",
+      "front": "Standard Gear Kit F8 patch",
+      "back": "Left mic → 1, right mic → 2, board feed → 3 and 4. Dual Channel copies: 1–2 → 5–6, 3–4 → 7–8. AC power; batteries are backup.",
+      "verified": false
+    },
+    {
+      "id": "sgk_f8_gain",
+      "skill": "f8_dual_channel",
+      "category": "Zoom F8",
+      "front": "F8 starting gains",
+      "back": "About 42 dB on 1–2, about 30 dB on 5–6. Gains match within each stereo pair. Starting points, but fine if there’s no time to soundcheck.",
+      "verified": false
+    },
+    {
+      "id": "sgk_h4n_level",
+      "skill": "sgk_audio",
+      "category": "Zoom F8",
+      "front": "Setting the H4n backup level",
+      "back": "Check the loudest passage if you can. If you can’t, set it conservatively: no clipping, not too quiet.",
+      "verified": false
+    },
+    {
+      "id": "sgk_ax100_start",
+      "skill": "sgk_cameras",
+      "category": "Video",
+      "front": "AX100 starting points",
+      "back": "f/4.0, 3 dB gain, 1/60 shutter, Indoor white balance (3200K) on both. Set exposure under concert lighting, not pre-show.",
+      "verified": false
+    },
+    {
+      "id": "board_feed",
+      "skill": "capture_types",
+      "category": "Gigs & venues",
+      "front": "Board feed",
+      "back": "A copy of the signal going to the main speakers. Ask for one if the concert involves electronics.",
+      "verified": false
+    },
+    {
+      "id": "stereo_vs_multitrack",
+      "skill": "capture_types",
+      "category": "Gigs & venues",
+      "front": "Stereo vs. multitrack",
+      "back": "Stereo: one L/R picture with the mix baked in. Multitrack: each source on its own track, so it can be remixed later.",
       "verified": false
     }
   ]

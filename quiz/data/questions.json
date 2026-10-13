@@ -89,7 +89,16 @@
     "dante_troubleshooting": "Dante troubleshooting",
     "dante_signal_flow": "Dante signal flow: DAW to mixer",
     "cable_ends": "Cable ends and gender",
-    "video_connectors": "Video connectors (HDMI, SDI)"
+    "video_connectors": "Video connectors (HDMI, SDI)",
+    "gig_families": "Gig families and venues",
+    "gig_workflow": "Before, during, and after every gig",
+    "salmon_livestream": "Salmon: livestream is part of the workflow",
+    "musco_crew": "Musco: crew roles and multicam",
+    "musco_recording": "Musco: program, ISOs, and backup",
+    "sgk_kit": "Standard Gear Kit: what’s in it",
+    "sgk_audio": "Standard Gear Kit: audio setup",
+    "sgk_cameras": "Standard Gear Kit: AX100 starting points",
+    "capture_types": "Stereo, multitrack, board feed, backup"
   },
   "questions": [
     {
@@ -5964,6 +5973,816 @@
       ],
       "answer_index": 0,
       "explanation": "The 3.5 mm stereo plug carries left and right; the cable splits them onto two RCA plugs, one per channel.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_001",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A gig is in Salmon. What does that tell you about the services it needs?",
+      "choices": [
+        "Standard A/V recording only, since that’s Salmon’s system",
+        "Not enough: recording, livestream, FOH, or a mix",
+        "FOH only, since Salmon has its own PA system",
+        "A livestream only, since Salmon is set up to stream"
+      ],
+      "answer_index": 1,
+      "explanation": "A venue doesn’t automatically determine the service. Salmon gigs can involve recording, livestreaming, FOH, or a combination.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_002",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Chapman Auditorium and Memorial Hall are…",
+      "choices": [
+        "The same venue",
+        "Two halls inside Musco",
+        "Two studios in Oliphant Hall",
+        "Two halls on opposite sides of campus"
+      ],
+      "answer_index": 0,
+      "explanation": "Chapman Auditorium and Memorial Hall are the same venue, and it uses the Standard Gear Kit workflow.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_003",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A concert in Memorial Hall or Fish Chapel usually uses which workflow?",
+      "choices": [
+        "The Musco multicam workflow, with a crew",
+        "Salmon’s built-in A/V and livestream system",
+        "The Standard Gear Kit (portable recording)",
+        "Studio multitrack recording from OH 207"
+      ],
+      "answer_index": 2,
+      "explanation": "Memorial Hall, Fish Chapel, and similar spaces use the Standard Gear Kit: portable audio, portable cameras, and maybe a board feed.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_004",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Chapman on Broadway (COB) borrows a portable PA for a show. Do we officially staff it with recording engineers?",
+      "choices": [
+        "Yes, always with at least two engineers",
+        "Yes, but only to run FOH for the show",
+        "Only if the show is going to be livestreamed",
+        "No: it’s student-run, though we share gear"
+      ],
+      "answer_index": 3,
+      "explanation": "COB and CSOP are student-run productions. We don’t officially staff them, but we often share our gear with them.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_005",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is a typical Salmon FOH gig?",
+      "choices": [
+        "Wassail",
+        "Mariachi",
+        "A faculty recital recording",
+        "A search recording in a classroom"
+      ],
+      "answer_index": 1,
+      "explanation": "Salmon FOH gigs include Mariachi, Commercial Music Ensemble, Vocal Jazz, and sometimes Music at Noon. Wassail is at Musco.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_006",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which ensemble’s concerts are a typical Musco gig?",
+      "choices": [
+        "Chapman Jams",
+        "Music at Noon",
+        "Wind Symphony",
+        "A film workshop session"
+      ],
+      "answer_index": 2,
+      "explanation": "Musco gigs include TCO, Wind Symphony, the choral ensembles, Wassail, Sholund, and other large events.",
+      "verified": false
+    },
+    {
+      "id": "GIG_FAM_007",
+      "skill": "gig_families",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the goal for every student who passes MUS 248?",
+      "choices": [
+        "Specialize early in one gig family",
+        "Be capable across every normal gig type",
+        "Become an advanced live-sound mixer",
+        "Run a Musco gig without needing a crew"
+      ],
+      "answer_index": 1,
+      "explanation": "The goal is universal qualification, not early specialization. Students will have different strengths, but everyone needs the core skills.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_001",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the right attire for a gig?",
+      "choices": [
+        "Anything comfortable, since you’re behind the scenes",
+        "A Chapman logo shirt, so staff know who you are",
+        "Closed-toed shoes, no logos, and all black at Musco",
+        "All black at Salmon; anything goes at Musco"
+      ],
+      "answer_index": 2,
+      "explanation": "Closed-toed shoes and no logos on shirts, always. At Musco, all black.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_002",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When should you ask about anything that depends on house staff, lighting, performers, or venue access?",
+      "choices": [
+        "Early, as soon as you can",
+        "Right before the downbeat",
+        "At intermission",
+        "Only once something goes wrong"
+      ],
+      "answer_index": 0,
+      "explanation": "Other people’s time is the bottleneck. Ask early so there’s time to adjust the plan around their answers.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_003",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Something goes wrong during the performance. What does “protect the performance” mean?",
+      "choices": [
+        "Stop the concert so it can be fixed properly",
+        "Walk onstage right away to fix the mic",
+        "Solve it quietly without disrupting the event",
+        "Announce the problem so the audience understands"
+      ],
+      "answer_index": 2,
+      "explanation": "Stay quiet, stay organized, and solve problems without disrupting the event.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_004",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which list matches “after the gig”?",
+      "choices": [
+        "Power down, transfer and verify media, return gear ready",
+        "Return the gear and let the next engineer check it over",
+        "Wipe the cards right away so they’re ready next time",
+        "Leave the media on the cards for whoever goes next"
+      ],
+      "answer_index": 0,
+      "explanation": "Stop and power down what you used, transfer and verify the media, and return gear ready for the next engineer.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_005",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before your gig, you find another engineer’s data transfer that was started but never finished. What do you do?",
+      "choices": [
+        "Leave it alone, since it isn’t your gig",
+        "Wipe those cards so you have room",
+        "Help finish it: check, then clean",
+        "Text them and wait until they reply"
+      ],
+      "answer_index": 2,
+      "explanation": "Help out: finish unfinished transfers, following the same check-then-delete process, so nothing gets lost or erased by accident.",
+      "verified": false
+    },
+    {
+      "id": "GIG_WF_006",
+      "skill": "gig_workflow",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An engineer has run 20 Salmon gigs. Should they still use the Salmon Gig Checklist?",
+      "choices": [
+        "No: the checklist is for beginners",
+        "Yes, as a way to double-check",
+        "Only when there’s a livestream",
+        "Only if something breaks"
+      ],
+      "answer_index": 1,
+      "explanation": "Even veterans use the checklist. It’s the operational reference and a way to double-check everything.",
+      "verified": false
+    },
+    {
+      "id": "SAL_LS_001",
+      "skill": "salmon_livestream",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A Salmon recital didn’t ask for a livestream. What does the standard workflow say?",
+      "choices": [
+        "Skip the livestream setup, since nobody asked",
+        "Stream it publicly anyway, just in case",
+        "Practice the livestream, but don’t make it live",
+        "Ask the audience whether they want one"
+      ],
+      "answer_index": 2,
+      "explanation": "Livestreaming is built into the standard Salmon workflow, so we always practice it. If it wasn’t requested, it doesn’t go live.",
+      "verified": false
+    },
+    {
+      "id": "SAL_LS_002",
+      "skill": "salmon_livestream",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the normal workflow for a Salmon gig?",
+      "choices": [
+        "FOH only, with the house PA",
+        "Standard A/V recording, livestream built in",
+        "Multicam switching with a crew of four",
+        "The Standard Gear Kit, carried in"
+      ],
+      "answer_index": 1,
+      "explanation": "Standard A/V recording is the normal Salmon workflow, and livestreaming is built into it.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_CREW_001",
+      "skill": "musco_crew",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What crew does a normal Musco gig use?",
+      "choices": [
+        "1 switcher, 2 camera ops, and 1 score reader",
+        "1 FOH engineer and 1 camera operator",
+        "4 camera operators and no switcher at all",
+        "1 engineer running everything from the booth"
+      ],
+      "answer_index": 0,
+      "explanation": "Musco engineers work as a coordinated crew: a switcher, two camera operators, and a score reader.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_CREW_002",
+      "skill": "musco_crew",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Is multicamera switching a special extra at Musco?",
+      "choices": [
+        "Yes, only for Big Band and Jazz Combo",
+        "No: it’s part of the normal Musco workflow",
+        "Yes, only when the ensemble requests it",
+        "Yes, only for Wassail and Sholund"
+      ],
+      "answer_index": 1,
+      "explanation": "Multicamera switching is part of every normal Musco gig.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_CREW_003",
+      "skill": "musco_crew",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At Musco, who calls shots to the camera operators over headset?",
+      "choices": [
+        "The score reader",
+        "The house manager",
+        "The switcher operator",
+        "Whoever is free in the booth"
+      ],
+      "answer_index": 2,
+      "explanation": "The switcher operator runs the live edit, decides what’s on program, and calls shots to the camera operators.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_001",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How many SSDs do you bring to a standard Musco gig?",
+      "choices": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "answer_index": 2,
+      "explanation": "Three: one each for the program, the static wide, and the conductor camera.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_002",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do the three Musco SSDs record?",
+      "choices": [
+        "Audio, video, and a backup copy of both",
+        "Camera 1, camera 2, and the H4n backup audio",
+        "The program, a spare, and the livestream feed",
+        "The program, a static wide ISO, a conductor ISO"
+      ],
+      "answer_index": 3,
+      "explanation": "One SSD captures the program (the multicam edit); the other two capture ISOs of the static wide and the conductor camera.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_003",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is an “ISO” recording?",
+      "choices": [
+        "One camera’s feed, recorded for the whole concert",
+        "The live edit that cuts between camera angles",
+        "A backup audio file recorded on the H4n",
+        "A low-resolution copy made for the livestream"
+      ],
+      "answer_index": 0,
+      "explanation": "An ISO is a single camera’s output recorded start to finish. The program is the edit between angles.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_004",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After a Musco concert, an editor wants to replace a bad shot in the multicam edit. Which recording makes that possible?",
+      "choices": [
+        "The program, since it already holds every angle",
+        "The ISOs: each holds one camera the whole time",
+        "The H4n backup, since it runs the whole concert",
+        "Nothing: a live switch can’t be changed later"
+      ],
+      "answer_index": 1,
+      "explanation": "The program only contains the angles that were cut to. The ISOs hold their camera for the whole concert, so an editor can cut to them instead.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_005",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An ISO is to the program as ______ is to a stereo mix.",
+      "choices": [
+        "A backup recorder",
+        "A board feed",
+        "A dual-channel copy",
+        "Multitrack stems"
+      ],
+      "answer_index": 3,
+      "explanation": "Like multitrack stems, ISOs keep each source separate. The program, like a stereo mix, has the decisions already made.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_006",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the backup recording at a standard Musco gig?",
+      "choices": [
+        "The CL5 multitrack recording in the basement",
+        "A second copy of the program on another SSD",
+        "An H4n and an AX100 from the Standard Gear Kit",
+        "Two Zoom F8s recording side by side in the booth"
+      ],
+      "answer_index": 2,
+      "explanation": "You bring the backup recording yourself: an H4n for audio and an AX100 for video, from the Standard Gear Kit.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_007",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At Big Band and Jazz Combo concerts in Musco, where does the audio team do real-time multitrack live mixing?",
+      "choices": [
+        "On the CL5 in the basement",
+        "On the X32 in the booth",
+        "On a Zoom F8 in the house",
+        "On the CL3 in OH 207"
+      ],
+      "answer_index": 0,
+      "explanation": "For the advanced Musco gigs, audio goes down to the basement to mix on the CL5.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_REC_008",
+      "skill": "musco_recording",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re working the Big Band gig at Musco. How should you prepare?",
+      "choices": [
+        "Practice on the CL3 in OH 207",
+        "Practice on a Mackie Mix8",
+        "Read the Zoom F8 manual",
+        "No prep: the CL5 runs itself"
+      ],
+      "answer_index": 0,
+      "explanation": "The CL3 in OH 207 is a smaller version of the CL5, so it’s the place to practice.",
+      "verified": false
+    },
+    {
+      "id": "SGK_KIT_001",
+      "skill": "sgk_kit",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is the Standard Gear Kit?",
+      "choices": [
+        "Salmon’s built-in recording system",
+        "Musco’s multicam switcher setup",
+        "Our portable concert-recording rig",
+        "A portable PA for live sound"
+      ],
+      "answer_index": 2,
+      "explanation": "The Standard Gear Kit is the portable rig we carry to gigs where we bring our own recording gear.",
+      "verified": false
+    },
+    {
+      "id": "SGK_KIT_002",
+      "skill": "sgk_kit",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the core setup of the Standard Gear Kit?",
+      "choices": [
+        "Two SM58s into an X32, plus one AX100",
+        "A stereo pair into an F8, an H4n backup, two AX100s",
+        "One shotgun mic into an H4n, plus three PTZ cameras",
+        "A LiveTrak L-20 multitrack, plus one AX100"
+      ],
+      "answer_index": 1,
+      "explanation": "A stereo pair of pencil condensers into a Zoom F8, a Zoom H4n Pro for backup audio, and two Sony AX100 cameras.",
+      "verified": false
+    },
+    {
+      "id": "SGK_KIT_003",
+      "skill": "sgk_kit",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which clean SD cards does the Standard Gear Kit use?",
+      "choices": [
+        "F8: 32 GB · H4n: 8 GB · each AX100: 128 GB",
+        "F8: 128 GB · H4n: 32 GB · each AX100: 8 GB",
+        "F8: 8 GB · H4n: 128 GB · each AX100: 32 GB",
+        "One 128 GB card shared by every device"
+      ],
+      "answer_index": 0,
+      "explanation": "A clean 32 GB card for the F8, an 8 GB card for the H4n, and a 128 GB card for each AX100.",
+      "verified": false
+    },
+    {
+      "id": "SGK_KIT_004",
+      "skill": "sgk_kit",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the Standard Gear Kit, what holds the H4n?",
+      "choices": [
+        "A tripod plate on one of the AX100 tripods",
+        "A lighting stand with a ¼-inch screw",
+        "Velcro on the telescoping mic stand",
+        "Nothing: it sits on a chair in the hall"
+      ],
+      "answer_index": 1,
+      "explanation": "The H4n mounts on a lighting stand with a ¼-inch screw.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_001",
+      "skill": "sgk_audio",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the Standard Gear Kit, where does each stereo-pair mic plug into the F8?",
+      "choices": [
+        "Left → Input 1, Right → Input 5",
+        "Left → Input 2, Right → Input 1",
+        "Both into Input 1 with a Y-cable",
+        "Left → Input 1, Right → Input 2"
+      ],
+      "answer_index": 3,
+      "explanation": "Left mic to Input 1, right mic to Input 2. A board feed, if there is one, goes to Inputs 3 and 4.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_002",
+      "skill": "sgk_audio",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "If a Standard Gear Kit gig has a board feed, which F8 inputs does it use?",
+      "choices": [
+        "Inputs 1 and 2",
+        "Inputs 3 and 4",
+        "Inputs 5 and 6",
+        "Inputs 7 and 8"
+      ],
+      "answer_index": 1,
+      "explanation": "The main pair is on 1 and 2, the board feed on 3 and 4. Dual Channel Recording copies them to 5–6 and 7–8.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_003",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Dual Channel Recording is on for inputs 1–4, and there’s a board feed. Which tracks hold the lower-level copies of the board feed?",
+      "choices": [
+        "Tracks 3 and 4",
+        "Tracks 5 and 6",
+        "Tracks 7 and 8",
+        "Tracks 9 and 10"
+      ],
+      "answer_index": 2,
+      "explanation": "The board feed is on inputs 3 and 4, so its dual-channel copies land on 7 and 8. The main pair’s copies are on 5 and 6.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_004",
+      "skill": "f8_dual_channel",
+      "topic": "zoom_f8",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What are the checklist’s starting gains on the F8 for a Standard Gear Kit gig?",
+      "choices": [
+        "About 30 dB on 1–2, about 42 dB on 5–6",
+        "About 42 dB on 1–2, about 30 dB on 5–6",
+        "About 42 dB on every channel",
+        "0 dB, then turn up during the show"
+      ],
+      "answer_index": 1,
+      "explanation": "About 42 dB on the main pair and about 30 dB on the dual-channel copies. They’re starting points; if there’s no time to soundcheck, they’ll be fine.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_005",
+      "skill": "sgk_audio",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How is the F8 powered for a Standard Gear Kit concert?",
+      "choices": [
+        "AC power, with batteries as backup only",
+        "Batteries only, so there are no cables",
+        "USB power from a laptop",
+        "Phantom power from the microphones"
+      ],
+      "answer_index": 0,
+      "explanation": "Use AC power for the concert. Batteries are backup only.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_006",
+      "skill": "sgk_audio",
+      "topic": "gigs",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "There’s no chance to hear the loudest passage before the H4n has to start recording. How do you set its level?",
+      "choices": [
+        "As loud as possible, for the best signal",
+        "Conservatively, leaving extra headroom",
+        "At maximum, then fix it in post",
+        "To match the F8’s 42 dB setting"
+      ],
+      "answer_index": 1,
+      "explanation": "If you can’t check the loudest passage, set it conservatively. A slightly quiet recording can be fixed; a clipped one can’t.",
+      "verified": false
+    },
+    {
+      "id": "SGK_AUD_007",
+      "skill": "matched_gain",
+      "topic": "stereo_capture",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On the F8, what should match between the two mics of the stereo pair?",
+      "choices": [
+        "Nothing; set each one by ear",
+        "Only phantom power",
+        "Their gain, set identically",
+        "Their pan, both set to center"
+      ],
+      "answer_index": 2,
+      "explanation": "Stereo pairs need identical gain so the stereo image isn’t pulled to one side.",
+      "verified": false
+    },
+    {
+      "id": "SGK_CAM_001",
+      "skill": "sgk_cameras",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the starting exposure for the AX100s on a Standard Gear Kit gig?",
+      "choices": [
+        "f/11, 0 dB gain, 1/1000 shutter",
+        "f/1.8, 30 dB gain, 1/30 shutter",
+        "f/4.0, 3 dB gain, 1/60 shutter",
+        "f/4.0, 24 dB gain, 1/250 shutter"
+      ],
+      "answer_index": 2,
+      "explanation": "Start at f/4.0, 3 dB gain, 1/60 shutter, then set exposure under the actual concert lighting.",
+      "verified": false
+    },
+    {
+      "id": "SGK_CAM_002",
+      "skill": "sgk_cameras",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What white balance do the two AX100s use?",
+      "choices": [
+        "Auto, set on each camera separately",
+        "Outdoor (about 5600K)",
+        "Whatever looks best on each screen",
+        "Indoor (about 3200K), matched on both"
+      ],
+      "answer_index": 3,
+      "explanation": "Match both cameras to Indoor, or set 3200K manually, so the two angles look the same.",
+      "verified": false
+    },
+    {
+      "id": "SGK_CAM_003",
+      "skill": "sgk_cameras",
+      "topic": "video_fundamentals",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You set the AX100 exposure under the dim pre-show lights. Then the concert starts and the lights come way up. What happens to the shot?",
+      "choices": [
+        "Nothing, since the settings are locked in",
+        "It gets darker",
+        "Only the white balance changes",
+        "It’s overexposed: much too bright"
+      ],
+      "answer_index": 3,
+      "explanation": "Pre-show lighting is usually much darker than the performance. Set exposure under concert lighting.",
+      "verified": false
+    },
+    {
+      "id": "SGK_CAM_004",
+      "skill": "sgk_cameras",
+      "topic": "video_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do you ask the house staff for before setting the camera exposure?",
+      "choices": [
+        "House lights at half, so the hall is even",
+        "Work lights only, so nothing changes later",
+        "“Concert lighting”: the show’s brightest cue",
+        "A spotlight aimed at the camera position"
+      ],
+      "answer_index": 2,
+      "explanation": "Ask for concert lighting, the brightest cue used in the performance, so exposure is set for what the show will look like.",
+      "verified": false
+    },
+    {
+      "id": "CAP_001",
+      "skill": "capture_types",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the difference between stereo capture and multitrack capture?",
+      "choices": [
+        "Stereo is one L/R pair; multitrack keeps sources apart",
+        "Stereo uses two mics; multitrack uses exactly one mic",
+        "Stereo is for video; multitrack is only for audio",
+        "No difference: they’re two names for the same thing"
+      ],
+      "answer_index": 0,
+      "explanation": "Stereo capture records one left/right picture. Multitrack keeps sources on separate tracks so they can be mixed later.",
+      "verified": false
+    },
+    {
+      "id": "CAP_002",
+      "skill": "capture_types",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a board feed?",
+      "choices": [
+        "A backup recording made on an H4n in the hall",
+        "The camera’s built-in microphone audio",
+        "A copy of the signal going to the main speakers",
+        "A multitrack recording of every input channel"
+      ],
+      "answer_index": 2,
+      "explanation": "A board feed is a copy of the mix from the venue’s board, the signal going to the main speakers.",
+      "verified": false
+    },
+    {
+      "id": "CAP_003",
+      "skill": "capture_types",
+      "topic": "gigs",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A film workshop wants to remix the studio musicians later. Which capture fits?",
+      "choices": [
+        "A stereo board feed from the console",
+        "Multitrack, on a LiveTrak L-20 or F8",
+        "A single H4n placed in the room",
+        "The cameras’ built-in audio tracks"
+      ],
+      "answer_index": 1,
+      "explanation": "Remixing later needs each source on its own track: a multitrack capture. A board feed or stereo recording has the mix baked in.",
+      "verified": false
+    },
+    {
+      "id": "CAP_004",
+      "skill": "capture_types",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a Standard Gear Kit gig, when should you ask about a board feed?",
+      "choices": [
+        "Never; the kit doesn’t support one",
+        "Only after the concert ends",
+        "Only at Musco",
+        "When the concert involves electronics"
+      ],
+      "answer_index": 3,
+      "explanation": "If the concert involves electronics, ask for a board feed on arrival. It goes into F8 inputs 3 and 4.",
       "verified": false
     }
   ]

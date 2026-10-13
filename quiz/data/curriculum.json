@@ -1,10 +1,11 @@
 {
   "schema": 1,
-  "quiz_number": 3,
+  "quiz_number": 4,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
-    "3": { "label": "Quiz 3", "version": "2026-10-05", "access_code": "passivemonitors", "expected_minutes": 6, "window_minutes": 9 }
+    "3": { "label": "Quiz 3", "version": "2026-10-05", "access_code": "passivemonitors", "expected_minutes": 6, "window_minutes": 9 },
+    "4": { "label": "Quiz 4", "version": "2026-10-12", "access_code": "muscomulticam", "expected_minutes": 6, "window_minutes": 9 }
   },
   "targets": {
     "graded_questions": 12
@@ -132,6 +133,16 @@
     "dante_troubleshooting": "practice",
     "dante_signal_flow": "practice",
     "cable_ends": "practice",
-    "video_connectors": "practice"
+    "video_connectors": "practice",
+
+    "gig_families": "practice",
+    "gig_workflow": "practice",
+    "salmon_livestream": "practice",
+    "musco_crew": "practice",
+    "musco_recording": "practice",
+    "sgk_kit": "practice",
+    "sgk_audio": "practice",
+    "sgk_cameras": "practice",
+    "capture_types": "practice"
   }
 }
