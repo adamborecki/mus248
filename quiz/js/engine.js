@@ -199,10 +199,20 @@ export function gradedPool({ curriculum, bank, activities = {}, includeDrafts = 
 // Order: what this student got wrong in earlier weeks comes back first, because a
 // second look at a miss is worth more than a fresh question. Within that, a
 // different question on the skill beats an exact repeat — but an exact repeat is
-// allowed rather than letting a thin skill go unrevisited. Then difficulty climbs
-// as the window runs on.
+// allowed rather than letting a thin skill go unrevisited. Fresh questions then
+// open with a short easy warm-up and move to the harder levels next. Sorting the
+// whole pool easiest-first would bury them: there are hundreds of level 0–1
+// questions, and a fast student reaches about 50 bonus questions in a 9-minute window.
+//
+// The limit sits above what anyone can answer in the window, so the quiz runs
+// until the clock stops rather than ending early when a fixed count runs out.
+// The fastest Quiz 3 student averaged ~9 s a question, which fits ~50 bonus
+// questions in 9 minutes. Raise this if window_minutes grows.
+const BONUS_LIMIT = 60;
+const BONUS_WARMUP = 6;
+
 export function selectBonus({
-  curriculum, bank, activities = {}, prior = null, exclude = [], seed, limit = 30, includeDrafts = false,
+  curriculum, bank, activities = {}, prior = null, exclude = [], seed, limit = BONUS_LIMIT, includeDrafts = false,
 }) {
   const rng = createRng(`${seed}:bonus`);
   const used = new Set(exclude);
@@ -224,6 +234,14 @@ export function selectBonus({
     const right = rank(b);
     return left[0] - right[0] || left[1] - right[1] || left[2] - right[2];
   });
+  const isFresh = (question) => !wasMissed(question) && !context.seen.has(question.id);
+  const start = ordered.findIndex(isFresh);
+  if (start > -1) {
+    const fresh = ordered.filter(isFresh);
+    const easy = fresh.filter((question) => (question.level ?? 0) < 2);
+    const hard = fresh.filter((question) => (question.level ?? 0) >= 2);
+    ordered.splice(start, fresh.length, ...easy.slice(0, BONUS_WARMUP), ...hard, ...easy.slice(BONUS_WARMUP));
+  }
   return ordered.slice(0, limit).map((question) => ({ id: question.id, role: 'bonus' }));
 }
 

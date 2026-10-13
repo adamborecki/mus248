@@ -377,8 +377,14 @@ test('bonus questions are unseen and climb in difficulty', () => {
   const bonus = selectBonus({ curriculum, bank, activities, exclude: [...graded], seed: 'b2' });
   assert.ok(bonus.every(({ id }) => !graded.has(id)), 'a bonus question repeated one from the graded set');
   assert.ok(bonus.every(({ role }) => role === 'bonus'));
+  // A short easy warm-up, then the harder levels, then the rest of the easy ones,
+  // so a fast student actually reaches the hard questions.
   const levels = bonus.map(({ id }) => byId[id].level ?? 0);
-  assert.deepEqual(levels, [...levels].sort((a, b) => a - b), `bonus levels should not go backwards: ${levels}`);
+  const firstHard = levels.findIndex((level) => level >= 2);
+  assert.ok(firstHard > 0 && firstHard <= 6, `hard bonus questions should start right after the warm-up: ${levels}`);
+  const hardRun = levels.slice(firstHard, firstHard + levels.filter((level) => level >= 2).length);
+  assert.ok(hardRun.every((level) => level >= 2), `hard bonus questions should arrive together: ${levels}`);
+  assert.deepEqual(hardRun, [...hardRun].sort((a, b) => a - b), `hard levels should not go backwards: ${hardRun}`);
   const gated = bonus.map(({ id }) => byId[id].activity_gate).filter(Boolean);
   assert.ok(gated.every((gate) => (activities[gate] || 0) >= 1), 'bonus asked about gear the student hasn’t touched');
 });
@@ -517,7 +523,7 @@ test('the Canvas code stays a reasonable length, even for a student who answers 
   const everything = [...graded, ...bonus];
   const full = buildPayload({ curriculum, bank, attempt: attemptFor({ selection: everything, answers: answerAll(everything) }), appVersion: '0.1.0' });
   const fullCode = encodeStateCode(full);
-  assert.ok(fullCode.length < 3000, `answering all ${everything.length} questions gives a ${fullCode.length}-character code`);
+  assert.ok(fullCode.length < 4000, `answering all ${everything.length} questions gives a ${fullCode.length}-character code`);
   console.log(`      (code length: ${typicalCode.length} graded only, ${fullCode.length} with all ${bonus.length} bonus)`);
 });
 

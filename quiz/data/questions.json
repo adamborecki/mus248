@@ -2165,6 +2165,42 @@
       "verified": false
     },
     {
+      "id": "LIVE_LEVEL_004",
+      "skill": "signal_levels",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A cable with XLR on both ends runs from a mixer’s main output to a powered speaker. Someone says, “It’s XLR, so it’s a mic signal.” What is it actually carrying?",
+      "choices": [
+        "Mic level, because XLR is the microphone connector",
+        "Speaker level, because the cable ends at a speaker",
+        "Line level: it’s a mixer output feeding a powered speaker",
+        "Instrument level, because it’s an unbalanced output"
+      ],
+      "answer_index": 2,
+      "explanation": "Connector shape doesn’t define the signal. A mixer’s output is line level, and the powered speaker’s own amp creates speaker level inside the cabinet.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LEVEL_005",
+      "skill": "signal_levels",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Someone plugs a laptop’s headphone output into a mixer’s XLR mic input with an adapter, then sets the gain as high as they would for a quiet mic. What’s the likely result?",
+      "choices": [
+        "Too hot and distorted: playback is much bigger than a mic",
+        "Too quiet, because laptops put out a mic-level signal",
+        "Perfect, because the adapter converts line to mic level",
+        "Silence, because mic inputs block stereo playback sources"
+      ],
+      "answer_index": 0,
+      "explanation": "Playback is roughly line level, far bigger than a mic signal, so mic-style gain overloads the preamp. Use a line input, or bring the gain way down.",
+      "verified": false
+    },
+    {
       "id": "LIVE_PRE_001",
       "skill": "preamp_power_amp",
       "topic": "live_sound",
@@ -2237,6 +2273,60 @@
       "verified": false
     },
     {
+      "id": "LIVE_PRE_005",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A dynamic mic is plugged straight into a powered speaker’s line input. Even with the speaker’s volume all the way up, the mic is barely audible. Why?",
+      "choices": [
+        "Dynamic mics need 48V phantom power to make any signal",
+        "The powered speaker also needs a separate power amp",
+        "The XLR cable has to be a stereo cable for this to work",
+        "Mic level is tiny and needs a preamp to reach line level"
+      ],
+      "answer_index": 3,
+      "explanation": "A microphone makes a very small signal. A preamp brings it up to line level, which is what a powered speaker’s input expects. Dynamic mics don’t need phantom power.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_006",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You set up an M-Audio DX4 pair. One cabinet has the inputs, volume knob, and power; the other has only speaker terminals. Where should the mixer’s line output go?",
+      "choices": [
+        "Into the primary cabinet, which powers its partner",
+        "Into the passive cabinet, which then feeds the primary",
+        "Into both cabinets at once, using a Y-cable",
+        "Into the passive cabinet, once it has its own AC power"
+      ],
+      "answer_index": 0,
+      "explanation": "The primary cabinet contains the inputs and amplification. It drives its matching passive partner at speaker level, so line signal only goes into the primary.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PRE_007",
+      "skill": "preamp_power_amp",
+      "topic": "live_sound",
+      "level": 3,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A student patches a mixer’s Aux output into a passive wedge with a ¼″ cable. The wedge is nearly silent. What’s the right fix?",
+      "choices": [
+        "Turn the aux master all the way up to compensate",
+        "Swap the ¼″ cable for XLR so the line is balanced",
+        "Put a power amp between the Aux out and the wedge",
+        "Press PFL on the channels so the aux reaches the wedge"
+      ],
+      "answer_index": 2,
+      "explanation": "Aux outputs are line level. A passive speaker needs speaker-level power from a power amp, so never connect a mixer output directly to a passive speaker.",
+      "verified": false
+    },
+    {
       "id": "LIVE_MIXO_001",
       "skill": "mixer_orientation",
       "topic": "live_sound",
@@ -2288,6 +2378,24 @@
       ],
       "answer_index": 1,
       "explanation": "Mixers look different, but the questions stay the same: where are the inputs, the input gain, the main output, and the monitoring paths?",
+      "verified": false
+    },
+    {
+      "id": "LIVE_MIXO_004",
+      "skill": "mixer_orientation",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a mixer you’ve never used, you need to get a stage mic into the singer’s wedge. Which three things do you need to find?",
+      "choices": [
+        "The channel’s pan knob, the Main fader, and the phones jack",
+        "The channel’s aux send, the aux master, and the aux output",
+        "The channel’s gain knob, its EQ, and the record output",
+        "The control-room knob, the USB port, and the Main output"
+      ],
+      "answer_index": 1,
+      "explanation": "The send puts the mic into the aux mix, the master sets that whole mix’s level, and the aux output is where it physically leaves for the wedge.",
       "verified": false
     },
     {
@@ -2596,6 +2704,24 @@
       "answer_index": 2,
       "explanation": "1000 mA = 1 A, so a 500 mA device needs half an amp.",
       "verified": true
+    },
+    {
+      "id": "PWR_ADPT_007",
+      "skill": "power_adapters",
+      "topic": "power",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In OH B01, the RockJam keyboard needs 12V, center-positive. An 18V supply from another device has a plug that fits the RockJam perfectly. Should you use it?",
+      "choices": [
+        "Yes: higher voltage just makes the keyboard a bit louder",
+        "Yes, as long as the plug fits snugly and doesn’t wobble",
+        "Yes, if its amps rating is equal to or higher than needed",
+        "No: wrong voltage, and a plug that fits proves nothing"
+      ],
+      "answer_index": 3,
+      "explanation": "Voltage and polarity have to match the device. Too much voltage can damage it, and a plug that fits is not proof of anything. Keep each supply with the device it belongs to.",
+      "verified": false
     },
     {
       "id": "F8_BASIC_001",
@@ -3858,6 +3984,78 @@
       "verified": true
     },
     {
+      "id": "LIVE_AUX_005",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The guitarist (Aux 1) loves their monitor. The singer (Aux 2) says there’s too much guitar in theirs. What do you change?",
+      "choices": [
+        "Lower the guitar’s Aux 2 send",
+        "Lower the guitar channel fader",
+        "Lower the Aux 2 master level",
+        "Lower the guitar channel’s gain"
+      ],
+      "answer_index": 0,
+      "explanation": "Only the guitar’s send to the singer’s aux changes the singer’s mix. The fader changes the audience mix, the Aux 2 master turns the whole wedge down, and gain changes the guitar everywhere.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_006",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer says “I can’t hear myself!” You check: their wedge already has plenty of vocal compared to the band, but the whole wedge is barely audible on a loud stage. What’s the better move?",
+      "choices": [
+        "Raise the vocal’s aux send",
+        "Raise that wedge’s aux master",
+        "Raise the vocal channel fader",
+        "Raise the Main L/R master"
+      ],
+      "answer_index": 1,
+      "explanation": "The balance is already right, so the whole monitor mix needs to come up: that’s the aux master. Performers often ask for “more me” when the real problem is “everything is too quiet.”",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_007",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 3,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The keyboardist wants more keys in their wedge. The singer, on a different aux, wants less keys in theirs. What can you do?",
+      "choices": [
+        "Nothing: a channel can only have one level",
+        "Change the keys channel fader, since both wedges follow it",
+        "Raise the keys’ send on one aux and lower it on the other",
+        "Pan the keys toward the keyboardist’s side"
+      ],
+      "answer_index": 2,
+      "explanation": "Each aux is its own mix, and every channel has a separate send to each aux. One source can be loud in one wedge and quiet in another.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_AUX_008",
+      "skill": "aux_sends",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re setting up monitor mixes before the band arrives. What’s the recommended approach?",
+      "choices": [
+        "Copy the main mix into every wedge so nobody is missing anything",
+        "Push every aux send high so the band can ask you to turn things down",
+        "Wait for the band to play, then fix whatever they complain about",
+        "Test each wedge with playback, then start with nothing in it"
+      ],
+      "answer_index": 3,
+      "explanation": "Confirm signal flow and a reasonable level before anyone arrives, then build each mix up from nothing as performers ask for things.",
+      "verified": false
+    },
+    {
       "id": "LIVE_PREPOST_001",
       "skill": "pre_post_fader",
       "topic": "live_sound",
@@ -3930,6 +4128,96 @@
       "verified": false
     },
     {
+      "id": "LIVE_PREPOST_005",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The singer’s monitor uses a post-fader send. During a quiet ballad, you pull the vocal fader down for the audience. What does the singer probably notice?",
+      "choices": [
+        "Their voice drops in the monitor too",
+        "Nothing changes in their monitor",
+        "Their monitor gets louder",
+        "Only the reverb on their voice changes"
+      ],
+      "answer_index": 0,
+      "explanation": "A post-fader send follows the channel fader, so lowering the fader for the room also lowers it in the wedge. That’s why performer monitors usually use pre-fader sends.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_006",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The vocal goes to a reverb through an aux. At the end of the song you fade the vocal fader all the way down, but the vocal’s reverb keeps playing at full level. Most likely cause?",
+      "choices": [
+        "The reverb send is post-fader",
+        "The reverb send is pre-fader",
+        "PFL is pressed on the vocal channel",
+        "The Main L/R master is too high"
+      ],
+      "answer_index": 1,
+      "explanation": "A pre-fader send ignores the channel fader, so the reverb keeps getting vocal. Effects sends are usually post-fader so they follow the fader.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_007",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which setup usually fits these two jobs: a performer’s monitor wedge, and a reverb effect?",
+      "choices": [
+        "Both pre-fader",
+        "Both post-fader",
+        "Wedge post-fader, reverb pre-fader",
+        "Wedge pre-fader, reverb post-fader"
+      ],
+      "answer_index": 3,
+      "explanation": "The wedge should stay steady when FOH rides faders (pre-fader). The reverb should follow the fader so a faded channel doesn’t leave its echo behind (post-fader).",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_008",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 3,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a mixer you haven’t used before, you lower the bass fader for the room, and the bassist immediately says their wedge got quieter. What should you check?",
+      "choices": [
+        "Whether the bass amp is failing",
+        "Whether that aux is set to post-fader",
+        "Whether the Main L/R master is clipping",
+        "Whether PFL is engaged on the bass channel"
+      ],
+      "answer_index": 1,
+      "explanation": "If the wedge follows the fader, the aux is probably post-fader. Don’t assume every aux on every mixer is set up the same way: check.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PREPOST_009",
+      "skill": "pre_post_fader",
+      "topic": "live_sound",
+      "level": 3,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Mid-show, you notice the lead vocal gain is too high and turn the gain down a lot. The monitor sends are pre-fader. What else just happened?",
+      "choices": [
+        "Nothing else: pre-fader sends aren’t affected by gain",
+        "Only the audience mix changed, because gain belongs to Main L/R",
+        "Only the PFL level changed",
+        "The vocal also dropped in every monitor mix"
+      ],
+      "answer_index": 3,
+      "explanation": "Gain comes before the fader and before every send, pre or post. Compensate so the monitors end up the same, or check in with the singer.",
+      "verified": false
+    },
+    {
       "id": "LIVE_PFL_001",
       "skill": "pfl_solo",
       "topic": "live_sound",
@@ -3981,6 +4269,42 @@
       ],
       "answer_index": 3,
       "explanation": "Use it for setup and troubleshooting before turning up the room.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PFL_004",
+      "skill": "pfl_solo",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before the audience arrives, you want to know whether a new vocal mic is actually reaching channel 5, without putting anything through the room speakers. What do you do?",
+      "choices": [
+        "Push up channel 5 and the Main fader, then listen in the room",
+        "Raise channel 5’s Aux 1 send and listen to the wedge on stage",
+        "Press PFL/Solo on channel 5 and check the meter or headphones",
+        "Turn the main speakers off and on, then try the mic again"
+      ],
+      "answer_index": 2,
+      "explanation": "PFL/Solo lets the engineer hear or meter one channel without sending it to the audience. It’s the setup and troubleshooting tool.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_PFL_005",
+      "skill": "pfl_solo",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You press PFL on the keyboard channel and hear it clearly in your headphones. Does that prove the audience can hear the keyboard?",
+      "choices": [
+        "Yes: PFL carries the same signal as the main mix",
+        "No: the fader and Main mix still decide what the room hears",
+        "Yes: if the channel meter moves, the room hears it",
+        "No: PFL only works on microphone channels, not keys"
+      ],
+      "answer_index": 1,
+      "explanation": "PFL is pre-fader listen: it proves signal arrives on the channel. Whether the room hears it still depends on the channel fader, Main L/R, and the speakers.",
       "verified": false
     },
     {
@@ -4071,6 +4395,78 @@
       ],
       "answer_index": 0,
       "explanation": "A bus is an internal mix path. An output connector is where that path physically leaves the mixer.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_006",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The guitar is clearly audible to the audience, but the drummer says there’s no guitar in their monitor. What’s the most likely reason?",
+      "choices": [
+        "It isn’t sent (or is barely sent) to the drummer’s aux",
+        "The guitar cable came unplugged partway through the set",
+        "The guitar channel’s gain is set too low to hear on stage",
+        "The Main L/R fader is down, so the monitors get nothing"
+      ],
+      "answer_index": 0,
+      "explanation": "If the room hears the guitar, the source, cable, and gain all work. Main and monitor are different destinations, so the drummer’s aux needs its own guitar send.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_007",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Aux 3 has a good mix: the sends are up, the Aux 3 master is up, and its meter is moving. But the new wedge on stage is silent. What’s most likely missing?",
+      "choices": [
+        "Every channel needs PFL pressed for the aux to output",
+        "The sends need to be switched to post-fader first",
+        "Main L/R is muted, and the auxes depend on it",
+        "Aux 3’s output isn’t reaching the wedge, or it’s unpowered"
+      ],
+      "answer_index": 3,
+      "explanation": "An aux is only an internal mix until it leaves the mixer through a physical output and reaches a working speaker system.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_008",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At a big show there’s a FOH engineer and a separate monitor engineer at side stage. The singer asks for more vocal in their wedge. Who handles it, and does the audience mix change?",
+      "choices": [
+        "FOH raises the vocal in the mains so the stage hears it",
+        "The monitor engineer; the audience mix can stay the same",
+        "Both engineers raise the vocal fader together on cue",
+        "Nobody: monitor mixes always copy whatever FOH does"
+      ],
+      "answer_index": 1,
+      "explanation": "FOH mixes for the audience; the monitor engineer mixes for the performers. Separate jobs, separate mixes.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DEST_009",
+      "skill": "mix_destinations",
+      "topic": "live_sound",
+      "level": 3,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You have one mixer, a power amp with passive house speakers, and two powered wedges. You need an audience mix plus separate vocal and keyboard monitors. Which plan works?",
+      "choices": [
+        "Main L/R → passive house speakers directly; Aux 1 → vocal wedge; Aux 2 → keys wedge",
+        "Main L/R → both wedges; Aux 1 → power amp → passive house speakers; Aux 2 unused",
+        "Main L/R → power amp → passive house; Aux 1 → vocal wedge; Aux 2 → keys wedge",
+        "Aux 1 → both wedges; Main L/R → power amp → passive house speakers; Aux 2 unused"
+      ],
+      "answer_index": 2,
+      "explanation": "Main L/R is the audience mix and passive speakers need a power amp. Two different monitor mixes need two different auxes. One aux feeding both wedges gives both performers the same mix.",
       "verified": false
     },
     {
