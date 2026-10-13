@@ -31,6 +31,15 @@ export function parseResult(value) {
 }
 
 export const statusOf = (curriculum, skill) => curriculum.skills?.[skill] || 'inactive';
+
+// A question's own tier: its skill's status unless the question sets `tier` to
+// override it — a Core skill can hold a question that leans on material students
+// haven't practiced yet, and a Practice skill can hold one that's fair to grade.
+// An override never revives an inactive skill: untaught is untaught.
+export function tierOf(curriculum, question) {
+  const status = statusOf(curriculum, question.skill);
+  return status === 'inactive' ? status : question.tier || status;
+}
 export const indexQuestions = (bank) => Object.fromEntries(bank.questions.map((question) => [question.id, question]));
 
 export function hashString(text) {
@@ -73,7 +82,7 @@ export function randomId(length = 6) {
 // Activity-gated questions need the activity once; a level-N variant needs it N times (3 = "3+").
 function isEligible(question, curriculum, activities, includeDrafts) {
   if (question.draft && !includeDrafts) return false;
-  if (statusOf(curriculum, question.skill) === 'inactive') return false;
+  if (tierOf(curriculum, question) === 'inactive') return false;
   if (!question.activity_gate) return question.level <= (curriculum.max_common_level ?? 1);
   const count = activities[question.activity_gate] || 0;
   return count >= 1 && question.level <= Math.min(count, 3);
@@ -103,7 +112,7 @@ function priority(question, context, curriculum, activities) {
   let score = context.rng() * 10;
   if (context.missedCore.has(skill)) score += 100;
   else if (history.endsWith('0')) score += 40;
-  if (context.practicedOnly.has(skill) && statusOf(curriculum, skill) === 'core') score += 60;
+  if (context.practicedOnly.has(skill) && tierOf(curriculum, question) === 'core') score += 60;
   if (history.endsWith('11')) score -= 20;
   if (context.seen.has(question.id)) score -= 60;
   const repetitions = question.activity_gate ? activities[question.activity_gate] || 0 : 0;
@@ -139,13 +148,14 @@ function spreadSkills(questions) {
   return out;
 }
 
-// Returns [{ id, role }]. Role comes from the instructor's weekly curriculum only;
-// student history changes which variants appear, never what counts as Core.
+// Returns [{ id, role }]. Role comes from the instructor — the weekly curriculum and
+// any per-question `tier` — only; student history changes which variants appear,
+// never what counts as Core.
 export function selectQuiz({ curriculum, bank, activities = {}, prior = null, seed, includeDrafts = false }) {
   const targets = curriculum.targets || {};
   const rng = createRng(`${seed}:select`);
   const context = { ...readPrior(prior, bank), rng };
-  const status = (question) => statusOf(curriculum, question.skill);
+  const status = (question) => tierOf(curriculum, question);
   const score = (question) => priority(question, context, curriculum, activities);
 
   // A fixed number of graded questions, Core only, and only ones the instructor
@@ -177,7 +187,7 @@ export function selectQuiz({ curriculum, bank, activities = {}, prior = null, se
 // What may be graded: eligible, Core, and verified.
 export function gradedPool({ curriculum, bank, activities = {}, includeDrafts = false }) {
   return bank.questions.filter((question) => isEligible(question, curriculum, activities, includeDrafts)
-    && statusOf(curriculum, question.skill) === 'core'
+    && tierOf(curriculum, question) === 'core'
     && (question.verified || includeDrafts));
 }
 
@@ -199,7 +209,7 @@ export function selectBonus({
   const context = readPrior(prior, bank);
   const eligible = bank.questions.filter((question) => !used.has(question.id)
     && (includeDrafts || !question.draft)
-    && statusOf(curriculum, question.skill) !== 'inactive'
+    && tierOf(curriculum, question) !== 'inactive'
     && (!question.activity_gate || (activities[question.activity_gate] || 0) >= 1));
 
   const wasMissed = (question) => context.missedCore.has(question.skill)

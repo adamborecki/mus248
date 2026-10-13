@@ -67,7 +67,7 @@ All of it lives in `data/curriculum.json`:
    - **After the clock stops** the student gets two optional questions: a one-tap pace check and a free-text box. Per-question timing and which wrong answer was picked are recorded silently.
    - Rehearse it without editing data: `?debug=1&window=0.5&expected=0.2` overrides both, in minutes.
 
-4. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This is the only thing that makes a question graded.** Student history never promotes a skill to Core.
+4. Change skill statuses under `skills`: `core`, `practice`, or `inactive`. **This, plus any per-question `tier` override (see Questions below), is the only thing that makes a question graded.** Student history never promotes a skill to Core.
 5. Optionally adjust `coming_to_core` and `targets`. Study cards follow the skill statuses automatically.
 
 `target_total_points` sets what the whole quiz is worth in Canvas (10, to match a 10-point Canvas assignment), split evenly across however many questions that week has — change `targets.total_questions` and each question’s point value adjusts automatically, so the quiz always adds up to `target_total_points`. Pick a question count that divides evenly into it (20 → 0.5 each, 10 → 1 each) so scores don’t come out as long decimals. If Core and Practice should ever be weighted differently instead of split evenly, add an explicit `"scoring": {"core_correct": ..., "practice_completed": ...}` — its presence overrides the automatic split.
@@ -83,6 +83,7 @@ Each question has a stable `id`, a `skill`, a `level` (0 recognition, 1 recall/b
 - **Drafts:** questions marked `"draft": true` are never used. Review one, then delete that line. Or set `"include_drafts": true` in the curriculum to use them all. New questions on Core skills start as drafts; Practice and activity questions go live directly.
 - **Verified:** every question and study card has `"verified": true/false` — whether the instructor has personally read and confirmed it. This is independent of draft/live: a question can be live (served to students) but still unverified, which is the normal state for anything nobody has checked yet. It doesn’t affect selection at all; it only tracks review work. In the content editor, adding a note to something sets it back to unverified — a note means "needs a change."
 - **Activity gates** use the site’s activity ids (`stereo`, `cameras`, `x32compact`, `live-looping`, `dante`, …). Gated questions go only to students who report the activity. A level-N gated question needs the activity N times (level 2 → twice, level 3 → 3+).
+- **Tier override:** a question normally takes its skill’s status. Add `"tier": "practice"` to keep one question ungraded on a Core skill — e.g. an aperture question that leans on “stops” before stops is Core — or `"tier": "core"` to make one question on a Practice skill gradeable (it still has to be verified). The override never revives an `inactive` skill. Study cards still follow the skill. Remove the line once the skill catches up.
 - Common (ungated) questions above `max_common_level` are skipped.
 - Every `skill` needs a label in the `skills` map at the top of the file and a status in the curriculum. The tests check this.
 

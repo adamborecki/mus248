@@ -4184,6 +4184,7 @@
     {
       "id": "VID_AP_004",
       "skill": "aperture_iris",
+      "tier": "practice",
       "topic": "video_fundamentals",
       "level": 1,
       "activity_gate": null,
@@ -4202,6 +4203,7 @@
     {
       "id": "VID_AP_005",
       "skill": "aperture_iris",
+      "tier": "practice",
       "topic": "video_fundamentals",
       "level": 1,
       "activity_gate": null,

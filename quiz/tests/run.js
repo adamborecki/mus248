@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, missedSkills, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus } from '../js/engine.js';
+import { buildPayload, choiceOrder, missedSkills, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus, tierOf } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -89,6 +89,7 @@ test('question bank is well-formed', () => {
     assert.ok(bank.skills[question.skill], `${question.id}: no label for skill ${question.skill}`);
     assert.ok(curriculum.skills[question.skill], `${question.id}: skill ${question.skill} missing from curriculum.json`);
     if (question.activity_gate) assert.ok(activityIds.has(question.activity_gate), `${question.id}: unknown activity ${question.activity_gate}`);
+    if ('tier' in question) assert.ok(['core', 'practice'].includes(question.tier), `${question.id}: tier should be "core" or "practice"`);
   });
 });
 
@@ -157,12 +158,41 @@ test('the graded set is a fixed 12, all Core, all verified, one per skill', () =
   assert.equal(new Set(selection.map(({ id }) => id)).size, selection.length, 'a question was repeated');
   selection.forEach(({ id, role }) => {
     assert.equal(role, 'core', `${id} is graded but not Core`);
-    assert.equal(curriculum.skills[byId[id].skill], 'core', `${id}'s skill is not Core`);
+    assert.equal(tierOf(curriculum, byId[id]), 'core', `${id} is not Core`);
     assert.ok(byId[id].verified, `${id} is graded but not verified — an unchecked question must never cost marks`);
     assert.ok(!byId[id].draft, `${id} is a draft`);
   });
   const skills = selection.map(({ id }) => byId[id].skill);
   assert.equal(new Set(skills).size, skills.length, 'two graded questions covered the same skill');
+});
+
+test('a question\'s tier overrides its skill\'s status, but never revives an inactive skill', () => {
+  const question = (id, skill, tier) => ({
+    id, skill, tier, level: 1, activity_gate: null, verified: true, choices: ['a', 'b'], answer_index: 0,
+  });
+  const miniBank = {
+    skills: {},
+    questions: [
+      question('CORE_PLAIN', 'core_skill'),
+      question('CORE_BUT_NEW', 'core_skill', 'practice'),
+      question('PRACTICE_PLAIN', 'practice_skill'),
+      question('PRACTICE_BUT_FAIR', 'practice_skill', 'core'),
+      question('NOT_TAUGHT', 'inactive_skill', 'core'),
+    ],
+  };
+  const miniCurriculum = {
+    skills: { core_skill: 'core', practice_skill: 'practice', inactive_skill: 'inactive' },
+    targets: { graded_questions: 5 },
+  };
+  const tiers = Object.fromEntries(miniBank.questions.map((q) => [q.id, tierOf(miniCurriculum, q)]));
+  assert.deepEqual(tiers, {
+    CORE_PLAIN: 'core', CORE_BUT_NEW: 'practice', PRACTICE_PLAIN: 'practice', PRACTICE_BUT_FAIR: 'core', NOT_TAUGHT: 'inactive',
+  });
+
+  const graded = selectQuiz({ curriculum: miniCurriculum, bank: miniBank, seed: 'tier' }).map(({ id }) => id).sort();
+  assert.deepEqual(graded, ['CORE_PLAIN', 'PRACTICE_BUT_FAIR']);
+  const bonus = selectBonus({ curriculum: miniCurriculum, bank: miniBank, exclude: graded, seed: 'tier' }).map(({ id }) => id).sort();
+  assert.deepEqual(bonus, ['CORE_BUT_NEW', 'PRACTICE_PLAIN']);
 });
 
 test('the graded count stays fixed however many skills become Core', () => {
@@ -360,7 +390,7 @@ test('every Core skill has verified questions to draw on', () => {
   const thin = [];
   Object.entries(curriculum.skills).filter(([, status]) => status === 'core').forEach(([skill]) => {
     const available = bank.questions.filter((question) => question.skill === skill
-      && question.verified && !question.draft);
+      && tierOf(curriculum, question) === 'core' && question.verified && !question.draft);
     assert.ok(available.length > 0, `Core skill "${skill}" has no verified question, so it can never be graded`);
     if (available.length < 2) thin.push(skill);
   });
