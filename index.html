@@ -14,17 +14,23 @@
     <nav class="site-nav" aria-label="Sections">
       <a class="nav-card" href="quiz/"><strong><span aria-hidden="true">📝</span> Weekly quiz</strong><small>Answer this week&rsquo;s questions, then paste your code into Canvas</small></a>
       <a class="nav-card" href="study/"><strong><span aria-hidden="true">🗂️</span> Study cards</strong><small>Review the terms before you take the quiz</small></a>
+      <a class="nav-card" href="lectures/"><strong><span aria-hidden="true">🎤</span> Lectures</strong><small>Each class&rsquo;s slides as text, newest first</small></a>
       <a class="nav-card" href="worksheets/"><strong><span aria-hidden="true">🖨️</span> Worksheets</strong><small>Print the page you write on while you work</small></a>
     </nav>
-    <h2 class="section-title">Activities</h2>
+    <a class="pilot-card" href="repo-improvement/"><strong><span aria-hidden="true">🛠️</span> New: Repo Improvement</strong><small>Test one page of this site for real, then 🗣️🎙️ talk it out or 🧹🤖🍝 use AI to clean AI slop. Early volunteers welcome.</small></a>
+    <h2 class="section-title">Activities &amp; checklists</h2>
     <section class="filters" aria-label="Filter activities">
       <label for="skill-filter">Find a skill</label>
       <select id="skill-filter"><option value="all">All skill areas</option></select>
+      <label for="type-filter">Type</label>
+      <select id="type-filter"><option value="all">All types</option></select>
+      <label for="where-filter">Where</label>
+      <select id="where-filter"><option value="all">Anywhere</option></select>
       <p id="activity-count" aria-live="polite"></p>
     </section>
     <section id="activity-list" class="activity-grid" aria-label="Activity directory"></section>
   </main>
   <footer>Canvas remains the place for submissions, discussions, and grades.</footer>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

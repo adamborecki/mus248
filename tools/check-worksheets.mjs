@@ -32,7 +32,57 @@ check(renderMarkdown('a *word* here').includes('<em>word</em>'), 'single-asteris
 check(renderMarkdown('a **word** here').includes('<strong>word</strong>'), 'bold stopped rendering');
 check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survived into the rendered page');
 
+// Links written relative to the Markdown resolve against the same base as images, so a page can
+// link to another page and still work at the site root and under a branch preview.
+check(renderMarkdown('[kit](../../x/a.md)', { assetBase: '../content/activities/' }).includes('href="../content/activities/../../x/a.md"'),
+  'a relative link was not resolved against the asset base');
+check(renderMarkdown('[site](https://example.com/a)', { assetBase: '../c/' }).includes('href="https://example.com/a"'),
+  'an absolute link was rewritten');
+
 const directory = JSON.parse(read('data', 'activities.json'));
+
+// Optional catalog metadata (see catalog.js). Missing is fine — older entries default to an
+// activity with no where-you-can-do-it labels — but a typo must not silently fall back.
+const TYPES = ['activity', 'checklist', 'reference'];
+const SETTING_KEYS = ['home', 'class', 'outsideClass'];
+directory.forEach((entry) => {
+  if ('type' in entry) check(TYPES.includes(entry.type), `${entry.id}: unknown type "${entry.type}"`);
+  if ('kind' in entry) {
+    check(entry.kind === 'reset', `${entry.id}: unknown kind "${entry.kind}"`);
+    check(entry.type === 'checklist', `${entry.id}: a reset procedure must have "type": "checklist"`);
+  }
+  if ('settings' in entry) {
+    Object.entries(entry.settings).forEach(([key, value]) => {
+      check(SETTING_KEYS.includes(key), `${entry.id}: unknown setting "${key}"`);
+      check(['yes', 'no', 'confirm'].includes(value), `${entry.id}: setting ${key} is "${value}" — use yes, no, or confirm`);
+    });
+  }
+});
+
+// Repo Improvement's starter menu names exact headings in other pages. A renamed heading has to
+// fail here, not leave students hunting for a section that no longer exists.
+const menu = JSON.parse(read('repo-improvement', 'starter-menu.json'));
+menu.items.forEach((item) => {
+  const entry = directory.find((candidate) => candidate.id === item.id);
+  if (!entry || !entry.contentFile) { fail(`starter menu: ${item.id} is not a catalog page with a contentFile`); return; }
+  check(['desk', 'sim', 'hands-on'].includes(item.test), `starter menu: ${item.id} test is "${item.test}"`);
+  const headings = read('content', 'activities', `${entry.contentFile}.md`).split('\n')
+    .filter((line) => line.startsWith('## ')).map((line) => line.slice(3).trim());
+  item.sections.forEach((section) => check(headings.includes(section), `starter menu: ${item.id} has no "## ${section}" heading`));
+});
+(menu.external || []).forEach((item) => {
+  check(/^https:\/\//.test(item.url), `starter menu: external "${item.title}" needs an https URL`);
+  check(['desk', 'sim', 'hands-on'].includes(item.test), `starter menu: external "${item.title}" test is "${item.test}"`);
+  check(Boolean(item.source && item.focus), `starter menu: external "${item.title}" needs a source and a focus`);
+});
+// Its one download exists, decodes as UTF-8, and is linked from the activity page.
+const starterFile = join(root, 'repo-improvement', 'downloads', 'PROJECT_STARTER.md');
+if (!existsSync(starterFile)) fail('repo-improvement/downloads/PROJECT_STARTER.md is missing');
+else {
+  try { new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(starterFile)); } catch { fail('PROJECT_STARTER.md is not valid UTF-8'); }
+  check(read('content', 'activities', 'repo-improvement.md').includes('(../../repo-improvement/downloads/PROJECT_STARTER.md)'),
+    'repo-improvement.md does not link PROJECT_STARTER.md');
+}
 // The generator is driven by the directory, never by globbing the folder — so
 // _template.md and WORKSHEETS.md are never mistaken for activities.
 const generated = directory.filter((activity) => activity.contentFile);
@@ -64,6 +114,20 @@ generated.forEach((activity) => {
   // There has to be something to write on.
   check(parsed.questions.length + parsed.checkpoints.length + parsed.done.length > 0,
     `${id}: the worksheet would come out empty — no questions, checkpoints, or definition of done`);
+
+  // Opt-in credit is a GitHub username, never a real name (see CLAUDE.md).
+  [].concat(parsed.frontmatter.contributors || []).forEach((name) => {
+    check(/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(name), `${id}: contributor "${name}" is not a GitHub username`);
+  });
+
+  // A checklist's printed step numbers have to be the ones its page shows.
+  if (activity.type === 'checklist') {
+    const numberedPage = renderMarkdown(markdown, { numbered: true });
+    parsed.checkpoints.filter((checkpoint) => checkpoint.id).forEach((checkpoint) => {
+      check(numberedPage.includes(`<span class="step-id">${checkpoint.id}</span>`), `${id}: worksheet step ${checkpoint.id} is not on the page`);
+    });
+    check(parsed.checkpoints.some((checkpoint) => checkpoint.id), `${id}: a checklist with no numbered steps`);
+  }
 
   // Questions keep the shape the generator relies on.
   parsed.questions.forEach((question) => {
@@ -115,6 +179,26 @@ generated.forEach((activity) => {
     questions: parsed.questions.length,
     leave: parsed.beforeYouLeave.length,
   });
+});
+
+// Lectures: data/lectures.json is the catalog; each readable lecture needs its Markdown and its
+// /lectures/<id>/ page. The site is public, so the things redacted on import must stay out.
+const lectures = JSON.parse(read('data', 'lectures.json'));
+const quizCodes = Object.values(JSON.parse(read('quiz', 'data', 'curriculum.json')).quizzes || {})
+  .map((quiz) => quiz.access_code).filter(Boolean);
+check(new Set(lectures.map((lecture) => lecture.id)).size === lectures.length, 'lectures: duplicate id');
+lectures.forEach((lecture) => {
+  const where = `lecture ${lecture.id}`;
+  check(['delivered', 'upcoming', 'no-class'].includes(lecture.status), `${where}: unknown status "${lecture.status}"`);
+  check(lecture.date === null || /^\d{4}-\d{2}-\d{2}$/.test(lecture.date), `${where}: date must be YYYY-MM-DD or null`);
+  if (!lecture.contentFile) return;
+  const file = join('content', 'lectures', `${lecture.contentFile}.md`);
+  if (!existsSync(join(root, file))) { fail(`${where}: ${file} is missing`); return; }
+  const page = join('lectures', lecture.id, 'index.html');
+  check(existsSync(join(root, page)) && read(page).includes(`data-lecture-id="${lecture.id}"`), `${where}: no ${page} for it`);
+  const text = read(file);
+  quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
+  check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
 });
 
 console.table(rows);

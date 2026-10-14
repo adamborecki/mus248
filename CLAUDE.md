@@ -48,6 +48,16 @@ generated or derived.
    existing trio and change `data-activity-id`
 4. both test suites passing
 
+Optional catalog fields, all safe to omit: `"kind": "reset"` marks a reset procedure (it must
+also be `"type": "checklist"`). Checklists number their steps automatically (`stepNumbers` in
+`markdown.js`, shared by page and worksheet, so the numbers move when steps are added; `revised`
+says which version a number belongs to). **Contributor credit** is opt-in and only ever a GitHub
+username, in the activity's frontmatter as a `contributors:` list. Never a real name. And: `"type"` (`activity` default, `checklist`,
+`reference`) and `"settings"` (`home` / `class` / `outsideClass` → `yes` / `no` / `confirm`). Map
+settings only from what the page's own Logistics/Access text says. Anything it doesn't say is
+`confirm`, never a guess. `content/DOCUMENTATION_GUIDE.md` has the rest. Repo Improvement's `repo-improvement/starter-menu.json` names exact `##` headings in other pages, and the checker fails if
+you rename one without updating it.
+
 `data/activities.json` and the quiz's own activity list (`quiz/data/curriculum.json`'s
 `activities` array, matched against by `activity_gate` in `quiz/data/questions.json`) are separate,
 hand-maintained lists — adding an activity here does not teach the quiz about it. Run
@@ -85,6 +95,15 @@ bump it is worse than not having the field, since a stale date reads as confirme
 The worksheet is the workbook — definition of done, key terms, checkpoints, questions, "before
 you leave". Photos and step-by-step procedure deliberately stay off the paper so nobody copies a
 screen onto it.
+
+## Lectures
+
+`data/lectures.json` holds each lecture's date, week, and status (`delivered`, `upcoming`,
+`no-class`); `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
+lecture needs a `lectures/<id>/index.html` shell (copy one, change `data-lecture-id`). Slide decks
+are full of student names (group lists, survey answers), quiz access codes, and Drive/form links.
+Redact all of them on import (`[names — ask instructor]`) and say so at the top of the file; the
+checker fails on a quiz access code or a form/Drive folder link, but it can't spot a name.
 
 ## Quiz
 

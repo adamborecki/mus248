@@ -1,4 +1,9 @@
 import { renderMarkdown } from './markdown.js';
+import { parseFrontmatter } from './worksheet.js';
+import { DOC_TYPES, KINDS, docType, settingsChips } from './catalog.js';
+
+// Opt-in credit by GitHub username only, never a real name (see CLAUDE.md).
+const GITHUB_USER = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/;
 
 async function loadActivity() {
   const root = document.body.dataset.activityId;
@@ -12,9 +17,14 @@ async function loadActivity() {
   let instructions = '';
 
   let external = false;
+  let contributors = [];
   if (activity.contentFile) {
     const response = await fetch(`../content/activities/${activity.contentFile}.md`);
-    if (response.ok) instructions = renderMarkdown(await response.text(), { assetBase: '../content/activities/' });
+    if (response.ok) {
+      const markdown = await response.text();
+      contributors = [].concat(parseFrontmatter(markdown).contributors || []).filter((name) => GITHUB_USER.test(name));
+      instructions = renderMarkdown(markdown, { assetBase: '../content/activities/', numbered: docType(activity) === 'checklist' });
+    }
   }
   if (!instructions && activity.externalResource) {
     external = true;
@@ -38,14 +48,22 @@ async function loadActivity() {
       <a class="canvas-link" href="${discussion.url}" target="_blank" rel="noopener">Canvas discussion <span aria-hidden="true">↗</span></a>
     </section>` : '';
 
+  const chips = settingsChips(activity);
+  const settings = chips ? `<p class="activity-settings" aria-label="Where this can be done">${chips}</p>` : '';
+
   document.title = `${activity.title} · MUS 248`;
   document.getElementById('activity').innerHTML = `
     <a class="back" href="../">← Activities</a>
-    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${activity.time} · ${activity.access} · Groups of ${activity.group}${external ? ' · Instructions hosted externally' : ''}</p></div></header>
+    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${docType(activity) === 'activity' ? '' : `${DOC_TYPES[docType(activity)].emoji} ${DOC_TYPES[docType(activity)].label} · `}${KINDS[activity.kind] ? `${KINDS[activity.kind].emoji} ${KINDS[activity.kind].label} · ` : ''}${activity.time} · ${activity.access} · Groups of ${activity.group}${external ? ' · Instructions hosted externally' : ''}</p>${settings}</div></header>
     ${worksheet}
-    <article class="instructions">${instructions}</article>
+    <article class="instructions${docType(activity) === 'checklist' ? ' numbered' : ''}">${instructions}</article>
+    ${contributors.length ? `<p class="contributors"><span aria-hidden="true">🙌</span> Improved with help from ${contributors.map((name) => `<a href="https://github.com/${name}" rel="noopener">@${name}</a>`).join(', ')}</p>` : ''}
     ${completion}
   `;
+  // Lets a page add interactive pieces to its rendered instructions (Repo Improvement's
+  // starter kit) without the shared renderer knowing about them.
+  document.body.dataset.rendered = 'true';
+  document.dispatchEvent(new CustomEvent('activity:rendered', { detail: { activity } }));
 }
 
 loadActivity().catch(() => {

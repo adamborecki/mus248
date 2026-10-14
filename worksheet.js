@@ -11,7 +11,7 @@
 // What the paper does carry is a pointer, at each spot a section was skipped, naming
 // what the QR code leads to.
 
-import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines } from './markdown.js';
+import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
@@ -139,8 +139,9 @@ const NOT_FOR_STUDENTS = ['technical verification', 'ai use disclosure', 'core s
 export function parseActivity(markdown) {
   const frontmatter = parseFrontmatter(markdown);
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
+  const numbers = stepNumbers(lines);
   const result = {
-    frontmatter, done: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
+    frontmatter, done: [], doneIds: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
   };
   let section = '';
   let sectionTitle = '';
@@ -186,6 +187,7 @@ export function parseActivity(markdown) {
       // second copy of the in-activity checkpoints.
       if (bullet && !isOption && !ANSWER_LINE.test(line.trim())) {
         result.done.push(bullet[1].replace(/^🚩\s*/, '').replace(/^\[[ xX]\]\s*/, '').trim());
+        result.doneIds.push(numbers.get(index) || '');
       }
       return;
     }
@@ -207,7 +209,7 @@ export function parseActivity(markdown) {
 
     const checkpoint = line.match(CHECKPOINT);
     if (checkpoint) {
-      const entry = { text: checkpointText(checkpoint[1]), section: label, part: sectionTitle, order: index };
+      const entry = { text: checkpointText(checkpoint[1]), section: label, part: sectionTitle, order: index, id: numbers.get(index) || '' };
       result.checkpoints.push(entry);
       result.flow.push({ type: 'checkpoint', checkpoint: entry, order: index });
     }
@@ -268,6 +270,8 @@ function renderQuestion(question, showAnswers) {
 
 export function renderWorksheet(activity, options = {}) {
   const { showAnswers = false, directory = {} } = options;
+  // Checklists print the same step numbers as their page, so "3.4" means the same line on both.
+  const stepId = (id) => (directory.type === 'checklist' && id ? `<b class="step-id">${escapeHtml(id)}</b> ` : '');
   const front = activity.frontmatter || {};
   const title = front.title || directory.title || 'Activity';
   const emoji = front.emoji || directory.emoji || '📄';
@@ -296,7 +300,7 @@ export function renderWorksheet(activity, options = {}) {
   const renderGroup = (key) => {
     if (key === 'done') {
       return block('Definition of done', 'tick each one before you pack up',
-        activity.done.length ? `<ul class="ticks">${activity.done.map((item) => `<li>${inline(item)}</li>`).join('')}</ul>` : '');
+        activity.done.length ? `<ul class="ticks">${activity.done.map((item, index) => `<li>${stepId((activity.doneIds || [])[index])}${inline(item)}</li>`).join('')}</ul>` : '');
     }
     if (key === 'keyTerms') {
       return block('Key terms', 'write what each one means',
@@ -365,7 +369,7 @@ export function renderWorksheet(activity, options = {}) {
       ? `<em class="where">${escapeHtml(item.section)}</em>` : '';
     previousWhere = item.section;
     if (entry.type === 'checkpoint') {
-      parts.push(`<li class="tick">${tag}${inline(item.text)}</li>`);
+      parts.push(`<li class="tick">${tag}${stepId(item.id)}${inline(item.text)}</li>`);
     } else {
       parts.push(`<li class="question">${tag}${renderQuestion(item, showAnswers)}</li>`);
     }

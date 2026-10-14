@@ -12,9 +12,14 @@ const resolveAsset = (src, assetBase) => (/^(https?:)?\/\//.test(src) || src.sta
   ? src
   : assetBase + src);
 
+// Links resolve the same way, so `[Salmon Gig Checklist](../../salmon-gig-checklist/)` written
+// relative to the Markdown file lands on the right page from the activity page, from the root
+// site and from a branch preview alike. Anchors and mailto: links are left alone.
+const resolveLink = (href, assetBase) => (/^(#|mailto:)/.test(href) ? href : resolveAsset(href, assetBase));
+
 export const inline = (value, { assetBase = '' } = {}) => escapeHtml(value)
   .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (match, alt, src) => `<img src="${resolveAsset(src, assetBase)}" alt="${alt}" loading="lazy" decoding="async">`)
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2">$1</a>')
+  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, href) => `<a href="${resolveLink(href, assetBase)}">${text}</a>`)
   .replace(/`([^`]+)`/g, '<code>$1</code>')
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
   // Single-asterisk emphasis, after bold has consumed its pairs. Without this a
@@ -58,8 +63,36 @@ export function joinWrappedLines(markdown) {
   return joined.join('\n');
 }
 
+// Checklist step numbers, so a step can be said out loud: "I'm on 3.4." Every ## section that holds
+// list items gets the next section number; its items count 1, 2, 3… beneath it (### subheadings
+// don't restart the count). Numbers come from position, so they move when steps are added — the
+// page's `revised` date says which version a number belongs to. Keyed by line index in the
+// frontmatter-stripped, wrap-joined lines that the page renderer and the worksheet parser both use.
+const UNNUMBERED_SECTIONS = ['what this is', 'key terms', 'technical verification', 'ai use disclosure', 'core skill area'];
+const LIST_ITEM = /^(?:[-*]|\d+\.)\s+/;
+
+export function stepNumbers(lines) {
+  const numbers = new Map();
+  const words = (heading) => heading.replace(/^[^\p{L}\p{N}]+/u, '').trim().toLowerCase();
+  const sections = [];
+  lines.forEach((line, index) => {
+    const h2 = line.match(/^##\s+(.+)$/);
+    if (h2) sections.push({ index, skip: UNNUMBERED_SECTIONS.includes(words(h2[1])), items: [] });
+    else if (sections.length && LIST_ITEM.test(line) && !OPTION.test(line.trim())) sections[sections.length - 1].items.push(index);
+  });
+  let section = 0;
+  sections.filter((entry) => !entry.skip && entry.items.length).forEach((entry) => {
+    section += 1;
+    numbers.set(entry.index, String(section));
+    entry.items.forEach((index, item) => numbers.set(index, `${section}.${item + 1}`));
+  });
+  return numbers;
+}
+
 export function renderMarkdown(markdown, options = {}) {
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
+  const numbers = options.numbered ? stepNumbers(lines) : new Map();
+  const stepId = (index) => (numbers.has(index) ? `<span class="step-id">${numbers.get(index)}</span> ` : '');
   const output = [];
   let list = null;
   const closeList = () => { if (list) { output.push(`</${list}>`); list = null; } };
@@ -84,15 +117,15 @@ export function renderMarkdown(markdown, options = {}) {
       index -= 1;
       output.push(`<div class="table-scroll"><table><thead>${row(head, 'th')}</thead><tbody>${body.map((values) => row(values, 'td')).join('')}</tbody></table></div>`);
     }
-    else if (heading) { closeList(); output.push(`<h${heading[1].length}>${inline(heading[2], options)}</h${heading[1].length}>`); }
+    else if (heading) { closeList(); output.push(`<h${heading[1].length}>${stepId(index)}${inline(heading[2], options)}</h${heading[1].length}>`); }
     else if (bullet) {
       if (list !== 'ul') { closeList(); list = 'ul'; output.push('<ul>'); }
       const task = bullet[1].match(/^\[([ xX])\]\s+(.+)$/);
       output.push(task
-        ? `<li class="task"><span aria-hidden="true">${task[1] === ' ' ? '☐' : '☑'}</span> ${inline(task[2], options)}</li>`
-        : `<li>${inline(bullet[1], options)}</li>`);
+        ? `<li class="task"><span aria-hidden="true">${task[1] === ' ' ? '☐' : '☑'}</span> ${stepId(index)}${inline(task[2], options)}</li>`
+        : `<li>${stepId(index)}${inline(bullet[1], options)}</li>`);
     }
-    else if (numbered) { if (list !== 'ol') { closeList(); list = 'ol'; output.push('<ol>'); } output.push(`<li>${inline(numbered[1], options)}</li>`); }
+    else if (numbered) { if (list !== 'ol') { closeList(); list = 'ol'; output.push('<ol>'); } output.push(`<li>${stepId(index)}${inline(numbered[1], options)}</li>`); }
     else if (quote) { closeList(); output.push(`<aside>${inline(quote[1], options)}</aside>`); }
     else if (!line.trim()) { closeList(); }
     else {
