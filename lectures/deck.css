@@ -138,3 +138,4 @@ html.deck-open { overflow: hidden; }
   .deck, .deck * { animation: none !important; transition: none !important; }
 }
 @media print { .deck, .lecture-present { display: none !important; } }
+.deck-num ~ .deck-title { padding-right: 110px; }
