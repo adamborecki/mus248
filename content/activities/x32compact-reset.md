@@ -81,9 +81,9 @@ All of this is the imported doc's wording. Still open:
 - **What "reset" means at the end of a session.** The source's end step is a shutdown, not a
   return to a known scene. Should the next class find factory defaults, or a particular scene?
   Not stated.
-- **Which M-Audio speakers.** The X32 doc lists **M-Audio Studiophile AV40** speakers as Main L/R
-  in OH B01. The Live Sound lecture shows a campus **M-Audio Studiophile DX4** pair without naming
-  its room. They may be different rooms. Check the label on the OH B01 speakers.
+- **Which M-Audio speakers.** OH B01's pantry holds both an M-Audio Studiophile **AV40** pair and a
+  **DX4** pair (instructor, 2026-10-14). The X32 doc's system uses the AV40s as Main L/R. Check the
+  label on the ones you're switching off.
 
 ## 🤖 AI use disclosure
 

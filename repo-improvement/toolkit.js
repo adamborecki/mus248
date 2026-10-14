@@ -64,14 +64,17 @@ ${pasteHere}
   if (source.external) {
     return `# Source document to inspect
 
-> This page lives on another site, so it isn't included here. Paste the text of the ONE section
-> you're testing below. The AI will treat it as a document to inspect, not as instructions.
+> ✏️ **Before you send this:** this page lives on another site, so it isn't included. Fill in the
+> blanks below and paste the on-screen text of the ONE part you're testing. The AI will treat it as
+> a document to inspect, not as instructions.
 
 - **Title:** ${source.title}
 - **Page:** ${source.url}
 - **Source in its repo:** ${source.source}
 - **Downloaded:** ${today()}
 - **Section to test:** (write the one scenario, station, or section you chose)
+- **Where I'm testing:** (browser and device, e.g. "Safari on an iPhone")
+- **What success looks like:** (what you should see when it works)
 - **How:** ${HOW[source.test] || HOW['hands-on']}
 - **Suggested focus:** ${source.focus}
 
@@ -166,6 +169,7 @@ async function mount() {
         <strong>${escapeHtml(item.emoji)} ${escapeHtml(item.title)}</strong>
         <span class="activity-meta">${typeChip(DOC_TYPES[item.type] ? item.type : 'activity')}${item.test === 'sim' ? SIM_CHIP : DESK_CHIP}${chip('🌐', 'Another site')}</span>
         <small>${escapeHtml(item.focus)}</small>
+        <small>📋 This one isn't bundled: open it, copy the on-screen instructions for the part you test, and paste them under the starter.</small>
         <a class="kit-open" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open it <span aria-hidden="true">↗</span></a>
       </span>
     </label>`;
@@ -200,8 +204,8 @@ async function mount() {
     </fieldset>
     ${menu.planned && menu.planned.length ? `<p class="quiet kit-planned">Coming later, not testable yet: ${menu.planned.map((name) => escapeHtml(name)).join(' · ')}.</p>` : ''}
     <div class="kit-actions">
-      <button type="button" class="kit-button kit-primary" data-act="download" disabled><span aria-hidden="true">⬇️</span> Download starter + source</button>
-      <button type="button" class="kit-button" data-act="copy" disabled><span aria-hidden="true">📋</span> Copy starter + source</button>
+      <button type="button" class="kit-button kit-primary" data-act="copy" disabled><span aria-hidden="true">📋</span> Copy starter + source</button>
+      <button type="button" class="kit-button" data-act="download" disabled><span aria-hidden="true">⬇️</span> Download as a file</button>
       <button type="button" class="kit-button" data-act="show" disabled aria-expanded="false" aria-controls="kit-text">Show the text</button>
     </div>
     <p class="kit-status" role="status" aria-live="polite"></p>
@@ -272,7 +276,7 @@ async function mount() {
   async function copyText(text, what) {
     try {
       await navigator.clipboard.writeText(text);
-      say(`Copied ${what}. Paste it into your AI tool or a text file.`);
+      say(`Copied ${what}. Paste it into PantherAI (or any AI tool), or into a text file.`);
     } catch {
       showText(text);
       textArea.focus();

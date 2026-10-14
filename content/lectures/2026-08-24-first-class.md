@@ -2,10 +2,7 @@
 > are kept; images aren't reproduced. **Redacted for this public site:** student names (with their
 > survey answers) in group lists, and a survey form link. Each is marked `[… — ask instructor]`.
 
-> 📅 **Date to confirm.** The deck labels this section "Monday, August 31", the same as the section
-> before it. Its content is the first class (intro, journals, the five core skill areas), and the
-> real August 31 class opens with "Review: Last Week's Lecture" covering exactly this material, so
-> this was most likely the week before.
+> 📅 The deck labels this section "Monday, August 31"; it was the first class, Monday, August 24.
 
 ## 🗓️ Class slides
 

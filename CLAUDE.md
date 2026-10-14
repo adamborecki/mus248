@@ -48,8 +48,8 @@ generated or derived.
    existing trio and change `data-activity-id`
 4. both test suites passing
 
-Optional catalog fields, all safe to omit: `"kind": "reset"` marks a reset procedure (it must
-also be `"type": "checklist"`). Checklists number their steps automatically (`stepNumbers` in
+Optional catalog fields, all safe to omit: `"kind"` is `"gig"` (gig checklist) or `"reset"`
+(reset procedure), and either one must also be `"type": "checklist"`. Checklists number their steps automatically (`stepNumbers` in
 `markdown.js`, shared by page and worksheet, so the numbers move when steps are added; `revised`
 says which version a number belongs to). **Contributor credit** is opt-in and only ever a GitHub
 username, in the activity's frontmatter as a `contributors:` list. Never a real name. And: `"type"` (`activity` default, `checklist`,
@@ -98,8 +98,11 @@ screen onto it.
 
 ## Lectures
 
-`data/lectures.json` holds each lecture's date, week, and status (`delivered`, `upcoming`,
-`no-class`); `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
+`data/lectures.json` holds each lecture's date, week, status (`delivered`, `upcoming`,
+`no-class`), its `lecture` number (the LECTURE ## badge; matches the Canvas follow-along notes, so
+01 is Aug 24 and Labor Day has none), and optionally `hiddenUntil` (ISO time with offset, e.g.
+`2026-10-19T22:00:00-07:00`). That hides it from the site until then, but the Markdown stays public
+in the repo, so it's not a secret; `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
 lecture needs a `lectures/<id>/index.html` shell (copy one, change `data-lecture-id`). Slide decks
 are full of student names (group lists, survey answers), quiz access codes, and Drive/form links.
 Redact all of them on import (`[names — ask instructor]`) and say so at the top of the file; the

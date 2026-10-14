@@ -52,7 +52,8 @@ before the F8 turned on" is worth more than "step 4 was confusing."
 
 ### 🧹🤖🍝 Use AI to clean AI slop
 
-Download the **starter + source** file below and paste it into an AI tool. The starter sets the
+Copy the **starter + source** below (one tap) and paste it into an AI tool. PantherAI works on
+your phone. The starter sets the
 AI up to ask you short questions about what happened, then write a **revised version of the
 page** plus a short **change and test report**. You check every claim it makes against what you
 actually saw.
@@ -182,8 +183,9 @@ observed.
 **🗣️🎙️ Talk it out:** dictate your paragraph of raw feedback now, while it's fresh (see **Two
 ways to do it**).
 
-**🧹🤖🍝 Use AI to clean AI slop:** paste the starter + source into your AI tool and answer its
-questions about what happened. Keep the steps that worked. Fix only what your test showed. Every
+**🧹🤖🍝 Use AI to clean AI slop:** paste the starter + source into your AI tool. If you picked a
+simulator or another site, fill in its blanks and paste that part's on-screen text first. Then
+answer the AI's questions about what happened. Keep the steps that worked. Fix only what your test showed. Every
 changed step gets marked 📝 Proposed, and observations stay separate from suggestions.
 
 🚩 **Checkpoint.** You have either a feedback paragraph or a complete revised page with every

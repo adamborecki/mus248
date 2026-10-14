@@ -8,7 +8,7 @@
 
 export const DOC_TYPES = {
   activity: { label: 'Activity', plural: 'activities', emoji: '🎯' },
-  checklist: { label: 'Checklist', plural: 'checklists', emoji: '📋' },
+  checklist: { label: 'Checklist', plural: 'checklists', emoji: '☑️' },
   reference: { label: 'Reference', plural: 'references', emoji: '📖' },
 };
 
@@ -17,14 +17,50 @@ export const docType = (entry) => (DOC_TYPES[entry.type] ? entry.type : 'activit
 // A finer label inside a type. Reset procedures are checklists, so they keep the checklist type and
 // get their own filter option and chip.
 export const KINDS = {
+  gig: { label: 'Gig checklist', plural: 'Gig checklists', emoji: '🎟️' },
   reset: { label: 'Reset procedure', plural: 'Reset procedures', emoji: '🔁' },
 };
 
+export const SKILL_EMOJI = {
+  'Audio Capture': '🎙️',
+  'Video Capture': '📹',
+  'Live Sound': '🔊',
+  'Post Production': '💻',
+  'Data Management': '💾',
+};
+
+// "1–3" → "Solo or groups of 2–3": says plainly whether you can do it alone.
+export function groupLabel(group) {
+  const text = String(group || '').trim();
+  const range = text.match(/^(\d+)\s*[–-]\s*(\d+)$/);
+  if (!range) {
+    if (text === '1') return 'Solo';
+    if (text === '2') return 'Pairs';
+    return text ? `Groups of ${text}` : '';
+  }
+  const [low, high] = [Number(range[1]), Number(range[2])];
+  if (low === 1 && high === 2) return 'Solo or pairs';
+  if (low === 1) return `Solo or groups of 2–${high}`;
+  return `Groups of ${low}–${high}`;
+}
+
+// In the order the front page shows them as checkboxes.
 export const SETTINGS = [
-  { key: 'home', label: 'At home', short: 'at home', emoji: '🏠' },
-  { key: 'class', label: 'On campus, during class', short: 'during class', emoji: '🏫' },
-  { key: 'outsideClass', label: 'On campus, outside class', short: 'outside class', emoji: '🔑' },
+  { key: 'class', label: 'During class', short: 'during class', tag: 'In class', emoji: '🏫' },
+  { key: 'home', label: 'At home', short: 'at home', tag: 'At home', emoji: '🏠' },
+  { key: 'outsideClass', label: 'On campus, outside class', short: 'on campus outside class', tag: 'On campus', emoji: '🔑' },
 ];
+
+// The card's one-line answer to "where can I do this?": "🏫 In class only", "🏫 In class · 🏠 At home".
+export function whereSummary(entry) {
+  if (!entry.settings) return '';
+  const yes = SETTINGS.filter((setting) => settingValue(entry, setting.key) === 'yes');
+  if (!yes.length) return '❓ Ask first';
+  // "only" just when the other settings are a definite "no", not merely unconfirmed.
+  const only = yes.length === 1 && SETTINGS.every((setting) => setting.key === yes[0].key || settingValue(entry, setting.key) === 'no');
+  if (only) return `${yes[0].emoji} ${yes[0].tag} only`;
+  return yes.map((setting) => `${setting.emoji} ${setting.tag}`).join(' · ');
+}
 
 // "yes", "no", or "confirm" for one setting; a missing or unknown value reads as "confirm".
 export const settingValue = (entry, key) => {
@@ -32,18 +68,10 @@ export const settingValue = (entry, key) => {
   return ['yes', 'no'].includes(value) ? value : 'confirm';
 };
 
-// The front page's "Where" filter. Each option is one or more settings; an entry matches when any
-// of them is "yes", and lands in "ask first" when none is "yes" but one is "confirm".
-export const WHERE_OPTIONS = [
-  { value: 'class', label: 'In class', short: 'in class', keys: ['class'] },
-  { value: 'out', label: 'Out of class (home or campus)', short: 'out of class', keys: ['home', 'outsideClass'] },
-  { value: 'home', label: 'At home', short: 'at home', keys: ['home'] },
-  { value: 'campus', label: 'On campus (any time)', short: 'on campus', keys: ['class', 'outsideClass'] },
-  { value: 'outsideClass', label: 'On campus, outside class', short: 'on campus outside class', keys: ['outsideClass'] },
-];
-
-export function whereMatch(entry, option) {
-  const values = option.keys.map((key) => settingValue(entry, key));
+// The front page's "Where" checkboxes: an entry matches when any checked setting is "yes", and
+// lands in "ask first" when none is "yes" but one is "confirm".
+export function whereMatch(entry, keys) {
+  const values = keys.map((key) => settingValue(entry, key));
   if (values.includes('yes')) return 'yes';
   return values.includes('confirm') ? 'confirm' : 'no';
 }
