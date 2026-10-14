@@ -7,8 +7,8 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-10-10"
-estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
+revised: "2026-10-14"
+estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
   location: "Gear from BH 208/209, carried to Musco Center for the Arts — in through the stage door, then the booth at the back of the house."

@@ -8,8 +8,8 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
-revised: "2026-10-10"
-estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
+revised: "2026-10-14"
+estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
   location: "Control room BH 208/209, the hall below, and the green room."
@@ -246,6 +246,13 @@ walkthrough is in **Salmon: Livestream**.
   year into "a" and "b" isn't confirmed, so the checklist just says to match whichever the drive
   already shows.
 
+- **Instructor decision needed — preamps: hands off, or check and adjust?** **Before you touch
+  anything** says *"Do not adjust the audio preamps."* **Initial setup — audio and video** then
+  says to press **PFL** to check/adjust a channel's gain on the F8 if one looks off. Both lines
+  are still here as written. Which one governs (for example: never touch the F8 gain, or touch
+  it only to match channels that differ) hasn't been decided, so this page doesn't pick one.
+  Until it's settled, students should treat the F8 gain as hands-off and ask Borecki. Flagged
+  2026-10-14 during the Documentation Builder pilot.
 - **The F8 preamp target level.** The instructor confirmed the *mechanism* — press **PFL** to
   check/adjust a channel's gain — but not what the correct level actually is. Don't adjust a
   preamp based on a guess; ask Borecki.

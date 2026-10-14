@@ -6,8 +6,8 @@ coreSkillAreas:
   - Audio Capture
   - Video Capture
 status: In Development
-revised: "2026-10-12"
-estimatedTime: "Not a timed drill — this is the reference you run start to finish across an actual gig."
+revised: "2026-10-14"
+estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
   location: "Gear from BH 208/209, carried to whatever venue the gig is in."
