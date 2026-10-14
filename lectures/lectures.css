@@ -1,0 +1,17 @@
+@import url('../activity.css');
+
+.lecture-row { display:flex; align-items:center; gap:.75rem; min-height:4rem; padding:.75rem .25rem; border-bottom:1px solid var(--line); color:inherit; text-decoration:none; }
+a.lecture-row:hover { background:var(--tag); }
+a.lecture-row:focus-visible { outline:3px solid var(--accent); outline-offset:-3px; }
+.lecture-row .card-copy small:last-child { margin-top:.15rem; }
+.lecture-row-quiet { color:var(--muted); }
+.lecture-row .arrow { color:var(--muted); }
+.section-title small { font-size:.8rem; font-weight:400; }
+.lecture-list { padding:0 0 3rem; }
+.lecture-list .section-title { margin-top:2rem; }
+.lecture-nav { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line); }
+.lecture-nav-link { display:grid; gap:.15rem; color:var(--accent); font-weight:650; text-decoration:none; }
+.lecture-nav-link:last-child { text-align:right; }
+.lecture-nav-link span { color:var(--muted); font-size:.85rem; font-weight:400; }
+.lecture-nav-link:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25rem); line-height:1.15; }

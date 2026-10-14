@@ -1,7 +1,7 @@
 # Documentation guide — how this course's docs are written and changed
 
 Short, local rules for anyone contributing to MUS 248 documentation: students in the
-Documentation Builder, the instructor, and AI assistants. Written to be promoted later into
+Repo Improvement, the instructor, and AI assistants. Written to be promoted later into
 [webapp-conventions](https://github.com/adamborecki/webapp-conventions) once it has been tested
 in class. Until then, this file is the reference.
 
@@ -15,6 +15,8 @@ in class. Until then, this file is the reference.
 | **Checklist** | Run a real job | Short ordered actions, each with a check | Lessons, background, "why" — move that to a reference |
 | **Reference** | Explain | Equipment facts, diagrams, settings, troubleshooting | A procedure someone is meant to follow step by step |
 
+- A **reset procedure** is a checklist with `"kind": "reset"`. It gets its own filter option and
+  chip, not a fourth type.
 - A **signal-flow diagram** is a reference, not a fourth type.
 - A **simulator** is a learning tool an activity links to, not a document type.
 - The type lives in `data/activities.json` as `"type"`: `activity` (the default when it's missing),
@@ -45,6 +47,14 @@ frontmatter `access.location`, `access.supervision`, `estimatedTime`), not folde
 - Keep working steps. Change only what testing gives a reason to change.
 - American spelling.
 
+Checklists number their steps automatically (section.item, like 3.4), so a step can be named out
+loud. Don't type numbers into a checklist by hand.
+
+## Credit
+
+Contributors are credited only by **GitHub username**, only if they opt in, in the improved
+page's frontmatter (`contributors:` as a list). Real names stay in Canvas.
+
 ## Evidence and status
 
 Every step someone changes, or that a page presents as fact, should be traceable to evidence.
@@ -69,9 +79,9 @@ Mark changed steps in proposals:
 
 ## Review workflow
 
-1. A student (or anyone) tests one bounded section and submits a **proposal**: the revised
-   Markdown plus a change/test report. Through Canvas by default; a GitHub issue or pull request
-   is optional.
+1. A student (or anyone) tests one bounded section and submits either a paragraph of raw
+   feedback or a **proposal** (the revised Markdown plus a change/test report). Through Canvas by
+   default; a GitHub issue or pull request is optional.
 2. A peer follows the revision with minimal coaching. Their pauses inform the next revision.
    Peers don't approve or grade.
 3. The **instructor** decides what becomes the approved operational document and edits

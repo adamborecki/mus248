@@ -26,7 +26,7 @@ The front page. Each card is a self-contained lesson with:
 
 Filter by skill area — **Audio Capture**, **Live Sound**, **Video Capture**, **Post Production**, **Data Management** — to find what you need.
 
-Every entry is one of three kinds of document. An **activity** teaches. A **checklist** runs a real job. A **reference** explains. Filter by type, too. Where an entry says so, cards also show where it can be done: at home, on campus during class, or on campus outside class. "Confirm with instructor" means the page doesn't say, so ask. `content/DOCUMENTATION_GUIDE.md` has the rules.
+Every entry is one of three kinds of document. An **activity** teaches. A **checklist** runs a real job; **reset procedures** are checklists too. A **reference** explains. Filter by type, and by **where** it can be done: in class, out of class, at home, or on campus. An entry whose page doesn't say lands under "ask the instructor first" instead of disappearing. Checklists number their steps (3.4) so they're easy to say out loud, on the page and the worksheet alike. `content/DOCUMENTATION_GUIDE.md` has the rules.
 
 **Current lineup:**
 
@@ -42,7 +42,8 @@ Every entry is one of three kinds of document. An **activity** teaches. A **chec
 | 🔁 Live-looping rig | Audio Capture, Live Sound |
 | 📡 Dante Broadcast, Jam Session, Walkie-Talkie (basic + advanced) | Audio Capture, Live Sound |
 | 📋 Gig checklists: Salmon, Musco, Standard Gear Kit | Checklists, not lessons. Run them on a real gig |
-| 🧪 Documentation Builder (pilot) | Test one section of these docs against the gear and submit a better version |
+| 🔁 X32 Compact Reset (OH B01) | Reset procedure: a checklist |
+| 🛠️ Repo Improvement (pilot) | Test one section of this site for real; talk it out, or use AI to clean AI slop |
 
 Most activities are fully written out here; a few older ones still point to their original Google Doc while they wait to be migrated over.
 
@@ -57,6 +58,10 @@ The procedure, photos, and troubleshooting deliberately stay on the phone — no
 copying text from a screen onto paper.
 
 `/worksheets/` lists them all, for printing a stack before class.
+
+### 🎤 Lectures
+`/lectures/` has the text of each class's slides, newest first, with upcoming ones marked. Names,
+codes, and private links are left out.
 
 ### 📝 Weekly quiz
 A short, no-account, no-server quiz you take alongside the activities:
@@ -92,8 +97,9 @@ PAGES — every folder here is a URL on the live site
   cameras/             one folder per activity: /cameras/, /stereo/, /daw/ …
     worksheet/           its printable worksheet
     worksheet/key/       the instructor answer key (noindex)
-  documentation-builder/  the pilot activity, plus its starter kit: downloads/ (PROJECT_STARTER.md,
-                       report templates), starter-menu.json, toolkit.js
+  repo-improvement/    the pilot activity plus its starter kit: downloads/PROJECT_STARTER.md,
+                       starter-menu.json, toolkit.js
+  lectures/            each class's slides as text: lectures/<id>/ per lecture
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
   worksheets/          index of every printable worksheet
@@ -104,6 +110,8 @@ SOURCE — never served as a page
   content/instructor/  instructor-facing drafts (Canvas assignment drafts, proposals)
   content/DOCUMENTATION_GUIDE.md  document types, step style, evidence marks, review workflow
   data/activities.json directory metadata that drives the front page
+  data/lectures.json   lecture dates, weeks, and status (delivered / upcoming / no-class)
+  content/lectures/    lecture text, one Markdown file per class
   data/semesters/      per-term Canvas links and reminders
   tools/               import and check scripts
 

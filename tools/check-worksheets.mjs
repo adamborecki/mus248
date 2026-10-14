@@ -181,6 +181,26 @@ generated.forEach((activity) => {
   });
 });
 
+// Lectures: data/lectures.json is the catalog; each readable lecture needs its Markdown and its
+// /lectures/<id>/ page. The site is public, so the things redacted on import must stay out.
+const lectures = JSON.parse(read('data', 'lectures.json'));
+const quizCodes = Object.values(JSON.parse(read('quiz', 'data', 'curriculum.json')).quizzes || {})
+  .map((quiz) => quiz.access_code).filter(Boolean);
+check(new Set(lectures.map((lecture) => lecture.id)).size === lectures.length, 'lectures: duplicate id');
+lectures.forEach((lecture) => {
+  const where = `lecture ${lecture.id}`;
+  check(['delivered', 'upcoming', 'no-class'].includes(lecture.status), `${where}: unknown status "${lecture.status}"`);
+  check(lecture.date === null || /^\d{4}-\d{2}-\d{2}$/.test(lecture.date), `${where}: date must be YYYY-MM-DD or null`);
+  if (!lecture.contentFile) return;
+  const file = join('content', 'lectures', `${lecture.contentFile}.md`);
+  if (!existsSync(join(root, file))) { fail(`${where}: ${file} is missing`); return; }
+  const page = join('lectures', lecture.id, 'index.html');
+  check(existsSync(join(root, page)) && read(page).includes(`data-lecture-id="${lecture.id}"`), `${where}: no ${page} for it`);
+  const text = read(file);
+  quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
+  check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
+});
+
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);
 console.log(`${rows.length} worksheets · ${total('checkpoints')} checkpoints · ${total('questions')} questions · ${total('terms')} key terms`);

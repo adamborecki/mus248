@@ -6,7 +6,7 @@
 
 ## The idea
 
-Students already report each week on the activities they did. The Documentation Builder adds a
+Students already report each week on the activities they did. Repo Improvement adds a
 second kind of work: testing and improving the instructions themselves. Instead of making
 students write the same thing twice, the weekly report could later gain one short, optional
 block:

@@ -56,7 +56,7 @@ async function loadActivity() {
     <a class="back" href="../">← Activities</a>
     <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${docType(activity) === 'activity' ? '' : `${DOC_TYPES[docType(activity)].emoji} ${DOC_TYPES[docType(activity)].label} · `}${KINDS[activity.kind] ? `${KINDS[activity.kind].emoji} ${KINDS[activity.kind].label} · ` : ''}${activity.time} · ${activity.access} · Groups of ${activity.group}${external ? ' · Instructions hosted externally' : ''}</p>${settings}</div></header>
     ${worksheet}
-    <article class="instructions">${instructions}</article>
+    <article class="instructions${docType(activity) === 'checklist' ? ' numbered' : ''}">${instructions}</article>
     ${contributors.length ? `<p class="contributors"><span aria-hidden="true">🙌</span> Improved with help from ${contributors.map((name) => `<a href="https://github.com/${name}" rel="noopener">@${name}</a>`).join(', ')}</p>` : ''}
     ${completion}
   `;

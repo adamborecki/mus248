@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MUS 248 lecture slides as text, newest first.">
+  <title>Lectures · MUS 248</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="lectures.css">
+</head>
+<body>
+  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Lectures</p></header>
+  <main>
+    <p class="quiet">The text of each class's slides, in the order they were shown. Images aren't reproduced, and names and codes are left out of this public page.</p>
+    <div id="lecture-list" class="lecture-list"></div>
+  </main>
+  <footer>Sources live in <code>content/lectures/</code>; dates and weeks in <code>data/lectures.json</code>.</footer>
+  <script type="module">
+    import { mountList } from './lectures.js';
+    const root = document.getElementById('lecture-list');
+    mountList(root).catch(() => { root.innerHTML = '<p class="error">The lecture list could not be loaded.</p>'; });
+  </script>
+</body>
+</html>
