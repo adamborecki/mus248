@@ -10,6 +10,7 @@ import { dirname, join } from 'node:path';
 
 import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
+import { deckMarkdown, unzip } from './pptx-to-lecture.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -206,6 +207,13 @@ lectures.forEach((lecture) => {
   quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
   check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
 });
+
+// PowerPoint → lecture Markdown, against a tiny deck whose slide files are deliberately out of order.
+const converted = deckMarkdown(unzip(readFileSync(join(root, 'tools', 'fixtures', 'tiny-deck.pptx'))), 'tiny-deck.pptx');
+['### Slide 1: Agenda', '### Slide 2: Gain & Signal Flow', '- ↳ Watch the meter', '| MIC | Very small |', '🖼️ Image in original slide']
+  .forEach((expected) => check(converted.includes(expected), `pptx-to-lecture: output is missing "${expected}"`));
+check(converted.indexOf('Slide 1: Agenda') < converted.indexOf('Slide 2: Gain'), 'pptx-to-lecture: slides out of presentation order');
+check(renderMarkdown(converted).includes('<table>'), 'pptx-to-lecture: the table does not render');
 
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);

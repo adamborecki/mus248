@@ -108,6 +108,13 @@ are full of student names (group lists, survey answers), quiz access codes, and 
 Redact all of them on import (`[names — ask instructor]`) and say so at the top of the file; the
 checker fails on a quiz access code or a form/Drive folder link, but it can't spot a name.
 
+Every lecture page also opens as a slide deck (`lectures/deck.js`): the same Markdown, split at
+each `##` (a section card) and `###` (a slide), laid out on one zoomable canvas. Its outline nests
+slides by shared number ("3. …"), shared "Topic:" prefix, or being named in an earlier slide's
+numbered list. No authoring needed; keep one `###` per slide. New decks come in with
+`node tools/pptx-to-lecture.mjs deck.pptx > content/lectures/<id>.md` (no dependencies). Its output
+still needs the redaction pass above, because it can't spot a name.
+
 ## Quiz
 
 `quiz/data/curriculum.json` is the weekly edit; `quiz/README.md` has the detail. Two things to

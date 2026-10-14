@@ -61,7 +61,9 @@ copying text from a screen onto paper.
 
 ### 🎤 Lectures
 `/lectures/` has the text of each class's slides, newest first, with upcoming ones marked. Names,
-codes, and private links are left out.
+codes, and private links are left out. **▶ Present slides** turns any lecture into an animated,
+zoomable deck. Press **O** (or pinch) for an outline where related slides nest together.
+New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`.
 
 ### 📝 Weekly quiz
 A short, no-account, no-server quiz you take alongside the activities:
