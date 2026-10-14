@@ -12,12 +12,14 @@ Built 2026-10-14 from the October 13 handoff. **Not merged to `main`**; it lives
 | Worksheet | `…/branch/claude-documentation-builder/documentation-builder/worksheet/` |
 | All previews | `https://adamborecki.github.io/mus248/branch/` |
 
-**⚠️ One manual step before any preview exists:** GitHub → mus248 → Settings → Pages →
-Source → **GitHub Actions**. The preview pipeline (PR #9, already on `main`, infra only) can't
-deploy until then. The live site is unaffected either way. After switching, push anything to
-`main` or re-run "Deploy site and branch previews" from the Actions tab once.
+**⚠️ One manual step still recommended:** GitHub → mus248 → Settings → Pages → Source →
+**GitHub Actions**. Observed on 2026-10-14: the new "Deploy site and branch previews" workflow
+deployed successfully even with the old "Deploy from a branch" source still selected, so previews
+publish now. But every push to `main` also runs the old branch build, and whichever finishes last
+wins. Production content is the same either way (`main` at the root). Only `/branch/` can vanish
+until the next preview push. Switching the source ends the race.
 
-After the switch, every existing `claude/…` branch (about nine stale ones) also publishes a
+Every existing `claude/…` branch (about nine stale ones) also publishes a
 preview. Delete merged branches to keep `/branch/` tidy. `claude/branch-previews` (PR #9) is
 merged and can be deleted too. Deleting it from this session's git proxy failed.
 
@@ -59,8 +61,8 @@ discussion data, existing weekly report requirements.
   clipboard, show-text fallback, arrow-key selection in the menu, no horizontal scroll on phone,
   worksheet and key render, existing pages (stereo, daw, salmon checklist, worksheets, quiz,
   study) load with no console errors.
-- **Not tested:** real iOS/Android download behavior; PantherAI itself; the live GitHub Actions
-  deploy (blocked on the Pages setting above).
+- **Not tested:** real iOS/Android download behavior; PantherAI itself; whether the preview URL is
+  reachable (this session can't load github.io; the Actions deploy itself reported success).
 
 ## 🧑‍🏫 Instructor decisions still open
 
