@@ -16,15 +16,18 @@
       <a class="nav-card" href="study/"><strong><span aria-hidden="true">🗂️</span> Study cards</strong><small>Review the terms before you take the quiz</small></a>
       <a class="nav-card" href="worksheets/"><strong><span aria-hidden="true">🖨️</span> Worksheets</strong><small>Print the page you write on while you work</small></a>
     </nav>
-    <h2 class="section-title">Activities</h2>
+    <a class="pilot-card" href="documentation-builder/"><strong><span aria-hidden="true">🧪</span> New pilot: Documentation Builder</strong><small>Test one procedure against the real gear (or at home, on paper), fix what&rsquo;s wrong, and submit the revision. Early volunteers welcome.</small></a>
+    <h2 class="section-title">Activities &amp; checklists</h2>
     <section class="filters" aria-label="Filter activities">
       <label for="skill-filter">Find a skill</label>
       <select id="skill-filter"><option value="all">All skill areas</option></select>
+      <label for="type-filter">Type</label>
+      <select id="type-filter"><option value="all">All types</option></select>
       <p id="activity-count" aria-live="polite"></p>
     </section>
     <section id="activity-list" class="activity-grid" aria-label="Activity directory"></section>
   </main>
   <footer>Canvas remains the place for submissions, discussions, and grades.</footer>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

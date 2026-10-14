@@ -32,7 +32,48 @@ check(renderMarkdown('a *word* here').includes('<em>word</em>'), 'single-asteris
 check(renderMarkdown('a **word** here').includes('<strong>word</strong>'), 'bold stopped rendering');
 check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survived into the rendered page');
 
+// Links written relative to the Markdown resolve against the same base as images, so a page can
+// link to another page and still work at the site root and under a branch preview.
+check(renderMarkdown('[kit](../../x/a.md)', { assetBase: '../content/activities/' }).includes('href="../content/activities/../../x/a.md"'),
+  'a relative link was not resolved against the asset base');
+check(renderMarkdown('[site](https://example.com/a)', { assetBase: '../c/' }).includes('href="https://example.com/a"'),
+  'an absolute link was rewritten');
+
 const directory = JSON.parse(read('data', 'activities.json'));
+
+// Optional catalog metadata (see catalog.js). Missing is fine — older entries default to an
+// activity with no where-you-can-do-it labels — but a typo must not silently fall back.
+const TYPES = ['activity', 'checklist', 'reference'];
+const SETTING_KEYS = ['home', 'class', 'outsideClass'];
+directory.forEach((entry) => {
+  if ('type' in entry) check(TYPES.includes(entry.type), `${entry.id}: unknown type "${entry.type}"`);
+  if ('settings' in entry) {
+    Object.entries(entry.settings).forEach(([key, value]) => {
+      check(SETTING_KEYS.includes(key), `${entry.id}: unknown setting "${key}"`);
+      check(['yes', 'no', 'confirm'].includes(value), `${entry.id}: setting ${key} is "${value}" — use yes, no, or confirm`);
+    });
+  }
+});
+
+// The Documentation Builder's starter menu names exact headings in other pages. A renamed
+// heading has to fail here, not leave students hunting for a section that no longer exists.
+const menu = JSON.parse(read('documentation-builder', 'starter-menu.json'));
+menu.items.forEach((item) => {
+  const entry = directory.find((candidate) => candidate.id === item.id);
+  if (!entry || !entry.contentFile) { fail(`starter menu: ${item.id} is not a catalog page with a contentFile`); return; }
+  check(['desk', 'hands-on'].includes(item.test), `starter menu: ${item.id} test is "${item.test}"`);
+  const headings = read('content', 'activities', `${entry.contentFile}.md`).split('\n')
+    .filter((line) => line.startsWith('## ')).map((line) => line.slice(3).trim());
+  item.sections.forEach((section) => check(headings.includes(section), `starter menu: ${item.id} has no "## ${section}" heading`));
+});
+// Its downloads exist, decode as UTF-8, and are linked from the activity page.
+const builderPage = read('content', 'activities', 'documentation-builder.md');
+['PROJECT_STARTER.md', 'ISSUE_REPORT.md', 'SUBMISSION_REPORT.md'].forEach((name) => {
+  const file = join(root, 'documentation-builder', 'downloads', name);
+  if (!existsSync(file)) { fail(`documentation-builder/downloads/${name} is missing`); return; }
+  try { new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(file)); } catch { fail(`${name} is not valid UTF-8`); }
+  check(builderPage.includes(`(../../documentation-builder/downloads/${name})`), `documentation-builder.md does not link ${name}`);
+});
 // The generator is driven by the directory, never by globbing the folder — so
 // _template.md and WORKSHEETS.md are never mistaken for activities.
 const generated = directory.filter((activity) => activity.contentFile);

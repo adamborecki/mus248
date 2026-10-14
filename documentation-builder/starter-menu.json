@@ -1,0 +1,47 @@
+{
+  "_about": "Suggested starting points for the Documentation Builder. Each names a page by catalog id and one or more of its exact ## headings; tools/check-worksheets.mjs fails if a heading here stops matching the page. 'test' is 'desk' (read and edit anywhere, no equipment) or 'hands-on' (where-you-can-do-it labels come from that page's own catalog entry, never from here).",
+  "items": [
+    {
+      "id": "salmon-gig-checklist",
+      "sections": ["⚠️ Before you touch anything", "🔌 Initial setup — audio and video"],
+      "test": "desk",
+      "focus": "Read these two sections side by side. The first says not to adjust the audio preamps; the second says to press PFL to check/adjust F8 gain. Write up the contradiction and the questions it raises for the instructor. Don't decide which is right, and don't try either on the real F8."
+    },
+    {
+      "id": "standard-gear-kit-checklist",
+      "sections": ["🚗 Phase 1 — Before arrival"],
+      "test": "desk",
+      "focus": "A packing-and-prep section you can check on paper. Is every item something you could actually tick off? What's missing, ambiguous, or explained here when it belongs in a reference?"
+    },
+    {
+      "id": "stereo",
+      "sections": ["📉 Part 2 — The gain-staging drill (\"Goldilocks\")"],
+      "test": "hands-on",
+      "focus": "Short and self-contained, and the meter tells you whether it worked. Needs the stereo recording kit."
+    },
+    {
+      "id": "cameras",
+      "sections": ["📷 Part 1 — Find your five controls"],
+      "test": "hands-on",
+      "focus": "Pick one camera only (G50, GH5, or AX100) and test just its five controls."
+    },
+    {
+      "id": "cable-safari",
+      "sections": ["🦁 Part 2 — The safari"],
+      "test": "hands-on",
+      "focus": "Does the page tell you enough to find and name each cable without asking anyone?"
+    },
+    {
+      "id": "dante-broadcast",
+      "sections": ["📋 Round 1 — Part A: basic one-computer-to-another send"],
+      "test": "hands-on",
+      "focus": "One send between two OH B01 iMacs. Read “Before you touch Dante Controller” on that page first."
+    },
+    {
+      "id": "standard-gear-kit-checklist",
+      "sections": ["🎧 Backup audio — Zoom H4n"],
+      "test": "hands-on",
+      "focus": "Four steps on the H4n. Check every label and mounting detail against the actual recorder. Needs the Standard Gear Kit and a sound source."
+    }
+  ]
+}

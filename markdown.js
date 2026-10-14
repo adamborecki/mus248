@@ -12,9 +12,14 @@ const resolveAsset = (src, assetBase) => (/^(https?:)?\/\//.test(src) || src.sta
   ? src
   : assetBase + src);
 
+// Links resolve the same way, so `[Salmon Gig Checklist](../../salmon-gig-checklist/)` written
+// relative to the Markdown file lands on the right page from the activity page, from the root
+// site and from a branch preview alike. Anchors and mailto: links are left alone.
+const resolveLink = (href, assetBase) => (/^(#|mailto:)/.test(href) ? href : resolveAsset(href, assetBase));
+
 export const inline = (value, { assetBase = '' } = {}) => escapeHtml(value)
   .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (match, alt, src) => `<img src="${resolveAsset(src, assetBase)}" alt="${alt}" loading="lazy" decoding="async">`)
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2">$1</a>')
+  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, href) => `<a href="${resolveLink(href, assetBase)}">${text}</a>`)
   .replace(/`([^`]+)`/g, '<code>$1</code>')
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
   // Single-asterisk emphasis, after bold has consumed its pairs. Without this a
