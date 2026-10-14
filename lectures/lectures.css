@@ -15,3 +15,5 @@ a.lecture-row:focus-visible { outline:3px solid var(--accent); outline-offset:-3
 .lecture-nav-link span { color:var(--muted); font-size:.85rem; font-weight:400; }
 .lecture-nav-link:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
 body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25rem); line-height:1.15; }
+.lecture-badge { display:inline-block; margin:0 .5rem .2rem 0; padding:.1rem .45rem; border-radius:.25rem; background:var(--accent); color:#fff; font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; vertical-align:.08em; }
+.activity-header .lecture-badge { margin-bottom:.4rem; }

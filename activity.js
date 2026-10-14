@@ -1,6 +1,6 @@
 import { renderMarkdown } from './markdown.js';
 import { parseFrontmatter } from './worksheet.js';
-import { DOC_TYPES, KINDS, docType, settingsChips } from './catalog.js';
+import { DOC_TYPES, KINDS, docType, groupLabel, settingsChips } from './catalog.js';
 
 // Opt-in credit by GitHub username only, never a real name (see CLAUDE.md).
 const GITHUB_USER = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/;
@@ -54,7 +54,7 @@ async function loadActivity() {
   document.title = `${activity.title} · MUS 248`;
   document.getElementById('activity').innerHTML = `
     <a class="back" href="../">← Activities</a>
-    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${docType(activity) === 'activity' ? '' : `${DOC_TYPES[docType(activity)].emoji} ${DOC_TYPES[docType(activity)].label} · `}${KINDS[activity.kind] ? `${KINDS[activity.kind].emoji} ${KINDS[activity.kind].label} · ` : ''}${activity.time} · ${activity.access} · Groups of ${activity.group}${external ? ' · Instructions hosted externally' : ''}</p>${settings}</div></header>
+    <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${docType(activity) === 'activity' ? '' : `${DOC_TYPES[docType(activity)].emoji} ${DOC_TYPES[docType(activity)].label} · `}${KINDS[activity.kind] ? `${KINDS[activity.kind].emoji} ${KINDS[activity.kind].label} · ` : ''}${[activity.time, activity.access, groupLabel(activity.group)].filter(Boolean).join(' · ')}${external ? ' · Instructions hosted externally' : ''}</p>${settings}</div></header>
     ${worksheet}
     <article class="instructions${docType(activity) === 'checklist' ? ' numbered' : ''}">${instructions}</article>
     ${contributors.length ? `<p class="contributors"><span aria-hidden="true">🙌</span> Improved with help from ${contributors.map((name) => `<a href="https://github.com/${name}" rel="noopener">@${name}</a>`).join(', ')}</p>` : ''}

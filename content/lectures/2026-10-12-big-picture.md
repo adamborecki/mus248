@@ -176,7 +176,7 @@ Core Musco expectations:
 - Attire: Closed toed shoes required. All black preferred.
 - Multicamera switching is part of the normal Musco workflow.
 - Engineers work as a coordinated crew: 1 "switcher" and 2 "camera operators" and 1 "score reader"
-- Backup recording, data handling, camera matching, and communication matter: work with [Musco staff contact — ask instructor]
+- Backup recording, data handling, camera matching, and communication matter: work with Seiyua
 
 The [Musco gig checklist](../../musco-gig-checklist/) should be used.
 
