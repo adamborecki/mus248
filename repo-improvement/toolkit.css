@@ -1,4 +1,4 @@
-/* The Documentation Builder's starter kit, added to the rendered page by toolkit.js. */
+/* Repo Improvement's starter kit, added to the rendered page by toolkit.js. */
 .kit { margin:1.25rem 0 .5rem; padding:1rem; border:1px solid var(--line); border-radius:.4rem; background:var(--surface); }
 .kit h3 { margin:0 0 .4rem; font-size:1.05rem; }
 .kit h3 + .quiet { margin-top:0; font-size:.9rem; }
@@ -23,7 +23,9 @@
 .kit [hidden] { display:none !important; }
 .kit-text-label { display:block; margin:.25rem 0; font-size:.85rem; }
 .kit-text { width:100%; padding:.6rem; border:1px solid var(--line); border-radius:.35rem; background:var(--paper); color:var(--ink); font:.8rem/1.45 ui-monospace, monospace; }
-.kit-files { margin:.5rem 0 0; padding:0; list-style:none; }
-.kit-files li { display:flex; flex-wrap:wrap; gap:.5rem 1rem; align-items:center; justify-content:space-between; max-width:none; margin:0; padding:.6rem 0; border-top:1px solid var(--line); }
-.kit-files li > span:first-child { flex:1 1 16rem; }
+.kit-open { justify-self:start; color:var(--accent); font-size:.9rem; font-weight:650; text-decoration:none; }
+.kit-open:hover { text-decoration:underline; }
+.kit-open:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.kit-planned { margin:0 0 1rem; font-size:.85rem; }
+.kit-starter-only { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1rem 0 0; padding-top:.75rem; border-top:1px solid var(--line); font-size:.9rem; }
 @media print { .kit { display:none; } }

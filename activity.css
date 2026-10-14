@@ -13,3 +13,5 @@
 .instructions figure { margin:1.25rem 0; }.instructions img { display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:.4rem; background:var(--tag); }.instructions figcaption { margin-top:.45rem; color:var(--muted); font-size:.85rem; max-width:68ch; }
 @media print { .instructions figure { display:none; } }
 .activity-settings { display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 0 !important; }
+.step-id { display:inline-block; min-width:2.2em; color:var(--muted); font:600 .8em/1 ui-monospace, monospace; font-variant-numeric:tabular-nums; }
+.contributors { margin:2rem 0 0; color:var(--muted); font-size:.9rem; }.contributors a { color:var(--accent); }

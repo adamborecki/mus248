@@ -47,6 +47,10 @@ const TYPES = ['activity', 'checklist', 'reference'];
 const SETTING_KEYS = ['home', 'class', 'outsideClass'];
 directory.forEach((entry) => {
   if ('type' in entry) check(TYPES.includes(entry.type), `${entry.id}: unknown type "${entry.type}"`);
+  if ('kind' in entry) {
+    check(entry.kind === 'reset', `${entry.id}: unknown kind "${entry.kind}"`);
+    check(entry.type === 'checklist', `${entry.id}: a reset procedure must have "type": "checklist"`);
+  }
   if ('settings' in entry) {
     Object.entries(entry.settings).forEach(([key, value]) => {
       check(SETTING_KEYS.includes(key), `${entry.id}: unknown setting "${key}"`);
@@ -55,25 +59,30 @@ directory.forEach((entry) => {
   }
 });
 
-// The Documentation Builder's starter menu names exact headings in other pages. A renamed
-// heading has to fail here, not leave students hunting for a section that no longer exists.
-const menu = JSON.parse(read('documentation-builder', 'starter-menu.json'));
+// Repo Improvement's starter menu names exact headings in other pages. A renamed heading has to
+// fail here, not leave students hunting for a section that no longer exists.
+const menu = JSON.parse(read('repo-improvement', 'starter-menu.json'));
 menu.items.forEach((item) => {
   const entry = directory.find((candidate) => candidate.id === item.id);
   if (!entry || !entry.contentFile) { fail(`starter menu: ${item.id} is not a catalog page with a contentFile`); return; }
-  check(['desk', 'hands-on'].includes(item.test), `starter menu: ${item.id} test is "${item.test}"`);
+  check(['desk', 'sim', 'hands-on'].includes(item.test), `starter menu: ${item.id} test is "${item.test}"`);
   const headings = read('content', 'activities', `${entry.contentFile}.md`).split('\n')
     .filter((line) => line.startsWith('## ')).map((line) => line.slice(3).trim());
   item.sections.forEach((section) => check(headings.includes(section), `starter menu: ${item.id} has no "## ${section}" heading`));
 });
-// Its downloads exist, decode as UTF-8, and are linked from the activity page.
-const builderPage = read('content', 'activities', 'documentation-builder.md');
-['PROJECT_STARTER.md', 'ISSUE_REPORT.md', 'SUBMISSION_REPORT.md'].forEach((name) => {
-  const file = join(root, 'documentation-builder', 'downloads', name);
-  if (!existsSync(file)) { fail(`documentation-builder/downloads/${name} is missing`); return; }
-  try { new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(file)); } catch { fail(`${name} is not valid UTF-8`); }
-  check(builderPage.includes(`(../../documentation-builder/downloads/${name})`), `documentation-builder.md does not link ${name}`);
+(menu.external || []).forEach((item) => {
+  check(/^https:\/\//.test(item.url), `starter menu: external "${item.title}" needs an https URL`);
+  check(['desk', 'sim', 'hands-on'].includes(item.test), `starter menu: external "${item.title}" test is "${item.test}"`);
+  check(Boolean(item.source && item.focus), `starter menu: external "${item.title}" needs a source and a focus`);
 });
+// Its one download exists, decodes as UTF-8, and is linked from the activity page.
+const starterFile = join(root, 'repo-improvement', 'downloads', 'PROJECT_STARTER.md');
+if (!existsSync(starterFile)) fail('repo-improvement/downloads/PROJECT_STARTER.md is missing');
+else {
+  try { new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(starterFile)); } catch { fail('PROJECT_STARTER.md is not valid UTF-8'); }
+  check(read('content', 'activities', 'repo-improvement.md').includes('(../../repo-improvement/downloads/PROJECT_STARTER.md)'),
+    'repo-improvement.md does not link PROJECT_STARTER.md');
+}
 // The generator is driven by the directory, never by globbing the folder — so
 // _template.md and WORKSHEETS.md are never mistaken for activities.
 const generated = directory.filter((activity) => activity.contentFile);
@@ -105,6 +114,20 @@ generated.forEach((activity) => {
   // There has to be something to write on.
   check(parsed.questions.length + parsed.checkpoints.length + parsed.done.length > 0,
     `${id}: the worksheet would come out empty — no questions, checkpoints, or definition of done`);
+
+  // Opt-in credit is a GitHub username, never a real name (see CLAUDE.md).
+  [].concat(parsed.frontmatter.contributors || []).forEach((name) => {
+    check(/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(name), `${id}: contributor "${name}" is not a GitHub username`);
+  });
+
+  // A checklist's printed step numbers have to be the ones its page shows.
+  if (activity.type === 'checklist') {
+    const numberedPage = renderMarkdown(markdown, { numbered: true });
+    parsed.checkpoints.filter((checkpoint) => checkpoint.id).forEach((checkpoint) => {
+      check(numberedPage.includes(`<span class="step-id">${checkpoint.id}</span>`), `${id}: worksheet step ${checkpoint.id} is not on the page`);
+    });
+    check(parsed.checkpoints.some((checkpoint) => checkpoint.id), `${id}: a checklist with no numbered steps`);
+  }
 
   // Questions keep the shape the generator relies on.
   parsed.questions.forEach((question) => {

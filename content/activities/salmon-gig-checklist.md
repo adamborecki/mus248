@@ -85,9 +85,8 @@ you actually got there. It's a log entry, not a test.
   the unit.
 - 🚩 Confirm audio: headphones on, check both the F8 and H6, confirm clean signal on both sides —
   not the same signal doubled.
-- 🚩 F8 preamps: check they're all set the same. If one looks off, press **PFL** to check/adjust
-  that channel's gain — the exact target level is still being confirmed, see **Technical
-  verification**.
+- 🚩 F8 preamps: look, don't touch. Check they're all set the same. If one looks off, **don't
+  adjust it**. Note which channel and tell Borecki.
 - 🚩 F8 record-enable: all **8** channels should show a **red light** underneath. If one isn't
   lit, press that channel's button to record-enable it.
 - 🚩 Grab the fast SD card for the HyperDeck backup video — the **Lexar Professional 128 GB**
@@ -223,6 +222,8 @@ walkthrough is in **Salmon: Livestream**.
 
 **Confirmed since the last pass:**
 
+- **F8 preamps are hands-off** (instructor, 2026-10-14). The earlier "press PFL to check/adjust"
+  step contradicted **Before you touch anything**; it's now look-don't-touch, report to Borecki.
 - **The fast SD card for the HyperDeck**: Lexar Professional, 128 GB, SDXC UHS-II, V60, U3,
   250 MB/s (1667x) — identified from a photo of the actual card. The HyperDeck's two recorder
   slots (top-left primary, right for overflow) are the instructor's description, not yet checked
@@ -245,17 +246,8 @@ walkthrough is in **Salmon: Livestream**.
 - **The exact semester-folder naming rule** (seen on disk as `2026a` / `2026b`) — what splits a
   year into "a" and "b" isn't confirmed, so the checklist just says to match whichever the drive
   already shows.
-
-- **Instructor decision needed — preamps: hands off, or check and adjust?** **Before you touch
-  anything** says *"Do not adjust the audio preamps."* **Initial setup — audio and video** then
-  says to press **PFL** to check/adjust a channel's gain on the F8 if one looks off. Both lines
-  are still here as written. Which one governs (for example: never touch the F8 gain, or touch
-  it only to match channels that differ) hasn't been decided, so this page doesn't pick one.
-  Until it's settled, students should treat the F8 gain as hands-off and ask Borecki. Flagged
-  2026-10-14 during the Documentation Builder pilot.
-- **The F8 preamp target level.** The instructor confirmed the *mechanism* — press **PFL** to
-  check/adjust a channel's gain — but not what the correct level actually is. Don't adjust a
-  preamp based on a guess; ask Borecki.
+- **Upstairs audio signal flow into the F8.** Still to be mapped: what feeds each F8 input and
+  where its gain structure is actually set. The F8 preamps stay hands-off until that's documented.
 - **The ATEM HyperDeck's own start/stop button** — this checklist assumes it exists and works the
   way the rest of the room does; the source SOP marks this "INSTRUCTIONS COMING" and it still is.
   Same open item as in **Salmon: Basic A/V Capture**.
@@ -276,6 +268,7 @@ site's checklist/worksheet format, then revised across several rounds of the ins
 follow-up corrections — including two photos (the HyperDeck's fast card, and the drives' actual
 folder structure) used to confirm exact details rather than guess them. The step order, every
 equipment detail, the green-room courtesy rule, the expanded Data transfer procedure, and the
-1 TB/text-Borecki threshold are the instructor's. The F8's exact preamp target level and the
-semester-folder naming rule are deliberately left unconfirmed rather than guessed. Pending
+1 TB/text-Borecki threshold are the instructor's. The F8 preamps are hands-off by the
+instructor's decision, and the semester-folder naming rule is deliberately left unconfirmed
+rather than guessed. Pending
 instructor review before treating any of it as final.

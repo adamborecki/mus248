@@ -1,12 +1,12 @@
-# PROJECT_STARTER — MUS 248 Documentation Builder
+# PROJECT_STARTER — MUS 248 Repo Improvement 🧹🤖🍝
 
 > **For the student:** paste or upload this whole file into your AI tool (PantherAI.Chapman.edu,
 > highest-numbered Claude Sonnet it offers, or any other tool you have), **together with the
 > source text you're testing**. The site's "starter + source" download already includes both.
 > A chatbot can't open a website or GitHub link for you. It only sees what you paste.
 >
-> **Not using AI?** Skip to **The job** and **What to produce** below and follow them by hand.
-> They're the same steps.
+> **Not using AI?** Take the 🗣️🎙️ **Talk it out** route on the Repo Improvement page instead:
+> test the section, then dictate one paragraph of raw feedback. You don't need this file.
 
 ---
 
@@ -76,7 +76,7 @@ room, or the website, and you must not pretend to.
 
 ---
 
-## The job (for AI or by hand)
+## The job
 
 1. Name the **one** section being tested, the source URL or path, and its revised date.
 2. Say what success should look or sound like.
@@ -85,7 +85,7 @@ room, or the website, and you must not pretend to.
 4. Draft a focused revision. Keep working steps, add numbered steps where they're missing, and
    mark every change 📝 Proposed.
 5. Re-test changed steps and update their marks.
-6. Have a peer follow the revision. Record where they paused, or write "Peer test: pending."
+6. If someone else follows the revision, record where they paused. Otherwise say no one has yet.
 7. Produce the two outputs below.
 
 ## What to produce
@@ -112,8 +112,8 @@ Title · URL or path · revised date · exact section tested · where tested (ro
 ## Still unresolved
 - Open questions for the instructor, contradictions, blocked steps and why
 
-## Peer test
-Who tested (group label only) and where they paused, or "Peer test: pending"
+## Tried by someone else?
+Where they paused, or "Not yet": never invent one
 
 ## AI-use disclosure
 Tool and model name as shown in the tool · what the AI contributed · what the student checked or tested themselves
@@ -126,5 +126,5 @@ student did the work without AI, the disclosure says **"No AI used."**
 
 ---
 
-*MUS 248 Documentation Builder · starter v1 (pilot, October 2026). The current version is on the
-course site at /documentation-builder/.*
+*MUS 248 Repo Improvement · starter v2 (pilot, October 2026). The current version is on the
+course site at /mus248/repo-improvement/.*
