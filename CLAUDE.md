@@ -128,6 +128,12 @@ to `main`, whichever is simpler), then check the Pages deploy afterwards. This i
 authorization — you don't need to ask "should I merge this?" or "should I open a PR?" each time.
 `git log` is the safety net if something needs undoing.
 
+**Branch previews.** A pushed `claude/…` (or `feature/…`, `preview/…`, `skin/…`) branch publishes
+at `https://adamborecki.github.io/mus248/branch/<slug>/` (slug = branch name lower-cased, every
+run of other characters turned into `-`). When a task says "preview, don't merge", push the branch
+and send that URL instead. Previews share the live site's origin, so they share `localStorage` —
+the quiz and study apps don't isolate their keys yet; don't rehearse a real quiz on a preview.
+
 The exception is anything the note below already says to slow down on — a big, uncertain, or
 live-teaching-week quiz change is worth a pause and a question before it goes live, not after.
 
