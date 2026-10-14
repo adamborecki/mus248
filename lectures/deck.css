@@ -21,26 +21,31 @@ html.deck-open { overflow: hidden; }
   animation: deck-drift 18s ease-in-out infinite alternate; }
 .deck-field { position: absolute; left: -25%; top: -25%; width: 150%; height: 150%;
   transition-property: transform; transition-timing-function: cubic-bezier(.65, .05, .25, 1); }
-.deck-field span { position: absolute; opacity: .16; filter: saturate(.7); animation: deck-bob 9s ease-in-out infinite; }
+.deck-field span { position: absolute; opacity: .14; animation: deck-bob 9s ease-in-out infinite; }
 
 /* ---- the canvas and its camera ---- */
 .deck-stage { position: absolute; inset: 0; touch-action: none; }
 .deck-world { position: absolute; left: 0; top: 0; transform-origin: 0 0;
   transition-property: transform; transition-timing-function: cubic-bezier(.65, .05, .25, 1); }
-.deck-slide { position: absolute; transform-origin: 0 0; --fit: 1; transition: opacity .5s ease, filter .5s ease; }
-.deck:not(.overview) .deck-slide:not(.on) { opacity: .28; filter: saturate(.6); }
+.deck-slide { position: absolute; transform-origin: 0 0; --fit: 1; }
+.deck-world { transition-property: transform, opacity; }
+.deck.presenting .deck-world { opacity: .3; }
+/* The presented slide: a screen-sized copy that flies out of its place on the canvas. */
+.deck-spot { position: absolute; inset: 0; pointer-events: none; }
+.deck-spot .deck-slide { pointer-events: auto; transition-property: transform, opacity; transition-timing-function: cubic-bezier(.2, .8, .2, 1); }
+.deck-spot .deck-card { box-shadow: 0 24px 70px rgb(0 0 0 / .5); }
 
 /* ---- a slide card ---- */
 .deck-card { position: relative; box-sizing: border-box; width: 100%; height: 100%; display: flex; flex-direction: column;
   gap: 28px; padding: 64px 76px 56px; overflow: hidden; border-radius: 34px; background: #fff; color: #1b1b22;
-  box-shadow: 0 30px 90px rgb(0 0 0 / .45), 0 0 0 1px rgb(255 255 255 / .06); }
+  box-shadow: 0 8px 24px rgb(0 0 0 / .35); }
 .deck-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 14px;
   background: linear-gradient(90deg, hsl(var(--slide-hue) 85% 58%), hsl(calc(var(--slide-hue) + 60) 90% 62%), hsl(calc(var(--slide-hue) + 140) 85% 62%)); }
 .portrait .deck-card { padding: 56px 48px 48px; border-radius: 30px; }
 .deck-title { margin: 0; font-size: calc(var(--fit) * 66px); line-height: 1.08; font-weight: 800; letter-spacing: -.035em; }
 .portrait .deck-title { font-size: calc(var(--fit) * 58px); }
 .deck-body { flex: 1; min-height: 0; overflow: hidden; font-size: calc(var(--fit) * 32px); line-height: 1.42; letter-spacing: -.01em; }
-.deck-slide.scrolls.on .deck-body { overflow: auto; }
+.deck-slide.scrolls.spot .deck-body { overflow: auto; -webkit-overflow-scrolling: touch; }
 .deck-body > * { margin: 0 0 .55em; }
 .deck-body ul, .deck-body ol { padding-left: 1.2em; }
 .deck-body li { margin: .18em 0; }
@@ -77,7 +82,9 @@ html.deck-open { overflow: hidden; }
 .kind-title .deck-num, .kind-section .deck-num, .kind-slide.empty .deck-num { background: rgb(255 255 255 / .2); color: #fff; }
 .kind-title .deck-deco, .kind-section .deck-deco, .kind-slide.empty .deck-deco { opacity: .2; }
 .deck-when { font-size: 1.05em; font-weight: 650; opacity: .92; }
-.deck-hero { position: absolute; right: 7%; top: 50%; font-size: 260px; transform: translateY(-50%); filter: drop-shadow(0 20px 40px rgb(0 0 0 / .3)); animation: deck-float 5s ease-in-out infinite; }
+.deck-hero { position: absolute; right: 7%; top: 50%; font-size: 260px; transform: translateY(-50%); }
+/* Only the presented card moves; nothing animates inside the big canvas. */
+.deck-spot .deck-hero { filter: drop-shadow(0 20px 40px rgb(0 0 0 / .3)); animation: deck-float 5s ease-in-out infinite; }
 .portrait .deck-hero { right: auto; left: 48px; top: auto; bottom: 40px; transform: none; font-size: 200px; }
 .portrait .kind-title .deck-title { max-width: 100%; }
 .kind-end .deck-body { text-align: center; font-size: calc(var(--fit) * 36px); }
@@ -108,7 +115,7 @@ html.deck-open { overflow: hidden; }
 /* ---- outline (zoomed out) ---- */
 .deck.overview .deck-slide { cursor: zoom-in; }
 .deck.overview .deck-card { transition: box-shadow .2s ease, transform .2s ease; }
-.deck.overview .deck-slide:hover .deck-card { box-shadow: 0 0 0 10px hsl(var(--slide-hue) 90% 65%), 0 30px 90px rgb(0 0 0 / .5); }
+.deck.overview .deck-slide:hover .deck-card { box-shadow: 0 0 0 10px hsl(var(--slide-hue) 90% 65%); }
 .deck.overview .deck-num { font-size: 44px; }
 
 /* ---- controls ---- */

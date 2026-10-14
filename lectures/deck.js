@@ -154,7 +154,7 @@ function layout(deck, size) {
       nodes.unshift(head);
     }
     // Wide rows, so the zoomed-out outline roughly matches the screen's shape.
-    const maxRow = Math.max(size.w * (size.h > size.w ? 2.4 : 5.2), ...nodes.map((node) => node.box.w));
+    const maxRow = Math.max(size.w * (size.h > size.w ? 4.2 : 5.2), ...nodes.map((node) => node.box.w));
     let x = 0;
     let rowH = 0;
     nodes.forEach((node) => {
@@ -280,7 +280,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   root.style.setProperty('--hue', hueBase);
   root.innerHTML = `
     <div class="deck-sky" aria-hidden="true"><div class="deck-glow"></div><div class="deck-field"></div></div>
-    <div class="deck-stage"><div class="deck-world"></div></div>
+    <div class="deck-stage"><div class="deck-world"></div><div class="deck-spot"></div></div>
     <div class="deck-progress" aria-hidden="true"><span></span></div>
     <nav class="deck-bar" aria-label="Slide controls">
       <button type="button" data-go="prev" aria-label="Previous slide">◀</button>
@@ -295,6 +295,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   document.body.append(root);
   const stage = root.querySelector('.deck-stage');
   const world = root.querySelector('.deck-world');
+  const spotLayer = root.querySelector('.deck-spot');
   const field = root.querySelector('.deck-field');
   const live = root.querySelector('.deck-live');
   const count = root.querySelector('.deck-count');
@@ -362,9 +363,18 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     const y = Math.min(a.y, b.y);
     return { x, y, w: Math.max(a.x + a.w, b.x + b.w) - x, h: Math.max(a.y + a.h, b.y + b.h) - y };
   };
+  // The canvas only ever zooms OUT, and its painted area is capped. iOS Safari kills a tab whose
+  // transformed layer gets too big (a tall canvas zoomed past 1× is hundreds of megabytes), so the
+  // presented slide is a separate screen-sized card that flies out of its spot on the canvas.
+  // In device pixels (a 3× iPhone paints 9 pixels per CSS pixel): about 24 MB of layer at most.
+  const MAX_PAINTED = 6e6;
+  const zoomCap = () => {
+    const density = Math.min(window.devicePixelRatio || 1, 3);
+    return Math.min(1, Math.sqrt(MAX_PAINTED / (canvasSize.w * canvasSize.h)) / density);
+  };
   const camera = (box, duration, margin = 0.95) => {
     const area = view();
-    const zoom = Math.min(area.w / box.w, area.h / box.h) * margin;
+    const zoom = Math.min(Math.min(area.w / box.w, area.h / box.h) * margin, zoomCap());
     const tx = (area.w - box.w * zoom) / 2 - box.x * zoom;
     const ty = (area.h - box.h * zoom) / 2 - box.y * zoom + 6;
     const time = reduceMotion() ? 0 : duration;
@@ -372,7 +382,52 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     field.style.transitionDuration = `${time}ms`;
     world.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
     // Parallax: the emoji field drifts a fraction of the camera's travel.
-    field.style.transform = `translate(${(tx * 0.06) % 400}px, ${(ty * 0.06) % 400}px) scale(${0.9 + Math.min(zoom, 2) * 0.12})`;
+    field.style.transform = `translate(${(tx * 0.06) % 400}px, ${(ty * 0.06) % 400}px)`;
+  };
+
+  // Where a canvas slide sits on screen right now, relative to the stage.
+  const rectOf = (slide) => {
+    const stageRect = stage.getBoundingClientRect();
+    const rect = slide.element.getBoundingClientRect();
+    return { x: rect.left - stageRect.left, y: rect.top - stageRect.top, scale: rect.width / size.w };
+  };
+  const fullRect = () => {
+    const area = view();
+    const scale = Math.min(area.w / size.w, area.h / size.h) * 0.96;
+    return { x: (area.w - size.w * scale) / 2, y: (area.h - size.h * scale) / 2 + 6, scale };
+  };
+  const place = (card, rect) => { card.style.transform = `translate(${rect.x}px, ${rect.y}px) scale(${rect.scale})`; };
+
+  let spot = null;
+  const dropSpot = (into) => {
+    const card = spot;
+    spot = null;
+    if (!card) return;
+    if (reduceMotion() || !into) { card.remove(); return; }
+    card.classList.remove('play');
+    card.style.transitionDuration = '380ms';
+    if (into === 'away') { card.style.opacity = '0'; card.style.transform += ' scale(0.92)'; }
+    else { place(card, into); card.style.opacity = '0.4'; }
+    setTimeout(() => card.remove(), 400);
+  };
+  const raiseSpot = (slide, from) => {
+    const card = slide.element.cloneNode(true);
+    card.classList.add('spot');
+    card.removeAttribute('data-index');
+    card.style.left = '0';
+    card.style.top = '0';
+    spotLayer.append(card);
+    spot = card;
+    const done = () => {
+      card.classList.add('play');
+      if (slide.kind === 'end') confetti(root);
+    };
+    if (reduceMotion() || !from) { place(card, fullRect()); done(); return; }
+    place(card, from);
+    void card.offsetWidth; // start from the canvas position
+    card.style.transitionDuration = '560ms';
+    place(card, fullRect());
+    timers.push(setTimeout(done, 260));
   };
 
   const announce = () => {
@@ -385,41 +440,38 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     window.history.replaceState(null, '', hash);
   };
 
-  const activate = (slide) => {
-    slides.forEach((other) => other.element.classList.toggle('on', other === slide));
-    slide.element.classList.remove('play');
-    void slide.element.offsetWidth; // restart the entrance animation
-    slide.element.classList.add('play', 'seen');
-    if (slide.kind === 'end') confetti(root);
-  };
-
   const go = (target, { fly = true } = {}) => {
     clearTimers();
     const next = Math.max(0, Math.min(target, slides.length - 1));
-    const from = slides[current];
     const to = slides[next];
     current = next;
     mode = 'present';
     root.classList.remove('overview');
+    root.classList.add('presenting');
     announce();
-    const far = fly && from !== to && (from.pos.unit !== to.pos.unit || Math.abs(Math.log(from.pos.scale / to.pos.scale)) > 0.5);
-    if (far && !reduceMotion()) {
-      // Pull back to see both slides, then dive into the new one.
-      camera(union(boxOf(from), boxOf(to)), 650, 0.86);
-      timers.push(setTimeout(() => camera(boxOf(to), 750), 620));
-      timers.push(setTimeout(() => activate(to), 1150));
-    } else {
-      camera(boxOf(to), fly ? 750 : 0);
-      timers.push(setTimeout(() => activate(to), fly && !reduceMotion() ? 380 : 0));
+    if (!fly || reduceMotion()) {
+      dropSpot(null);
+      camera(boxOf(to), 0, 0.55);
+      raiseSpot(to, null);
+      return;
     }
+    // The old card steps back, the camera glides to the new slide's spot on the canvas, and the
+    // new card rises out of it.
+    dropSpot('away');
+    camera(boxOf(to), 620, 0.55);
+    timers.push(setTimeout(() => raiseSpot(to, rectOf(to)), 600));
   };
 
   const showOverview = () => {
     clearTimers();
     mode = 'overview';
+    root.classList.remove('presenting');
     root.classList.add('overview');
-    slides.forEach((slide) => slide.element.classList.remove('on'));
-    camera({ x: 0, y: 0, w: canvasSize.w, h: canvasSize.h }, 900, 0.96);
+    const leaving = slides[current];
+    const shrinking = Boolean(spot) && !reduceMotion();
+    // Shrink the card back into its place, then pull back to the whole lecture.
+    dropSpot(shrinking ? rectOf(leaving) : null);
+    timers.push(setTimeout(() => camera({ x: 0, y: 0, w: canvasSize.w, h: canvasSize.h }, 800, 0.96), shrinking ? 380 : 0));
     announce();
   };
 
