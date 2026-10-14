@@ -13,6 +13,7 @@
 
 import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
+import { groupLabel } from './catalog.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
 const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
@@ -285,7 +286,7 @@ export function renderWorksheet(activity, options = {}) {
 
   // The revision date is what tells a printed copy apart from a newer one once the activity
   // changes — it comes first so it survives even if the rest of the meta line has to wrap away.
-  const meta = [revised && `🕓 Rev. ${revised}`, time && `⏱ ${time}`, group && `👥 Groups of ${group}`]
+  const meta = [revised && `🕓 Rev. ${revised}`, time && `⏱ ${time}`, group && `👥 ${groupLabel(group)}`]
     .filter(Boolean).join(' · ');
   // Rounds only get their own box on activities that actually repeat.
   const rounds = String(front.roundsSupported) === 'true' ? `<span>Round ${rule()}</span>` : '';

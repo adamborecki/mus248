@@ -1,4 +1,4 @@
-# Handoff — Repo Improvement, lectures, filters (2026-10-14)
+# Handoff — Repo Improvement, lectures, filters (2026-10-14, updated same night)
 
 Instructor-facing notes for the October 14 session. Superseded by `git log` once read.
 
@@ -25,41 +25,33 @@ Instructor-facing notes for the October 14 session. Superseded by `git log` once
 - **Salmon Gig Checklist:** F8 preamps hands-off, per your decision.
 - **Contributor credit:** opt-in GitHub usernames only, via frontmatter `contributors:`.
 
-## Please check
+## Resolved with the instructor (2026-10-14)
 
-1. **⚠️ Unmerged stereo verification.** Branch `claude/stereo-recording-activity-ghmdvz` has one
-   commit (Sept 21) that never reached `main`: stereo kit in the OH B01 kitchen with more in the
-   OH B00 closet, generic small-diaphragm condenser pair, AB on two stands, a portable-recorder
-   alternative, and status → Ready, described as instructor-checked. If that's right, say "merge
-   the stereo branch" and it'll be reconciled with today's `stereo.md`. **Don't delete that branch
-   until then.**
-2. **Week 1 date.** The deck labels it "Monday, August 31", the same as week 2. Content says it
-   was the first class (probably Aug 24).
-3. **Lecture redactions.** Are the TA, the two Salmon student staff, the Musco staff contact, the
-   Oct 18 collaborator, and the two showcase composers fine to name publicly? Each is marked
-   `[… — ask instructor]` until you say so.
-4. **M-Audio model in OH B01.** The X32 doc says Studiophile **AV40**; the Live Sound slides show
-   a **DX4** from an unnamed room. Flagged in the X32 reset checklist.
+- Stereo verification branch merged; stereo is **Ready**.
+- First class was **Aug 24**; LECTURE 01–07 badges match the Canvas follow-along notes.
+- **Seiyua** named in the Big Picture lecture. Other first-name-only people stay redacted.
+- OH B01's pantry holds both the M-Audio AV40 and DX4 pairs.
+- Live Sound Part 4 is hidden on the site until 2026-10-19, 10pm Pacific.
 
-## Branches safe to delete
+## Branches to delete
 
-Nothing new versus `main` (merged or squash-merged):
+All of these have nothing that isn't already on `main`. One page: https://github.com/adamborecki/mus248/branches
 
+- `claude/documentation-builder`, `claude/stereo-lectures-filters` (once merged),
+  `claude/stereo-recording-activity-ghmdvz` (merged now), `claude/portable-cameras-redesign-j4mj63`
+  (an older copy; its `dante.md` was later split into the four Dante activities)
 - `claude/branch-previews` · `claude/fix-qr-code-typo-44b673` · `claude/salmon-gig-checklist-fvsog9`
-- `claude/salmon-recital-instructions-4g7lfy` · `claude/stoic-edison-7g0zdq`
-- `claude/worksheet-checkpoint-restructure-049bif` · `claude/worksheet-generator-cameras-eig1e7`
-- `draft/musco-gig-checklist` · `quiz-timer-and-score-cap` · `worksheet-web-pointers`
-- `claude/documentation-builder` (this work, once merged)
+  · `claude/salmon-recital-instructions-4g7lfy` · `claude/stoic-edison-7g0zdq` ·
+  `claude/worksheet-checkpoint-restructure-049bif` · `claude/worksheet-generator-cameras-eig1e7` ·
+  `draft/musco-gig-checklist` · `quiz-timer-and-score-cap` · `worksheet-web-pointers`
 
-**Keep for now:** `claude/stereo-recording-activity-ghmdvz` (above).
-`claude/portable-cameras-redesign-j4mj63` has an unrelated, older history (Sept 15). It's almost
-certainly superseded by today's `cameras.md`, but have a look before deleting it.
+## Open issues
+
+#11 review "where can you do it" for every page · #12 lectures that look like Canvas · #13 speed run ·
+#14 link mixer activity ↔ mixer-lab · #15 quiz/study cards: Seiyua, Chris
 
 ## Follow-ups
 
-- Wireless mic and Dante-stems procedures as their own pages (source: `_source/x32compact.txt`
-  Parts 2, 8–9), and "What can you do with a mixer?" linked to mixer-lab scenarios vs. real-board
-  scenarios.
 - Quiz/study `localStorage` isolation on branch previews (`storageKey`). Not touched during a
   teaching week.
 - webapp-conventions: promote `content/DOCUMENTATION_GUIDE.md` once the pilot has been used.
