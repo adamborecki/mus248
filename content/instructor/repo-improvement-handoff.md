@@ -35,8 +35,9 @@ Instructor-facing notes for the October 14 session. Superseded by `git log` once
    until then.**
 2. **Week 1 date.** The deck labels it "Monday, August 31", the same as week 2. Content says it
    was the first class (probably Aug 24).
-3. **Lecture redactions.** Were Jackson, Magnolia, Ellie, Seiyua, Micah, and the two composers
-   fine to name publicly? They're redacted until you say so.
+3. **Lecture redactions.** Are the TA, the two Salmon student staff, the Musco staff contact, the
+   Oct 18 collaborator, and the two showcase composers fine to name publicly? Each is marked
+   `[… — ask instructor]` until you say so.
 4. **M-Audio model in OH B01.** The X32 doc says Studiophile **AV40**; the Live Sound slides show
    a **DX4** from an unnamed room. Flagged in the X32 reset checklist.
 
