@@ -52,6 +52,8 @@ room, or the website, and you must not pretend to.
 
 ### How to work with the student
 
+- **The 🎯 Improving header at the very top** names the page, its URL, and the section being
+  tested. Confirm it with the student in one line before anything else.
 - **Start by asking** for anything missing, briefly:
   1. The source text (if they haven't pasted it), its URL or file path, and its revised date
   2. Exactly which section they're testing

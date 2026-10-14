@@ -101,7 +101,22 @@ ${fence}
 `;
 }
 
-const bundleText = (starter, source) => `${starter.replace(/\s+$/, '')}\n\n---\n\n${sourceBlock(source)}`;
+// The first thing anyone (or any AI) reads: what this copy is about.
+function targetHeader(source) {
+  if (!source) {
+    return `# 🎯 Improving: (write the title of what you're testing)
+
+**URL or file:** (paste it here) · **Section:** (the one part you're testing)`;
+  }
+  const url = source.external ? source.url : source.pageUrl;
+  const section = source.sections && source.sections.length ? source.sections.join(' + ') : '(write the one section you chose)';
+  return `# 🎯 Improving: ${source.title}
+
+**URL:** ${url}
+**Section:** ${source.external ? '(write the one scenario, station, or section you chose)' : section}`;
+}
+
+const bundleText = (starter, source) => `${targetHeader(source)}\n\n---\n\n${starter.replace(/\s+$/, '')}\n\n---\n\n${sourceBlock(source)}`;
 
 function placeAfterSection(article, words, node) {
   const heading = [...article.querySelectorAll('h2')].find((h2) => h2.textContent.includes(words));
