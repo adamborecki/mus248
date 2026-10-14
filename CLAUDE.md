@@ -48,6 +48,13 @@ generated or derived.
    existing trio and change `data-activity-id`
 4. both test suites passing
 
+Two optional catalog fields, both safe to omit: `"type"` (`activity` default, `checklist`,
+`reference`) and `"settings"` (`home` / `class` / `outsideClass` → `yes` / `no` / `confirm`). Map
+settings only from what the page's own Logistics/Access text says. Anything it doesn't say is
+`confirm`, never a guess. `content/DOCUMENTATION_GUIDE.md` has the rest. The Documentation
+Builder's `starter-menu.json` names exact `##` headings in other pages, and the checker fails if
+you rename one without updating it.
+
 `data/activities.json` and the quiz's own activity list (`quiz/data/curriculum.json`'s
 `activities` array, matched against by `activity_gate` in `quiz/data/questions.json`) are separate,
 hand-maintained lists — adding an activity here does not teach the quiz about it. Run

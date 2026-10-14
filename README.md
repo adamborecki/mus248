@@ -26,6 +26,8 @@ The front page. Each card is a self-contained lesson with:
 
 Filter by skill area — **Audio Capture**, **Live Sound**, **Video Capture**, **Post Production**, **Data Management** — to find what you need.
 
+Every entry is one of three kinds of document. An **activity** teaches. A **checklist** runs a real job. A **reference** explains. Filter by type, too. Where an entry says so, cards also show where it can be done: at home, on campus during class, or on campus outside class. "Confirm with instructor" means the page doesn't say, so ask. `content/DOCUMENTATION_GUIDE.md` has the rules.
+
 **Current lineup:**
 
 | Activity | Skill area |
@@ -39,6 +41,8 @@ Filter by skill area — **Audio Capture**, **Live Sound**, **Video Capture**, *
 | 🔌 Cable Safari | Audio Capture, Video Capture |
 | 🔁 Live-looping rig | Audio Capture, Live Sound |
 | 📡 Dante Broadcast, Jam Session, Walkie-Talkie (basic + advanced) | Audio Capture, Live Sound |
+| 📋 Gig checklists: Salmon, Musco, Standard Gear Kit | Checklists, not lessons. Run them on a real gig |
+| 🧪 Documentation Builder (pilot) | Test one section of these docs against the gear and submit a better version |
 
 Most activities are fully written out here; a few older ones still point to their original Google Doc while they wait to be migrated over.
 
@@ -88,6 +92,8 @@ PAGES — every folder here is a URL on the live site
   cameras/             one folder per activity: /cameras/, /stereo/, /daw/ …
     worksheet/           its printable worksheet
     worksheet/key/       the instructor answer key (noindex)
+  documentation-builder/  the pilot activity, plus its starter kit: downloads/ (PROJECT_STARTER.md,
+                       report templates), starter-menu.json, toolkit.js
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
   worksheets/          index of every printable worksheet
@@ -95,6 +101,8 @@ PAGES — every folder here is a URL on the live site
 SOURCE — never served as a page
   content/activities/  activity Markdown (the source of truth) and its media/
   content/activities/_source/   imported instructions awaiting migration
+  content/instructor/  instructor-facing drafts (Canvas assignment drafts, proposals)
+  content/DOCUMENTATION_GUIDE.md  document types, step style, evidence marks, review workflow
   data/activities.json directory metadata that drives the front page
   data/semesters/      per-term Canvas links and reminders
   tools/               import and check scripts
@@ -104,6 +112,7 @@ SHARED FRONT-END
   activity.js/.css     the activity page
   worksheet.js/.css    the worksheet and answer key
   app.js, styles.css   the front page
+  catalog.js           labels for the catalog's optional type and settings fields
 ```
 
 **Why activity folders sit at the top level next to `content/` and `data/`:** the folder path *is*
