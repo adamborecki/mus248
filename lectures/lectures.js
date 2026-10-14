@@ -3,6 +3,7 @@
 // content/lectures/ holds just the slides' text.
 
 import { escapeHtml, renderMarkdown } from '../markdown.js';
+import { openDeck } from './deck.js';
 
 // A lecture with `hiddenUntil` (an ISO time with its UTC offset) stays off the list and its page
 // until then. This only hides it on the site: the Markdown is still public in the repo.
@@ -57,6 +58,28 @@ export async function mountLecture(root, id) {
   root.innerHTML = `
     <a class="back" href="../">← Lectures</a>
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
+    <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button></p>
     <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/' })}</article>
     <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>`;
+
+  // The slides are the same Markdown, laid out as a deck. #slide-5 and #outline open it directly,
+  // so a link can drop the class straight onto a slide.
+  const article = root.querySelector('.instructions');
+  const present = (startAt, overview, opener) => openDeck({
+    article,
+    lecture,
+    badge: lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : (lecture.status === 'upcoming' ? 'Coming up' : ''),
+    when: when(lecture, { long: true }),
+    startAt,
+    overview,
+    onClose: () => { if (opener) opener.focus(); },
+  });
+  root.querySelectorAll('[data-present]').forEach((button) => button.addEventListener('click', () => {
+    present(0, button.dataset.present === 'outline', button);
+  }));
+  const hash = window.location.hash;
+  const slide = hash.match(/^#slide-(\d+)$/);
+  if (slide) present(Number(slide[1]) - 1, false);
+  else if (hash === '#outline') present(0, true);
+  else if (hash === '#slides') present(0, false);
 }

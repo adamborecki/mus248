@@ -1,0 +1,140 @@
+/* The lecture slide deck (deck.js). One theme; each lecture and section brings its own hue. */
+
+@property --hue { syntax: '<number>'; inherits: true; initial-value: 220; }
+
+html.deck-open { overflow: hidden; }
+
+.deck {
+  position: fixed; inset: 0; z-index: 1000; overflow: hidden; outline: none;
+  color: #fff; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  background: radial-gradient(120% 90% at 15% 10%, hsl(var(--hue) 70% 22%), transparent 60%),
+              radial-gradient(90% 80% at 90% 90%, hsl(calc(var(--hue) + 70) 75% 20%), transparent 60%),
+              hsl(calc(var(--hue) + 20) 45% 9%);
+  transition: --hue 1.2s ease;
+}
+
+/* ---- sky: glow + a parallax field of emoji ---- */
+.deck-sky { position: absolute; inset: 0; pointer-events: none; }
+.deck-glow { position: absolute; inset: -20%; background:
+  radial-gradient(30% 30% at 30% 40%, hsl(var(--hue) 90% 60% / .22), transparent 70%),
+  radial-gradient(25% 25% at 70% 60%, hsl(calc(var(--hue) + 120) 90% 60% / .18), transparent 70%);
+  animation: deck-drift 18s ease-in-out infinite alternate; }
+.deck-field { position: absolute; left: -25%; top: -25%; width: 150%; height: 150%;
+  transition-property: transform; transition-timing-function: cubic-bezier(.65, .05, .25, 1); }
+.deck-field span { position: absolute; opacity: .16; filter: saturate(.7); animation: deck-bob 9s ease-in-out infinite; }
+
+/* ---- the canvas and its camera ---- */
+.deck-stage { position: absolute; inset: 0; touch-action: none; }
+.deck-world { position: absolute; left: 0; top: 0; transform-origin: 0 0;
+  transition-property: transform; transition-timing-function: cubic-bezier(.65, .05, .25, 1); }
+.deck-slide { position: absolute; transform-origin: 0 0; --fit: 1; transition: opacity .5s ease, filter .5s ease; }
+.deck:not(.overview) .deck-slide:not(.on) { opacity: .28; filter: saturate(.6); }
+
+/* ---- a slide card ---- */
+.deck-card { position: relative; box-sizing: border-box; width: 100%; height: 100%; display: flex; flex-direction: column;
+  gap: 28px; padding: 64px 76px 56px; overflow: hidden; border-radius: 34px; background: #fff; color: #1b1b22;
+  box-shadow: 0 30px 90px rgb(0 0 0 / .45), 0 0 0 1px rgb(255 255 255 / .06); }
+.deck-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 14px;
+  background: linear-gradient(90deg, hsl(var(--slide-hue) 85% 58%), hsl(calc(var(--slide-hue) + 60) 90% 62%), hsl(calc(var(--slide-hue) + 140) 85% 62%)); }
+.portrait .deck-card { padding: 56px 48px 48px; border-radius: 30px; }
+.deck-title { margin: 0; font-size: calc(var(--fit) * 66px); line-height: 1.08; font-weight: 800; letter-spacing: -.035em; }
+.portrait .deck-title { font-size: calc(var(--fit) * 58px); }
+.deck-body { flex: 1; min-height: 0; overflow: hidden; font-size: calc(var(--fit) * 32px); line-height: 1.42; letter-spacing: -.01em; }
+.deck-slide.scrolls.on .deck-body { overflow: auto; }
+.deck-body > * { margin: 0 0 .55em; }
+.deck-body ul, .deck-body ol { padding-left: 1.2em; }
+.deck-body li { margin: .18em 0; }
+.deck-body li::marker { color: hsl(var(--slide-hue) 70% 48%); font-weight: 800; }
+.deck-body strong { color: hsl(var(--slide-hue) 60% 30%); }
+.deck-body a { color: hsl(var(--slide-hue) 75% 42%); font-weight: 650; }
+.deck-body code { padding: .05em .3em; border-radius: .25em; background: #f0f0f5; font-size: .85em; }
+.deck-body aside { padding: .55em .8em; border-left: 6px solid hsl(var(--slide-hue) 80% 55%); border-radius: 12px; background: hsl(var(--slide-hue) 80% 96%); font-size: .85em; }
+.deck-body .table-scroll { overflow: visible; }
+.deck-body table { width: 100%; border-collapse: collapse; font-size: .8em; }
+.deck-body th, .deck-body td { padding: .35em .5em; border-bottom: 2px solid #ececf2; text-align: left; vertical-align: top; }
+.deck-body th { color: hsl(var(--slide-hue) 55% 38%); font-size: .8em; text-transform: uppercase; letter-spacing: .04em; }
+.deck-body em { color: #6b6b78; }
+.deck-small { font-size: .62em; opacity: .85; }
+.deck-num { position: absolute; top: 30px; right: 36px; padding: 4px 14px; border-radius: 999px; background: #f2f2f7; color: #7a7a88; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.deck-num small { font-size: .75em; opacity: .7; }
+.deck-deco { position: absolute; right: 4%; bottom: -6%; font-size: 300px; opacity: .08; transform: rotate(-12deg); pointer-events: none; }
+.deck-badge { align-self: flex-start; padding: 6px 16px; border-radius: 10px; background: rgb(255 255 255 / .22); font-size: 26px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.deck-emoji { display: inline-block; }
+
+/* Gradient cards: the title, section dividers, title-only slides, and the end. */
+.kind-title .deck-card, .kind-section .deck-card, .kind-end .deck-card, .kind-slide.empty .deck-card {
+  justify-content: center; color: #fff;
+  background: linear-gradient(135deg, hsl(var(--slide-hue) 80% 46%), hsl(calc(var(--slide-hue) + 55) 85% 52%) 60%, hsl(calc(var(--slide-hue) + 120) 85% 56%)); }
+.kind-title .deck-card::before, .kind-section .deck-card::before, .kind-end .deck-card::before, .kind-slide.empty .deck-card::before { display: none; }
+.kind-title .deck-title { font-size: calc(var(--fit) * 96px); max-width: 82%; }
+.kind-section .deck-title, .kind-slide.empty .deck-title { font-size: calc(var(--fit) * 84px); }
+.kind-end .deck-title { font-size: calc(var(--fit) * 92px); text-align: center; }
+.kind-title .deck-body, .kind-section .deck-body, .kind-end .deck-body, .kind-slide.empty .deck-body { flex: 0 1 auto; }
+.kind-title .deck-body strong, .kind-section .deck-body strong, .kind-end .deck-body strong { color: #fff; }
+.kind-title .deck-body em, .kind-section .deck-body em, .kind-end .deck-body em, .kind-slide.empty .deck-body em { color: rgb(255 255 255 / .85); }
+.kind-title .deck-body aside, .kind-section .deck-body aside { background: rgb(255 255 255 / .16); border-color: #fff; color: #fff; }
+.kind-title .deck-body code, .kind-section .deck-body code { background: rgb(255 255 255 / .2); color: #fff; }
+.kind-title .deck-num, .kind-section .deck-num, .kind-slide.empty .deck-num { background: rgb(255 255 255 / .2); color: #fff; }
+.kind-title .deck-deco, .kind-section .deck-deco, .kind-slide.empty .deck-deco { opacity: .2; }
+.deck-when { font-size: 1.05em; font-weight: 650; opacity: .92; }
+.deck-hero { position: absolute; right: 7%; top: 50%; font-size: 260px; transform: translateY(-50%); filter: drop-shadow(0 20px 40px rgb(0 0 0 / .3)); animation: deck-float 5s ease-in-out infinite; }
+.portrait .deck-hero { right: auto; left: 48px; top: auto; bottom: 40px; transform: none; font-size: 200px; }
+.portrait .kind-title .deck-title { max-width: 100%; }
+.kind-end .deck-body { text-align: center; font-size: calc(var(--fit) * 36px); }
+.deck-end-actions { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+.deck-end-actions button { padding: 16px 26px; border: 0; border-radius: 16px; background: #fff; color: hsl(var(--slide-hue) 60% 30%); font: inherit; font-size: 28px; font-weight: 700; cursor: pointer; }
+
+/* ---- entrances: each slide gets one of four, so the deck never feels the same twice ---- */
+.deck-slide.play .deck-title { animation: deck-rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+.deck-slide.play .deck-body > * { animation: deck-rise .6s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--order, 1) * 85ms + 120ms); }
+.deck-slide.play.enter-left .deck-body > * { animation-name: deck-from-left; }
+.deck-slide.play.enter-right .deck-body > * { animation-name: deck-from-right; }
+.deck-slide.play.enter-pop .deck-body > * { animation-name: deck-pop; }
+.deck-slide.play .deck-emoji { animation: deck-wiggle 1s ease .3s both; }
+.deck-slide.play .deck-deco { animation: deck-deco-in 1.2s cubic-bezier(.2, .8, .2, 1) both; }
+.deck-slide.play.kind-title .deck-hero { animation: deck-hero-in .9s cubic-bezier(.2, 1.4, .4, 1) both, deck-float 5s ease-in-out .9s infinite; }
+
+@keyframes deck-rise { from { opacity: 0; transform: translateY(40px); } }
+@keyframes deck-from-left { from { opacity: 0; transform: translateX(-70px); } }
+@keyframes deck-from-right { from { opacity: 0; transform: translateX(70px); } }
+@keyframes deck-pop { from { opacity: 0; transform: scale(.82); } 70% { transform: scale(1.03); } }
+@keyframes deck-wiggle { 0% { transform: scale(.4) rotate(-20deg); } 45% { transform: scale(1.35) rotate(12deg); } 70% { transform: rotate(-8deg); } 100% { transform: none; } }
+@keyframes deck-deco-in { from { opacity: 0; transform: rotate(-40deg) scale(.4); } }
+@keyframes deck-hero-in { from { opacity: 0; transform: translateY(-50%) scale(.2) rotate(-30deg); } }
+@keyframes deck-float { 50% { translate: 0 -18px; rotate: 4deg; } }
+@keyframes deck-bob { 50% { translate: 0 -14px; } }
+@keyframes deck-drift { to { transform: translate(6%, -4%) rotate(8deg); } }
+
+/* ---- outline (zoomed out) ---- */
+.deck.overview .deck-slide { cursor: zoom-in; }
+.deck.overview .deck-card { transition: box-shadow .2s ease, transform .2s ease; }
+.deck.overview .deck-slide:hover .deck-card { box-shadow: 0 0 0 10px hsl(var(--slide-hue) 90% 65%), 0 30px 90px rgb(0 0 0 / .5); }
+.deck.overview .deck-num { font-size: 44px; }
+
+/* ---- controls ---- */
+.deck-progress { position: absolute; left: 0; right: 0; top: 0; height: 5px; background: rgb(255 255 255 / .1); }
+.deck-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, hsl(var(--hue) 90% 65%), hsl(calc(var(--hue) + 90) 90% 65%)); transition: width .6s ease; }
+.deck-bar { position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); display: flex; gap: 4px; align-items: center; padding: 6px; border-radius: 999px;
+  background: rgb(14 14 24 / .62); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transform: translateX(-50%); box-shadow: 0 10px 30px rgb(0 0 0 / .35); }
+.deck-bar button { width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; color: #fff; font-size: 18px; cursor: pointer; }
+.deck-bar button:hover { background: rgb(255 255 255 / .14); }
+.deck-bar button:focus-visible, .deck-end-actions button:focus-visible, .deck-body a:focus-visible { outline: 3px solid hsl(var(--hue) 90% 70%); outline-offset: 2px; }
+.deck-count { min-width: 4.6em; color: rgb(255 255 255 / .85); font-size: 14px; font-weight: 650; text-align: center; font-variant-numeric: tabular-nums; }
+.deck-hint { position: absolute; left: 50%; bottom: 84px; margin: 0; padding: 8px 14px; border-radius: 999px; background: rgb(0 0 0 / .45); color: #fff; font-size: 13px; white-space: nowrap; transform: translateX(-50%); transition: opacity .8s ease; }
+.deck-hint.gone { opacity: 0; }
+.deck-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.deck-confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+@media (max-width: 520px) { .deck-hint { display: none; } }
+
+/* ---- the "Present" buttons on the text page ---- */
+.lecture-present { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 0; }
+.lecture-present button { display: inline-flex; gap: .45rem; align-items: center; padding: .7rem 1.1rem; border: 0; border-radius: .6rem; font: inherit; font-weight: 700; cursor: pointer; }
+.lecture-present .present-main { color: #fff; background: linear-gradient(135deg, #5b5bf0, #c04ad6 60%, #ff7a59); box-shadow: 0 8px 24px rgb(120 80 220 / .35); }
+.lecture-present .present-outline { color: var(--ink); background: var(--tag); }
+.lecture-present button:hover { filter: brightness(1.08); }
+.lecture-present button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .deck, .deck * { animation: none !important; transition: none !important; }
+}
+@media print { .deck, .lecture-present { display: none !important; } }
