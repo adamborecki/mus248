@@ -5,7 +5,7 @@ emoji: "📹"
 coreSkillAreas:
   - Video Capture
 status: In Development
-revised: "2026-09-20"
+revised: "2026-10-15"
 estimatedTime: "25–35 minutes per camera"
 access:
   mode: On campus
@@ -109,6 +109,10 @@ Every camera in this activity gets returned to the same baseline. Learn this —
 | Shutter | **1/60** | |
 | White balance | **3200 K** | Set as a color temperature, not auto |
 | Focus | **Autofocus** | |
+
+The one exception you'll meet: the AX100 backup wide **in Salmon** runs 3800 K, A5 G2 so it matches
+the hall's RovoCam — see **Salmon: Basic A/V Capture**. Everywhere else, and back in the cabinet,
+it's 3200 K.
 
 > 🚩 You will set the house default twice: once at the start, and once again before the camera goes back in the cabinet.
 

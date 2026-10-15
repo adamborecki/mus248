@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-10-10"
+revised: "2026-10-15"
 estimatedTime: "20–45 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
 access:
   mode: On campus
@@ -243,7 +243,9 @@ looking: ________________________________________________
 ✅ **Answer.** As tight as you can get while still leaving room at the edges for a performer
 standing up and bowing.
 
-If you're doing the bonus AX100 step, it has its own settings for this hall:
+If you're doing the bonus AX100 step, it has its own settings for this hall. The white balance is
+not about the lights — it's about the other camera. The RovoCam runs on **auto** white balance, and
+3800 K with an A5 G2 shift is what makes the AX100 look like it when the two are cut together:
 
 | AX100 in Salmon | Value |
 |---|---|
@@ -251,14 +253,15 @@ If you're doing the bonus AX100 step, it has its own settings for this hall:
 | White balance | **3800 K, A5 G2**, Soft High Key |
 | Image size | **XAVC S 4K** |
 
-**Q5 (multiple choice).** The Portable Cameras house default is 3200 K, and Salmon runs 3800 K.
-Which is wrong?
+**Q5 (multiple choice).** The Portable Cameras house default is 3200 K, and the AX100 in Salmon
+runs 3800 K, A5 G2. Why the difference?
 
-- a) The house default — it should be updated to 3800 K
-- b) Salmon — the cameras should match the house default
-- ✅ c) Neither. The house default is a known state to return a camera to; 3800 K is what this
-  particular hall's lights actually need
-- d) Both, since white balance should always be set automatically
+- a) The house default is wrong — it should be updated to 3800 K
+- b) Salmon's lights are exactly 3800 K, so that's the correct setting for the light
+- ✅ c) 3800 K A5 G2 makes the AX100 match the hall's RovoCam, which runs on auto white balance;
+  3200 K is the default everywhere else. If you forget and leave 3200 K in Salmon it's not a
+  disaster — the rule that matters is that cameras cut together match each other
+- d) White balance should always be set to auto, so neither
 
 🚩 **Checkpoint.** Primary wide is framed for a standing bow, and you can state its status out loud
 without looking at the screen.

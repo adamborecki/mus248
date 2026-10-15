@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Live Sound
 status: In Development
-revised: "2026-10-09"
+revised: "2026-10-15"
 estimatedTime: "15–25 minutes"
 access:
   mode: On campus
@@ -164,6 +164,20 @@ controlled?
 code on the Canvas livestream page (that's the page the audience uses). A practice run is just
 creating the event and getting its stream key into the ATEM.
 
+## 🎬 During the recital
+
+How Salmon streams today: the hall's **static wide RovoCam comes in on Camera 2** of the ATEM Mini
+Extreme ISO, and that's what's on program for the whole stream. The second RovoCam angle (Camera
+1) isn't used. Nobody switches during a recital — no cuts, no fades to black, no title cards. The
+picture passes through the Mini Extreme ISO to Vimeo; your job is to start it, watch it, and end it.
+
+> 🛠️ **Not current procedure — coming later.** The plan is to add walk-in audio (pre-recorded
+> walla) before the recital, title cards, and real audio-level monitoring on the stream. That will
+> take several weeks of development; until this page says otherwise, keep it simple as above.
+
+Practice the switcher side of this in **Camera Lab** → *Salmon Livestream: Program, Preview, On Air*
+(adamborecki.github.io/camera-lab).
+
 ## ✅ Definition of done
 
 - 🚩 A Vimeo event exists with a real name, set to **Use an external encoder**.
@@ -195,6 +209,11 @@ walkthrough, October 2026):
 - The old embed settings (Chapman Red #A50034, viewer count turned off) no longer apply.
 
 **Still open:**
+
+- **Inputs on the Mini Extreme ISO.** Instructor, Oct 2026: static wide on Camera 2, Camera 1
+  unused. The booth photo's multiview had Camera 1 on program — confirm which is which, and how
+  the ATEM Production Studio 4K feeds the Mini (labels: HDMI 1 → Production Studio 4K, HDMI 2 →
+  Mini Extreme ISO).
 
 - **Where in ATEM Software Control the stream key goes** — the exact tab/panel, and whether the
   platform/server field needs setting too (or only the key).

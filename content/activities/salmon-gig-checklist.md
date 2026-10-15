@@ -8,7 +8,7 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
-revised: "2026-10-14"
+revised: "2026-10-15"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -111,6 +111,12 @@ you actually got there. It's a log entry, not a test.
 - 🚩 Frame it **wide**. Nobody operates this camera once it's rolling, so there's no reframing —
   wide is the margin for error.
 - 🚩 Plug it into AC power.
+- 🚩 Exposure: **F4 · 3 dB · 1/60**, all manual — no **A** next to iris, shutter or gain on the
+  screen.
+- 🚩 White balance: **WB → Color Temp → 3800 K**, shift **A5 G2**. That makes it match the hall's
+  RovoCam (which runs on auto white balance). Forgot and it's on 3200 K? Probably fine. If a third
+  camera with no shift setting is joining tonight, put everything on **3200 K** instead — matching
+  each other is the rule.
 - 🚩 Insert a clean **128 GB** SD card.
 - 🚩 Confirm on the display: several hours of remaining recording time, and **no battery icon
   showing** — the battery icon disappearing is how you know it's actually running on AC, not on a

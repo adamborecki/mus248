@@ -233,3 +233,28 @@ teaches, then "what are students expected to learn" becomes one table — skill 
 activity → has a study card? → has a quiz question? → how the class scored — and the tracker, the
 study guide, and the worksheet's "what you'll practice" all derive from it instead of being
 maintained by hand.
+
+## Ideas from Camera Lab Homework 3 (Oct 15, 2026) — not decided
+
+Left here so a future quiz session finds them; nothing in `questions.json` or `curriculum.json`
+changed. Camera Lab HW3 (Standard Gear Kit & Salmon) teaches things the quiz barely covers:
+there are ~80 camera questions, but only 3 on white balance and none on matching cameras.
+
+Candidate skills (names are suggestions):
+
+- `camera_matching` — two cameras that cut together must match each other (same kelvin isn't
+  enough across brands; match by eye on the multiview, then trim with WB shift).
+- `salmon_ax100_wb` — Salmon backup wide is 3800 K A5 G2 *because it matches the RovoCam on
+  auto WB*, not because of the lights; 3200 K everywhere else.
+- `ax100_auto_traps` — an "A" next to a value means auto; a double press hands a value back to
+  auto; MANUAL sends iris/shutter/gain to auto; average metering overexposes a dark hall while
+  the camera's own meter reads fine.
+- `static_wide_framing` — as tight as possible with room to stand and bow; reframe between
+  pieces, never during.
+- `program_preview` — red = program (live), green = preview (next); choose on preview, CUT;
+  Salmon streams the static wide on Camera 2 with no switching; On Air / Off Air.
+- `focal_length_equivalent` — 35 mm-equivalent framing; why a 14–140 on MFT is 28 mm at its
+  widest.
+
+Open: whether Camera Lab should feed the quiz's activity self-report (it isn't in
+`curriculum.json`'s `activities` list today), and whether any of these become Core.
