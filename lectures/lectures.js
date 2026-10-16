@@ -4,6 +4,11 @@
 
 import { escapeHtml, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
+import { instructorView, lectureView, setInstructorView } from './view.js';
+
+// A lecture with questions in it (**Q1 (…).**) gets a printable worksheet and an online fill-in,
+// both generated from the same Markdown — so a future lecture gets them just by having questions.
+export const hasQuestions = (markdown) => /^\*\*Q\d+/m.test(markdown);
 
 // A lecture with `hiddenUntil` (an ISO time with its UTC offset) stays off the list and its page
 // until then. This only hides it on the site: the Markdown is still public in the repo.
@@ -23,15 +28,17 @@ export function when(lecture, { long = false } = {}) {
 }
 
 const row = (lecture) => {
+  const hidden = isVisible(lecture) ? '' : ' · 🙈 hidden from students';
   const body = `<span class="activity-emoji" aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span>
-    <span class="card-copy"><small>${badge(lecture)}${escapeHtml(when(lecture))}</small><strong>${escapeHtml(lecture.title)}</strong>${lecture.summary ? `<small>${escapeHtml(lecture.summary)}</small>` : ''}</span>`;
+    <span class="card-copy"><small>${badge(lecture)}${escapeHtml(when(lecture) + hidden)}</small><strong>${escapeHtml(lecture.title)}</strong>${lecture.summary ? `<small>${escapeHtml(lecture.summary)}</small>` : ''}</span>`;
   return lecture.contentFile
     ? `<a class="lecture-row" href="${escapeHtml(lecture.id)}/">${body}<span class="arrow" aria-hidden="true">→</span></a>`
     : `<div class="lecture-row lecture-row-quiet">${body}</div>`;
 };
 
 export async function mountList(root) {
-  const lectures = (await fetch('../data/lectures.json').then((response) => response.json())).filter((lecture) => isVisible(lecture));
+  const instructor = instructorView();
+  const lectures = (await fetch('../data/lectures.json').then((response) => response.json())).filter((lecture) => instructor || isVisible(lecture));
   const upcoming = lectures.filter((lecture) => lecture.status === 'upcoming');
   const past = lectures.filter((lecture) => lecture.status !== 'upcoming');
   root.innerHTML = (upcoming.length ? `<h2 class="section-title">Coming up</h2><div class="activity-grid">${upcoming.map(row).join('')}</div>` : '')
@@ -40,14 +47,19 @@ export async function mountList(root) {
 
 export async function mountLecture(root, id) {
   const lectures = await fetch('../../data/lectures.json').then((response) => response.json());
-  const readable = lectures.filter((lecture) => lecture.contentFile && isVisible(lecture));
+  const instructor = instructorView();
+  const readable = lectures.filter((lecture) => lecture.contentFile && (instructor || isVisible(lecture)));
   const index = readable.findIndex((lecture) => lecture.id === id);
   const lecture = readable[index];
   if (!lecture) throw new Error(`No lecture ${id}`);
-  const markdown = await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
+  const markdown = lectureView(await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);
     return response.text();
-  });
+  }), { instructor });
+  const query = `?id=${encodeURIComponent(lecture.id)}`;
+  const extras = hasQuestions(markdown)
+    ? `<a href="../worksheet/${query}">🖨️ Worksheet</a><a href="../fill/${query}">✍️ Fill in online</a>${instructor ? `<a href="../worksheet/key/${query}">🔑 Answer key</a>` : ''}`
+    : '';
   // The list runs newest first, so the entry before this one is the newer lecture.
   const newer = readable[index - 1];
   const older = readable[index + 1];
@@ -58,9 +70,21 @@ export async function mountLecture(root, id) {
   root.innerHTML = `
     <a class="back" href="../">← Lectures</a>
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
+    ${instructor ? '<p class="instructor-banner">🧑‍🏫 Instructor view: notes and 🙈 hidden slides are showing. <a href="https://github.com/adamborecki/mus248/tree/main/content/instructor">📓 Instructor notes</a> <button type="button" data-instructor="off">Turn off</button></p>' : ''}
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button></p>
+    ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}
     <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/' })}</article>
-    <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>`;
+    <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>
+    <p class="instructor-switch"><button type="button" data-instructor="${instructor ? 'off' : 'on'}">${instructor ? 'Leave instructor view' : 'π'}</button></p>`;
+
+  // The quiet switch at the very foot of the page (and the banner's Turn off) flip instructor view
+  // and reload, so the page, deck, and links all rebuild from the right view of the Markdown.
+  root.querySelectorAll('[data-instructor]').forEach((button) => button.addEventListener('click', () => {
+    setInstructorView(button.dataset.instructor === 'on');
+    const url = new URL(window.location.href);
+    url.searchParams.delete('instructor');
+    window.location.replace(url.toString());
+  }));
 
   // The slides are the same Markdown, laid out as a deck. #slide-5 and #outline open it directly,
   // so a link can drop the class straight onto a slide.

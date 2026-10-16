@@ -18,3 +18,38 @@ a.lecture-row:focus-visible { outline:3px solid var(--accent); outline-offset:-3
 body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25rem); line-height:1.15; }
 .lecture-badge { display:inline-block; margin:0 .5rem .2rem 0; padding:.1rem .45rem; border-radius:.25rem; background:var(--accent); color:#fff; font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; vertical-align:.08em; }
 .activity-header .lecture-badge { margin-bottom:.4rem; }
+.lecture-extras { display:flex; flex-wrap:wrap; gap:.5rem; margin:.75rem 0 0; }
+.lecture-extras a { padding:.45rem .8rem; border-radius:.5rem; background:var(--tag); color:var(--ink); font-weight:600; text-decoration:none; }
+.lecture-extras a:hover { filter:brightness(.97); }
+.instructor-banner { margin:1rem 0 0; padding:.6rem .9rem; border-radius:.5rem; background:#fff4d6; color:#5c4300; font-size:.9rem; }
+.instructor-banner button { margin-left:.4rem; font:inherit; font-weight:650; color:inherit; background:none; border:0; text-decoration:underline; cursor:pointer; }
+@media (prefers-color-scheme: dark) { .instructor-banner { background:#3a2f12; color:#ffe29a; } }
+/* The way in is deliberately quiet: a π at the foot of the page, the way old films hid an easter egg. */
+.instructor-switch { margin:2.5rem 0 0; text-align:right; }
+.instructor-switch button { padding:.2rem .4rem; border:0; background:none; color:var(--line); font:inherit; font-size:.8rem; cursor:pointer; }
+.instructor-switch button:hover, .instructor-switch button:focus-visible { color:var(--muted); }
+/* Online fill-in (lectures/fill/?id=…) */
+.fill-list { list-style:none; margin:1.25rem 0; padding:0; display:grid; gap:1rem; }
+.fill-card { padding:1rem; border:1px solid var(--line); border-radius:.75rem; background:var(--surface); }
+.fill-card.done { border-color:#34c759; }
+.fill-where { display:block; margin-bottom:.35rem; color:var(--muted); font-size:.8rem; font-style:normal; }
+.fill-prompt { margin:0 0 .75rem; font-weight:600; }
+.fill-prompt .q-number { margin-right:.35rem; color:var(--accent); }
+.fill-prompt code, .fill-option code, .fill-feedback code { padding:.05rem .25rem; border-radius:.2rem; background:var(--tag); font-size:.9em; }
+.fill-blank { display:inline-block; width:4.5em; border-bottom:2px solid var(--muted); vertical-align:-.15em; }
+.fill-options { display:grid; gap:.5rem; }
+.fill-option { padding:.75rem .9rem; border:1px solid var(--line); border-radius:.6rem; background:var(--paper); color:var(--ink); font:inherit; text-align:left; cursor:pointer; }
+.fill-option:hover:not(:disabled) { border-color:var(--accent); }
+.fill-option.wrong { opacity:.55; text-decoration:line-through; }
+.fill-option.right { border-color:#34c759; background:rgb(52 199 89 / .12); }
+.fill-feedback { margin:.6rem 0 0; }
+.fill-feedback.wrong { color:#d70015; }
+.fill-yours { margin:0; color:var(--muted); }
+.fill-text { box-sizing:border-box; width:100%; padding:.6rem .7rem; border:1px solid var(--line); border-radius:.5rem; background:var(--paper); color:var(--ink); font:inherit; }
+.fill-check, .fill-copy, .fill-reset { margin-top:.6rem; padding:.55rem .9rem; border:0; border-radius:.5rem; background:var(--accent); color:#fff; font:inherit; font-weight:650; cursor:pointer; }
+.fill-reset { background:var(--tag); color:var(--ink); }
+.fill-done { margin:1.5rem 0; padding:1rem 1.1rem; border-radius:.75rem; background:var(--tag); }
+.fill-code { font-family:ui-monospace, monospace; font-size:1.1em; letter-spacing:.03em; }
+.fill-verify { margin-top:2rem; }
+.fill-verify-input { padding:.45rem .6rem; border:1px solid var(--line); border-radius:.4rem; font:inherit; }
+.instructor-banner a { margin-left:.4rem; color:inherit; font-weight:650; }

@@ -63,7 +63,9 @@ copying text from a screen onto paper.
 `/lectures/` has the text of each class's slides, newest first, with upcoming ones marked. Names,
 codes, and private links are left out. **▶ Present slides** turns any lecture into an animated,
 zoomable deck. Press **O** (or pinch) for an outline where related slides nest together.
-New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`.
+New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`. A lecture with questions gets a
+printable worksheet and an online fill-in (with a Canvas completion code) automatically; 🍄
+power-ups are tap-to-open previews of a later lecture.
 
 ### 📝 Weekly quiz
 A short, no-account, no-server quiz you take alongside the activities:
@@ -101,7 +103,8 @@ PAGES — every folder here is a URL on the live site
     worksheet/key/       the instructor answer key (noindex)
   repo-improvement/    the pilot activity plus its starter kit: downloads/PROJECT_STARTER.md,
                        starter-menu.json, toolkit.js
-  lectures/            each class's slides as text: lectures/<id>/ per lecture
+  lectures/            each class's slides as text: lectures/<id>/ per lecture;
+                       lectures/worksheet/ (+ key/) and lectures/fill/ serve any lecture by ?id=
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
   worksheets/          index of every printable worksheet
@@ -109,7 +112,8 @@ PAGES — every folder here is a URL on the live site
 SOURCE — never served as a page
   content/activities/  activity Markdown (the source of truth) and its media/
   content/activities/_source/   imported instructions awaiting migration
-  content/instructor/  instructor-facing drafts (Canvas assignment drafts, proposals)
+  content/instructor/  instructor-facing drafts (Canvas assignment drafts, proposals, series
+                       notes, the bad-webapps repo kit)
   content/DOCUMENTATION_GUIDE.md  document types, step style, evidence marks, review workflow
   data/activities.json directory metadata that drives the front page
   data/lectures.json   lecture dates, weeks, and status (delivered / upcoming / no-class)

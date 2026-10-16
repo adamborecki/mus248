@@ -14,6 +14,7 @@
 import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
+import { lectureView } from './lectures/view.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
 const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
@@ -286,7 +287,7 @@ export function renderWorksheet(activity, options = {}) {
 
   // The revision date is what tells a printed copy apart from a newer one once the activity
   // changes — it comes first so it survives even if the rest of the meta line has to wrap away.
-  const meta = [revised && `🕓 Rev. ${revised}`, time && `⏱ ${time}`, group && `👥 ${groupLabel(group)}`]
+  const meta = [directory.when, revised && `🕓 Rev. ${revised}`, time && `⏱ ${time}`, group && `👥 ${groupLabel(group)}`]
     .filter(Boolean).join(' · ');
   // Rounds only get their own box on activities that actually repeat.
   const rounds = String(front.roundsSupported) === 'true' ? `<span>Round ${rule()}</span>` : '';
@@ -392,13 +393,39 @@ export function renderWorksheet(activity, options = {}) {
       ${nameLine}
     </header>
     ${parts.join('')}
-    <footer class="ws-foot">Generated from <code>content/activities/${escapeHtml(front.id || directory.id || '')}.md</code> — edit the activity, not this page.</footer>
+    <footer class="ws-foot">Generated from <code>${escapeHtml(directory.source || `content/activities/${front.id || directory.id || ''}.md`)}</code> — edit ${directory.source ? 'the lecture' : 'the activity'}, not this page.</footer>
   `;
 }
 
 // ---------- page ----------
 
+// Lectures share one worksheet page (lectures/worksheet/?id=…), so every lecture with questions
+// has a worksheet without a shell of its own. It's built from the student view of the Markdown:
+// hidden slides and instructor notes never reach the paper.
+async function lectureEntry(base) {
+  const id = new URLSearchParams(window.location.search).get('id') || '';
+  const lectures = await fetch(`${base}data/lectures.json`).then((response) => response.json());
+  const lecture = lectures.find((item) => item.id === id && item.contentFile);
+  if (!lecture) throw new Error(`No lecture ${id}`);
+  const markdown = await fetch(`${base}content/lectures/${lecture.contentFile}.md`).then((response) => {
+    if (!response.ok) throw new Error(`No Markdown for ${id}`);
+    return response.text();
+  });
+  const date = lecture.date
+    ? new Date(`${lecture.date}T12:00:00`).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+  const number = lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : '';
+  return {
+    markdown: lectureView(markdown),
+    entry: {
+      id, title: lecture.title, emoji: lecture.emoji, route: `lectures/${id}`,
+      when: [number, date].filter(Boolean).join(' · '), source: `content/lectures/${lecture.contentFile}.md`,
+    },
+  };
+}
+
 async function mount(root) {
+  if (document.body.dataset.lecture === 'true') return mountLecture(root);
   const id = document.body.dataset.activityId;
   const base = document.body.dataset.base || '../../';
   const showAnswers = document.body.dataset.worksheetKey === 'true';
@@ -415,6 +442,18 @@ async function mount(root) {
   document.title = `${title} worksheet${showAnswers ? ' — answer key' : ''} · MUS 248`;
   root.innerHTML = `<a class="back no-print" href="${base}${entry.route || id}/">← ${escapeHtml(title)}</a>`
     + renderWorksheet(activity, { showAnswers, directory: entry })
+    + '<p class="no-print print-cue"><button type="button" class="print-button">Print this worksheet</button></p>';
+  const button = root.querySelector('.print-button');
+  if (button) button.addEventListener('click', () => window.print());
+}
+
+async function mountLecture(root) {
+  const base = document.body.dataset.base || '../../';
+  const showAnswers = document.body.dataset.worksheetKey === 'true';
+  const { markdown, entry } = await lectureEntry(base);
+  document.title = `${entry.title} worksheet${showAnswers ? ' — answer key' : ''} · MUS 248`;
+  root.innerHTML = `<a class="back no-print" href="${base}${entry.route}/">← ${escapeHtml(entry.title)}</a>`
+    + renderWorksheet(parseActivity(markdown), { showAnswers, directory: entry })
     + '<p class="no-print print-cue"><button type="button" class="print-button">Print this worksheet</button></p>';
   const button = root.querySelector('.print-button');
   if (button) button.addEventListener('click', () => window.print());

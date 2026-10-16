@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bad Webapps</title>
+  <style>
+    :root { color-scheme: light dark; --ink: #1d1d1f; --muted: #6e6e73; --paper: #fffdf7; --card: #ffffff; --line: #e3ddd0; --accent: #e0574f; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #f5f5f7; --muted: #a1a1a6; --paper: #14110d; --card: #1f1b16; --line: #3a332a; --accent: #ff7b72; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 2rem 16px 4rem; background: var(--paper); color: var(--ink); font: 17px/1.5 system-ui, -apple-system, sans-serif; }
+    main { max-width: 44rem; margin: 0 auto; }
+    h1 { margin: 0; font-size: clamp(2rem, 8vw, 3.2rem); letter-spacing: -.03em; transform: rotate(-2deg); display: inline-block; }
+    .lede { color: var(--muted); }
+    ul { list-style: none; padding: 0; display: grid; gap: .6rem; }
+    a.app { display: block; padding: .9rem 1rem; border: 2px solid var(--line); border-radius: .8rem; background: var(--card); color: inherit; font-weight: 650; text-decoration: none; }
+    a.app:hover { border-color: var(--accent); transform: rotate(-.5deg); }
+    a { color: var(--accent); }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🙃 Bad Webapps</h1>
+    <p class="lede">Tiny apps that are bad on purpose, and bad in a way that's actually good. Built by students
+      learning to vibecode on a small prompt budget.</p>
+    <ul id="apps"><li class="lede">Loading the apps…</li></ul>
+    <footer>Want to add one? Read <a id="contributing" href="CONTRIBUTING.md">how to add your bad webapp</a>.</footer>
+  </main>
+  <script>
+    // No build step and no list to keep in sync: the page asks GitHub which folders are in apps/.
+    // It works the same on any fork, because the owner and repo come from this page's own address
+    // (OWNER.github.io/REPO/). GitHub allows about 60 of these requests an hour per network.
+    const list = document.getElementById('apps');
+    const owner = location.hostname.split('.')[0];
+    const repo = location.pathname.split('/').filter(Boolean)[0] || 'bad-webapps';
+    const browse = `https://github.com/${owner}/${repo}/tree/main/apps`;
+    document.getElementById('contributing').href = `https://github.com/${owner}/${repo}/blob/main/CONTRIBUTING.md`;
+    const title = (name) => name.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    fetch(`https://api.github.com/repos/${owner}/${repo}/contents/apps`)
+      .then((response) => { if (!response.ok) throw new Error(response.status); return response.json(); })
+      .then((items) => {
+        const apps = items.filter((item) => item.type === 'dir');
+        list.innerHTML = apps.length ? '' : '<li class="lede">No apps yet. Be the first.</li>';
+        apps.forEach((app) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.className = 'app';
+          a.href = `apps/${encodeURIComponent(app.name)}/`;
+          a.textContent = title(app.name);
+          li.append(a);
+          list.append(li);
+        });
+      })
+      .catch(() => {
+        list.innerHTML = `<li class="lede">Couldn't load the list right now. <a href="${browse}">Browse the apps folder on GitHub</a> instead.</li>`;
+      });
+  </script>
+</body>
+</html>

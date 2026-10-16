@@ -18,3 +18,13 @@
 .instructions code { overflow-wrap:anywhere; }
 .instructions h2 .step-id, .instructions h3 .step-id { min-width:0; margin-right:.4em; font-size:.7em; vertical-align:.1em; }
 .instructions.numbered ul, .instructions.numbered ol { padding-left:0; list-style:none; }.instructions.numbered li.task { margin-left:0; }
+/* Power-ups (> 🍄 in the Markdown): a collapsed sneak peek of a later lecture. Instructor notes
+   (> 🧑‍🏫) only ever appear in instructor view, and look unmistakably different when they do. */
+.instructions details.power-up { margin:1rem 0; border:1px dashed #e0574f; border-radius:.6rem; background:#fff5f2; }
+.instructions details.power-up summary { padding:.6rem .9rem; font-weight:650; cursor:pointer; }
+.instructions details.power-up p { margin:0; padding:0 .9rem .8rem; }
+.instructions aside.instructor-note { border-left-color:#d49b00; background:#fff4d6; color:#5c4300; }
+@media (prefers-color-scheme: dark) {
+  .instructions details.power-up { border-color:#ff7b72; background:#2b1715; }
+  .instructions aside.instructor-note { background:#3a2f12; color:#ffe29a; }
+}

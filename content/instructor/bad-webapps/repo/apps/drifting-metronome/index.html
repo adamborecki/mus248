@@ -1,0 +1,70 @@
+<!doctype html>
+<!--
+  Drifting Metronome: the example bad webapp.
+  What makes it bad: it starts at the tempo you pick, then quietly speeds up about 1 BPM every
+  4 bars, and the display keeps showing the tempo you asked for. Good enough to fool you for a
+  minute, which is the joke.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drifting Metronome</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; font: 18px/1.4 system-ui, sans-serif; text-align: center; }
+    .bpm { font-size: 4rem; font-weight: 800; }
+    .light { width: 5rem; height: 5rem; margin: 1.5rem auto; border-radius: 50%; background: #8884; transition: background .05s; }
+    .light.on { background: #e0574f; }
+    button { padding: .8rem 1.6rem; border: 0; border-radius: .7rem; background: #e0574f; color: #fff; font: inherit; font-weight: 700; }
+    input { width: 14rem; }
+    footer { margin-top: 2rem; font-size: .8rem; opacity: .6; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="bpm"><span id="shown">100</span> BPM</div>
+    <input id="tempo" type="range" min="40" max="200" value="100" aria-label="Tempo">
+    <div class="light" id="light"></div>
+    <button id="start">Start</button>
+    <footer>Drifting Metronome · Made for Bad Webapps</footer>
+  </main>
+  <script>
+    const shown = document.getElementById('shown');
+    const tempo = document.getElementById('tempo');
+    const light = document.getElementById('light');
+    const start = document.getElementById('start');
+    let audio = null;
+    let timer = null;
+    let real = 100;
+    let beat = 0;
+
+    tempo.addEventListener('input', () => { shown.textContent = tempo.value; real = Number(tempo.value); });
+
+    function click() {
+      const osc = audio.createOscillator();
+      const gain = audio.createGain();
+      osc.frequency.value = beat % 4 === 0 ? 1500 : 1000;
+      gain.gain.setValueAtTime(0.4, audio.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.05);
+      osc.connect(gain).connect(audio.destination);
+      osc.start();
+      osc.stop(audio.currentTime + 0.05);
+      light.classList.add('on');
+      setTimeout(() => light.classList.remove('on'), 80);
+      beat += 1;
+      if (beat % 16 === 0) real += 1; // the bad part: +1 BPM every 4 bars, and the display never admits it
+      timer = setTimeout(click, 60000 / real);
+    }
+
+    start.addEventListener('click', () => {
+      if (timer) { clearTimeout(timer); timer = null; start.textContent = 'Start'; return; }
+      audio = audio || new AudioContext();
+      real = Number(tempo.value);
+      beat = 0;
+      start.textContent = 'Stop';
+      click();
+    });
+  </script>
+</body>
+</html>

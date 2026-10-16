@@ -11,6 +11,8 @@ import { dirname, join } from 'node:path';
 import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
 import { deckMarkdown, unzip } from './pptx-to-lecture.mjs';
+import { lectureView } from '../lectures/view.js';
+import { completionCode, checkChars } from '../lectures/fill.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -32,6 +34,26 @@ check(joinWrappedLines('## Heading\ntext').split('\n').length === 2, 'a heading 
 check(renderMarkdown('a *word* here').includes('<em>word</em>'), 'single-asterisk emphasis did not render');
 check(renderMarkdown('a **word** here').includes('<strong>word</strong>'), 'bold stopped rendering');
 check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survived into the rendered page');
+// Inline code is literal: a page that teaches Markdown has to be able to show `**bold**`.
+check(renderMarkdown('type `**bold**` here').includes('<code>**bold**</code>'), 'inline code lost its asterisks to bold');
+check(renderMarkdown('**`NO DISK`**').includes('<strong><code>NO DISK</code></strong>'), 'bold around inline code stopped rendering');
+
+// Power-ups collapse; instructor notes are marked so they look different when instructor view shows them.
+check(/<details class="power-up"><summary>.*Peek<\/summary><p>Hidden text<\/p><\/details>/.test(renderMarkdown('> 🍄 **Peek.** Hidden text')),
+  'a > 🍄 power-up did not render as a collapsed details block');
+check(renderMarkdown('> 🧑‍🏫 Note').includes('class="instructor-note"'), 'an instructor note is not marked');
+
+// The student view of a lecture drops 🙈 slides and 🧑‍🏫 notes, and nothing else.
+const viewSample = ['## A', '### 1. Kept', 'text', '> 🧑‍🏫 a note', '> that wraps', 'after', '### 1. 🙈 Gone', 'secret', '### Back', '## 🙈 Gone too', '### inside', 'x', '## B'].join('\n');
+const studentSample = lectureView(viewSample);
+check(!/secret|a note|that wraps|Gone|inside/.test(studentSample), `student view kept hidden material:\n${studentSample}`);
+check(['### 1. Kept', 'text', 'after', '### Back', '## B'].every((line) => studentSample.split('\n').includes(line)), 'student view dropped visible material');
+check(lectureView(viewSample, { instructor: true }) === viewSample, 'instructor view must be the whole file');
+
+// Completion codes are stable and check themselves.
+const sampleCode = completionCode({ id: 'x-lecture', lecture: 8 }, 7, 9);
+check(/^M248-L08-7of9-[A-Z2-9]{4}$/.test(sampleCode), `completion code has the wrong shape: ${sampleCode}`);
+check(checkChars('x-lecture|M248-L08-7of9') === sampleCode.slice(-4), 'completion code check characters are not reproducible');
 
 // Links written relative to the Markdown resolve against the same base as images, so a page can
 // link to another page and still work at the site root and under a branch preview.
@@ -206,6 +228,32 @@ lectures.forEach((lecture) => {
   const text = read(file);
   quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
   check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
+
+  // A lecture with questions gets a worksheet, a key, and an online fill-in, all from the student
+  // view — so its questions follow the same rules as an activity's, and none may hide in a 🙈 slide.
+  const student = lectureView(text);
+  check(!/🧑‍🏫/u.test(student), `${where}: an instructor note survived into the student view`);
+  const parsed = parseActivity(student);
+  const all = parseActivity(text);
+  check(all.questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
+  if (!parsed.questions.length) return;
+  parsed.questions.forEach((question) => {
+    const at = `${where} Q${question.number}`;
+    if (question.type === 'multiple choice') {
+      check(question.options.length >= 2 && question.options.filter((option) => option.correct).length === 1, `${at}: needs 2+ options and exactly one ✅`);
+    } else {
+      check(question.options.length === 0, `${at}: "${question.type}" should have no option list`);
+    }
+    check(Boolean(question.answer), `${at}: no answer marked`);
+  });
+  const order = parsed.questions.map((question) => question.number);
+  check(order.every((number, index) => number === index + 1), `${where}: questions are numbered ${order.join(',')} — expected 1..${order.length}`);
+  const studentPage = renderMarkdown(student);
+  check(!/<li>\s*✅/.test(studentPage) && !/✅\s*<strong>Answers?/i.test(studentPage), `${where}: the lecture page shows an answer`);
+  const sheet = renderWorksheet(parsed, { directory: { id: lecture.id, title: lecture.title, route: `lectures/${lecture.id}`, source: file } });
+  check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"'), `${where}: the worksheet leaks the key`);
+  check(!renderWorksheet(parsed, { showAnswers: true, directory: { id: lecture.id } }).includes('no answer marked in the source'), `${where}: the key has unmarked questions`);
+  rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: parsed.questions.length, leave: parsed.beforeYouLeave.length });
 });
 
 // PowerPoint → lecture Markdown, against a tiny deck whose slide files are deliberately out of order.

@@ -115,6 +115,19 @@ numbered list. No authoring needed; keep one `###` per slide. New decks come in 
 `node tools/pptx-to-lecture.mjs deck.pptx > content/lectures/<id>.md` (no dependencies). Its output
 still needs the redaction pass above, because it can't spot a name.
 
+Three markers in lecture Markdown (`lectures/view.js` is the one place that reads them):
+`### 3. 🙈 Title` hides a slide (or a `##` section) from students but keeps it in the file;
+`> 🧑‍🏫 …` is an instructor note; `> 🍄 **Title.** …` is a power-up, a collapsed sneak peek of a
+later lecture that students tap open. Notes and 🙈 slides show only in **instructor view** (the
+faint π at the foot of a lecture page, or `?instructor=1`; remembered per device). It's a view,
+not a lock: the Markdown is public, so nothing private goes in a note. The deck never shows notes.
+
+A lecture with `**Qn (type).**` questions (same format and rules as activities, numbered in file
+order, never inside a 🙈 slide) automatically gets a printed worksheet and key
+(`lectures/worksheet/?id=…`, `…/key/?id=…`) and an online fill-in (`lectures/fill/?id=…`) that
+ends in a completion code for Canvas. No shells to copy. Past lectures have no questions, so they
+have neither, on purpose. `content/instructor/vibecoding-series.md` has the series plan.
+
 ## Quiz
 
 `quiz/data/curriculum.json` is the weekly edit; `quiz/README.md` has the detail. Two things to

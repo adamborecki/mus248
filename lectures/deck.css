@@ -146,3 +146,9 @@ html.deck-open { overflow: hidden; }
 }
 @media print { .deck, .lecture-present { display: none !important; } }
 .deck-num ~ .deck-title { padding-right: 110px; }
+/* The deck is what gets projected, so instructor notes never ride along — even in instructor view.
+   Power-ups stay collapsed on the slide until someone taps them. */
+.deck-body .instructor-note { display: none; }
+.deck-body details.power-up { margin: .5em 0; padding: .45em .8em; border: 3px dashed #e0574f; border-radius: 12px; background: #fff5f2; font-size: .85em; }
+.deck-body details.power-up summary { font-weight: 700; cursor: pointer; }
+.deck-body details.power-up p { margin: .4em 0 0; }

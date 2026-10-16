@@ -95,6 +95,20 @@ export function stepNumbers(lines) {
   return numbers;
 }
 
+// Two kinds of blockquote get their own shape. "> 🍄 **Title.** text" is a power-up: a collapsed
+// sneak peek of a later lecture that opens on a tap. "> 🧑‍🏫 text" is an instructor note — only
+// instructor view ever leaves one in (lectures/view.js); this just marks it so it looks different.
+function renderQuote(text, options) {
+  const powerUp = text.match(/^🍄\s*(?:\*\*([^*]+)\*\*)?\s*(.*)$/u);
+  if (powerUp) {
+    const title = (powerUp[1] || 'Power-up').replace(/[.:]\s*$/, '');
+    return `<details class="power-up"><summary><span class="power-up-icon" aria-hidden="true">🍄</span> ${inline(title, options)}</summary>`
+      + `<p>${inline(powerUp[2], options)}</p></details>`;
+  }
+  if (/^🧑‍🏫/u.test(text)) return `<aside class="instructor-note">${inline(text, options)}</aside>`;
+  return `<aside>${inline(text, options)}</aside>`;
+}
+
 export function renderMarkdown(markdown, options = {}) {
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
   const numbers = options.numbered ? stepNumbers(lines) : new Map();
@@ -132,7 +146,7 @@ export function renderMarkdown(markdown, options = {}) {
         : `<li>${stepId(index)}${inline(bullet[1], options)}</li>`);
     }
     else if (numbered) { if (list !== 'ol') { closeList(); list = 'ol'; output.push('<ol>'); } output.push(`<li>${stepId(index)}${inline(numbered[1], options)}</li>`); }
-    else if (quote) { closeList(); output.push(`<aside>${inline(quote[1], options)}</aside>`); }
+    else if (quote) { closeList(); output.push(renderQuote(quote[1], options)); }
     else if (!line.trim()) { closeList(); }
     else {
       closeList();
