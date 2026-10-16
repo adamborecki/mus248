@@ -17,14 +17,20 @@ const resolveAsset = (src, assetBase) => (/^(https?:)?\/\//.test(src) || src.sta
 // site and from a branch preview alike. Anchors and mailto: links are left alone.
 const resolveLink = (href, assetBase) => (/^(#|mailto:)/.test(href) ? href : resolveAsset(href, assetBase));
 
-export const inline = (value, { assetBase = '' } = {}) => escapeHtml(value)
-  .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (match, alt, src) => `<img src="${resolveAsset(src, assetBase)}" alt="${alt}" loading="lazy" decoding="async">`)
-  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, href) => `<a href="${resolveLink(href, assetBase)}">${text}</a>`)
-  .replace(/`([^`]+)`/g, '<code>$1</code>')
-  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-  // Single-asterisk emphasis, after bold has consumed its pairs. Without this a
-  // source file's *emphasis* reached the page with the asterisks still in it.
-  .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+// Code spans are set aside first and put back last, so `**bold**` inside backticks shows its
+// asterisks instead of turning bold — a page that teaches Markdown has to be able to show it.
+export const inline = (value, { assetBase = '' } = {}) => {
+  const code = [];
+  return escapeHtml(value)
+    .replace(/`([^`]+)`/g, (match, text) => `\u0000${code.push(text) - 1}\u0000`)
+    .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (match, alt, src) => `<img src="${resolveAsset(src, assetBase)}" alt="${alt}" loading="lazy" decoding="async">`)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, href) => `<a href="${resolveLink(href, assetBase)}">${text}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // Single-asterisk emphasis, after bold has consumed its pairs. Without this a
+    // source file's *emphasis* reached the page with the asterisks still in it.
+    .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+    .replace(/\u0000(\d+)\u0000/g, (match, index) => `<code>${code[index]}</code>`);
+};
 
 // Answer-key markers. Correct answers live in the activity Markdown so the key
 // generates from the same file, and both student renders strip them out:
