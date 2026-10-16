@@ -6,7 +6,7 @@ coreSkillAreas:
   - Audio Capture
   - Video Capture
 status: In Development
-revised: "2026-10-14"
+revised: "2026-10-16"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -34,6 +34,11 @@ externalResource:
 The field checklist for a gig recorded with the **Standard Gear Kit** — the portable rig you
 carry to a venue: a stereo pair into a **Zoom F8**, a **Zoom H4n** as backup audio, and two
 **Sony AX100** cameras. Every line is something you do or check.
+
+**Recording in Memorial Hall?** Run the [Memorial Hall Gig Checklist](../../memorial-gig-checklist/)
+alongside this one — its F8 input layout (boundary mics, board feed) replaces the
+**Connections** and **F8 configuration** steps here. Pack up with the
+[Standard Gear Kit Reset](../../standard-gear-kit-reset/).
 
 ## 🗝️ Key terms
 
@@ -231,7 +236,8 @@ the too-dark / too-bright fixes.
   yet. The equipment list above is pulled from the steps, not from that list.
 - **Start recording, intermission, end of show, and data transfer** — the source checklist stops
   at setup. Does the Salmon Gig Checklist's procedure (Triple Triple Check, two drives) apply
-  as-is?
+  as-is? (The Memorial Hall Gig Checklist now has start, intermission, and end-of-show steps, and
+  the Standard Gear Kit Reset has pack-up; data transfer is still open in both.)
 - **Board feed on Inputs 3–4** — phantom power should normally be **off** for a board feed, and
   the starting gain will differ from the mics'. Confirm the settings for Inputs 3–4 and 7–8.
 - **Group size** — set here as 1–3, ideally 2. Confirm.
