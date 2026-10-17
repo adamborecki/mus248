@@ -4,15 +4,14 @@
 
 import { escapeHtml, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
-import { instructorView, lectureView, setInstructorView } from './view.js';
+import { instructorView, isVisible, lectureView, setInstructorView } from './view.js';
+
+export { isVisible };
 
 // A lecture with questions in it (**Q1 (…).**) gets a printable worksheet and an online fill-in,
 // both generated from the same Markdown — so a future lecture gets them just by having questions.
 export const hasQuestions = (markdown) => /^\*\*Q\d+/m.test(markdown);
 
-// A lecture with `hiddenUntil` (an ISO time with its UTC offset) stays off the list and its page
-// until then. This only hides it on the site: the Markdown is still public in the repo.
-export const isVisible = (lecture, now = Date.now()) => !lecture.hiddenUntil || now >= Date.parse(lecture.hiddenUntil);
 
 const badge = (lecture) => (lecture.lecture
   ? `<span class="lecture-badge">Lecture ${String(lecture.lecture).padStart(2, '0')}</span>` : '');

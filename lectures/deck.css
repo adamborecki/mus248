@@ -92,8 +92,8 @@ html.deck-open { overflow: hidden; }
 .deck-end-actions button { padding: 16px 26px; border: 0; border-radius: 16px; background: #fff; color: hsl(var(--slide-hue) 60% 30%); font: inherit; font-size: 28px; font-weight: 700; cursor: pointer; }
 
 /* ---- entrances: each slide gets one of four, so the deck never feels the same twice ---- */
-.deck-slide.play .deck-title { animation: deck-rise .7s cubic-bezier(.2, .8, .2, 1) both; }
-.deck-slide.play .deck-body > * { animation: deck-rise .6s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--order, 1) * 85ms + 120ms); }
+.deck-slide.play .deck-title { animation: deck-rise calc(.7s * var(--tempo, 1)) cubic-bezier(.2, .8, .2, 1) both; }
+.deck-slide.play .deck-body > * { animation: deck-rise calc(.6s * var(--tempo, 1)) cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc((var(--order, 1) * 85ms + 120ms) * var(--tempo, 1)); }
 .deck-slide.play.enter-left .deck-body > * { animation-name: deck-from-left; }
 .deck-slide.play.enter-right .deck-body > * { animation-name: deck-from-right; }
 .deck-slide.play.enter-pop .deck-body > * { animation-name: deck-pop; }
@@ -113,7 +113,11 @@ html.deck-open { overflow: hidden; }
 @keyframes deck-drift { to { transform: translate(6%, -4%) rotate(8deg); } }
 
 /* ---- outline (zoomed out) ---- */
-.deck.overview .deck-slide { cursor: zoom-in; }
+.deck.overview .deck-stage { cursor: grab; }
+.deck.overview .deck-stage:active { cursor: grabbing; }
+.deck.overview .deck-slide { cursor: pointer; }
+/* Where you are: the current slide is ringed in the outline, and the ring moves with the arrow keys. */
+.deck.overview .deck-slide.is-current .deck-card { box-shadow: 0 0 0 14px #fff, 0 0 0 26px hsl(var(--slide-hue) 90% 60%); }
 .deck.overview .deck-card { transition: box-shadow .2s ease, transform .2s ease; }
 .deck.overview .deck-slide:hover .deck-card { box-shadow: 0 0 0 10px hsl(var(--slide-hue) 90% 65%); }
 .deck.overview .deck-num { font-size: 44px; }
@@ -152,3 +156,11 @@ html.deck-open { overflow: hidden; }
 .deck-body details.power-up { margin: .5em 0; padding: .45em .8em; border: 3px dashed #e0574f; border-radius: 12px; background: #fff5f2; font-size: .85em; }
 .deck-body details.power-up summary { font-weight: 700; cursor: pointer; }
 .deck-body details.power-up p { margin: .4em 0 0; }
+
+/* Quick moves (pressing through slides, or hunting for one): no flight and no staggered entrance —
+   the card slides in a little from the side you're heading, and everything on it is there at once. */
+.deck-spot .deck-slide.quick { animation: deck-quick-in .17s ease-out both; }
+.deck-spot .deck-slide.quick .deck-title, .deck-spot .deck-slide.quick .deck-body > *, .deck-spot .deck-slide.quick .deck-emoji,
+.deck-spot .deck-slide.quick .deck-deco { animation: none !important; }
+@keyframes deck-quick-in { from { opacity: 0; translate: calc(var(--dir, 1) * 42px) 0; } }
+.deck-bar [data-go="overview"][aria-pressed="true"] { background: rgb(255 255 255 / .22); }

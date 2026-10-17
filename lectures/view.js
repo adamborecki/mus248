@@ -7,6 +7,11 @@
 // Instructor view is a convenience, not a lock — the Markdown is public in the repo either way.
 // No secrets go in a note, any more than anywhere else on this site.
 
+// A lecture with `hiddenUntil` (an ISO time with its UTC offset) stays off the list, its page, its
+// worksheet, and its fill-in until then — except in instructor view. This only hides it on the
+// site: the Markdown is still public in the repo.
+export const isVisible = (lecture, now = Date.now()) => !lecture.hiddenUntil || now >= Date.parse(lecture.hiddenUntil);
+
 const HIDDEN_HEADING = /^(#{2,3})\s+(?:\d+\.\s+)?🙈/u;
 const NOTE = /^>\s*🧑‍🏫/u;
 const HEADING = /^(#{2,6})\s/;

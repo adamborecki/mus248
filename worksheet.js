@@ -14,7 +14,7 @@
 import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
-import { lectureView } from './lectures/view.js';
+import { instructorView, isVisible, lectureView } from './lectures/view.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
 const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
@@ -405,7 +405,7 @@ export function renderWorksheet(activity, options = {}) {
 async function lectureEntry(base) {
   const id = new URLSearchParams(window.location.search).get('id') || '';
   const lectures = await fetch(`${base}data/lectures.json`).then((response) => response.json());
-  const lecture = lectures.find((item) => item.id === id && item.contentFile);
+  const lecture = lectures.find((item) => item.id === id && item.contentFile && (isVisible(item) || instructorView()));
   if (!lecture) throw new Error(`No lecture ${id}`);
   const markdown = await fetch(`${base}content/lectures/${lecture.contentFile}.md`).then((response) => {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);

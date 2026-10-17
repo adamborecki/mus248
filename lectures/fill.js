@@ -9,7 +9,7 @@
 
 import { escapeHtml, inline } from '../markdown.js';
 import { parseActivity } from '../worksheet.js';
-import { instructorView, lectureView } from './view.js';
+import { instructorView, isVisible, lectureView } from './view.js';
 
 const BLANK = /_{3,}/g;
 const storageKey = (id) => `mus248:fill:${id}`;
@@ -70,7 +70,7 @@ export async function mountFill(root) {
   const id = new URLSearchParams(window.location.search).get('id') || '';
   const instructor = instructorView();
   const lectures = await fetch('../../data/lectures.json').then((response) => response.json());
-  const lecture = lectures.find((item) => item.id === id && item.contentFile);
+  const lecture = lectures.find((item) => item.id === id && item.contentFile && (instructor || isVisible(item)));
   if (!lecture) throw new Error(`No lecture ${id}`);
   const markdown = await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);

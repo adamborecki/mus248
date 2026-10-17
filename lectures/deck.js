@@ -372,17 +372,56 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     const density = Math.min(window.devicePixelRatio || 1, 3);
     return Math.min(1, Math.sqrt(MAX_PAINTED / (canvasSize.w * canvasSize.h)) / density);
   };
-  const camera = (box, duration, margin = 0.95) => {
-    const area = view();
-    const zoom = Math.min(Math.min(area.w / box.w, area.h / box.h) * margin, zoomCap());
-    const tx = (area.w - box.w * zoom) / 2 - box.x * zoom;
-    const ty = (area.h - box.h * zoom) / 2 - box.y * zoom + 6;
+  let cam = { tx: 0, ty: 0, zoom: 1 };
+  const apply = (tx, ty, zoom, duration) => {
+    cam = { tx, ty, zoom };
     const time = reduceMotion() ? 0 : duration;
     world.style.transitionDuration = `${time}ms`;
     field.style.transitionDuration = `${time}ms`;
     world.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
     // Parallax: the emoji field drifts a fraction of the camera's travel.
     field.style.transform = `translate(${(tx * 0.06) % 400}px, ${(ty * 0.06) % 400}px)`;
+  };
+  const camera = (box, duration, margin = 0.95) => {
+    const area = view();
+    const zoom = Math.min(Math.min(area.w / box.w, area.h / box.h) * margin, zoomCap());
+    apply((area.w - box.w * zoom) / 2 - box.x * zoom, (area.h - box.h * zoom) / 2 - box.y * zoom + 6, zoom, duration);
+  };
+
+  // ---------- the outline as a map: pinch, drag, scroll ----------
+  // Zooming in is capped (see zoomCap), so pinching past the cap means "open this one": the slide
+  // under your fingers (or the cursor) is presented.
+  let fitZoom = 1;
+  const wholeCanvas = () => ({ x: 0, y: 0, w: canvasSize.w, h: canvasSize.h });
+  const clampPan = (tx, ty, zoom) => {
+    const area = view();
+    const pad = 48;
+    const axis = (offset, length, room) => (length + pad * 2 <= room ? (room - length) / 2 : Math.min(pad, Math.max(room - length - pad, offset)));
+    return [axis(tx, canvasSize.w * zoom, area.w), axis(ty, canvasSize.h * zoom, area.h)];
+  };
+  const panBy = (dx, dy) => { const [tx, ty] = clampPan(cam.tx + dx, cam.ty + dy, cam.zoom); apply(tx, ty, cam.zoom, 0); };
+  const slideAt = (px, py) => {
+    const x = (px - cam.tx) / cam.zoom;
+    const y = (py - cam.ty) / cam.zoom;
+    let best = 0;
+    let bestDistance = Infinity;
+    slides.forEach((slide, at) => {
+      const box = boxOf(slide);
+      const dx = Math.max(box.x - x, 0, x - (box.x + box.w));
+      const dy = Math.max(box.y - y, 0, y - (box.y + box.h));
+      const distance = Math.hypot(dx, dy);
+      if (distance < bestDistance) { best = at; bestDistance = distance; }
+    });
+    return best;
+  };
+  // Keep the canvas point under (px, py) under it while the zoom changes.
+  const zoomAt = (px, py, wanted, from = cam, to = { x: px, y: py }) => {
+    if (wanted > zoomCap() * 1.3) { go(slideAt(px, py)); return; }
+    const zoom = Math.max(fitZoom * 0.8, Math.min(zoomCap(), wanted));
+    const x = (px - from.tx) / from.zoom;
+    const y = (py - from.ty) / from.zoom;
+    const [tx, ty] = clampPan(to.x - x * zoom, to.y - y * zoom, zoom);
+    apply(tx, ty, zoom, 0);
   };
 
   // Where a canvas slide sits on screen right now, relative to the stage.
@@ -398,24 +437,37 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   };
   const place = (card, rect) => { card.style.transform = `translate(${rect.x}px, ${rect.y}px) scale(${rect.scale})`; };
 
+  // How fast a move should be depends on what you're doing. After a pause (or the first slide) it's
+  // the full flight across the canvas; keep pressing and it gets quicker; hunt for a slide and each
+  // step is near-instant. 1 = full, 0.5 = brisk, 0 = quick.
+  let lastMove = 0;
+  const tempo = () => {
+    const now = performance.now();
+    const gap = now - lastMove;
+    lastMove = now;
+    if (reduceMotion()) return 0;
+    return gap > 6000 ? 1 : (gap > 1500 ? 0.5 : 0);
+  };
+
   let spot = null;
-  const dropSpot = (into) => {
+  const dropSpot = (into, duration = 380) => {
     const card = spot;
     spot = null;
     if (!card) return;
     if (reduceMotion() || !into) { card.remove(); return; }
     card.classList.remove('play');
-    card.style.transitionDuration = '380ms';
+    card.style.transitionDuration = `${duration}ms`;
     if (into === 'away') { card.style.opacity = '0'; card.style.transform += ' scale(0.92)'; }
     else { place(card, into); card.style.opacity = '0.4'; }
-    setTimeout(() => card.remove(), 400);
+    setTimeout(() => card.remove(), duration + 20);
   };
-  const raiseSpot = (slide, from) => {
+  const raiseSpot = (slide, from, { pace = 1, direction = 1 } = {}) => {
     const card = slide.element.cloneNode(true);
     card.classList.add('spot');
     card.removeAttribute('data-index');
     card.style.left = '0';
     card.style.top = '0';
+    if (!pace) { card.classList.add('quick'); card.style.setProperty('--dir', direction); }
     spotLayer.append(card);
     spot = card;
     const done = () => {
@@ -425,14 +477,16 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     if (reduceMotion() || !from) { place(card, fullRect()); done(); return; }
     place(card, from);
     void card.offsetWidth; // start from the canvas position
-    card.style.transitionDuration = '560ms';
+    card.style.transitionDuration = `${560 * pace}ms`;
     place(card, fullRect());
-    timers.push(setTimeout(done, 260));
+    timers.push(setTimeout(done, 260 * pace));
   };
 
   const announce = () => {
     const slide = slides[current];
-    count.textContent = mode === 'overview' ? 'Outline' : `${current + 1} / ${slides.length}`;
+    slides.forEach((item, at) => item.element.classList.toggle('is-current', at === current));
+    count.textContent = typed ? `→ ${typed}` : `${current + 1} / ${slides.length}`;
+    root.querySelector('.deck-bar [data-go="overview"]').setAttribute('aria-pressed', String(mode === 'overview'));
     progress.style.width = `${(current / (slides.length - 1)) * 100}%`;
     root.style.setProperty('--hue', slide.hue ?? hueBase);
     live.textContent = mode === 'overview' ? 'Outline of every slide. Choose one to present it.' : `Slide ${current + 1} of ${slides.length}: ${slide.text}`;
@@ -440,28 +494,34 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     window.history.replaceState(null, '', hash);
   };
 
-  const go = (target, { fly = true } = {}) => {
+  const go = (target, { fly = true, maxPace = 1 } = {}) => {
     clearTimers();
     const next = Math.max(0, Math.min(target, slides.length - 1));
+    const direction = next < current ? -1 : 1;
+    const fromOutline = mode === 'overview';
+    const pace = fly ? Math.min(tempo(), maxPace) : 0;
     const to = slides[next];
     current = next;
     mode = 'present';
     root.classList.remove('overview');
     root.classList.add('presenting');
+    root.style.setProperty('--tempo', pace || 1);
     announce();
-    if (!fly || reduceMotion()) {
+    if (!pace) {
+      // Quick: no flight. The card swaps in place with a short slide from the side you're heading.
       dropSpot(null);
       camera(boxOf(to), 0, 0.55);
-      raiseSpot(to, null);
+      raiseSpot(to, null, { pace: fly && !reduceMotion() && !fromOutline ? 0 : 1, direction });
       return;
     }
     // The old card steps back, the camera glides to the new slide's spot on the canvas, and the
     // new card rises out of it.
-    dropSpot('away');
-    camera(boxOf(to), 620, 0.55);
-    timers.push(setTimeout(() => raiseSpot(to, rectOf(to)), 600));
+    dropSpot('away', 380 * pace);
+    camera(boxOf(to), 620 * pace, 0.55);
+    timers.push(setTimeout(() => raiseSpot(to, rectOf(to), { pace }), 600 * pace));
   };
 
+  // Opening the outline means you're looking for something, so it's always brisk.
   const showOverview = () => {
     clearTimers();
     mode = 'overview';
@@ -470,9 +530,37 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     const leaving = slides[current];
     const shrinking = Boolean(spot) && !reduceMotion();
     // Shrink the card back into its place, then pull back to the whole lecture.
-    dropSpot(shrinking ? rectOf(leaving) : null);
-    timers.push(setTimeout(() => camera({ x: 0, y: 0, w: canvasSize.w, h: canvasSize.h }, 800, 0.96), shrinking ? 380 : 0));
+    dropSpot(shrinking ? rectOf(leaving) : null, 220);
+    timers.push(setTimeout(() => overviewCamera(420), shrinking ? 200 : 0));
     announce();
+    showHint('Pinch or scroll to zoom · drag to move · tap a slide');
+  };
+  // The outline opens on the whole lecture — unless that would make it a sliver (a long lecture on a
+  // phone held upright). Then it opens as wide as the screen, on the current slide, and reads like a
+  // list you drag through; pinching in still shows everything.
+  function overviewCamera(duration) {
+    const area = view();
+    fitZoom = Math.min(Math.min(area.w / canvasSize.w, area.h / canvasSize.h) * 0.96, zoomCap());
+    const widthZoom = Math.min((area.w / canvasSize.w) * 0.96, zoomCap());
+    if (widthZoom < fitZoom * 1.6) { camera(wholeCanvas(), duration, 0.96); return; }
+    const box = boxOf(slides[current]);
+    const [tx, ty] = clampPan((area.w - canvasSize.w * widthZoom) / 2, area.h / 2 - (box.y + box.h / 2) * widthZoom, widthZoom);
+    apply(tx, ty, widthZoom, duration);
+  }
+  // In the outline, the arrow keys move the highlight; Enter presents it.
+  const select = (target) => {
+    current = Math.max(0, Math.min(target, slides.length - 1));
+    announce();
+    const box = boxOf(slides[current]);
+    const area = view();
+    const left = cam.tx + box.x * cam.zoom;
+    const top = cam.ty + box.y * cam.zoom;
+    const width = box.w * cam.zoom;
+    const height = box.h * cam.zoom;
+    if (left < 0 || top < 0 || left + width > area.w || top + height > area.h) {
+      const [tx, ty] = clampPan(area.w / 2 - (box.x + box.w / 2) * cam.zoom, area.h / 2 - (box.y + box.h / 2) * cam.zoom, cam.zoom);
+      apply(tx, ty, cam.zoom, 200);
+    }
   };
 
   const close = () => {
@@ -487,12 +575,35 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   };
 
   // ---------- input ----------
+  // Type a slide number and press Enter to jump straight there.
+  let typed = '';
+  let typedTimer;
   const onKey = (event) => {
     if (event.target.closest && event.target.closest('input, textarea, select')) return;
     const key = event.key;
-    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(key) && !(key === 'Enter' && event.target.closest('button, a'))) {
+    if (/^[0-9]$/.test(key) && !event.metaKey && !event.ctrlKey && !event.altKey) {
+      typed = (typed + key).slice(-3);
+      clearTimeout(typedTimer);
+      typedTimer = setTimeout(() => { typed = ''; announce(); }, 2000);
+      announce();
+      return;
+    }
+    if (key === 'Enter' && typed) {
       event.preventDefault();
-      if (mode === 'overview') go(current); else go(current + 1);
+      const target = Number(typed) - 1;
+      typed = '';
+      clearTimeout(typedTimer);
+      go(target, { maxPace: 0.5 });
+      return;
+    }
+    if (mode === 'overview' && ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(key)) {
+      event.preventDefault();
+      select(current + (key === 'ArrowRight' || key === 'ArrowDown' ? 1 : -1));
+      return;
+    }
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(key) && !(['Enter', ' '].includes(key) && event.target.closest('button, a, summary'))) {
+      event.preventDefault();
+      if (mode === 'overview') go(current, { maxPace: 0.5 }); else go(current + 1);
     } else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(key)) {
       event.preventDefault();
       go(current - 1);
@@ -520,10 +631,11 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       else if (action === 'close') close();
       return;
     }
-    if (event.target.closest('a')) return;
+    // Links, power-ups, and anything else you can press on a slide do their own thing.
+    if (event.target.closest('a, summary, details, button, input, textarea, select')) return;
     const picked = event.target.closest('.deck-slide');
     if (mode === 'overview') {
-      if (picked) go(Number(picked.dataset.index));
+      if (picked && !dragged) go(Number(picked.dataset.index), { maxPace: 0.5 });
       return;
     }
     if (dragged || window.getSelection().toString()) return;
@@ -532,27 +644,53 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   });
 
   // Swipe to move; pinch (or a trackpad pinch) to zoom out to the outline and back in.
+  // In the outline: one finger (or the mouse) drags the map, two fingers pinch-zoom it, and
+  // pinching past the closest zoom opens the slide under your fingers.
   const pointers = new Map();
   let startSpread = 0;
+  let startMid = null;
+  let startCam = null;
   let swipeStart = null;
+  let lastPoint = null;
   let dragged = false;
+  const local = (x, y) => { const rect = stage.getBoundingClientRect(); return { x: x - rect.left, y: y - rect.top }; };
+  const pinchState = () => {
+    const [a, b] = [...pointers.values()];
+    return { spread: Math.hypot(a.x - b.x, a.y - b.y), mid: local((a.x + b.x) / 2, (a.y + b.y) / 2) };
+  };
   stage.addEventListener('pointerdown', (event) => {
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     dragged = false;
-    if (pointers.size === 1) swipeStart = { x: event.clientX, y: event.clientY };
+    if (pointers.size === 1) { swipeStart = { x: event.clientX, y: event.clientY }; lastPoint = swipeStart; }
     if (pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      startSpread = Math.hypot(a.x - b.x, a.y - b.y);
+      const pinch = pinchState();
+      startSpread = pinch.spread;
+      startMid = pinch.mid;
+      startCam = { ...cam };
     }
   });
   stage.addEventListener('pointermove', (event) => {
     if (!pointers.has(event.pointerId)) return;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (pointers.size === 2 && startSpread) {
-      const [a, b] = [...pointers.values()];
-      const spread = Math.hypot(a.x - b.x, a.y - b.y) / startSpread;
-      if (spread < 0.7 && mode === 'present') { showOverview(); startSpread = 0; dragged = true; }
-      if (spread > 1.4 && mode === 'overview') { go(current); startSpread = 0; dragged = true; }
+      const pinch = pinchState();
+      const spread = pinch.spread / startSpread;
+      if (mode === 'present') {
+        if (spread < 0.7) { showOverview(); startSpread = 0; dragged = true; }
+        return;
+      }
+      if (Math.abs(spread - 1) > 0.03 || Math.hypot(pinch.mid.x - startMid.x, pinch.mid.y - startMid.y) > 6) dragged = true;
+      zoomAt(startMid.x, startMid.y, startCam.zoom * spread, startCam, pinch.mid);
+      if (mode !== 'overview') startSpread = 0;
+      return;
+    }
+    if (pointers.size === 1 && mode === 'overview' && lastPoint) {
+      const dx = event.clientX - lastPoint.x;
+      const dy = event.clientY - lastPoint.y;
+      lastPoint = { x: event.clientX, y: event.clientY };
+      if (!dragged && Math.hypot(event.clientX - swipeStart.x, event.clientY - swipeStart.y) < 8) return;
+      dragged = true;
+      panBy(dx, dy);
     }
   });
   const release = (event) => {
@@ -562,15 +700,25 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) { dragged = true; go(current + (dx < 0 ? 1 : -1)); }
     }
     pointers.delete(event.pointerId);
-    if (!pointers.size) { swipeStart = null; startSpread = 0; setTimeout(() => { dragged = false; }, 0); }
+    // Lifting one finger of a pinch leaves the other one dragging from where it is now.
+    if (pointers.size === 1) { startSpread = 0; const [rest] = [...pointers.values()]; lastPoint = rest; swipeStart = rest; }
+    if (!pointers.size) { swipeStart = null; lastPoint = null; startSpread = 0; setTimeout(() => { dragged = false; }, 0); }
   };
   stage.addEventListener('pointerup', release);
   stage.addEventListener('pointercancel', release);
+  // A trackpad pinch arrives as ctrl + wheel. In the outline it zooms around the cursor and a plain
+  // scroll pans; on a slide, pinching out opens the outline and scrolling is left to long slides.
   stage.addEventListener('wheel', (event) => {
-    if (!event.ctrlKey) return;
+    if (mode === 'present') {
+      if (!event.ctrlKey) return;
+      event.preventDefault();
+      if (event.deltaY > 2) showOverview();
+      return;
+    }
     event.preventDefault();
-    if (event.deltaY > 2 && mode === 'present') showOverview();
-    if (event.deltaY < -2 && mode === 'overview') go(current);
+    const point = local(event.clientX, event.clientY);
+    if (event.ctrlKey) zoomAt(point.x, point.y, cam.zoom * Math.exp(-event.deltaY * 0.01));
+    else panBy(-event.deltaX, -event.deltaY);
   }, { passive: false });
 
   let resizeTimer;
@@ -582,6 +730,18 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     }, 150);
   };
 
+  let hintTimer;
+  const hintsShown = new Set();
+  function showHint(text) {
+    if (hintsShown.has(text)) return;
+    hintsShown.add(text);
+    const hint = root.querySelector('.deck-hint');
+    hint.textContent = text;
+    hint.classList.remove('gone');
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => hint.classList.add('gone'), 4200);
+  }
+
   document.documentElement.classList.add('deck-open');
   document.addEventListener('keydown', onKey);
   window.addEventListener('resize', onResize);
@@ -589,8 +749,10 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   // Arrive from the outline, so the first thing anyone sees is the whole lecture zooming in.
   camera({ x: 0, y: 0, w: canvasSize.w, h: canvasSize.h }, 0, 0.96);
   root.focus();
+  hintsShown.add('first');
+  hintTimer = setTimeout(() => root.querySelector('.deck-hint').classList.add('gone'), 4200);
+  fitZoom = cam.zoom;
   if (overview) requestAnimationFrame(() => showOverview());
   else timers.push(setTimeout(() => go(current), reduceMotion() ? 0 : 450));
-  timers.push(setTimeout(() => root.querySelector('.deck-hint').classList.add('gone'), 4200));
   return { go, showOverview, close, slides };
 }
