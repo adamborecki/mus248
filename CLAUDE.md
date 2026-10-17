@@ -176,6 +176,11 @@ run of other characters turned into `-`). When a task says "preview, don't merge
 and send that URL instead. Previews share the live site's origin, so they share `localStorage` —
 the quiz and study apps don't isolate their keys yet; don't rehearse a real quiz on a preview.
 
+**End every reply that changed something with a link to the latest version, at the very bottom**
+(the live page that changed, or the branch preview if it isn't merged), so Adam can open it from
+his phone without scrolling. If the deploy isn't confirmed live, say so on that line. This is the
+"Reporting Back" rule in `adamborecki/webapp-conventions`.
+
 The exception is anything the note below already says to slow down on — a big, uncertain, or
 live-teaching-week quiz change is worth a pause and a question before it goes live, not after.
 
