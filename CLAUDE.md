@@ -158,6 +158,19 @@ in the editor and never synced has nothing to protect, so its Delete removes the
 
 Rehearse a timed quiz without editing data: `?debug=1&window=0.5&expected=0.2` (minutes).
 
+## Sushi
+
+A substantial Sushi operations/ticket-system build is specified in:
+
+- `content/instructor/sushi/SUSHI_BUILD_SPEC.md`
+- `content/instructor/sushi/SUSHI_BACKEND_PRIVACY_SPEC.md`
+
+**Read both files completely before implementing Sushi.** The intended first build is deliberately
+large: polished `/sushi/` frontend, mock-complete workflows, Google Sheets + Apps Script backend
+source/setup path, privacy-safe API boundary, persistence/history, tests, and maintenance docs.
+Do not reduce it to a toy proof of concept unless a real platform dependency blocks part of the
+work. The repo remains public, so the privacy split in the backend spec is a hard requirement.
+
 ## Git
 
 Another agent also pushes to `main`. **Fetch and merge before you push**, every time.
@@ -175,6 +188,11 @@ at `https://adamborecki.github.io/mus248/branch/<slug>/` (slug = branch name low
 run of other characters turned into `-`). When a task says "preview, don't merge", push the branch
 and send that URL instead. Previews share the live site's origin, so they share `localStorage` —
 the quiz and study apps don't isolate their keys yet; don't rehearse a real quiz on a preview.
+
+**End every reply that changed something with a link to the latest version, at the very bottom**
+(the live page that changed, or the branch preview if it isn't merged), so Adam can open it from
+his phone without scrolling. If the deploy isn't confirmed live, say so on that line. This is the
+"Reporting Back" rule in `adamborecki/webapp-conventions`.
 
 The exception is anything the note below already says to slow down on — a big, uncertain, or
 live-teaching-week quiz change is worth a pause and a question before it goes live, not after.

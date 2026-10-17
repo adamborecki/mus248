@@ -84,8 +84,10 @@ html.deck-open { overflow: hidden; }
 .deck-when { font-size: 1.05em; font-weight: 650; opacity: .92; }
 .deck-hero { position: absolute; right: 7%; top: 50%; font-size: 260px; transform: translateY(-50%); }
 /* Only the presented card moves; nothing animates inside the big canvas. */
-.deck-spot .deck-hero { filter: drop-shadow(0 20px 40px rgb(0 0 0 / .3)); animation: deck-float 5s ease-in-out infinite; }
-.portrait .deck-hero { right: auto; left: 48px; top: auto; bottom: 40px; transform: none; font-size: 200px; }
+/* The title's big emoji pops in once and then holds still: a constant float pulled the eye off the title. */
+.deck-spot .deck-hero { filter: drop-shadow(0 20px 40px rgb(0 0 0 / .3)); }
+/* Upright phones have no spare room beside the title, so the emoji shrinks to a corner mark. */
+.portrait .deck-hero { right: 44px; left: auto; top: 44px; bottom: auto; transform: none; font-size: 84px; }
 .portrait .kind-title .deck-title { max-width: 100%; }
 .kind-end .deck-body { text-align: center; font-size: calc(var(--fit) * 36px); }
 .deck-end-actions { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
@@ -99,7 +101,8 @@ html.deck-open { overflow: hidden; }
 .deck-slide.play.enter-pop .deck-body > * { animation-name: deck-pop; }
 .deck-slide.play .deck-emoji { animation: deck-wiggle 1s ease .3s both; }
 .deck-slide.play .deck-deco { animation: deck-deco-in 1.2s cubic-bezier(.2, .8, .2, 1) both; }
-.deck-slide.play.kind-title .deck-hero { animation: deck-hero-in .9s cubic-bezier(.2, 1.4, .4, 1) both, deck-float 5s ease-in-out .9s infinite; }
+.deck-slide.play.kind-title .deck-hero { animation: deck-hero-in .9s cubic-bezier(.2, 1.4, .4, 1) both; }
+.portrait .deck-slide.play.kind-title .deck-hero { animation: deck-pop .6s cubic-bezier(.2, 1.4, .4, 1) both; }
 
 @keyframes deck-rise { from { opacity: 0; transform: translateY(40px); } }
 @keyframes deck-from-left { from { opacity: 0; transform: translateX(-70px); } }
@@ -108,7 +111,6 @@ html.deck-open { overflow: hidden; }
 @keyframes deck-wiggle { 0% { transform: scale(.4) rotate(-20deg); } 45% { transform: scale(1.35) rotate(12deg); } 70% { transform: rotate(-8deg); } 100% { transform: none; } }
 @keyframes deck-deco-in { from { opacity: 0; transform: rotate(-40deg) scale(.4); } }
 @keyframes deck-hero-in { from { opacity: 0; transform: translateY(-50%) scale(.2) rotate(-30deg); } }
-@keyframes deck-float { 50% { translate: 0 -18px; rotate: 4deg; } }
 @keyframes deck-bob { 50% { translate: 0 -14px; } }
 @keyframes deck-drift { to { transform: translate(6%, -4%) rotate(8deg); } }
 
