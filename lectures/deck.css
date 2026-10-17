@@ -166,3 +166,9 @@ html.deck-open { overflow: hidden; }
 .deck-spot .deck-slide.quick .deck-deco { animation: none !important; }
 @keyframes deck-quick-in { from { opacity: 0; translate: calc(var(--dir, 1) * 42px) 0; } }
 .deck-bar [data-go="overview"][aria-pressed="true"] { background: rgb(255 255 255 / .22); }
+/* iOS reads two quick taps as "zoom in", so tapping ▶ twice zoomed the whole page. The control
+   bar takes no browser gestures at all; the rest of the deck keeps scrolling but loses double-tap
+   zoom (the canvas already handles its own pinch). */
+.deck { touch-action: manipulation; }
+.deck-bar, .deck-bar button, .deck-spot .deck-slide { touch-action: none; }
+.deck-spot .deck-body.scrolls, .deck-spot .scrolls .deck-body { touch-action: pan-y; }
