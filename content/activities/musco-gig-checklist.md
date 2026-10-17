@@ -170,10 +170,10 @@ more you add, the noisier it gets. Different controls; both have a house default
 This photo is a real example of a camera that's **off** the house defaults: iris **F5.2** (not
 F5.6) and blue pedestal **−8** (not 0).
 
-**Q2 (fill in the blank).** On the camera controller, you select camera 2 by pressing the
+**Q2 (fill in the blank).** On the camera controller, you select camera 4 by pressing the
 ______________ button. When it's selected, it lights ______.
 
-✅ **Answer.** The **camera 2** button (in the Camera / Group Selection row); it lights
+✅ **Answer.** The **camera 4** button (in the Camera / Group Selection row); it lights
 **yellow**.
 
 **Q3 (multiple choice).** Which white balance preset is the house default at Musco?
@@ -204,8 +204,13 @@ controller.
 
 - 🚩 **Pick your camera** with its camera button — whichever is lit **yellow** is the one you're
   controlling. Check before you move anything.
-- 🚩 **Camera 3 is the static wide. Never touch it.** It's framed wide enough that people standing
+- 🚩 **Camera 2 is the static wide. Never touch it.** It's framed wide enough that people standing
   for a bow are still in it.
+
+**The camera map.** Camera numbers are the Panasonic cameras' numbers, the same on the controller
+and on the multiview: **2** static wide, **5** conductor cam, **7** a backstage view (ignore it),
+**8** PowerPoint or video (usually empty). That leaves **1, 3, 4 and 6** for close-ups, two per
+camera operator — who runs which pair is decided at the gig.
 - 🚩 **Joystick** — pan and tilt. It works like an airplane: forward and back are reversed (push
   forward to tilt down); left and right are normal.
 - 🚩 **Zoom rocker** — the controller labels its two ends **TELE** (zoom in) and **WIDE** (zoom
@@ -218,7 +223,7 @@ controller.
 - a) Leave auto focus on for the rest of the show
 - ✅ b) Turn AUTO focus on, let it focus, then turn it off
 - c) Zoom all the way out
-- d) Ask the switcher operator to cut to camera 3 and leave it there
+- d) Ask the switcher operator to cut to camera 2 and leave it there
 
 ## 🎯 Practice cameras
 
@@ -249,7 +254,7 @@ up next.
 
 **The pattern:** the **static wide is the safe shot** — open the show on it and end on it. In
 between, find the interesting things, and try to catch the solos. **The switcher operator calls the
-shots** over headset — "camera 2, get the trumpet solo" — and the camera operators find them.
+shots** over headset — "camera 4, get the trumpet solo" — and the camera operators find them.
 
 **Setting up the multiview:** in **ATEM Software Control** on the booth computer, click the **gear
 icon** (lower left) → **Settings** → **Multi View** tab → pick **Multi View 1–4**. Each box has a
@@ -264,7 +269,7 @@ dropdown that sets its source.
 
 **Q8 (short answer).** Which shot opens the show and closes it, and why that one?
 
-✅ **Answer.** The **static wide** (camera 3). It never moves, so it's always safe — everyone's in
+✅ **Answer.** The **static wide** (camera 2). It never moves, so it's always safe — everyone's in
 it, including bows.
 
 ## ▶️ Start recording
@@ -342,13 +347,8 @@ ask for help.
 - **Shutter "default."** Is that SHUTTER ON left off, or a specific speed?
 - **Holding A/3200K for a few seconds** — what the hold does (commit the preset? run a white
   balance?).
-- **Camera 3 and the house defaults** — "never touch camera 3" is clear for framing. Does it still
+- **Camera 2 and the house defaults** — "never touch camera 2" is clear for framing. Does it still
   get the house exposure/color settings, or is it left alone entirely?
-- **Which number is the static wide?** This page says camera 3. The instructor's multiview map
-  (Oct 17) has box **2** as the static wide, **5** the conductor cam, **7** a backstage view,
-  **8** PowerPoint/video (usually empty), and **1, 3, 4, 6** the close-ups, two per camera
-  operator. Is "camera 3" an RP150 button number that differs from the multiview box, or out of
-  date? Confirm before a student relies on either.
 - **Which M/E row** on the two-row switcher panel is the program that gets recorded.
 - **The light stand's screw adapter thread** — dictated as "1/8 inch," which isn't a standard
   mounting thread (¼"-20 is the camera thread; ⅝"-27 is the usual light/mic stand stud). Confirm
