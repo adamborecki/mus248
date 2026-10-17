@@ -15,3 +15,4 @@ jobs:
           node-version: 20
       - run: node tools/check-worksheets.mjs
       - run: cd quiz && npm test
+      - run: node sushi/tests/run.mjs

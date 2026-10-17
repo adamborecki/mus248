@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Sushi: studio maintenance, data, and post-production work for the MUS 248 recording program. Take a plate.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121614" media="(prefers-color-scheme: dark)">
+  <title>Sushi · MUS 248</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="sushi.css">
+</head>
+<body>
+  <a class="skip-link" href="#belt-section">Skip to the belt</a>
+
+  <header class="top">
+    <a class="home-link" href="../"><span aria-hidden="true">←</span> MUS 248</a>
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <ellipse cx="32" cy="40" rx="29" ry="15" class="logo-plate"/>
+        <ellipse cx="32" cy="38" rx="21" ry="9.5" class="logo-plate-face"/>
+        <rect x="14" y="28" width="36" height="12" rx="6" class="logo-rice"/>
+        <path d="M12 27c3-9 37-11 40-1 1 4-3 6-8 6H19c-5 0-8-2-7-5z" class="logo-fish"/>
+        <path d="M21 20l3 11M30 18l3 13M39 19l3 12" class="logo-stripe"/>
+        <rect x="28" y="20" width="7" height="20" rx="1.5" class="logo-nori"/>
+      </svg>
+      <div>
+        <h1>Sushi</h1>
+        <p class="tagline">Studio work, one plate at a time</p>
+      </div>
+    </div>
+    <button type="button" id="profile-button" class="profile-chip" aria-haspopup="dialog">
+      <span aria-hidden="true">👤</span><span id="profile-label">Who are you?</span>
+    </button>
+  </header>
+
+  <div id="banners" class="banners"></div>
+
+  <main id="app" aria-busy="true">
+    <section id="welcome" class="welcome" hidden aria-labelledby="welcome-title">
+      <div>
+        <h2 id="welcome-title">First time here?</h2>
+        <p>Sushi is the list of real studio work: maintenance, data transfers, post-production. Take a plate, do it, mark it done. Add your name once, and this device remembers it.</p>
+      </div>
+      <div class="welcome-actions">
+        <button type="button" class="button primary" data-action="open-profile">Add my name</button>
+        <button type="button" class="button quiet" data-action="dismiss-welcome">Just looking</button>
+      </div>
+    </section>
+
+    <section id="table-section" class="table-section" hidden aria-labelledby="table-title">
+      <div class="section-head">
+        <h2 id="table-title"><span aria-hidden="true">🥢</span> My Table</h2>
+        <span class="count" id="table-count"></span>
+      </div>
+      <p class="section-help">Plates you took on this device. Only you and Adam can see that they're yours.</p>
+      <ul id="table-list" class="plate-list" role="list"></ul>
+    </section>
+
+    <section id="belt-section" class="belt-section" aria-labelledby="belt-title" tabindex="-1">
+      <div class="section-head">
+        <h2 id="belt-title"><span aria-hidden="true">🍣</span> On the Belt</h2>
+        <span class="count" id="belt-count" aria-live="polite"></span>
+        <button type="button" id="refresh" class="icon-button" aria-label="Refresh the belt" title="Refresh">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <form id="filters" class="filters" aria-label="Filter plates">
+        <fieldset class="show-toggle">
+          <legend class="visually-hidden">Show</legend>
+          <label><input type="radio" name="show" value="all" checked><span>Everything</span></label>
+          <label><input type="radio" name="show" value="belt"><span>Belt only</span></label>
+          <label><input type="radio" name="show" value="table"><span>My Table</span></label>
+        </fieldset>
+        <div class="filter-row">
+          <label class="filter"><span class="filter-label">Where</span><select name="location"><option value="all">Anywhere</option></select></label>
+          <label class="filter"><span class="filter-label">Kind</span><select name="category"><option value="all">All kinds</option></select></label>
+          <label class="filter"><span class="filter-label">Time</span><select name="effort">
+            <option value="all">Any size</option>
+            <option value="small">Small · 5–10 min</option>
+            <option value="medium">Medium · 10–25 min</option>
+            <option value="large">Large · 25–60 min</option>
+            <option value="boat">Boat · 60+ min</option>
+          </select></label>
+          <label class="urgent-toggle"><input type="checkbox" name="urgentOnly"><span><span aria-hidden="true">⚡</span> Urgent &amp; due soon</span></label>
+          <button type="button" id="clear-filters" class="text-button" hidden>Clear filters</button>
+        </div>
+      </form>
+
+      <div class="belt" id="belt">
+        <button type="button" class="belt-nudge prev" data-nudge="-1" aria-label="Scroll the belt left" hidden>‹</button>
+        <ul id="belt-list" class="plate-track" role="list"></ul>
+        <button type="button" class="belt-nudge next" data-nudge="1" aria-label="Scroll the belt right" hidden>›</button>
+      </div>
+      <p id="belt-empty" class="empty" hidden></p>
+    </section>
+
+    <section id="taken-section" class="fold" hidden>
+      <details>
+        <summary><span aria-hidden="true">🍽️</span> Taken by others <span class="count" id="taken-count"></span></summary>
+        <p class="section-help">Someone is working on these. Names stay private; you just see that they're taken.</p>
+        <ul id="taken-list" class="plate-list compact" role="list"></ul>
+      </details>
+    </section>
+
+    <section id="history-section" class="fold">
+      <details>
+        <summary><span aria-hidden="true">🧾</span> Cleared plates</summary>
+        <h3 class="fold-title">Your plates (this device)</h3>
+        <ul id="my-history" class="history-list" role="list"></ul>
+        <h3 class="fold-title">Recently cleared by anyone</h3>
+        <ul id="cleared-list" class="history-list" role="list"></ul>
+      </details>
+    </section>
+
+    <section class="fold how">
+      <details>
+        <summary><span aria-hidden="true">❓</span> How Sushi works</summary>
+        <ol class="how-steps">
+          <li><strong>Look.</strong> Tap a plate to read what the job is, where, how long, and what to check first. Looking never takes it.</li>
+          <li><strong>Take the Plate.</strong> It moves to <em>My Table</em>. Everyone else just sees “Taken”, never your name.</li>
+          <li><strong>Stuck?</strong> <em>Call the Chef</em> tells Adam. The plate stays yours.</li>
+          <li><strong>Finished Eating.</strong> Add a note if it asks for one. Some plates clear right away; others wait for Adam to check.</li>
+          <li><strong>Can't do it after all?</strong> <em>Put It Back</em> and someone else can take it.</li>
+        </ol>
+        <div class="legend" aria-label="Plate sizes">
+          <span class="legend-item"><span class="mini-plate effort-small" aria-hidden="true"></span>Small · 5–10 min</span>
+          <span class="legend-item"><span class="mini-plate effort-medium" aria-hidden="true"></span>Medium · 10–25 min</span>
+          <span class="legend-item"><span class="mini-plate effort-large" aria-hidden="true"></span>Large · 25–60 min</span>
+          <span class="legend-item"><span class="mini-plate effort-boat" aria-hidden="true"></span>Boat · 60+ min project</span>
+        </div>
+        <p class="fine">Plate size is time, not points: there are no scores here. Sushi keeps a record of work done; Canvas is still where grades live, and the university payroll system is still where hours get paid. Your name goes only to Adam's private sheet. It's typed, not a login, so it isn't proof of anything on its own.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p id="status-line" class="status-line"></p>
+  </footer>
+
+  <dialog id="task-dialog" class="sheet" aria-labelledby="task-dialog-title">
+    <div class="sheet-inner" id="task-dialog-body"></div>
+  </dialog>
+
+  <dialog id="profile-dialog" class="sheet narrow" aria-labelledby="profile-title">
+    <form method="dialog" id="profile-form" class="sheet-inner profile-form">
+      <div class="sheet-head">
+        <h2 id="profile-title">Who's eating?</h2>
+        <button type="button" class="icon-button close" data-action="close-profile" aria-label="Close">✕</button>
+      </div>
+      <label class="field">
+        <span class="field-label">Your name</span>
+        <input type="text" name="name" maxlength="60" autocomplete="name" required spellcheck="false">
+        <span class="field-hint">The name Adam knows you by. Only Adam sees it.</span>
+      </label>
+      <fieldset class="field modes">
+        <legend class="field-label">How are you doing this work?</legend>
+        <div id="mode-options"></div>
+      </fieldset>
+      <p class="fine">Saved on this device only, so you don't retype it. It's how Adam knows who did what; it isn't a login.</p>
+      <p class="form-error" id="profile-error" role="alert"></p>
+      <div class="sheet-actions">
+        <button type="submit" class="button primary" value="save">Save</button>
+        <button type="button" class="button quiet" data-action="forget-profile" id="forget-profile">Forget me on this device</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <noscript><p class="noscript">Sushi needs JavaScript turned on.</p></noscript>
+  <script type="module" src="sushi.js"></script>
+</body>
+</html>

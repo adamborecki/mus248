@@ -67,6 +67,15 @@ New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`. A lecture wi
 printable worksheet and an online fill-in (with a Canvas completion code) automatically; 🍄
 power-ups are tap-to-open previews of a later lecture.
 
+### 🍣 Sushi (studio work)
+`/sushi/` is the list of real work around the studios: room maintenance, data transfers,
+post-production, shown as plates on a conveyor belt. Take a plate, do it, mark it done; stuck,
+**Call the Chef**. It works for class participation or paid student-employee hours, and records
+the work without grading or paying anything. Unlike the rest of the site it has a small backend: a
+Google Sheet with Apps Script that Adam runs. The public page only ever sees a privacy-filtered
+task list, never who took what. `/sushi/?demo=1` is a practice kitchen. Maintainers start at
+`sushi/README.md`.
+
 ### 📝 Weekly quiz
 A short, no-account, no-server quiz you take alongside the activities:
 
@@ -83,7 +92,7 @@ Flip-card review of the terms and concepts the quiz draws from. Filter to **Core
 
 ## 🤔 Why it works this way
 
-Everything here is **static**: plain HTML/CSS/JS served straight off GitHub Pages. No server, no database, no accounts.
+Everything here is **static**: plain HTML/CSS/JS served straight off GitHub Pages. No server, no database, no accounts. (The one exception is Sushi, which reads a privacy-filtered task list from a Google Sheet. If that's unreachable, it shows its last copy and says so.)
 
 That's deliberate, not a limitation:
 
@@ -107,6 +116,8 @@ PAGES — every folder here is a URL on the live site
                        lectures/worksheet/ (+ key/) and lectures/fill/ serve any lecture by ?id=
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
+  sushi/               the Sushi work board, plus its Apps Script backend source (sushi/backend/)
+                       and tests. See sushi/README.md
   worksheets/          index of every printable worksheet
 
 SOURCE — never served as a page
@@ -169,5 +180,6 @@ For the curious: this whole thing is **vibecoded** — built conversationally wi
 - **Branch previews:** `.github/workflows/pages.yml` publishes `main` at the site root and every `claude/…`, `feature/…`, `skin/…` or `preview/…` branch at `/mus248/branch/<slug>/` (list at [`/mus248/branch/`](https://adamborecki.github.io/mus248/branch/)), using the shared setup in [webapp-conventions `BRANCH_PREVIEWS.md`](https://github.com/adamborecki/webapp-conventions/blob/main/BRANCH_PREVIEWS.md). Set **Settings → Pages → Source: GitHub Actions**. While the old deploy-from-branch is still selected, both builds deploy `main` (same content) and race on every push to `main`, so `/branch/` can briefly disappear. Build locally with `ROOT_REF=HEAD REF_NS=refs/heads tools/build-pages.sh /tmp/site`. Keep every URL relative so a page works at both depths.
 - **Quiz engine:** a deterministic, seed-based question selector (`quiz/js/engine.js`) — no AI calls at runtime, no backend. State round-trips through a checksummed, base64url-encoded code (`M248Q<n>.v<schema>.<payload>.<sha256 prefix>`) that a student pastes into Canvas as their submission. Full format and adaptive-selection rules are documented in `quiz/README.md`.
 - **Worksheets:** `worksheet.js` parses each activity's Markdown — frontmatter, `## ✅ Definition of done`, `## 🗝️ Key terms`, `🚩` checkpoints, and `**Qn (type).**` blocks — and renders both the student page and the instructor answer key from it, styled for paper with `@media print`. It shares `markdown.js` with the activity page so the two can't disagree.
+- **Sushi:** `sushi/backend/Code.gs` is Apps Script, kept in git and pasted into the Sheet's script project. `node sushi/tests/run.mjs` runs that same file against fake Google services; the `/sushi/?demo=1` page runs it in the browser.
 - **Tests:** `cd quiz && npm test` — validates the data files, code round-trips, tamper detection, and selection logic. `node tools/check-worksheets.mjs` proves the worksheet generator against every activity and fails on an unmarked answer or a leaked key. Node 18+, no other dependencies.
 - **Instructor tooling:** `quiz/verify/` scores pasted or downloaded Canvas submissions entirely in-browser; `?debug=1` on the quiz shows the selected question set and adds an auto-answer button for testing.

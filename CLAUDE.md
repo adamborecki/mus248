@@ -8,6 +8,7 @@ server.** If a change needs a bundler, it is the wrong change.
 ```bash
 node tools/check-worksheets.mjs   # every activity parses; no answer key leaks
 cd quiz && npm test               # quiz data, scoring, state codes, pre-flight
+node sushi/tests/run.mjs          # Sushi backend, privacy, client (only if sushi/ changed)
 ```
 
 Both are fast and both have caught real bugs. Run them even for a "just text" edit — activity
@@ -160,16 +161,23 @@ Rehearse a timed quiz without editing data: `?debug=1&window=0.5&expected=0.2` (
 
 ## Sushi
 
-A substantial Sushi operations/ticket-system build is specified in:
+`/sushi/` is the studio work-ticket system (built from the two specs in
+`content/instructor/sushi/`). **Start with `sushi/README.md`**: file map, state machine, which
+fields are public, and the "add sushi for ___" decision table. Backend setup and deploy steps are
+in `sushi/backend/README.md`.
 
-- `content/instructor/sushi/SUSHI_BUILD_SPEC.md`
-- `content/instructor/sushi/SUSHI_BACKEND_PRIVACY_SPEC.md`
-
-**Read both files completely before implementing Sushi.** The intended first build is deliberately
-large: polished `/sushi/` frontend, mock-complete workflows, Google Sheets + Apps Script backend
-source/setup path, privacy-safe API boundary, persistence/history, tests, and maintenance docs.
-Do not reduce it to a toy proof of concept unless a real platform dependency blocks part of the
-work. The repo remains public, so the privacy split in the backend spec is a hard requirement.
+- **Live task content lives in Adam's Google Sheet, not in git.** "Add a task" is a Sheet row
+  (or a Templates row for repeating work), not a code change. Git holds code and generic docs only.
+- **The public feed is an allowlist:** `publicTask_` in `sushi/backend/Code.gs` writes each public
+  field by hand. Never copy a row into the response. A new public field also needs
+  `PUBLIC_TASK_KEYS` and the privacy test updated.
+- `sushi/config.js` is public: it may only ever hold the `/exec` URL. No spreadsheet id, email,
+  or names anywhere in `sushi/` (the tests scan for them).
+- `Code.gs` changes reach production only when someone pastes the file into Apps Script and deploys
+  a **new version** of the existing deployment. Say so when you change it; pushing isn't enough.
+- `node sushi/tests/run.mjs` runs the real `Code.gs` against fakes (`sushi/fake-google.js`). After
+  UI changes also run `node sushi/tests/browser.mjs`. `/sushi/?demo=1` is the same backend in the
+  browser, with Demo tools for races and network failures.
 
 ## Git
 
