@@ -158,6 +158,19 @@ in the editor and never synced has nothing to protect, so its Delete removes the
 
 Rehearse a timed quiz without editing data: `?debug=1&window=0.5&expected=0.2` (minutes).
 
+## Sushi
+
+A substantial Sushi operations/ticket-system build is specified in:
+
+- `content/instructor/sushi/SUSHI_BUILD_SPEC.md`
+- `content/instructor/sushi/SUSHI_BACKEND_PRIVACY_SPEC.md`
+
+**Read both files completely before implementing Sushi.** The intended first build is deliberately
+large: polished `/sushi/` frontend, mock-complete workflows, Google Sheets + Apps Script backend
+source/setup path, privacy-safe API boundary, persistence/history, tests, and maintenance docs.
+Do not reduce it to a toy proof of concept unless a real platform dependency blocks part of the
+work. The repo remains public, so the privacy split in the backend spec is a hard requirement.
+
 ## Git
 
 Another agent also pushes to `main`. **Fetch and merge before you push**, every time.

@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-10-14"
+revised: "2026-10-17"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -344,6 +344,11 @@ ask for help.
   balance?).
 - **Camera 3 and the house defaults** — "never touch camera 3" is clear for framing. Does it still
   get the house exposure/color settings, or is it left alone entirely?
+- **Which number is the static wide?** This page says camera 3. The instructor's multiview map
+  (Oct 17) has box **2** as the static wide, **5** the conductor cam, **7** a backstage view,
+  **8** PowerPoint/video (usually empty), and **1, 3, 4, 6** the close-ups, two per camera
+  operator. Is "camera 3" an RP150 button number that differs from the multiview box, or out of
+  date? Confirm before a student relies on either.
 - **Which M/E row** on the two-row switcher panel is the program that gets recorded.
 - **The light stand's screw adapter thread** — dictated as "1/8 inch," which isn't a standard
   mounting thread (¼"-20 is the camera thread; ⅝"-27 is the usual light/mic stand stud). Confirm
