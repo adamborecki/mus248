@@ -66,3 +66,25 @@ export function setInstructorView(on) {
     else window.localStorage.removeItem(KEY);
   } catch { /* nothing to remember it in */ }
 }
+
+// Slides number themselves like sections of a code: under "## 2. A Finished Example" the slides
+// read 2.1, 2.2, 2.3… so adding one never means renumbering by hand. Only lectures whose ##
+// sections start with a number get this; a number typed on a ### heading is replaced. 🙈 slides
+// aren't counted, so a slide has the same number in instructor view and for students.
+export function numberSlides(markdown) {
+  let section = null;
+  let count = 0;
+  let fenced = false;
+  return markdown.split('\n').map((line) => {
+    if (line.trim().startsWith('```')) { fenced = !fenced; return line; }
+    if (fenced) return line;
+    const h2 = line.match(/^##\s+(.*)$/);
+    if (h2) { section = (h2[1].match(/^(\d+)\.\s/) || [])[1] || null; count = 0; return line; }
+    const h3 = line.match(/^###\s+(.*)$/);
+    if (!h3 || !section) return line;
+    const title = h3[1].replace(/^\d+(?:\.\d+)?\.?\s+/, '');
+    if (/^🙈/u.test(title)) return `### ${title}`;
+    count += 1;
+    return `### ${section}.${count} ${title}`;
+  }).join('\n');
+}

@@ -11,7 +11,7 @@
 // What the paper does carry is a pointer, at each spot a section was skipped, naming
 // what the QR code leads to.
 
-import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, isFence, joinWrappedLines, stepNumbers } from './markdown.js';
+import { ANSWER_LINE, FRONTMATTER, OPTION, blankTerms, escapeHtml, inline, isFence, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
 import { instructorView, isVisible, lectureView } from './lectures/view.js';
@@ -89,7 +89,8 @@ function parseQuestion(lines, index, section, order) {
   // a blank line. Anything else — a heading, a checkpoint, the next paragraph or
   // the next question — ends the block.
   let mode = 'prompt';
-  for (let scan = index + 1; scan < lines.length; scan += 1) {
+  let scan = index + 1;
+  for (; scan < lines.length; scan += 1) {
     const line = lines[scan].trim();
     if (!line) {
       if (mode === 'answer') break;
@@ -114,7 +115,25 @@ function parseQuestion(lines, index, section, order) {
   const marked = question.options.find((option) => option.correct);
   question.answer = question.note || (marked ? `${marked.letter}) ${marked.text}` : null);
   question.blanks = (question.prompt.match(BLANK) || []).length;
+  // A lecture's fill-in-the-blank question marks its answer in the prompt: ==context window==.
+  question.terms = blankTerms(question.prompt);
+  question.end = scan;
   return question;
+}
+
+// A lecture's numbered questions are for the online refresher, not the slides or the notes: this
+// takes them out, using the same block rules that find them.
+export function stripQuestions(markdown) {
+  const lines = joinWrappedLines(markdown).split('\n');
+  const kept = [];
+  let fenced = false;
+  for (let index = 0; index < lines.length; index += 1) {
+    if (isFence(lines[index])) fenced = !fenced;
+    const question = fenced ? null : parseQuestion(lines, index, '', index);
+    if (question) { index = question.end - 1; continue; }
+    kept.push(lines[index]);
+  }
+  return kept.join('\n');
 }
 
 // Sections whose checkpoints and questions get a block of their own on the worksheet, rather than
@@ -228,7 +247,7 @@ export function parseActivity(markdown) {
 
 // ---------- rendering ----------
 
-const writable = (text) => inline(text).replace(BLANK, '<span class="blank"></span>');
+const writable = (text, showAnswers = false) => inline(text, { blanks: showAnswers ? 'mark' : 'blank' }).replace(BLANK, '<span class="blank"></span>');
 const rule = (count = 1) => '<span class="rule"></span>'.repeat(count);
 
 // Links a printed worksheet back to its activity page — the phone has the procedure, photos, and
@@ -254,7 +273,7 @@ export function renderQr(route, title, cue = 'Scan for full instructions') {
 
 function renderQuestion(question, showAnswers) {
   const number = `<span class="q-number">Q${question.number}</span>`;
-  const prompt = `<p class="q-prompt">${number}${writable(question.prompt)}</p>`;
+  const prompt = `<p class="q-prompt">${number}${writable(question.prompt, showAnswers)}</p>`;
   let body = '';
 
   if (question.options.length) {

@@ -1,18 +1,18 @@
 // Follow-along notes: the lecture itself, printed, with every ==term== turned into a blank to fill
 // in while the slides (which highlight the term) are up. The key prints the same page filled in.
 //
-// It's the student view of the Markdown (no 🙈 slides, no 🧑‍🏫 notes), minus the 🌀 portals, which
-// are for exploring on a screen. Numbered questions print as they appear on the slides; their
-// answers are on the worksheet key.
+// It's the lecture's text as students see it (no 🙈 slides, no 🧑‍🏫 notes, no numbered questions,
+// which are the online refresher's), minus the 🌀 portals, which are for exploring on a screen.
 
-import { escapeHtml, renderMarkdown } from '../markdown.js';
+import { blankTerms, escapeHtml, isFence, renderMarkdown } from '../markdown.js';
 import { renderQr } from '../worksheet.js';
-import { instructorView, isVisible, lectureView } from './view.js';
+import { instructorView, isVisible } from './view.js';
+import { lectureText } from './text.js';
 
 export function notesMarkdown(markdown) {
   const kept = [];
   let inPortal = false;
-  lectureView(markdown).split('\n').forEach((line) => {
+  lectureText(markdown).split('\n').forEach((line) => {
     if (inPortal && line.trimStart().startsWith('>')) return;
     inPortal = false;
     if (/^>\s*🌀/u.test(line.trimStart())) { inPortal = true; return; }
@@ -21,7 +21,17 @@ export function notesMarkdown(markdown) {
   return kept.join('\n');
 }
 
-export const hasBlanks = (markdown) => /==[^=\n]+?==/.test(notesMarkdown(markdown));
+// Every blank on the notes, in order. A ==term== inside a ``` code block is being shown, not asked.
+export function notesBlanks(markdown) {
+  const terms = [];
+  let fenced = false;
+  notesMarkdown(markdown).split('\n').forEach((line) => {
+    if (isFence(line)) { fenced = !fenced; return; }
+    if (!fenced) terms.push(...blankTerms(line));
+  });
+  return terms;
+}
+export const hasBlanks = (markdown) => notesBlanks(markdown).length > 0;
 
 export function renderNotes(markdown, lecture, { key = false } = {}) {
   const date = lecture.date
@@ -41,6 +51,7 @@ export function renderNotes(markdown, lecture, { key = false } = {}) {
         ${renderQr(`lectures/${lecture.id}`, lecture.title, 'Scan for the slides')}
       </div>
       ${nameLine}
+      ${key ? '' : '<p class="notes-photo">📸 When you\'re done, take photos of these notes and submit them on Canvas.</p>'}
     </header>
     <article class="notes-body">${renderMarkdown(notesMarkdown(markdown), { blanks: key ? 'mark' : 'blank' })}</article>
     <footer class="ws-foot">Generated from <code>content/lectures/${escapeHtml(lecture.contentFile)}.md</code> — edit the lecture, not this page.</footer>`;

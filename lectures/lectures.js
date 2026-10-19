@@ -6,6 +6,7 @@ import { escapeHtml, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
 import { instructorView, isVisible, lectureView, setInstructorView } from './view.js';
 import { hasBlanks } from './notes.js';
+import { lectureText } from './text.js';
 
 export { isVisible };
 
@@ -52,21 +53,22 @@ export async function mountLecture(root, id) {
   const index = readable.findIndex((lecture) => lecture.id === id);
   const lecture = readable[index];
   if (!lecture) throw new Error(`No lecture ${id}`);
-  const markdown = lectureView(await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
+  const source = await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);
     return response.text();
-  }), { instructor });
+  });
+  // The page and slides show the lecture's text; its numbered questions are kept for the refresher.
+  const markdown = lectureText(source, { instructor });
   const query = `?id=${encodeURIComponent(lecture.id)}`;
-  // Blanks (==term==) give a lecture follow-along notes; numbered questions give it a worksheet;
-  // either gives it the online fill-in. Keys only show in instructor view.
-  const blanks = hasBlanks(markdown);
-  const questions = hasQuestions(markdown);
+  // Blanks (==term==) give a lecture follow-along notes to print; numbered questions give it an
+  // online refresher. Keys only show in instructor view.
+  const blanks = hasBlanks(source);
+  const questions = hasQuestions(lectureView(source));
   const extras = [
     blanks && `<a href="../notes/${query}">📝 Follow-along notes</a>`,
-    questions && `<a href="../worksheet/${query}">🖨️ Worksheet</a>`,
-    (blanks || questions) && `<a href="../fill/${query}">✍️ Fill in online</a>`,
+    questions && `<a href="../refresher/${query}">🔁 Online refresher</a>`,
     instructor && blanks && `<a href="../notes/key/${query}">🔑 Notes key</a>`,
-    instructor && questions && `<a href="../worksheet/key/${query}">🔑 Answer key</a>`,
+    instructor && questions && `<a href="../worksheet/key/${query}">🔑 Refresher key</a>`,
   ].filter(Boolean).join('');
   // The list runs newest first, so the entry before this one is the newer lecture.
   const newer = readable[index - 1];
@@ -81,7 +83,7 @@ export async function mountLecture(root, id) {
     ${instructor ? '<p class="instructor-banner">🧑‍🏫 Instructor view: notes and 🙈 hidden slides are showing. <a href="https://github.com/adamborecki/mus248/tree/main/content/instructor">📓 Instructor notes</a> <button type="button" data-instructor="off">Turn off</button></p>' : ''}
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button></p>
     ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}
-    <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/' })}</article>
+    <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/', blanks: instructor ? 'mark' : 'plain' })}</article>
     <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>
     <p class="instructor-switch"><button type="button" data-instructor="${instructor ? 'off' : 'on'}">${instructor ? 'Leave instructor view' : 'π'}</button></p>`;
 

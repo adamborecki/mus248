@@ -27,3 +27,4 @@
   .notes-body mark.key-term { background:none; text-decoration:underline; }
 }
 .notes-body pre.code-block { margin:.3rem 0; padding:.4rem .6rem; border:1px solid var(--line); border-radius:.3rem; font:8.5pt/1.35 ui-monospace, Menlo, monospace; white-space:pre-wrap; break-inside:avoid; }
+.notes-photo { margin:.6rem 0 0; padding:.35rem .6rem; border:1px dashed var(--muted); border-radius:.3rem; font-size:.85rem; font-weight:600; }

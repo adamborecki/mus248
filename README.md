@@ -63,9 +63,9 @@ copying text from a screen onto paper.
 `/lectures/` has the text of each class's slides, newest first, with upcoming ones marked. Names,
 codes, and private links are left out. **▶ Present slides** turns any lecture into an animated,
 zoomable deck. Press **O** (or pinch) for an outline where related slides nest together.
-New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`. A lecture with questions gets a
-printable worksheet and an online fill-in (with a Canvas completion code) automatically, and `==term==` blanks
-in a lecture give it printable follow-along notes; 🌀 portals are tap-to-open previews of a later
+New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`. `==term==` blanks in a lecture give it
+printable follow-along notes, and its numbered questions become an online refresher that ends in a
+Canvas deliverable; 🌀 portals are tap-to-open previews of a later
 lecture. `/playground/` runs pasted HTML (a group's bad webapp) and shares it as a link.
 
 ### 🍣 Sushi (studio work)
@@ -114,7 +114,7 @@ PAGES — every folder here is a URL on the live site
   repo-improvement/    the pilot activity plus its starter kit: downloads/PROJECT_STARTER.md,
                        starter-menu.json, toolkit.js
   lectures/            each class's slides as text: lectures/<id>/ per lecture;
-                       lectures/worksheet/ (+ key/) and lectures/fill/ serve any lecture by ?id=
+                       lectures/notes/, lectures/refresher/, and lectures/worksheet/key/ serve any lecture by ?id=
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
   sushi/               the Sushi work board, plus its Apps Script backend source (sushi/backend/)

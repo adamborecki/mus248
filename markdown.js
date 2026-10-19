@@ -20,15 +20,20 @@ const resolveLink = (href, assetBase) => (/^(#|mailto:)/.test(href) ? href : res
 // Code spans are set aside first and put back last, so `**bold**` inside backticks shows its
 // asterisks instead of turning bold — a page that teaches Markdown has to be able to show it.
 //
-// ==term== marks a follow-along blank in a lecture. The slides and page highlight it; the printed
-// follow-along notes print a blank in its place (blanks: 'blank'), and their key fills it in.
+// ==term== marks a follow-along blank in a lecture. The page and slides show it as plain text
+// (instructor view highlights it: blanks: 'mark'); the printed follow-along notes print a blank in
+// its place (blanks: 'blank'), and their key fills it in. ==answer|also okay== lists answers the
+// online refresher also accepts; only the first is ever shown.
 const BLANK_TERM = /==([^=\n]+?)==/g;
 export const blankTerms = (value) => [...value.matchAll(BLANK_TERM)].map((match) => match[1].trim());
-const blankHtml = (text, mode) => (mode === 'blank'
-  ? `<span class="note-blank" style="--chars:${Math.max(4, text.length)}"></span>`
-  : `<mark class="key-term">${text}</mark>`);
+export const blankShown = (term) => term.split('|')[0].trim();
+const blankHtml = (text, mode) => {
+  const shown = blankShown(text);
+  if (mode === 'blank') return `<span class="note-blank" style="--chars:${Math.max(4, shown.length)}"></span>`;
+  return mode === 'mark' ? `<mark class="key-term">${shown}</mark>` : shown;
+};
 
-export const inline = (value, { assetBase = '', blanks = 'mark' } = {}) => {
+export const inline = (value, { assetBase = '', blanks = 'plain' } = {}) => {
   const code = [];
   return escapeHtml(value)
     .replace(/`([^`]+)`/g, (match, text) => `\u0000${code.push(text) - 1}\u0000`)

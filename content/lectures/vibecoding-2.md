@@ -31,43 +31,43 @@ Remember the 🌀 portals in Vibecoding 1? Today you walk through them:
 
 ## 1. The Terminal
 
-### 1. What the terminal is
+### What the terminal is
 
-A **text conversation with your computer**. Type a command, press Return, it answers.
+A **text ==conversation== with your computer**. Type a command, press Return, it answers.
 
-It sees the **same files** Finder shows you, just a different way in.
+It sees the **==same files==** Finder shows you, just a different way in.
 
 On a Mac: press ⌘ Space and type *Terminal*.
 
 Why bother? It's **exact**, it's **repeatable**, and it's **how AI coding agents work**: they "type"
 in a terminal on your behalf.
 
-### 1. Five commands
+### Five commands
 
 | Command | What it does | Finder equivalent |
 |---|---|---|
 | `pwd` | Where am I? | The folder name at the top of the window |
 | `ls` | What's in this folder? | Looking at the window |
 | `cd Desktop` | Go into a folder | Double-clicking a folder |
-| `cd ..` | Go up one folder | The back arrow |
+| `cd ..` | Go ==up== one folder | The back arrow |
 | `open .` | Show this folder in Finder | (the way back) |
 
-**Q1 (fill in the blank).** The command that answers "where am I?" is `______`.
+**Q1 (fill in the blank).** The command that answers "where am I?" is ==pwd==.
 
-✅ **Answer.** pwd
+✅ **Answer.** `pwd` prints where you are: the folder the terminal is working in right now.
 
-### 1. Tricks that save you every time
+### Tricks that save you every time
 
 - **Drag a folder from Finder into the Terminal window** and its full path is typed for you.
-- **Tab** finishes a file or folder name. Press it twice to see the choices.
-- **Up arrow** brings back your last command.
-- **Control-C** stops whatever is running.
+- **==Tab==** finishes a file or folder name. Press it twice to see the choices.
+- **==Up arrow==** brings back your last command.
+- **==Control-C==** stops whatever is running.
 - Folder names with spaces need quotes: `cd "Recital Audio"`. Dragging does this for you.
 
-### 1. Why an engineer cares: proving a copy is good
+### Why an engineer cares: proving a copy is good
 
 Remember the **Triple Triple Check**: matching GB, matching exact bytes, the right three
-locations. The terminal can add a stronger check, comparing **every byte of every file**.
+locations. The terminal can add a stronger check, comparing **==every byte== of every file**.
 
 | Command | What it tells you |
 |---|---|
@@ -75,7 +75,7 @@ locations. The terminal can add a stronger check, comparing **every byte of ever
 | `diff -rq "copy A" "copy B"` | Compares two folders, file by file, byte by byte |
 | `shasum -a 256 "file.wav"` | A fingerprint of one file. Same fingerprint = same file |
 
-With `diff -rq`, **silence is good news**: no output means every file matched. This is an
+With `diff -rq`, **==silence== is good news**: no output means every file matched. This is an
 **extra** check. It doesn't replace the Triple Triple Check.
 
 **Q2 (multiple choice).** You run `diff -rq` on two copies of a recital folder and it prints
@@ -87,21 +87,21 @@ nothing. What does that mean?
 
 ✅ **Answer.** b) Silence means no differences were found.
 
-### 1. 🙈 Gotcha: `.DS_Store`
+### 🙈 Gotcha: `.DS_Store`
 
 macOS drops hidden `.DS_Store` files into folders you've opened in Finder, so `diff -rq` may say
 `Only in copy A: .DS_Store`. That one is harmless: it's Finder's view settings, not your media.
 Anything else in the report is a real difference. Find out why before you delete anything.
 
-### 1. Commands that don't forgive
+### Commands that don't forgive
 
-- `rm` deletes. **It does not go to the Trash.** No undo.
+- `rm` deletes. **It does not go to the ==Trash==.** No undo.
 - `sudo` runs a command with full admin power. If something tells you to use it, stop and ask.
-- **Never paste a command you can't explain**, from a website or from an AI.
+- **Never paste a command you can't ==explain==**, from a website or from an AI.
 
 Same rule as the drives: **if you are 99% sure, do not delete. Ask for help.**
 
-### 1. 🙈 Optional: ffmpeg
+### 🙈 Optional: ffmpeg
 
 *Only if ffmpeg is installed; it doesn't come with macOS.* `ffprobe "clip.mov"` prints a file's
 codec, frame rate, resolution, and audio channels without opening an editor. Batch jobs (convert
@@ -109,7 +109,7 @@ codec, frame rate, resolution, and audio channels without opening an editor. Bat
 
 ## 2. Git from the Terminal
 
-### 2. Same steps, typed
+### Same steps, typed
 
 | In the browser (Vibecoding 1) | In the terminal |
 |---|---|
@@ -120,14 +120,14 @@ codec, frame rate, resolution, and audio channels without opening an editor. Bat
 | Send it to GitHub | `git push` |
 | Get everyone else's changes | `git pull` |
 
-The pull request still happens on github.com.
+The pull request still happens on ==github.com==.
 
-**Q3 (fill in the blank).** To send your commits from your computer up to GitHub, you run
-`git ______`.
+**Q3 (fill in the blank).** To send your commits from your computer up to GitHub, you run git
+==push==.
 
-✅ **Answer.** push
+✅ **Answer.** `git push` sends your commits up to GitHub; `git pull` brings everyone else's down.
 
-### 2. 🙈 The vocabulary, in engineer terms
+### 🙈 The vocabulary, in engineer terms
 
 | Git word | Closest thing in our world |
 |---|---|
@@ -140,7 +140,7 @@ The pull request still happens on github.com.
 
 ## 3. Coding Agents
 
-### 3. Chatbot vs. coding agent
+### Chatbot vs. coding agent
 
 | | Chatbot (e.g. PantherAI) | Coding agent (e.g. Claude Code) |
 |---|---|---|
@@ -149,7 +149,7 @@ The pull request still happens on github.com.
 | Works in | A chat window | A terminal (or an editor, or the web) |
 | You check | Its answer | Its changes, the tests, the result on screen |
 
-That's why the terminal and git matter: **they're the agent's hands**, and how you see what it did.
+That's why the terminal and git matter: **they're the agent's ==hands==**, and how you see what it did.
 
 **Q4 (multiple choice).** What can a coding agent do that a chatbot like PantherAI can't?
 
@@ -159,13 +159,13 @@ That's why the terminal and git matter: **they're the agent's hands**, and how y
 
 ✅ **Answer.** b) A chatbot can write code too, but you have to copy it into place yourself.
 
-### 3. `CLAUDE.md`: rules written for an AI
+### `CLAUDE.md`: rules written for an AI
 
 This site has a Markdown file the agent reads before it touches anything. A few of its rules:
 
 - "This repo is public." Never commit passwords, codes, or names.
 - "American spellings."
-- If you're not certain of a port label or menu path, **don't guess**: mark it unverified.
+- If you're not certain of a port label or menu path, **don't ==guess==**: mark it unverified.
 - Run the tests before every commit, and look at the result in a browser.
 
 **Q5 (short answer).** Why write rules like these down in a file, instead of typing them into the
@@ -174,27 +174,28 @@ chat each time?
 ✅ **Answer.** The agent reads the file at the start of every session, so the rules never get
 forgotten or left out, and they take up no extra prompts.
 
-### 3. Queues and steering
+### Queues and steering
 
 A coding agent can work for minutes at a time. You don't have to wait:
 
-- **Queue:** send your next message while it's working. It picks it up when it's ready.
-- **Steer:** interrupt (Esc in Claude Code) when it's heading the wrong way, and redirect it.
+- **==Queue==:** send your next message while it's working. It picks it up when it's ready.
+- **==Steer==:** interrupt (Esc in Claude Code) when it's heading the wrong way, and redirect it.
 
 Same skill as calling a mix from the booth: short, specific, early.
 
-**Q6 (fill in the blank).** Interrupting an agent mid-task to redirect it is called ______.
+**Q6 (fill in the blank).** Interrupting an agent mid-task to redirect it is called ==steering|steer==.
 
-✅ **Answer.** steering
+✅ **Answer.** Steering redirects an agent mid-task; a queued message waits its turn without
+interrupting.
 
-### 3. Agents and usage
+### Agents and usage
 
-An agent reads files, runs commands, and checks its own work, and **all of that fills the context
-window**. One agent task can use far more than a whole PantherAI chat.
+An agent reads files, runs commands, and checks its own work, and **all of that fills the ==context
+window==**. One agent task can use far more than a whole PantherAI chat.
 
 Worth it for real work on a big repo. Overkill for a tiny bad webapp.
 
-### 3. Guardrails this site uses
+### Guardrails this site uses
 
 - **An instruction file** the agent reads first (`CLAUDE.md`)
 - **Automated tests**, run before every commit
@@ -202,9 +203,9 @@ Worth it for real work on a big repo. Overkill for a tiny bad webapp.
 - **Verification marks** on procedures: ✅ Verified · 📝 Proposed · ❓ Unverified · ⛔ Blocked
 - **Git history as the safety net**: any change can be found and undone
 
-None of these make the AI smarter. They make its mistakes **visible sooner**.
+None of these make the AI smarter. They make its mistakes **==visible== sooner**.
 
-### 3. 🙈 Live demo (about 10 minutes)
+### 🙈 Live demo (about 10 minutes)
 
 1. Open Terminal. `pwd`, `ls`, `cd` into a folder with two copies of a recording.
 2. `diff -rq` the two copies. Silence. Then change one file in a scratch copy and run it again.
@@ -215,9 +216,9 @@ None of these make the AI smarter. They make its mistakes **visible sooner**.
 
 ## 4. Your Own Repo
 
-### 4. Make a repo and publish it
+### Make a repo and publish it
 
-1. On GitHub: **New repository**, give it a name, set it to **Public**
+1. On GitHub: **New repository**, give it a name, set it to **==Public==**
 2. Add an `index.html`
 3. **Settings → Pages → Deploy from a branch → main → / (root) → Save**
 4. A minute or two later it's live at `your-username.github.io/your-repo/`
@@ -225,10 +226,10 @@ None of these make the AI smarter. They make its mistakes **visible sooner**.
 The same steps work on your bad-webapps fork, so you can test your app before you open the pull
 request.
 
-**Q7 (fill in the blank).** To turn a repo into a website, you turn on GitHub ______ in the repo's
+**Q7 (fill in the blank).** To turn a repo into a website, you turn on GitHub ==Pages== in the repo's
 settings.
 
-✅ **Answer.** Pages
+✅ **Answer.** GitHub Pages publishes a repo as a website: Settings → Pages → deploy from main.
 
 ## 🗝️ Key terms
 

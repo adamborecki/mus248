@@ -12,8 +12,11 @@ import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
 import { deckMarkdown, unzip } from './pptx-to-lecture.mjs';
 import { lectureView } from '../lectures/view.js';
-import { completionCode, checkChars, blankLines, blankMatches } from '../lectures/fill.js';
-import { notesMarkdown, renderNotes } from '../lectures/notes.js';
+import { blankMatches, deliverable, refresherQuestions, SCHEMA } from '../lectures/refresher.js';
+import { notesBlanks, notesMarkdown, renderNotes } from '../lectures/notes.js';
+import { lectureText } from '../lectures/text.js';
+import { numberSlides } from '../lectures/view.js';
+import { stripQuestions } from '../worksheet.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -45,23 +48,43 @@ check(renderMarkdown(fencedSample).includes('<pre class="code-block"><code>## Ge
   'a ``` code block did not render its lines exactly');
 check(!renderMarkdown(fencedSample).includes('<h2>'), 'a heading inside a code block rendered as a heading');
 check(parseActivity(['```', '**Q1 (short answer).** Not a question', '```'].join('\n')).questions.length === 0, 'a question inside a code block was parsed');
-check(blankLines(fencedSample).length === 0, 'a ==blank== inside a code block was collected');
+check(notesBlanks(fencedSample).length === 0, 'a ==blank== inside a code block was collected');
 
 // Portals collapse; instructor notes are marked so they look different when instructor view shows them.
 check(/<details class="portal"><summary>.*Peek<\/summary><p>Hidden text<\/p><\/details>/.test(renderMarkdown('> 🌀 **Peek.** Hidden text')),
   'a > 🌀 portal did not render as a collapsed details block');
 
 // ==term== is a follow-along blank: highlighted on the page, a blank on the notes, filled on the key.
-check(renderMarkdown('a ==mix bus== here').includes('<mark class="key-term">mix bus</mark>'), '==term== is not highlighted on the page');
+check(renderMarkdown('a ==mix bus== here') === '<p>a mix bus here</p>', '==term== should read as plain text on the page');
+check(renderMarkdown('a ==mix bus|bus== here', { blanks: 'mark' }).includes('<mark class="key-term">mix bus</mark>'), 'instructor view should highlight ==term== (first answer only)');
 check(/class="note-blank"/.test(renderMarkdown('a ==mix bus== here', { blanks: 'blank' })) && !renderMarkdown('a ==mix bus== here', { blanks: 'blank' }).includes('mix bus'),
   'the notes render of ==term== is not a blank, or leaks the term');
 check(renderMarkdown('`==not a blank==`').includes('<code>==not a blank==</code>'), '==…== inside code turned into a blank');
-check(blankMatches('The Context Window!', 'context window') && blankMatches('repos', 'repo') && !blankMatches('', 'repo') && !blankMatches('fork', 'merge'),
+check(blankMatches('The Context Window!', 'context window') && blankMatches('repos', 'repo') && blankMatches('repository', 'repo|repository') && !blankMatches('', 'repo') && !blankMatches('fork', 'merge'),
   'blank answer matching is too strict or too loose');
 const notesSample = notesMarkdown(['### S', 'One ==alpha== two', '> 🌀 **Portal.** ==beta== inside', '> 🧑‍🏫 ==gamma== note'].join('\n'));
 check(notesSample.includes('==alpha==') && !/beta|gamma/.test(notesSample), 'follow-along notes kept a portal or an instructor note');
-check(blankLines(['### S', 'One ==alpha== and ==beta==', '> 🌀 **P.** ==skip=='].join('\n')).map((item) => item.terms.join('+')).join('|') === 'alpha+beta',
-  'the online fill-in did not collect the blanks (or collected one from a portal)');
+check(notesBlanks(['### S', 'One ==alpha== and ==beta==', '> 🌀 **P.** ==skip=='].join('\n')).join('+') === 'alpha+beta',
+  'the notes did not collect the blanks (or collected one from a portal)');
+
+// Slides number themselves under a numbered section (2.1, 2.2…), skipping 🙈 slides, replacing typed numbers.
+check(numberSlides(['## 2. Part', '### Alpha', '### 🙈 Hidden', '### 2. Beta', '## Key terms', '### Gamma'].join('\n'))
+  === ['## 2. Part', '### 2.1 Alpha', '### 🙈 Hidden', '### 2.2 Beta', '## Key terms', '### Gamma'].join('\n'), 'slide numbering is wrong');
+
+// Numbered questions belong to the refresher: off the page, the slides, and the notes, nothing else lost.
+const withQuestion = ['### S', 'Before.', '', '**Q1 (multiple choice).** Pick?', '', '- ✅ a) Yes', '- b) No', '', '✅ **Answer.** Yes.', '', 'After.'].join('\n');
+check(!stripQuestions(withQuestion).includes('Q1') && !stripQuestions(withQuestion).includes('a) Yes') && /Before\.[\s\S]*After\./.test(stripQuestions(withQuestion)),
+  'stripQuestions removed too much or too little');
+
+// The refresher's deliverable: every question accounted for, skipped ones included, in the receipt's schema.
+const sampleQuestions = refresherQuestions(['## 1. A', '### One', '**Q1 (multiple choice).** Pick?', '', '- ✅ a) Yes', '- b) No', '',
+  '✅ **Answer.** Yes, because.', '', '**Q2 (fill in the blank).** It is a ==repo|repository==.', '', '✅ **Answer.** A repo holds it all.'].join('\n'));
+check(sampleQuestions.length === 2 && sampleQuestions[0].section === '1.1 One' && sampleQuestions[1].terms[0] === 'repo|repository',
+  'the refresher did not find its questions, their slide, or a fill-in answer');
+const sampleDeliverable = deliverable({ id: 'x', title: 'X' }, sampleQuestions, { sessionId: 's', startedAt: 't', items: { 1: { status: 'right', tries: 1, clicks: 2, ms: 3000, picked: ['b', 'a'] } } });
+check(sampleDeliverable.payload.schema === SCHEMA && sampleDeliverable.payload.items.map((item) => item.status).join() === 'right,skipped'
+  && sampleDeliverable.payload.items[0].tries === 1 && sampleDeliverable.payload.items[0].seconds === 3 && sampleDeliverable.lines.some((line) => /Q2 .*skipped/.test(line)),
+  'the refresher deliverable is missing a question, a status, or its tries and time');
 check(renderMarkdown('> 🧑‍🏫 Note').includes('class="instructor-note"'), 'an instructor note is not marked');
 
 // The student view of a lecture drops 🙈 slides and 🧑‍🏫 notes, and nothing else.
@@ -71,10 +94,7 @@ check(!/secret|a note|that wraps|Gone|inside/.test(studentSample), `student view
 check(['### 1. Kept', 'text', 'after', '### Back', '## B'].every((line) => studentSample.split('\n').includes(line)), 'student view dropped visible material');
 check(lectureView(viewSample, { instructor: true }) === viewSample, 'instructor view must be the whole file');
 
-// Completion codes are stable and check themselves.
-const sampleCode = completionCode({ id: 'x-lecture', lecture: 8 }, 7, 9);
-check(/^M248-L08-7of9-[A-Z2-9]{4}$/.test(sampleCode), `completion code has the wrong shape: ${sampleCode}`);
-check(checkChars('x-lecture|M248-L08-7of9') === sampleCode.slice(-4), 'completion code check characters are not reproducible');
+
 
 // Links written relative to the Markdown resolve against the same base as images, so a page can
 // link to another page and still work at the site root and under a branch preview.
@@ -250,44 +270,50 @@ lectures.forEach((lecture) => {
   quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
   check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
 
-  // A lecture with questions gets a worksheet, a key, and an online fill-in, all from the student
-  // view — so its questions follow the same rules as an activity's, and none may hide in a 🙈 slide.
+  // A lecture's page, slides, and notes come from the student view of its text, with its numbered
+  // questions taken out (they're the online refresher's); none may hide in a 🙈 slide.
   const student = lectureView(text);
   check(!/🧑‍🏫/u.test(student), `${where}: an instructor note survived into the student view`);
   const parsed = parseActivity(student);
-  const all = parseActivity(text);
-  check(all.questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
+  check(parseActivity(text).questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
+  const lecturePage = renderMarkdown(lectureText(text));
+  check(!/\bQ\d+ \((multiple choice|short answer|fill in the blank)\)/.test(lecturePage), `${where}: a refresher question shows on the page or slides`);
+  if (parsed.questions.length) check(!/<li>\s*✅/.test(lecturePage) && !/✅\s*<strong>Answers?/i.test(lecturePage), `${where}: the lecture page shows an answer`);
+
   // Follow-along blanks: each one a short, plain term, and none left as literal ==…== on the notes.
-  const blanks = blankLines(text);
-  blanks.forEach((blank) => blank.terms.forEach((term) => {
+  const blanks = notesBlanks(text);
+  blanks.forEach((term) => {
     check(term.length <= 40 && !/[*`[\]]/.test(term), `${where}: blank "${term}" should be a short plain term (no formatting, 40 characters at most)`);
-  }));
+  });
   if (blanks.length) {
     const notes = renderNotes(text, lecture);
     check(!notes.replace(/<pre[\s\S]*?<\/pre>/g, '').includes('=='), `${where}: the follow-along notes still show a literal == (outside a code block)`);
     check(!notes.includes('key-term'), `${where}: the follow-along notes show a filled-in blank`);
   }
-  if (!parsed.questions.length) {
-    if (blanks.length) rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: 0, leave: parsed.beforeYouLeave.length, blanks: blanks.reduce((sum, blank) => sum + blank.terms.length, 0) });
-    return;
-  }
-  parsed.questions.forEach((question) => {
+
+  // The refresher: questions shaped like an activity's, every fill-in with its answer marked.
+  const questions = refresherQuestions(text);
+  questions.forEach((question) => {
     const at = `${where} Q${question.number}`;
     if (question.type === 'multiple choice') {
       check(question.options.length >= 2 && question.options.filter((option) => option.correct).length === 1, `${at}: needs 2+ options and exactly one ✅`);
     } else {
       check(question.options.length === 0, `${at}: "${question.type}" should have no option list`);
     }
-    check(Boolean(question.answer), `${at}: no answer marked`);
+    if (question.type === 'fill in the blank') check(question.terms.length > 0, `${at}: a refresher fill-in needs its answer marked in the prompt, like ==context window==`);
+    check(Boolean(question.note), `${at}: needs a ✅ **Answer.** line: the main point the refresher shows`);
   });
-  const order = parsed.questions.map((question) => question.number);
+  const order = questions.map((question) => question.number);
   check(order.every((number, index) => number === index + 1), `${where}: questions are numbered ${order.join(',')} — expected 1..${order.length}`);
-  const studentPage = renderMarkdown(student);
-  check(!/<li>\s*✅/.test(studentPage) && !/✅\s*<strong>Answers?/i.test(studentPage), `${where}: the lecture page shows an answer`);
-  const sheet = renderWorksheet(parsed, { directory: { id: lecture.id, title: lecture.title, route: `lectures/${lecture.id}`, source: file } });
-  check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"'), `${where}: the worksheet leaks the key`);
-  check(!renderWorksheet(parsed, { showAnswers: true, directory: { id: lecture.id } }).includes('no answer marked in the source'), `${where}: the key has unmarked questions`);
-  rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: parsed.questions.length, leave: parsed.beforeYouLeave.length, blanks: blanks.reduce((sum, blank) => sum + blank.terms.length, 0) });
+  if (questions.length) {
+    const sheet = renderWorksheet(parseActivity(student), { directory: { id: lecture.id, title: lecture.title, route: `lectures/${lecture.id}`, source: file } });
+    const prompts = [...sheet.matchAll(/<p class="q-prompt">([\s\S]*?)<\/p>/g)].map((match) => match[1]).join('\n');
+    check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"') && !questions.some((question) => question.terms.some((term) => prompts.includes(term.split('|')[0]))),
+      `${where}: the refresher key's student copy leaks an answer`);
+  }
+  if (blanks.length || questions.length) {
+    rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: questions.length, leave: parsed.beforeYouLeave.length, blanks: blanks.length });
+  }
 });
 
 // PowerPoint → lecture Markdown, against a tiny deck whose slide files are deliberately out of order.

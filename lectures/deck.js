@@ -52,7 +52,7 @@ function splitSlides(article) {
 // that is the family the list calls "Standard Gear Kit recordings".
 
 function keyOf(slide) {
-  const numbered = slide.text.match(/^(\d+)\.\s/);
+  const numbered = slide.text.match(/^(\d+)\.(?:\d+)?\s/);
   if (numbered) return `#${numbered[1]}`;
   const topic = slide.text.replace(LEADING_EMOJI, '').match(UNNUMBERED_KEY);
   return topic ? `:${norm(topic[1])}` : `=${norm(slide.text)}`;

@@ -123,17 +123,26 @@ later lecture that students tap open. Notes and 🙈 slides show only in **instr
 faint π at the foot of a lecture page, or `?instructor=1`; remembered per device). It's a view,
 not a lock: the Markdown is public, so nothing private goes in a note. The deck never shows notes.
 
-A lecture with `**Qn (type).**` questions (same format and rules as activities, numbered in file
-order, never inside a 🙈 slide) automatically gets a printed worksheet and key
-(`lectures/worksheet/?id=…`, `…/key/?id=…`) and an online fill-in (`lectures/fill/?id=…`) that
-ends in a completion code for Canvas. No shells to copy. Past lectures have no questions, so they
-have neither, on purpose.
+Slides number themselves: under `## 2. A Finished Example`, write plain `### What went in` and the
+page, slides, and notes show **2.1, 2.2…** (`numberSlides` in `lectures/view.js`; a typed number is
+replaced, 🙈 slides aren't counted). Only lectures whose `##` sections start with a number do this.
 
-**Follow-along notes** come from `==term==` in a lecture: the page and slides highlight the term,
-`lectures/notes/?id=…` prints the lecture with a blank in its place (`…/key/` fills it in), and the
-online fill-in checks each blank against the term. Keep blanks short, plain words (the checker
-enforces it); never inside a 🌀 portal or a ``` code block, where they don't count. A ``` fence
-shows its lines exactly, for showing raw Markdown on a slide. `content/instructor/vibecoding-series.md` has the series plan.
+**Follow-along notes** come from `==term==`: the page and slides show the word as plain text
+(instructor view highlights it), and `lectures/notes/?id=…` prints the lecture with a blank in its
+place (`…/key/` fills it in). Students photograph their notes for Canvas. Aim for a handful per
+slide. Keep each a short plain word (the checker enforces it); never inside a 🌀 portal or a ```
+code block, where it doesn't count. A ``` fence shows its lines exactly, for raw Markdown on a slide.
+
+**The online refresher** comes from the lecture's `**Qn (type).**` questions (same format and
+numbering rules as activities, never inside a 🙈 slide). They are taken off the page, slides, and
+notes (`stripQuestions` in `worksheet.js`) and live only at `lectures/refresher/?id=…`: three tries
+each, then the answer; every question ends on its `✅ **Answer.**` line, so write that as the
+**main point**, not just the answer. A `(fill in the blank)` question marks its answer in the prompt,
+`==context window==` (`==repo|repository==` accepts either). It tracks tries, clicks, and time, and
+ends in a **Copy Canvas deliverable** (summary + JSON receipt with a SHA-256 checksum, camera-lab's
+shape). The question key is `lectures/worksheet/key/?id=…` (instructor view: 🔑 Refresher key).
+Past lectures have neither notes nor a refresher until someone adds blanks or questions; that's a
+good Repo Improvement task. `content/instructor/vibecoding-series.md` has the series plan.
 
 ## Quiz
 

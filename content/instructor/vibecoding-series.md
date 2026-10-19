@@ -51,17 +51,18 @@ the bad-webapps repo; or a pull request. VC1's activity slide has a 🧑‍🏫 
 3. Picking the tool: chatbot vs. agent vs. local, by task and by cost
 4. Real Repo Improvement on mus248: reading `CLAUDE.md`, the tests, a pull request to this site
 
-## ✍️ Fill-in: the three stages
+## ✍️ Notes and refresher
 
-1. **In class:** the printed **follow-along notes** (Lecture page → 📝 Follow-along notes): the
-   lecture with every `==term==` as a blank. Key: instructor view → 🔑 Notes key. (The question
-   worksheet still exists: 🖨️ Worksheet.)
-2. **Due the next week:** the online fill-in (Lecture page → ✍️ Fill in online). Students finish
-   it, get a completion code like `M248-L08-19of24-K3QF` (lecture 08, 19 of 24 blanks and
-   multiple-choice questions right on the first try), and paste it into a Canvas **text entry** assignment. **Copy for Canvas**
-   also pastes their written answers. In instructor view the fill-in page has a box that checks a
-   code. It's honor-system: the check stops typos, not a determined student.
-3. **The week after:** Canvas multiple choice, paraphrased from the lecture (below).
+1. **In class:** the printed **follow-along notes** (lecture page → 📝 Follow-along notes): the
+   lecture with every `==term==` as a blank, a handful per slide (VC1: 85). Students photograph
+   them for Canvas, **due the Sunday after**. Key: instructor view → 🔑 Notes key.
+2. **The week after:** the **online refresher** (lecture page → 🔁 Online refresher): the
+   lecture's numbered questions (VC1: 10), which never show on the slides or notes. Three tries
+   each, then the answer and the slide's main point. Students can hand it in unfinished (it warns
+   them first) with **📋 Copy Canvas deliverable**: a readable summary plus a JSON receipt (tries,
+   clicks, seconds per question, optional feedback, SHA-256 checksum), the same shape as
+   camera-lab's. Canvas doesn't auto-grade it; download the submissions to read them.
+3. The paraphrased Canvas questions below are optional now: the refresher covers the same ground.
 
 ### Stage 3 draft: Vibecoding 1, paraphrased for Canvas
 
