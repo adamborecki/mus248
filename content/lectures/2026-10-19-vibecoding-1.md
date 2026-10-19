@@ -2,33 +2,34 @@
 > Vibecoding 1 (today), Vibecoding 2, and Vibecoding 3.
 
 > 🧑‍🏫 **Instructor view only.** Blanks are highlighted here (students see plain text). Slides
-> marked 🙈 are hidden from students; remove the 🙈 from a heading to bring one back. The numbered
-> questions are the online refresher's: they don't show on the slides or the notes. Print the 📝
-> Follow-along notes for class. Series reminders: `content/instructor/vibecoding-series.md`.
+> marked 🙈 are hidden from students; remove the 🙈 from a heading to bring one back (they have
+> blanks ready). The numbered questions are the online refresher's: they don't show on the slides
+> or the notes. Print the 📝 Follow-along notes for class. Series reminders:
+> `content/instructor/vibecoding-series.md`.
 
 ## 🎤 Lecture: Vibecoding 1
 
 ### Vibecoding 1: This Site, AI, and Bad Webapps
 
-A tour of the ==repo== behind this site, how it gets built with ==AI==, what using AI costs, and a
-webapp your group makes that is **bad on purpose**.
+A tour of the ==repo== behind this site, how it gets built with ==AI==, what using AI costs,
+and a webapp your group makes that is **bad on ==purpose==**.
 
 Fill in the blanks on your follow-along notes as we go.
 
 ### Today
 
-1. A tour of this site
-2. A finished example: COB
-3. A live build: the Electroacoustic Showcase
-4. Markdown, by example
-5. The ethics of AI
-6. Working with AI
-7. Checking the live build
-8. Activity: bad webapps
+1. A ==tour== of this site
+2. A finished example: ==COB==
+3. A live build: the ==Electroacoustic Showcase==
+4. ==Markdown==, by example
+5. The ==ethics== of AI
+6. ==Working== with AI
+7. Checking the ==live build==
+8. Activity: ==bad webapps==
 
 ### 🌀 See a swirl? It's a portal
 
-Some slides have a 🌀 **portal**: tap it for a glimpse of something we'll get to ==later==.
+Some slides have a 🌀 ==portal==: tap it for a glimpse of something we'll get to later.
 
 > 🌀 **Portal: what this is.** Portals are optional, and never on the notes. Each one opens onto
 > a later lecture (usually Vibecoding 2), so when we get there, you've already been.
@@ -38,16 +39,28 @@ Some slides have a 🌀 **portal**: tap it for a glimpse of something we'll get 
 ### One site, one repo
 
 Every page you've used this semester lives in one ==repo==: a folder of files, with its whole
-==history==, on ==GitHub==.
+history, on ==GitHub==.
 
 - The repo: [github.com/adamborecki/mus248](https://github.com/adamborecki/mus248)
 - The site: [adamborecki.github.io/mus248](../../)
 
-==GitHub Pages== turns the repo into the website. Change a file, and a minute later the site
-changes.
+==GitHub Pages== turns the repo into the website. Change a file, and a minute later the
+site changes.
 
 > 🧑‍🏫 Open the repo on the projector and click around while you talk: folders, a Markdown file,
 > the commit list.
+
+**Q1 (fill in the blank).** A project folder with its whole history, kept on GitHub, is called a
+==repo|repository==.
+
+✅ **Answer.** A repo is a project's folder plus every saved version of it. This whole course site
+is one repo.
+
+**Q2 (fill in the blank).** The GitHub feature that turns a repo into a website is GitHub
+==Pages==.
+
+✅ **Answer.** GitHub Pages publishes a repo as a website: change a file, and a minute later the
+site changes.
 
 ### What's inside
 
@@ -55,7 +68,7 @@ changes.
 |---|---|
 | `cameras/`, `stereo/`, `salmon-gig-checklist/` … | Each folder is a page's ==web address== |
 | `content/activities/` | One Markdown file per activity: the real ==source== |
-| `content/lectures/` | These slides, as ==text== |
+| `content/lectures/` | These slides, as text |
 | `data/` | Lists the site reads: activities, lecture dates |
 | `CLAUDE.md` | ==Rules== for the AI that helps build it |
 
@@ -72,7 +85,7 @@ Each activity is **one Markdown file**. From it, the site builds:
 Nobody hand-writes a worksheet, so the page and the paper can never ==disagree==. Your
 follow-along notes are made the same way, from this lecture's own file.
 
-**Q1 (multiple choice).** The site builds an activity's web page, worksheet, and answer key from
+**Q3 (multiple choice).** The site builds an activity's web page, worksheet, and answer key from
 one Markdown file. What's the point of doing it that way?
 
 - a) It makes the files smaller
@@ -84,26 +97,36 @@ change together.
 
 ### Rules for the AI
 
-`CLAUDE.md` is a Markdown file of ==rules== the AI reads before it changes anything. A few of them:
+`CLAUDE.md` is a Markdown file of ==rules== the AI reads before it changes anything. A few of
+them:
 
 - "This repo is ==public==." Never commit passwords, codes, or names.
 - "==American== spellings."
-- Don't guess a port label or menu path: mark it ==unverified==.
+- Don't ==guess== a port label or menu path: mark it ==unverified==.
 - Run the ==tests== before every save, and look at the result in a browser.
+
+**Q4 (multiple choice).** What is `CLAUDE.md`?
+
+- a) The website's home page
+- ✅ b) A Markdown file of rules the AI reads before it changes anything
+- c) A list of every student's work
+
+✅ **Answer.** `CLAUDE.md` holds the repo's rules for the AI: public repo, no guessing gear details,
+run the tests, check it in a browser.
 
 ### The words you need
 
 | Word | What it means |
 |---|---|
-| **repo** | A project folder, with its whole history |
-| **commit** | One save, plus a ==note== about what changed |
-| **fork** | Your own ==copy== of someone else's repo |
-| **pull request** | "Here's my change; please bring it into yours" |
-| **merge** | The owner ==accepts== the change |
+| ==repo== | A project folder, with its whole history |
+| ==commit== | One save, plus a ==note== about what changed |
+| ==fork== | Your own ==copy== of someone else's repo |
+| ==pull request== | "Here's my change; please bring it into yours" |
+| ==merge== | The owner ==accepts== the change |
 
 Every saved change is a ==commit==, and the history keeps every one.
 
-**Q2 (multiple choice).** Which one is your own copy of someone else's repo, under your account?
+**Q5 (multiple choice).** Which one is your own copy of someone else's repo, under your account?
 
 - a) commit
 - ✅ b) fork
@@ -113,11 +136,20 @@ Every saved change is a ==commit==, and the history keeps every one.
 ✅ **Answer.** A fork is your own copy. A commit is one save, a pull request asks the owner to take
 your change, and a merge is the owner saying yes.
 
-**Q3 (fill in the blank).** One save in a repo, plus a note about what changed, is called a
+**Q6 (fill in the blank).** One save in a repo, plus a note about what changed, is called a
 ==commit==.
 
 ✅ **Answer.** A commit is one save with a note, and the repo's history keeps every one, so any
 change can be found and undone.
+
+**Q7 (multiple choice).** You open a pull request on someone's repo. What has to happen before your
+change is part of their repo?
+
+- a) Nothing; it's already in
+- ✅ b) The owner reviews it and merges it
+- c) You fork it again
+
+✅ **Answer.** A pull request is a request: the owner decides, and merging is the owner saying yes.
 
 > 🌀 **Portal: the history from the terminal.** You can read and write this history without a
 > browser: `git log`, `git commit`, `git push`. That's how AI coding agents do it, and it's
@@ -133,60 +165,84 @@ The simulators you've used are their own ==repos==, each its own small site:
 
 Each repo does ==one thing==, so a change to one can't ==break== another.
 
+**Q8 (short answer).** Why are camera-lab, mixer-lab, and this course site separate repos instead
+of one big one?
+
+✅ **Answer.** Each repo does one thing, so a change to one can't break another, and each can be
+worked on (and fixed) on its own.
+
 ### 🙈 How a change gets in
 
-1. **Fork** the repo (button at the top right on GitHub)
-2. **Edit** in your browser: open a file and click the ✏️ pencil, or **Add file → Create new file**
-3. **Commit** your change, with a short note
-4. Open a **pull request** back to the original
-5. The instructor reviews it and **merges** it. Then it's live.
+1. ==Fork== the repo (button at the top right on GitHub)
+2. ==Edit== in your browser: open a file and click the ✏️ ==pencil==, or **Add file → Create new
+   file**
+3. ==Commit== your change, with a short ==note==
+4. Open a ==pull request== back to the original
+5. The instructor ==reviews== it and ==merges== it. Then it's ==live==.
 
 ### 🙈 Public means public
 
-This repo is **public**: anyone can read every file and **every old version**. Deleting something
-later doesn't remove it from the history. Never commit passwords, access codes, door codes, stream
-keys, real names, grades, or anything about a classmate.
+This repo is ==public==: anyone can read every file and every old ==version==. Deleting something
+later doesn't remove it from the history. Never commit passwords, access codes, door codes,
+stream keys, real names, grades, or anything about a classmate.
 
 ### 🙈 You've already been using version history
 
-Every activity page and worksheet shows a **revised** date ("Rev. 2026-10-14"). If you're holding
-a printed worksheet from three weeks ago, that date tells you it isn't the current version.
+Every activity page and worksheet shows a ==revised== date ("Rev. 2026-10-14"). If you're holding
+a ==printed== worksheet from three weeks ago, that ==date== tells you it isn't the current version.
 
 ## 2. A Finished Example: COB
 
 ### What went in
 
-For the Chapman on Broadway (COB) show in Irvine, the AI got:
+For the Chapman on Broadway (==COB==) show in Irvine, the AI got:
 
 - ==Photos== from the gig: the booth, the receivers, the wedges, the cases
 - **Notes**: a long, ==dictated== paragraph, plus the student crew's quick-reference doc
-- **A one-line ask**: "Make a mixer-lab ==scenario== and a gig checklist for this."
+- **A one-line ==prompt==**: "Make a mixer-lab scenario and a gig checklist for this."
 
 ### What came out
 
-- A [COB Gig Checklist](../../cob-gig-checklist/): ==equipment==, setup steps in order, photos,
-  troubleshooting
+- A [COB Gig Checklist](../../cob-gig-checklist/): ==equipment==, setup steps in order,
+  photos, troubleshooting
 - A COB scenario in [mixer-lab](https://adamborecki.github.io/mixer-lab/) to ==practice== the board
   before the gig
 
 Look at what it did **not** do:
 
 - It replaced students' names with ==roles==, and blurred ==faces== in the photos
-- Anything it couldn't confirm went in a section called ==Technical verification==, instead of
+- Anything it couldn't ==confirm== went in a section called ==Technical verification==, instead of
   being guessed
 
-**Q4 (fill in the blank).** In the COB checklist, anything the AI couldn't confirm went in a
+**Q9 (multiple choice).** What three things did the AI get to build the COB checklist?
+
+- a) A finished checklist, a template, and a video
+- ✅ b) Photos from the gig, dictated notes, and a one-line prompt
+- c) Only the student crew's names
+
+✅ **Answer.** Photos, dictated notes, and a one-line prompt: the same recipe works for any gig.
+
+**Q10 (fill in the blank).** In the COB checklist, anything the AI couldn't confirm went in a
 section called ==Technical verification==.
 
 ✅ **Answer.** Unconfirmed details get marked as open questions, not guessed: a student will follow
 this page in a room where the show happens once.
 
+**Q11 (multiple choice).** How did the COB build handle the students in the photos and notes?
+
+- a) It listed their names in the checklist
+- ✅ b) It replaced names with roles, and blurred faces
+- c) It left the photos out entirely
+
+✅ **Answer.** The repo is public, so people become roles ("sound engineer") and faces get blurred
+before anything is committed.
+
 ## 3. A Live Build: The Electroacoustic Showcase
 
 ### Same recipe, starting now
 
-Same recipe as COB, for the **10/18 Electroacoustic Showcase**: ==photos==, dictated notes, and a
-one-line ask.
+Same recipe as COB, for the **10/18 ==Electroacoustic Showcase==**: ==photos==, ==dictated notes==,
+and a ==one-line prompt==.
 
 It runs in the ==background== while we keep going. We'll ==check== what it made near the end.
 
@@ -221,6 +277,11 @@ show in Irvine: twelve performers on **wireless headset mics**.
 
 Readable ==as-is==: `##` starts a ==heading==, `**` makes text ==bold==, and `-` starts a ==bullet==.
 
+**Q12 (fill in the blank).** In Markdown, a line that starts with `##` is a ==heading==.
+
+✅ **Answer.** Markdown is plain text with a few symbols: `##` for a heading, `**` for bold, `-`
+for a bullet.
+
 ### Your notes are Markdown too
 
 The blanks on your follow-along notes are words marked like this in the lecture's file:
@@ -231,7 +292,7 @@ Every saved change is a ==commit==.
 
 The slides show the word; your notes print a ==blank==. One file, two ==outputs==.
 
-**Q5 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`,
+**Q13 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`,
 asterisks and all. What happened?
 
 - a) The AI made a typo
@@ -245,25 +306,35 @@ raw symbols, like `**`.
 
 | Type this | You get |
 |---|---|
-| `## Gear list` | A heading |
-| `**phantom power**` | **phantom power** |
-| `*optional*` | *optional* |
-| `- XLR cable` | A bullet |
-| `1. Power on the F8` | A numbered step |
-| `[Salmon checklist](link)` | A link |
-| `![caption](photo.jpg)` | A picture |
+| `## Gear list` | A ==heading== |
+| `**phantom power**` | **phantom power** (==bold==) |
+| `*optional*` | *optional* (==italic==) |
+| `- XLR cable` | A ==bullet== |
+| `1. Power on the F8` | A ==numbered== step |
+| `[Salmon checklist](link)` | A ==link== |
+| `![caption](photo.jpg)` | A ==picture== |
 
 ## 5. The Ethics of AI
 
 ### Your choice
 
-In this class, using AI is your ==choice==.
+In general, I'd ==prefer== you not use AI in this class.
 
-Today is the exception: the activity uses ==PantherAI==, in ==groups== of 2–3, so one person can
-drive while the others test and think.
+Today is an ==exception==: we're going to use ==PantherAI==. It's simply too powerful for us not
+to use it. You'll work in ==groups== of 2–3, so one person can drive while the others test and
+think.
 
 > 🌀 **Portal: AI on your own computer.** Some models run **offline**, on your own laptop: free,
 > and nothing you type leaves the machine. They're smaller and slower. A later lecture.
+
+**Q14 (multiple choice).** What's this class's general approach to using AI?
+
+- a) Use it for everything
+- ✅ b) In general, the instructor prefers you don't; today's PantherAI activity is an exception
+- c) It's banned, even today
+
+✅ **Answer.** In general, the preference is not to use AI here. Today is an exception, because
+PantherAI is too powerful not to learn.
 
 ### Bias
 
@@ -273,16 +344,22 @@ voices are common, and whose are ==missing==.
 - It sounds just as ==sure== when it's wrong or one-sided
 - Be most careful with anything it says about ==people==
 
+**Q15 (fill in the blank).** Because AI learns from huge amounts of human writing, it picks up that
+writing's ==bias|biases==.
+
+✅ **Answer.** AI repeats the bias in what it learned from, and sounds just as sure when it's
+one-sided, so check anything it says about people.
+
 ### Environmental cost
 
 Every AI answer runs in a ==data center== that uses ==electricity==, and ==water== for cooling.
 
 - ==Bigger== models and more "thinking" use more
-- Clear, small asks in a fresh chat use ==less==
+- Clear, small asks in a ==fresh== chat use less
 
 **Using less is the habit that's cheaper, faster, and kinder to the planet.**
 
-**Q6 (multiple choice).** Which of these uses the least AI (and the least energy)?
+**Q16 (multiple choice).** Which of these uses the least AI (and the least energy)?
 
 - a) A long chat with the biggest model on maximum thinking
 - ✅ b) A clear, small question in a fresh chat
@@ -295,13 +372,20 @@ they're usually faster too.
 
 - ==Disclose== when you used AI, like the note at the top of this lecture
 - You ==own== what you hand in, mistakes included
-- Never paste ==private== things into an AI: names, door codes, passwords, recordings of people
-- Follow each assignment's own AI ==rules==
+- Never paste ==private== things into an AI: names, door codes, passwords, recordings of
+  people
+- Follow each ==assignment=='s own AI ==rules==
 
-**Q7 (short answer).** Name one thing you should never paste into an AI tool, and why.
+**Q17 (short answer).** Name one thing you should never paste into an AI tool, and why.
 
 ✅ **Answer.** Private information (a name, a door code, a password, a recording of a person):
 once it's sent, you can't take it back.
+
+**Q18 (fill in the blank).** When you've used AI on something you hand in, you should ==disclose==
+it.
+
+✅ **Answer.** Say when you used AI, like the note at the top of this lecture, and you still own
+what you hand in, mistakes included.
 
 > 🧑‍🏫 Say your own rule for AI on quizzes out loud here.
 
@@ -309,31 +393,56 @@ once it's sent, you can't take it back.
 
 ### Models
 
-A ==frontier model== is one of the newest, most capable models from the big labs: Anthropic
-(Claude), OpenAI (ChatGPT), Google (Gemini).
+A ==frontier model== is one of the newest, most capable models from the big labs:
+Anthropic (Claude), OpenAI (ChatGPT), Google (Gemini).
 
 Claude comes in sizes: ==Haiku== (small), ==Sonnet== (middle), ==Opus== (largest).
-**PantherAI** gives you the highest **Claude Sonnet** available (Sonnet 5, right now): very good,
+==PantherAI== gives you the highest **Claude Sonnet** available (Sonnet 5, right now): very good,
 just not the biggest.
+
+**Q19 (fill in the blank).** One of the newest, most capable models from the big AI labs is called
+a ==frontier model|frontier==.
+
+✅ **Answer.** "Frontier" means the leading edge: the newest, most capable, and most expensive
+models to run.
+
+**Q20 (multiple choice).** Which is the smallest of Claude's three sizes?
+
+- ✅ a) Haiku
+- b) Sonnet
+- c) Opus
+
+✅ **Answer.** Haiku is small, Sonnet is the middle, Opus is the largest. PantherAI gives you the
+highest Sonnet.
 
 ### The context window
 
-The ==context window== is everything the AI can "see" at once: your messages, its replies, and
-anything you ==pasted==. It can't see this site, your files, or your screen unless you paste them.
+The ==context window== is everything the AI can "==see==" at once: your messages, its
+replies, and anything you pasted. It can't see this site, your files, or your screen
+unless you paste them.
 
 When a chat gets long or confused, start a ==new chat== with a short summary.
 
-**Q8 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
+**Q21 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
 whatever you pasted) is its ==context window==.
 
 ✅ **Answer.** The context window is all the AI can see. In a long chat, early instructions fade,
 so start a fresh chat with a short summary.
 
+**Q22 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
+at the start. Best move?
+
+- a) Repeat the rule in ALL CAPS
+- ✅ b) Start a new chat with a short summary and your current file
+- c) Keep going; it will catch up
+
+✅ **Answer.** A fresh chat puts your rules back at the front of the context window.
+
 ### Effort and usage
 
 | Uses more | Uses less |
 |---|---|
-| ==Bigger== model | Smaller model |
+| A ==bigger== model, like ==Sonnet== or ==Opus== | A ==smaller== model, like ==Haiku== |
 | More thinking ==effort== | Less thinking effort |
 | Long chats, big pastes | ==Fresh== chats, only what's needed |
 
@@ -347,25 +456,25 @@ More isn't always ==better==. For a small, clear job, less is faster and just as
 
 ### 🙈 Chatbot vs. coding agent
 
-| | Chatbot (e.g. PantherAI, ChatGPT) | Coding agent (e.g. Claude Code) |
+| | ==Chatbot== (e.g. PantherAI, ChatGPT) | Coding ==agent== (e.g. Claude Code) |
 |---|---|---|
-| Sees | Only what you paste or upload | The whole repo |
-| Does | Writes a reply you copy somewhere | Edits files, runs commands, runs tests, commits |
-| You check | Its answer | Its changes, the tests, the result on screen |
+| Sees | Only what you ==paste== or upload | The whole ==repo== |
+| Does | Writes a reply you ==copy== somewhere | ==Edits== files, runs commands, runs ==tests==, commits |
+| You check | Its ==answer== | Its changes, the tests, the result on ==screen== |
 
 ### 🙈 Thinking effort
 
-Some AI tools can **think before answering**. More effort: better on hard problems, slower, uses
-more. Less effort: fine for simple, clear requests.
+Some AI tools can ==think== before answering. More ==effort==: better on ==hard== problems,
+==slower==, uses more. Less effort: fine for ==simple==, clear requests.
 
 ## 7. Checking the Live Build
 
 ### What did it make?
 
-Open the ==preview== link from the build we started, and read the new checklist together.
+Open the preview link from the build we started, and read the new checklist together.
 
-- Does it match what actually ==happened== at the showcase?
-- What did it put in Technical verification?
+- Does it match what actually happened at the showcase?
+- What did it put in ==Technical verification==?
 - Find ==one== thing that's wrong, missing, or guessed.
 
 > 🧑‍🏫 If it isn't finished, show what it has so far, and come back to it next week.
@@ -376,7 +485,7 @@ Open the ==preview== link from the build we started, and read the new checklist 
 
 It's done when a ==person== opened it and ==checked== it, not when the AI says "this works!"
 
-**Q9 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
+**Q23 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
 
 - a) When the AI says it works
 - ✅ b) When you've opened it, on a phone too, and it does what you asked
@@ -387,22 +496,22 @@ sounds sure.
 
 ### 🙈 Where vibecoding bites
 
-Real kinds of mistakes this course site has had to catch:
+Real kinds of mistakes this course site has had to ==catch==:
 
-- A well-written procedure that the room's own SOP contradicted
-- A tiny bug that would have quietly stopped the quiz adapting, weeks later
-- A photo that showed an account name in the background
+- A well-written ==procedure== that the room's own ==SOP== contradicted
+- A tiny ==bug== that would have quietly stopped the quiz ==adapting==, weeks later
+- A ==photo== that showed an account name in the ==background==
 
 ## 8. Activity: Bad Webapps
 
 ### So bad it's good
 
-In your group, make a tiny ==webapp== that is **bad on purpose**, and bad in a way that's actually
-good:
+In your group, make a tiny ==webapp== that is **bad on ==purpose==**, and bad in a way that's
+actually good:
 
-- A metronome that slowly drifts
-- A tuner that insults you
-- A mirror that's two seconds late
+- A ==metronome== that slowly drifts
+- A ==tuner== that insults you
+- A ==mirror== that's two seconds late
 - A calculator that's always off by a little
 - A cable generator that's all spaghetti
 
@@ -411,14 +520,14 @@ It has to ==work== at being bad. A tuner that insults you still has to listen.
 ### 🙈 The rules (for the shared repo, later)
 
 - **One app, one folder:** `apps/your-app-name/index.html`
-- **Prompt budget:** [number — set in class]
+- **Prompt ==budget==:** [number — set in class]
 - **Start from `STARTER.md`** in the repo
-- **No real names** in the app or the files. Your GitHub username is enough.
+- **No real names** in the app or the files. Your GitHub ==username== is enough.
 
 ### How to do it
 
 1. Pick your bad idea
-2. Open the [Playground](../../playground/), tap **Copy the starter prompt**, and paste it into
+2. Open the [Playground](../../playground/), tap **Copy the ==starter prompt==**, and paste it into
    ==PantherAI== with your idea
 3. Copy the AI's code into the Playground, press ==Run==, and try it, on a phone too
 4. Tell the AI exactly what to change, and run it again
@@ -427,15 +536,24 @@ It has to ==work== at being bad. A tuner that insults you still has to listen.
 > 🧑‍🏫 Where the share links go (a Canvas discussion, an assignment, or GitHub Issues later) is
 > still to be decided. Say it here, and set a prompt budget if you want one.
 
+**Q24 (multiple choice).** You've got your app's code from PantherAI. How do you try it?
+
+- a) Email it to yourself
+- ✅ b) Paste it into the Playground and press Run
+- c) Upload it to Canvas
+
+✅ **Answer.** The Playground runs pasted code right away, and its share link carries the whole app,
+so anyone can open it.
+
 ### Make every prompt count
 
 | ❌ Spends a prompt | ✅ Earns its prompt |
 |---|---|
-| "make it better" | "The drift is too fast to notice. Make it drift about 1 BPM every 4 bars, and keep everything else the same." |
-| "it doesn't work" | "On my phone, tapping Start does nothing. On my laptop it works." |
+| "make it ==better==" | "The drift is too fast to notice. Make it drift about 1 BPM every 4 bars, and keep everything else the same." |
+| "it doesn't ==work==" | "On my phone, tapping Start does nothing. On my laptop it works." |
 | Three new ideas at once | ==One== change, then test |
 
-**Q10 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
+**Q25 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
 
 ✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
 too often. Give it 20 different ones, and keep everything else the same."
@@ -448,7 +566,7 @@ too often. Give it 20 different ones, and keep everything else the same."
 1. **Follow-along notes:** take photos of your filled-in notes and submit them on Canvas
 2. **Online refresher:** on this lecture's page, tap 🔁 **Online refresher**, then copy the Canvas
    deliverable into the Canvas assignment (due dates are on Canvas)
-3. **Bad webapp:** finish it with your group, and hand in its share link
+3. **Bad webapp:** finish it with your group, and hand in its ==share link==
 4. **Repo Improvement** is coming: the same idea, on this site. Early volunteers welcome.
 
 ## 🗝️ Key terms

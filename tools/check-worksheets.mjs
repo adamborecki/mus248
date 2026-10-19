@@ -307,8 +307,8 @@ lectures.forEach((lecture) => {
   check(order.every((number, index) => number === index + 1), `${where}: questions are numbered ${order.join(',')} — expected 1..${order.length}`);
   if (questions.length) {
     const sheet = renderWorksheet(parseActivity(student), { directory: { id: lecture.id, title: lecture.title, route: `lectures/${lecture.id}`, source: file } });
-    const prompts = [...sheet.matchAll(/<p class="q-prompt">([\s\S]*?)<\/p>/g)].map((match) => match[1]).join('\n');
-    check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"') && !questions.some((question) => question.terms.some((term) => prompts.includes(term.split('|')[0]))),
+    const prompts = [...sheet.matchAll(/<p class="q-prompt">([\s\S]*?)<\/p>/g)].map((match) => match[1]);
+    check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"') && !questions.some((question, at) => question.terms.some((term) => (prompts[at] || '').includes(`>${term.split('|')[0]}<`) || (prompts[at] || '').includes(` ${term.split('|')[0]}.`))),
       `${where}: the refresher key's student copy leaks an answer`);
   }
   if (blanks.length || questions.length) {

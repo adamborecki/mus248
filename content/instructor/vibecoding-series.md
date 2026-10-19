@@ -54,10 +54,10 @@ the bad-webapps repo; or a pull request. VC1's activity slide has a 🧑‍🏫 
 ## ✍️ Notes and refresher
 
 1. **In class:** the printed **follow-along notes** (lecture page → 📝 Follow-along notes): the
-   lecture with every `==term==` as a blank, a handful per slide (VC1: 85). Students photograph
+   lecture with every `==term==` as a blank, about four per slide (VC1: 117, plus blanks ready in the 🙈 slides). Students photograph
    them for Canvas, **due the Sunday after**. Key: instructor view → 🔑 Notes key.
 2. **The week after:** the **online refresher** (lecture page → 🔁 Online refresher): the
-   lecture's numbered questions (VC1: 10), which never show on the slides or notes. Three tries
+   lecture's numbered questions (VC1: 25, covering every section), which never show on the slides or notes. Three tries
    each, then the answer and the slide's main point. Students can hand it in unfinished (it warns
    them first) with **📋 Copy Canvas deliverable**: a readable summary plus a JSON receipt (tries,
    clicks, seconds per question, optional feedback, SHA-256 checksum), the same shape as
