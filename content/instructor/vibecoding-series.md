@@ -27,16 +27,21 @@ view; this file is public in the repo like everything else, so nothing private g
 | Practice | Bad webapps (fork → PR) | Same workflow from the terminal | Real Repo Improvement on mus248 |
 | AI concepts | Frontier, model size, context window, thinking effort, usage | Agents, `CLAUDE.md`, queues and steering, agent usage | Choosing a tool for the job; local vs. cloud |
 
-**Power-ups (🍄) in VC1 → where they pay off in VC2:**
+**Portals (🌀) in VC1 → where they lead:**
 
-| VC1 slide | Power-up | VC2 section |
+| VC1 slide | Portal | Leads to |
 |---|---|---|
-| 1. This site is Markdown | `CLAUDE.md`: instructions for the AI | 3. `CLAUDE.md` |
-| 2. How a change gets in | The same steps from the terminal | 2. Git from the terminal |
-| 3. The big trade-off | Coding agents | 3. Chatbot vs. coding agent |
-| 4. Make every prompt count | Queues and steering | 3. Queues and steering |
+| 1. The words you need | The history from the terminal | VC2 · 2. Git from the terminal |
+| 3. Same recipe, starting now | Queues and steering | VC2 · 3. Queues and steering |
+| 5. Your choice | AI on your own computer (offline models) | VC3 (if the lab gets Ollama) |
+| 6. Effort and usage | The settings gear; agents use far more | VC2 · 3. Agents and usage |
+| 8. Make every prompt count | From playground to repo (fork + pull request) | VC2 · 4. Your own repo |
 
-VC2 should carry its own 🍄s pointing at VC3 once VC3 has a shape.
+VC2 should carry its own 🌀 portals pointing at VC3 once VC3 has a shape.
+
+**Open: the feedback route.** How do students hand in bad webapps and give feedback? Options:
+a share link (from `/playground/`) posted to a Canvas discussion or assignment; GitHub Issues on
+the bad-webapps repo; or a pull request. VC1's activity slide has a 🧑‍🏫 note to fill in.
 
 ### Vibecoding 3: outline (not drafted)
 
@@ -48,10 +53,12 @@ VC2 should carry its own 🍄s pointing at VC3 once VC3 has a shape.
 
 ## ✍️ Fill-in: the three stages
 
-1. **In class:** the printed worksheet (Lecture page → 🖨️ Worksheet). Key: instructor view → 🔑.
+1. **In class:** the printed **follow-along notes** (Lecture page → 📝 Follow-along notes): the
+   lecture with every `==term==` as a blank. Key: instructor view → 🔑 Notes key. (The question
+   worksheet still exists: 🖨️ Worksheet.)
 2. **Due the next week:** the online fill-in (Lecture page → ✍️ Fill in online). Students finish
-   it, get a completion code like `M248-L08-9of11-K3QF` (lecture 08, 9 of 11 multiple choice right
-   on the first try), and paste it into a Canvas **text entry** assignment. **Copy for Canvas**
+   it, get a completion code like `M248-L08-19of24-K3QF` (lecture 08, 19 of 24 blanks and
+   multiple-choice questions right on the first try), and paste it into a Canvas **text entry** assignment. **Copy for Canvas**
    also pastes their written answers. In instructor view the fill-in page has a box that checks a
    code. It's honor-system: the check stops typos, not a determined student.
 3. **The week after:** Canvas multiple choice, paraphrased from the lecture (below).
@@ -106,6 +113,26 @@ Same ideas as the worksheet, different wording, so recall is what's tested.
     - When the AI says the code is complete
     - When the code passes 100 lines
     - When the pull request is opened
+11. Why are camera-lab, mixer-lab, and this course site separate repos?
+    - *Correct:* Each repo does one thing, so a change to one can't break another
+    - GitHub only allows one website per account
+    - They were written in different programming languages
+    - To keep them secret from each other
+12. Where did the COB checklist put details it couldn't confirm?
+    - *Correct:* In a Technical verification section, instead of guessing
+    - In a hidden file only the AI can read
+    - It guessed the most likely answer
+    - It left them out entirely
+13. Which is an environmental cost of using AI?
+    - *Correct:* Data centers use electricity, and water for cooling
+    - AI models wear out the keyboard
+    - Each chat prints a paper copy
+    - There isn't one; it runs on the phone
+14. An AI writes a confident summary about a group of people. What's the best habit?
+    - *Correct:* Check it, because AI can repeat the bias in its training data while sounding sure
+    - Trust it, because it was confident
+    - Ask it to sound less confident
+    - Use a longer prompt
 
 ## 🙈 Hiding and showing slides
 

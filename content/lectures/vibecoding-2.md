@@ -1,8 +1,8 @@
 > 🤖 **AI use:** drafted with Claude Code from the instructor's notes. Part 2 of the Vibecoding
 > series.
 
-> 🧑‍🏫 **Draft, not scheduled.** Live Sound 3 is next week, so this lands after it. Each 🍄 in
-> Vibecoding 1 points at a section here: `CLAUDE.md` → section 3, terminal git → section 2, coding
+> 🧑‍🏫 **Draft, not scheduled.** Live Sound 3 is next week, so this lands after it. Each 🌀 portal
+> in Vibecoding 1 opens onto a section here: `CLAUDE.md` → section 3, terminal git → section 2, coding
 > agents → section 3, queues and steering → section 3. Vibecoding 3 is outlined in
 > `content/instructor/vibecoding-series.md`.
 
@@ -13,9 +13,9 @@
 Last time you made a change in the browser. Today: the same thing from the terminal, and what
 changes when an AI agent does the typing.
 
-### Last time's power-ups, cashed in
+### Last time's portals, walked through
 
-Remember the 🍄s in Vibecoding 1? Today you get all four:
+Remember the 🌀 portals in Vibecoding 1? Today you walk through them:
 
 - The terminal version of fork, commit, and pull request
 - `CLAUDE.md`: instructions written for an AI

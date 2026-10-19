@@ -118,7 +118,7 @@ still needs the redaction pass above, because it can't spot a name.
 
 Three markers in lecture Markdown (`lectures/view.js` is the one place that reads them):
 `### 3. 🙈 Title` hides a slide (or a `##` section) from students but keeps it in the file;
-`> 🧑‍🏫 …` is an instructor note; `> 🍄 **Title.** …` is a power-up, a collapsed sneak peek of a
+`> 🧑‍🏫 …` is an instructor note; `> 🌀 **Title.** …` is a portal, a collapsed sneak peek of a
 later lecture that students tap open. Notes and 🙈 slides show only in **instructor view** (the
 faint π at the foot of a lecture page, or `?instructor=1`; remembered per device). It's a view,
 not a lock: the Markdown is public, so nothing private goes in a note. The deck never shows notes.
@@ -127,7 +127,13 @@ A lecture with `**Qn (type).**` questions (same format and rules as activities, 
 order, never inside a 🙈 slide) automatically gets a printed worksheet and key
 (`lectures/worksheet/?id=…`, `…/key/?id=…`) and an online fill-in (`lectures/fill/?id=…`) that
 ends in a completion code for Canvas. No shells to copy. Past lectures have no questions, so they
-have neither, on purpose. `content/instructor/vibecoding-series.md` has the series plan.
+have neither, on purpose.
+
+**Follow-along notes** come from `==term==` in a lecture: the page and slides highlight the term,
+`lectures/notes/?id=…` prints the lecture with a blank in its place (`…/key/` fills it in), and the
+online fill-in checks each blank against the term. Keep blanks short, plain words (the checker
+enforces it); never inside a 🌀 portal or a ``` code block, where they don't count. A ``` fence
+shows its lines exactly, for showing raw Markdown on a slide. `content/instructor/vibecoding-series.md` has the series plan.
 
 ## Quiz
 

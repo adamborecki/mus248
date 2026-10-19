@@ -12,7 +12,8 @@ import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
 import { deckMarkdown, unzip } from './pptx-to-lecture.mjs';
 import { lectureView } from '../lectures/view.js';
-import { completionCode, checkChars } from '../lectures/fill.js';
+import { completionCode, checkChars, blankLines, blankMatches } from '../lectures/fill.js';
+import { notesMarkdown, renderNotes } from '../lectures/notes.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -38,9 +39,29 @@ check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survi
 check(renderMarkdown('type `**bold**` here').includes('<code>**bold**</code>'), 'inline code lost its asterisks to bold');
 check(renderMarkdown('**`NO DISK`**').includes('<strong><code>NO DISK</code></strong>'), 'bold around inline code stopped rendering');
 
-// Power-ups collapse; instructor notes are marked so they look different when instructor view shows them.
-check(/<details class="power-up"><summary>.*Peek<\/summary><p>Hidden text<\/p><\/details>/.test(renderMarkdown('> 🍄 **Peek.** Hidden text')),
-  'a > 🍄 power-up did not render as a collapsed details block');
+// A fenced code block shows its lines exactly: no wrapping, no formatting, no blanks, no questions.
+const fencedSample = ['Before', '```', '## Gear list', '**phantom power**', '- XLR', '==not blank==', '```', 'After'].join('\n');
+check(renderMarkdown(fencedSample).includes('<pre class="code-block"><code>## Gear list\n**phantom power**\n- XLR\n==not blank==</code></pre>'),
+  'a ``` code block did not render its lines exactly');
+check(!renderMarkdown(fencedSample).includes('<h2>'), 'a heading inside a code block rendered as a heading');
+check(parseActivity(['```', '**Q1 (short answer).** Not a question', '```'].join('\n')).questions.length === 0, 'a question inside a code block was parsed');
+check(blankLines(fencedSample).length === 0, 'a ==blank== inside a code block was collected');
+
+// Portals collapse; instructor notes are marked so they look different when instructor view shows them.
+check(/<details class="portal"><summary>.*Peek<\/summary><p>Hidden text<\/p><\/details>/.test(renderMarkdown('> 🌀 **Peek.** Hidden text')),
+  'a > 🌀 portal did not render as a collapsed details block');
+
+// ==term== is a follow-along blank: highlighted on the page, a blank on the notes, filled on the key.
+check(renderMarkdown('a ==mix bus== here').includes('<mark class="key-term">mix bus</mark>'), '==term== is not highlighted on the page');
+check(/class="note-blank"/.test(renderMarkdown('a ==mix bus== here', { blanks: 'blank' })) && !renderMarkdown('a ==mix bus== here', { blanks: 'blank' }).includes('mix bus'),
+  'the notes render of ==term== is not a blank, or leaks the term');
+check(renderMarkdown('`==not a blank==`').includes('<code>==not a blank==</code>'), '==…== inside code turned into a blank');
+check(blankMatches('The Context Window!', 'context window') && blankMatches('repos', 'repo') && !blankMatches('', 'repo') && !blankMatches('fork', 'merge'),
+  'blank answer matching is too strict or too loose');
+const notesSample = notesMarkdown(['### S', 'One ==alpha== two', '> 🌀 **Portal.** ==beta== inside', '> 🧑‍🏫 ==gamma== note'].join('\n'));
+check(notesSample.includes('==alpha==') && !/beta|gamma/.test(notesSample), 'follow-along notes kept a portal or an instructor note');
+check(blankLines(['### S', 'One ==alpha== and ==beta==', '> 🌀 **P.** ==skip=='].join('\n')).map((item) => item.terms.join('+')).join('|') === 'alpha+beta',
+  'the online fill-in did not collect the blanks (or collected one from a portal)');
 check(renderMarkdown('> 🧑‍🏫 Note').includes('class="instructor-note"'), 'an instructor note is not marked');
 
 // The student view of a lecture drops 🙈 slides and 🧑‍🏫 notes, and nothing else.
@@ -236,7 +257,20 @@ lectures.forEach((lecture) => {
   const parsed = parseActivity(student);
   const all = parseActivity(text);
   check(all.questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
-  if (!parsed.questions.length) return;
+  // Follow-along blanks: each one a short, plain term, and none left as literal ==…== on the notes.
+  const blanks = blankLines(text);
+  blanks.forEach((blank) => blank.terms.forEach((term) => {
+    check(term.length <= 40 && !/[*`[\]]/.test(term), `${where}: blank "${term}" should be a short plain term (no formatting, 40 characters at most)`);
+  }));
+  if (blanks.length) {
+    const notes = renderNotes(text, lecture);
+    check(!notes.replace(/<pre[\s\S]*?<\/pre>/g, '').includes('=='), `${where}: the follow-along notes still show a literal == (outside a code block)`);
+    check(!notes.includes('key-term'), `${where}: the follow-along notes show a filled-in blank`);
+  }
+  if (!parsed.questions.length) {
+    if (blanks.length) rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: 0, leave: parsed.beforeYouLeave.length, blanks: blanks.reduce((sum, blank) => sum + blank.terms.length, 0) });
+    return;
+  }
   parsed.questions.forEach((question) => {
     const at = `${where} Q${question.number}`;
     if (question.type === 'multiple choice') {
@@ -253,7 +287,7 @@ lectures.forEach((lecture) => {
   const sheet = renderWorksheet(parsed, { directory: { id: lecture.id, title: lecture.title, route: `lectures/${lecture.id}`, source: file } });
   check(!sheet.includes('class="option correct"') && !sheet.includes('class="key-answer"'), `${where}: the worksheet leaks the key`);
   check(!renderWorksheet(parsed, { showAnswers: true, directory: { id: lecture.id } }).includes('no answer marked in the source'), `${where}: the key has unmarked questions`);
-  rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: parsed.questions.length, leave: parsed.beforeYouLeave.length });
+  rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: parsed.questions.length, leave: parsed.beforeYouLeave.length, blanks: blanks.reduce((sum, blank) => sum + blank.terms.length, 0) });
 });
 
 // PowerPoint → lecture Markdown, against a tiny deck whose slide files are deliberately out of order.

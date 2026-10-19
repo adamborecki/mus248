@@ -5,6 +5,7 @@
 import { escapeHtml, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
 import { instructorView, isVisible, lectureView, setInstructorView } from './view.js';
+import { hasBlanks } from './notes.js';
 
 export { isVisible };
 
@@ -56,9 +57,17 @@ export async function mountLecture(root, id) {
     return response.text();
   }), { instructor });
   const query = `?id=${encodeURIComponent(lecture.id)}`;
-  const extras = hasQuestions(markdown)
-    ? `<a href="../worksheet/${query}">🖨️ Worksheet</a><a href="../fill/${query}">✍️ Fill in online</a>${instructor ? `<a href="../worksheet/key/${query}">🔑 Answer key</a>` : ''}`
-    : '';
+  // Blanks (==term==) give a lecture follow-along notes; numbered questions give it a worksheet;
+  // either gives it the online fill-in. Keys only show in instructor view.
+  const blanks = hasBlanks(markdown);
+  const questions = hasQuestions(markdown);
+  const extras = [
+    blanks && `<a href="../notes/${query}">📝 Follow-along notes</a>`,
+    questions && `<a href="../worksheet/${query}">🖨️ Worksheet</a>`,
+    (blanks || questions) && `<a href="../fill/${query}">✍️ Fill in online</a>`,
+    instructor && blanks && `<a href="../notes/key/${query}">🔑 Notes key</a>`,
+    instructor && questions && `<a href="../worksheet/key/${query}">🔑 Answer key</a>`,
+  ].filter(Boolean).join('');
   // The list runs newest first, so the entry before this one is the newer lecture.
   const newer = readable[index - 1];
   const older = readable[index + 1];

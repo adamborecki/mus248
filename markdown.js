@@ -19,10 +19,20 @@ const resolveLink = (href, assetBase) => (/^(#|mailto:)/.test(href) ? href : res
 
 // Code spans are set aside first and put back last, so `**bold**` inside backticks shows its
 // asterisks instead of turning bold — a page that teaches Markdown has to be able to show it.
-export const inline = (value, { assetBase = '' } = {}) => {
+//
+// ==term== marks a follow-along blank in a lecture. The slides and page highlight it; the printed
+// follow-along notes print a blank in its place (blanks: 'blank'), and their key fills it in.
+const BLANK_TERM = /==([^=\n]+?)==/g;
+export const blankTerms = (value) => [...value.matchAll(BLANK_TERM)].map((match) => match[1].trim());
+const blankHtml = (text, mode) => (mode === 'blank'
+  ? `<span class="note-blank" style="--chars:${Math.max(4, text.length)}"></span>`
+  : `<mark class="key-term">${text}</mark>`);
+
+export const inline = (value, { assetBase = '', blanks = 'mark' } = {}) => {
   const code = [];
   return escapeHtml(value)
     .replace(/`([^`]+)`/g, (match, text) => `\u0000${code.push(text) - 1}\u0000`)
+    .replace(BLANK_TERM, (match, text) => blankHtml(text, blanks))
     .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (match, alt, src) => `<img src="${resolveAsset(src, assetBase)}" alt="${alt}" loading="lazy" decoding="async">`)
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, href) => `<a href="${resolveLink(href, assetBase)}">${text}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
@@ -51,9 +61,15 @@ export const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\s*/;
 const STARTS_BLOCK = /^(\s*([-*+]|\d+\.)\s|#{1,6}\s|>|\||```|\s*$)/;
 const OPAQUE = /^(\||```|#{1,6}\s)/;
 
+// A ``` fence opens or closes a code block, whose lines are kept exactly as written.
+export const isFence = (line) => line.trim().startsWith('```');
+
 export function joinWrappedLines(markdown) {
   const joined = [];
+  let fenced = false;
   markdown.split('\n').forEach((line) => {
+    if (isFence(line)) { fenced = !fenced; joined.push(line); return; }
+    if (fenced) { joined.push(line); return; }
     const previous = joined[joined.length - 1];
     const append = (text) => { joined[joined.length - 1] = `${previous.replace(/\s+$/, '')} ${text}`; };
     const carries = previous !== undefined && Boolean(previous.trim()) && !OPAQUE.test(previous.trim());
@@ -81,7 +97,10 @@ export function stepNumbers(lines) {
   const numbers = new Map();
   const words = (heading) => heading.replace(/^[^\p{L}\p{N}]+/u, '').trim().toLowerCase();
   const sections = [];
+  let fenced = false;
   lines.forEach((line, index) => {
+    if (isFence(line)) { fenced = !fenced; return; }
+    if (fenced) return;
     const h2 = line.match(/^##\s+(.+)$/);
     if (h2) sections.push({ index, skip: UNNUMBERED_SECTIONS.includes(words(h2[1])), items: [] });
     else if (sections.length && LIST_ITEM.test(line) && !OPTION.test(line.trim())) sections[sections.length - 1].items.push(index);
@@ -95,15 +114,17 @@ export function stepNumbers(lines) {
   return numbers;
 }
 
-// Two kinds of blockquote get their own shape. "> 🍄 **Title.** text" is a power-up: a collapsed
-// sneak peek of a later lecture that opens on a tap. "> 🧑‍🏫 text" is an instructor note — only
-// instructor view ever leaves one in (lectures/view.js); this just marks it so it looks different.
+// Two kinds of blockquote get their own shape. "> 🌀 **Title.** text" is a portal: a collapsed
+// sneak peek of a later lecture (or a later idea) that opens on a tap. "> 🧑‍🏫 text" is an
+// instructor note — only instructor view ever leaves one in (lectures/view.js); this just marks it
+// so it looks different.
+export const PORTAL = /^🌀\s*(?:\*\*([^*]+)\*\*)?\s*(.*)$/u;
 function renderQuote(text, options) {
-  const powerUp = text.match(/^🍄\s*(?:\*\*([^*]+)\*\*)?\s*(.*)$/u);
-  if (powerUp) {
-    const title = (powerUp[1] || 'Power-up').replace(/[.:]\s*$/, '');
-    return `<details class="power-up"><summary><span class="power-up-icon" aria-hidden="true">🍄</span> ${inline(title, options)}</summary>`
-      + `<p>${inline(powerUp[2], options)}</p></details>`;
+  const portal = text.match(PORTAL);
+  if (portal) {
+    const title = (portal[1] || 'Portal').replace(/[.:]\s*$/, '');
+    return `<details class="portal"><summary><span class="portal-icon" aria-hidden="true">🌀</span> ${inline(title, options)}</summary>`
+      + `<p>${inline(portal[2], options)}</p></details>`;
   }
   if (/^🧑‍🏫/u.test(text)) return `<aside class="instructor-note">${inline(text, options)}</aside>`;
   return `<aside>${inline(text, options)}</aside>`;
@@ -121,6 +142,14 @@ export function renderMarkdown(markdown, options = {}) {
   const row = (values, tag) => `<tr>${values.map((value) => `<${tag}>${inline(value, options)}</${tag}>`).join('')}</tr>`;
 
   for (let index = 0; index < lines.length; index += 1) {
+    if (isFence(lines[index])) {
+      closeList();
+      const code = [];
+      index += 1;
+      while (index < lines.length && !isFence(lines[index])) { code.push(lines[index]); index += 1; }
+      output.push(`<pre class="code-block"><code>${escapeHtml(code.join('\n'))}</code></pre>`);
+      continue;
+    }
     const line = stripAnswerMark(lines[index]);
     if (isAnswerLine(line)) continue;
     const heading = line.match(/^(#{2,4})\s+(.+)$/);

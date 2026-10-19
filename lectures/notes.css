@@ -1,0 +1,29 @@
+@import url('../worksheet.css');
+
+/* Follow-along notes: the lecture as a page to write on. Compact, because it's printed per student. */
+.notes-body { margin-top:1rem; font-size:.95rem; line-height:1.45; }
+.notes-body h2 { margin:1.4rem 0 .4rem; padding-bottom:.15rem; border-bottom:1px solid var(--line); font-size:1.1rem; }
+.notes-body h3 { margin:.9rem 0 .25rem; font-size:.95rem; }
+.notes-body p, .notes-body li { margin:.25rem 0; }
+.notes-body ul, .notes-body ol { margin:.2rem 0; padding-left:1.2rem; }
+.notes-body aside { margin:.5rem 0; padding:.4rem .7rem; border-left:3px solid var(--line); color:var(--muted); font-size:.85em; }
+.notes-body code { padding:0 .2em; border-radius:.2em; background:var(--tag); font-family:ui-monospace, monospace; font-size:.88em; }
+.notes-body table { width:100%; border-collapse:collapse; font-size:.85em; }
+.notes-body th, .notes-body td { padding:.2rem .4rem; border:1px solid var(--line); text-align:left; vertical-align:top; }
+/* A blank sized roughly to its answer, so the space to write is fair but not a giveaway. */
+.note-blank { display:inline-block; width:calc(var(--chars) * .62em + 1.2em); max-width:100%; border-bottom:1.5px solid var(--ink); vertical-align:-.1em; }
+.notes-body mark.key-term { padding:0 .1em; background:#fff1a8; color:#000; font-weight:700; }
+.notes-body .answer-lines { display:flex; flex-direction:column; gap:.2rem; margin:.2rem 0 .5rem; }
+.notes-body .answer-lines .rule { display:block; height:1.2rem; border-bottom:1px solid var(--muted); }
+.notes-body .prompts-write li { padding-bottom:2.4rem; border-bottom:1px solid var(--muted); margin-bottom:.4rem; }
+.print-cue a { margin-left:.75rem; color:var(--accent); }
+
+@media print {
+  .notes-body { font-size:9pt; line-height:1.3; column-count:2; column-gap:.3in; }
+  .notes-body h2 { break-after:avoid; font-size:10.5pt; margin-top:.6rem; }
+  .notes-body h3 { break-after:avoid; font-size:9.5pt; margin-top:.45rem; }
+  .notes-body table, .notes-body li, .notes-body p { break-inside:avoid; }
+  .notes-body table { font-size:8pt; }
+  .notes-body mark.key-term { background:none; text-decoration:underline; }
+}
+.notes-body pre.code-block { margin:.3rem 0; padding:.4rem .6rem; border:1px solid var(--line); border-radius:.3rem; font:8.5pt/1.35 ui-monospace, Menlo, monospace; white-space:pre-wrap; break-inside:avoid; }

@@ -1,60 +1,224 @@
-> 🤖 **AI use:** drafted with Claude Code from the instructor's notes. This lecture is part of a
-> series: Vibecoding 1 (today), Vibecoding 2, and Vibecoding 3.
+> 🤖 **AI use:** drafted with Claude Code from the instructor's notes. Part 1 of a series:
+> Vibecoding 1 (today), Vibecoding 2, and Vibecoding 3.
 
-> 🧑‍🏫 **Instructor notes are only visible in instructor view.** Slides marked 🙈 are hidden from
-> students; they're kept so you can switch them back on by removing the 🙈 from the heading. Your
-> running reminders for this series are in `content/instructor/vibecoding-series.md`.
+> 🧑‍🏫 **Instructor view only.** Slides marked 🙈 are hidden from students; remove the 🙈 from a
+> heading to bring one back. Print the 📝 Follow-along notes for class (button at the top of this
+> page). Series reminders: `content/instructor/vibecoding-series.md`.
 
 ## 🎤 Lecture: Vibecoding 1
 
-### Vibecoding 1: Markdown, GitHub, and Bad Webapps
+### Vibecoding 1: This Site, AI, and Bad Webapps
 
-How this course site is built, how to work with cheaper AI, and your first contribution to a real
-repo: a webapp that is **bad on purpose**.
+A tour of the repo behind this site, how it gets built with AI, what using AI costs, and a
+webapp your group makes that is **bad on purpose**.
 
-> 🧑‍🏫 Before class: set the prompt budget on the "Bad webapps: the rules" slide, and put the
-> bad-webapps link on Canvas. Live Sound 3 moved to next week.
+Fill in the blanks on your follow-along notes as we go: each one is a highlighted word on the
+slides.
 
 ### Today
 
-1. Markdown
-2. GitHub, in the browser
-3. Working with AI: models, context, effort, usage
-4. Bad webapps
-5. What's next
+1. A tour of this site
+2. A finished example: COB
+3. A live build: the Electroacoustic Showcase
+4. Markdown, by example
+5. The ethics of AI
+6. Working with AI
+7. Checking the live build
+8. Activity: bad webapps
 
-### 🍄 See a mushroom? It's a power-up
+### 🌀 See a swirl? It's a portal
 
-Some slides have a **🍄 power-up**: a hidden level with a sneak peek of **Vibecoding 2**.
+Some slides have a 🌀 **portal**: tap it for a glimpse of something we'll get to later.
 
-> 🍄 **Power-up: what this is.** Tap a power-up to open it. Power-ups are optional and never on
-> the worksheet. Each one is a topic you'll meet properly in a later lecture, so when it comes up
-> again you'll already have a head start.
+> 🌀 **Portal: what this is.** Portals are optional, and never on the notes. Each one opens onto
+> a later lecture (usually Vibecoding 2), so when we get there, you've already been.
 
-## 1. Markdown
+## 1. A Tour of This Site
 
-### 1. What Markdown is
+### 1. One site, one repo
 
-**Plain text with a few symbols** that become formatting.
+Every page you've used this semester lives in one ==repo==: a folder of files, with its whole
+history, on GitHub.
 
-- Readable as-is, even without being rendered
-- Opens in any app, on any computer, forever
-- Files end in `.md`
+- The repo: [github.com/adamborecki/mus248](https://github.com/adamborecki/mus248)
+- The site: [adamborecki.github.io/mus248](../../)
 
-It's how AI chatbots format their answers. That's why stray `**` and `##` show up when you paste
-from an AI into Canvas or Word: the symbols came along, the formatting didn't.
+**GitHub Pages** turns the repo into the website. Change a file, and a minute later the site
+changes.
 
-**Q1 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`, asterisks
-and all. What happened?
+> 🧑‍🏫 Open the repo on the projector and click around while you talk: folders, a Markdown file,
+> the commit list.
+
+### 1. What's inside
+
+| In the repo | What it is |
+|---|---|
+| `cameras/`, `stereo/`, `salmon-gig-checklist/` … | Each folder is a page's web address |
+| `content/activities/` | One Markdown file per activity: the real source |
+| `content/lectures/` | These slides, as text |
+| `data/` | Lists the site reads: activities, lecture dates |
+| `CLAUDE.md` | Rules for the AI that helps build it |
+
+Most of it is plain text files written in ==Markdown==.
+
+### 1. One file, three outputs
+
+Each activity is **one Markdown file**. From it, the site builds:
+
+1. **The web page:** full procedure, photos, troubleshooting
+2. **The worksheet:** key terms, checkpoints, questions
+3. **The answer key**
+
+Nobody hand-writes a worksheet, so the page and the paper can never disagree. Your follow-along
+notes are made the same way, from this lecture's own file.
+
+### 1. Rules for the AI
+
+`CLAUDE.md` is a Markdown file of rules the AI reads before it changes anything. A few of them:
+
+- "This repo is ==public==." Never commit passwords, codes, or names.
+- "American spellings."
+- Don't guess a port label or menu path: mark it unverified.
+- Run the tests before every save, and look at the result in a browser.
+
+### 1. The words you need
+
+| Word | What it means |
+|---|---|
+| **repo** | A project folder, with its whole history |
+| **commit** | One save, plus a note about what changed |
+| **fork** | Your own copy of someone else's repo |
+| **pull request** | "Here's my change; please bring it into yours" |
+| **merge** | The owner accepts the change |
+
+Every saved change is a ==commit==, and the history keeps every one.
+
+**Q1 (multiple choice).** Which one is your own copy of someone else's repo, under your account?
+
+- a) commit
+- ✅ b) fork
+- c) merge
+- d) pull request
+
+✅ **Answer.** b) A fork is your copy. A commit is one save, a pull request asks the owner to take
+your change, and a merge is the owner saying yes.
+
+> 🌀 **Portal: the history from the terminal.** You can read and write this history without a
+> browser: `git log`, `git commit`, `git push`. That's how AI coding agents do it, and it's
+> Vibecoding 2.
+
+### 1. One repo, one thing
+
+The simulators you've used are their **own** repos, each its own small site:
+
+- [camera-lab](https://adamborecki.github.io/camera-lab/)
+- [mixer-lab](https://adamborecki.github.io/mixer-lab/)
+- [Salmon](https://adamborecki.github.io/salmon/)
+
+Each repo does ==one thing==, so a change to one can't break another.
+
+### 1. 🙈 How a change gets in
+
+1. **Fork** the repo (button at the top right on GitHub)
+2. **Edit** in your browser: open a file and click the ✏️ pencil, or **Add file → Create new file**
+3. **Commit** your change, with a short note
+4. Open a **pull request** back to the original
+5. The instructor reviews it and **merges** it. Then it's live.
+
+### 1. 🙈 Public means public
+
+This repo is **public**: anyone can read every file and **every old version**. Deleting something
+later doesn't remove it from the history. Never commit passwords, access codes, door codes, stream
+keys, real names, grades, or anything about a classmate.
+
+### 1. 🙈 You've already been using version history
+
+Every activity page and worksheet shows a **revised** date ("Rev. 2026-10-14"). If you're holding
+a printed worksheet from three weeks ago, that date tells you it isn't the current version.
+
+## 2. A Finished Example: COB
+
+### 2. What went in
+
+For the Chapman on Broadway (COB) show in Irvine, the AI got:
+
+- **Photos** from the gig: the booth, the receivers, the wedges, the cases
+- **Notes**: a long, dictated paragraph, plus the student crew's quick-reference doc
+- **A one-line ask**: "Make a mixer-lab scenario and a gig checklist for this."
+
+### 2. What came out
+
+- A [COB Gig Checklist](../../cob-gig-checklist/): equipment, setup steps in order, photos,
+  troubleshooting
+- A COB scenario in [mixer-lab](https://adamborecki.github.io/mixer-lab/) to practice the board
+  before the gig
+
+Look at what it did **not** do:
+
+- It replaced students' names with roles, and blurred faces in the photos
+- Anything it couldn't confirm went in a section called ==Technical verification==, instead of
+  being guessed
+
+## 3. A Live Build: The Electroacoustic Showcase
+
+### 3. Same recipe, starting now
+
+Same recipe as COB, for the **10/18 Electroacoustic Showcase**: photos, dictated notes, and a
+one-line ask.
+
+It runs in the background while we keep going. We'll check what it made near the end.
+
+> 🧑‍🏫 In Claude Code (claude.ai/code, with mus248 and mixer-lab attached): upload the showcase
+> photos, paste your dictated notes, then: "Make a mixer-lab scenario and a gig checklist for the
+> 10/18 Electroacoustic Showcase from these photos and my notes. Follow CLAUDE.md. Preview, don't
+> merge: send me the branch preview link." Glance at the photos for faces or screens first.
+
+> 🌀 **Portal: queues and steering.** While an agent works you don't have to wait: send your next
+> message and it waits in a **queue**, or interrupt to **steer** it. Vibecoding 2.
+
+## 4. Markdown, by Example
+
+### 4. A real file
+
+The top of the COB checklist, trimmed a little, as it's written in its file:
+
+```
+## 🎚️ What this is
+
+The gig checklist for a **Chapman on Broadway (COB)** musical-theater
+show in Irvine: twelve performers on **wireless headset mics**.
+
+- **SD8 OUT 1** → the performers' **wedges**
+- **SD8 OUT 7 and 8** → a **Yamaha StagePas 600BT**
+
+## 🗝️ Key terms
+
+**AES50** · **stage box** · **input routing** · **mix bus**
+```
+
+Readable as-is: `##` starts a ==heading==, `**` makes text ==bold==, and `-` starts a ==bullet==.
+
+### 4. Your notes are Markdown too
+
+The blanks on your follow-along notes are words marked like this in the lecture's file:
+
+```
+Every saved change is a ==commit==.
+```
+
+The slides highlight it; your notes print a blank. One file, two outputs.
+
+**Q2 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`,
+asterisks and all. What happened?
 
 - a) The AI made a typo
 - ✅ b) The AI wrote Markdown, and Canvas showed the symbols instead of the formatting
 - c) Canvas doesn't allow bold text
 
-✅ **Answer.** b) The AI wrote Markdown; Canvas showed the symbols instead of turning them into
-bold.
+✅ **Answer.** b) AI tools answer in Markdown; Canvas showed the symbols instead of turning them
+into bold.
 
-### 1. The whole cheat sheet
+### 4. 🙈 The whole cheat sheet
 
 | Type this | You get |
 |---|---|
@@ -66,139 +230,68 @@ bold.
 | `[Salmon checklist](link)` | A link |
 | `![caption](photo.jpg)` | A picture |
 
-That covers almost everything on this site.
+## 5. The Ethics of AI
 
-### 1. This site is Markdown
+### 5. Your choice
 
-Each activity is **one Markdown file**. From it, the site builds the web page, the worksheet, and
-the answer key. Nobody hand-writes a worksheet, so the page and the paper can never disagree.
+In this class, using AI is **your choice**.
 
-These slides are Markdown too.
+Today is the exception: the activity uses **PantherAI**, in groups of 2–3, so one person can
+drive while the others test and think.
 
-**Q2 (fill in the blank).** In these slides, every `###` heading becomes a ______.
+> 🌀 **Portal: AI on your own computer.** Some models run **offline**, on your own laptop: free,
+> and nothing you type leaves the machine. They're smaller and slower. A later lecture.
 
-✅ **Answer.** slide
+### 5. Bias
 
-> 🍄 **Power-up: instructions for the AI, in Markdown.** This repo has a file called `CLAUDE.md`:
-> plain Markdown rules that an AI coding agent reads before it touches anything ("this repo is
-> public," "American spellings," "don't guess a port label"). In Vibecoding 2 you'll see an agent
-> follow it.
+AI learns from huge amounts of human writing, so it picks up that writing's ==bias==: whose
+voices are common, and whose are missing.
 
-## 2. GitHub, in the Browser
+- It sounds just as sure when it's wrong or one-sided
+- Be most careful with anything it says about people
 
-### 2. Git and GitHub
+### 5. Environmental cost
 
-You've seen this folder:
+Every AI answer runs in a data center that uses ==electricity==, and ==water== for cooling.
 
-`mix.wav` · `mix_v2.wav` · `mix_FINAL.wav` · `mix_FINAL_actually.wav`
+- Bigger models and more "thinking" use more
+- Clear, small asks in a fresh chat use less
 
-**Git** fixes that: one copy of each file, plus every saved version, each with a note saying what
-changed. **GitHub** puts that history online, and **GitHub Pages** turns it into a website.
+**Using less is the habit that's cheaper, faster, and kinder to the planet.**
 
-This site is a GitHub repo: [github.com/adamborecki/mus248](https://github.com/adamborecki/mus248).
+### 5. Honesty and privacy
 
-### 2. The words you need
+- **Disclose** when you used AI, like the note at the top of this lecture
+- **You own** what you hand in, mistakes included
+- **Never paste private things** into an AI: names, door codes, passwords, recordings of people
+- Follow each assignment's own AI rules
 
-| Word | What it means |
-|---|---|
-| **repo** | A project folder, with its whole history |
-| **commit** | One save, plus a note about what changed |
-| **fork** | Your own copy of someone else's repo |
-| **pull request** | "Here's my change; please bring it into yours" |
-| **merge** | The owner accepts the change |
+**Q3 (short answer).** Name one thing you should never paste into an AI tool, and why.
 
-**Q3 (multiple choice).** Which one is your own copy of someone else's repo, under your account?
+✅ **Answer.** Any private information (a name, a door code, a password, a recording of a person):
+once it's sent, you can't take it back.
 
-- a) commit
-- ✅ b) fork
-- c) merge
-- d) pull request
+> 🧑‍🏫 Say your own rule for AI on quizzes out loud here.
 
-✅ **Answer.** b) A fork is your copy. A commit is one save, a pull request asks the owner to take
-your change, and a merge is the owner saying yes.
+## 6. Working with AI
 
-### 2. How a change gets in
+### 6. Models
 
-1. **Fork** the repo (button at the top right on GitHub)
-2. **Edit** in your browser: open a file and click the ✏️ pencil, or **Add file → Create new file**
-3. **Commit** your change, with a short note
-4. Open a **pull request** back to the original
-5. The instructor reviews it and **merges** it. Then it's live.
-
-No terminal, no app to install. Everything happens on github.com.
-
-**Q4 (fill in the blank).** In bad-webapps, anyone can open a pull request, but only the
-______ can merge it.
-
-✅ **Answer.** instructor (or someone the instructor has put in charge)
-
-> 🍄 **Power-up: the same thing from the terminal.** Everything on this slide has a terminal
-> version: `git clone`, `git commit`, `git push`. It's faster once you know it, and it's how AI
-> coding agents do it. That's Vibecoding 2.
-
-### 2. Public means public
-
-This repo is **public**: anyone can read every file and **every old version**. Deleting something
-later doesn't remove it from the history.
-
-Never commit:
-
-- Passwords, access codes, door codes, stream keys
-- Real names (yours or anyone's), grades, or anything about a classmate
-
-**Q5 (short answer).** You commit a door code by accident and delete it the next day. Why is it
-still a problem?
-
-✅ **Answer.** The history keeps every old version, so anyone can still find it.
-
-### 2. 🙈 You've already been using version history
-
-Every activity page and worksheet shows a **revised** date ("Rev. 2026-10-14"). If you're holding
-a printed worksheet from three weeks ago, that date tells you it isn't the current version. Same
-idea as our folder naming conventions: the name or date tells the next person what they're
-holding.
-
-## 3. Working with AI
-
-### 3. Frontier models
-
-A **frontier model** is one of the newest, most capable AI models from the big labs: Anthropic
+A ==frontier model== is one of the newest, most capable models from the big labs: Anthropic
 (Claude), OpenAI (ChatGPT), Google (Gemini).
 
-- The "best" model changes every few months
-- The biggest models are the smartest, and the most expensive to run
+Claude comes in sizes: **Haiku** (small), **Sonnet** (middle), **Opus** (largest).
+**PantherAI** gives you the highest **Claude Sonnet** available (Sonnet 5, right now): very good,
+just not the biggest.
 
-Claude comes in sizes: **Haiku** (small, fast), **Sonnet** (middle), **Opus** (largest).
+### 6. The context window
 
-**PantherAI** gives you the highest **Claude Sonnet** available (Sonnet 5, right now). That's a very
-good model. It just isn't the biggest one, so you work with it a little differently.
+The ==context window== is everything the AI can "see" at once: your messages, its replies, and
+anything you pasted. It can't see this site, your files, or your screen unless you paste them.
 
-**Q6 (multiple choice).** A "frontier" model is:
+When a chat gets long or confused, start a **new chat** with a short summary.
 
-- a) Any AI that's free to use
-- ✅ b) One of the newest, most capable models from the big AI labs
-- c) An AI that runs without the internet
-
-✅ **Answer.** b) "Frontier" means the leading edge: the newest, most capable models.
-
-### 3. The context window
-
-The **context window** is everything the AI can "see" at once: your messages, its replies, and
-anything you pasted.
-
-- It's big, but not unlimited
-- In a very long chat, early instructions get less attention, and some tools quietly drop the
-  oldest messages
-- It can't see this website, your files, or your screen unless you paste them in
-
-**Fix:** when a chat gets long or confused, start a **new chat** with a short summary and your
-current file.
-
-**Q7 (fill in the blank).** Everything the AI can "see" at once is its ______ ______.
-
-✅ **Answer.** context window
-
-**Q8 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
+**Q4 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
 at the start. Best move?
 
 - a) Repeat the rule in ALL CAPS
@@ -207,47 +300,23 @@ at the start. Best move?
 
 ✅ **Answer.** b) A fresh chat puts your rules back at the front of the context window.
 
-### 3. Thinking effort
-
-Some AI tools can **think before answering**: work through the problem step by step, then reply.
-
-- **More effort:** better on hard problems, slower, uses more
-- **Less effort:** fine for simple, clear requests
-
-In PantherAI, look for a settings gear ⚙️ next to the model name. If there's a thinking or effort
-option, that's this. If there isn't, the model decides for itself.
-
-> 🧑‍🏫 PantherAI runs on LibreChat. Confirm before class whether Chapman's setup shows a thinking
-> or effort option under the gear; if it does, say where it is on this slide.
-
-### 3. The big trade-off: usage
-
-Every message costs something: money, a usage limit, or your time.
+### 6. Effort and usage
 
 | Uses more | Uses less |
 |---|---|
 | Bigger model | Smaller model |
 | More thinking effort | Less thinking effort |
 | Long chats, big pastes | Fresh chats, only what's needed |
-| Vague asks, many rounds | Clear asks, fewer rounds |
 
-**Cheaper AI is still good. It's different work:** you do more of the thinking. Smaller asks,
-clearer instructions, more checking.
+More isn't always better. For a small, clear job, less is faster and just as good.
 
-**Q9 (multiple choice).** Which uses the most?
+> 🌀 **Portal: the settings gear.** In PantherAI, look for a gear ⚙️ next to the model name. If
+> there's a thinking or effort setting there, that's this slide. Coding agents (Vibecoding 2) use
+> far more than a chat: they read whole repos.
 
-- a) A short question to a small model
-- ✅ b) A long chat with a big model on high thinking effort
-- c) Re-reading the AI's last answer
+> 🧑‍🏫 Confirm what Chapman's PantherAI shows under the gear before class.
 
-✅ **Answer.** b) Bigger model, more effort, and a longer chat all add up.
-
-> 🍄 **Power-up: coding agents.** PantherAI is a chatbot: it only sees what you paste, and you copy
-> its answer somewhere yourself. A **coding agent** (like Claude Code, which built this site) works
-> on the files directly: it edits, runs tests, and commits. More powerful, and it uses far more.
-> Vibecoding 2.
-
-### 3. 🙈 Chatbot vs. coding agent
+### 6. 🙈 Chatbot vs. coding agent
 
 | | Chatbot (e.g. PantherAI, ChatGPT) | Coding agent (e.g. Claude Code) |
 |---|---|---|
@@ -255,79 +324,38 @@ clearer instructions, more checking.
 | Does | Writes a reply you copy somewhere | Edits files, runs commands, runs tests, commits |
 | You check | Its answer | Its changes, the tests, the result on screen |
 
-## 4. Bad Webapps
+### 6. 🙈 Thinking effort
 
-### 4. So bad it's good
+Some AI tools can **think before answering**. More effort: better on hard problems, slower, uses
+more. Less effort: fine for simple, clear requests.
 
-**Bad webapps** is a shared repo where everyone builds a tiny webapp that is **bad on purpose**,
-and bad in a way that's actually good.
+## 7. Checking the Live Build
 
-- A metronome that slowly drifts
-- A tuner that insults you
-- A calculator that's always off by a little
-- A mirror that's two seconds late
-- A microphone that only hears whispers
-- A cable generator that's all spaghetti
+### 7. What did it make?
 
-It's low stakes. The point is practicing the workflow: vibecoding, iterating, and a pull request.
+Open the preview link from the build we started, and read the new checklist together.
 
-### 4. The rules
+- Does it match what actually happened at the showcase?
+- What did it put in Technical verification?
+- Find **one** thing that's wrong, missing, or guessed.
 
-- **One app, one folder:** `apps/your-app-name/index.html`
-- **Prompt budget:** [number — set in class]. Plan each prompt.
-- **Start from `STARTER.md`** in the repo: paste it into PantherAI first, then describe your idea
-- **Bad on purpose, but it has to work.** A tuner that insults you still has to listen.
-- **No real names** in the app or the files. Your GitHub username is enough.
+> 🧑‍🏫 If it isn't finished, show what it has so far, and come back to it next week.
 
-The repo: [link on Canvas]
-
-> 🧑‍🏫 Pick the prompt budget (5–8 is enough to finish and tight enough to make every prompt
-> count) and edit the line above. The bad-webapps repo and setup steps are in
-> `content/instructor/vibecoding-series.md`.
-
-### 4. Iterating: the loop
-
-1. **Describe** what you want, specifically
-2. **The AI builds** it
-3. **You test** it: open it, on your phone too
-4. **Report** what's wrong, as specifically as you'd tell a performer
-5. Repeat
-
-Step 3 is the job. It's soundcheck: you trust the mix because you listened, not because the faders
-look right.
-
-### 4. Make every prompt count
-
-| ❌ Spends a prompt | ✅ Earns its prompt |
-|---|---|
-| "make it better" | "The drift is too fast to notice. Make it drift about 1 BPM every 4 bars, and keep everything else the same." |
-| "it doesn't work" | "On my phone, tapping Start does nothing. On my laptop it works." |
-| Three new ideas at once | One change, then test |
-
-**Q10 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
-
-✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
-too often. Give it 20 different ones, and keep everything else the same."
-
-> 🍄 **Power-up: queues and steering.** In a coding agent you don't have to wait: you can send your
-> next message while it's still working (it waits in a **queue**), or interrupt to **steer** it
-> mid-task. Vibecoding 2.
-
-### 4. When is it done?
+### 7. Done means checked
 
 **AI sounds equally confident when it's right and when it's wrong.**
 
-It's done when **you** opened it and it did what you asked, not when the AI says "this works!"
+It's done when a **person** opened it and checked it, not when the AI says "this works!"
 
-**Q11 (multiple choice).** Your bad tuner looks great in the AI's reply. When is it done?
+**Q5 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
 
 - a) When the AI says it works
-- ✅ b) When you've opened it, on your phone too, and it does what you asked
+- ✅ b) When you've opened it, on a phone too, and it does what you asked
 - c) When the code is long enough
 
 ✅ **Answer.** b) Same as soundcheck: you trust it after you've tested it.
 
-### 4. 🙈 Where vibecoding bites
+### 7. 🙈 Where vibecoding bites
 
 Real kinds of mistakes this course site has had to catch:
 
@@ -335,36 +363,69 @@ Real kinds of mistakes this course site has had to catch:
 - A tiny bug that would have quietly stopped the quiz adapting, weeks later
 - A photo that showed an account name in the background
 
-## 5. What's Next
+## 8. Activity: Bad Webapps
 
-### 5. This week: bad webapps
+### 8. So bad it's good
 
-1. Make a free GitHub account (a username that isn't your real name is fine)
-2. Open the bad-webapps repo and **fork** it
-3. Paste `STARTER.md` into PantherAI, then build your app within your prompt budget
-4. Add it as `apps/your-app-name/index.html` in your fork
-5. Open a **pull request**
+In your group, make a tiny webapp that is **bad on purpose**, and bad in a way that's actually
+good:
 
-The `CONTRIBUTING.md` file in the repo walks through every click.
+- A metronome that slowly drifts
+- A tuner that insults you
+- A mirror that's two seconds late
+- A calculator that's always off by a little
+- A cable generator that's all spaghetti
 
-### 5. Then: Repo Improvement
+It has to **work** at being bad. A tuner that insults you still has to listen.
 
-Bad webapps is the practice run. Next comes [Repo Improvement](../../repo-improvement/): the same
-workflow, on **this** site, making a real page better.
+### 8. 🙈 The rules (for the shared repo, later)
 
-Early volunteers are already welcome.
+- **One app, one folder:** `apps/your-app-name/index.html`
+- **Prompt budget:** [number — set in class]
+- **Start from `STARTER.md`** in the repo
+- **No real names** in the app or the files. Your GitHub username is enough.
 
-### 5. Fill in this lecture online
+### 8. How to do it
 
-This lecture has a printed worksheet for class, and an **online version** you can fill in on your
-phone. Finish it and you get a **completion code** to paste into Canvas.
+1. Pick your bad idea
+2. Open the [Playground](../../playground/), tap **Copy the starter prompt**, and paste it into
+   PantherAI with your idea
+3. Copy the AI's code into the Playground, press **Run**, and try it, on a phone too
+4. Tell the AI exactly what to change, and run it again
+5. When it's gloriously bad, tap **Copy share link**
+
+> 🧑‍🏫 Where the share links go (a Canvas discussion, an assignment, or GitHub Issues later) is
+> still to be decided. Say it here, and set a prompt budget if you want one.
+
+### 8. Make every prompt count
+
+| ❌ Spends a prompt | ✅ Earns its prompt |
+|---|---|
+| "make it better" | "The drift is too fast to notice. Make it drift about 1 BPM every 4 bars, and keep everything else the same." |
+| "it doesn't work" | "On my phone, tapping Start does nothing. On my laptop it works." |
+| Three new ideas at once | One change, then test |
+
+**Q6 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
+
+✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
+too often. Give it 20 different ones, and keep everything else the same."
+
+> 🌀 **Portal: from playground to repo.** Next, your app gets its own folder in a shared
+> bad-webapps repo: you fork, add your file, and open a pull request. Vibecoding 2.
+
+### 8. This week
+
+1. **Finish your notes online**: on this lecture's page, tap ✍️ **Fill in online**, then paste
+   your completion code into Canvas
+2. **Finish your bad webapp** with your group, and hand in its share link
+3. **Repo Improvement** is coming: the same idea, on this site. Early volunteers welcome.
 
 ## 🗝️ Key terms
 
-**Markdown** · **repo** · **commit** · **fork** · **pull request** · **merge** · **frontier model** ·
-**context window** · **thinking effort** · GitHub Pages · prompt budget
+**repo** · **commit** · **fork** · **pull request** · **merge** · **Markdown** · **frontier model** ·
+**context window** · GitHub Pages · Technical verification
 
 ## 💭 Before you leave
 
-- What will your bad webapp be, and what makes it bad?
-- Write your first prompt, in one sentence.
+- What will your group's bad webapp be, and what makes it bad?
+- One way you'll use AI less, or more carefully, this week.

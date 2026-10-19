@@ -11,7 +11,7 @@
 // What the paper does carry is a pointer, at each spot a section was skipped, naming
 // what the QR code leads to.
 
-import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, joinWrappedLines, stepNumbers } from './markdown.js';
+import { ANSWER_LINE, FRONTMATTER, OPTION, escapeHtml, inline, isFence, joinWrappedLines, stepNumbers } from './markdown.js';
 import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
 import { instructorView, isVisible, lectureView } from './lectures/view.js';
@@ -158,7 +158,11 @@ export function parseActivity(markdown) {
     result.flow.push({ type: 'skipped', title, order: sectionStart });
   };
 
+  let fenced = false;
   lines.forEach((line, index) => {
+    // A code block is something to look at, never a question, checkpoint, or term.
+    if (isFence(line)) { fenced = !fenced; return; }
+    if (fenced) return;
     const heading = line.match(/^(#{2,4})\s+(.+)$/);
     if (heading) {
       label = heading[2].replace(/^[^\p{L}\p{N}]+/u, '').trim();
@@ -229,7 +233,7 @@ const rule = (count = 1) => '<span class="rule"></span>'.repeat(count);
 
 // Links a printed worksheet back to its activity page — the phone has the procedure, photos, and
 // troubleshooting the paper deliberately leaves out.
-function renderQr(route, title) {
+export function renderQr(route, title, cue = 'Scan for full instructions') {
   if (!route) return '';
   const url = `${SITE_ORIGIN}/${route}/`;
   const qr = qrcode(0, 'M');
@@ -239,13 +243,13 @@ function renderQr(route, title) {
     cellSize: 4,
     margin: 4,
     scalable: true,
-    alt: `QR code linking to the ${title} activity page`,
+    alt: `QR code linking to the ${title} page`,
     title: `${title} — ${url}`,
   });
   // Break opportunities after each slash, so a long URL wraps at path boundaries instead of
   // wherever the browser's default line-breaking happens to land mid-word.
   const displayUrl = escapeHtml(url.replace(/^https?:\/\//, '')).replace(/\//g, '/<wbr>');
-  return `<div class="ws-qr"><span class="ws-qr-cue">Scan for full instructions</span>${svg}<span class="ws-qr-url">${displayUrl}</span></div>`;
+  return `<div class="ws-qr"><span class="ws-qr-cue">${escapeHtml(cue)}</span>${svg}<span class="ws-qr-url">${displayUrl}</span></div>`;
 }
 
 function renderQuestion(question, showAnswers) {
@@ -388,7 +392,7 @@ export function renderWorksheet(activity, options = {}) {
           <div><h1>${escapeHtml(title)} <span class="${showAnswers ? 'key-tag' : 'ws-tag'}">${showAnswers ? 'Answer key' : 'Worksheet'}</span></h1>
           <p class="ws-meta">MUS 248${meta ? ` · ${meta}` : ''}</p></div>
         </div>
-        ${renderQr(route, title)}
+        ${renderQr(route, title, directory.qrCue)}
       </div>
       ${nameLine}
     </header>
@@ -419,7 +423,7 @@ async function lectureEntry(base) {
     markdown: lectureView(markdown),
     entry: {
       id, title: lecture.title, emoji: lecture.emoji, route: `lectures/${id}`,
-      when: [number, date].filter(Boolean).join(' · '), source: `content/lectures/${lecture.contentFile}.md`,
+      when: [number, date].filter(Boolean).join(' · '), source: `content/lectures/${lecture.contentFile}.md`, qrCue: 'Scan for the slides',
     },
   };
 }

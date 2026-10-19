@@ -23,7 +23,11 @@ export function lectureView(markdown, { instructor = false } = {}) {
   const kept = [];
   let hiddenLevel = 0;
   let inNote = false;
+  let fenced = false;
   markdown.split('\n').forEach((line) => {
+    // Inside a code block nothing is a marker: a 🙈 or 🧑‍🏫 there is just text being shown.
+    if (line.trim().startsWith('```')) fenced = !fenced;
+    if (fenced || line.trim().startsWith('```')) { if (!hiddenLevel) kept.push(line); return; }
     const heading = line.match(HEADING);
     // A hidden ### slide ends at the next ## or ###; a hidden ## section at the next ##.
     if (hiddenLevel && heading && heading[1].length <= hiddenLevel) hiddenLevel = 0;

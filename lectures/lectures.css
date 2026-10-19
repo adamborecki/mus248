@@ -53,3 +53,10 @@ body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25re
 .fill-verify { margin-top:2rem; }
 .fill-verify-input { padding:.45rem .6rem; border:1px solid var(--line); border-radius:.4rem; font:inherit; }
 .instructor-banner a { margin-left:.4rem; color:inherit; font-weight:650; }
+/* Follow-along blanks, online */
+.fill-line { margin:0 0 .6rem; line-height:2; }
+.fill-input { padding:.2rem .4rem; border:0; border-bottom:2px solid var(--accent); border-radius:.25rem .25rem 0 0; background:var(--tag); color:var(--ink); font:inherit; font-weight:600; max-width:100%; }
+.fill-input.missed { border-bottom-color:#d70015; }
+.fill-term { padding:.05rem .3rem; border-radius:.25rem; background:rgb(52 199 89 / .18); color:inherit; font-weight:650; }
+.fill-term.revealed { background:rgb(255 159 10 / .22); }
+.fill-line code { padding:.05rem .25rem; border-radius:.2rem; background:var(--tag); font-size:.9em; }

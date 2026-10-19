@@ -64,8 +64,9 @@ copying text from a screen onto paper.
 codes, and private links are left out. **▶ Present slides** turns any lecture into an animated,
 zoomable deck. Press **O** (or pinch) for an outline where related slides nest together.
 New PowerPoint decks convert with `node tools/pptx-to-lecture.mjs`. A lecture with questions gets a
-printable worksheet and an online fill-in (with a Canvas completion code) automatically; 🍄
-power-ups are tap-to-open previews of a later lecture.
+printable worksheet and an online fill-in (with a Canvas completion code) automatically, and `==term==` blanks
+in a lecture give it printable follow-along notes; 🌀 portals are tap-to-open previews of a later
+lecture. `/playground/` runs pasted HTML (a group's bad webapp) and shares it as a link.
 
 ### 🍣 Sushi (studio work)
 `/sushi/` is the list of real work around the studios: room maintenance, data transfers,

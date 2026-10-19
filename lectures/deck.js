@@ -631,7 +631,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       else if (action === 'close') close();
       return;
     }
-    // Links, power-ups, and anything else you can press on a slide do their own thing.
+    // Links, portals, and anything else you can press on a slide do their own thing.
     if (event.target.closest('a, summary, details, button, input, textarea, select')) return;
     const picked = event.target.closest('.deck-slide');
     if (mode === 'overview') {

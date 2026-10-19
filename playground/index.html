@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Paste the HTML an AI wrote, run it, and share it as a link. Nothing is uploaded.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <title>Playground · MUS 248</title>
+  <style>
+    /* Paste an app, run it, share it. The whole app travels inside the link (compressed into the
+       part after #), so nothing is stored anywhere and there's nothing to set up. The app runs in a
+       sandboxed frame with its own blank origin: it can't read this site's saved data. */
+    .pg { width:min(100% - 32px, 980px); margin:0 auto; padding:1.25rem 0 3rem; }
+    .pg h1 { margin:.2rem 0 .3rem; font-size:clamp(1.5rem, 6vw, 2.1rem); letter-spacing:-.02em; }
+    .pg .lede { margin:0 0 1rem; color:var(--muted); }
+    .pg-grid { display:grid; gap:1rem; }
+    @media (min-width: 900px) { .pg-grid { grid-template-columns:1fr 1fr; } }
+    .pg textarea { box-sizing:border-box; width:100%; min-height:16rem; padding:.75rem; border:1px solid var(--line); border-radius:.6rem;
+      background:var(--surface); color:var(--ink); font:13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; resize:vertical; }
+    .pg-bar { display:flex; flex-wrap:wrap; gap:.5rem; margin:.6rem 0; }
+    .pg-bar button { padding:.6rem 1rem; border:0; border-radius:.55rem; background:var(--tag); color:var(--ink); font:inherit; font-weight:650; cursor:pointer; }
+    .pg-bar .primary { background:var(--accent); color:#fff; }
+    .pg-frame { width:100%; height:min(70vh, 640px); border:1px solid var(--line); border-radius:.75rem; background:#fff; }
+    .pg-status { min-height:1.4em; margin:.2rem 0 0; color:var(--muted); font-size:.9rem; }
+    .pg-mic { display:flex; gap:.45rem; align-items:center; font-size:.9rem; color:var(--muted); }
+    .pg-note { margin-top:1.5rem; color:var(--muted); font-size:.9rem; }
+    .pg-note li { margin:.25rem 0; }
+    /* Opened from a shared link: just the app, with a small way back to the code. */
+    body.pg-view .pg-edit-only { display:none; }
+    body.pg-view .pg { width:100%; padding:0; }
+    body.pg-view .pg-grid { display:block; }
+    body.pg-view .pg-frame { height:calc(100vh - 3.2rem); height:calc(100dvh - 3.2rem); border:0; border-radius:0; }
+    .pg-viewbar { display:none; align-items:center; justify-content:space-between; gap:.5rem; height:3.2rem; padding:0 16px; border-bottom:1px solid var(--line); }
+    body.pg-view .pg-viewbar { display:flex; }
+    .pg-viewbar a, .pg-viewbar button { color:var(--accent); font:inherit; font-weight:650; background:none; border:0; cursor:pointer; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="pg-viewbar"><strong id="view-title">🙃 Bad webapp</strong><span><button type="button" id="view-mic" hidden>🎤 Allow mic/camera</button> <button type="button" id="edit">See the code</button></span></div>
+  <main class="pg">
+    <div class="pg-edit-only">
+      <a class="back" href="../">← MUS 248</a>
+      <h1>🧪 Playground</h1>
+      <p class="lede">Paste the complete HTML your AI wrote, press <b>Run</b>, and try it. <b>Copy share link</b> gives you a link
+        that opens your app on any phone. The whole app is inside the link; nothing is uploaded.</p>
+    </div>
+    <div class="pg-grid">
+      <div class="pg-edit-only">
+        <p class="pg-bar"><button type="button" id="starter">📋 Copy the starter prompt</button></p>
+        <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Paste your app's complete HTML here (starting with <!doctype html>)…"></textarea>
+        <div class="pg-bar">
+          <button type="button" class="primary" id="run">▶ Run</button>
+          <button type="button" id="share">🔗 Copy share link</button>
+          <button type="button" id="open">📱 Open full screen</button>
+          <button type="button" id="clear">Clear</button>
+        </div>
+        <label class="pg-mic"><input type="checkbox" id="mic"> 🎤 Let this app use the microphone and camera</label>
+        <p class="pg-status" id="status" aria-live="polite"></p>
+      </div>
+      <iframe class="pg-frame" id="frame" title="Your app" sandbox="allow-scripts allow-modals allow-forms allow-pointer-lock allow-popups"
+        allow="microphone; camera; autoplay; fullscreen; clipboard-write"></iframe>
+    </div>
+    <ul class="pg-note pg-edit-only">
+      <li>Pasted the AI's whole reply? The playground keeps just the code between the <code>```</code> fences.</li>
+      <li>Apps start locked away from this site and from your mic and camera. Tick 🎤 only for an app you're testing
+        that needs them: that also lets it see this site's saved data on your device (like a quiz code), so don't tick
+        it for an app from someone you don't know.</li>
+      <li>A share link only works as long as it's copied whole. If it's cut off, the app won't open.</li>
+    </ul>
+  </main>
+  <script>
+    const code = document.getElementById('code');
+    const frame = document.getElementById('frame');
+    const status = document.getElementById('status');
+    const say = (text) => { status.textContent = text; };
+
+    // An AI reply often wraps the file in ``` fences with a sentence before and after. Keep the code.
+    const clean = (text) => {
+      const fenced = text.match(/```[a-zA-Z]*\n([\s\S]*?)```/);
+      return (fenced ? fenced[1] : text).trim();
+    };
+    // Locked by default: a blank origin, no mic or camera. Opting in adds allow-same-origin, which
+    // is what lets getUserMedia work in a srcdoc frame, and is also why it's opt-in.
+    const LOCKED = 'allow-scripts allow-modals allow-forms allow-pointer-lock allow-popups';
+    const micBox = document.getElementById('mic');
+    const run = () => {
+      const html = clean(code.value);
+      if (!html) { say('Paste some HTML first.'); return false; }
+      frame.setAttribute('sandbox', micBox.checked ? `${LOCKED} allow-same-origin` : LOCKED);
+      frame.srcdoc = html;
+      document.getElementById('view-mic').hidden = micBox.checked || !/getUserMedia/.test(html);
+      const title = (html.match(/<title>([^<]*)<\/title>/i) || [])[1];
+      document.getElementById('view-title').textContent = `🙃 ${title || 'Bad webapp'}`;
+      say('Running. Change the code and press Run again to update.');
+      return true;
+    };
+
+    // The link carries the app: deflate-compressed where the browser can, base64url either way.
+    const toBase64 = (bytes) => btoa(Array.from(bytes, (byte) => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const fromBase64 = (text) => Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+    const squeeze = async (bytes, direction) => {
+      const stream = new Blob([bytes]).stream().pipeThrough(direction === 'in' ? new CompressionStream('deflate-raw') : new DecompressionStream('deflate-raw'));
+      return new Uint8Array(await new Response(stream).arrayBuffer());
+    };
+    const pack = async (html) => {
+      const bytes = new TextEncoder().encode(html);
+      if (window.CompressionStream) return `z=${toBase64(await squeeze(bytes, 'in'))}`;
+      return `t=${toBase64(bytes)}`;
+    };
+    const unpack = async (hash) => {
+      const [kind, data] = [hash.slice(0, 1), hash.slice(2)];
+      const bytes = fromBase64(data);
+      return new TextDecoder().decode(kind === 'z' ? await squeeze(bytes, 'out') : bytes);
+    };
+    const linkFor = async () => `${location.origin}${location.pathname}#${await pack(clean(code.value))}`;
+
+    document.getElementById('run').addEventListener('click', run);
+    document.getElementById('share').addEventListener('click', async () => {
+      if (!run()) return;
+      const link = await linkFor();
+      try { await navigator.clipboard.writeText(link); say(`Share link copied (${Math.round(link.length / 1024 * 10) / 10} KB). Paste it anywhere.`); }
+      catch { window.prompt('Copy this link:', link); }
+    });
+    document.getElementById('open').addEventListener('click', async () => { if (run()) window.open(await linkFor(), '_blank'); });
+    document.getElementById('clear').addEventListener('click', () => { code.value = ''; frame.srcdoc = ''; say(''); });
+    // The starter prompt lives in the bad-webapps kit (one copy to edit). Copy everything after its
+    // --- line: that's the part meant for the AI.
+    document.getElementById('starter').addEventListener('click', async () => {
+      try {
+        const text = await fetch('../content/instructor/bad-webapps/repo/STARTER.md').then((response) => response.text());
+        const prompt = text.split(/\n---\n/).slice(1).join('\n---\n').trim();
+        await navigator.clipboard.writeText(prompt);
+        say('Starter prompt copied. Paste it into PantherAI, then fill in your app name and idea at the bottom.');
+      } catch { say('Couldn\'t copy the starter prompt. Try again, or ask your instructor for it.'); }
+    });
+    micBox.addEventListener('change', () => { if (code.value.trim()) run(); });
+    document.getElementById('view-mic').addEventListener('click', () => { micBox.checked = true; run(); });
+    document.getElementById('edit').addEventListener('click', () => { document.body.classList.remove('pg-view'); });
+
+    // Opened from a share link: show just the app.
+    (async () => {
+      const hash = location.hash.slice(1);
+      if (!/^[zt]=/.test(hash)) return;
+      try {
+        code.value = await unpack(hash);
+        document.body.classList.add('pg-view');
+        run();
+      } catch {
+        say('That link looks cut off, so the app couldn\'t be opened. Ask for the whole link.');
+      }
+    })();
+  </script>
+</body>
+</html>
