@@ -638,9 +638,17 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       if (picked && !dragged) go(Number(picked.dataset.index), { maxPace: 0.5 });
       return;
     }
-    if (dragged || window.getSelection().toString()) return;
-    // Tap the left third to go back, anywhere else to go on.
-    if (event.clientX < window.innerWidth / 3) go(current - 1); else go(current + 1);
+    // Selecting text (or clicking to clear a selection) never changes the slide.
+    if (dragged || selecting || window.getSelection().toString()) return;
+    // Tap the left third to go back, anywhere else to go on. The step waits a beat, so a double-click
+    // (selecting a word) cancels it instead of flipping the slide out from under the highlight.
+    if (event.detail > 1) { clearTimeout(clickTimer); return; }
+    const back = event.clientX < window.innerWidth / 3;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => {
+      if (window.getSelection().toString()) return;
+      if (back) go(current - 1); else go(current + 1);
+    }, 240);
   });
 
   // Swipe to move; pinch (or a trackpad pinch) to zoom out to the outline and back in.
@@ -658,7 +666,10 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     const [a, b] = [...pointers.values()];
     return { spread: Math.hypot(a.x - b.x, a.y - b.y), mid: local((a.x + b.x) / 2, (a.y + b.y) / 2) };
   };
+  let selecting = false;
+  let clickTimer;
   stage.addEventListener('pointerdown', (event) => {
+    selecting = Boolean(window.getSelection().toString());
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     dragged = false;
     if (pointers.size === 1) { swipeStart = { x: event.clientX, y: event.clientY }; lastPoint = swipeStart; }
@@ -684,6 +695,9 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       if (mode !== 'overview') startSpread = 0;
       return;
     }
+    // On a slide, a mouse that moves while held down is selecting text, not clicking.
+    if (pointers.size === 1 && mode === 'present' && swipeStart
+      && Math.hypot(event.clientX - swipeStart.x, event.clientY - swipeStart.y) > 6) dragged = true;
     if (pointers.size === 1 && mode === 'overview' && lastPoint) {
       const dx = event.clientX - lastPoint.x;
       const dy = event.clientY - lastPoint.y;
@@ -694,7 +708,8 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     }
   });
   const release = (event) => {
-    if (pointers.size === 1 && swipeStart && mode === 'present') {
+    // Swipes are for fingers. A mouse drag across a slide is someone highlighting text.
+    if (pointers.size === 1 && swipeStart && mode === 'present' && event.pointerType === 'touch') {
       const dx = event.clientX - swipeStart.x;
       const dy = event.clientY - swipeStart.y;
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) { dragged = true; go(current + (dx < 0 ? 1 : -1)); }
