@@ -22,6 +22,14 @@ The buttons appear on their own: a lecture with at least one `==term==` gets not
 with at least one question gets a refresher. **If you were asked for a refresher only, add
 questions and no blanks.**
 
+## Every week: Announcements first
+
+Every lecture opens with `## 📣 Announcements`, and its first slide is always `### Homework review`:
+what's due this week, with due dates. Until that list is written, the slide says **see Canvas**
+(with a 🧑‍🏫 note saying it's a placeholder). Other announcements follow as their own slides. The
+checker requires this for `upcoming` lectures, and `content/lectures/_template.md` starts a new
+lecture with it already in place.
+
 ## The online refresher
 
 ### How it behaves (so you write for it)

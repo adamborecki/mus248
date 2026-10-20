@@ -2,6 +2,15 @@
 > 3). The Oct 12 class took a break from live sound and said the series continues next week.
 > Expect changes before and after it's presented.
 
+## 📣 Announcements
+
+### Homework review
+
+Everything due this week, with due dates: **see Canvas**.
+
+> 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework
+> list is ready, put it here (follow-along notes photos, online refresher, quiz, …).
+
 ## 🎤 Lecture: Live Sound Part 3 — System Workflow: Patching, Gain Staging, and Line Check
 
 ### Live Sound Part 3: System Workflow

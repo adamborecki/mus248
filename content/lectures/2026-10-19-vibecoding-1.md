@@ -9,6 +9,13 @@
 
 ## 📣 Announcements
 
+### Homework review
+
+Everything due this week, with due dates: **see Canvas**.
+
+> 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework
+> list is ready, put it here (follow-along notes photos, online refresher, quiz, …).
+
 ### No more Canvas discussions
 
 We're ==getting rid of== the Canvas ==discussions==.

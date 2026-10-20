@@ -1,6 +1,15 @@
 > ⏳ **Upcoming: not presented yet.** From the lecture deck *MUS248 Live Sound 4 parts.pptx* (Part
 > 4). Expect changes before and after it's presented.
 
+## 📣 Announcements
+
+### Homework review
+
+Everything due this week, with due dates: **see Canvas**.
+
+> 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework
+> list is ready, put it here (follow-along notes photos, online refresher, quiz, …).
+
 ## 🎤 Lecture: Live Sound Part 4 — Troubleshooting, Recording Feeds, and System Handoff
 
 ### Live Sound Part 4: Troubleshooting and Handoff

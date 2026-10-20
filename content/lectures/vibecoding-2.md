@@ -6,6 +6,15 @@
 > agents → section 3, queues and steering → section 3. Vibecoding 3 is outlined in
 > `content/instructor/vibecoding-series.md`.
 
+## 📣 Announcements
+
+### Homework review
+
+Everything due this week, with due dates: **see Canvas**.
+
+> 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework
+> list is ready, put it here (follow-along notes photos, online refresher, quiz, …).
+
 ## 🎤 Lecture: Vibecoding 2
 
 ### Vibecoding 2: The Terminal and Coding Agents

@@ -280,6 +280,14 @@ lectures.forEach((lecture) => {
   // questions taken out (they're the online refresher's); none may hide in a 🙈 slide.
   const student = lectureView(text);
   check(!/🧑‍🏫/u.test(student), `${where}: an instructor note survived into the student view`);
+  // Every week opens the same way: an upcoming lecture's first section is 📣 Announcements, and its
+  // first slide is the Homework review (a "see Canvas" placeholder is fine). Delivered lectures are
+  // left as they were. content/lectures/_template.md has the shape.
+  if (lecture.status === 'upcoming') {
+    const headings = student.split('\n').filter((line) => /^#{2,3}\s/.test(line));
+    check(/^##\s+📣 Announcements/u.test(headings[0] || '') && /^###\s+Homework review/.test(headings[1] || ''),
+      `${where}: an upcoming lecture opens with "## 📣 Announcements" and its first slide "### Homework review" (see content/lectures/_template.md)`);
+  }
   const parsed = parseActivity(student);
   check(parseActivity(text).questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
   const lecturePage = renderMarkdown(lectureText(text));
@@ -321,6 +329,12 @@ lectures.forEach((lecture) => {
     rows.push({ activity: `lecture ${lecture.id}`, done: 0, terms: parsed.keyTerms.length, checkpoints: 0, questions: questions.length, leave: parsed.beforeYouLeave.length, blanks: blanks.length });
   }
 });
+
+// The lecture template stays a working lecture: it has a blank, both kinds of question, and the
+// Homework review slide in the right place.
+const lectureTemplate = read('content', 'lectures', '_template.md');
+check(notesBlanks(lectureTemplate).length > 0 && refresherQuestions(lectureTemplate).length === 2
+  && /^## 📣 Announcements\n\n### Homework review/mu.test(lectureView(lectureTemplate)), 'content/lectures/_template.md no longer parses as a lecture');
 
 // PowerPoint → lecture Markdown, against a tiny deck whose slide files are deliberately out of order.
 const converted = deckMarkdown(unzip(readFileSync(join(root, 'tools', 'fixtures', 'tiny-deck.pptx'))), 'tiny-deck.pptx');

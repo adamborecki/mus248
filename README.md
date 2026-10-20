@@ -130,7 +130,7 @@ SOURCE — never served as a page
   content/LECTURE_GUIDE.md        writing follow-along notes (==blanks==) and online refreshers
   data/activities.json directory metadata that drives the front page
   data/lectures.json   lecture dates, weeks, and status (delivered / upcoming / no-class)
-  content/lectures/    lecture text, one Markdown file per class
+  content/lectures/    lecture text, one Markdown file per class (_template.md starts a new one)
   data/semesters/      per-term Canvas links and reminders
   tools/               import and check scripts
 

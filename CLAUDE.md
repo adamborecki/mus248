@@ -114,6 +114,11 @@ per-activity Canvas discussions) lives in one place, `feedback.js`. Every activi
 and student worksheet ends with it as a link and a QR code, and it's the one form link the checker
 allows in lectures. Changing the form means changing that one line.
 
+**Every week opens the same way:** an upcoming lecture's first section is `## 📣 Announcements`, and
+its first slide is `### Homework review` (what's due; "see Canvas" until the list is written). The
+checker requires it for `upcoming` lectures; delivered ones are left as they were. Start a new
+lecture from `content/lectures/_template.md`.
+
 Every lecture page also opens as a slide deck (`lectures/deck.js`): the same Markdown, split at
 each `##` (a section card) and `###` (a slide), laid out on one zoomable canvas. Its outline nests
 slides by shared number ("3. …"), shared "Topic:" prefix, or being named in an earlier slide's
