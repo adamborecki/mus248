@@ -1,6 +1,13 @@
 import { DOC_TYPES, KINDS, SETTINGS, SKILL_EMOJI, docType, groupLabel, settingsChips, typeChip, whereMatch, whereSummary } from './catalog.js';
 
+import { REPO_IMPROVEMENT_FORM } from './feedback.js';
+
 const byId = (id) => document.getElementById(id);
+
+// "Talk it out" goes straight to the form; feedback.js is the one place its link lives. Without
+// JavaScript the card still leads to the Repo Improvement page, which shows the form too.
+const talk = byId('talk-it-out');
+if (talk) talk.href = REPO_IMPROVEMENT_FORM;
 
 async function loadDirectory() {
   const activities = await fetch('data/activities.json').then((response) => response.json());
