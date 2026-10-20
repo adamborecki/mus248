@@ -109,6 +109,11 @@ are full of student names (group lists, survey answers), quiz access codes, and 
 Redact all of them on import (`[names — ask instructor]`) and say so at the top of the file; the
 checker fails on a quiz access code or a form/Drive folder link, but it can't spot a name.
 
+**The Repo Improvement form** (students fill it out after every activity or checklist; it replaced the
+per-activity Canvas discussions) lives in one place, `feedback.js`. Every activity page, checklist,
+and student worksheet ends with it as a link and a QR code, and it's the one form link the checker
+allows in lectures. Changing the form means changing that one line.
+
 Every lecture page also opens as a slide deck (`lectures/deck.js`): the same Markdown, split at
 each `##` (a section card) and `###` (a slide), laid out on one zoomable canvas. Its outline nests
 slides by shared number ("3. …"), shared "Topic:" prefix, or being named in an earlier slide's

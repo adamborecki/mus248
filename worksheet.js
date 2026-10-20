@@ -15,6 +15,7 @@ import { ANSWER_LINE, FRONTMATTER, OPTION, blankTerms, escapeHtml, inline, isFen
 import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
 import { instructorView, isVisible, lectureView } from './lectures/view.js';
+import { FORM_HEADING, FORM_NOTE, REPO_IMPROVEMENT_FORM } from './feedback.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
 const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
@@ -254,7 +255,11 @@ const rule = (count = 1) => '<span class="rule"></span>'.repeat(count);
 // troubleshooting the paper deliberately leaves out.
 export function renderQr(route, title, cue = 'Scan for full instructions') {
   if (!route) return '';
-  const url = `${SITE_ORIGIN}/${route}/`;
+  return qrBlock(`${SITE_ORIGIN}/${route}/`, cue, `QR code linking to the ${title} page`, title);
+}
+
+// A QR code with a cue above it and the address under it, for any URL.
+export function qrBlock(url, cue, alt, title = cue) {
   const qr = qrcode(0, 'M');
   qr.addData(url);
   qr.make();
@@ -262,13 +267,22 @@ export function renderQr(route, title, cue = 'Scan for full instructions') {
     cellSize: 4,
     margin: 4,
     scalable: true,
-    alt: `QR code linking to the ${title} page`,
+    alt,
     title: `${title} — ${url}`,
   });
   // Break opportunities after each slash, so a long URL wraps at path boundaries instead of
   // wherever the browser's default line-breaking happens to land mid-word.
   const displayUrl = escapeHtml(url.replace(/^https?:\/\//, '')).replace(/\//g, '/<wbr>');
   return `<div class="ws-qr"><span class="ws-qr-cue">${escapeHtml(cue)}</span>${svg}<span class="ws-qr-url">${displayUrl}</span></div>`;
+}
+
+// The last thing on every student worksheet: the Repo Improvement form, as a code to scan and an
+// address to type. (Lecture worksheets and answer keys leave it off.)
+export function renderFormBlock() {
+  const short = REPO_IMPROVEMENT_FORM.replace(/^https?:\/\//, '');
+  return `<section class="ws-block ws-form"><div class="ws-form-row"><div><h2>📝 ${escapeHtml(FORM_HEADING)}</h2>`
+    + `<p>${escapeHtml(FORM_NOTE)} Scan the code, or go to <b>${escapeHtml(short)}</b></p></div>`
+    + `${qrBlock(REPO_IMPROVEMENT_FORM, 'Scan for the form', 'QR code for the Repo Improvement form')}</div></section>`;
 }
 
 function renderQuestion(question, showAnswers) {
@@ -416,6 +430,7 @@ export function renderWorksheet(activity, options = {}) {
       ${nameLine}
     </header>
     ${parts.join('')}
+    ${showAnswers || directory.source ? '' : renderFormBlock()}
     <footer class="ws-foot">Generated from <code>${escapeHtml(directory.source || `content/activities/${front.id || directory.id || ''}.md`)}</code> — edit ${directory.source ? 'the lecture' : 'the activity'}, not this page.</footer>
   `;
 }

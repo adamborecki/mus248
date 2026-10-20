@@ -97,3 +97,7 @@
   .ws-foot { margin-top:.9rem; font-size:7.5pt; }
 }
 .step-id { font-family:ui-monospace, monospace; font-size:.85em; font-weight:700; }
+/* The Repo Improvement form, last on every student worksheet. */
+.ws-form-row { display:flex; gap:1rem; align-items:center; justify-content:space-between; }
+.ws-form-row h2 { margin:0 0 .2rem; }
+.ws-form-row p { margin:0; font-size:.85rem; }

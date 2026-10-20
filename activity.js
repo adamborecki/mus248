@@ -1,6 +1,7 @@
 import { renderMarkdown } from './markdown.js';
 import { enableImageZoom } from './image-zoom.js';
-import { parseFrontmatter } from './worksheet.js';
+import { parseFrontmatter, qrBlock } from './worksheet.js';
+import { FORM_HEADING, FORM_NOTE, REPO_IMPROVEMENT_FORM } from './feedback.js';
 import { DOC_TYPES, KINDS, docType, groupLabel, settingsChips } from './catalog.js';
 
 // Opt-in credit by GitHub username only, never a real name (see CLAUDE.md).
@@ -40,14 +41,25 @@ async function loadActivity() {
        <span class="quiet">The page to write on while you work — checkpoints, key terms, and this activity's questions.</span></p>`
     : '';
 
+  // The activities that used to have a Canvas discussion keep their after-activity steps; the
+  // discussion itself is gone, replaced by the Repo Improvement form that ends every page.
   const afterActivity = semester.afterActivity;
-  const completion = discussion && afterActivity ? `
+  const steps = discussion && afterActivity ? `
     <section class="completion">
       <h2>${afterActivity.heading}</h2>
       <p class="quiet">${afterActivity.note}</p>
       <ol class="submission-steps">${afterActivity.steps.map((step) => `<li>${step}</li>`).join('')}</ol>
-      <a class="canvas-link" href="${discussion.url}" target="_blank" rel="noopener">Canvas discussion <span aria-hidden="true">↗</span></a>
     </section>` : '';
+  const form = `
+    <section class="completion repo-form">
+      <div class="repo-form-row">
+        <div><h2><span aria-hidden="true">📝</span> ${FORM_HEADING}</h2>
+          <p class="quiet">${FORM_NOTE}</p>
+          <a class="canvas-link" href="${REPO_IMPROVEMENT_FORM}" target="_blank" rel="noopener">Open the Repo Improvement form <span aria-hidden="true">↗</span></a></div>
+        ${qrBlock(REPO_IMPROVEMENT_FORM, 'Scan for the form', 'QR code for the Repo Improvement form')}
+      </div>
+    </section>`;
+  const completion = steps + form;
 
   const chips = settingsChips(activity);
   const settings = chips ? `<p class="activity-settings" aria-label="Where this can be done">${chips}</p>` : '';

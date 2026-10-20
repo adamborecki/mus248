@@ -17,12 +17,8 @@ We're ==getting rid of== the Canvas ==discussions==.
 
 Whenever you ==finish== an ==activity== or a ==checklist==, fill out the ==Repo Improvement== form.
 
-The link: [Repo Improvement form — link on Canvas]
-
-> 🧑‍🏫 Send Claude the Google Form link when it exists. Heads-up: the checker blocks Google Form
-> links in lecture files on purpose (the repo is public, and old decks had private forms in them),
-> so either keep the link on Canvas, or decide to allow this one public form and Claude will add
-> it as an explicit exception.
+The form: [forms.gle/ee2ypjZo8VbhRVUT9](https://forms.gle/ee2ypjZo8VbhRVUT9). It's also at the
+==end== of every activity, checklist, and worksheet, as a link and a ==QR code==.
 
 **Q1 (multiple choice).** You just finished an activity or a checklist. What do you do now?
 

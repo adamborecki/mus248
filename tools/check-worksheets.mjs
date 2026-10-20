@@ -16,7 +16,8 @@ import { blankMatches, deliverable, refresherQuestions, SCHEMA } from '../lectur
 import { notesBlanks, notesMarkdown, renderNotes } from '../lectures/notes.js';
 import { lectureText } from '../lectures/text.js';
 import { numberSlides } from '../lectures/view.js';
-import { stripQuestions } from '../worksheet.js';
+import { renderFormBlock, stripQuestions } from '../worksheet.js';
+import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -41,6 +42,8 @@ check(!renderMarkdown('**bold** and *italic*').includes('*'), 'an asterisk survi
 // Inline code is literal: a page that teaches Markdown has to be able to show `**bold**`.
 check(renderMarkdown('type `**bold**` here').includes('<code>**bold**</code>'), 'inline code lost its asterisks to bold');
 check(renderMarkdown('**`NO DISK`**').includes('<strong><code>NO DISK</code></strong>'), 'bold around inline code stopped rendering');
+
+check(/^https:\/\/forms\.gle\/[A-Za-z0-9]+$/.test(REPO_IMPROVEMENT_FORM) && renderFormBlock().includes('<svg'), 'the Repo Improvement form link or its QR code is broken');
 
 // A fenced code block shows its lines exactly: no wrapping, no formatting, no blanks, no questions.
 const fencedSample = ['Before', '```', '## Gear list', '**phantom power**', '- XLR', '==not blank==', '```', 'After'].join('\n');
@@ -216,6 +219,7 @@ generated.forEach((activity) => {
   check(!/✅\s*<strong>Answers?/i.test(page), `${id}: the activity page still shows an ✅ **Answer.** line`);
 
   const student = renderWorksheet(parsed, { directory: activity });
+  check(student.includes(REPO_IMPROVEMENT_FORM) && student.includes('Scan for the form'), `${id}: the worksheet is missing the Repo Improvement form`);
   check(!student.includes('class="option correct"'), `${id}: the worksheet marks the correct option`);
   check(!student.includes('class="key-answer"'), `${id}: the worksheet carries the answer block`);
   check(/Name <span class="rule">/.test(student), `${id}: the worksheet has no name line`);
@@ -227,6 +231,7 @@ generated.forEach((activity) => {
 
   // The key render does show them.
   const keyHtml = renderWorksheet(parsed, { showAnswers: true, directory: activity });
+  check(!keyHtml.includes('ws-form'), `${id}: the answer key should not carry the Repo Improvement form`);
   check(!keyHtml.includes('no answer marked in the source'), `${id}: the answer key has unmarked questions`);
   check(!/Name <span class="rule">/.test(keyHtml), `${id}: the answer key should not carry a student name line`);
   check(keyHtml.includes('Answer key'), `${id}: the answer key is not labelled`);
@@ -268,7 +273,8 @@ lectures.forEach((lecture) => {
   check(existsSync(join(root, page)) && read(page).includes(`data-lecture-id="${lecture.id}"`), `${where}: no ${page} for it`);
   const text = read(file);
   quizCodes.forEach((code) => check(!text.toLowerCase().includes(code.toLowerCase()), `${where}: contains a quiz access code`));
-  check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text), `${where}: contains a form or Drive folder link`);
+  // The Repo Improvement form is public on purpose (feedback.js); any other form or Drive link is not.
+  check(!/forms\.gle|docs\.google\.com\/forms|drive\.google\.com\/drive\/folders/.test(text.split(REPO_IMPROVEMENT_FORM).join('').split(REPO_IMPROVEMENT_FORM.replace(/^https:\/\//, '')).join('')), `${where}: contains a form or Drive folder link`);
 
   // A lecture's page, slides, and notes come from the student view of its text, with its numbered
   // questions taken out (they're the online refresher's); none may hide in a 🙈 slide.
