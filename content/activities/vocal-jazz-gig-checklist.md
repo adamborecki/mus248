@@ -6,7 +6,7 @@ coreSkillAreas:
   - Live Sound
   - Audio Capture
 status: In Development
-revised: "2026-10-19"
+revised: "2026-10-20"
 estimatedTime: "Not a timed drill. Arrive about 4:30 PM; the setup has to fit the gap after Singers rehearsal ends."
 access:
   mode: On campus
@@ -24,9 +24,10 @@ roundsSupported: false
 
 > 🧪 **Status: In Development.** Drafted October 2026 from a walkthrough dictated by a student
 > engineer who runs this gig, plus the instructor's notes and the facts already confirmed in the
-> **Salmon Simulator** project (the mics, the batteries, the wedges, the line check). The
-> **wireless rack on and off** step is new practice from fall 2026: earlier crews didn't do it.
-> Several console details are still open. See **Technical verification**.
+> **Salmon Simulator** project (the mics, the batteries, the wedges, the line check). Photos of the
+> X32's routing pages, Dante Controller, Logic and the BH 102 closet confirmed the console and
+> recording steps on 2026-10-20. The **wireless rack on and off** step is new practice from fall
+> 2026: earlier crews didn't do it. A few details are still open. See **Technical verification**.
 
 ## 🎚️ What this is
 
@@ -81,13 +82,19 @@ step below checks that. If the last person didn't reset it, fix the routing befo
 - 🚩 Switch the **wireless rack** on. Its master switch is the **Furman on top** of the rack. This
   step is new: earlier crews left the rack on all the time. From now on it goes on at the start of
   the gig and off at the end.
-- 🚩 X32 **ROUTING**: inputs **1–8, 9–16 and 17–24** come from **LOCAL** (the wireless receivers
-  plug into the console's rear panel). Only **25–32** stay on **AES50** (the stage box). If 1–24
-  show AES50, nothing from the mics will reach the console. Fix this first.
-- 🚩 Every wireless channel has the **same gain** (about **30 dB**; see **Technical
-  verification**). Identical gains let the singers balance themselves, the way an ensemble should.
-- 🚩 Every wireless channel has **LOW CUT on**, and **no dynamics**: gate off, compressor off.
+- 🚩 X32 **ROUTING → INPUT** (the channel processing block patch): **1–8 = Local 1-8**,
+  **9–16 = Local 9-16**, **17–24 = Local 17-24**, and **25–32 = AES50 A25-32** (the stage box).
+  The wireless receivers plug into the console's own rear panel, so if 1–24 show AES50, nothing
+  from the mics reaches the console. Fix this first.
+- 🚩 Every wireless channel has the **same gain: 30 dB**. Identical gains let the singers balance
+  themselves, the way an ensemble should.
+- 🚩 Every wireless channel has **LOW CUT on at 80 Hz**, and **no dynamics**: gate off, compressor
+  off.
 - 🚩 Bus 1 is the wedges (Monitor 1).
+- 🚩 Don't count on a saved scene. Scene **01: SALMON-DEFAULT** exists, but check each setting
+  above yourself.
+
+![The X32's ROUTING → INPUT page as it should be: Local 1-8, Local 9-16, Local 17-24, and AES50 A25-32 for the stage box. The top bar shows the S32 on AES50 A and the Dante card on C. Channel 11 is named for its mic: G yellow (gray windscreen, yellow ring).](media/vocal-jazz/x32-input-routing.jpg)
 
 ## 🔊 Monitors — the monitor engineer
 
@@ -95,8 +102,8 @@ step below checks that. If the last person didn't reset it, fix the routing befo
   wedges and the speakON cables. This is the heavy part, so do it before anything else.
 - 🚩 While Singers is clearing the stage, bring the wedges and cables in.
 - 🚩 Switch the **Behringer amp (NX3000)** on.
-- 🚩 Run an **XLR** from the **stage box output** that carries Bus 1 into the amp's **Channel A**
-  input. Channel A is the simplest channel to use, so use it every time.
+- 🚩 Run an **XLR** from the stage box's **OUT 1** (it carries the X32's Output 1, the wedge mix)
+  into the amp's **Channel A** input. Channel A is the simplest channel to use, so use it every time.
 - 🚩 **speakON** from the amp's **Channel A** output into the first wedge.
 - 🚩 **Daisy-chain** the wedges: a speakON from the first wedge's second jack into the next wedge,
   and again into the third. The two jacks on a wedge work the same, so either one is fine.
@@ -154,16 +161,31 @@ Work down this list in order and stop when it's fixed.
 
 Only if time allows. It's a rehearsal for the recording session that often follows the concert.
 
-- 🚩 X32: send the inputs out to the **Dante card**, not the USB card. Each card output is a
-  **direct out** of one input: card out 1 is input 1, and so on.
+- 🚩 X32 **ROUTING → CARD** (expansion card outputs): **1–8 = Local 1-8**, **9–16 = Local 9-16**,
+  **17–24 = Local 17-24**, **25–32 = Local 25-32**. The X32 has one card, the **X-DANTE**
+  (32 in / 32 out). Each card output is a **direct out** of one input: card out 1 is input 1, and
+  so on.
+
+![ROUTING → CARD on the X32: every block on Local, and the X-DANTE card on the right. The output patch overview shows card out 1 = Local In 1, and so on.](media/vocal-jazz/x32-card-outputs.jpg)
+
 - 🚩 Mac mini: open **Dante Virtual Soundcard** and start it.
-- 🚩 **Dante Controller**: route the **X32 → the FOH Mac mini, one to one**. Pro tip: **hold
-  Control and click** the square where the two devices intersect, and it maps every channel one
-  to one in one go.
-- 🚩 **Logic**: set the audio interface to **Dante Virtual Soundcard** first. Then create one new
-  audio track per mic, and set the inputs in order: input 1 on track 1, input 2 on track 2, and so
-  on.
+- 🚩 **Dante Controller**: filter transmitters to `x32` and receivers to `bh100`. Route
+  **X32 → MUS-BH100-MINI** (the FOH Mac mini) one to one. Pro tip: **hold Control and click** the
+  square where the two devices intersect, and it maps every channel one to one in one go: a
+  diagonal of green ticks.
+
+![Dante Controller filtered to x32 and bh100: the X32 transmitter against the MUS-BH100-MINI receiver, routed one to one into a diagonal.](media/vocal-jazz/dante-one-to-one.jpg)
+
+- 🚩 **Logic → Settings → Audio → Devices**: **Input Device = Dante Virtual Soundcard**, **Output
+  Device = External Headphones** (listen on headphones at FOH). Set this **first**.
+
+![Logic's Audio → Devices settings: Dante Virtual Soundcard in, External Headphones out.](media/vocal-jazz/logic-audio-devices.jpg)
+
+- 🚩 Create one new audio track per mic, and set the inputs in order: **In 1** on track 1, **In 2**
+  on track 2, and so on (13 tracks for 13 singers). Record-enable them all (**R**).
 - 🚩 Record a short test and play it back. Every track should have its own singer on it.
+
+![A 13-track test in Logic: Audio 1–13 on In 1–In 13, all record-enabled, each meter moving with its own singer.](media/vocal-jazz/logic-13-tracks.jpg)
 
 **Q4 (short answer).** In Logic, what do you set **before** you create the tracks, and why?
 
@@ -177,7 +199,16 @@ Dante inputs aren't there to choose from when you set each track's input.
   charger, and alkalines never do.
 - 🚩 Mics back in the FOH drawer.
 - 🚩 Switch the **wireless rack off** at the **Furman on top**.
-- 🚩 Wedges and speakON cables back in the storage closet (**BH 102**). **Close the latch fully**.
+- 🚩 Wedges and speakON cables back in the storage closet (**BH 102**). It's a double door: push
+  the fixed half **fully closed first**, flush with the frame and no gap at the top, then flip its
+  **flush bolt** (the lever on its top edge) all the way over so it locks into the frame. Then
+  close the other half.
+
+![BH 102's fixed door half not closed fully: its top edge sticks out from the frame. The flush bolt can't lock like this.](media/vocal-jazz/bh102-not-closed.jpg)
+
+![The same door half closed fully: flush with the frame all the way along the top.](media/vocal-jazz/bh102-closed.jpg)
+
+![The flush bolt on the top edge of the fixed half: flip its lever all the way over.](media/vocal-jazz/bh102-flush-bolt.jpg)
 - 🚩 Run the **Vocal Jazz Reset** on the X32.
 
 ## ✅ Definition of done
@@ -192,6 +223,21 @@ Dante inputs aren't there to choose from when you set each track's input.
 - 🚩 Did anything go wrong tonight that the next engineer should know about? Tell your supervisor.
 
 ## ⚙️ Technical verification
+
+**Confirmed from photos (instructor, 2026-10-20):**
+
+- X32 **ROUTING → INPUT**: Local 1-8, Local 9-16, Local 17-24, AES50 A25-32. Connected devices:
+  the S32 on AES50 A, the Dante card on C, 48 kHz.
+- X32 **ROUTING → AES A** (the S32's outputs): blocks 1–8 and 9–16 carry **Output 1-8** and
+  **Output 9-16**, so S32 OUT 1 carries the X32's Output 1.
+- X32 **ROUTING → CARD**: Local 1-8 through Local 25-32 on the **X-DANTE** (32 in / 32 out), the
+  only card in the X32.
+- Dante Controller: transmitter **X32**, receiver **MUS-BH100-MINI**, one to one.
+- Logic: Input Device **Dante Virtual Soundcard**, Output Device **External Headphones**; tracks on
+  In 1–In 13.
+- Gain **30 dB**.
+- X32 channel names follow the mics (channel 11 is **G yellow**).
+- BH 102: a double door; the fixed half has a flush bolt on its top edge.
 
 **Confirmed (instructor or the student engineer who runs this gig, October 2026):**
 
@@ -209,22 +255,19 @@ Dante inputs aren't there to choose from when you set each track's input.
 
 **Still open:**
 
-- **The gain value.** "I think 30 dB" (instructor). Confirm it at the console before treating it
-  as the number.
-- **The low-cut frequency** hasn't been given.
-- **Which stage box output carries Bus 1.** On 2026-10-08 it was the S32's **OUTPUT 1** (a
-  tape-labeled purple XLR into the NX3000's CH A), but routing can change. Confirm it on the X32's
-  routing page.
-- **The X32 Dante card's model** and the exact **card output routing page** (which tab, and the
-  block names) haven't been checked against the console.
-- **How many tracks** to record (one per mic in use, or all 16 every time), and **where the Logic
-  session is saved**.
+- **Low cut at 80 Hz** is the AI's recommendation, not yet the instructor's decision (the
+  instructor was thinking 100 Hz). The group may have low basses: at 100 Hz, the X32's low cut
+  starts taking weight off notes around 73–82 Hz. 80 Hz keeps them and still removes rumble and
+  most handling noise. A mic that's still boomy can go to 100–120 Hz at soundcheck.
+- **Bus 1 → Output 1.** S32 OUT 1 carries the X32's Output 1 (confirmed), and on 2026-10-08 a
+  tape-labeled purple XLR ran from S32 OUTPUT 1 to the NX3000's CH A. Whether Output 1 is set to
+  Bus 1 (the X32's OUT 1-16 routing page) isn't in the photos.
+- **Where the Logic session is saved.** The test session was named "mic check".
 - **The wedge-check playback.** The Mac mini plays into the X32 through its audio interface; which
   X32 input and which file to use aren't written down here.
-- **"Close the latch fully and make sure you can get it over."** What the second half means (the
-  latch catching, or the door closing over something) still needs checking at BH 102.
-- **Is a gate on any channel by default?** "No dynamics" is the rule; whether a scene leaves gates
-  on hasn't been checked.
+- **Which way the flush bolt's lever goes** to lock (up or down) isn't clear from the photos.
+- **Is a gate on any channel by default?** "No dynamics" is the rule. The saved scene isn't to be
+  trusted, so check the gates every time.
 
 ## 🤖 AI use disclosure
 
