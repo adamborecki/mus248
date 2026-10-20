@@ -1,4 +1,5 @@
 import { renderMarkdown } from './markdown.js';
+import { enableImageZoom } from './image-zoom.js';
 import { parseFrontmatter } from './worksheet.js';
 import { DOC_TYPES, KINDS, docType, groupLabel, settingsChips } from './catalog.js';
 
@@ -62,6 +63,7 @@ async function loadActivity() {
   `;
   // Lets a page add interactive pieces to its rendered instructions (Repo Improvement's
   // starter kit) without the shared renderer knowing about them.
+  enableImageZoom(document.getElementById('activity'));
   document.body.dataset.rendered = 'true';
   document.dispatchEvent(new CustomEvent('activity:rendered', { detail: { activity } }));
 }
