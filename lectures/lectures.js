@@ -67,7 +67,10 @@ export async function mountLecture(root, id) {
   const questions = hasQuestions(lectureView(source));
   const extras = [
     blanks && `<a href="../notes/${query}">📝 Follow-along notes</a>`,
-    questions && `<a href="../refresher/${query}">🔁 Online refresher${refresherOpen(lecture) ? '' : ` <small>opens ${escapeHtml(opensLabel(lecture))}</small>`}</a>`,
+    // Before it opens, students get a grayed-out label, not a link; instructor view can always go in.
+    questions && (refresherOpen(lecture) || instructor
+      ? `<a href="../refresher/${query}">🔁 Online refresher${refresherOpen(lecture) ? '' : ` <small>opens ${escapeHtml(opensLabel(lecture))}</small>`}</a>`
+      : `<span class="extra-locked" aria-disabled="true">🔁 Online refresher <small>opens ${escapeHtml(opensLabel(lecture))}</small></span>`),
     instructor && blanks && `<a href="../notes/key/${query}">🔑 Notes key</a>`,
     instructor && questions && `<a href="../worksheet/key/${query}">🔑 Refresher key</a>`,
   ].filter(Boolean).join('');

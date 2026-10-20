@@ -69,3 +69,4 @@ body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25re
 .refresher-warning button { margin:.25rem .4rem 0 0; padding:.45rem .8rem; border:0; border-radius:.45rem; background:#fff; color:#5c4300; font:inherit; font-weight:650; cursor:pointer; }
 @media (prefers-color-scheme: dark) { .refresher-warning { background:#3a2f12; color:#ffe29a; } .refresher-warning button { background:#5a4a1a; color:#ffe29a; } }
 .refresher-receipt { max-height:16rem; overflow:auto; padding:.7rem; border-radius:.5rem; background:var(--paper); border:1px solid var(--line); font:12px/1.4 ui-monospace, Menlo, monospace; white-space:pre-wrap; }
+.lecture-extras .extra-locked { padding:.45rem .8rem; border-radius:.5rem; background:var(--tag); color:var(--muted); font-weight:600; opacity:.6; cursor:not-allowed; }

@@ -594,10 +594,13 @@ It has to ==work== at being bad. A tuner that insults you still has to listen.
 
 ### How to do it
 
-1. Pick your bad idea
-2. Open the [Playground](../../playground/), tap **Copy the ==starter prompt==**, and paste it into
-   ==PantherAI== with your idea
-3. Copy the AI's code into the Playground, press ==Run==, and try it, on a phone too
+PantherAI is just a ==chatbot== here: it writes the code, and you copy it. No coding needed.
+
+1. Pick your bad ==idea==
+2. Open the [Playground](../../playground/) and tap **Copy the ==starter prompt==**: it tells the AI
+   exactly what to build. Paste it into ==PantherAI==, and fill in your app's name and idea at the
+   bottom
+3. Copy the AI's ==code== into the Playground, press ==Run==, and try it, on a phone too
 4. Tell the AI exactly what to change, and run it again
 5. When it's gloriously bad, tap **Copy ==share link==**
 
@@ -633,8 +636,9 @@ too often. Give it 20 different ones, and keep everything else the same."
 
 1. **Finished an activity or a checklist?** Fill out the ==Repo Improvement== form
 2. **Follow-along notes:** take photos of your filled-in notes and submit them on Canvas
-3. **Online refresher:** on this lecture's page, tap 🔁 **Online refresher**, then copy the Canvas
-   deliverable into the Canvas assignment (due dates are on Canvas)
+3. **Online refresher:** wait on this lecture's refresher: it opens ==one week== later. This week,
+   do the online refresher for ==last week's== lecture, [The Big Picture](../../lectures/2026-10-12-big-picture/),
+   then copy the Canvas deliverable into the Canvas assignment (due dates are on Canvas)
 4. **Bad webapp:** finish it with your group, and hand in its ==share link==
 5. **Repo Improvement:** the form is the start; the full assignment is coming. Early volunteers
    welcome.
