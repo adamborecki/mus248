@@ -4,7 +4,7 @@ title: "Repo Improvement"
 emoji: "🛠️"
 coreSkillAreas: []
 status: In Development
-revised: "2026-10-14"
+revised: "2026-10-20"
 estimatedTime: "30–90 minutes for one section"
 access:
   mode: "Any location"
@@ -50,7 +50,15 @@ voice typing is fine. Say:
 Raw is fine. Specific beats polished: "Step 4 says hold the switch; it took about 2 seconds
 before the F8 turned on" is worth more than "step 4 was confusing."
 
-### 🧹🤖🍝 Use AI to clean AI slop
+**Send it with the Repo Improvement form.** The link and its QR code are at the bottom of this
+page, and at the end of every activity, checklist, and worksheet. It's also the first card in
+**Repo Improvement** on the front page.
+
+### 🧹🤖🍝 AI mop for AI slop (coming soon)
+
+> 🚧 **Future feature.** This route is changing: you'll fix pages yourself by editing their
+> Markdown files on GitHub, so you'll need a free GitHub account. The starter kit below is an
+> early preview. For now, use 🗣️🎙️ **Talk it out**.
 
 Copy the **starter + source** below (one tap) and paste it into an AI tool. PantherAI works on
 your phone. The starter sets the
@@ -101,7 +109,7 @@ point.
 **Early volunteers (before Monday, October 19)** are welcome, solo or in small groups, wherever
 access allows. You're also testing *this* page, so report problems with it too.
 
-## 🧰 Starter kit
+## 🧰 Starter kit (preview, coming soon)
 
 One file: [PROJECT_STARTER.md](../../repo-improvement/downloads/PROJECT_STARTER.md). It's the
 prompt that sets up an AI assistant for this job, and it already contains the report format. The
@@ -183,7 +191,7 @@ observed.
 **🗣️🎙️ Talk it out:** dictate your paragraph of raw feedback now, while it's fresh (see **Two
 ways to do it**).
 
-**🧹🤖🍝 Use AI to clean AI slop:** paste the starter + source into your AI tool. If you picked a
+**🧹🤖🍝 AI mop for AI slop (coming soon):** paste the starter + source into your AI tool. If you picked a
 simulator or another site, fill in its blanks and paste that part's on-screen text first. Then
 answer the AI's questions about what happened. Keep the steps that worked. Fix only what your test showed. Every
 changed step gets marked 📝 Proposed, and observations stay separate from suggestions.
@@ -199,7 +207,7 @@ and it worked.
 
 ### 6. Re-test what you changed
 
-On the 🧹🤖🍝 route, run just the steps you changed, using your revision, and update each mark.
+On the 🧹🤖🍝 route (coming soon), run just the steps you changed, using your revision, and update each mark.
 If someone who didn't write it can follow your revision, even better. Note where they paused. If
 nobody could, say so. Never write down a test or a tester that didn't happen.
 
@@ -207,8 +215,9 @@ nobody could, say so. Never write down a test or a tester that didn't happen.
 
 ### 7. Submit
 
-Submit on Canvas: your paragraph (🗣️🎙️), **or** the revised page plus the AI's change and test
-report, including your AI-use disclosure (🧹🤖🍝). Didn't finish? Submit what you have, with
+**🗣️🎙️ Talk it out:** send your paragraph with the **Repo Improvement form** (link and QR code at
+the bottom of this page). **🧹🤖🍝 AI mop (coming soon):** the revised page plus the AI's change
+and test report, with your AI-use disclosure. Didn't finish? Submit what you have, with
 what blocked you and the next useful step. An honest account of a blocked test is a real
 contribution.
 

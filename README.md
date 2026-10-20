@@ -43,7 +43,7 @@ Every entry is one of three kinds of document. An **activity** teaches. A **chec
 | 📡 Dante Broadcast, Jam Session, Walkie-Talkie (basic + advanced) | Audio Capture, Live Sound |
 | 📋 Gig checklists: Salmon, Musco, Standard Gear Kit | Checklists, not lessons. Run them on a real gig |
 | 🔁 X32 Compact Reset · 🎤 Wireless Mics · 🎛️ Dante Stems (OH B01) | Live Sound: a reset checklist and two In Development activities from the X32 doc |
-| 🛠️ Repo Improvement (pilot) | Test one section of this site for real; talk it out, or use AI to clean AI slop |
+| 🛠️ Repo Improvement | Test a page for real, then 🗣️🎙️ talk it out on the Repo Improvement form (🧹🤖🍝 AI mop for AI slop: coming soon) |
 
 Most activities are fully written out here; a few older ones still point to their original Google Doc while they wait to be migrated over.
 
