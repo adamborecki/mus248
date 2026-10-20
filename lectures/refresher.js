@@ -33,6 +33,25 @@ export const blankMatches = (typed, term) => {
 // The lecture's questions, numbered by the slides they sit on.
 export const refresherQuestions = (markdown) => parseActivity(numberSlides(lectureView(markdown))).questions;
 
+// The refresher is for remembering, not for right after class: by default it opens at 7:00 AM
+// Pacific on the Monday a week after the lecture (its date + 7 days, so about 12 hours short of a
+// full week after a 7 PM class). `refresherOpens` on the lecture in data/lectures.json (an ISO time
+// with its offset) overrides that. A lecture with no date opens right away. Instructor view always
+// opens it, to look ahead.
+export function refresherOpensAt(lecture) {
+  if (lecture.refresherOpens) return new Date(lecture.refresherOpens);
+  if (!lecture.date) return null;
+  const day = new Date(`${lecture.date}T12:00:00Z`);
+  day.setUTCDate(day.getUTCDate() + 7);
+  const ymd = day.toISOString().slice(0, 10);
+  // 7:00 AM in Los Angeles, whichever of PDT or PST that day is in.
+  const hourThere = (at) => Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', hourCycle: 'h23' }).format(at));
+  const daylight = new Date(`${ymd}T07:00:00-07:00`);
+  return hourThere(daylight) === 7 ? daylight : new Date(`${ymd}T07:00:00-08:00`);
+}
+export const refresherOpen = (lecture, now = Date.now()) => { const at = refresherOpensAt(lecture); return !at || now >= at.getTime(); };
+export const opensLabel = (lecture) => refresherOpensAt(lecture)?.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+
 export const mainPoint = (question) => (question.note || '').replace(/^[a-z]\)\s*/i, '');
 
 export async function sha256Hex(text) {
@@ -161,6 +180,12 @@ export async function mountRefresher(root) {
   });
   const questions = refresherQuestions(markdown);
   if (!questions.length) throw new Error(`No refresher for ${id}`);
+  if (!instructor && !refresherOpen(lecture)) {
+    root.innerHTML = `<a class="back" href="../${escapeHtml(lecture.id)}/">← ${escapeHtml(lecture.title)}</a>
+      <header class="activity-header"><span aria-hidden="true">🔁</span><div><h1>${escapeHtml(lecture.title)}</h1>
+        <p>The online refresher opens <b>${escapeHtml(opensLabel(lecture))}</b> (Pacific time). It's for remembering, so it waits about a week after the lecture.</p></div></header>`;
+    return;
+  }
   const state = load(id);
   state.items = state.items || {};
   document.title = `${lecture.title} · online refresher · MUS 248`;
@@ -191,6 +216,7 @@ export async function mountRefresher(root) {
     root.innerHTML = `
       <a class="back" href="../${escapeHtml(lecture.id)}/">← ${escapeHtml(lecture.title)}</a>
       <header class="activity-header"><span aria-hidden="true">🔁</span><div><h1>${escapeHtml(lecture.title)}</h1>
+        ${instructor && !refresherOpen(lecture) ? `<p class="instructor-banner">🧑‍🏫 Instructor view: students can open this from ${escapeHtml(opensLabel(lecture))}.</p>` : ''}
         <p>Online refresher · ${done} of ${questions.length} done. Three tries each, then the answer shows. When you're
           finished, copy the Canvas deliverable at the bottom.</p></div></header>
       <ol class="fill-list">${questions.map((question) => card(question, state.items[question.number])).join('')}</ol>

@@ -38,6 +38,9 @@ lecture with it already in place.
 - Every question **ends on its `✅ **Answer.**` line**, shown as **"The main point:"**, whether the
   student got it right, ran out of tries, or wrote a short answer. So that line is a one- or
   two-sentence paraphrase of the slide's point, not just the answer.
+- It **opens 7:00 AM Pacific the Monday a week after the lecture** (`refresherOpens` in
+  `data/lectures.json` overrides it); until then students see when it opens. Instructor view can
+  always open it.
 - Students can hand it in unfinished (they're warned first). It records tries, clicks, and time
   per question.
 

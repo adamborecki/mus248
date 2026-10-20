@@ -347,7 +347,7 @@ raw symbols, like `**`.
 
 ### Your choice
 
-In general, I'd ==prefer== you not use AI in this class.
+My preference is that nobody is ==required== to use AI if they don't want to.
 
 Today is an ==exception==: we're going to use ==PantherAI==. It's simply too powerful for us not
 to use it. You'll work in ==groups== of 2–3, so one person can drive while the others test and
@@ -358,12 +358,51 @@ think.
 
 **Q15 (multiple choice).** What's this class's general approach to using AI?
 
-- a) Use it for everything
-- ✅ b) In general, the instructor prefers you don't; today's PantherAI activity is an exception
+- a) Everyone has to use it for everything
+- ✅ b) Nobody is required to use it if they don't want to; today's PantherAI activity is an exception
 - c) It's banned, even today
 
-✅ **Answer.** In general, the preference is not to use AI here. Today is an exception, because
-PantherAI is too powerful not to learn.
+✅ **Answer.** Nobody is required to use AI here. Today is an exception, because PantherAI is too
+powerful not to learn, and you're in groups, so not everyone has to drive.
+
+### Your brain on AI
+
+Leaning on AI for thinking you could do yourself has a real risk: the potential for ==cognitive
+decline==. Skills you stop using get weaker, and early research suggests heavy reliance on AI can
+mean less thinking, not just less typing.
+
+So it's very important to be ==thoughtful== about how you use it.
+
+- Using it to ==cheat== is bad. Using it to get ==help== is good.
+- A good prompt: "Help me ==understand== this without giving me the answers."
+- Go at least ==three== rounds of replies, sometimes more: ask, push back, ask again.
+
+**Q16 (fill in the blank).** A prompt that gets help without cheating: "Help me understand this
+without giving me the ==answers|answer==."
+
+✅ **Answer.** Use AI to understand, not to skip the thinking: ask it to explain without handing
+you the answers, and keep the conversation going for at least three rounds.
+
+### Weightlifting vs. forklifting
+
+A good rule of thumb for whether to use AI:
+
+| | ==Forklifting== | ==Weightlifting== |
+|---|---|---|
+| The point is… | just getting it ==done== | doing it ==yourself==, so you ==grow== |
+| Like… | filling out a form, ==routine== monotonous work | practice, homework, learning a skill |
+| AI? | probably a ==good== use | do the heavy lifting yourself |
+
+Nobody gets stronger by watching a forklift lift the weights.
+
+**Q17 (multiple choice).** Which of these is "forklifting," where AI is probably a good fit?
+
+- a) Practicing gain staging until it's second nature
+- ✅ b) Reformatting a long list of file names to match the naming convention
+- c) Answering this refresher
+
+✅ **Answer.** Forklifting is when the point is just getting it done (routine, monotonous work):
+a fine job for AI. Weightlifting is when the point is your own growth: do it yourself.
 
 ### Bias
 
@@ -373,7 +412,7 @@ voices are common, and whose are ==missing==.
 - It sounds just as ==sure== when it's wrong or one-sided
 - Be most careful with anything it says about ==people==
 
-**Q16 (fill in the blank).** Because AI learns from huge amounts of human writing, it picks up that
+**Q18 (fill in the blank).** Because AI learns from huge amounts of human writing, it picks up that
 writing's ==bias|biases==.
 
 ✅ **Answer.** AI repeats the bias in what it learned from, and sounds just as sure when it's
@@ -388,7 +427,7 @@ Every AI answer runs in a ==data center== that uses ==electricity==, and ==water
 
 **Using less is the habit that's cheaper, faster, and kinder to the planet.**
 
-**Q17 (multiple choice).** Which of these uses the least AI (and the least energy)?
+**Q19 (multiple choice).** Which of these uses the least AI (and the least energy)?
 
 - a) A long chat with the biggest model on maximum thinking
 - ✅ b) A clear, small question in a fresh chat
@@ -405,12 +444,12 @@ they're usually faster too.
   people
 - Follow each ==assignment=='s own AI ==rules==
 
-**Q18 (short answer).** Name one thing you should never paste into an AI tool, and why.
+**Q20 (short answer).** Name one thing you should never paste into an AI tool, and why.
 
 ✅ **Answer.** Private information (a name, a door code, a password, a recording of a person):
 once it's sent, you can't take it back.
 
-**Q19 (fill in the blank).** When you've used AI on something you hand in, you should ==disclose==
+**Q21 (fill in the blank).** When you've used AI on something you hand in, you should ==disclose==
 it.
 
 ✅ **Answer.** Say when you used AI, like the note at the top of this lecture, and you still own
@@ -429,13 +468,13 @@ Claude comes in sizes: ==Haiku== (small), ==Sonnet== (middle), ==Opus== (largest
 ==PantherAI== gives you the highest **Claude Sonnet** available (Sonnet 5, right now): very good,
 just not the biggest.
 
-**Q20 (fill in the blank).** One of the newest, most capable models from the big AI labs is called
+**Q22 (fill in the blank).** One of the newest, most capable models from the big AI labs is called
 a ==frontier model|frontier==.
 
 ✅ **Answer.** "Frontier" means the leading edge: the newest, most capable, and most expensive
 models to run.
 
-**Q21 (multiple choice).** Which is the smallest of Claude's three sizes?
+**Q23 (multiple choice).** Which is the smallest of Claude's three sizes?
 
 - ✅ a) Haiku
 - b) Sonnet
@@ -452,13 +491,13 @@ unless you paste them.
 
 When a chat gets long or confused, start a ==new chat== with a short summary.
 
-**Q22 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
+**Q24 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
 whatever you pasted) is its ==context window==.
 
 ✅ **Answer.** The context window is all the AI can see. In a long chat, early instructions fade,
 so start a fresh chat with a short summary.
 
-**Q23 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
+**Q25 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
 at the start. Best move?
 
 - a) Repeat the rule in ALL CAPS
@@ -514,7 +553,7 @@ Open the preview link from the build we started, and read the new checklist toge
 
 It's done when a ==person== opened it and ==checked== it, not when the AI says "this works!"
 
-**Q24 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
+**Q26 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
 
 - a) When the AI says it works
 - ✅ b) When you've opened it, on a phone too, and it does what you asked
@@ -565,7 +604,7 @@ It has to ==work== at being bad. A tuner that insults you still has to listen.
 > 🧑‍🏫 Where the share links go (a Canvas discussion, an assignment, or GitHub Issues later) is
 > still to be decided. Say it here, and set a prompt budget if you want one.
 
-**Q25 (multiple choice).** You've got your app's code from PantherAI. How do you try it?
+**Q27 (multiple choice).** You've got your app's code from PantherAI. How do you try it?
 
 - a) Email it to yourself
 - ✅ b) Paste it into the Playground and press Run
@@ -582,7 +621,7 @@ so anyone can open it.
 | "it doesn't ==work==" | "On my phone, tapping Start does nothing. On my laptop it works." |
 | Three new ideas at once | ==One== change, then test |
 
-**Q26 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
+**Q28 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
 
 ✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
 too often. Give it 20 different ones, and keep everything else the same."
