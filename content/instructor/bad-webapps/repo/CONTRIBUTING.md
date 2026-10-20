@@ -16,8 +16,10 @@ however long you spend making your app gloriously bad.
 
 1. Open **[STARTER.md](STARTER.md)**, fill in your app name and idea, and paste the whole thing
    into your AI (PantherAI is fine) as your first message.
-2. Count your prompts. Every message you send is one.
-3. Make each prompt count: **one** specific change, plus what you saw when you tested.
+2. The AI talks it through with you first and writes a short plan. It won't write code until you
+   say **"build it"**.
+3. Count your prompts. Every message you send is one.
+4. Make each prompt count: **one** specific change, plus what you saw when you tested.
    "The drift is too fast to notice; make it 1 BPM every 4 bars" beats "make it better."
 
 ## 3. Put it in your fork

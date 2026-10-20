@@ -597,12 +597,13 @@ It has to ==work== at being bad. A tuner that insults you still has to listen.
 PantherAI is just a ==chatbot== here: it writes the code, and you copy it. No coding needed.
 
 1. Pick your bad ==idea==
-2. Open the [Playground](../../playground/) and tap **Copy the ==starter prompt==**: it tells the AI
-   exactly what to build. Paste it into ==PantherAI==, and fill in your app's name and idea at the
-   bottom
-3. Copy the AI's ==code== into the Playground, press ==Run==, and try it, on a phone too
-4. Tell the AI exactly what to change, and run it again
-5. When it's gloriously bad, tap **Copy ==share link==**
+2. Open the [Playground](../../playground/) and tap **Copy the ==starter prompt==**: it sets the AI's
+   rules. Paste it into ==PantherAI==, and fill in your app's name and idea at the bottom
+3. Talk it through first: the AI asks a few questions and writes a short plan. Say **"build it"**
+   when you agree
+4. Copy the AI's ==code== into the Playground, press ==Run==, and try it, on a phone too
+5. Tell the AI exactly what to change, and run it again
+6. When it's gloriously bad, tap **Copy ==share link==**
 
 > 🧑‍🏫 Where the share links go (a Canvas discussion, an assignment, or GitHub Issues later) is
 > still to be decided. Say it here, and set a prompt budget if you want one.
