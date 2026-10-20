@@ -12,7 +12,7 @@ import { inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseActivity, renderWorksheet } from '../worksheet.js';
 import { deckMarkdown, unzip } from './pptx-to-lecture.mjs';
 import { lectureView } from '../lectures/view.js';
-import { blankMatches, deliverable, refresherQuestions, SCHEMA } from '../lectures/refresher.js';
+import { blankMatches, deliverable, refresherOpensAt, refresherQuestions, SCHEMA } from '../lectures/refresher.js';
 import { notesBlanks, notesMarkdown, renderNotes } from '../lectures/notes.js';
 import { lectureText } from '../lectures/text.js';
 import { numberSlides } from '../lectures/view.js';
@@ -44,6 +44,12 @@ check(renderMarkdown('type `**bold**` here').includes('<code>**bold**</code>'), 
 check(renderMarkdown('**`NO DISK`**').includes('<strong><code>NO DISK</code></strong>'), 'bold around inline code stopped rendering');
 
 check(/^https:\/\/forms\.gle\/[A-Za-z0-9]+$/.test(REPO_IMPROVEMENT_FORM) && renderFormBlock().includes('<svg'), 'the Repo Improvement form link or its QR code is broken');
+
+// The refresher opens 7:00 AM Pacific the Monday after next: PDT before Nov 1, PST after; an override wins; no date, no wait.
+check(refresherOpensAt({ date: '2026-10-19' }).toISOString() === '2026-10-26T14:00:00.000Z', 'refresher opening time (PDT) is wrong');
+check(refresherOpensAt({ date: '2026-11-02' }).toISOString() === '2026-11-09T15:00:00.000Z', 'refresher opening time (PST) is wrong');
+check(refresherOpensAt({ date: '2026-10-19', refresherOpens: '2026-10-20T09:00:00-07:00' }).toISOString() === '2026-10-20T16:00:00.000Z' && refresherOpensAt({}) === null,
+  'refresherOpens override or the no-date case is wrong');
 
 // A fenced code block shows its lines exactly: no wrapping, no formatting, no blanks, no questions.
 const fencedSample = ['Before', '```', '## Gear list', '**phantom power**', '- XLR', '==not blank==', '```', 'After'].join('\n');

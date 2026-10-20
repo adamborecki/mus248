@@ -150,7 +150,9 @@ each, then the answer; every question ends on its `✅ **Answer.**` line, so wri
 **main point**, not just the answer. A `(fill in the blank)` question marks its answer in the prompt,
 `==context window==` (`==repo|repository==` accepts either). It tracks tries, clicks, and time, and
 ends in a **Copy Canvas deliverable** (summary + JSON receipt with a SHA-256 checksum, camera-lab's
-shape). The question key is `lectures/worksheet/key/?id=…` (instructor view: 🔑 Refresher key).
+shape). The question key is `lectures/worksheet/key/?id=…` (instructor view: 🔑 Refresher key). It **opens
+7:00 AM Pacific the Monday after next** (lecture date + 7 days), not right after class; `refresherOpens`
+on the lecture in `data/lectures.json` overrides it, and instructor view can always open it.
 Past lectures have neither notes nor a refresher until someone adds blanks or questions; that's a
 good Repo Improvement task. **Before adding either, read `content/LECTURE_GUIDE.md`** (how many, the
 three question kinds, imported lectures, and editing mistakes already made once), and check

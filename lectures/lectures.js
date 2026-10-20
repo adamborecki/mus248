@@ -7,6 +7,7 @@ import { openDeck } from './deck.js';
 import { instructorView, isVisible, lectureView, setInstructorView } from './view.js';
 import { hasBlanks } from './notes.js';
 import { lectureText } from './text.js';
+import { opensLabel, refresherOpen } from './refresher.js';
 
 export { isVisible };
 
@@ -66,7 +67,7 @@ export async function mountLecture(root, id) {
   const questions = hasQuestions(lectureView(source));
   const extras = [
     blanks && `<a href="../notes/${query}">📝 Follow-along notes</a>`,
-    questions && `<a href="../refresher/${query}">🔁 Online refresher</a>`,
+    questions && `<a href="../refresher/${query}">🔁 Online refresher${refresherOpen(lecture) ? '' : ` <small>opens ${escapeHtml(opensLabel(lecture))}</small>`}</a>`,
     instructor && blanks && `<a href="../notes/key/${query}">🔑 Notes key</a>`,
     instructor && questions && `<a href="../worksheet/key/${query}">🔑 Refresher key</a>`,
   ].filter(Boolean).join('');
