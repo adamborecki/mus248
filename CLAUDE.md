@@ -129,6 +129,17 @@ numbered list. No authoring needed; keep one `###` per slide. New decks come in 
 `node tools/pptx-to-lecture.mjs deck.pptx > content/lectures/<id>.md` (no dependencies). Its output
 still needs the redaction pass above, because it can't spot a name.
 
+**Presenter view** (`?presenter=1` on any lecture page, `lectures/presenter.js`; the button shows only
+on wide screens) is how the instructor teaches: one projected screen with slide thumbnails on the
+left (current boxed, it and the next larger), the deck in an iframe of the same page (`?embed=deck`),
+and the follow-along notes on the right, filling in up to the current slide. It shows only the
+student view, never notes or 🙈 slides. Shift+X strikes a slide through ("skipped, cross it off");
+Shift+E edits a slide's text as a scratchpad. Edits live in that browser's localStorage only: the
+deck shows them, the notes column keeps the printed text plus a "write this in the margin" box, and
+📤 Changes copies them (or opens a GitHub issue) so someone folds them into the Markdown by hand
+after class. Presenter view maps deck slide n to the nth `##`/`###` block; the checker fails if the
+slides, blocks, and notes headings ever stop lining up.
+
 Three markers in lecture Markdown (`lectures/view.js` is the one place that reads them):
 `### 3. 🙈 Title` hides a slide (or a `##` section) from students but keeps it in the file;
 `> 🧑‍🏫 …` is an instructor note; `> 🌀 **Title.** …` is a portal, a collapsed sneak peek of a

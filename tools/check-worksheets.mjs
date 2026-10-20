@@ -16,6 +16,7 @@ import { blankMatches, deliverable, refresherOpensAt, refresherQuestions, SCHEMA
 import { notesBlanks, notesMarkdown, renderNotes } from '../lectures/notes.js';
 import { lectureText } from '../lectures/text.js';
 import { numberSlides } from '../lectures/view.js';
+import { applyEdits, editProblem, slideBlocks } from '../lectures/presenter.js';
 import { renderFormBlock, stripQuestions } from '../worksheet.js';
 import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
 
@@ -258,6 +259,14 @@ generated.forEach((activity) => {
 
 // Lectures: data/lectures.json is the catalog; each readable lecture needs its Markdown and its
 // /lectures/<id>/ page. The site is public, so the things redacted on import must stay out.
+// Presenter view: the text splits into one block per slide (block 0 is the title slide's), an
+// edit replaces its block only while that block is unchanged, and an edit can't add a slide.
+const pvSample = ['Intro', '## 1. A', 'text', '```', '## not a slide', '```', '### 1.1 B', 'more'].join('\n');
+check(slideBlocks(pvSample).length === 3 && slideBlocks(pvSample)[1].includes('## not a slide'), 'presenter: slideBlocks split the text wrong (or split inside a code block)');
+check(applyEdits(pvSample, { 2: { before: '### 1.1 B\nmore', after: '### 1.1 B\nchanged' } }).endsWith('changed')
+  && applyEdits(pvSample, { 2: { before: 'stale', after: 'nope' } }) === slideBlocks(pvSample).join('\n\n'), 'presenter: applyEdits applied a stale edit or skipped a good one');
+check(!editProblem('### B\nok', 2) && editProblem('### B\n### C', 2) && editProblem('no heading', 2) && editProblem('## X', 0), 'presenter: editProblem let an edit add or drop a slide');
+
 const lectures = JSON.parse(read('data', 'lectures.json'));
 const quizCodes = Object.values(JSON.parse(read('quiz', 'data', 'curriculum.json')).quizzes || {})
   .map((quiz) => quiz.access_code).filter(Boolean);
@@ -306,6 +315,10 @@ lectures.forEach((lecture) => {
   const parsed = parseActivity(student);
   check(parseActivity(text).questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);
   const lecturePage = renderMarkdown(lectureText(text));
+  // Presenter view maps deck slide n to text block n and to the nth heading on the notes.
+  const slideCount = (lecturePage.match(/<h[23][ >]/g) || []).length;
+  check(slideBlocks(lectureText(text)).length - 1 === slideCount && (renderMarkdown(notesMarkdown(text)).match(/<h[23][ >]/g) || []).length === slideCount,
+    `${where}: presenter view's slides, text blocks, and notes headings don't line up`);
   check(!/\bQ\d+ \((multiple choice|short answer|fill in the blank)\)/.test(lecturePage), `${where}: a refresher question shows on the page or slides`);
   if (parsed.questions.length) check(!/<li>\s*✅/.test(lecturePage) && !/✅\s*<strong>Answers?/i.test(lecturePage), `${where}: the lecture page shows an answer`);
 

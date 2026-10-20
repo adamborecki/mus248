@@ -8,6 +8,7 @@ import { instructorView, isVisible, lectureView, setInstructorView } from './vie
 import { hasBlanks } from './notes.js';
 import { lectureText } from './text.js';
 import { opensLabel, refresherOpen } from './refresher.js';
+import { mountEmbeddedDeck, mountPresenter } from './presenter.js';
 
 export { isVisible };
 
@@ -58,6 +59,16 @@ export async function mountLecture(root, id) {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);
     return response.text();
   });
+  const deck = {
+    lecture,
+    badge: lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : (lecture.status === 'upcoming' ? 'Coming up' : ''),
+    when: when(lecture, { long: true }),
+  };
+  // Presenter view (?presenter=1) and the deck inside it (?embed=deck): see presenter.js. Both show
+  // only what students see, even on a device with instructor view on, since they're projected.
+  const mode = new URLSearchParams(window.location.search);
+  if (mode.get('embed') === 'deck') { mountEmbeddedDeck({ root, lecture, source, deck }); return; }
+  if (mode.get('presenter') === '1') { mountPresenter({ root, lecture, source }); return; }
   // The page and slides show the lecture's text; its numbered questions are kept for the refresher.
   const markdown = lectureText(source, { instructor });
   const query = `?id=${encodeURIComponent(lecture.id)}`;
@@ -85,7 +96,7 @@ export async function mountLecture(root, id) {
     <a class="back" href="../">← Lectures</a>
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
     ${instructor ? '<p class="instructor-banner">🧑‍🏫 Instructor view: notes and 🙈 hidden slides are showing. <a href="https://github.com/adamborecki/mus248/tree/main/content/instructor">📓 Instructor notes</a> <button type="button" data-instructor="off">Turn off</button></p>' : ''}
-    <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button></p>
+    <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button><a class="present-presenter" href="?presenter=1"><span aria-hidden="true">🖥️</span> Presenter view</a></p>
     ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}
     <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/', blanks: instructor ? 'mark' : 'plain' })}</article>
     <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>
@@ -104,10 +115,8 @@ export async function mountLecture(root, id) {
   // so a link can drop the class straight onto a slide.
   const article = root.querySelector('.instructions');
   const present = (startAt, overview, opener) => openDeck({
+    ...deck,
     article,
-    lecture,
-    badge: lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : (lecture.status === 'upcoming' ? 'Coming up' : ''),
-    when: when(lecture, { long: true }),
     startAt,
     overview,
     onClose: () => { if (opener) opener.focus(); },

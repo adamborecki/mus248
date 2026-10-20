@@ -1,0 +1,96 @@
+/* Presenter view (?presenter=1): thumbnails | the deck | the follow-along notes, on one projected
+   screen. Built for a classroom computer; see presenter.js. */
+
+html.presenter-open, html.presenter-open body { height: 100%; margin: 0; overflow: hidden; background: #111118; }
+html.presenter-open main { max-width: none; margin: 0; padding: 0; }
+.pv { position: fixed; inset: 0; display: grid; grid-template-columns: 254px minmax(0, 1fr) minmax(320px, 27vw); grid-template-rows: minmax(0, 1fr); background: #111118; color: #f2f2f7;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+
+/* ---- left: thumbnails ---- */
+.pv-thumbs { overflow-y: auto; padding: 12px 10px 40vh 34px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; scrollbar-width: thin; }
+.pv .pv-thumb { --w: 160px; --s: .25; position: relative; display: block; width: var(--w); padding: 0; border: 0; border-radius: 8px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; flex: none; }
+.pv .pv-thumb.is-current, .pv .pv-thumb.is-next { --w: 210px; --s: .328125; } /* --s = --w / 640px */
+.pv-thumb-num { position: absolute; left: -22px; top: 2px; width: 18px; color: #8e8e9a; font-size: 11px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.pv-thumb-face { position: relative; display: block; width: var(--w); height: calc(var(--w) * 9 / 16); overflow: hidden; border-radius: 8px; background: #fff; color: #1c1c1e; box-shadow: 0 2px 8px rgb(0 0 0 / .4); }
+.pv-thumb-face::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: hsl(var(--hue) 75% 55%); }
+.pv-thumb-card .pv-thumb-face { background: linear-gradient(135deg, hsl(var(--hue) 70% 42%), hsl(calc(var(--hue) + 40) 70% 30%)); color: #fff; }
+.pv-thumb-card .pv-thumb-face::before { display: none; }
+.pv-thumb-inner { position: absolute; left: 0; top: 0; width: 640px; padding: 26px 30px; box-sizing: border-box; transform-origin: 0 0; transform: scale(var(--s)); font-size: 22px; line-height: 1.3; }
+.pv-thumb-title { display: block; margin-bottom: 12px; font-size: 34px; line-height: 1.15; }
+.pv-thumb-card .pv-thumb-title { margin-top: 90px; font-size: 44px; }
+.pv-thumb-inner p, .pv-thumb-inner li { margin: 0 0 6px; }
+.pv-thumb-inner ul, .pv-thumb-inner ol { margin: 0 0 8px; padding-left: 28px; }
+.pv-thumb-inner table { border-collapse: collapse; font-size: 18px; }
+.pv-thumb-inner td, .pv-thumb-inner th { padding: 3px 8px; border: 1px solid #d1d1d6; }
+.pv-thumb-inner img { max-width: 100%; max-height: 200px; }
+.pv-thumb-inner pre { margin: 0; font-size: 16px; white-space: pre-wrap; }
+.pv-thumb-inner aside, .pv-thumb-inner blockquote { margin: 0 0 8px; padding-left: 12px; border-left: 4px solid #d1d1d6; }
+.pv-thumb.is-current .pv-thumb-face { outline: 4px solid #ffd60a; outline-offset: 3px; }
+.pv-thumb.is-current .pv-thumb-num { color: #ffd60a; }
+.pv-thumb.is-next::after { content: "Next"; position: absolute; right: 6px; bottom: 6px; padding: 1px 7px; border-radius: 999px; background: rgb(0 0 0 / .65); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.pv-thumb.is-skipped .pv-thumb-face { opacity: .45; }
+.pv-thumb.is-skipped .pv-thumb-num::after { content: " ✂️"; }
+.pv-thumb.is-edited .pv-thumb-face { box-shadow: 0 0 0 2px #ff9f0a, 0 2px 8px rgb(0 0 0 / .4); }
+.pv-thumb:focus-visible .pv-thumb-face { outline: 3px solid #64d2ff; outline-offset: 3px; }
+
+/* ---- middle: the deck ---- */
+.pv-stage { position: relative; min-width: 0; }
+.pv-deck { display: block; width: 100%; height: 100%; border: 0; background: #111118; }
+.pv-editor { position: absolute; inset: auto 12px 12px; display: grid; gap: 8px; padding: 14px; border-radius: 14px; background: #1c1c24; box-shadow: 0 16px 50px rgb(0 0 0 / .6); }
+.pv-editor[hidden] { display: none; }
+.pv-editor label { font-weight: 700; }
+.pv-editor textarea { box-sizing: border-box; width: 100%; height: 38vh; padding: 10px 12px; border: 1px solid #3a3a46; border-radius: 10px; background: #0d0d12; color: #f2f2f7; font: 15px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; resize: vertical; }
+.pv-editor-error { margin: 0; color: #ff6961; font-weight: 600; }
+.pv-editor-error:empty { display: none; }
+.pv-editor-actions, .pv-modal-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; }
+.pv-editor-actions small { flex: 1 1 18rem; color: #a1a1aa; }
+.pv button, .pv-modal button, .pv-issue { padding: 7px 12px; border: 0; border-radius: 8px; background: #2c2c36; color: #f2f2f7; font: inherit; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
+.pv button small { opacity: .6; font-weight: 400; }
+.pv button:not(.pv-thumb):hover, .pv-modal button:hover, .pv-issue:hover { filter: brightness(1.2); }
+.pv .pv-primary, .pv-modal .pv-primary { background: #0a84ff; color: #fff; }
+
+/* ---- right: the follow-along notes, as printed ---- */
+.pv-notes { display: flex; flex-direction: column; min-width: 0; background: #fbfaf6; color: #1c1c1e; }
+.pv-bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: #1c1c24; color: #f2f2f7; }
+.pv-bar .pv-count { margin-right: auto; font-variant-numeric: tabular-nums; }
+.pv-bar button { padding: 5px 9px; font-size: 13px; }
+.pv-bar button[aria-pressed="true"] { background: #ffd60a; color: #1c1c1e; }
+.pv-bar a { padding: 4px 8px; color: #a1a1aa; text-decoration: none; }
+.pv-notes-body { flex: 1; overflow-y: auto; padding: 8px 18px 60vh; font-size: 15px; line-height: 1.45; }
+.pv-notes-title { margin: 6px 0 0; color: #6e6e78; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.pv-notes-body section { margin: 0 -10px; padding: 2px 10px 4px; border-left: 4px solid transparent; border-radius: 4px; transition: background .3s; }
+.pv-notes-body section.is-current { border-left-color: #ffd60a; background: #fff6c7; }
+.pv-notes-body h2 { margin: 1.1rem 0 .3rem; padding-bottom: .15rem; border-bottom: 1px solid #d1d1d6; font-size: 1.1rem; }
+.pv-notes-body h3 { margin: .8rem 0 .2rem; font-size: 1rem; }
+.pv-notes-body p, .pv-notes-body li { margin: .25rem 0; }
+.pv-notes-body ul, .pv-notes-body ol { margin: .2rem 0; padding-left: 1.2rem; }
+.pv-notes-body table { width: 100%; border-collapse: collapse; font-size: .85em; }
+.pv-notes-body th, .pv-notes-body td { padding: .2rem .35rem; border: 1px solid #d1d1d6; text-align: left; vertical-align: top; }
+.pv-notes-body code { padding: 0 .2em; border-radius: .2em; background: #ececf0; font-family: ui-monospace, monospace; font-size: .88em; }
+.pv-notes-body pre { margin: .3rem 0; padding: .4rem .6rem; border: 1px solid #d1d1d6; border-radius: .3rem; font: 12px/1.35 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+.pv-notes-body pre code { padding: 0; background: none; }
+.pv-notes-body aside, .pv-notes-body blockquote { margin: .4rem 0; padding: .3rem .6rem; border-left: 3px solid #d1d1d6; color: #55555f; font-size: .9em; }
+.pv-notes-body img { max-width: 100%; height: auto; }
+/* Blanks fill in as their slide comes up; later ones stay blank lines, like the paper. */
+.pv-notes-body mark.key-term { padding: 0 .12em; border-radius: .2em; background: #ffe066; color: #000; font-weight: 700; }
+.pv-notes-body section.is-past mark.key-term { background: #fff1a8; }
+.pv-notes-body section.is-future mark.key-term { background: none; color: transparent; border-bottom: 1.5px solid #1c1c1e; border-radius: 0; user-select: none; }
+.pv-notes-body section.is-skipped > :not(.pv-margin) { opacity: .5; text-decoration: line-through; }
+.pv-notes-body section.is-skipped > h2:first-child::after, .pv-notes-body section.is-skipped > h3:first-child::after { content: "✂️ skipped: cross it off"; display: inline-block; margin-left: .5rem; padding: 0 .45rem; border-radius: .3rem; background: #ffd60a; color: #1c1c1e; font-size: .75rem; text-decoration: none; vertical-align: .1em; }
+.pv-margin { margin: .4rem 0 .5rem; padding: .45rem .6rem; border: 2px dashed #ff9f0a; border-radius: .4rem; background: #fff4e0; }
+.pv-margin > strong { display: block; color: #a05a00; font-size: .85rem; }
+.pv-margin p, .pv-margin li { margin: .15rem 0; }
+
+/* ---- changes (export) ---- */
+.pv-modal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 24px; background: rgb(0 0 0 / .6); }
+.pv-modal[hidden] { display: none; }
+.pv-modal-card { box-sizing: border-box; width: min(760px, 100%); max-height: 100%; overflow: auto; padding: 20px 22px; border-radius: 16px; background: #1c1c24; color: #f2f2f7; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+.pv-modal-card h2 { margin: 0 0 .4rem; font-size: 1.3rem; }
+.pv-modal-card p { color: #c7c7cc; }
+.pv-export { box-sizing: border-box; width: 100%; height: 42vh; padding: 10px; border: 1px solid #3a3a46; border-radius: 10px; background: #0d0d12; color: #f2f2f7; font: 13px/1.45 ui-monospace, Menlo, monospace; }
+.pv-modal-note { font-size: .85rem; }
+.pv-toast { position: fixed; left: 50%; top: 16px; z-index: 2100; margin: 0; padding: 10px 18px; border-radius: 999px; background: #ffd60a; color: #1c1c1e; font: 600 15px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; opacity: 0; pointer-events: none; transform: translate(-50%, -10px); transition: opacity .2s, transform .2s; }
+.pv-toast.shown { opacity: 1; transform: translate(-50%, 0); }
+
+/* Too narrow for three columns: just the deck. */
+@media (max-width: 899px) { .pv { grid-template-columns: 1fr; } .pv-thumbs, .pv-notes { display: none; } }

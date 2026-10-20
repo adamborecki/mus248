@@ -3,9 +3,44 @@
 Running notes for Vibecoding 1–3. Shown to you (not students) via the lecture pages' instructor
 view; this file is public in the repo like everything else, so nothing private goes here.
 
+## ✅ To do (from the Oct 20 planning conversation)
+
+**Before Vibecoding 2 (Mon Oct 26).** The order matters: each one feeds the next.
+
+1. **Performance Evaluation session** (separate conversation): finalize the midterm/final skills
+   list. It's the basis of WTF 248, and VC2 section 4 discusses it (~10 minutes; placeholder now).
+2. **UI pass on MUS 248** (activity and checklist display, a breadcrumb), so WTF 248 starts from
+   the newest version.
+3. **Create the GitHub org** (5 minutes: `content/instructor/bad-webapps/SETUP.md`, step 1).
+4. **Make WTF 248:** copy MUS 248, strip it down to the performance-eval skills, water it down, and
+   plant obviously absurd checklist steps ("4.3 Start a small fire on stage for ambiance.
+   (Obviously don't. This is a test.)"). Put its link in VC2 slide 3.1.
+5. **Build the Gear Dating Profile generator**, in its own repo (not this one): a form with pickers
+   and a live preview, saved in localStorage, ending in **Copy HTML** with a text area. About 20
+   gear photos, one profile per student. Manufacturer press/media kits are the safest source,
+   manufacturer product pages are close behind, and retailer photos (Sweetwater, Amazon) should be
+   skipped. Keep a credits file with each photo's source URL. Put its link in VC2 slide 1.5.
+6. **Stock bad webapp** for anyone who missed class. Put its link in VC2 slide 1.1.
+7. **Rehearse:** a timed read-through in presenter view (`?presenter=1`), plus the new-repository
+   clicks on a fresh GitHub repo (labels move).
+8. **Print the follow-along notes** 30–60 minutes before class, after the last edit.
+
+**After class:** open presenter view → 📤 Changes, send it to yourself, and fold the edits into
+the lecture Markdown (or ask Claude to). Then Clear all.
+
+**Later:**
+
+- Anyone who didn't build a bad webapp with a group: that's homework.
+- **Mixer Lab:** a more realistic interface, the bugs students hit, and showing how it carries over
+  to real mixers. Top priority among the live sound items.
+- **Live Sound 3 and 4:** adapt, don't scrap. Look back at past semesters' live sound slides for
+  what's worth saving.
+- Sushi and the real Repo Improvement round come after WTF 248.
+
 ## 🔁 Reminders (from your notes, Oct 16)
 
-- **Live Sound 3 moved** to the week after Vibecoding 1.
+- **Live Sound 3 moved** to the week after Vibecoding 1, then moved again (Oct 20): it's on the
+  back burner, to be adapted rather than scrapped.
 - **No due dates in the web app.** Dates live in Canvas only.
 - **Next week:** gather feedback on the PowerPoint → GitHub conversion process (how the lecture
   decks got onto the site). Part of how the class is structured; worth a few minutes.
@@ -21,31 +56,35 @@ view; this file is public in the repo like everything else, so nothing private g
 
 ## 🗺️ The series
 
-| | Vibecoding 1 (Oct 19) | Vibecoding 2 (after Live Sound 3) | Vibecoding 3 (outline) |
+| | Vibecoding 1 (Oct 19) | Vibecoding 2: Going Live (Oct 26) | Vibecoding 3 (drafted, not scheduled) |
 |---|---|---|---|
-| Tools | Browser only: GitHub web + PantherAI | Terminal, git CLI, a coding agent | Own repos, maybe a local model |
-| Practice | Bad webapps (fork → PR) | Same workflow from the terminal | Real Repo Improvement on mus248 |
-| AI concepts | Frontier, model size, context window, thinking effort, usage | Agents, `CLAUDE.md`, queues and steering, agent usage | Choosing a tool for the job; local vs. cloud |
+| Tools | Browser only: GitHub web + PantherAI | Browser only, **no AI**: GitHub web + GitHub Pages | Terminal, git CLI, a coding agent |
+| Practice | Bad webapps in the Playground | `mus248-sandbox` site (4 files) + a pull request on WTF 248 | Real Repo Improvement on mus248 |
+| Concepts | Frontier, model size, context window, thinking effort, usage | Pages, Markdown vs. HTML, README vs. `index.html`, fork → pull request | Agents, `CLAUDE.md`, queues and steering, agent usage |
 
 **Portals (🌀) in VC1 → where they lead:**
 
 | VC1 slide | Portal | Leads to |
 |---|---|---|
-| 1. The words you need | The history from the terminal | VC2 · 2. Git from the terminal |
-| 3. Same recipe, starting now | Queues and steering | VC2 · 3. Queues and steering |
+| 1. The words you need | The history from the terminal | VC3 · 2. Git from the terminal |
+| 3. Same recipe, starting now | Queues and steering | VC3 · 3. Queues and steering |
 | 5. Your choice | AI on your own computer (offline models) | VC3 (if the lab gets Ollama) |
-| 6. Effort and usage | The settings gear; agents use far more | VC2 · 3. Agents and usage |
-| 8. Make every prompt count | From playground to repo (fork + pull request) | VC2 · 4. Your own repo |
+| 6. Effort and usage | The settings gear; agents use far more | VC3 · 3. Agents and usage |
+| 8. Make every prompt count | From playground to repo (fork + pull request) | VC2 · 1. Your own website, and 3. Fix WTF 248 |
 
-VC2 should carry its own 🌀 portals pointing at VC3 once VC3 has a shape.
+VC2 (Oct 26) took over the old draft's "Your own repo" section; the rest of that draft (terminal,
+git CLI, coding agents) is now `content/lectures/vibecoding-3.md`.
 
 **Open: the feedback route.** How do students hand in bad webapps and give feedback? Options:
 a share link (from `/playground/`) posted to a Canvas discussion or assignment; GitHub Issues on
 the bad-webapps repo; or a pull request. VC1's activity slide has a 🧑‍🏫 note to fill in.
 
-### Vibecoding 3: outline (not drafted)
+### Vibecoding 3: what's drafted, and ideas beyond it
 
-1. Your own repo, start to finish: create, Pages, a custom 404, sharing a link
+Drafted in `vibecoding-3.md`: the terminal, git from the terminal, coding agents (`CLAUDE.md`,
+queues and steering, guardrails). Ideas not yet in it:
+
+1. A custom 404 and an optional `username.github.io` root site, building on VC2's `mus248-sandbox`
 2. Local models: what Ollama is, what runs on a laptop, what it's good and bad at (if the lab
    computers get it)
 3. Picking the tool: chatbot vs. agent vs. local, by task and by cost

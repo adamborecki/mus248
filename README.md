@@ -115,6 +115,7 @@ PAGES — every folder here is a URL on the live site
                        starter-menu.json, toolkit.js
   lectures/            each class's slides as text: lectures/<id>/ per lecture;
                        lectures/notes/, lectures/refresher/, and lectures/worksheet/key/ serve any lecture by ?id=
+                       ?presenter=1 on a lecture page is presenter view (lectures/presenter.js)
   quiz/                the weekly quiz app — see quiz/README.md
   study/               the study-card app
   sushi/               the Sushi work board, plus its Apps Script backend source (sushi/backend/)

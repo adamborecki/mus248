@@ -144,7 +144,10 @@ html.deck-open { overflow: hidden; }
 .lecture-present button { display: inline-flex; gap: .45rem; align-items: center; padding: .7rem 1.1rem; border: 0; border-radius: .6rem; font: inherit; font-weight: 700; cursor: pointer; }
 .lecture-present .present-main { color: #fff; background: linear-gradient(135deg, #5b5bf0, #c04ad6 60%, #ff7a59); box-shadow: 0 8px 24px rgb(120 80 220 / .35); }
 .lecture-present .present-outline { color: var(--ink); background: var(--tag); }
-.lecture-present button:hover { filter: brightness(1.08); }
+.lecture-present .present-presenter { display: inline-flex; gap: .45rem; align-items: center; padding: .7rem 1.1rem; border-radius: .6rem; color: var(--ink); background: var(--tag); font-weight: 700; text-decoration: none; }
+/* Presenter view is for the classroom computer: no button for it on a phone or a narrow window. */
+@media (max-width: 1099px) { .lecture-present .present-presenter { display: none; } }
+.lecture-present button:hover, .lecture-present .present-presenter:hover { filter: brightness(1.08); }
 .lecture-present button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,3 +177,9 @@ html.deck-open { overflow: hidden; }
 .deck-spot .deck-body.scrolls, .deck-spot .scrolls .deck-body { touch-action: pan-y; }
 .deck-body mark.key-term { padding: 0 .12em; border-radius: .2em; background: hsl(var(--slide-hue) 95% 88%); color: inherit; font-weight: 700; }
 .deck-body pre.code-block { margin: .3em 0; padding: .6em .8em; border-radius: 12px; background: #f3f3f8; font: .62em/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; text-align: left; }
+
+/* Skipped in presenter view (Shift+X): struck through, with a cue to cross it off the notes. */
+.deck-slide.is-skipped .deck-title, .deck-slide.is-skipped .deck-body { opacity: .45; text-decoration: line-through; text-decoration-thickness: .08em; }
+.deck-slide.is-skipped .deck-card::after { content: "✂️ Skipped: cross it off"; position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%) rotate(-2deg); padding: 10px 26px; border-radius: 14px; background: #ffd60a; color: #1c1c1e; font-size: 34px; font-weight: 800; box-shadow: 0 8px 24px rgb(0 0 0 / .25); }
+/* Inside presenter view's iframe: the presenter page owns closing and full screen. */
+.deck-embedded .deck [data-go="close"] { display: none; }

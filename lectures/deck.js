@@ -242,7 +242,10 @@ function confetti(host) {
   requestAnimationFrame(frame);
 }
 
-export function openDeck({ article, lecture, badge, when, startAt = 0, overview = false, onClose }) {
+// embedded: the deck is inside presenter view's iframe, so it never closes or goes full screen on
+// its own (the presenter page does both). onChange(index, mode) hears every move. setSkipped marks
+// slides struck through, for "skip this, cross it off".
+export function openDeck({ article, lecture, badge, when, startAt = 0, overview = false, onClose, onChange, embedded = false }) {
   const parsed = splitSlides(article);
   const hueBase = ((lecture.lecture || lecture.title.length) * 47 + 205) % 360;
   const deck = {
@@ -272,7 +275,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   const slides = ordered;
 
   const root = document.createElement('div');
-  root.className = 'deck';
+  root.className = embedded ? 'deck embedded' : 'deck';
   root.setAttribute('role', 'dialog');
   root.setAttribute('aria-modal', 'true');
   root.setAttribute('aria-label', `${lecture.title} — slides`);
@@ -287,8 +290,8 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       <span class="deck-count" aria-hidden="true"></span>
       <button type="button" data-go="next" aria-label="Next slide">▶</button>
       <button type="button" data-go="overview" aria-label="Outline: zoom out to see every slide" title="Outline (O)">🗺️</button>
-      ${root.requestFullscreen ? '<button type="button" data-go="full" aria-label="Full screen" title="Full screen (F)">⛶</button>' : ''}
-      <button type="button" data-go="close" aria-label="Close slides" title="Close (Esc)">✕</button>
+      ${root.requestFullscreen && !embedded ? '<button type="button" data-go="full" aria-label="Full screen" title="Full screen (F)">⛶</button>' : ''}
+      ${embedded ? '' : '<button type="button" data-go="close" aria-label="Close slides" title="Close (Esc)">✕</button>'}
     </nav>
     <p class="deck-live" aria-live="polite"></p>
     <p class="deck-hint" aria-hidden="true">← → to move · <b>O</b> or pinch for the outline · <b>Esc</b> to close</p>`;
@@ -492,6 +495,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     live.textContent = mode === 'overview' ? 'Outline of every slide. Choose one to present it.' : `Slide ${current + 1} of ${slides.length}: ${slide.text}`;
     const hash = mode === 'overview' ? '#outline' : `#slide-${current + 1}`;
     window.history.replaceState(null, '', hash);
+    if (onChange) onChange(current, mode);
   };
 
   const go = (target, { fly = true, maxPace = 1 } = {}) => {
@@ -611,10 +615,10 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
     else if (key === 'End') go(slides.length - 1);
     else if (key === 'o' || key === 'O' || key === 'z' || key === 'Z') { if (mode === 'overview') go(current); else showOverview(); }
     else if (key === 'f' || key === 'F') toggleFull();
-    else if (key === 'Escape') { if (mode === 'present' && !document.fullscreenElement) showOverview(); else if (mode === 'overview') close(); }
+    else if (key === 'Escape') { if (mode === 'present' && !document.fullscreenElement) showOverview(); else if (mode === 'overview') { if (embedded) go(current); else close(); } }
   };
   const toggleFull = () => {
-    if (!root.requestFullscreen) return;
+    if (!root.requestFullscreen || embedded) return;
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     else root.requestFullscreen().catch(() => {});
   };
@@ -769,5 +773,9 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
   fitZoom = cam.zoom;
   if (overview) requestAnimationFrame(() => showOverview());
   else timers.push(setTimeout(() => go(current), reduceMotion() ? 0 : 450));
-  return { go, showOverview, close, slides };
+  const setSkipped = (skipped) => {
+    slides.forEach((slide, at) => slide.element.classList.toggle('is-skipped', skipped.has(at)));
+    if (spot) spot.classList.toggle('is-skipped', skipped.has(current));
+  };
+  return { go, showOverview, close, slides, setSkipped };
 }
