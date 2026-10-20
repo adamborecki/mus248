@@ -293,6 +293,15 @@ lectures.forEach((lecture) => {
     const headings = student.split('\n').filter((line) => /^#{2,3}\s/.test(line));
     check(/^##\s+📣 Announcements/u.test(headings[0] || '') && /^###\s+Homework review/.test(headings[1] || ''),
       `${where}: an upcoming lecture opens with "## 📣 Announcements" and its first slide "### Homework review" (see content/lectures/_template.md)`);
+    // Once it has a date, the Homework review says where we are: "**Today:** Week 10 · Class 9" and
+    // "**After today:** 5 classes (4 + 1 meeting in finals week)". An undated draft can't know yet.
+    if (lecture.date) {
+      const review = (student.split(/^###\s+Homework review\s*$/m)[1] || '').split(/^#{2,3}\s/m)[0];
+      check(/^\*\*Today:\*\* Week \d+ · Class \d+\s*$/m.test(review) && /^\*\*After today:\*\* \d+ classes? \(\d+ \+ 1 meeting in finals week\)\s*$/m.test(review),
+        `${where}: the Homework review opens with "**Today:** Week n · Class n" and "**After today:** y classes (x + 1 meeting in finals week)", each its own line (see content/lectures/_template.md)`);
+      const today = review.match(/Week (\d+) · Class (\d+)/);
+      if (today) check(Number(today[1]) === lecture.week && Number(today[2]) === lecture.lecture, `${where}: "Today" says Week ${today[1]} · Class ${today[2]}, but data/lectures.json has week ${lecture.week}, lecture ${lecture.lecture}`);
+    }
   }
   const parsed = parseActivity(student);
   check(parseActivity(text).questions.length === parsed.questions.length, `${where}: a question sits in a 🙈 hidden slide, so students would never see it`);

@@ -1,10 +1,11 @@
-> 🤖 **AI use:** drafted with Claude Code from the instructor's notes. Part 2 of the Vibecoding
+> 🤖 **AI use:** drafted with Claude Code from the instructor's notes. Part 3 of the Vibecoding
 > series.
 
-> 🧑‍🏫 **Draft, not scheduled.** Live Sound 3 is next week, so this lands after it. Each 🌀 portal
-> in Vibecoding 1 opens onto a section here: `CLAUDE.md` → section 3, terminal git → section 2, coding
-> agents → section 3, queues and steering → section 3. Vibecoding 3 is outlined in
-> `content/instructor/vibecoding-series.md`.
+> 🧑‍🏫 **Draft, not scheduled.** This was the Vibecoding 2 draft until Oct 20, when Vibecoding 2
+> became "Going Live" (own site, Markdown vs. HTML, WTF 248) and the terminal and agent material
+> moved here. Its "Your own repo" section went to Vibecoding 2. Several 🌀 portals in Vibecoding 1
+> open onto sections here: `CLAUDE.md` → section 3, terminal git → section 2, coding agents and
+> queues → section 3. The series plan is in `content/instructor/vibecoding-series.md`.
 
 ## 📣 Announcements
 
@@ -15,16 +16,16 @@ Everything due this week, with due dates: **see Canvas**.
 > 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework
 > list is ready, put it here (follow-along notes photos, online refresher, quiz, …).
 
-## 🎤 Lecture: Vibecoding 2
+## 🎤 Lecture: Vibecoding 3
 
-### Vibecoding 2: The Terminal and Coding Agents
+### Vibecoding 3: The Terminal and Coding Agents
 
-Last time you made a change in the browser. Today: the same thing from the terminal, and what
+So far you've made changes in the browser. Today: the same thing from the terminal, and what
 changes when an AI agent does the typing.
 
 ### Last time's portals, walked through
 
-Remember the 🌀 portals in Vibecoding 1? Today you walk through them:
+Remember the 🌀 portals in Vibecoding 1? Today you walk through the rest of them:
 
 - The terminal version of fork, commit, and pull request
 - `CLAUDE.md`: instructions written for an AI
@@ -36,7 +37,6 @@ Remember the 🌀 portals in Vibecoding 1? Today you walk through them:
 1. The terminal
 2. Git from the terminal
 3. Coding agents
-4. Your own repo
 
 ## 1. The Terminal
 
@@ -223,29 +223,12 @@ None of these make the AI smarter. They make its mistakes **==visible== sooner**
 4. Ask a coding agent for one small change on a branch, and open the branch's preview link on a
    phone before it goes live.
 
-## 4. Your Own Repo
-
-### Make a repo and publish it
-
-1. On GitHub: **New repository**, give it a name, set it to **==Public==**
-2. Add an `index.html`
-3. **Settings → Pages → Deploy from a branch → main → / (root) → Save**
-4. A minute or two later it's live at `your-username.github.io/your-repo/`
-
-The same steps work on your bad-webapps fork, so you can test your app before you open the pull
-request.
-
-**Q7 (fill in the blank).** To turn a repo into a website, you turn on GitHub ==Pages== in the repo's
-settings.
-
-✅ **Answer.** GitHub Pages publishes a repo as a website: Settings → Pages → deploy from main.
-
 ## 🗝️ Key terms
 
 **terminal** · **`pwd` / `ls` / `cd`** · **clone** · **push** · **pull** · **coding agent** ·
-**`CLAUDE.md`** · **queue** · **steer** · GitHub Pages · `diff -rq`
+**`CLAUDE.md`** · **queue** · **steer** · `diff -rq`
 
 ## 💭 Before you leave
 
 - One thing you'd trust a coding agent with, and one thing you wouldn't. Why?
-- What would you put in a `CLAUDE.md` for your bad webapp?
+- What would you put in a `CLAUDE.md` for your `mus248-sandbox`?

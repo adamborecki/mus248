@@ -7,6 +7,10 @@
 
 ### Homework review
 
+**Today:** Week [n] · Class [n]
+
+**After today:** [y] classes ([x] + 1 meeting in finals week)
+
 Everything due this week, with due dates: **see Canvas**.
 
 > 🧑‍🏫 Placeholder: every lecture's announcements open with this slide. When the weekly homework

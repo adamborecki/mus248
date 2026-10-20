@@ -25,7 +25,19 @@ questions and no blanks.**
 ## Every week: Announcements first
 
 Every lecture opens with `## 📣 Announcements`, and its first slide is always `### Homework review`:
-what's due this week, with due dates. Until that list is written, the slide says **see Canvas**
+how far into the semester we are, then what's due this week, with due dates. It opens with two
+lines, each its own paragraph:
+
+```
+**Today:** Week 10 · Class 9
+
+**After today:** 5 classes (4 + 1 meeting in finals week)
+```
+
+The class number is the lecture's `lecture` number (it runs one behind the week: no class on Labor
+Day). "After today" counts the normal class weeks left, skipping Thanksgiving week, plus the one
+meeting in finals week. For Fall 2026 after Oct 26: Nov 2, 9, 16, 30, and Dec 7 in finals week.
+Until the homework list is written, the slide says **see Canvas**
 (with a 🧑‍🏫 note saying it's a placeholder). Other announcements follow as their own slides. The
 checker requires this for `upcoming` lectures, and `content/lectures/_template.md` starts a new
 lecture with it already in place.

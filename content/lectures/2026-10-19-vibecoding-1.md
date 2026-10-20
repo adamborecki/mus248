@@ -61,7 +61,7 @@ Fill in the blanks on your follow-along notes as we go.
 Some slides have a 🌀 ==portal==: tap it for a glimpse of something we'll get to later.
 
 > 🌀 **Portal: what this is.** Portals are optional, and never on the notes. Each one opens onto
-> a later lecture (usually Vibecoding 2), so when we get there, you've already been.
+> a later lecture (usually Vibecoding 2 or 3), so when we get there, you've already been.
 
 ## 1. A Tour of This Site
 
@@ -182,7 +182,7 @@ change is part of their repo?
 
 > 🌀 **Portal: the history from the terminal.** You can read and write this history without a
 > browser: `git log`, `git commit`, `git push`. That's how AI coding agents do it, and it's
-> Vibecoding 2.
+> Vibecoding 3.
 
 ### One repo, one thing
 
@@ -282,7 +282,7 @@ It runs in the ==background== while we keep going. We'll ==check== what it made 
 > (There's also an `electroacoustic-showcase` repo from Oct 12, if you want to show or reuse it.)
 
 > 🌀 **Portal: queues and steering.** While an agent works you don't have to wait: send your next
-> message and it waits in a **queue**, or interrupt to **steer** it. Vibecoding 2.
+> message and it waits in a **queue**, or interrupt to **steer** it. Vibecoding 3.
 
 ## 4. Markdown, by Example
 
@@ -517,7 +517,7 @@ at the start. Best move?
 More isn't always ==better==. For a small, clear job, less is faster and just as good.
 
 > 🌀 **Portal: the settings gear.** In PantherAI, look for a gear ⚙️ next to the model name. If
-> there's a thinking or effort setting there, that's this slide. Coding agents (Vibecoding 2) use
+> there's a thinking or effort setting there, that's this slide. Coding agents (Vibecoding 3) use
 > far more than a chat: they read whole repos.
 
 > 🧑‍🏫 Confirm what Chapman's PantherAI shows under the gear before class.
@@ -630,8 +630,8 @@ so anyone can open it.
 ✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
 too often. Give it 20 different ones, and keep everything else the same."
 
-> 🌀 **Portal: from playground to repo.** Next, your app gets its own folder in a shared
-> bad-webapps repo: you fork, add your file, and open a pull request. Vibecoding 2.
+> 🌀 **Portal: from playground to repo.** Next, your app goes live on your own GitHub Pages
+> site, and you fork someone else's repo and open a pull request. Vibecoding 2.
 
 ### This week
 

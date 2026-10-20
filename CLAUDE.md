@@ -115,7 +115,10 @@ and student worksheet ends with it as a link and a QR code, and it's the one for
 allows in lectures. Changing the form means changing that one line.
 
 **Every week opens the same way:** an upcoming lecture's first section is `## 📣 Announcements`, and
-its first slide is `### Homework review` (what's due; "see Canvas" until the list is written). The
+its first slide is `### Homework review`. That slide opens with two lines: `**Today:** Week 10 · Class 9`
+(the `lecture` number, which runs behind the week because of Labor Day) and `**After today:** 5 classes
+(4 + 1 meeting in finals week)` (normal weeks left, not counting Thanksgiving, plus the finals-week
+meeting), then what's due ("see Canvas" until the list is written). The
 checker requires it for `upcoming` lectures; delivered ones are left as they were. Start a new
 lecture from `content/lectures/_template.md`.
 
