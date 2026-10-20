@@ -147,7 +147,9 @@ each, then the answer; every question ends on its `✅ **Answer.**` line, so wri
 ends in a **Copy Canvas deliverable** (summary + JSON receipt with a SHA-256 checksum, camera-lab's
 shape). The question key is `lectures/worksheet/key/?id=…` (instructor view: 🔑 Refresher key).
 Past lectures have neither notes nor a refresher until someone adds blanks or questions; that's a
-good Repo Improvement task. `content/instructor/vibecoding-series.md` has the series plan.
+good Repo Improvement task. **Before adding either, read `content/LECTURE_GUIDE.md`** (how many, the
+three question kinds, imported lectures, and editing mistakes already made once), and check
+coverage with `node tools/lecture-report.mjs <lecture id>`. `content/instructor/vibecoding-series.md` has the series plan.
 
 ## Quiz
 

@@ -127,6 +127,7 @@ SOURCE — never served as a page
   content/instructor/  instructor-facing drafts (Canvas assignment drafts, proposals, series
                        notes, the bad-webapps repo kit)
   content/DOCUMENTATION_GUIDE.md  document types, step style, evidence marks, review workflow
+  content/LECTURE_GUIDE.md        writing follow-along notes (==blanks==) and online refreshers
   data/activities.json directory metadata that drives the front page
   data/lectures.json   lecture dates, weeks, and status (delivered / upcoming / no-class)
   content/lectures/    lecture text, one Markdown file per class
