@@ -1,7 +1,6 @@
 import { renderMarkdown } from './markdown.js';
 import { enableImageZoom } from './image-zoom.js';
-import { parseFrontmatter, qrBlock } from './worksheet.js';
-import { FORM_HEADING, FORM_NOTE, REPO_IMPROVEMENT_FORM } from './feedback.js';
+import { parseFrontmatter, renderFormSection } from './worksheet.js';
 import { DOC_TYPES, KINDS, docType, groupLabel, settingsChips } from './catalog.js';
 
 // Opt-in credit by GitHub username only, never a real name (see CLAUDE.md).
@@ -50,15 +49,7 @@ async function loadActivity() {
       <p class="quiet">${afterActivity.note}</p>
       <ol class="submission-steps">${afterActivity.steps.map((step) => `<li>${step}</li>`).join('')}</ol>
     </section>` : '';
-  const form = `
-    <section class="completion repo-form">
-      <div class="repo-form-row">
-        <div><h2><span aria-hidden="true">📝</span> ${FORM_HEADING}</h2>
-          <p class="quiet">${FORM_NOTE}</p>
-          <a class="canvas-link" href="${REPO_IMPROVEMENT_FORM}" target="_blank" rel="noopener">Open the Repo Improvement form <span aria-hidden="true">↗</span></a></div>
-        ${qrBlock(REPO_IMPROVEMENT_FORM, 'Scan for the form', 'QR code for the Repo Improvement form')}
-      </div>
-    </section>`;
+  const form = renderFormSection();
   const completion = steps + form;
 
   const chips = settingsChips(activity);

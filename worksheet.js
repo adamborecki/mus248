@@ -276,12 +276,26 @@ export function qrBlock(url, cue, alt, title = cue) {
   return `<div class="ws-qr"><span class="ws-qr-cue">${escapeHtml(cue)}</span>${svg}<span class="ws-qr-url">${displayUrl}</span></div>`;
 }
 
+// The Repo Improvement form at the foot of an activity page or a lecture page: a link and a QR code.
+export const formQr = () => qrBlock(REPO_IMPROVEMENT_FORM, 'Scan for the form', 'QR code for the Repo Improvement form');
+export function renderFormSection(note = FORM_NOTE) {
+  return `
+    <section class="completion repo-form">
+      <div class="repo-form-row">
+        <div><h2><span aria-hidden="true">📝</span> ${FORM_HEADING}</h2>
+          <p class="quiet">${note}</p>
+          <a class="canvas-link" href="${REPO_IMPROVEMENT_FORM}" target="_blank" rel="noopener">Open the Repo Improvement form <span aria-hidden="true">↗</span></a></div>
+        ${formQr()}
+      </div>
+    </section>`;
+}
+
 // The last thing on every student worksheet: the Repo Improvement form, as a code to scan and an
 // address to type. (Lecture worksheets and answer keys leave it off.)
-export function renderFormBlock() {
+export function renderFormBlock(note = FORM_NOTE) {
   const short = REPO_IMPROVEMENT_FORM.replace(/^https?:\/\//, '');
   return `<section class="ws-block ws-form"><div class="ws-form-row"><div><h2>📝 ${escapeHtml(FORM_HEADING)}</h2>`
-    + `<p>${escapeHtml(FORM_NOTE)} Scan the code, or go to <b>${escapeHtml(short)}</b></p></div>`
+    + `<p>${escapeHtml(note)} Scan the code, or go to <b>${escapeHtml(short)}</b></p></div>`
     + `${qrBlock(REPO_IMPROVEMENT_FORM, 'Scan for the form', 'QR code for the Repo Improvement form')}</div></section>`;
 }
 

@@ -267,8 +267,15 @@ export function mountPresenter({ root, lecture, source }) {
     if (!scroll) return;
     const thumb = thumbs.querySelector('.pv-thumb.is-current');
     if (thumb) thumbs.scrollTo({ top: Math.max(0, thumb.offsetTop - thumbs.clientHeight * 0.25), behavior: 'smooth' });
-    const group = notes.querySelector(`section[data-slide="${Math.min(current, last - 1)}"]`);
-    if (group) notes.scrollTo({ top: Math.max(0, group.offsetTop - 48), behavior: 'smooth' });
+    // Someone is always still writing the last slide or two, so the current slide never jumps to
+    // the top: up to two slides above it stay in view, as long as it stays in the top half.
+    const at = Math.min(current, last - 1);
+    const group = notes.querySelector(`section[data-slide="${at}"]`);
+    if (group) {
+      const lowest = group.offsetTop - notes.clientHeight * 0.45;
+      const earlier = [2, 1].map((back) => notes.querySelector(`section[data-slide="${at - back}"]`)).find((item) => item && item.offsetTop >= lowest);
+      notes.scrollTo({ top: Math.max(0, earlier ? earlier.offsetTop - 12 : lowest), behavior: 'smooth' });
+    }
   };
 
   const go = (at) => {

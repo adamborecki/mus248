@@ -245,7 +245,8 @@ function confetti(host) {
 // embedded: the deck is inside presenter view's iframe, so it never closes or goes full screen on
 // its own (the presenter page does both). onChange(index, mode) hears every move. setSkipped marks
 // slides struck through, for "skip this, cross it off".
-export function openDeck({ article, lecture, badge, when, startAt = 0, overview = false, onClose, onChange, embedded = false }) {
+// endHtml goes on the last slide (the lecture page puts the Repo Improvement form's QR code there).
+export function openDeck({ article, lecture, badge, when, startAt = 0, overview = false, onClose, onChange, embedded = false, endHtml = '' }) {
   const parsed = splitSlides(article);
   const hueBase = ((lecture.lecture || lecture.title.length) * 47 + 205) % 360;
   const deck = {
@@ -334,7 +335,7 @@ export function openDeck({ article, lecture, badge, when, startAt = 0, overview 
       if (slide.kind === 'title') element.querySelector('.deck-card').insertAdjacentHTML('beforeend', `<span class="deck-hero" aria-hidden="true">${slide.deco}</span>`);
       if (slide.kind === 'end') {
         body.innerHTML = `<p>${slides.length - 2} slides. Want the big picture again?</p>
-          <p class="deck-end-actions"><button type="button" data-go="overview">🗺️ See the outline</button> <button type="button" data-go="first">↺ Start over</button> <button type="button" data-go="close">📄 Back to the text</button></p>`;
+          <p class="deck-end-actions"><button type="button" data-go="overview">🗺️ See the outline</button> <button type="button" data-go="first">↺ Start over</button> <button type="button" data-go="close">📄 Back to the text</button></p>${endHtml ? `<div class="deck-end-form"><p>📝 <b>Repo Improvement form</b><br>Finished an activity or a checklist, or spotted something to fix?</p>${endHtml}</div>` : ''}`;
       }
       // Stagger each block's entrance.
       [...body.children].forEach((child, order) => child.style.setProperty('--order', order + 1));

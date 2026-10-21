@@ -111,7 +111,8 @@ checker fails on a quiz access code or a form/Drive folder link, but it can't sp
 
 **The Repo Improvement form** (students fill it out after every activity or checklist; it replaced the
 per-activity Canvas discussions) lives in one place, `feedback.js`. Every activity page, checklist,
-and student worksheet ends with it as a link and a QR code, and it's the one form link the checker
+student worksheet, lecture page, lecture deck (its last slide), and printed follow-along notes ends
+with it as a link and a QR code, and it's the one form link the checker
 allows in lectures. Changing the form means changing that one line.
 
 **Every week opens the same way:** an upcoming lecture's first section is `## 📣 Announcements`, and
@@ -168,7 +169,16 @@ shape). The question key is `lectures/worksheet/key/?id=…` (instructor view: �
 7:00 AM Pacific the Monday after next** (lecture date + 7 days), not right after class; `refresherOpens`
 on the lecture in `data/lectures.json` overrides it, and instructor view can always open it.
 Past lectures have neither notes nor a refresher until someone adds blanks or questions; that's a
-good Repo Improvement task. **Before adding either, read `content/LECTURE_GUIDE.md`** (how many, the
+good Repo Improvement task. The 🔁 button says where a refresher stands: **not written yet** (no
+questions), **being written** (`"refresherDraft": true` on the lecture in `data/lectures.json`;
+students can't open it, instructor view can), or ready (opens on its date).
+
+**New lectures start as an outline, and the instructor writes them.** The order is: a planning
+conversation, then an outline draft (headings plus short bullet fragments for anything in the
+instructor's voice; reference material like click steps, tables, and starters can be close to
+final), then the instructor writes it, often in presenter view or with instructor view's **✏️ Edit
+on GitHub** link (works on a phone). Refresher questions come **last**, from the final text. Don't
+write a polished lecture in the AI's voice. **Before adding either, read `content/LECTURE_GUIDE.md`** (how many, the
 three question kinds, imported lectures, and editing mistakes already made once), and check
 coverage with `node tools/lecture-report.mjs <lecture id>`. `content/instructor/vibecoding-series.md` has the series plan.
 

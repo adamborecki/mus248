@@ -1,12 +1,15 @@
-> 🤖 **AI use:** drafted with Claude Code from the instructor's notes (a planning conversation on
-> Oct 20). Part 2 of the Vibecoding series. The students' work this week uses no AI.
+> 🤖 **AI use:** outlined with Claude Code from a planning conversation with the instructor (Oct
+> 20–21). The instructor writes the slides from this outline. Part 2 of the Vibecoding series. The
+> students' work this week uses no AI.
 
-> 🧑‍🏫 **Draft for Oct 26.** Target is 30–45 minutes: Announcements ~5, section 1 ~12, section 2 ~6,
-> section 3 ~15 (the shared activity), section 4 ~8. Watch-only through section 2, then everyone
-> does section 3. Three things this lecture links to don't exist yet: the Gear Dating Profile
-> generator, the stock bad webapp, and WTF 248. Each slide that needs one says "link coming" until
-> it does. Section 4 waits on the Performance Evaluation session. Present with **Presenter view**
-> (`?presenter=1`): the notes column on the right fills in as you go.
+> 🧑‍🏫 **Outline draft for Oct 26: write it in your voice.** Bullet fragments are prompts for what
+> to say; rewrite them as slides. Reference material (the click steps, the file table, the
+> troubleshooting table, the two starters) is meant to be close to final. Section 3 is the
+> roughest, since the activity isn't settled. No refresher questions yet: they get written from your
+> final text (refresher opens Nov 2). Target 30–45 minutes: Announcements ~5, section 1 ~12,
+> section 2 ~6, section 3 ~15 (the shared activity), section 4 ~8. Three links don't exist yet:
+> the Gear Dating Profile generator, the stock bad webapp, and WTF 248. Present with **Presenter
+> view** (`?presenter=1`).
 
 ## 📣 Announcements
 
@@ -18,7 +21,7 @@
 
 Everything due this week, with due dates: **see Canvas**.
 
-- **Your `mus248-sandbox` site**, live with four files, no AI (today's section 1 and 2)
+- **Your `mus248-sandbox` site**, live with four files, no AI (today's sections 1 and 2)
 - **Follow-along notes:** photos of today's notes, on Canvas
 - **Online refresher for Vibecoding 1:** open since this morning. Copy the Canvas deliverable into
   the Canvas assignment
@@ -26,57 +29,38 @@ Everything due this week, with due dates: **see Canvas**.
 
 ### I read your feedback
 
-Thank you. I read every response, and it changes what we do.
-
-Two things I heard:
-
-- **AI can feel impersonal**, just knowing that it's AI. Fair. Today is shorter, and it's me
-  talking, not a wall of slides.
-- **Mixer Lab has bugs**, so it's hard to tell whether *you're* doing it wrong or the simulator is.
-  Also fair, and it's next on my list.
+- Thank you: I read all of it, and it changes what we do
+- "AI feels impersonal" → fair. Today: shorter, me talking
+- "Mixer Lab bugs: is it me or the simulator?" → fair, next slide
 
 ### You're already ahead
 
-Compared with past classes at this point in the semester, you have:
+vs. past classes at this point in the semester:
 
-- more **camera** experience, from hands-on activities and Camera Lab
-- more **mixer** experience, even with Mixer Lab's problems
-- a wider look at more kinds of gigs, and more preparation for them
+- more **camera** experience (hands-on activities, Camera Lab)
+- more **mixer** experience (even with Mixer Lab's problems)
+- more kinds of gigs, more prep for them
 
-That's three things working together: your **honest feedback**, AI, and plain experience. This
-class gets better every semester.
+Why: your honest feedback + AI + experience. This class gets better every semester.
 
 ### Mixer Lab is next
 
-Coming up: a **more realistic** interface, and showing how what you learn there carries over to
-the real mixers you'll use on gigs.
-
-Until then: if Mixer Lab and a real board disagree, the **==real board==** wins. Tell me on the
-Repo Improvement form.
-
-**Q1 (multiple choice).** Mixer Lab shows one thing and the real mixer in the room shows another.
-Which do you trust?
-
-- a) Mixer Lab, because it was built for this class
-- ✅ b) The real board, and you report the difference on the Repo Improvement form
-- c) Whichever one your group agrees on
-
-✅ **Answer.** The real board wins. Mixer Lab still has bugs, and reporting the difference is how
-it gets fixed.
+- Coming: a more realistic interface, and how it carries over to real mixers
+- Until then: Mixer Lab and a real board disagree → the **==real board==** wins
+- Tell me on the Repo Improvement form
 
 ### Planning further ahead
 
-Some weeks get more prep time than others. That's the honest truth of teaching while gigs happen.
-
-The new lecture system lets me plan weeks ahead, so lectures are ready earlier and **shorter**.
-New today: the notes on the right side of the screen fill in as we go, so you can always catch up.
+- Some weeks get more prep than others (teaching while gigs happen)
+- New lecture system → planned further ahead, ready earlier, shorter
+- New today: the notes on the right fill in as we go
 
 ## 🎤 Lecture: Vibecoding 2
 
 ### Vibecoding 2: Going Live
 
-Last week you made a bad webapp with AI. Today you put things on the internet **yourself**, with
-**no ==AI==**.
+- Last week: a bad webapp, with AI
+- Today: on the internet **yourself**, with **no ==AI==**
 
 ### Today
 
@@ -89,7 +73,7 @@ Last week you made a bad webapp with AI. Today you put things on the internet **
 
 ### One repo, four files
 
-Everyone makes **one** repo, named exactly **`mus248-sandbox`**. Its address:
+Everyone makes **one** repo, named exactly **`mus248-sandbox`**:
 `your-username.github.io/mus248-sandbox/`
 
 | File | What it is |
@@ -99,13 +83,8 @@ Everyone makes **one** repo, named exactly **`mus248-sandbox`**. Its address:
 | `index.html` | Your home page: links to the other two |
 | `README.md` | What this repo is, for people looking at it on GitHub |
 
-Free hosting for a repo is called **==GitHub Pages==**. Missed the bad webapp? Use the stock one
-(link coming).
-
-**Q2 (fill in the blank).** Everyone's practice repo has the same name: ==mus248-sandbox==.
-
-✅ **Answer.** One repo, `mus248-sandbox`, with four files. Same name for everyone, so anyone can
-find your site from your username.
+- Free hosting for a repo: **==GitHub Pages==**
+- Missed the bad webapp? The stock one (link coming)
 
 ### Publish it
 
@@ -123,11 +102,6 @@ copy.
 > 🧑‍🏫 Rehearse these clicks once on a fresh repo before class. GitHub moves buttons, and the exact
 > labels on the new-repository page change more often than anything else here.
 
-**Q3 (fill in the blank).** To turn a repo into a website, open the repo's Settings and turn on
-==Pages|GitHub Pages==.
-
-✅ **Answer.** Settings → Pages → deploy from main. A minute later the repo is a website.
-
 ### When it doesn't work
 
 | What you see | Check this |
@@ -137,46 +111,22 @@ copy.
 | "Pages isn't available" | The repo has to be **==Public==** |
 | An old version | Refresh. It can take a minute to update |
 
-**Q4 (multiple choice).** You turned on Pages 10 seconds ago, and your link shows a 404. What do
-you do first?
-
-- a) Delete the repo and start over
-- ✅ b) Wait a minute, then check the file name letter for letter
-- c) Ask an AI to fix your code
-
-✅ **Answer.** Pages takes about a minute. After that, a 404 almost always means the file name or
-the link doesn't match exactly.
-
 ### Public means public
 
-Your site is on the **public internet**. Anyone can find it.
-
-- Your **GitHub ==username==** or a ==persona== is plenty
-- No full name, phone, address, or schedule
-- Nothing you wouldn't put on a poster on campus
-
-When in doubt, ==leave it out==.
-
-**Q5 (multiple choice).** Which is fine to put on your `mus248-sandbox` site?
-
-- a) Your full name and phone number, so people can book you
-- ✅ b) Your GitHub username and a made-up bio for a cable
-- c) Your class schedule
-
-✅ **Answer.** It's the public internet: a username or a persona is plenty. When in doubt, leave
-it out.
+- Public internet: anyone can find it
+- GitHub **==username==** or a ==persona==: plenty
+- No full name, phone, address, schedule
+- Poster-on-campus test
+- When in doubt, ==leave it out==
 
 ### Your gear dating profile
 
-Pick a piece of gear. Fill in its profile. Pick colors, a photo, a bio. The preview updates as you
-go. Then **Copy ==HTML==** and paste it into `gear-dating-profile.html`.
-
-> *XLR cable, 25 ft. Balanced, in every sense. Looking for: a ==phantom==-powered connection.
-> Turn-offs: being wrapped around an elbow.*
-
-Same move as the Playground: get ==source code== from somewhere, and publish it yourself.
-
-The generator: link coming.
+- Pick a piece of gear → fill in its profile → colors, photo, bio → live preview
+- **Copy ==HTML==** → paste into `gear-dating-profile.html`
+- e.g. *XLR cable, 25 ft. Balanced, in every sense. Looking for: a ==phantom==-powered connection.
+  Turn-offs: being wrapped around an elbow.*
+- Same move as the Playground: get ==source code== from somewhere, publish it yourself
+- The generator: link coming
 
 > 🧑‍🏫 The generator is yours to build (form → live preview → localStorage → Copy HTML, in its own
 > repo). Put its link here when it's live.
@@ -191,17 +141,8 @@ The generator: link coming.
 | Bold | `**loud**` | `<strong>loud</strong>` |
 | A link | `[My app](bad-webapp.html)` | `<a href="bad-webapp.html">My app</a>` |
 
-Markdown is **==shorthand==** for people. HTML is what the ==browser== actually reads, with every
-part spelled out in **==tags==**.
-
-**Q6 (multiple choice).** Which one is an HTML link?
-
-- a) `[My app](bad-webapp.html)`
-- ✅ b) `<a href="bad-webapp.html">My app</a>`
-- c) `**My app**`
-
-✅ **Answer.** HTML spells a link out in an `<a>` tag; Markdown writes the same link as
-`[text](address)`.
+- Markdown: **==shorthand==**, for people
+- HTML: what the ==browser== reads, every part spelled out in **==tags==**
 
 ### README vs. index.html
 
@@ -211,17 +152,7 @@ part spelled out in **==tags==**.
 | Where it shows | Under the file list on GitHub | At `your-username.github.io/mus248-sandbox/` |
 | Written in | Markdown | HTML |
 
-Same repo, two ==audiences==.
-
-**Q7 (multiple choice).** Someone opens `your-username.github.io/mus248-sandbox/`. Which file do
-they see?
-
-- a) `README.md`
-- ✅ b) `index.html`
-- c) `bad-webapp.html`
-
-✅ **Answer.** The site's address opens `index.html`. The README is for people looking at the repo
-on GitHub.
+- Same repo, two ==audiences==
 
 ### Your index.html
 
@@ -272,91 +203,70 @@ The metronome drifts. That's the point.
 - [ ] Fix one thing in WTF 248
 ```
 
-**Q8 (short answer).** Your README and your `index.html` both have a link in them. Write the same
-link both ways: once in Markdown, once in HTML.
-
-✅ **Answer.** Markdown: `[My app](bad-webapp.html)`. HTML: `<a href="bad-webapp.html">My app</a>`.
-Same link; HTML spells out every part.
-
 ## 3. Fix WTF 248
 
 ### Meet WTF 248
 
-**WTF 248** is a parody copy of this course site, cut down to the skills on the midterm and the
-final. Somebody broke its checklists on purpose:
+- A parody copy of this site, cut down to the skills on the midterm and final
+- Its checklists are broken on purpose, e.g. *"4.3 Start a small fire on stage for ambiance.
+  (Obviously don't. This is a test.)"*
+- Your job: find **one**, fix it, ==propose== the fix
+- WTF 248: link coming
 
-> *4.3 Start a small fire on stage for ambiance. (Obviously don't. This is a test.)*
+> 🧑‍🏫 Roughest section: the activity isn't settled. Decide how many fixes each student makes,
+> whether groups share one, and whether you merge a few live on the projector.
 
-Your job: find **one** broken step, fix it, and ==propose== the fix to the repo's owner.
+### Fork, branch, fix, pull request
 
-WTF 248: link coming.
+1. Open WTF 248 on GitHub → **==Fork==** (your own copy)
+2. In your fork: a checklist's `.md` file → ✏️ pencil
+3. Fix one broken step → **Preview** tab
+4. **Commit changes** → choose **Create a new ==branch== for this commit** → name it for the fix,
+   like `fix-step-4-3`
+5. **Open ==pull request==** → the owner decides whether to ==merge== it
 
-### Fork, fix, pull request
+> 🧑‍🏫 Rehearse step 4 and 5 on a fork before class: confirm the commit dialog's branch option and
+> that the pull request's base is WTF 248's `main`, not your fork's.
 
-1. Open WTF 248 on GitHub and press **==Fork==**: your own copy
-2. In your fork, open a checklist's `.md` file and press the ✏️ pencil
-3. Fix one broken step. Check the **Preview** tab
-4. **Commit changes**, with a note that says what you changed and why
-5. **Contribute → Open ==pull request==**
+### Branches
 
-The owner reads it and decides whether to ==merge== it. That's the whole job of a pull request.
-
-**Q9 (multiple choice).** You want to change a repo you don't own. What do you make first?
-
-- ✅ a) A fork
-- b) A pull request
-- c) A merge
-
-✅ **Answer.** Fork first: your own copy to change. The pull request then asks the owner to bring
-your change in.
+- A branch: a copy of the files where you try an idea **without touching ==main==**
+- Like a duplicate playlist to try an edit
+- One fix = one branch = one ==pull request==
+- Name it for what it fixes: `fix-step-4-3`
+- On MUS 248, a pushed branch even gets its own ==preview== link before anything goes live
 
 ### What a good fix looks like
 
 - **==One== fix** per pull request
-- The note says **==what and why==**: *"Step 4.3 said to start a fire. Changed it to: turn on the stage
-  lights."*
-- Leave the rest of the page alone. Same format, same numbering style
-
-The real checklists on this site use the **same ==format==**. Next comes Repo Improvement on MUS 248
-itself: a fix you make could be what next semester's students follow in Salmon.
-
-**Q10 (short answer).** Write the commit note for a fix to this step: *"2.1 Plug the XLR cable
-into the power outlet."*
-
-✅ **Answer.** Something like: "Step 2.1 said to plug the XLR into the power outlet. Changed it to:
-plug the XLR into the mic input on the mixer." What changed, and why, in one line.
+- The note says **==what and why==**: *"Step 4.3 said to start a fire. Changed it to: turn on the
+  stage lights."*
+- Leave the rest of the page alone
+- The real checklists here use the **same ==format==** → next: Repo Improvement on MUS 248 itself
+- A fix you make could be what next semester follows in Salmon
 
 ## 4. What the Final Looks Like
 
 ### Like the midterm
 
-The final works like the midterm: you **==show==** specific skills, one at a time. The goal is that
-everyone who passes MUS 248 can work the normal gig types.
-
-The skills list: coming.
+- Like the midterm: you **==show==** specific skills, one at a time
+- Goal: everyone who passes can work the normal gig types
+- The skills list: coming
 
 > 🧑‍🏫 Placeholder for the Performance Evaluation session's skills list (midterm and final). The
 > Big Picture lecture's preliminary areas: Salmon A/V and livestream, a Standard Gear Kit recording,
 > Musco with multicamera, basic live sound / FOH, data management and post, troubleshooting and gig
 > conduct. Budget about 10 minutes of discussion here.
 
-**Q11 (multiple choice).** What will the final look like?
-
-- a) A written test on one gig type you choose
-- ✅ b) Like the midterm: you show specific skills, one at a time
-- c) A group project
-
-✅ **Answer.** Like the midterm: individual skills, across the normal gig types.
-
 ### Why WTF 248 is cut down to these
 
-WTF 248 keeps only the pages for the skills on the final. Fixing its checklists means reading the
-same steps you'll be **==tested== on**, with the jokes taken out.
+- WTF 248 keeps only the pages for the final's skills
+- Fixing its checklists = reading the steps you'll be **==tested== on**, jokes removed
 
 ## 🗝️ Key terms
 
 **GitHub Pages** · **`mus248-sandbox`** · **HTML** · **Markdown** · **README** · **`index.html`** ·
-**fork** · **pull request** · **merge**
+**fork** · **branch** · **pull request** · **merge**
 
 ## 💭 Before you leave
 

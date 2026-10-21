@@ -14,16 +14,24 @@ view; this file is public in the repo like everything else, so nothing private g
 3. **Create the GitHub org** (5 minutes: `content/instructor/bad-webapps/SETUP.md`, step 1).
 4. **Make WTF 248:** copy MUS 248, strip it down to the performance-eval skills, water it down, and
    plant obviously absurd checklist steps ("4.3 Start a small fire on stage for ambiance.
-   (Obviously don't. This is a test.)"). Put its link in VC2 slide 3.1.
+   (Obviously don't. This is a test.)"). Put its link in VC2 slide 3.1. *Pencilled in, confirm
+   later:* branch previews like MUS 248's (copy the Pages workflow; each fork has to turn on
+   Actions), so a student sees their fix live before the pull request.
 5. **Build the Gear Dating Profile generator**, in its own repo (not this one): a form with pickers
    and a live preview, saved in localStorage, ending in **Copy HTML** with a text area. About 20
    gear photos, one profile per student. Manufacturer press/media kits are the safest source,
    manufacturer product pages are close behind, and retailer photos (Sweetwater, Amazon) should be
    skipped. Keep a credits file with each photo's source URL. Put its link in VC2 slide 1.5.
 6. **Stock bad webapp** for anyone who missed class. Put its link in VC2 slide 1.1.
-7. **Rehearse:** a timed read-through in presenter view (`?presenter=1`), plus the new-repository
-   clicks on a fresh GitHub repo (labels move).
-8. **Print the follow-along notes** 30–60 minutes before class, after the last edit.
+7. **Write VC2 in your voice.** It's an outline now: bullet fragments for what to say, with the
+   reference steps and tables close to final. Use presenter view (Shift+E) or instructor view's
+   ✏️ Edit on GitHub.
+8. **Rehearse:** a timed read-through in presenter view (`?presenter=1`), plus the new-repository
+   and fork → branch → pull request clicks on GitHub (labels move).
+9. **Print the follow-along notes** 30–60 minutes before class, after the last edit.
+
+**After your pass on VC2:** ask Claude for its refresher questions, written from your final text
+(the refresher opens Nov 2).
 
 **After class:** open presenter view → 📤 Changes, send it to yourself, and fold the edits into
 the lecture Markdown (or ask Claude to). Then Clear all.

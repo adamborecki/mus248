@@ -5,3 +5,4 @@
 export const REPO_IMPROVEMENT_FORM = 'https://forms.gle/ee2ypjZo8VbhRVUT9';
 export const FORM_HEADING = 'Finished? Fill out the Repo Improvement form';
 export const FORM_NOTE = 'Every time you finish an activity or a checklist. It\'s how these pages get better.';
+export const LECTURE_FORM_NOTE = 'Finished an activity or a checklist this week, or spotted something to fix in this lecture? It\'s how these pages get better.';

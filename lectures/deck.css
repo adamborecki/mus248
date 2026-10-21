@@ -183,3 +183,9 @@ html.deck-open { overflow: hidden; }
 .deck-slide.is-skipped .deck-card::after { content: "✂️ Skipped: cross it off"; position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%) rotate(-2deg); padding: 10px 26px; border-radius: 14px; background: #ffd60a; color: #1c1c1e; font-size: 34px; font-weight: 800; box-shadow: 0 8px 24px rgb(0 0 0 / .25); }
 /* Inside presenter view's iframe: the presenter page owns closing and full screen. */
 .deck-embedded .deck [data-go="close"] { display: none; }
+.deck-end-form { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 28px; text-align: left; }
+.deck-end-form p { margin: 0; font-size: .8em; }
+.deck-end-form .ws-qr { display: flex; flex-direction: column; gap: 6px; width: 190px; padding: 12px; border-radius: 16px; background: #fff; color: #1c1c1e; text-align: center; }
+.deck-end-form .ws-qr svg { display: block; width: 100%; height: auto; }
+.deck-end-form .ws-qr-cue { font-size: 14px; font-weight: 800; text-transform: uppercase; }
+.deck-end-form .ws-qr-url { font-size: 11px; overflow-wrap: anywhere; }

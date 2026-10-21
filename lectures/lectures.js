@@ -9,6 +9,8 @@ import { hasBlanks } from './notes.js';
 import { lectureText } from './text.js';
 import { opensLabel, refresherOpen } from './refresher.js';
 import { mountEmbeddedDeck, mountPresenter } from './presenter.js';
+import { formQr, renderFormSection } from '../worksheet.js';
+import { LECTURE_FORM_NOTE } from '../feedback.js';
 
 export { isVisible };
 
@@ -48,6 +50,15 @@ export async function mountList(root) {
     + `<h2 class="section-title">Past lectures</h2><div class="activity-grid">${past.map(row).join('')}</div>`;
 }
 
+const locked = (note) => `<span class="extra-locked" aria-disabled="true">🔁 Online refresher <small>${escapeHtml(note)}</small></span>`;
+
+function refresherButton(lecture, { questions, instructor, query }) {
+  if (!questions) return locked('not written yet');
+  const status = lecture.refresherDraft ? 'being written' : (refresherOpen(lecture) ? '' : `opens ${opensLabel(lecture)}`);
+  if (!instructor && status) return locked(status);
+  return `<a href="../refresher/${query}">🔁 Online refresher${status ? ` <small>${escapeHtml(status)}</small>` : ''}</a>`;
+}
+
 export async function mountLecture(root, id) {
   const lectures = await fetch('../../data/lectures.json').then((response) => response.json());
   const instructor = instructorView();
@@ -61,6 +72,7 @@ export async function mountLecture(root, id) {
   });
   const deck = {
     lecture,
+    endHtml: formQr(),
     badge: lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : (lecture.status === 'upcoming' ? 'Coming up' : ''),
     when: when(lecture, { long: true }),
   };
@@ -78,12 +90,14 @@ export async function mountLecture(root, id) {
   const questions = hasQuestions(lectureView(source));
   const extras = [
     blanks && `<a href="../notes/${query}">📝 Follow-along notes</a>`,
-    // Before it opens, students get a grayed-out label, not a link; instructor view can always go in.
-    questions && (refresherOpen(lecture) || instructor
-      ? `<a href="../refresher/${query}">🔁 Online refresher${refresherOpen(lecture) ? '' : ` <small>opens ${escapeHtml(opensLabel(lecture))}</small>`}</a>`
-      : `<span class="extra-locked" aria-disabled="true">🔁 Online refresher <small>opens ${escapeHtml(opensLabel(lecture))}</small></span>`),
+    // The refresher button says where it stands: not written yet (no questions), being written
+    // (questions, but "refresherDraft": true in data/lectures.json), or ready (opens on its date).
+    // Students get a grayed-out label until it's ready and open; instructor view can always go in.
+    refresherButton(lecture, { questions, instructor, query }),
     instructor && blanks && `<a href="../notes/key/${query}">🔑 Notes key</a>`,
     instructor && questions && `<a href="../worksheet/key/${query}">🔑 Refresher key</a>`,
+    // GitHub's own editor works on a phone and commits straight to main; the page updates a minute later.
+    instructor && `<a href="https://github.com/adamborecki/mus248/edit/main/content/lectures/${encodeURIComponent(lecture.contentFile)}.md" target="_blank" rel="noopener">✏️ Edit on GitHub</a>`,
   ].filter(Boolean).join('');
   // The list runs newest first, so the entry before this one is the newer lecture.
   const newer = readable[index - 1];
@@ -99,6 +113,7 @@ export async function mountLecture(root, id) {
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button><a class="present-presenter" href="?presenter=1"><span aria-hidden="true">🖥️</span> Presenter view</a></p>
     ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}
     <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/', blanks: instructor ? 'mark' : 'plain' })}</article>
+    ${renderFormSection(LECTURE_FORM_NOTE)}
     <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>
     <p class="instructor-switch"><button type="button" data-instructor="${instructor ? 'off' : 'on'}">${instructor ? 'Leave instructor view' : 'π'}</button></p>`;
 

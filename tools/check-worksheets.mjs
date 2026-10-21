@@ -277,6 +277,7 @@ lectures.forEach((lecture) => {
   const where = `lecture ${lecture.id}`;
   check(['delivered', 'upcoming', 'no-class'].includes(lecture.status), `${where}: unknown status "${lecture.status}"`);
   check(lecture.date === null || /^\d{4}-\d{2}-\d{2}$/.test(lecture.date), `${where}: date must be YYYY-MM-DD or null`);
+  if ('refresherDraft' in lecture) check(typeof lecture.refresherDraft === 'boolean', `${where}: refresherDraft must be true or false`);
   if ('hiddenUntil' in lecture) {
     check(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?[+-]\d{2}:\d{2}$/.test(lecture.hiddenUntil) && !Number.isNaN(Date.parse(lecture.hiddenUntil)),
       `${where}: hiddenUntil needs a full time with its UTC offset, like 2026-10-19T22:00:00-07:00`);
@@ -331,6 +332,8 @@ lectures.forEach((lecture) => {
     const notes = renderNotes(text, lecture);
     check(!notes.replace(/<pre[\s\S]*?<\/pre>/g, '').includes('=='), `${where}: the follow-along notes still show a literal == (outside a code block)`);
     check(!notes.includes('key-term'), `${where}: the follow-along notes show a filled-in blank`);
+    check(notes.includes('ws-form') && !renderNotes(text, lecture, { key: true }).includes('ws-form'),
+      `${where}: the follow-along notes should end with the Repo Improvement form (and the key shouldn't)`);
   }
 
   // The refresher: questions shaped like an activity's, every fill-in with its answer marked.

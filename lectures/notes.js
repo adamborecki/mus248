@@ -5,7 +5,8 @@
 // which are the online refresher's), minus the 🌀 portals, which are for exploring on a screen.
 
 import { blankTerms, escapeHtml, isFence, renderMarkdown } from '../markdown.js';
-import { renderQr } from '../worksheet.js';
+import { renderFormBlock, renderQr } from '../worksheet.js';
+import { LECTURE_FORM_NOTE } from '../feedback.js';
 import { instructorView, isVisible } from './view.js';
 import { lectureText } from './text.js';
 
@@ -54,6 +55,7 @@ export function renderNotes(markdown, lecture, { key = false } = {}) {
       ${key ? '' : '<p class="notes-photo">📸 When you\'re done, take photos of these notes and submit them on Canvas.</p>'}
     </header>
     <article class="notes-body">${renderMarkdown(notesMarkdown(markdown), { blanks: key ? 'mark' : 'blank' })}</article>
+    ${key ? '' : renderFormBlock(LECTURE_FORM_NOTE)}
     <footer class="ws-foot">Generated from <code>content/lectures/${escapeHtml(lecture.contentFile)}.md</code> — edit the lecture, not this page.</footer>`;
 }
 

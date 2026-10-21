@@ -22,6 +22,23 @@ The buttons appear on their own: a lecture with at least one `==term==` gets not
 with at least one question gets a refresher. **If you were asked for a refresher only, add
 questions and no blanks.**
 
+## New lectures: outline first, instructor writes, questions last
+
+1. **A planning conversation** about what the lecture is for and how long it runs.
+2. **An outline draft** (Claude): every slide's heading, and short bullet fragments for anything
+   that should be in the instructor's voice (stories, opinions, announcements). Reference material
+   students copy or follow (click-by-click steps, tables, code starters) can be close to final.
+   Sections that aren't settled stay rough, with a `> 🧑‍🏫` note saying what's undecided. Blanks can
+   go in now, on key terms.
+3. **The instructor writes it**, in presenter view (Shift+E, then 📤 Changes) or with instructor
+   view's ✏️ Edit on GitHub link.
+4. **Refresher questions last**, from the final text, because they test what was actually said.
+   Until then the 🔁 button reads "not written yet". While they're half done, set
+   `"refresherDraft": true` on the lecture in `data/lectures.json` and the button reads "being
+   written" (students can't open it); remove it when they're ready.
+
+Vibecoding 2 (`2026-10-26-vibecoding-2.md`) is the first lecture made this way.
+
 ## Every week: Announcements first
 
 Every lecture opens with `## 📣 Announcements`, and its first slide is always `### Homework review`:
