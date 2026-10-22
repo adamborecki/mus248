@@ -111,14 +111,19 @@ export function deliverable(lecture, questions, state, feedback = '') {
 }
 
 const storageKey = (id) => `mus248:refresher:${id}`;
-const freshState = () => ({
+// Answers are saved by question number, so a saved state only counts for the same number of
+// questions: when a refresher is shortened or lengthened, old answers would land on the wrong ones.
+const freshState = (count) => ({
+  count,
   sessionId: (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)),
   startedAt: new Date().toISOString(),
   items: {},
   feedback: '',
 });
-const load = (id) => {
-  try { return JSON.parse(window.localStorage.getItem(storageKey(id))) || freshState(); } catch { return freshState(); }
+const load = (id, count) => {
+  let saved = null;
+  try { saved = JSON.parse(window.localStorage.getItem(storageKey(id))); } catch { /* start fresh */ }
+  return saved && saved.count === count ? saved : freshState(count);
 };
 const save = (id, state) => {
   try { window.localStorage.setItem(storageKey(id), JSON.stringify(state)); } catch { /* keep going without it */ }
@@ -191,7 +196,7 @@ export async function mountRefresher(root) {
         <p>${when}</p></div></header>`;
     return;
   }
-  const state = load(id);
+  const state = load(id, questions.length);
   state.items = state.items || {};
   document.title = `${lecture.title} · online refresher · MUS 248`;
 
@@ -351,7 +356,7 @@ export async function mountRefresher(root) {
     });
     root.querySelector('.fill-reset').addEventListener('click', () => {
       if (!window.confirm('Clear your answers and start over? Your tries and time start over too.')) return;
-      Object.assign(state, freshState());
+      Object.assign(state, freshState(questions.length));
       save(id, state);
       render();
     });

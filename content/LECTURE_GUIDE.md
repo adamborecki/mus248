@@ -111,6 +111,11 @@ the same thing twice in different words.
 
 A good mix is about half multiple choice, a third fill in the blank, and a few short answers.
 
+**Keep it quick.** The Big Picture's first refresher had 45 questions and was too tedious; it's now
+20, almost all three-option multiple choice with one-line prompts and short main points. Around
+20 is a better target than one per idea: pick the ideas that matter most, merge the small ones into
+another question's main point, and skip short answers when the lecture is mostly facts.
+
 ### The three kinds
 
 **Multiple choice:** 3 or 4 options, exactly one marked `✅`. Wrong options should be plausible

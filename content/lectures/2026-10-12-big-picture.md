@@ -84,15 +84,13 @@ A single gig may include:
 - Portable PA
 - Data management and post-production
 
-**Q1 (multiple choice).** The specific gear changes from gig to gig. What doesn't?
+**Q1 (multiple choice).** From gig to gig, what stays the same?
 
-- a) The venue
+- a) The gear
 - ✅ b) The core responsibilities
-- c) The size of the crew
-- d) The list of equipment
+- c) The venue
 
-✅ **Answer.** Gear changes from gig to gig; the core responsibilities don't. A single gig can mix
-audio, video, multicam switching, livestreaming, FOH, a portable PA, and data and post.
+✅ **Answer.** The gear changes from gig to gig. The core responsibilities don't.
 
 ### Slide 5: The Workflow for Every Gig
 
@@ -120,25 +118,13 @@ audio, video, multicam switching, livestreaming, FOH, a portable PA, and data an
 
 - Complete post-production and delivery as assigned.
 
-**Q2 (multiple choice).** What does the lecture list as the attire for arriving at a gig?
+**Q2 (multiple choice).** What do you wear to a gig?
 
-- a) Anything comfortable, as long as it's quiet
-- ✅ b) Closed-toed shoes and no logos on your shirt
-- c) A Chapman logo shirt, so house staff know who you are
-- d) Sandals are fine if you're working the booth
+- a) Anything comfortable
+- ✅ b) Closed-toed shoes, and no logos on your shirt
+- c) A Chapman logo shirt
 
-✅ **Answer.** Closed-toed shoes and no logos on your shirt. And arrive fed and caffeinated.
-
-**Q3 (short answer).** During the gig, what should you ask about **early**, and why early?
-
-✅ **Answer.** Anything that depends on house staff, lighting, performers, or venue access. Those
-depend on other people, so they can't be fixed at the last minute.
-
-**Q4 (fill in the blank).** After the gig: stop and power down what you used, transfer and
-==verify|check== the media, and return the gear ready for the next engineer.
-
-✅ **Answer.** After the gig, media gets transferred **and verified**, and the gear goes back ready
-for the next engineer. Then post-production and delivery, as assigned.
+✅ **Answer.** Closed-toed shoes and no logos. At Musco, all black: you'll likely go out on stage there.
 
 ### Slide 6: The 7 Gig Families (categories)
 
@@ -152,21 +138,9 @@ for the next engineer. Then post-production and delivery, as assigned.
 
 A venue does not automatically determine the service. For example, Salmon may involve recording, livestreaming, FOH, or a combination.
 
-**Q5 (fill in the blank).** MUS 248 sorts Chapman gigs into ==7|seven== gig families.
+**Q3 (fill in the blank).** MUS 248 sorts Chapman gigs into ==7|seven== gig families.
 
-✅ **Answer.** Seven: Salmon A/V and livestream, Salmon FOH, Musco, Standard Gear Kit recordings,
-portable live sound, studio and multitrack recording, and specialty productions.
-
-**Q6 (multiple choice).** A gig is in Salmon. What does that tell you about the service you're
-providing?
-
-- a) It's a recording, nothing else
-- b) It's FOH, nothing else
-- ✅ c) Not enough: Salmon can mean recording, livestreaming, FOH, or a combination
-- d) It's always a livestream
-
-✅ **Answer.** A venue doesn't automatically determine the service. Salmon may involve recording,
-livestreaming, FOH, or a combination.
+✅ **Answer.** Seven families. And the venue doesn't decide the service: Salmon can be recording, livestream, FOH, or all three.
 
 ### Slide 7: Salmon Standard A/V and Livestream
 
@@ -185,24 +159,13 @@ Core expectation:
 
 The [Salmon Gig Checklist](../../salmon-gig-checklist/) is the operational reference. Please use the gig checklist, even if you're a veteran, as a way to double check.
 
-**Q7 (multiple choice).** Who should use the Salmon Gig Checklist at a Salmon gig?
+**Q4 (multiple choice).** A Salmon recital didn't ask for a livestream. What do you do?
 
-- a) Only new engineers; veterans work from memory
-- ✅ b) Everyone, veterans included, as a way to double check
-- c) Only the engineer in charge
-- d) Nobody during the gig; it's for training
+- a) Skip the livestream
+- ✅ b) Set it up for practice, but don't publish it to Canvas
+- c) Set it up and post it on Canvas anyway
 
-✅ **Answer.** The Salmon Gig Checklist is the operational reference. Use it even if you're a
-veteran, as a double check.
-
-**Q8 (multiple choice).** Tonight's Salmon recital didn't ask for a livestream. What do you do about the stream?
-
-- a) Skip it entirely; it wasn't requested
-- ✅ b) Set it up anyway for practice, but don't publish it to Canvas for the audience
-- c) Set it up and post it on Canvas, just in case
-- d) Ask the performer to request one
-
-✅ **Answer.** Livestreaming is built into every Salmon gig: always practice setting it up. When nobody requested it, skip the final step of making it live: publishing it on Canvas, where the audience would see it.
+✅ **Answer.** Always practice the livestream at Salmon. If nobody asked for it, don't publish it to Canvas.
 
 ### Slide 8: 2. Salmon FOH (Front of House)
 
@@ -223,22 +186,13 @@ Primary examples:
 
 The goal is a safe, reliable working system. Advanced mixing skill can develop over time, but every student needs the basic operating skills.
 
-**Q9 (multiple choice).** Which of these is a primary example of a Salmon **FOH** gig?
+**Q5 (multiple choice).** Which is a Salmon FOH gig?
 
-- a) The Chapman Orchestra
-- ✅ b) Mariachi
-- c) Wind Symphony
-- d) Fall Opera Scenes
+- ✅ a) Mariachi
+- b) The Chapman Orchestra
+- c) Fall Opera Scenes
 
-✅ **Answer.** Salmon FOH examples: Mariachi, Commercial Music Ensemble, Vocal Jazz, and
-occasionally Music at Noon.
-
-**Q10 (short answer).** What's the goal for FOH work, and what does every student need, even
-before they're a strong mixer?
-
-✅ **Answer.** A safe, reliable working system. Advanced mixing skill can develop over time, but
-every student needs the basic operating skills: inputs and gain, routing, line check and
-soundcheck, and listening for problems calmly.
+✅ **Answer.** Salmon FOH: Mariachi, Commercial Music Ensemble, Vocal Jazz, and sometimes Music at Noon.
 
 ### Slide 9: 3. Musco Center for the Arts
 
@@ -262,29 +216,13 @@ Core Musco expectations:
 
 The [Musco gig checklist](../../musco-gig-checklist/) should be used.
 
-**Q11 (fill in the blank).** Musco's end-of-semester concerts: ==Wassail== at the end of fall, and
-Sholund at the end of spring.
+**Q6 (multiple choice).** Who's on a Musco multicam crew?
 
-✅ **Answer.** Wassail ends the fall semester and Sholund ends the spring, both at Musco, along with
-TCO, Wind Symphony, and the choirs.
+- a) One engineer who runs everything
+- ✅ b) A switcher, two camera operators, and a score reader
+- c) Two switchers and one camera operator
 
-**Q12 (multiple choice).** At Musco, what's the attire?
-
-- a) Whatever you like, since you're in the booth
-- b) A Chapman logo shirt, so house staff know who you are
-- ✅ c) Closed-toed shoes, and all black
-- d) Closed-toed shoes only
-
-✅ **Answer.** At Musco, closed-toed shoes and all black. It's very likely you'll go out on stage there, for example to set up a tripod for the conductor camera.
-
-**Q13 (multiple choice).** How is a Musco multicam crew organized?
-
-- a) One engineer runs everything from the booth
-- b) Two switchers and one camera operator
-- ✅ c) A switcher, two camera operators, and a score reader
-- d) One camera operator per camera, and no switcher
-
-✅ **Answer.** Engineers work as a coordinated crew: one switcher, two camera operators, and a score reader. Ideally one or two score readers, who can be a music student, a composer, or a conductor.
+✅ **Answer.** A switcher, two camera operators, and one or two score readers, working as one crew.
 
 ### Slide 10: 3. Musco: Standard and Advanced Recording
 
@@ -310,42 +248,21 @@ Bring 3x SSD's:
 
 OH 207 has a CL3, the smaller version of the CL5, so students who work the big band and jazz combo gig should prepare by practicing on the CL3 in OH 207.
 
-**Q14 (multiple choice).** You bring three SSDs to a Musco gig. What does each one capture?
+**Q7 (multiple choice).** At Musco, what do the three SSDs record?
 
-- a) Three copies of the program, for safety
-- b) The left, center, and right cameras
-- ✅ c) The program (multicam), an ISO of the static wide, and an ISO of the conductor camera
-- d) Audio, video, and the backup recording
+- a) Three copies of the program
+- ✅ b) The program, an ISO of the static wide, and an ISO of the conductor camera
+- c) Audio, video, and a backup
 
-✅ **Answer.** One SSD records the program (the multicam edit), one an ISO of the static wide, and
-one an ISO of the conductor camera.
+✅ **Answer.** Program (the multicam edit) plus two ISOs. An ISO is one camera recorded on its own, with no cuts.
 
-**Q15 (fill in the blank).** One camera's feed, recorded on its own for the whole concert with no
-cuts, is called an ==ISO==.
+**Q8 (multiple choice).** For Big Band and Jazz Combo at Musco, audio mixes on the CL5. Where do you practice first?
 
-✅ **Answer.** An ISO is one camera's output for the entire recording, sort of the video version
-of multitrack stems. The program is the edit between angles.
+- ✅ a) On the CL3 in OH 207
+- b) On the StagePas
+- c) In Salmon
 
-**Q16 (multiple choice).** What makes the backup recording at a standard Musco gig?
-
-- ✅ a) An H4n and an AX100 from the Standard Gear Kit
-- b) The Zoom F8 with the pencil condenser pair
-- c) Nothing: Musco's own recorders are enough
-- d) The CL5 in the basement
-
-✅ **Answer.** Standard Musco recording includes a backup: the H4n and the AX100 from the Standard
-Gear Kit.
-
-**Q17 (multiple choice).** For the advanced Musco gigs (Big Band and Jazz Combo), where does the
-audio crew mix, and how should they prepare?
-
-- a) On an X32 Compact in the booth; practice on a StagePas
-- ✅ b) On the CL5 in the basement; practice on the CL3 in OH 207
-- c) On the CL3 in the basement; practice on the CL5 in OH 207
-- d) On the ATEM switcher; practice in Salmon
-
-✅ **Answer.** Audio goes down to the basement to mix multitrack in real time on the CL5. OH 207 has
-a CL3, the smaller version, so practice there first.
+✅ **Answer.** The CL3 in OH 207 is the smaller version of the CL5, so practice there.
 
 ### Slide 11: 4. Portable Recording: Memorial Hall, Fish Chapel, etc.
 
@@ -363,30 +280,13 @@ Typical Events include:
 - Concerts in Memorial Hall (e.g. Fall Opera Scenes)
 - "Search" recordings (i.e. looking for new hires) or other events in Classrooms or any other location
 
-**Q18 (fill in the blank).** Memorial Hall and Chapman ==Auditorium== are the same venue.
-
-✅ **Answer.** Chapman Auditorium and Memorial Hall are one venue. It, Fish Chapel, and classrooms
-fall under portable recording.
-
-**Q19 (multiple choice).** Which workflow do Memorial Hall and Fish Chapel use?
+**Q9 (multiple choice).** Memorial Hall and Fish Chapel use which workflow?
 
 - a) The Musco multicam workflow
-- ✅ b) The Standard Gear Kit: F8 and H4n audio, AX100 cameras, maybe a board feed
-- c) The house system, run from the booth
-- d) Portable live sound with a StagePas
+- ✅ b) The Standard Gear Kit
+- c) Portable live sound
 
-✅ **Answer.** These spaces use the Standard Gear Kit workflow: portable audio (F8 and H4n),
-portable cameras (AX100s), and potentially a board feed.
-
-**Q20 (multiple choice).** What's a "Search" recording?
-
-- a) A recording you have to find on the drives later
-- ✅ b) A recording made while looking for new hires
-- c) A test recording to search for the best mic position
-- d) A recording of a concert in Musco
-
-✅ **Answer.** "Search" recordings are made while the school is looking for new hires, in a
-classroom or anywhere else, with the Standard Gear Kit.
+✅ **Answer.** The Standard Gear Kit: F8 and H4n audio, two AX100s, and maybe a board feed.
 
 ### Slide 12: Standard Gear Kit: What It Is
 
@@ -402,11 +302,13 @@ Use it for gigs where we bring recording gear with us.
 
 [Standard Gear Kit](../../standard-gear-kit-checklist/): see that document for gig checklist and also link to a google doc with pictures.
 
-**Q21 (short answer).** Name the three core parts of the Standard Gear Kit.
+**Q10 (multiple choice).** What's in the Standard Gear Kit?
 
-✅ **Answer.** A stereo pair of pencil condenser mics into a Zoom F8, a Zoom H4n Pro (or similar)
-for backup audio, and two Sony AX100 cameras. It's the rig for gigs where we bring the recording
-gear with us.
+- ✅ a) A stereo mic pair into a Zoom F8, an H4n backup, and two AX100s
+- b) An ATEM switcher and PTZ cameras
+- c) A StagePas and an X32
+
+✅ **Answer.** A stereo pair of pencil condensers into a Zoom F8, a Zoom H4n for backup, and two Sony AX100s.
 
 ### Slide 13: Standard Gear Kit: Equipment List
 
@@ -429,16 +331,6 @@ gear with us.
 - Two tripods
 - Two clean 128 GB SD cards
 - Charged camera batteries or AC power
-
-**Q22 (multiple choice).** Which clean SD card goes in each device?
-
-- ✅ a) F8: 32 GB · H4n: 8 GB · each AX100: 128 GB
-- b) F8: 128 GB · H4n: 8 GB · each AX100: 32 GB
-- c) F8: 8 GB · H4n: 32 GB · each AX100: 128 GB
-- d) F8: 32 GB · H4n: 128 GB · each AX100: 8 GB
-
-✅ **Answer.** A clean 32 GB card in the F8, a clean 8 GB card in the H4n, and a clean 128 GB card
-in each AX100.
 
 ### Slide 14: Standard Gear Kit: Audio Workflow
 
@@ -463,70 +355,13 @@ in each AX100.
 
 IF using boundary microphones, put into 3/4 or 5/6. Check Dual channel!
 
-**Q23 (multiple choice).** Which two stereo mic placements does the lecture name for the pencil
-condensers on the stereo bar?
-
-- a) XY or Blumlein
-- ✅ b) ORTF or NOS
-- c) Spaced pair (AB) or Mid-Side
-- d) Decca Tree or ORTF
-
-✅ **Answer.** ORTF or NOS. The checklist notes that NOS is usually easier.
-
-**Q24 (multiple choice).** Where do the main stereo mics plug into the F8?
-
-- ✅ a) Left mic to Input 1, right mic to Input 2
-- b) Left mic to Input 2, right mic to Input 1
-- c) Left mic to Input 1, right mic to Input 5
-- d) Both mics to Input 1
-
-✅ **Answer.** Left mic to F8 Input 1, right mic to F8 Input 2.
-
-**Q25 (fill in the blank).** On the F8, use ==PFL== to confirm each channel's signal and set its
-gain.
-
-✅ **Answer.** PFL lets you listen to and meter one channel at a time, to confirm signal and set
-gain.
-
-**Q26 (multiple choice).** When do you turn on phantom power?
-
-- a) On every input, every time
-- ✅ b) Only where the condensers need it
-- c) Never: the F8 powers the mics automatically
-- d) Only on the H4n
-
-✅ **Answer.** Use phantom power only where the condenser mics need it.
-
-**Q27 (multiple choice).** With Dual Channel Recording on, how do channels 5 and 6 relate to
-channels 1 and 2?
-
-- a) They're the same mics at the same gain
-- ✅ b) They're copies of 1 and 2, with the gain roughly 12 to 20 dB lower
-- c) They're copies of 1 and 2, with the gain 12 dB higher
-- d) They're the H4n's backup tracks
-
-✅ **Answer.** 5/6 are copies of 1/2, recorded about 12 to 20 dB quieter. Keep the gain identical
-within each stereo pair.
-
-**Q28 (multiple choice).** At a Memorial Hall gig, Dual Channel Recording is on for Inputs 1 and 2. Where do the two boundary mics go?
+**Q11 (multiple choice).** Memorial Hall, with Dual Channel Recording on Inputs 1–2. Where do the boundary mics go?
 
 - ✅ a) Inputs 3 and 4
 - b) Inputs 5 and 6
-- c) Inputs 1 and 2, in place of the main pair
-- d) The H4n
+- c) The H4n
 
-✅ **Answer.** Inputs 3 and 4. With Dual Channel Recording on, 5 and 6 hold the quieter copies of 1 and 2, so nothing plugs in there. In Memorial Hall, the board feed goes on 7 (mono) or 7 and 8 (stereo).
-
-**Q29 (multiple choice).** You can't hear the loudest passage before the show starts. How do you
-set the H4n's level?
-
-- a) As hot as possible, so it isn't too quiet
-- b) Leave it where the last person had it
-- ✅ c) Conservatively, so the loud passages won't clip
-- d) Don't record on the H4n; it's only a backup
-
-✅ **Answer.** Check the loudest passage if you can. If you can't, set it conservatively. Either
-way, avoid clipping and avoid recordings that are too quiet.
+✅ **Answer.** Inputs 3 and 4. Tracks 5 and 6 hold the quieter copies of 1 and 2, so nothing plugs in there.
 
 ### Slide 15: Standard Gear Kit: F8 and Camera Starting Points
 
@@ -549,47 +384,29 @@ way, avoid clipping and avoid recordings that are too quiet.
 - Set exposure under actual concert lighting. Pre-show is usually much much darker.
 - Keep the cameras level and frame deliberately. (avoid rotation!)
 
-**Q30 (fill in the blank).** For the concert, run the F8 on ==AC|ac power== power. Batteries are
-backup only.
+**Q12 (multiple choice).** Starting gain on the F8?
 
-✅ **Answer.** AC power for the concert; the F8's batteries are only a backup.
+- ✅ a) About 42 dB on 1–2 and 30 dB on 5–6
+- b) About 30 dB on 1–2 and 42 dB on 5–6
+- c) About 20 dB everywhere
 
-**Q31 (multiple choice).** What are the checklist's starting gains on the F8?
+✅ **Answer.** 42 dB on the main pair, 30 dB on the dual-channel copies. Starting points, but fine if there's no time to soundcheck.
 
-- ✅ a) About 42 dB on channels 1–2 and 30 dB on 5–6
-- b) About 30 dB on channels 1–2 and 42 dB on 5–6
-- c) About 20 dB on every channel
-- d) About 60 dB on channels 1–2 and 48 dB on 5–6
+**Q13 (multiple choice).** When do you set the AX100s' exposure?
 
-✅ **Answer.** About 42 dB on 1–2 and 30 dB on 5–6. They're starting points, not final settings,
-but if there's no time to soundcheck they'll be fine.
+- a) As soon as you arrive
+- ✅ b) Under concert lighting, the brightest cue
+- c) Under the pre-show lighting
 
-**Q32 (multiple choice).** Before you set the AX100s' exposure, what do you ask house staff for,
-and why?
+✅ **Answer.** Ask house staff for concert lighting and set exposure under it. Pre-show is much darker.
 
-- a) House lights at full, so the cameras can see everything
-- b) Nothing; set exposure under the pre-show lighting while it's quiet
-- ✅ c) Concert lighting (the brightest cue), because pre-show is usually much darker
-- d) Work lights, so the cameras don't overheat
+**Q14 (multiple choice).** On a Standard Gear Kit gig, what white balance do both AX100s get?
 
-✅ **Answer.** Ask for "Concert Lighting," the brightest cue of the show, and set exposure under
-it. Pre-show lighting is usually much darker.
+- a) Auto
+- ✅ b) Indoor (3200 K)
+- c) Outdoor
 
-**Q33 (fill in the blank).** On a Standard Gear Kit gig, set both AX100s' white balance to
-==Indoor|3200K|3200 K|3200|3200 kelvin==, so the two cameras match.
-
-✅ **Answer.** Standard Gear Kit: both AX100s on "Indoor" (or manually, 3200 K). The point is that
-the two cameras match.
-
-**Q34 (multiple choice).** What's the AX100 starting exposure on a Standard Gear Kit gig?
-
-- ✅ a) f/4.0, 3 dB gain, 1/60 shutter
-- b) f/5.6, 0 dB gain, 1/60 shutter
-- c) f/2.8, 6 dB gain, 1/30 shutter
-- d) f/8, 0 dB gain, 1/125 shutter
-
-✅ **Answer.** Start at f/4.0, 3 dB gain, 1/60 shutter, then set exposure under the actual concert
-lighting. Keep the cameras level: no rotation.
+✅ **Answer.** Indoor, or 3200 K. What matters is that both cameras match.
 
 ### Slide 16: 5. Portable Live Sound
 
@@ -610,21 +427,13 @@ Portable live-sound work may involve:
 - Mixer (a small mixer or a larger, e.g. spare X32 compact with SD8 stagebox).
 - Safe power, cable management, and troubleshooting
 
-**Q35 (multiple choice).** Which of these is a portable live sound gig?
+**Q15 (multiple choice).** Which is a portable live sound gig?
 
 - ✅ a) Chapman Jams in the choir room
 - b) Wassail
-- c) Fall Opera Scenes in Memorial Hall
-- d) A student recital in Salmon
+- c) A Salmon recital
 
-✅ **Answer.** Chapman Jams in the choir room, and other events needing a portable PA: a StagePas
-or equivalent, a mixer, amps and mics, safe power, and cable management.
-
-**Q36 (fill in the blank).** For a portable PA, the lecture names a Yamaha ==StagePas|stage pas|stagepass==
-or an equivalent.
-
-✅ **Answer.** A Yamaha StagePas or equivalent, with a small mixer or a larger one (like a spare
-X32 Compact with an SD8 stage box).
+✅ **Answer.** Chapman Jams, and anything else that needs a portable PA like a StagePas.
 
 ### Slide 17: 6. Studio and Multitrack Recording
 
@@ -650,16 +459,13 @@ Students should understand the difference between:
 
 Click track
 
-**Q37 (multiple choice).** A film workshop needs a recording of studio musicians. Which tools does
-the lecture name for that?
+**Q16 (multiple choice).** A film workshop recording studio musicians uses which tools?
 
-- a) The ATEM switcher and two AX100s
-- ✅ b) The Zoom LiveTrak L-20 and the Zoom F8
-- c) The CL5 in Musco's basement
-- d) A StagePas and an X32 Compact
+- ✅ a) The Zoom LiveTrak L-20 and Zoom F8
+- b) The ATEM and two AX100s
+- c) The CL5
 
-✅ **Answer.** Not every recording gig is a concert-hall gig. Studio and multitrack work uses the
-Zoom LiveTrak L-20, the Zoom F8, or another multitrack workflow.
+✅ **Answer.** Not every gig is a concert hall. Studio and multitrack work uses the L-20 or the F8.
 
 ### Slide 18: 7. Specialty Productions
 
@@ -679,15 +485,13 @@ October 18 electroacoustic concert:
 - Not part of today's lecture slides
 - We will address it separately as a group activity
 
-**Q38 (multiple choice).** Which of these is a specialty production?
+**Q17 (multiple choice).** Which is a specialty production?
 
-- a) A student recital in Salmon
-- ✅ b) An electroacoustic music concert
-- c) The Chapman Orchestra at Musco
-- d) Chapman Jams
+- a) A Salmon recital
+- ✅ b) An electroacoustic concert
+- c) Chapman Jams
 
-✅ **Answer.** Electroacoustic music, opera, and multimedia or unusual setups need a custom plan.
-The exact requirements depend on the production.
+✅ **Answer.** Electroacoustic music, opera, and multimedia shows each need a custom plan.
 
 ### Slide 19: Data Management and Post-Production
 
@@ -706,32 +510,17 @@ Post production:
 - Fast turnaround time
 - Clear communication when assigned post
 
-**Q39 (fill in the blank).** Transfer media to ==2|two== assigned destinations.
+**Q18 (fill in the blank).** Copy media to ==2|two== assigned destinations.
 
-✅ **Answer.** Two destinations, with a clear folder structure and file names that follow our
-conventions.
+✅ **Answer.** Two destinations, with the program on the drives too.
 
-**Q40 (fill in the blank).** Besides the recorded files, put a copy of the ==program== on the hard
-drives.
+**Q19 (multiple choice).** When can you erase a card?
 
-✅ **Answer.** Every engineer gets a copy of the program, and it goes on the hard drives along with
-the files.
+- a) As soon as copying starts
+- b) After one copy
+- ✅ c) Only after confirming the files copied correctly
 
-**Q41 (multiple choice).** When can you erase a card?
-
-- a) As soon as the copy to the first drive starts
-- b) Once it's copied to one destination
-- ✅ c) Only after confirming the files copied correctly; then delete fully and empty the trash
-- d) Never: cards are kept as a third backup
-
-✅ **Answer.** Confirm the files copied correctly before anything is erased. Then properly check,
-fully delete, and empty the trash.
-
-**Q42 (short answer).** Someone started a data transfer but had to leave before it was finished.
-What's your job? And what does post-production ask of you?
-
-✅ **Answer.** Help out: finish the transfer for the unfinished files. For post-production: a fast
-turnaround and clear communication when you're assigned post.
+✅ **Answer.** Confirm the copies first. Then delete fully and empty the trash.
 
 ### Slide 20: Final Exam: Preliminary Direction
 
@@ -750,25 +539,13 @@ Expected areas will likely include:
 
 The goal is universal qualification, not early specialization.
 
-**Q43 (multiple choice).** What will the final exam be like?
+**Q20 (multiple choice).** What will the final exam be like?
 
-- a) A written test on one gig type of your choice
-- ✅ b) Like the midterm: you show individual skills across the normal gig types
-- c) A group project on a specialty production
-- d) A mixing contest
+- a) A written test
+- ✅ b) Like the midterm: individual skills across the normal gig types
+- c) A group project
 
-✅ **Answer.** Like the midterm: individual skills. The goal is universal qualification, not early
-specialization.
-
-**Q44 (multiple choice).** What can you demonstrate starting next week, if you haven't already?
-
-- ✅ a) The Salmon Gig Checklist
-- b) The Musco Gig Checklist
-- c) A CL5 multitrack mix
-- d) The final exam itself
-
-✅ **Answer.** You can demonstrate the Salmon Gig Checklist starting next week, if you haven't
-already.
+✅ **Answer.** Individual skills, like the midterm. The goal is that everyone can work every normal gig.
 
 ### Slide 21: Final Exam Goals
 
@@ -783,12 +560,6 @@ A passing student should be able to participate capably in:
 Students will have different strengths. Some will become stronger live-sound mixers. Others may excel at recording, cameras, switching, or post-production.
 
 Everyone still needs the core skills.
-
-**Q45 (short answer).** Students will have different strengths. What does the final still expect of
-everyone?
-
-✅ **Answer.** The core skills: participate capably in Salmon upstairs recording and livestream, a
-Standard Gear Kit gig, a typical Musco gig, basic FOH or A2 work, and post and data management.
 
 ### Slide 22: Break
 
