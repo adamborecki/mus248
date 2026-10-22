@@ -60,8 +60,12 @@ if (command === 'baseline') {
   const sources = readJson(path('skill-sources.json')).skills;
   const lectures = readJson(join(root, 'data', 'lectures.json')).filter((l) => l.date)
     .map(({ id, title, date, lecture }) => ({ id, title, date, lecture: lecture ?? null }));
+  // Each quiz's date, opening time and new skills (not its access code), so the editor can show one week.
+  const quizzes = Object.entries(curriculum.quizzes).map(([number, q]) => ({
+    number: Number(number), label: q.label, version: q.version, opens: q.opens ?? null, new_skills: q.new_skills ?? [],
+  }));
   process.stdout.write(JSON.stringify({
-    skills, questions, cards, activities: curriculum.activities, categories: deck.categories, sources, lectures,
+    skills, questions, cards, activities: curriculum.activities, categories: deck.categories, sources, lectures, quizzes,
   }));
 } else if (command === 'apply') {
   const dir = args[0];

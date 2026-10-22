@@ -44,7 +44,7 @@ week, and a copied question tests memory of the wording.
 9. **Republish the editor** with a fresh baseline (`node tools/editor-sync.mjs baseline`) so the
    new questions show up there for review.
 10. **Set next week's quiz up early** with `"opens"` on its entry (a time with offset, e.g.
-   `2026-10-26T07:00:00-07:00`) and `quiz_number` pointing at it. Until then its code only says
+   `2026-10-26T19:00:00-07:00`) and `quiz_number` pointing at it. Until then its code only says
    when it opens, and the site keeps serving the newest open quiz. Earlier quizzes' codes keep
    working, labeled “makeup”, so students submit them to that quiz's Canvas assignment.
 
