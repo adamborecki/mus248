@@ -93,10 +93,13 @@ Drafted in `vibecoding-3.md`: the terminal, git from the terminal, coding agents
 queues and steering, guardrails). Ideas not yet in it:
 
 1. A custom 404 and an optional `username.github.io` root site, building on VC2's `mus248-sandbox`
-2. Local models: what Ollama is, what runs on a laptop, what it's good and bad at (if the lab
+   (VC2 slide 1.1 has a 🌀 portal to it)
+2. Branches from the terminal: `git switch -c`, `git push` (VC2 slide 3.3 has a 🌀 portal here; the
+   draft doesn't cover branches yet)
+3. Local models: what Ollama is, what runs on a laptop, what it's good and bad at (if the lab
    computers get it)
-3. Picking the tool: chatbot vs. agent vs. local, by task and by cost
-4. Real Repo Improvement on mus248: reading `CLAUDE.md`, the tests, a pull request to this site
+4. Picking the tool: chatbot vs. agent vs. local, by task and by cost
+5. Real Repo Improvement on mus248: reading `CLAUDE.md`, the tests, a pull request to this site
 
 ## ✍️ Notes and refresher
 

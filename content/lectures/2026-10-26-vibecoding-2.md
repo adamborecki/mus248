@@ -86,6 +86,10 @@ Everyone makes **one** repo, named exactly **`mus248-sandbox`**:
 - Free hosting for a repo: **==GitHub Pages==**
 - Missed the bad webapp? The stock one (link coming)
 
+> 🌀 **Portal: a site at just your username.** Name a repo exactly `your-username.github.io` and
+> GitHub publishes it at `your-username.github.io/`, with no repo name after the slash. One per
+> account. Optional, later: your sandbox stays where it is.
+
 ### Publish it
 
 1. github.com → **+** → **New repository** → name it `mus248-sandbox` → **==Public==** → turn on
@@ -235,6 +239,13 @@ The metronome drifts. That's the point.
 - One fix = one branch = one ==pull request==
 - Name it for what it fixes: `fix-step-4-3`
 - On MUS 248, a pushed branch even gets its own ==preview== link before anything goes live
+
+> 🌀 **Portal: branches from the terminal.** Everything you clicked today has a typed version:
+> `git switch -c fix-step-4-3` makes a branch, `git push` sends it up. That's how coding agents
+> work with branches too. Vibecoding 3.
+
+> 🧑‍🏫 Portal demo: tap the 🌀 on this slide (or 1.1's) to open it. Portals are optional sneak
+> peeks, never on the printed notes.
 
 ### What a good fix looks like
 

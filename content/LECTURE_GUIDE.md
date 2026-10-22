@@ -22,6 +22,36 @@ The buttons appear on their own: a lecture with at least one `==term==` gets not
 with at least one question gets a refresher. **If you were asked for a refresher only, add
 questions and no blanks.**
 
+## The weekly rhythm
+
+One lecture, one quiz, every Monday. For lecture X on Monday A:
+
+| When | Lecture X's follow-along notes | X's online refresher | X's material in the quiz |
+|---|---|---|---|
+| **Monday A** (class) | filled in during class | | **Practice** on that day's quiz |
+| **Sunday before Monday B** | photos **due** on Canvas | | |
+| **Monday B** | | **opens** 7:00 AM | moves to **Core** |
+| **Sunday before Monday C** | | **due** on Canvas | |
+
+So the same Sunday, students hand in **this** lecture's notes and **last** lecture's refresher.
+
+- **The quiz** is the weekly quiz the quiz engine builds from its question bank
+  (`quiz/data/questions.json`), not the refresher. It's meant to be taken **in class** on Monday.
+  If it isn't ready, or the lecture runs long, it becomes take-home, due the Sunday before the next
+  Monday.
+- **"Skill"** in the quiz engine means a topic tag (`gig_families`, `aux_sends`): every question in
+  the bank belongs to one, and each skill's status in `quiz/data/curriculum.json` (`practice`,
+  `core`, `inactive`) decides whether its questions count. Only **verified** questions on Core
+  skills are graded, so promoting a skill with no verified questions changes nothing.
+- **The refresher and the quiz are separate.** Refresher questions live in the lecture Markdown
+  and test that one lecture; quiz questions live in the question bank and come back week after
+  week. They can cover the same ideas, but word them differently.
+- **Maybe later:** a lecture's easy questions go Core on Monday B and its harder ones on Monday C
+  (per-question `tier` overrides already allow this).
+
+**Fall 2026 Mondays left** (from Oct 26): Oct 26 (lecture 09), Nov 2, Nov 9, Nov 16, no class Nov 23
+(Thanksgiving), Nov 30, and Dec 7 (the finals-week meeting).
+
 ## New lectures: outline first, instructor writes, questions last
 
 1. **A planning conversation** about what the lecture is for and how long it runs.
