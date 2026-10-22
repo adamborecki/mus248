@@ -11,11 +11,11 @@
 <body>
   <header class="masthead"><h1><a href="./">MUS 248</a></h1><p>A/V Concert Recording &amp; Archiving</p></header>
   <main>
-    <nav class="site-nav" aria-label="Sections">
+    <h2 class="section-title">Class</h2>
+    <nav class="site-nav" aria-label="Class">
+      <a class="nav-card" href="lectures/"><strong><span aria-hidden="true">🎤</span> Lectures</strong><small>Each class&rsquo;s slides as text</small></a>
       <a class="nav-card" href="quiz/"><strong><span aria-hidden="true">📝</span> Weekly quiz</strong><small>Answer this week&rsquo;s questions, then paste your code into Canvas</small></a>
       <a class="nav-card" href="study/"><strong><span aria-hidden="true">🗂️</span> Study cards</strong><small>Review the terms before you take the quiz</small></a>
-      <a class="nav-card" href="lectures/"><strong><span aria-hidden="true">🎤</span> Lectures</strong><small>Each class&rsquo;s slides as text</small></a>
-      <a class="nav-card" href="worksheets/"><strong><span aria-hidden="true">🖨️</span> Worksheets</strong><small>Print the page you write on while you work</small></a>
     </nav>
     <h2 class="section-title">Studio work</h2>
     <a class="ops-card" href="sushi/"><span class="ops-plate" aria-hidden="true">🍣</span><span class="ops-copy"><strong>Sushi: take a plate</strong><small>Real maintenance, data, and post-production jobs around the studios. Pick one, do it, mark it done, for class participation or paid hours.</small></span><span class="ops-arrow" aria-hidden="true">→</span></a>
@@ -25,7 +25,7 @@
       <div class="ri-card ri-soon" aria-label="AI mop for AI slop: coming soon"><span class="ri-emoji" aria-hidden="true">🧹🤖🍝</span><span class="ri-copy"><strong>AI mop for AI slop <span class="ri-badge">Coming soon</span></strong><small>You&rsquo;ll fix these pages yourself by editing their Markdown on GitHub. You&rsquo;ll need a free GitHub account.</small></span></div>
     </div>
     <p class="ri-more"><a href="repo-improvement/">What&rsquo;s Repo Improvement? <span aria-hidden="true">→</span></a></p>
-    <h2 class="section-title">Activities &amp; checklists</h2>
+    <h2 class="section-title" id="catalog">Activities &amp; checklists</h2>
     <fieldset id="where-picker" class="where-picker">
       <legend>Where do you want to work?</legend>
       <label class="where-toggle"><input type="checkbox" value="class"><span><span class="where-icon" aria-hidden="true">🏫</span>During class</span></label>
@@ -40,6 +40,7 @@
       <p id="activity-count" aria-live="polite"></p>
     </section>
     <section id="activity-list" class="activity-grid" aria-label="Activity directory"></section>
+    <p class="ri-more"><a href="worksheets/"><span aria-hidden="true">🖨️</span> Print a stack of worksheets <span aria-hidden="true">→</span></a></p>
   </main>
   <footer>Canvas remains the place for submissions and grades.</footer>
   <script type="module" src="app.js"></script>

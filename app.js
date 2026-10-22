@@ -72,6 +72,9 @@ async function loadDirectory() {
     list.innerHTML = visible.map(card).join('')
       + (askFirst.length ? `<h3 class="ask-first">Ask the instructor first <small>these pages don't say whether they can be done ${said}</small></h3>${askFirst.map(card).join('')}` : '');
   };
+  // ?type=checklist (or kind:gig) opens the list already filtered: breadcrumbs link here that way.
+  const params = new URLSearchParams(window.location.search);
+  if ([...typeFilter.options].some((option) => option.value === params.get('type'))) typeFilter.value = params.get('type');
   [filter, typeFilter, ...whereBoxes].forEach((control) => control.addEventListener('change', show));
   clear.addEventListener('click', () => {
     filter.value = 'all';

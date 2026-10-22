@@ -40,7 +40,7 @@
   <div class="pg-viewbar"><strong id="view-title">🙃 Bad webapp</strong><span><button type="button" id="view-mic" hidden>🎤 Allow mic/camera</button> <button type="button" id="edit">See the code</button></span></div>
   <main class="pg">
     <div class="pg-edit-only">
-      <a class="back" href="../">← MUS 248</a>
+      <a class="back" id="crumbs" href="../">← MUS 248</a>
       <h1>🧪 Playground</h1>
       <p class="lede">Paste the complete HTML your AI wrote, press <b>Run</b>, and try it. <b>Copy share link</b> gives you a link
         that opens your app on any phone. The whole app is inside the link; nothing is uploaded.</p>
@@ -150,6 +150,10 @@
         say('That link looks cut off, so the app couldn\'t be opened. Ask for the whole link.');
       }
     })();
+  </script>
+  <script type="module">
+    import { crumbs } from '../crumbs.js';
+    document.getElementById('crumbs').outerHTML = crumbs([['Playground']]);
   </script>
 </body>
 </html>

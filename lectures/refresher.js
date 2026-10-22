@@ -14,6 +14,7 @@
 
 import { blankShown, escapeHtml, inline } from '../markdown.js';
 import { parseActivity } from '../worksheet.js';
+import { crumbs } from '../crumbs.js';
 import { instructorView, isVisible, lectureView, numberSlides } from './view.js';
 
 export const SCHEMA = 'mus248-refresher-v1';
@@ -185,7 +186,7 @@ export async function mountRefresher(root) {
     const when = lecture.refresherDraft
       ? 'The online refresher for this lecture is still being written.'
       : `The online refresher opens <b>${escapeHtml(opensLabel(lecture))}</b> (Pacific time). It's for remembering, so it waits about a week after the lecture.`;
-    root.innerHTML = `<a class="back" href="../${escapeHtml(lecture.id)}/">← ${escapeHtml(lecture.title)}</a>
+    root.innerHTML = `${crumbs([['Lectures', 'lectures/'], [lecture.title, `lectures/${lecture.id}/`], ['Online refresher']])}
       <header class="activity-header"><span aria-hidden="true">🔁</span><div><h1>${escapeHtml(lecture.title)}</h1>
         <p>${when}</p></div></header>`;
     return;
@@ -218,7 +219,7 @@ export async function mountRefresher(root) {
   const render = (focus) => {
     const done = questions.filter((question) => state.items[question.number]?.status).length;
     root.innerHTML = `
-      <a class="back" href="../${escapeHtml(lecture.id)}/">← ${escapeHtml(lecture.title)}</a>
+      ${crumbs([['Lectures', 'lectures/'], [lecture.title, `lectures/${lecture.id}/`], ['Online refresher']])}
       <header class="activity-header"><span aria-hidden="true">🔁</span><div><h1>${escapeHtml(lecture.title)}</h1>
         ${instructor && lecture.refresherDraft ? '<p class="instructor-banner">🧑‍🏫 Instructor view: this refresher is marked <code>refresherDraft</code>, so students can\'t open it yet. Remove that from data/lectures.json when it\'s ready.</p>' : ''}
         ${instructor && !refresherOpen(lecture) ? `<p class="instructor-banner">🧑‍🏫 Instructor view: students can open this from ${escapeHtml(opensLabel(lecture))}.</p>` : ''}

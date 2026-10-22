@@ -141,6 +141,8 @@ SHARED FRONT-END
   worksheet.js/.css    the worksheet and answer key
   app.js, styles.css   the front page
   catalog.js           labels for the catalog's optional type and settings fields
+  crumbs.js            the breadcrumb trail (MUS 248 › Checklists › …) and its Talk it out link;
+                       every page below the front page gets its trail from here
 ```
 
 **Why activity folders sit at the top level next to `content/` and `data/`:** the folder path *is*

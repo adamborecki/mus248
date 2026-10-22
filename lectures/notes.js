@@ -7,6 +7,7 @@
 import { blankTerms, escapeHtml, isFence, renderMarkdown } from '../markdown.js';
 import { renderFormBlock, renderQr } from '../worksheet.js';
 import { LECTURE_FORM_NOTE } from '../feedback.js';
+import { crumbs } from '../crumbs.js';
 import { instructorView, isVisible } from './view.js';
 import { lectureText } from './text.js';
 
@@ -86,7 +87,7 @@ export async function mountNotes(root) {
     return response.text();
   });
   document.title = `${lecture.title} · ${key ? 'notes key' : 'follow-along notes'} · MUS 248`;
-  root.innerHTML = `<a class="back no-print" href="${base}lectures/${escapeHtml(lecture.id)}/">← ${escapeHtml(lecture.title)}</a>`
+  root.innerHTML = crumbs([['Lectures', 'lectures/'], [lecture.title, `lectures/${lecture.id}/`], [key ? 'Notes key' : 'Follow-along notes']])
     + renderNotes(markdown, lecture, { key })
     + `<p class="no-print print-cue"><button type="button" class="print-button">Print ${key ? 'the key' : 'these notes'}</button>${
       key ? ` <a href="${base}lectures/worksheet/key/?id=${encodeURIComponent(lecture.id)}">Question answers →</a>` : ''}</p>`;

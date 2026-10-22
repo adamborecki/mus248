@@ -268,7 +268,8 @@ live-teaching-week quiz change is worth a pause and a question before it goes li
 
 `README.md` has the full map. In short: folders that are URLs at the top level, sources in
 `content/` and `data/`, shared front-end (`markdown.js`, `activity.js`, `worksheet.js`) at the
-root, scripts in `tools/`.
+root, scripts in `tools/`. Breadcrumbs come from `crumbs.js`: a page passes its trail, and that
+file owns the look and the middle steps (`catalogCrumb`), so the hierarchy changes in one place.
 
 ## A note on care
 

@@ -11,6 +11,7 @@ import { opensLabel, refresherOpen } from './refresher.js';
 import { mountEmbeddedDeck, mountPresenter } from './presenter.js';
 import { formQr, renderFormSection } from '../worksheet.js';
 import { LECTURE_FORM_NOTE } from '../feedback.js';
+import { crumbs } from '../crumbs.js';
 
 export { isVisible };
 
@@ -107,7 +108,7 @@ export async function mountLecture(root, id) {
     : '<span></span>');
   document.title = `${lecture.title} · MUS 248`;
   root.innerHTML = `
-    <a class="back" href="../">← Lectures</a>
+    ${crumbs([['Lectures', 'lectures/'], [lecture.title]])}
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
     ${instructor ? '<p class="instructor-banner">🧑‍🏫 Instructor view: notes and 🙈 hidden slides are showing. <a href="https://github.com/adamborecki/mus248/tree/main/content/instructor">📓 Instructor notes</a> <button type="button" data-instructor="off">Turn off</button></p>' : ''}
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button><a class="present-presenter" href="?presenter=1"><span aria-hidden="true">🖥️</span> Presenter view</a></p>

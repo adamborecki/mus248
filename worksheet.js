@@ -16,6 +16,7 @@ import qrcode from './qrcode-generator.js';
 import { groupLabel } from './catalog.js';
 import { instructorView, isVisible, lectureView } from './lectures/view.js';
 import { FORM_HEADING, FORM_NOTE, REPO_IMPROVEMENT_FORM } from './feedback.js';
+import { catalogCrumb, crumbs } from './crumbs.js';
 
 // Printed worksheets leave the site — the QR has to carry an absolute URL, not a relative one.
 const SITE_ORIGIN = 'https://adamborecki.github.io/mus248';
@@ -492,7 +493,9 @@ async function mount(root) {
   const activity = parseActivity(markdown);
   const title = (activity.frontmatter && activity.frontmatter.title) || entry.title || id;
   document.title = `${title} worksheet${showAnswers ? ' — answer key' : ''} · MUS 248`;
-  root.innerHTML = `<a class="back no-print" href="${base}${entry.route || id}/">← ${escapeHtml(title)}</a>`
+  const route = `${entry.route || id}/`;
+  root.innerHTML = crumbs([catalogCrumb(entry), [title, route],
+    ...(showAnswers ? [['Worksheet', `${route}worksheet/`], ['Answer key']] : [['Worksheet']])])
     + renderWorksheet(activity, { showAnswers, directory: entry })
     + '<p class="no-print print-cue"><button type="button" class="print-button">Print this worksheet</button></p>';
   const button = root.querySelector('.print-button');
@@ -504,7 +507,7 @@ async function mountLecture(root) {
   const showAnswers = document.body.dataset.worksheetKey === 'true';
   const { markdown, entry } = await lectureEntry(base);
   document.title = `${entry.title} worksheet${showAnswers ? ' — answer key' : ''} · MUS 248`;
-  root.innerHTML = `<a class="back no-print" href="${base}${entry.route}/">← ${escapeHtml(entry.title)}</a>`
+  root.innerHTML = crumbs([['Lectures', 'lectures/'], [entry.title, `${entry.route}/`], [showAnswers ? 'Refresher key' : 'Worksheet']])
     + renderWorksheet(parseActivity(markdown), { showAnswers, directory: entry })
     + '<p class="no-print print-cue"><button type="button" class="print-button">Print this worksheet</button></p>';
   const button = root.querySelector('.print-button');
