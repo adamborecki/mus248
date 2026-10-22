@@ -1,6 +1,6 @@
 // Breadcrumbs: the trail at the top of every page below the front page (MUS 248 › Activities ›
-// Salmon Gig Checklist › Worksheet), ending in the Repo improvements button. Pages hand over their trail; this file decides how it looks,
-// so the hierarchy can change in one place. Section pages with a masthead (Lectures, Quiz, Study,
+// Salmon Gig Checklist › Worksheet), ending in the Repo improvements button. Pages hand over their
+// trail; this file decides how it looks, so the hierarchy can change in one place. Section pages with a masthead (Lectures, Quiz, Study,
 // Worksheets) already read as "MUS 248 · Section" and don't use it.
 //
 // Every href is a path from the site root ('' is the front page). The root comes from this file's
