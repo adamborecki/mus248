@@ -7144,24 +7144,6 @@
       "verified": false
     },
     {
-      "id": "VC_MODEL_003",
-      "skill": "frontier_model",
-      "topic": "vibecoding",
-      "level": 1,
-      "activity_gate": null,
-      "type": "multiple_choice",
-      "prompt": "Which Claude model does PantherAI give you?",
-      "choices": [
-        "The highest Claude Sonnet available",
-        "Claude Opus, the largest",
-        "Claude Haiku, the smallest",
-        "A different model every day"
-      ],
-      "answer_index": 0,
-      "explanation": "PantherAI gives you the highest Sonnet: very good, just not the biggest.",
-      "verified": false
-    },
-    {
       "id": "VC_CTX_001",
       "skill": "context_window",
       "topic": "vibecoding",
