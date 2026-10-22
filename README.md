@@ -123,6 +123,7 @@ PAGES — every folder here is a URL on the live site
                        and tests. See sushi/README.md
   worksheets/          index of every printable worksheet
   activities/, checklists/, reference/   the hub pages (new folders, so no old URL moved)
+  performance-evals/   the midterm and final (a draft placeholder for now)
 
 SOURCE — never served as a page
   content/activities/  activity Markdown (the source of truth) and its media/

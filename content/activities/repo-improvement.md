@@ -4,7 +4,7 @@ title: "Repo Improvement"
 emoji: "🛠️"
 coreSkillAreas: []
 status: In Development
-revised: "2026-10-20"
+revised: "2026-10-22"
 estimatedTime: "30–90 minutes for one section"
 access:
   mode: "Any location"
@@ -38,10 +38,11 @@ reads nicely but names the wrong button is worse than an ugly one that's right.
 Both start the same way: pick one small section and **actually try it**. They differ in what you
 hand in.
 
-### 🗣️🎙️ Talk it out
+### 📥 The Repo improvements form
 
-No AI, no files, no Markdown. After you test, **dictate one paragraph of raw feedback**. Phone
-voice typing is fine. Say:
+No AI, no files, no Markdown, no account. Use it **anytime**: after an activity or a checklist,
+or whenever you notice something wrong. After you test, **dictate one paragraph of raw
+feedback**. Phone voice typing is fine. Say:
 
 - which page and section, and where you tried it (room and gear, or at home on paper)
 - what you expected to happen, and what actually happened
@@ -50,21 +51,21 @@ voice typing is fine. Say:
 Raw is fine. Specific beats polished: "Step 4 says hold the switch; it took about 2 seconds
 before the F8 turned on" is worth more than "step 4 was confusing."
 
-**Send it with the Repo Improvement form.** The link and its QR code are at the bottom of this
-page, and at the end of every activity, checklist, and worksheet. It's also the first card in
-**Repo Improvement** on the front page.
+**Send it with the Repo improvements form.** Tap **🛠️ Repo improvements** at the top of any
+page and choose **📥 Google Form**. (Have a GitHub account? **🐙 GitHub issue** works too.) The
+link and its QR code are also at the end of every activity, checklist, and worksheet.
 
-### 🧹🤖🍝 AI mop for AI slop (coming soon)
+### 🧹 Mop the Slop (coming soon)
 
-> 🚧 **Future feature.** This route is changing: you'll fix pages yourself by editing their
-> Markdown files on GitHub, so you'll need a free GitHub account. The starter kit below is an
-> early preview. For now, use 🗣️🎙️ **Talk it out**.
+> 🚧 **Coming soon.** You'll need a free GitHub account. The starter kit below is an early
+> preview. For now, use the 📥 **Repo improvements form**.
 
-Copy the **starter + source** below (one tap) and paste it into an AI tool. PantherAI works on
-your phone. The starter sets the
-AI up to ask you short questions about what happened, then write a **revised version of the
-page** plus a short **change and test report**. You check every claim it makes against what you
-actually saw.
+Every page on this site is a Markdown (`.md`) file in the repo. Mop the Slop means picking **one
+specific file**, fixing the section you tested, and **proposing the change on GitHub**, where the
+instructor can see exactly what you changed and why. You don't need AI for it: you can edit the
+Markdown by hand. If you'd like help, the **AI starter kit** below sets an AI tool up to ask you
+short questions about what happened, then write a revised version plus a short **change and test
+report**. Either way, you check every claim against what you actually saw.
 
 ## 🗝️ Key terms
 
@@ -109,7 +110,7 @@ point.
 **Early volunteers (before Monday, October 19)** are welcome, solo or in small groups, wherever
 access allows. You're also testing *this* page, so report problems with it too.
 
-## 🧰 Starter kit (preview, coming soon)
+## 🧰 AI starter kit (optional, preview)
 
 One file: [PROJECT_STARTER.md](../../repo-improvement/downloads/PROJECT_STARTER.md). It's the
 prompt that sets up an AI assistant for this job, and it already contains the report format. The
@@ -118,7 +119,8 @@ can't open this site for you**. It only sees what you paste or upload.
 
 **Which AI?** The default is **PantherAI** (PantherAI.Chapman.edu): pick the highest-numbered
 **Claude Sonnet** model it offers. Any other AI tool you can use is fine too. You don't need a paid
-subscription. Rather not use AI? Take the 🗣️🎙️ route. It's just as valid.
+subscription. Rather not use AI? Edit the Markdown by hand, or send the 📥 form. Both are just as
+valid.
 
 ## ⚠️ Ground rules — read before you start
 
@@ -155,8 +157,8 @@ it?
 
 ### 2. Note the starting version
 
-Write down the page's URL and its **revised** date (top of the page or on its worksheet). On the
-🧹🤖🍝 route, the **starter + source** download records both for you.
+Write down the page's URL and its **revised** date (top of the page or on its worksheet). The AI
+starter kit's **starter + source** download records both for you.
 
 🚩 **Checkpoint.** You know exactly which version of the page you started from.
 
@@ -186,15 +188,16 @@ observed.
 - c) "The F8 probably needs a firmware update."
 - d) "The AI said this step is confusing."
 
-### 5. Talk it out, or clean it up
+### 5. Write it up, or mop it up
 
-**🗣️🎙️ Talk it out:** dictate your paragraph of raw feedback now, while it's fresh (see **Two
-ways to do it**).
+**📥 Repo improvements form:** dictate your paragraph of raw feedback now, while it's fresh (see
+**Two ways to do it**).
 
-**🧹🤖🍝 AI mop for AI slop (coming soon):** paste the starter + source into your AI tool. If you picked a
-simulator or another site, fill in its blanks and paste that part's on-screen text first. Then
-answer the AI's questions about what happened. Keep the steps that worked. Fix only what your test showed. Every
-changed step gets marked 📝 Proposed, and observations stay separate from suggestions.
+**🧹 Mop the Slop (coming soon):** revise the section in its Markdown file. By hand, or with the
+AI starter kit: paste the starter + source into your AI tool (if you picked a simulator or
+another site, fill in its blanks and paste that part's on-screen text first), then answer the
+AI's questions about what happened. Keep the steps that worked. Fix only what your test showed.
+Every changed step gets marked 📝 Proposed, and observations stay separate from suggestions.
 
 🚩 **Checkpoint.** You have either a feedback paragraph or a complete revised page with every
 changed step marked.
@@ -207,7 +210,7 @@ and it worked.
 
 ### 6. Re-test what you changed
 
-On the 🧹🤖🍝 route (coming soon), run just the steps you changed, using your revision, and update each mark.
+On the 🧹 Mop the Slop route (coming soon), run just the steps you changed, using your revision, and update each mark.
 If someone who didn't write it can follow your revision, even better. Note where they paused. If
 nobody could, say so. Never write down a test or a tester that didn't happen.
 
@@ -215,9 +218,9 @@ nobody could, say so. Never write down a test or a tester that didn't happen.
 
 ### 7. Submit
 
-**🗣️🎙️ Talk it out:** send your paragraph with the **Repo Improvement form** (link and QR code at
-the bottom of this page). **🧹🤖🍝 AI mop (coming soon):** the revised page plus the AI's change
-and test report, with your AI-use disclosure. Didn't finish? Submit what you have, with
+**📥 Repo improvements form:** send your paragraph with the form (link and QR code at the bottom
+of this page). **🧹 Mop the Slop (coming soon):** propose your revised Markdown on GitHub, with a
+change and test report, plus an AI-use disclosure if you used AI. Didn't finish? Submit what you have, with
 what blocked you and the next useful step. An honest account of a blocked test is a real
 contribution.
 
@@ -274,4 +277,6 @@ test as your finding. Never make up results.
 
 Drafted by AI (Claude, via Claude Code) from the instructor's written handoff and follow-up
 direction (the two routes, the name, the single starter file), using the site's existing pages
-for the starter menu. Nothing here has been tested with students yet. The pilot is that test.
+for the starter menu. The routes were renamed on 2026-10-22 at the instructor's direction:
+"Talk it out" became the 📥 Repo improvements form, and "AI mop for AI slop" became 🧹 Mop the
+Slop, which no longer requires AI. Nothing here has been tested with students yet. The pilot is that test.

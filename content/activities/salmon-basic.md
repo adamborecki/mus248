@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-10-15"
+revised: "2026-10-22"
 estimatedTime: "20–45 minutes. On a real gig, arrive 1 hour before downbeat — 90 minutes if it's your first."
 access:
   mode: On campus
@@ -401,8 +401,9 @@ location — the source card plus both the Post and Backups drives.
 🚩 **Checkpoint.** Cards are only wiped after the files exist in **two** places and you've checked
 by the Triple Triple Check — not by "it looked right."
 
-On a real gig, the job continues past this point — transcoding, a Google Drive upload, an email
-confirming completion, Panopto, and a task board — with deadlines of one week and three weeks.
+On a real gig, the job continues past this point — transcoding, an upload to the SharePoint
+recording archive, an email confirming completion, and a task board — with deadlines of one week
+and three weeks.
 There's nothing to actually upload from a test recording, so treat that part as reference for when
 it's a real gig.
 
@@ -455,6 +456,9 @@ you are considering. Note the problem, keep the take rolling, ask afterwards.
 authoritative.
 
 **Confirmed since the last pass:**
+
+- **The recording archive is SharePoint** (instructor, 2026-10-22). The source SOP's Google Drive
+  upload and Panopto steps are out of date; the exact delivery steps aren't written up yet.
 
 - The multitrack recorder is a **Zoom F8**, replacing the MOTU 8PreX. There is no longer a Mac or
   a Logic template in the audio chain — the "Salmon Audio Rec" Mac Mini and its Logic template are

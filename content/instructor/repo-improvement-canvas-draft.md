@@ -13,10 +13,10 @@ then hand in what you found. Full instructions and the starter menu:
 
 **Submit one of:**
 
-- 🗣️🎙️ **Talk it out:** a paragraph of raw feedback (dictated is fine): which section, where
-  you tried it, what you expected, what happened, where you got stuck.
-- 🧹🤖🍝 **Use AI to clean AI slop:** the revised page plus the change and test report the
-  starter produces, with your AI-use disclosure.
+- 📥 **Repo improvements form:** a paragraph of raw feedback (dictated is fine): which section,
+  where you tried it, what you expected, what happened, where you got stuck.
+- 🧹 **Mop the Slop:** a revised Markdown file proposed on GitHub, with a change and test report
+  (and an AI-use disclosure if you used AI; AI is optional).
 
 Unfinished is fine. Say what blocked you. Want public credit? Add your GitHub username.
 

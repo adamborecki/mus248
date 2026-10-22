@@ -27,8 +27,11 @@ roundsSupported: false
 > 🧪 **Status: In Development.** One page for the whole job, from the gig request to the
 > archive. Assembled 2026-10-22 from what this course already teaches (**The Big Picture** and
 > **Data Management + Dante** lectures, **Salmon: Basic A/V Capture**) and the older Recording
-> Engineer Manual (2022–23). Anything only the old manual says is marked ❓: it may have changed
-> since. Each one is listed under **Technical verification**.
+> Engineer Manual (2022–23).
+
+> 📜 **Everything marked ❓ comes from that old manual, and the instructor says its lifespan section
+> is very old and may be entirely outdated.** Treat ❓ lines as history, not instructions, until
+> they're confirmed. Each one is listed under **Technical verification**.
 
 ## ⏳ What this is
 
@@ -132,8 +135,9 @@ transfer** section.
 ## ✂️ 4. Post-production and delivery
 
 When you're assigned post: a fast turnaround, and clear communication. **Salmon: Basic A/V
-Capture** lists what a real gig's post involves: transcoding, a Google Drive upload, an email
-confirming completion, Panopto, and a task board, with deadlines of one week and three weeks.
+Capture** lists what a real gig's post involves: transcoding, an upload to the SharePoint
+recording archive, an email confirming completion, and a task board, with deadlines of one week
+and three weeks.
 
 ❓ What the old manual and its Post QC checklist add:
 
@@ -154,8 +158,8 @@ confirming completion, Panopto, and a task board, with deadlines of one week and
 ## 🗄️ 5. The archive
 
 - The `s` folder holds the final deliverables, kept for good.
-- ❓ Deliverables go to the department's recording archive (SharePoint in the old manual; it says
-  Panopto is no longer used).
+- Deliverables go to the department's recording archive on **SharePoint**. (Panopto and Google
+  Drive are older; the instructor confirmed SharePoint on 2026-10-22.)
 - ❓ Raw files come off the hard drives only after the client confirms they received the recording
   and the upload is safe, and only the instructor deletes them.
 
@@ -204,11 +208,10 @@ final deliverables. (An optional **a** holds special archival files.)
 - Logic and Final Cut as the required software.
 - The deliverable formats (4K and 1080p, WAV at 48 kHz, H.264 with AAC, stereo only).
 - Who notifies the client, and the exact wording of the private-use note.
-- Where the archive lives now, and who deletes raw files, and when.
+- Who deletes raw files from the drives, and when.
 
-**Contradiction, flagged, not resolved:** Salmon: Basic A/V Capture lists a Google Drive upload and
-Panopto among a real gig's post steps. The old manual says Panopto is no longer used and the
-archive moved to SharePoint. Which is current?
+**Resolved 2026-10-22:** the archive is SharePoint, which is newer than Google Drive and Panopto
+(instructor). Salmon: Basic A/V Capture was updated to match.
 
 **Also open:**
 

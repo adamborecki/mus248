@@ -1,12 +1,13 @@
-# PROJECT_STARTER — MUS 248 Repo Improvement 🧹🤖🍝
+# PROJECT_STARTER — MUS 248 Repo Improvement 🧹
 
 > **For the student:** paste or upload this whole file into your AI tool (PantherAI.Chapman.edu,
 > highest-numbered Claude Sonnet it offers, or any other tool you have), **together with the
 > source text you're testing**. The site's "starter + source" download already includes both.
 > A chatbot can't open a website or GitHub link for you. It only sees what you paste.
 >
-> **Not using AI?** Take the 🗣️🎙️ **Talk it out** route on the Repo Improvement page instead:
-> test the section, then dictate one paragraph of raw feedback. You don't need this file.
+> **Not using AI?** You don't need this file. Send the 📥 **Repo improvements form** (test the
+> section, then dictate one paragraph of raw feedback), or edit the Markdown by hand for
+> 🧹 **Mop the Slop**.
 
 ---
 
