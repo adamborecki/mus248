@@ -98,7 +98,23 @@
     "sgk_kit": "Standard Gear Kit: what’s in it",
     "sgk_audio": "Standard Gear Kit: audio setup",
     "sgk_cameras": "Standard Gear Kit: AX100 starting points",
-    "capture_types": "Stereo, multitrack, board feed, backup"
+    "capture_types": "Stereo, multitrack, board feed, backup",
+    "repo": "Repos and GitHub",
+    "commit": "Commits and history",
+    "fork": "Forks",
+    "pull_request": "Pull requests and merging",
+    "markdown_basics": "Markdown basics",
+    "frontier_model": "Frontier models and model sizes",
+    "context_window": "The context window",
+    "ai_usage": "Thinking effort and usage",
+    "ai_ethics": "AI ethics: bias, environment, honesty, privacy",
+    "prompting": "Prompting and checking AI’s work",
+    "github_pages": "GitHub Pages",
+    "mus248_sandbox": "Your mus248-sandbox site",
+    "markdown_vs_html": "Markdown vs. HTML",
+    "readme_vs_index": "README vs. index.html",
+    "branch_workflow": "Fork, branch, pull request",
+    "public_site_privacy": "Privacy on a public site"
   },
   "questions": [
     {
@@ -6783,6 +6799,1122 @@
       ],
       "answer_index": 3,
       "explanation": "If the concert involves electronics, ask for a board feed on arrival. It goes into F8 inputs 3 and 4.",
+      "verified": false
+    },
+    {
+      "id": "VC_REPO_001",
+      "skill": "repo",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a repo?",
+      "choices": [
+        "A project folder plus its whole history of saved versions",
+        "A single web page",
+        "A backup copy on your laptop’s desktop",
+        "One conversation with an AI"
+      ],
+      "answer_index": 0,
+      "explanation": "A repo (repository) is a project’s files plus every saved version of them. This whole course site is one repo on GitHub.",
+      "verified": false
+    },
+    {
+      "id": "VC_REPO_002",
+      "skill": "repo",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Camera-lab, mixer-lab, and the MUS 248 site are each their own repo. Why keep them separate?",
+      "choices": [
+        "Each one does one thing, so a change to one can’t break another",
+        "GitHub allows only one website per account",
+        "They’re written in different languages",
+        "To keep them hidden from each other"
+      ],
+      "answer_index": 0,
+      "explanation": "One repo, one thing: each can be changed and fixed on its own without risking the others.",
+      "verified": false
+    },
+    {
+      "id": "VC_REPO_003",
+      "skill": "repo",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An activity’s web page, worksheet, and answer key are all built from one Markdown file. Why build them that way?",
+      "choices": [
+        "So the page and the printed worksheet can never disagree",
+        "Because Markdown files are smaller",
+        "So the worksheet can include the photos",
+        "Because only the instructor can read HTML"
+      ],
+      "answer_index": 0,
+      "explanation": "One source, one truth: change the file and the page, worksheet, and key all change together.",
+      "verified": false
+    },
+    {
+      "id": "VC_REPO_004",
+      "skill": "repo",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is CLAUDE.md in the course repo?",
+      "choices": [
+        "A file of rules the AI reads before it changes anything",
+        "The site’s home page",
+        "A list of every student’s work",
+        "A log of every AI chat"
+      ],
+      "answer_index": 0,
+      "explanation": "CLAUDE.md holds the repo’s rules for the AI: the repo is public, don’t guess gear details, run the tests, check it in a browser.",
+      "verified": false
+    },
+    {
+      "id": "VC_COMMIT_001",
+      "skill": "commit",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a commit?",
+      "choices": [
+        "One saved change, with a short note about what changed",
+        "A request for the owner to accept your change",
+        "Your own copy of someone else’s repo",
+        "The owner accepting a change"
+      ],
+      "answer_index": 0,
+      "explanation": "A commit is one save plus a note. The repo’s history keeps every one, so any change can be found and undone.",
+      "verified": false
+    },
+    {
+      "id": "VC_COMMIT_002",
+      "skill": "commit",
+      "topic": "vibecoding",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Someone commits a door code to a public repo, then deletes the file in the next commit. Is the code safe now?",
+      "choices": [
+        "No: earlier versions stay in the history, where anyone can read them",
+        "Yes: deleting the file removes it everywhere",
+        "Yes, as long as the commit note says to ignore it",
+        "Yes, once the site updates"
+      ],
+      "answer_index": 0,
+      "explanation": "History keeps every commit, including the one with the code in it. On a public repo, anyone can open that old version.",
+      "verified": false
+    },
+    {
+      "id": "VC_COMMIT_003",
+      "skill": "commit",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why does every commit get a short note?",
+      "choices": [
+        "So anyone reading the history can tell what changed",
+        "The note becomes the page’s title",
+        "GitHub Pages only publishes commits with long notes",
+        "The note is shown to visitors of the site"
+      ],
+      "answer_index": 0,
+      "explanation": "The history is only useful if you can read it: a short note says what each save changed.",
+      "verified": false
+    },
+    {
+      "id": "VC_FORK_001",
+      "skill": "fork",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a fork on GitHub?",
+      "choices": [
+        "Your own copy of someone else’s repo, under your account",
+        "One save, with a note",
+        "The owner accepting your change",
+        "A file of rules for the AI"
+      ],
+      "answer_index": 0,
+      "explanation": "A fork is your own copy. You can change it freely, then ask the original’s owner to take your change with a pull request.",
+      "verified": false
+    },
+    {
+      "id": "VC_FORK_002",
+      "skill": "fork",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You want to change a repo you don’t own. What do you make first?",
+      "choices": [
+        "A fork",
+        "A merge",
+        "A release",
+        "A new, empty repo with the same name"
+      ],
+      "answer_index": 0,
+      "explanation": "You can’t edit someone else’s repo directly, so you fork it: your own copy to change.",
+      "verified": false
+    },
+    {
+      "id": "VC_PR_001",
+      "skill": "pull_request",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does opening a pull request do?",
+      "choices": [
+        "Asks the repo’s owner to bring your change into their repo",
+        "Copies the owner’s repo into your account",
+        "Publishes your change right away",
+        "Deletes your fork"
+      ],
+      "answer_index": 0,
+      "explanation": "A pull request says “here’s my change; please bring it into yours.” Nothing changes until the owner merges it.",
+      "verified": false
+    },
+    {
+      "id": "VC_PR_002",
+      "skill": "pull_request",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your pull request is open. Who decides whether your change becomes part of the repo?",
+      "choices": [
+        "The repo’s owner, who can merge it",
+        "You: opening it is enough",
+        "GitHub, automatically",
+        "Whoever forks the repo next"
+      ],
+      "answer_index": 0,
+      "explanation": "A pull request is a request. The owner reviews it, and merging is the owner saying yes.",
+      "verified": false
+    },
+    {
+      "id": "VC_PR_003",
+      "skill": "pull_request",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On GitHub, what is a merge?",
+      "choices": [
+        "The owner accepting a change into their repo",
+        "Making your own copy of a repo",
+        "Saving a change with a note",
+        "Turning a repo into a website"
+      ],
+      "answer_index": 0,
+      "explanation": "Merging brings a pull request’s change into the repo. Fork, commit, pull request, merge: that’s how a change gets in.",
+      "verified": false
+    },
+    {
+      "id": "VC_MD_001",
+      "skill": "markdown_basics",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which file extension usually means a Markdown file?",
+      "choices": [
+        ".md",
+        ".mk",
+        ".txt",
+        ".html"
+      ],
+      "answer_index": 0,
+      "explanation": "Markdown files end in .md, like README.md and every activity’s source file.",
+      "verified": false
+    },
+    {
+      "id": "VC_MD_002",
+      "skill": "markdown_basics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Markdown, what do the asterisks in **phantom power** do?",
+      "choices": [
+        "Make the words bold",
+        "Make the words a heading",
+        "Make the words a link",
+        "Hide the words from readers"
+      ],
+      "answer_index": 0,
+      "explanation": "Two asterisks on each side make text bold. Markdown is plain text with a few symbols like that.",
+      "verified": false
+    },
+    {
+      "id": "VC_MD_003",
+      "skill": "markdown_basics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A line in a Markdown file starts with ##. What is it?",
+      "choices": [
+        "A heading",
+        "A bullet",
+        "A note hidden from readers",
+        "A link"
+      ],
+      "answer_index": 0,
+      "explanation": "## starts a heading, ** makes text bold, and - starts a bullet.",
+      "verified": false
+    },
+    {
+      "id": "VC_MD_004",
+      "skill": "markdown_basics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A classmate pastes a chatbot’s answer into Canvas, and it’s full of ## and ** symbols. Why?",
+      "choices": [
+        "The chatbot wrote Markdown, and Canvas showed the raw symbols",
+        "Canvas adds those symbols to AI text",
+        "The chatbot made typos",
+        "Canvas doesn’t allow any formatting"
+      ],
+      "answer_index": 0,
+      "explanation": "AI tools answer in Markdown. Where Markdown isn’t turned into formatting, you see the symbols themselves.",
+      "verified": false
+    },
+    {
+      "id": "VC_MD_005",
+      "skill": "markdown_basics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which Markdown line makes a bullet in a list?",
+      "choices": [
+        "- XLR cable",
+        "## XLR cable",
+        "**XLR cable**",
+        "[XLR cable]"
+      ],
+      "answer_index": 0,
+      "explanation": "A line starting with a dash and a space is a bullet. ## is a heading, and ** is bold.",
+      "verified": false
+    },
+    {
+      "id": "VC_MODEL_001",
+      "skill": "frontier_model",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which best describes a “frontier” AI model?",
+      "choices": [
+        "One of the newest, most capable models from the big AI labs",
+        "Any model that’s free to use",
+        "A model that runs on your own laptop",
+        "Whichever model answers fastest"
+      ],
+      "answer_index": 0,
+      "explanation": "Frontier means the leading edge: the newest, most capable, and most expensive models to run.",
+      "verified": false
+    },
+    {
+      "id": "VC_MODEL_002",
+      "skill": "frontier_model",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Claude comes in three sizes. Which is the largest?",
+      "choices": [
+        "Opus",
+        "Sonnet",
+        "Haiku",
+        "They’re all the same size"
+      ],
+      "answer_index": 0,
+      "explanation": "Haiku is small, Sonnet is the middle, and Opus is the largest.",
+      "verified": false
+    },
+    {
+      "id": "VC_MODEL_003",
+      "skill": "frontier_model",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which Claude model does PantherAI give you?",
+      "choices": [
+        "The highest Claude Sonnet available",
+        "Claude Opus, the largest",
+        "Claude Haiku, the smallest",
+        "A different model every day"
+      ],
+      "answer_index": 0,
+      "explanation": "PantherAI gives you the highest Sonnet: very good, just not the biggest.",
+      "verified": false
+    },
+    {
+      "id": "VC_CTX_001",
+      "skill": "context_window",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is an AI’s context window?",
+      "choices": [
+        "Everything it can “see” at once: your messages, its replies, and what you pasted",
+        "The browser window the chat is open in",
+        "How many chats you can have open",
+        "The websites it has visited today"
+      ],
+      "answer_index": 0,
+      "explanation": "The context window is all the AI can see. Anything not in the chat, it doesn’t know about.",
+      "verified": false
+    },
+    {
+      "id": "VC_CTX_002",
+      "skill": "context_window",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You ask PantherAI to fix a typo on a course web page but don’t paste anything. Why can’t it find the typo?",
+      "choices": [
+        "It only sees what’s in the chat, and the page isn’t in its context window",
+        "The page is too new for it to know about",
+        "It needs a faster internet connection",
+        "It can see the page but isn’t allowed to fix it"
+      ],
+      "answer_index": 0,
+      "explanation": "A chatbot can’t see this site, your files, or your screen unless you paste them into the chat.",
+      "verified": false
+    },
+    {
+      "id": "VC_CTX_003",
+      "skill": "context_window",
+      "topic": "vibecoding",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A long AI chat keeps ignoring a rule you gave at the start. What’s the most useful fix?",
+      "choices": [
+        "Start a fresh chat with a short summary and the current file",
+        "Repeat the rule in ALL CAPS",
+        "Paste the whole chat back in",
+        "Keep going; it will catch up"
+      ],
+      "answer_index": 0,
+      "explanation": "In a long chat, early instructions fade. A fresh chat puts your rules back at the front of the context window.",
+      "verified": false
+    },
+    {
+      "id": "VC_USE_001",
+      "skill": "ai_usage",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these uses the least AI usage, and the least energy?",
+      "choices": [
+        "A clear, specific question in a fresh chat",
+        "Turning thinking effort up to the maximum",
+        "Pasting your whole project into every message",
+        "Switching to the largest model available"
+      ],
+      "answer_index": 0,
+      "explanation": "Smaller, clearer asks in fresh chats use less, and they’re usually faster too.",
+      "verified": false
+    },
+    {
+      "id": "VC_USE_002",
+      "skill": "ai_usage",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "For a small, clear job, why not just use the biggest model on maximum effort?",
+      "choices": [
+        "More isn’t always better: less is faster, uses less, and does just as well",
+        "The biggest model gets small jobs wrong",
+        "Maximum effort turns off the context window",
+        "Big models refuse small jobs"
+      ],
+      "answer_index": 0,
+      "explanation": "Bigger models and more thinking effort use more. Save them for hard problems.",
+      "verified": false
+    },
+    {
+      "id": "VC_USE_003",
+      "skill": "ai_usage",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these uses more AI usage?",
+      "choices": [
+        "A long chat full of big pastes",
+        "A fresh chat with only what’s needed",
+        "A smaller model, like Haiku",
+        "Less thinking effort"
+      ],
+      "answer_index": 0,
+      "explanation": "Long chats and big pastes mean the AI rereads more every time. Fresh chats with only what’s needed use less.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_001",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is an environmental cost of using AI?",
+      "choices": [
+        "Data centers use electricity, and water for cooling",
+        "Each chat prints a paper copy",
+        "It wears out your keyboard",
+        "There isn’t one; it all runs on your phone"
+      ],
+      "answer_index": 0,
+      "explanation": "Every answer runs in a data center. Bigger models and more thinking use more electricity and water.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_002",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An AI writes a confident summary about a group of people. What’s the best habit?",
+      "choices": [
+        "Check it: AI can repeat the bias in what it learned from, and still sound sure",
+        "Trust it, since it sounds confident",
+        "Ask it to sound less confident",
+        "Make the prompt longer"
+      ],
+      "answer_index": 0,
+      "explanation": "AI learns from human writing and picks up its bias, and it sounds just as sure when it’s one-sided. Be most careful about people.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_003",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is fine to paste into an AI chat?",
+      "choices": [
+        "Your own question about how phantom power works",
+        "A classmate’s name and phone number",
+        "A recording room’s door code",
+        "A recording of a performer, without asking them"
+      ],
+      "answer_index": 0,
+      "explanation": "Never paste private things (names, codes, passwords, recordings of people): once it’s sent, you can’t take it back.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_004",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You used AI to help with something you hand in. What does this course ask of you?",
+      "choices": [
+        "Say that you used it, and own the result, mistakes included",
+        "Nothing, as long as it’s correct",
+        "Blame the AI for any mistakes",
+        "Delete the chat so nobody can tell"
+      ],
+      "answer_index": 0,
+      "explanation": "Disclose your AI use, like the note at the top of each lecture. You still own what you hand in.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_005",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is “weightlifting,” where you should do the work yourself?",
+      "choices": [
+        "Practicing a skill you’ll be tested on",
+        "Renaming 50 files to match a naming convention",
+        "Reformatting a long list",
+        "Filling out a routine form"
+      ],
+      "answer_index": 0,
+      "explanation": "Weightlifting is when the point is your own growth. Forklifting (routine work that just needs doing) is where AI is probably a good fit.",
+      "verified": false
+    },
+    {
+      "id": "VC_ETH_006",
+      "skill": "ai_ethics",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which prompt gets help from AI without cheating?",
+      "choices": [
+        "“Help me understand this without giving me the answers.”",
+        "“Write my answers for me.”",
+        "“Do the refresher for me.”",
+        "“Just give me the letters.”"
+      ],
+      "answer_index": 0,
+      "explanation": "Use AI to understand, not to skip the thinking, and keep the conversation going for at least three rounds.",
+      "verified": false
+    },
+    {
+      "id": "VC_PROMPT_001",
+      "skill": "prompting",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which prompt makes the best use of a limited prompt budget?",
+      "choices": [
+        "“On my phone the Start button does nothing; on my laptop it works. Fix only that.”",
+        "“make it better”",
+        "“add more features and fix the bugs”",
+        "“try again”"
+      ],
+      "answer_index": 0,
+      "explanation": "One specific change, plus what you saw. Vague prompts spend a turn and get a guess back.",
+      "verified": false
+    },
+    {
+      "id": "VC_PROMPT_002",
+      "skill": "prompting",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your bad webapp looks great in the AI’s reply. When is it done?",
+      "choices": [
+        "When you’ve opened it yourself, on a phone too, and it does what you asked",
+        "When the AI says it works",
+        "When the code is long enough",
+        "When you’ve copied the code"
+      ],
+      "answer_index": 0,
+      "explanation": "AI sounds equally confident when it’s right and when it’s wrong. It’s done when a person has checked it.",
+      "verified": false
+    },
+    {
+      "id": "VC_PROMPT_003",
+      "skill": "prompting",
+      "topic": "vibecoding",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your last prompt was “it doesn’t work.” What makes a better one?",
+      "choices": [
+        "Say exactly what you saw, and where: “Tapping Start does nothing on my phone”",
+        "Say it louder: “IT STILL DOESN’T WORK”",
+        "Ask for three new features at once",
+        "Paste the code back with no message"
+      ],
+      "answer_index": 0,
+      "explanation": "The AI can’t see your screen. Tell it what happened and where, so it fixes the real problem.",
+      "verified": false
+    },
+    {
+      "id": "VC_PROMPT_004",
+      "skill": "prompting",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why make one change per prompt, then test?",
+      "choices": [
+        "If something breaks, you know which change did it",
+        "The AI can only read one sentence",
+        "Prompts asking for two changes get rejected",
+        "It makes the code shorter"
+      ],
+      "answer_index": 0,
+      "explanation": "One change, then test: the same habit as changing one setting at a time on a camera or a mixer.",
+      "verified": false
+    },
+    {
+      "id": "VC_PAGES_001",
+      "skill": "github_pages",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does GitHub Pages do?",
+      "choices": [
+        "Publishes a repo’s files as a website, for free",
+        "Makes a private backup of your repo",
+        "Writes web pages for you with AI",
+        "Prints your repo as a PDF"
+      ],
+      "answer_index": 0,
+      "explanation": "GitHub Pages turns a repo into a website: change a file, and a minute later the site changes.",
+      "verified": false
+    },
+    {
+      "id": "VC_PAGES_002",
+      "skill": "github_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You turned on Pages, opened your page right away, and got a 404. What should you try first?",
+      "choices": [
+        "Wait a minute, then check the file name letter for letter",
+        "Delete the repo and start over",
+        "Make the repo private",
+        "Rename the file to end in .txt"
+      ],
+      "answer_index": 0,
+      "explanation": "Pages takes about a minute. After that, a 404 usually means the address and the file name don’t match exactly, capitals included.",
+      "verified": false
+    },
+    {
+      "id": "VC_PAGES_003",
+      "skill": "github_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your page shows your code as plain text instead of running it. What’s the likely problem?",
+      "choices": [
+        "The file name ends in .txt instead of .html",
+        "The repo is public",
+        "The README is too short",
+        "Pages needs a week to start"
+      ],
+      "answer_index": 0,
+      "explanation": "The browser only runs it as a web page if the file name ends in .html.",
+      "verified": false
+    },
+    {
+      "id": "VC_PAGES_004",
+      "skill": "github_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "GitHub says Pages isn’t available for your sandbox repo. What should you check?",
+      "choices": [
+        "That the repo is Public",
+        "That the repo has a long description",
+        "That you forked it from someone",
+        "That it has a branch named after you"
+      ],
+      "answer_index": 0,
+      "explanation": "On a free GitHub account, Pages only publishes public repos.",
+      "verified": false
+    },
+    {
+      "id": "VC_PAGES_005",
+      "skill": "github_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You committed a change, but your site still shows the old version. What’s the first thing to do?",
+      "choices": [
+        "Wait a minute, then refresh",
+        "Commit the same change again",
+        "Delete the file and add it back",
+        "Make the repo private and public again"
+      ],
+      "answer_index": 0,
+      "explanation": "Pages takes about a minute to update after a commit. Refresh before changing anything else.",
+      "verified": false
+    },
+    {
+      "id": "VC_SANDBOX_001",
+      "skill": "mus248_sandbox",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your repo is named mus248-sandbox. Where does GitHub Pages publish it?",
+      "choices": [
+        "your-username.github.io/mus248-sandbox/",
+        "mus248-sandbox.com",
+        "github.com/mus248-sandbox",
+        "chapman.edu/mus248-sandbox"
+      ],
+      "answer_index": 0,
+      "explanation": "A Pages site lives at your username’s github.io address, followed by the repo’s name.",
+      "verified": false
+    },
+    {
+      "id": "VC_SANDBOX_002",
+      "skill": "mus248_sandbox",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In your mus248-sandbox, which file is the home page that links to your other two pages?",
+      "choices": [
+        "index.html",
+        "README.md",
+        "bad-webapp.html",
+        "gear-dating-profile.html"
+      ],
+      "answer_index": 0,
+      "explanation": "index.html is what a visitor sees at your site’s address. It links to bad-webapp.html and gear-dating-profile.html.",
+      "verified": false
+    },
+    {
+      "id": "VC_SANDBOX_003",
+      "skill": "mus248_sandbox",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your group made one bad webapp together. Who publishes it in a mus248-sandbox?",
+      "choices": [
+        "Everyone in the group publishes their own copy",
+        "Only the person who typed the prompts",
+        "Only the instructor",
+        "Nobody; it stays in the Playground"
+      ],
+      "answer_index": 0,
+      "explanation": "Everyone makes their own mus248-sandbox, and each one has a copy of the group’s bad webapp.",
+      "verified": false
+    },
+    {
+      "id": "VC_SANDBOX_004",
+      "skill": "mus248_sandbox",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How do you get your bad webapp’s code out of the Playground?",
+      "choices": [
+        "Open your share link, tap See the code, then select all and copy",
+        "Ask PantherAI to email it to you",
+        "Download it from Canvas",
+        "Take a screenshot of the app"
+      ],
+      "answer_index": 0,
+      "explanation": "The share link carries the whole app. See the code shows it, ready to paste into a file in your repo.",
+      "verified": false
+    },
+    {
+      "id": "VC_HTML_001",
+      "skill": "markdown_vs_html",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Markdown, a link is [My app](bad-webapp.html). Which is the same link in HTML?",
+      "choices": [
+        "<a href=\"bad-webapp.html\">My app</a>",
+        "<link>My app</link>",
+        "**My app**(bad-webapp.html)",
+        "## My app: bad-webapp.html"
+      ],
+      "answer_index": 0,
+      "explanation": "HTML spells every part out in tags: <a href=\"…\"> says where the link goes, and the words between the tags are what you click.",
+      "verified": false
+    },
+    {
+      "id": "VC_HTML_002",
+      "skill": "markdown_vs_html",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which one is what the browser reads, with every part spelled out in tags?",
+      "choices": [
+        "HTML",
+        "Markdown",
+        "A commit note",
+        "A README"
+      ],
+      "answer_index": 0,
+      "explanation": "HTML is the browser’s language. Markdown is shorthand, for people.",
+      "verified": false
+    },
+    {
+      "id": "VC_HTML_003",
+      "skill": "markdown_vs_html",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is a heading written in HTML?",
+      "choices": [
+        "<h1>My sandbox</h1>",
+        "# My sandbox",
+        "**My sandbox**",
+        "- My sandbox"
+      ],
+      "answer_index": 0,
+      "explanation": "In Markdown a heading is # My sandbox. In HTML it’s wrapped in <h1> and </h1> tags.",
+      "verified": false
+    },
+    {
+      "id": "VC_HTML_004",
+      "skill": "markdown_vs_html",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why is Markdown easier to write by hand than HTML?",
+      "choices": [
+        "It uses a few short symbols, like ** for bold, instead of spelling everything out in tags",
+        "Browsers read Markdown faster",
+        "Markdown can’t have mistakes in it",
+        "Markdown works without a keyboard"
+      ],
+      "answer_index": 0,
+      "explanation": "Markdown is shorthand: **loud** in Markdown is <strong>loud</strong> in HTML.",
+      "verified": false
+    },
+    {
+      "id": "VC_README_001",
+      "skill": "readme_vs_index",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Who reads your README.md?",
+      "choices": [
+        "People looking at your repo on github.com",
+        "People visiting your site’s address",
+        "Only GitHub’s computers",
+        "Only you"
+      ],
+      "answer_index": 0,
+      "explanation": "The README shows under the file list on GitHub. Visitors to your site see index.html.",
+      "verified": false
+    },
+    {
+      "id": "VC_README_002",
+      "skill": "readme_vs_index",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Someone opens your-username.github.io/mus248-sandbox/. Which file do they see?",
+      "choices": [
+        "index.html",
+        "README.md",
+        "bad-webapp.html",
+        "The list of files in your repo"
+      ],
+      "answer_index": 0,
+      "explanation": "index.html is your site’s home page: what visitors see at its address.",
+      "verified": false
+    },
+    {
+      "id": "VC_README_003",
+      "skill": "readme_vs_index",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your README.md and your index.html both describe your sandbox. Why have both?",
+      "choices": [
+        "Same repo, two audiences: the README is for people on GitHub, index.html for visitors to the site",
+        "GitHub needs two copies in case one is deleted",
+        "The README is a backup of index.html",
+        "index.html is only for the instructor"
+      ],
+      "answer_index": 0,
+      "explanation": "People browsing the repo on GitHub see the README (Markdown). People visiting the site see index.html (HTML).",
+      "verified": false
+    },
+    {
+      "id": "VC_README_004",
+      "skill": "readme_vs_index",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re editing your README on GitHub. What should you check before you commit?",
+      "choices": [
+        "The Preview tab, to see how the Markdown will look",
+        "That the file ends in .html",
+        "That the repo is private",
+        "That the README has no headings"
+      ],
+      "answer_index": 0,
+      "explanation": "Preview shows the Markdown formatted, so you catch a stray ** before it’s saved.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_001",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a branch?",
+      "choices": [
+        "A copy of the files where you try an idea without touching main",
+        "Your own copy of someone else’s repo",
+        "One save, with a note",
+        "The owner accepting your change"
+      ],
+      "answer_index": 0,
+      "explanation": "A branch is like a duplicate playlist for trying an edit. A fork is a copy of a whole repo under your account.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_002",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re fixing one broken step in WTF 248. What’s the right order?",
+      "choices": [
+        "Fork → edit and commit on a new branch → open a pull request",
+        "Open a pull request → fork → commit",
+        "Merge → fork → edit",
+        "Commit → open a pull request → fork"
+      ],
+      "answer_index": 0,
+      "explanation": "Fork it (your copy), commit the fix on its own branch, then open a pull request so the owner can decide.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_003",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You found two broken steps in WTF 248. How many pull requests should you open?",
+      "choices": [
+        "Two: one fix per branch, and one branch per pull request",
+        "One, with both fixes and anything else you noticed",
+        "None; committing to your fork is enough",
+        "One for each file in the repo"
+      ],
+      "answer_index": 0,
+      "explanation": "One fix = one branch = one pull request, so the owner can say yes to each one on its own.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_004",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which pull request note is the most useful?",
+      "choices": [
+        "“Step 4.3 said to start a fire. Changed it to: turn on the stage lights.”",
+        "“fixed stuff”",
+        "“Update checklist.md”",
+        "“changes”"
+      ],
+      "answer_index": 0,
+      "explanation": "A good note says what and why, so the owner can review the fix without hunting for it.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_005",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is the best name for a branch that fixes step 4.3?",
+      "choices": [
+        "fix-step-4-3",
+        "branch1",
+        "my-changes",
+        "main"
+      ],
+      "answer_index": 0,
+      "explanation": "Name a branch for what it fixes. main is the branch you’re trying not to touch.",
+      "verified": false
+    },
+    {
+      "id": "VC_BRANCH_006",
+      "skill": "branch_workflow",
+      "topic": "vibecoding",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You forked WTF 248 and committed a fix in your fork. Is the fix in WTF 248 yet?",
+      "choices": [
+        "No: it’s only in your fork until you open a pull request and the owner merges it",
+        "Yes: forks stay in sync both ways",
+        "Yes, once GitHub Pages updates",
+        "Yes, if your commit note is clear"
+      ],
+      "answer_index": 0,
+      "explanation": "A fork is your own copy. Your change reaches the original only through a pull request that its owner merges.",
+      "verified": false
+    },
+    {
+      "id": "VC_PRIV_001",
+      "skill": "public_site_privacy",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which is fine to put on your public mus248-sandbox site?",
+      "choices": [
+        "Your GitHub username, or a persona",
+        "Your full name and phone number",
+        "Your weekly class schedule",
+        "Your home address"
+      ],
+      "answer_index": 0,
+      "explanation": "Your site is on the public internet. A username or a persona is plenty: no full name, phone, address, or schedule.",
+      "verified": false
+    },
+    {
+      "id": "VC_PRIV_002",
+      "skill": "public_site_privacy",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You’re not sure whether something belongs on your public site. What do you do?",
+      "choices": [
+        "Leave it out",
+        "Post it, and delete it later if needed",
+        "Post it, but only in the README",
+        "Post it if the repo is new"
+      ],
+      "answer_index": 0,
+      "explanation": "When in doubt, leave it out. Deleting later doesn’t remove it from the repo’s history.",
+      "verified": false
+    },
+    {
+      "id": "VC_PRIV_003",
+      "skill": "public_site_privacy",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Your mus248-sandbox repo is public. Who can see it?",
+      "choices": [
+        "Anyone on the internet",
+        "Only people in MUS 248",
+        "Only you and the instructor",
+        "Only people with a Chapman login"
+      ],
+      "answer_index": 0,
+      "explanation": "Public means public: anyone can find and read your site and every file in the repo.",
       "verified": false
     }
   ]

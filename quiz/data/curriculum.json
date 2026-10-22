@@ -145,6 +145,24 @@
     "sgk_kit": "practice",
     "sgk_audio": "practice",
     "sgk_cameras": "practice",
-    "capture_types": "practice"
+    "capture_types": "practice",
+
+    "repo": "practice",
+    "commit": "practice",
+    "fork": "practice",
+    "pull_request": "practice",
+    "markdown_basics": "practice",
+    "frontier_model": "practice",
+    "context_window": "practice",
+    "ai_usage": "practice",
+    "ai_ethics": "practice",
+    "prompting": "practice",
+
+    "github_pages": "practice",
+    "mus248_sandbox": "practice",
+    "markdown_vs_html": "practice",
+    "readme_vs_index": "practice",
+    "branch_workflow": "practice",
+    "public_site_privacy": "practice"
   }
 }

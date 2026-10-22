@@ -16,7 +16,8 @@
     "Final Cut",
     "Data management",
     "Salmon gigs",
-    "Gigs & venues"
+    "Gigs & venues",
+    "Vibecoding"
   ],
   "cards": [
     {
@@ -1849,6 +1850,142 @@
       "category": "Gigs & venues",
       "front": "Stereo vs. multitrack",
       "back": "Stereo: one L/R picture with the mix baked in. Multitrack: each source on its own track, so it can be remixed later.",
+      "verified": false
+    },
+    {
+      "id": "vc_repo",
+      "skill": "repo",
+      "category": "Vibecoding",
+      "front": "Repo",
+      "back": "A project folder plus its whole history of saved versions, kept on GitHub. This course site is one repo; camera-lab and mixer-lab are others.",
+      "verified": false
+    },
+    {
+      "id": "vc_commit",
+      "skill": "commit",
+      "category": "Vibecoding",
+      "front": "Commit",
+      "back": "One saved change, plus a short note about what changed. History keeps every commit, so a deleted file is still readable in an old one.",
+      "verified": false
+    },
+    {
+      "id": "vc_fork",
+      "skill": "fork",
+      "category": "Vibecoding",
+      "front": "Fork",
+      "back": "Your own copy of someone else’s repo, under your account.",
+      "verified": false
+    },
+    {
+      "id": "vc_pull_request",
+      "skill": "pull_request",
+      "category": "Vibecoding",
+      "front": "Pull request → merge",
+      "back": "A pull request asks the owner to bring your change into their repo. Merging is the owner saying yes.",
+      "verified": false
+    },
+    {
+      "id": "vc_markdown",
+      "skill": "markdown_basics",
+      "category": "Vibecoding",
+      "front": "Markdown symbols",
+      "back": "## heading · **bold** · - bullet · [words](link). Files end in .md.",
+      "verified": false
+    },
+    {
+      "id": "vc_frontier",
+      "skill": "frontier_model",
+      "category": "Vibecoding",
+      "front": "Frontier model",
+      "back": "One of the newest, most capable models from the big labs. Claude sizes: Haiku (small), Sonnet (middle), Opus (largest).",
+      "verified": false
+    },
+    {
+      "id": "vc_context",
+      "skill": "context_window",
+      "category": "Vibecoding",
+      "front": "Context window",
+      "back": "Everything the AI can “see” at once: your messages, its replies, what you pasted. Long or confused chat → fresh chat with a short summary.",
+      "verified": false
+    },
+    {
+      "id": "vc_usage",
+      "skill": "ai_usage",
+      "category": "Vibecoding",
+      "front": "Uses more vs. less",
+      "back": "More: bigger model, more thinking effort, long chats and big pastes. Less: smaller model, fresh chat, only what’s needed.",
+      "verified": false
+    },
+    {
+      "id": "vc_ethics",
+      "skill": "ai_ethics",
+      "category": "Vibecoding",
+      "front": "AI ethics, in four words",
+      "back": "Bias (check claims about people) · environment (electricity, water) · honesty (disclose, own it) · privacy (never paste names, codes, recordings).",
+      "verified": false
+    },
+    {
+      "id": "vc_forklift",
+      "skill": "ai_ethics",
+      "category": "Vibecoding",
+      "front": "Forklifting vs. weightlifting",
+      "back": "Forklifting: the point is getting it done, so AI is probably fine. Weightlifting: the point is your own growth, so do it yourself.",
+      "verified": false
+    },
+    {
+      "id": "vc_prompting",
+      "skill": "prompting",
+      "category": "Vibecoding",
+      "front": "A prompt that earns its place",
+      "back": "One specific change, plus what you saw: “On my phone, tapping Start does nothing. Fix only that.” Then test it yourself.",
+      "verified": false
+    },
+    {
+      "id": "vc_pages",
+      "skill": "github_pages",
+      "category": "Vibecoding",
+      "front": "GitHub Pages",
+      "back": "Free hosting that turns a public repo into a website. 404 → wait a minute, then check the file name letter for letter.",
+      "verified": false
+    },
+    {
+      "id": "vc_sandbox",
+      "skill": "mus248_sandbox",
+      "category": "Vibecoding",
+      "front": "mus248-sandbox: four files",
+      "back": "bad-webapp.html · gear-dating-profile.html · index.html (home page) · README.md. Lives at your-username.github.io/mus248-sandbox/.",
+      "verified": false
+    },
+    {
+      "id": "vc_md_html",
+      "skill": "markdown_vs_html",
+      "category": "Vibecoding",
+      "front": "Markdown vs. HTML link",
+      "back": "Markdown: [My app](bad-webapp.html) · HTML: <a href=\"bad-webapp.html\">My app</a>. Markdown is shorthand for people; HTML is what the browser reads.",
+      "verified": false
+    },
+    {
+      "id": "vc_readme_index",
+      "skill": "readme_vs_index",
+      "category": "Vibecoding",
+      "front": "README.md vs. index.html",
+      "back": "README: for people looking at the repo on GitHub (Markdown). index.html: for visitors to the site (HTML). Same repo, two audiences.",
+      "verified": false
+    },
+    {
+      "id": "vc_branch",
+      "skill": "branch_workflow",
+      "category": "Vibecoding",
+      "front": "Fork, branch, pull request",
+      "back": "Fork (your copy) → commit the fix on its own branch → pull request → the owner decides whether to merge. One fix = one branch = one pull request.",
+      "verified": false
+    },
+    {
+      "id": "vc_privacy",
+      "skill": "public_site_privacy",
+      "category": "Vibecoding",
+      "front": "Public means public",
+      "back": "A username or persona is plenty. No full name, phone, address, or schedule. When in doubt, leave it out.",
       "verified": false
     }
   ]
