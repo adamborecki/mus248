@@ -208,6 +208,11 @@ know before touching it:
   status here directly, say so in the commit message, and expect the next sync to report a
   CONFLICT rather than overwrite it.
 
+**Writing quiz material for a new lecture** (skills, questions, study cards, the weekly build):
+read `content/QUIZ_GUIDE.md` first. Every skill needs an entry in `quiz/data/skill-sources.json`
+saying which lecture or activity taught it (`npm test` fails otherwise). `/quiz/overview/` (instructor
+view) shows every access code and what any quiz can ask, from lectures down to single questions.
+
 The graded set is the denominator: a fixed count (`targets.graded_questions`) of verified
 questions on Core skills. Bonus questions sit outside it — they are extra credit only, worth
 `scoring.bonus_per_correct` each up to `scoring.bonus_max`, and a missed one costs nothing. If a

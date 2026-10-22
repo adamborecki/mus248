@@ -129,6 +129,7 @@ The checksum catches copy/paste damage and casual edits. **It is not security**:
 ## Instructor tools
 
 - **`verify/`**: paste Canvas submissions (any number) or choose the files from Canvas “Download submissions.” You get a table of scores and checksums, a flag when two different codes share a quiz ID, and a by-skill summary with the weakest Core skills first. Everything runs in the browser.
+- **`overview/`** (instructor view, `?instructor=1`): every access code with its date, clock, and new skills, then every skill grouped by the lecture or activity that taught it (`data/skill-sources.json`), down to each question marked “Can be graded”, “Bonus”, or “not served” and why. All quizzes draw from the same pool as it stands today.
 - **`?debug=1`**: shows the selected questions, their roles, and the saved state, and adds an “answer the rest randomly” button. Add `&drafts=1` to include draft questions.
 
 ## Privacy

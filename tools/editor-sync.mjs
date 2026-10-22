@@ -56,8 +56,12 @@ if (command === 'baseline') {
     draft: Boolean(q.draft), verified: Boolean(q.verified),
   }));
   const cards = deck.cards.map((c) => ({ ...c, verified: Boolean(c.verified) }));
+  // Where each skill was taught, and the lectures' names, so the editor can group by lecture.
+  const sources = readJson(path('skill-sources.json')).skills;
+  const lectures = readJson(join(root, 'data', 'lectures.json')).filter((l) => l.date)
+    .map(({ id, title, date, lecture }) => ({ id, title, date, lecture: lecture ?? null }));
   process.stdout.write(JSON.stringify({
-    skills, questions, cards, activities: curriculum.activities, categories: deck.categories,
+    skills, questions, cards, activities: curriculum.activities, categories: deck.categories, sources, lectures,
   }));
 } else if (command === 'apply') {
   const dir = args[0];

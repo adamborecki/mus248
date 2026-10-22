@@ -109,6 +109,23 @@ test('curriculum and study deck reference things that exist', () => {
   (curriculum.coming_to_core || []).forEach((skill) => assert.ok(curriculum.skills[skill], `coming_to_core: ${skill}`));
 });
 
+test('every skill says which lecture or activity taught it', () => {
+  // The quiz overview and whoever writes next week's questions read this, so a new skill
+  // without a source, or a source naming a lecture or activity that doesn't exist, fails here.
+  const sources = load('skill-sources.json').skills;
+  const lectureData = JSON.parse(readFileSync(new URL('../../data/lectures.json', import.meta.url), 'utf8'));
+  const lectures = new Set((lectureData.lectures || lectureData).map(({ id }) => id));
+  const activities = new Set(curriculum.activities.map(({ id }) => id));
+  Object.keys(curriculum.skills).forEach((skill) => assert.ok(sources[skill], `skill-sources.json has no entry for ${skill}`));
+  Object.entries(sources).forEach(([skill, source]) => {
+    assert.ok(curriculum.skills[skill], `skill-sources.json lists ${skill}, which curriculum.json doesn't have`);
+    assert.ok(Boolean(source.lecture) !== Boolean(source.activity), `${skill}: give a lecture or an activity, not both`);
+    if (source.lecture) assert.ok(lectures.has(source.lecture), `${skill}: no lecture ${source.lecture} in data/lectures.json`);
+    if (source.activity) assert.ok(activities.has(source.activity), `${skill}: no activity ${source.activity} in curriculum.json`);
+    assert.equal(typeof source.confirmed, 'boolean', `${skill}: confirmed should be true/false`);
+  });
+});
+
 // ---------- State code ----------
 
 test('sha256 matches node:crypto', () => {
