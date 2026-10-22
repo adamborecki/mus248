@@ -18,8 +18,9 @@
 //
 // Never applied: `note` (an instruction to Claude, and this repo is public), deleted questions,
 // and questions whose id is not in the repo yet. Those are listed so a person decides.
-// `baseline` prints the editor's starting data from the repo; put it in the page's BASELINE
-// when republishing, and the page's "not in the repo yet" count starts from zero.
+// `baseline` prints the editor's starting data from the repo (`topic` is read-only there: it
+// groups the lists); put it in the page's BASELINE when republishing, and the page's "not in
+// the repo yet" count starts from zero.
 
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -50,7 +51,7 @@ if (command === 'baseline') {
     key, { label: bank.skills[key] ?? key, status },
   ]));
   const questions = bank.questions.map((q) => ({
-    id: q.id, skill: q.skill, level: q.level, gate: q.activity_gate ?? null, prompt: q.prompt,
+    id: q.id, skill: q.skill, topic: q.topic, level: q.level, gate: q.activity_gate ?? null, prompt: q.prompt,
     choices: [...q.choices], answer: q.answer_index, explanation: q.explanation,
     draft: Boolean(q.draft), verified: Boolean(q.verified),
   }));
