@@ -498,8 +498,13 @@ test('review list puts missed Core first, then bonus misses', () => {
 
 test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   const quiz1 = selectQuiz({ ...base, activities: { stereo: 1 } });
-  const missed = quiz1.find(({ id }) => byId[id].skill === 'phantom_power');
-  const answers = answerAll(quiz1, (question) => question.skill !== 'phantom_power');
+  // Which 12 Core skills a seed draws changes as skills are promoted, so miss whichever
+  // drawn skill has another verified question to come back as.
+  const missed = quiz1.find(({ id }) => bank.questions.filter((question) => question.skill === byId[id].skill
+    && question.id !== id && question.verified && !question.draft && !question.activity_gate
+    && question.level <= (curriculum.max_common_level ?? 1) && tierOf(curriculum, question) === 'core').length > 0);
+  const missedSkill = byId[missed.id].skill;
+  const answers = answerAll(quiz1, (question) => question.skill !== missedSkill);
   const payload = buildPayload({ curriculum, bank, attempt: attemptFor({ selection: quiz1, answers, activities: { stereo: 1, daw: 0 } }), appVersion: 'test' });
   assert.deepEqual(payload.act, { stereo: 1 });
   assert.equal(payload.n, 1);
@@ -515,16 +520,16 @@ test('Quiz 2 adapts to a pasted Quiz 1 code', () => {
   const week2 = { ...curriculum, quiz_number: 2 };
   for (let i = 0; i < 20; i += 1) {
     const quiz2 = selectQuiz({ curriculum: week2, bank, seed: `w2-${i}`, activities: { stereo: 1 }, prior });
-    const phantom = quiz2.filter(({ id }) => byId[id].skill === 'phantom_power');
+    const returned = quiz2.filter(({ id }) => byId[id].skill === missedSkill);
     // Only 12 of the Core skills are drawn each week, so a missed skill coming
     // back is the strongest guarantee the design makes — and it has to hold.
-    assert.equal(phantom.length, 1, 'missed Core skill should come back');
-    assert.notEqual(phantom[0].id, missed.id, 'missed skill should return as a different question');
+    assert.equal(returned.length, 1, 'missed Core skill should come back');
+    assert.notEqual(returned[0].id, missed.id, 'missed skill should return as a different question');
   }
 
   const quiz2 = selectQuiz({ curriculum: week2, bank, seed: 'w2', activities: { stereo: 1 }, prior });
   const payload2 = buildPayload({ curriculum: week2, bank, attempt: attemptFor({ selection: quiz2, answers: answerAll(quiz2), activities: { stereo: 1 }, prior, quiz: 2 }), appVersion: 'test' });
-  assert.equal(payload2.sk.phantom_power, '01');
+  assert.equal(payload2.sk[missedSkill], '01');
   assert.ok(Object.keys(prior.a).every((id) => payload2.seen.includes(id)));
 });
 

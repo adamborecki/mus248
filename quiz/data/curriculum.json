@@ -1,13 +1,19 @@
 {
   "schema": 1,
-  "quiz_number": 4,
+  "quiz_number": 5,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
     "3": { "label": "Quiz 3", "version": "2026-10-05", "access_code": "passivemonitors", "expected_minutes": 6, "window_minutes": 9 },
     "4": { "label": "Quiz 4", "version": "2026-10-12", "access_code": "muscomulticam", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["gig_families", "gig_workflow", "salmon_livestream", "musco_crew", "musco_recording",
-                          "sgk_kit", "sgk_audio", "sgk_cameras", "capture_types"] }
+                          "sgk_kit", "sgk_audio", "sgk_cameras", "capture_types"] },
+    "5": { "label": "Quiz 5", "version": "2026-10-19", "access_code": "githubrepo", "expected_minutes": 6, "window_minutes": 9,
+           "new_skills": ["repo", "commit", "fork", "pull_request", "markdown_basics", "frontier_model", "context_window",
+                          "ai_usage", "ai_ethics", "prompting"] },
+    "6": { "label": "Quiz 6", "version": "2026-10-26", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
+           "new_skills": ["github_pages", "mus248_sandbox", "markdown_vs_html", "readme_vs_index", "branch_workflow",
+                          "public_site_privacy"] }
   },
   "targets": {
     "graded_questions": 12
@@ -22,7 +28,7 @@
   "max_common_level": 1,
   "include_drafts": false,
   "review_next_max": 4,
-  "coming_to_core": ["two_destinations", "triple_check", "signal_levels", "preamp_power_amp", "power_adapters", "f8_workflow"],
+  "coming_to_core": ["repo", "commit", "fork", "pull_request", "markdown_basics", "frontier_model", "context_window", "ai_usage", "ai_ethics", "prompting"],
   "activities": [
     { "id": "daw", "label": "DAW Training Circuit" },
     { "id": "stereo", "label": "Basic Stereo Recording" },
@@ -55,18 +61,18 @@
     "aperture_iris": "core",
     "shutter_speed": "core",
     "iso_gain": "core",
-    "white_balance_kelvin": "practice",
+    "white_balance_kelvin": "core",
     "focus": "core",
     "mains_monitors": "core",
     "active_passive": "core",
     "safe_power_order": "core",
-    "feedback": "practice",
+    "feedback": "core",
     "exposure": "core",
-    "frame_rate": "practice",
+    "frame_rate": "core",
     "framing": "practice",
-    "live_signal_flow": "practice",
+    "live_signal_flow": "core",
     "outputs_routing": "practice",
-    "skill_areas": "practice",
+    "skill_areas": "core",
 
     "xy": "practice",
     "ab": "practice",
@@ -86,16 +92,16 @@
     "signal_levels": "practice",
     "preamp_power_amp": "practice",
     "mixer_orientation": "practice",
-    "connector_signal": "practice",
+    "connector_signal": "core",
 
-    "aux_sends": "practice",
+    "aux_sends": "core",
     "pre_post_fader": "practice",
     "pfl_solo": "practice",
     "mix_destinations": "practice",
 
-    "ac_dc": "practice",
-    "ac_cable_safety": "practice",
-    "power_adapters": "practice",
+    "ac_dc": "core",
+    "ac_cable_safety": "core",
+    "power_adapters": "core",
 
     "f8_basics": "practice",
     "f8_workflow": "practice",
@@ -109,7 +115,7 @@
 
     "gig_folders": "practice",
     "rse_stages": "practice",
-    "two_destinations": "practice",
+    "two_destinations": "core",
     "triple_check": "practice",
     "empty_trash": "practice",
 
@@ -133,7 +139,7 @@
     "dante_multi_output": "practice",
     "dante_channel_planning": "practice",
     "dante_troubleshooting": "practice",
-    "dante_signal_flow": "practice",
+    "dante_signal_flow": "core",
     "cable_ends": "practice",
     "video_connectors": "practice",
 
