@@ -1,6 +1,6 @@
 ---
-id: student-staff
-title: "Student Staff Handbook"
+id: employee-handbook
+title: "Student Employee Handbook (Draft)"
 emoji: "🎧"
 coreSkillAreas: []
 status: In Development
