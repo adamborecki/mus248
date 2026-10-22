@@ -1,5 +1,5 @@
 // Breadcrumbs: the trail at the top of every page below the front page (MUS 248 › Activities ›
-// Salmon Gig Checklist › Worksheet). Pages hand over their trail; this file decides how it looks,
+// Salmon Gig Checklist › Worksheet), ending in the Repo improvements button. Pages hand over their trail; this file decides how it looks,
 // so the hierarchy can change in one place. Section pages with a masthead (Lectures, Quiz, Study,
 // Worksheets) already read as "MUS 248 · Section" and don't use it.
 //
@@ -7,18 +7,19 @@
 // own URL, so the same links work on the live site, a branch preview, and localhost.
 
 import { REPO_IMPROVEMENT_FORM } from './feedback.js';
-import { DOC_TYPES, docType } from './catalog.js';
+import './feedback-picker.js';
+import { HUBS, docType, hubGroup } from './catalog.js';
 
 const ROOT = new URL('./', import.meta.url).href;
 
 const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
-// The middle step for anything in the activity catalog. Until the catalog has hub pages of its own,
-// it opens the front page's list already filtered to that type.
-export function catalogCrumb(entry) {
-  const type = docType(entry || {});
-  const { plural } = DOC_TYPES[type];
-  return [`${plural[0].toUpperCase()}${plural.slice(1)}`, `?type=${type}#catalog`];
+// The middle steps for anything in the activity catalog: its hub, then the heading it sits under
+// there (Checklists › Gig checklists), unless that heading is the hub's catch-all.
+export function catalogCrumbs(entry, directory = []) {
+  const hub = HUBS[docType(entry || {})];
+  const group = hubGroup(entry || {}, directory);
+  return [[hub.title, `${hub.route}/`], ...(group.named ? [[group.label, `${hub.route}/#${group.id}`]] : [])];
 }
 
 // trail: [label, href] pairs after "MUS 248". The last one is the page itself and needs no href.
@@ -29,8 +30,8 @@ export function crumbs(trail) {
     ? `<li aria-current="page">${escape(label)}</li>`
     : `<li><a href="${escape(ROOT + href)}">${escape(label)}</a></li>`)).join('');
   return `<nav class="crumbs no-print" aria-label="Breadcrumb"><ol>${items}</ol>`
-    + `<a class="crumbs-talk" href="${escape(REPO_IMPROVEMENT_FORM)}" target="_blank" rel="noopener" title="Repo Improvement form: tell us what worked and what didn't">`
-    + '<span aria-hidden="true">🗣️</span> Talk it out <span aria-hidden="true">↗</span></a></nav>';
+    + `<a class="crumbs-feedback" href="${escape(REPO_IMPROVEMENT_FORM)}" target="_blank" rel="noopener" data-feedback>`
+    + '<span aria-hidden="true">🛠️</span> Repo improvements</a></nav>';
 }
 
 // One small stylesheet for every page that shows a trail, whichever section stylesheet it loads.
@@ -49,7 +50,7 @@ function addStyles() {
 .crumbs a:hover { color:var(--ink, #1d1d1f); text-decoration:underline; }
 .crumbs a:focus-visible { outline:3px solid var(--accent, #0071e3); outline-offset:2px; border-radius:.15rem; }
 .crumbs [aria-current] { color:var(--ink, #1d1d1f); font-weight:600; }
-.crumbs .crumbs-talk { flex:none; color:var(--accent, #0071e3); font-weight:650; }
+.crumbs .crumbs-feedback { flex:none; color:var(--accent, #0071e3); font-weight:650; }
 @media (max-width:520px) { .crumbs { font-size:.82rem; gap:.5rem; } }
 @media print { .crumbs { display:none; } }`;
   document.head.append(style);

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MUS 248 reference: how a recording goes from gig to archive, signal flow, and the labs and simulators.">
+  <title>Reference · MUS 248</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-hub="reference">
+  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Reference</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <main>
+    <p class="quiet">The pages you read, not follow: how the job fits together, how the rooms are wired, and tools to
+      practice on. For step-by-step work on a gig, use a <a href="../checklists/">checklist</a>.</p>
+
+    <h2 class="section-title" id="guides">Guides</h2>
+    <nav class="site-nav" id="reference-list" aria-label="Guides"></nav>
+
+    <h2 class="section-title" id="signal-flow">Signal flow</h2>
+    <nav class="site-nav" aria-label="Signal flow">
+      <a class="nav-card" href="https://adamborecki.github.io/salmon/upstairs/" target="_blank" rel="noopener"><strong><span aria-hidden="true">🔀</span> BH 208 / BH 209 (above Salmon) <span aria-hidden="true">↗</span></strong><small>Interactive diagram of the upstairs audio and video rooms. Tap a device for details; every connection is marked confirmed, tentative, or unknown.</small></a>
+    </nav>
+    <p class="quiet">More rooms (Salmon FOH, OH B01, OH 207, Musco) as their diagrams are drawn and checked.</p>
+
+    <h2 class="section-title" id="labs">Labs &amp; simulators</h2>
+    <nav class="site-nav" aria-label="Labs and simulators">
+      <a class="nav-card" href="https://adamborecki.github.io/mixer-lab/" target="_blank" rel="noopener"><strong><span aria-hidden="true">🎚️</span> Mixer Lab <span aria-hidden="true">↗</span></strong><small>Patch real band stems into a virtual mixer: gain, a Main mix, and two monitor mixes.</small></a>
+      <a class="nav-card" href="https://adamborecki.github.io/camera-lab/" target="_blank" rel="noopener"><strong><span aria-hidden="true">📹</span> Camera Lab <span aria-hidden="true">↗</span></strong><small>A video camera simulator for exposure, motion, focus, and color, with the course&rsquo;s own cameras.</small></a>
+      <a class="nav-card" href="https://adamborecki.github.io/salmon/" target="_blank" rel="noopener"><strong><span aria-hidden="true">🐟</span> Salmon Simulator <span aria-hidden="true">↗</span></strong><small>Live sound in Salmon Recital Hall, built on real photos of the room.</small></a>
+      <a class="nav-card" href="https://github.com/adamborecki/sound-lab" target="_blank" rel="noopener"><strong><span aria-hidden="true">🔊</span> Sound Lab <span aria-hidden="true">↗</span></strong><small>Acoustics and synthesis stations, in the browser. (Opens the code on GitHub.)</small></a>
+    </nav>
+
+    <h2 class="section-title" id="code">The code behind these</h2>
+    <p class="quiet">Every page here is public on GitHub, and so are the labs:
+      <a href="https://github.com/adamborecki/mus248">mus248</a> (this site) ·
+      <a href="https://github.com/adamborecki/salmon">salmon</a> ·
+      <a href="https://github.com/adamborecki/mixer-lab">mixer-lab</a> ·
+      <a href="https://github.com/adamborecki/camera-lab">camera-lab</a> ·
+      <a href="https://github.com/adamborecki/sound-lab">sound-lab</a></p>
+  </main>
+  <footer>Canvas remains the place for submissions and grades.</footer>
+  <script type="module">
+    import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
+    import '../feedback-picker.js';
+    document.querySelectorAll('a[data-feedback]').forEach((link) => { link.href = REPO_IMPROVEMENT_FORM; });
+    // Reference pages from the catalog (data/activities.json, "type": "reference").
+    const list = document.getElementById('reference-list');
+    fetch('../data/activities.json')
+      .then((response) => response.json())
+      .then((directory) => {
+        list.innerHTML = directory.filter((entry) => entry.type === 'reference').map((entry) => `
+          <a class="nav-card" href="../${entry.route}/"><strong><span aria-hidden="true">${entry.emoji}</span> ${entry.title}</strong><small>${entry.time}</small></a>`).join('');
+      })
+      .catch(() => { list.innerHTML = '<p class="error">The list could not be loaded.</p>'; });
+  </script>
+</body>
+</html>

@@ -113,7 +113,9 @@ checker fails on a quiz access code or a form/Drive folder link, but it can't sp
 per-activity Canvas discussions) lives in one place, `feedback.js`. Every activity page, checklist,
 student worksheet, lecture page, lecture deck (its last slide), and printed follow-along notes ends
 with it as a link and a QR code, and it's the one form link the checker
-allows in lectures. Changing the form means changing that one line.
+allows in lectures. Changing the form means changing that one line. The **Repo improvements**
+button (breadcrumbs, front page, hubs) opens `feedback-picker.js`: the form by default, or a GitHub
+issue (`REPO_ISSUES`, same file) for anyone with an account.
 
 **Every week opens the same way:** an upcoming lecture's first section is `## 📣 Announcements`, and
 its first slide is `### Homework review`. That slide opens with two lines: `**Today:** Week 10 · Class 9`
@@ -269,7 +271,9 @@ live-teaching-week quiz change is worth a pause and a question before it goes li
 `README.md` has the full map. In short: folders that are URLs at the top level, sources in
 `content/` and `data/`, shared front-end (`markdown.js`, `activity.js`, `worksheet.js`) at the
 root, scripts in `tools/`. Breadcrumbs come from `crumbs.js`: a page passes its trail, and that
-file owns the look and the middle steps (`catalogCrumb`), so the hierarchy changes in one place.
+file owns the look and the middle steps (`catalogCrumbs`), so the hierarchy changes in one place.
+The middle steps are the hub (`/activities/`, `/checklists/`, `/reference/`) and the heading the
+entry sits under there (`hubGroup` in `catalog.js`: checklists by kind, activities by `family`).
 
 ## A note on care
 

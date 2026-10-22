@@ -92,3 +92,28 @@ export function settingsChips(entry) {
   return yes.map((setting) => chip(setting.emoji, setting.label)).join('')
     + (unsure.length ? chip('❓', `Confirm with instructor: ${unsure.map((setting) => setting.short).join(', ')}`) : '');
 }
+
+// Each type has a hub page of its own (/activities/, /checklists/, /reference/), and the hub sorts
+// its entries under headings. Breadcrumbs follow the same two levels.
+export const HUBS = {
+  activity: { route: 'activities', title: 'Activities' },
+  checklist: { route: 'checklists', title: 'Checklists' },
+  reference: { route: 'reference', title: 'Reference' },
+};
+
+const slug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// The heading an entry sits under on its hub: checklists by kind; activities by family, but only
+// a family with two or more activities gets a heading. Everything else shares a catch-all, which
+// the breadcrumb leaves out (`named` is false).
+export function hubGroup(entry, directory) {
+  const type = docType(entry);
+  if (type === 'checklist') {
+    return KINDS[entry.kind]
+      ? { id: entry.kind, label: KINDS[entry.kind].plural, named: true }
+      : { id: 'other', label: 'Other checklists', named: true };
+  }
+  const family = entry.family && directory.filter((other) => docType(other) === type && other.family === entry.family).length > 1;
+  if (family) return { id: slug(entry.family), label: entry.family, named: true };
+  return { id: 'more', label: type === 'activity' ? 'More activities' : 'Guides', named: false };
+}

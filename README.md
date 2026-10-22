@@ -14,7 +14,8 @@ The activity hub for MUS 248 — the hands-on side of learning to record concert
 ## 📋 What's actually here
 
 ### 🛠️ Activities
-The front page. Each card is a self-contained lesson with:
+`/activities/`, `/checklists/`, and `/reference/` each list one type, grouped under headings (the
+front page links to all three). Each activity is a self-contained lesson with:
 
 - ✅ What you'll practice
 - 🧰 The gear you need
@@ -121,6 +122,7 @@ PAGES — every folder here is a URL on the live site
   sushi/               the Sushi work board, plus its Apps Script backend source (sushi/backend/)
                        and tests. See sushi/README.md
   worksheets/          index of every printable worksheet
+  activities/, checklists/, reference/   the hub pages (new folders, so no old URL moved)
 
 SOURCE — never served as a page
   content/activities/  activity Markdown (the source of truth) and its media/
@@ -139,10 +141,12 @@ SHARED FRONT-END
   markdown.js          the Markdown renderer, used by page and worksheet alike
   activity.js/.css     the activity page
   worksheet.js/.css    the worksheet and answer key
-  app.js, styles.css   the front page
+  app.js, styles.css   the front page: a map of the sections
+  hub.js               the /activities/ and /checklists/ hubs (grouping, filters)
   catalog.js           labels for the catalog's optional type and settings fields
-  crumbs.js            the breadcrumb trail (MUS 248 › Checklists › …) and its Talk it out link;
-                       every page below the front page gets its trail from here
+  crumbs.js            the breadcrumb trail (MUS 248 › Checklists › Gig checklists › …) and its
+                       Repo improvements button; every page below the front page gets its trail here
+  feedback-picker.js   that button's dialog: 📥 the Google Form (default) or a 🐙 GitHub issue
 ```
 
 **Why activity folders sit at the top level next to `content/` and `data/`:** the folder path *is*

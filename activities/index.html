@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hands-on MUS 248 activities: learn the gear by doing.">
+  <title>Activities · MUS 248</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-hub="activity">
+  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Activities</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <main>
+    <p class="quiet">Learn the gear by doing it. Each activity teaches one skill, start to finish, and has a worksheet to print.</p>
+    <fieldset id="where-picker" class="where-picker">
+      <legend>Where do you want to work?</legend>
+      <label class="where-toggle"><input type="checkbox" value="class"><span><span class="where-icon" aria-hidden="true">🏫</span>During class</span></label>
+      <label class="where-toggle"><input type="checkbox" value="home"><span><span class="where-icon" aria-hidden="true">🏠</span>At home</span></label>
+      <label class="where-toggle"><input type="checkbox" value="outsideClass"><span><span class="where-icon" aria-hidden="true">🔑</span>On campus, outside class</span></label>
+    </fieldset>
+    <section class="filters" aria-label="Filter">
+      <span class="filters-label">Filter</span>
+      <select id="skill-filter" aria-label="Skill area"><option value="all">All skill areas</option></select>
+      <button type="button" id="clear-filters" class="clear-filters" hidden>Clear filters</button>
+      <p id="activity-count" aria-live="polite"></p>
+    </section>
+    <section id="activity-list" aria-label="Activities"></section>
+    <p class="ri-more"><a href="../worksheets/"><span aria-hidden="true">🖨️</span> Print a stack of worksheets <span aria-hidden="true">→</span></a></p>
+  </main>
+  <footer>Canvas remains the place for submissions and grades.</footer>
+  <script type="module" src="../hub.js"></script>
+</body>
+</html>
