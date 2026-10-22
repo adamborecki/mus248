@@ -1,4 +1,4 @@
-import { buildPayload, choiceOrder, indexQuestions, missedSkills, randomId, reviewSkills, selectBonus, selectQuiz, shouldOfferBonus, statusOf } from './engine.js';
+import { buildPayload, choiceOrder, indexQuestions, isQuizOpen, missedSkills, randomId, reviewSkills, selectBonus, selectQuiz, servedQuiz, shouldOfferBonus, statusOf } from './engine.js';
 import { escapeHtml } from './html.js';
 import { CODE_ERRORS, mountCodeBox, readSavedCode, writeSavedCode } from './saved-code.js';
 import { decodeStateCode, encodeStateCode, findStateCodes } from './state-code.js';
@@ -91,6 +91,10 @@ const normalizeCode = (value) => String(value ?? '').trim().toLowerCase().replac
 // To close a makeup window, delete that quiz's entry — its code stops working.
 const quizConfig = (curriculum, number) => curriculum.quizzes?.[String(number)];
 
+// A quiz that hasn't opened yet can't be started, except in debug mode, so it can be rehearsed.
+const canStart = (number) => DEBUG || isQuizOpen(quizConfig(data.curriculum, number));
+const opensText = (iso) => new Date(iso).toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+
 // The quiz number a code opens, or null if it opens nothing.
 function quizForCode(curriculum, value) {
   const code = normalizeCode(value);
@@ -155,7 +159,11 @@ function renderGate() {
   const input = app.querySelector('#access-code');
   const tryUnlock = () => {
     const opens = quizForCode(data.curriculum, input.value);
-    if (opens !== null) {
+    if (opens !== null && !canStart(opens)) {
+      const status = app.querySelector('#access-status');
+      status.className = 'status error';
+      status.textContent = `${quizConfig(data.curriculum, opens).label || `Quiz ${opens}`} opens ${opensText(quizConfig(data.curriculum, opens).opens)}.`;
+    } else if (opens !== null) {
       enterQuiz(opens);
     } else {
       const status = app.querySelector('#access-status');
@@ -195,6 +203,8 @@ async function init() {
   );
   data = { curriculum, bank, deck, byId: indexQuestions(bank) };
 
+  // quiz_number is the newest quiz set up; the one served is the newest that has opened.
+  curriculum.quiz_number = servedQuiz(curriculum);
   const announced = quizConfig(curriculum, curriculum.quiz_number);
   if (!announced) return renderNoCodeSet(curriculum);
   announcedQuiz = curriculum.quiz_number;
@@ -204,7 +214,7 @@ async function init() {
   if (!normalizeCode(announced.access_code)) return afterUnlock();
 
   const fromUrl = quizForCode(curriculum, params.get('code'));
-  if (fromUrl !== null) return enterQuiz(fromUrl);
+  if (fromUrl !== null && canStart(fromUrl)) return enterQuiz(fromUrl);
 
   // A saved unlock only resumes the announced quiz. Sitting an earlier one is a
   // deliberate act, so a makeup asks for its code every time.

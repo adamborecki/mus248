@@ -5,7 +5,7 @@
 // It's a view, not a lock: the codes are in quiz/data/curriculum.json, which is public anyway.
 
 import { instructorView } from '../../lectures/view.js';
-import { tierOf } from '../js/engine.js';
+import { isQuizOpen, servedQuiz, tierOf } from '../js/engine.js';
 
 const app = document.getElementById('app');
 const esc = (text) => String(text ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -15,8 +15,7 @@ const load = (path) => fetch(path).then((response) => {
 });
 
 if (!instructorView()) {
-  app.innerHTML = `<h2>Instructor view only</h2>
-    <p class="quiet">This page lists the quiz access codes. Turn on instructor view (the faint π at the foot of any lecture page) and come back.</p>`;
+  app.innerHTML = '<h2>Instructor view only</h2>';
 } else {
   main().catch((error) => {
     app.innerHTML = `<p class="notice">The quiz data didn’t load (${esc(error.message)}). Check your connection and refresh.</p>`;
@@ -99,16 +98,21 @@ async function main() {
     offSkill: questions.filter((q) => !q.draft && q.role === 'off').length,
     unconfirmed: skills.filter((s) => !s.source.confirmed).length,
   };
-  let selected = curriculum.quiz_number;
+  const served = servedQuiz(curriculum);
+  let selected = served;
 
   function quizCard(quiz) {
-    const now = quiz.number === curriculum.quiz_number;
+    const now = quiz.number === served;
+    const future = !isQuizOpen(quiz);
+    const badge = now ? '<span class="badge core">Served now</span>'
+      : future ? `<span class="badge bonus">Opens ${esc(opensText(quiz.opens))}</span>`
+        : '<span class="badge plain">Code still works · shows “makeup”</span>';
     const fresh = quiz.new_skills || [];
     const bySource = {};
     fresh.forEach((skill) => { (bySource[sourceOf(skill)] ||= []).push(skill); });
     const clock = quiz.expected_minutes ? `${quiz.expected_minutes} min expected · ${quiz.window_minutes} min window` : 'Untimed';
     return `<article class="qz${now ? ' is-now' : ''}${quiz.number === selected ? ' is-selected' : ''}" data-quiz="${quiz.number}">
-      <div class="qz-top"><h3>${esc(quiz.label)}</h3>${now ? '<span class="badge core">Served now</span>' : '<span class="badge plain">Code still works · shows “makeup”</span>'}</div>
+      <div class="qz-top"><h3>${esc(quiz.label)}</h3>${badge}</div>
       <p class="qz-date">${esc(formatDate(quiz.version))}</p>
       <p class="qz-code"><code>${esc(quiz.access_code || '(no code)')}</code>${quiz.access_code ? `<button type="button" class="text-button" data-copy="${esc(quiz.access_code)}">Copy</button>` : ''}</p>
       <p class="quiet small">${esc(clock)}</p>
@@ -168,7 +172,7 @@ async function main() {
     app.innerHTML = `
       <section class="intro">
         <h2>Access codes</h2>
-        <p class="quiet">The code picks the quiz. The site serves <strong>Quiz ${curriculum.quiz_number}</strong> now; any other code still runs its quiz, labeled “makeup”. Every code draws from the same questions as they stand today. Quizzes differ only in date, clock, and which skills go first in the bonus queue.</p>
+        <p class="quiet">The code picks the quiz. The site serves <strong>Quiz ${served}</strong> now; an earlier code still runs its quiz, labeled “makeup”, and a quiz with an opening time can’t be started before then (except with Rehearse). Every code draws from the same questions as they stand today. Quizzes differ only in date, clock, and which skills go first in the bonus queue.</p>
       </section>
       <div class="qz-grid">${quizzes.map(quizCard).join('')}</div>
 
@@ -224,6 +228,10 @@ async function main() {
   });
 
   render();
+}
+
+function opensText(iso) {
+  return new Date(iso).toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 
 function formatDate(iso) {

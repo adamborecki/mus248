@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { decodeStateCode, encodeStateCode, findStateCodes, sha256Hex } from '../js/state-code.js';
-import { buildPayload, choiceOrder, missedSkills, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, shouldOfferBonus, tierOf } from '../js/engine.js';
+import { buildPayload, choiceOrder, isQuizOpen, missedSkills, parseResult, resolveScoring, reviewSkills, scoreAttempt, selectBonus, selectQuiz, servedQuiz, shouldOfferBonus, tierOf } from '../js/engine.js';
 
 const load = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 const curriculum = load('curriculum.json');
@@ -57,6 +57,22 @@ test('each quiz entry is complete and self-consistent', () => {
     assert.equal(typeof quiz.access_code, 'string',
       `quizzes["${number}"].access_code must be a string ("" means no code for that quiz)`);
   });
+});
+
+test('a quiz with an opening time switches itself on, and not before', () => {
+  // Next week's quiz is set up ahead of time with `opens`; until then its code doesn't run it
+  // and the site keeps serving the newest quiz that has opened.
+  Object.entries(quizzes).forEach(([number, quiz]) => {
+    if (quiz.opens === undefined) return;
+    assert.match(quiz.opens, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(Z|[+-]\d{2}:\d{2})$/,
+      `quizzes["${number}"].opens needs a date, a time, and an offset like -07:00, got "${quiz.opens}"`);
+  });
+  const c = { quiz_number: 3, quizzes: { 1: {}, 2: {}, 3: { opens: '2026-10-26T07:00:00-07:00' } } };
+  assert.equal(servedQuiz(c, Date.parse('2026-10-26T06:59:00-07:00')), 2, 'served the next quiz before it opened');
+  assert.equal(servedQuiz(c, Date.parse('2026-10-26T07:00:00-07:00')), 3, 'did not switch when it opened');
+  assert.equal(isQuizOpen(c.quizzes[3], Date.parse('2026-10-25T22:00:00-07:00')), false);
+  assert.equal(isQuizOpen(c.quizzes[1], 0), true, 'a quiz with no opening time is always open');
+  assert.ok(quizzes[String(servedQuiz(curriculum))], 'the quiz served now has an entry');
 });
 
 test('each access code opens exactly one quiz', () => {

@@ -32,6 +32,18 @@ export function parseResult(value) {
 
 export const statusOf = (curriculum, skill) => curriculum.skills?.[skill] || 'inactive';
 
+// A quiz entry may say when it `opens` (ISO time with offset). Before then its code doesn't
+// run it, and the site keeps serving the newest quiz that has opened, up to quiz_number. So
+// next week's quiz can be set up ahead of time and switch itself on.
+export const isQuizOpen = (quiz, now = Date.now()) => !quiz?.opens || Date.parse(quiz.opens) <= now;
+export function servedQuiz(curriculum, now = Date.now()) {
+  const open = Object.entries(curriculum.quizzes || {})
+    .map(([number, quiz]) => [Number(number), quiz])
+    .filter(([number, quiz]) => number <= curriculum.quiz_number && isQuizOpen(quiz, now))
+    .map(([number]) => number);
+  return open.length ? Math.max(...open) : curriculum.quiz_number;
+}
+
 // A question's own tier: its skill's status unless the question sets `tier` to
 // override it — a Core skill can hold a question that leans on material students
 // haven't practiced yet, and a Practice skill can hold one that's fair to grade.

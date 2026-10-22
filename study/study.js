@@ -4,7 +4,7 @@
 // With a quiz code saved on the device (pasted here, on the quiz's first screen, or earned
 // by taking the quiz) a fourth level appears: Missed — the cards for skills the student
 // got wrong, most recent quiz first. The code never leaves the browser.
-import { missedSkills } from '../quiz/js/engine.js';
+import { missedSkills, servedQuiz } from '../quiz/js/engine.js';
 import { escapeHtml } from '../quiz/js/html.js';
 import { mountCodeBox, savedState } from '../quiz/js/saved-code.js';
 
@@ -215,7 +215,8 @@ async function init() {
   state.cards = deck.cards.filter((card) => statusOf(card.skill) !== 'inactive');
   state.categories = deck.categories.filter((category) => state.cards.some((card) => card.category === category));
   // The label lives in the quizzes map, keyed by the announced quiz number.
-  const quizLabel = curriculum.quizzes?.[String(curriculum.quiz_number)]?.label || `Quiz ${curriculum.quiz_number}`;
+  const served = servedQuiz(curriculum);
+  const quizLabel = curriculum.quizzes?.[String(served)]?.label || `Quiz ${served}`;
   document.getElementById('study-label').textContent = `Study cards · ${quizLabel}`;
   document.title = `Study Cards · ${quizLabel} · MUS 248`;
 

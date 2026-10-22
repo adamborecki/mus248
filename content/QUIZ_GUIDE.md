@@ -43,9 +43,10 @@ week, and a copied question tests memory of the wording.
    quiz with `?code=…&debug=1&window=0.5&expected=0.2`.
 9. **Republish the editor** with a fresh baseline (`node tools/editor-sync.mjs baseline`) so the
    new questions show up there for review.
-10. **Switching the announced quiz** (`quiz_number`) between quizzes: any code works any time, but
-   the quiz labels every quiz except `quiz_number` “makeup” and tells students to submit it to that
-   quiz's Canvas assignment. So `quiz_number` should be the quiz students are taking that week.
+10. **Set next week's quiz up early** with `"opens"` on its entry (a time with offset, e.g.
+   `2026-10-26T07:00:00-07:00`) and `quiz_number` pointing at it. Until then its code only says
+   when it opens, and the site keeps serving the newest open quiz. Earlier quizzes' codes keep
+   working, labeled “makeup”, so students submit them to that quiz's Canvas assignment.
 
 ## Skills
 

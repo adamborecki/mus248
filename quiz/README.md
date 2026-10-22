@@ -38,7 +38,7 @@ All of it lives in `data/curriculum.json`:
    }
    ```
 
-   `quiz_number` is the quiz the class takes this week. Each entry carries its own label, date, and code.
+   `quiz_number` is the newest quiz set up. Each entry carries its own label, date, and code. To set next week's quiz up early, give it `"opens": "2026-10-26T07:00:00-07:00"` (a time with its offset) and point `quiz_number` at it: until then its code says when it opens, the site keeps serving the newest quiz that has opened, and it switches itself on at that time. `?debug=1` can still start it, for rehearsing.
 
 2. **The access code selects which quiz runs, not just whether you get in.** Enter Quiz 1’s code and you take Quiz 1, even in a week when the class is on Quiz 2 — that is the makeup path for a student who missed a week. The makeup is labelled on screen (“Quiz 1 · makeup”), tells the student to submit it to *that* quiz’s Canvas assignment, and produces an `M248Q1…` code the verify page scores as Quiz 1.
 

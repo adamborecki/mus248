@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "quiz_number": 5,
+  "quiz_number": 6,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
@@ -11,7 +11,7 @@
     "5": { "label": "Quiz 5", "version": "2026-10-19", "access_code": "githubrepo", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["repo", "commit", "fork", "pull_request", "markdown_basics", "frontier_model", "context_window",
                           "ai_usage", "ai_ethics", "prompting"] },
-    "6": { "label": "Quiz 6", "version": "2026-10-26", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
+    "6": { "label": "Quiz 6", "version": "2026-10-26", "opens": "2026-10-26T07:00:00-07:00", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["github_pages", "mus248_sandbox", "markdown_vs_html", "readme_vs_index", "branch_workflow",
                           "public_site_privacy"] }
   },
