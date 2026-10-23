@@ -76,6 +76,8 @@ one — decide on purpose, not by accident.
 - Correct answers live inline: `- ✅ c) 9 dB` on the right option, or `✅ **Answer.** …` for a
   question with no options. Both student renders strip them; the answer key is generated from
   them. Every question must have one.
+- `## 🕹️ Practice first` holds links to simulators (one bullet each, link first); the worksheet
+  prints them as QR codes. Details in `content/DOCUMENTATION_GUIDE.md`, "Linking across repos"
 - Blanks to write on are runs of underscores: `F______ · ______ dB`
 - Images go in `content/activities/media/<activity>/` and are referenced relative to the Markdown
   (`media/salmon/desk.jpg`); the renderer resolves the base. A line that is only an image becomes

@@ -102,3 +102,8 @@ Mark changed steps in proposals:
 - Keep every link inside this site relative, so pages work both at the root and under
   `/branch/<slug>/` previews. In activity Markdown, write links relative to the Markdown file,
   the same way as images: `[Salmon Gig Checklist](../../salmon-gig-checklist/)`.
+- A simulator or page worth rehearsing on before the activity goes in a `## 🕹️ Practice first`
+  section, one bullet each, starting with its link: `- [Mixer Lab: Vocal Jazz](https://…): what it
+  rehearses`. The page shows the links; the worksheet prints each one as a QR code (paper can't
+  click). The section isn't a numbered step. A link to one scenario next to the step it rehearses
+  can go in a plain line under that step, not a bullet, so it doesn't renumber the steps.

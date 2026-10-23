@@ -6,7 +6,7 @@ coreSkillAreas:
   - Live Sound
   - Audio Capture
 status: In Development
-revised: "2026-10-20"
+revised: "2026-10-23"
 estimatedTime: "Not a timed drill. Arrive about 4:30 PM; the setup has to fit the gap after Singers rehearsal ends."
 access:
   mode: On campus
@@ -44,6 +44,19 @@ step below checks that. If the last person didn't reset it, fix the routing befo
 **wireless handheld** · **receiver** · **LOCAL input** · **AES50** · **stage box** · **Bus 1** ·
 **wedge** · **speakON** · **daisy chain** · **line check** · **low cut** · **Dante** ·
 **Dante Virtual Soundcard** · **one-to-one routing**
+
+## 🕹️ Practice first
+
+Two browser simulators rehearse this gig before you're in the room. A phone works for both.
+
+- [Mixer Lab: Vocal Jazz in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-vj-local): eight faults from this checklist and
+  the reset, on a virtual X32 with this gig's rig (thirteen handhelds, the S32, the NX3000 and three
+  wedges). Free play on the X32 has it too: pick **Song: Vocal Jazz in Salmon**.
+- [Salmon: Ready by 5:00](https://adamborecki.github.io/salmon/battery-check/): the Vocal Jazz scenario, in photos of the real hall.
+  It's 4:50 PM: pick the mics or the monitors, then run the line check.
+
+Neither one has the Dante recording in Logic yet, and both are still being built: where a simulator
+and this checklist disagree, the checklist wins. Tell your supervisor what you found.
 
 ## 🧰 Equipment and materials
 
@@ -94,6 +107,10 @@ step below checks that. If the last person didn't reset it, fix the routing befo
 - 🚩 Don't count on a saved scene. Scene **01: SALMON-DEFAULT** exists, but check each setting
   above yourself.
 
+🕹️ In Mixer Lab: [Thirteen mics, no meters](https://adamborecki.github.io/mixer-lab/#/x32-vj-local) (the routing),
+[Somebody helped](https://adamborecki.github.io/mixer-lab/#/x32-vj-gain) (the gains), and
+[The reset was never done](https://adamborecki.github.io/mixer-lab/#/x32-vj-lowcut) (low cut and dynamics).
+
 ![The X32's ROUTING → INPUT page as it should be: Local 1-8, Local 9-16, Local 17-24, and AES50 A25-32 for the stage box. The top bar shows the S32 on AES50 A and the Dante card on C. Channel 11 is named for its mic: G yellow (gray windscreen, yellow ring).](media/vocal-jazz/x32-input-routing.jpg)
 
 ## 🔊 Monitors — the monitor engineer
@@ -110,6 +127,10 @@ step below checks that. If the last person didn't reset it, fix the routing befo
 - 🚩 Set the wedges in an **arc that opens toward the mixer**, each one **facing out toward the
   performers**.
 
+🕹️ In Mixer Lab: [Silent wedges](https://adamborecki.github.io/mixer-lab/#/x32-vj-amp) (the amp's input) and
+[The right-hand wedge is dead](https://adamborecki.github.io/mixer-lab/#/x32-vj-chain) (the speakON chain). In Salmon:
+[Ready by 5:00](https://adamborecki.github.io/salmon/battery-check/), and pick the monitors.
+
 ## 🎤 Mics and batteries — the mic engineer
 
 - 🚩 The mics are named by **windscreen**, then **ring color**. **Black** windscreens are 1–8,
@@ -121,6 +142,8 @@ step below checks that. If the last person didn't reset it, fix the routing befo
   hold** to switch it on.
 - 🚩 Talk into each mic at the X32 and watch **its own channel's meter** move. A mic that shows on
   the wrong channel, or not at all, gets set aside for a spare. Don't send it to the stage.
+
+🕹️ In Salmon: [Ready by 5:00](https://adamborecki.github.io/salmon/battery-check/), and pick the mics.
 
 ## 🔈 Wedge check, then line check
 
@@ -156,6 +179,11 @@ Work down this list in order and stop when it's fixed.
 - 🚩 **Check the mains.** If the mic comes through the mains, the mic and the X32 channel are
   fine. Look at the monitor path you set up instead.
 - 🚩 Last: the **routing** on the X32, or **Dante**.
+
+🕹️ In Mixer Lab: [Mic 8 is dead everywhere](https://adamborecki.github.io/mixer-lab/#/x32-vj-muted),
+[Mic 5 can't hear themselves](https://adamborecki.github.io/mixer-lab/#/x32-vj-send), and
+[The mics work, the wedges don't](https://adamborecki.github.io/mixer-lab/#/x32-vj-link). Salmon's
+[Ready by 5:00](https://adamborecki.github.io/salmon/battery-check/) ends on the line check, with things going wrong.
 
 ## 🎛️ Optional — multitrack test recording (Dante → Logic)
 

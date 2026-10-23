@@ -60,6 +60,14 @@ check(!renderMarkdown(fencedSample).includes('<h2>'), 'a heading inside a code b
 check(parseActivity(['```', '**Q1 (short answer).** Not a question', '```'].join('\n')).questions.length === 0, 'a question inside a code block was parsed');
 check(notesBlanks(fencedSample).length === 0, 'a ==blank== inside a code block was collected');
 
+// "## 🕹️ Practice first" links print as QR codes (relative ones made absolute), and aren't numbered steps.
+const practiceSample = parseActivity(['## 🕹️ Practice first', '', '- [Mixer Lab](https://example.com/lab/#/x): eight faults', '- [Reset](../../vocal-jazz-reset/): the reset', '', '## 🚗 Arrival', '', '- 🚩 Arrive'].join('\n'));
+const practiceSheet = renderWorksheet(practiceSample, { directory: { type: 'checklist' } });
+check(practiceSample.practice.length === 2 && practiceSample.practice[0].note === 'eight faults', 'Practice first links were not collected');
+check(practiceSheet.includes('— https://example.com/lab/#/x') && practiceSheet.includes('— https://adamborecki.github.io/mus248/vocal-jazz-reset/'),
+  'Practice first links did not print as QR codes with absolute URLs');
+check(practiceSample.checkpoints[0].id === '1.1', 'Practice first bullets were numbered as checklist steps');
+
 // Portals collapse; instructor notes are marked so they look different when instructor view shows them.
 check(/<details class="portal"><summary>.*Peek<\/summary><p>Hidden text<\/p><\/details>/.test(renderMarkdown('> 🌀 **Peek.** Hidden text')),
   'a > 🌀 portal did not render as a collapsed details block');
