@@ -163,7 +163,8 @@ code block, where it doesn't count. A ``` fence shows its lines exactly, for raw
 **The online refresher** comes from the lecture's `**Qn (type).**` questions (same format and
 numbering rules as activities, never inside a 🙈 slide). They are taken off the page, slides, and
 notes (`stripQuestions` in `worksheet.js`) and live only at `lectures/refresher/?id=…`: three tries
-each, then the answer; every question ends on its `✅ **Answer.**` line, so write that as the
+each, then the answer (after one miss, **👀 Peek** shows the filled-in notes at that question's slide; the
+receipt counts peeks); every question ends on its `✅ **Answer.**` line, so write that as the
 **main point**, not just the answer. A `(fill in the blank)` question marks its answer in the prompt,
 `==context window==` (`==repo|repository==` accepts either). It tracks tries, clicks, and time, and
 ends in a **Copy Canvas deliverable** (summary + JSON receipt with a SHA-256 checksum, camera-lab's

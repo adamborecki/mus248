@@ -11,10 +11,15 @@
 //   short answer         written, not graded; submitting shows the main point
 // It records tries, clicks, and active time per question, for the instructor to see where people
 // got stuck. Nothing leaves the browser except what the student pastes into Canvas.
+//
+// 👀 Peek: after one miss (right away for a short answer), a question can open the follow-along
+// notes, filled in, at the slide it's about: a sheet over the page on a phone, a side panel on a
+// wide screen. Peeks are counted in the deliverable; they don't cost a try.
 
-import { blankShown, escapeHtml, inline } from '../markdown.js';
+import { blankShown, escapeHtml, inline, renderMarkdown } from '../markdown.js';
 import { parseActivity } from '../worksheet.js';
 import { crumbs } from '../crumbs.js';
+import { notesMarkdown } from './notes.js';
 import { instructorView, isVisible, lectureView, numberSlides } from './view.js';
 
 export const SCHEMA = 'mus248-refresher-v1';
@@ -76,12 +81,14 @@ export function deliverable(lecture, questions, state, feedback = '') {
       tries: item.tries || 0,
       clicks: item.clicks || 0,
       seconds: Math.round((item.ms || 0) / 1000),
+      peeks: item.peeks || 0,
       answer,
     };
   });
   const done = items.filter((item) => item.status !== 'skipped').length;
   const firstTry = items.filter((item) => item.status === 'right' && item.tries === 0).length;
   const minutes = Math.round((items.reduce((sum, item) => sum + item.seconds, 0) / 60) * 10) / 10;
+  const peeked = items.filter((item) => item.peeks).length;
   const describe = (item) => {
     if (item.status === 'skipped') return 'skipped';
     if (item.status === 'answered') return `answered: "${item.answer}"`;
@@ -90,8 +97,8 @@ export function deliverable(lecture, questions, state, feedback = '') {
   };
   const lines = [
     `MUS 248 online refresher: ${lecture.title}`,
-    `Done ${done} of ${items.length} · right on the first try: ${firstTry} · about ${minutes} min`,
-    ...items.map((item) => `Q${item.q} (${item.type}): ${describe(item)} · ${item.clicks} click${item.clicks === 1 ? '' : 's'} · ${item.seconds}s`),
+    `Done ${done} of ${items.length} · right on the first try: ${firstTry} · peeked at the notes on ${peeked} · about ${minutes} min`,
+    ...items.map((item) => `Q${item.q} (${item.type}): ${describe(item)}${item.peeks ? ' · 👀 peeked' : ''} · ${item.clicks} click${item.clicks === 1 ? '' : 's'} · ${item.seconds}s`),
     ...(feedback.trim() ? [`Feedback: ${feedback.trim()}`] : []),
   ];
   const payload = {
@@ -169,9 +176,59 @@ function card(question, item = {}) {
       ? `<p class="fill-yours">You wrote: ${escapeHtml(item.text || '')}</p>${pointHtml}`
       : `<textarea class="fill-text" rows="3" placeholder="Your answer">${escapeHtml(item.text || '')}</textarea><button type="button" class="fill-check">Done</button>`;
   }
+  const canPeek = Boolean(status) || tries > 0 || (!question.options.length && !question.terms.length);
+  const peek = `<p class="fill-peek-row"><button type="button" class="fill-peek"${canPeek ? '' : ' disabled'}>👀 Peek at the notes</button>`
+    + `${canPeek ? '' : ' <small class="quiet">opens after one miss</small>'}</p>`;
   return `<li class="fill-card${status ? ' done' : ''}" id="q${question.number}" data-number="${question.number}">`
     + `${question.section ? `<em class="fill-where">${escapeHtml(question.section)}</em>` : ''}`
-    + `<p class="fill-prompt"><span class="q-number">Q${question.number}</span> ${prompt}</p>${body}</li>`;
+    + `<p class="fill-prompt"><span class="q-number">Q${question.number}</span> ${prompt}</p>${body}${peek}</li>`;
+}
+
+// The peek panel: the follow-along notes, filled in, grouped by slide the way presenter view groups
+// them. It lives outside the refresher's root, so answering a question doesn't close it.
+function peekPanel(markdown) {
+  const panel = document.createElement('aside');
+  panel.className = 'peek';
+  panel.hidden = true;
+  panel.setAttribute('aria-label', 'Follow-along notes, filled in');
+  panel.innerHTML = `<div class="peek-backdrop" data-close></div>
+    <div class="peek-sheet" role="dialog" aria-modal="false" aria-labelledby="peek-title">
+      <header class="peek-head"><strong id="peek-title">📝 Notes, filled in</strong>
+        <button type="button" class="peek-close" data-close aria-label="Close the notes">✕</button></header>
+      <div class="peek-body"></div>
+    </div>`;
+  const body = panel.querySelector('.peek-body');
+  const holder = document.createElement('div');
+  holder.innerHTML = renderMarkdown(notesMarkdown(markdown), { assetBase: '../../content/lectures/', blanks: 'mark' });
+  let group = document.createElement('section');
+  [...holder.children].forEach((node) => {
+    if (node.tagName === 'H2' || node.tagName === 'H3') {
+      body.append(group);
+      group = document.createElement('section');
+      group.dataset.title = normalize(node.textContent);
+    }
+    group.append(node);
+  });
+  body.append(group);
+  // Links in the notes would leave the refresher mid-question; the notes are for reading here.
+  body.querySelectorAll('a').forEach((link) => { link.target = '_blank'; link.rel = 'noopener'; });
+  document.body.append(panel);
+  const close = () => { panel.hidden = true; document.body.classList.remove('peeking'); };
+  panel.querySelectorAll('[data-close]').forEach((node) => node.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !panel.hidden) close(); });
+  return {
+    open(question) {
+      const want = normalize(question.section || '');
+      const groups = [...body.querySelectorAll('section')];
+      groups.forEach((item) => item.classList.toggle('is-current', Boolean(want) && item.dataset.title === want));
+      panel.querySelector('#peek-title').textContent = `📝 Notes, filled in${question.section ? ` · ${question.section}` : ''}`;
+      panel.hidden = false;
+      document.body.classList.add('peeking');
+      const target = groups.find((item) => item.classList.contains('is-current'));
+      body.scrollTop = target ? Math.max(0, target.offsetTop - body.offsetTop - 8) : 0;
+      panel.querySelector('.peek-close').focus({ preventScroll: true });
+    },
+  };
 }
 
 export async function mountRefresher(root) {
@@ -198,6 +255,7 @@ export async function mountRefresher(root) {
   }
   const state = load(id, questions.length);
   state.items = state.items || {};
+  const peek = peekPanel(markdown);
   document.title = `${lecture.title} · online refresher · MUS 248`;
 
   // Active time: the gap since the last interaction is credited to the question last touched,
@@ -294,6 +352,15 @@ export async function mountRefresher(root) {
         save(id, state);
         render(item.status ? next(number) : `#q${number}`);
       }));
+      const peekButton = element.querySelector('.fill-peek');
+      if (peekButton && !peekButton.disabled) peekButton.addEventListener('click', () => {
+        tick();
+        active = number;
+        const item = state.items[number] || (state.items[number] = {});
+        item.peeks = (item.peeks || 0) + 1;
+        save(id, state);
+        peek.open(question);
+      });
       const inputs = [...element.querySelectorAll('.fill-input')];
       inputs.forEach((input) => {
         input.addEventListener('focus', () => { tick(); active = number; });

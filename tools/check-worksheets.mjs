@@ -91,10 +91,11 @@ const sampleQuestions = refresherQuestions(['## 1. A', '### One', '**Q1 (multipl
   '✅ **Answer.** Yes, because.', '', '**Q2 (fill in the blank).** It is a ==repo|repository==.', '', '✅ **Answer.** A repo holds it all.'].join('\n'));
 check(sampleQuestions.length === 2 && sampleQuestions[0].section === '1.1 One' && sampleQuestions[1].terms[0] === 'repo|repository',
   'the refresher did not find its questions, their slide, or a fill-in answer');
-const sampleDeliverable = deliverable({ id: 'x', title: 'X' }, sampleQuestions, { sessionId: 's', startedAt: 't', items: { 1: { status: 'right', tries: 1, clicks: 2, ms: 3000, picked: ['b', 'a'] } } });
+const sampleDeliverable = deliverable({ id: 'x', title: 'X' }, sampleQuestions, { sessionId: 's', startedAt: 't', items: { 1: { status: 'right', tries: 1, clicks: 2, ms: 3000, picked: ['b', 'a'], peeks: 1 } } });
 check(sampleDeliverable.payload.schema === SCHEMA && sampleDeliverable.payload.items.map((item) => item.status).join() === 'right,skipped'
-  && sampleDeliverable.payload.items[0].tries === 1 && sampleDeliverable.payload.items[0].seconds === 3 && sampleDeliverable.lines.some((line) => /Q2 .*skipped/.test(line)),
-  'the refresher deliverable is missing a question, a status, or its tries and time');
+  && sampleDeliverable.payload.items[0].tries === 1 && sampleDeliverable.payload.items[0].seconds === 3 && sampleDeliverable.lines.some((line) => /Q2 .*skipped/.test(line))
+  && sampleDeliverable.payload.items[0].peeks === 1 && sampleDeliverable.payload.items[1].peeks === 0 && sampleDeliverable.lines.some((line) => /Q1 .*👀 peeked/.test(line)),
+  'the refresher deliverable is missing a question, a status, its tries and time, or its peeks');
 check(renderMarkdown('> 🧑‍🏫 Note').includes('class="instructor-note"'), 'an instructor note is not marked');
 
 // The student view of a lecture drops 🙈 slides and 🧑‍🏫 notes, and nothing else.

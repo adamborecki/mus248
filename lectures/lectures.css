@@ -71,3 +71,36 @@ body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25re
 @media (prefers-color-scheme: dark) { .refresher-warning { background:#3a2f12; color:#ffe29a; } .refresher-warning button { background:#5a4a1a; color:#ffe29a; } }
 .refresher-receipt { max-height:16rem; overflow:auto; padding:.7rem; border-radius:.5rem; background:var(--paper); border:1px solid var(--line); font:12px/1.4 ui-monospace, Menlo, monospace; white-space:pre-wrap; }
 .lecture-extras .extra-locked { padding:.45rem .8rem; border-radius:.5rem; background:var(--tag); color:var(--muted); font-weight:600; opacity:.6; cursor:not-allowed; }
+/* 👀 Peek: the notes, filled in. A sheet over the page on a phone; a side panel on a wide screen. */
+.fill-peek-row { margin:.6rem 0 0; }
+.fill-peek { padding:.4rem .75rem; border:1px solid var(--line); border-radius:.5rem; background:var(--paper); color:var(--ink); font:inherit; font-size:.9rem; font-weight:600; cursor:pointer; }
+.fill-peek:hover:not(:disabled) { border-color:var(--accent); }
+.fill-peek:disabled { opacity:.45; cursor:not-allowed; }
+.fill-peek-row small { font-size:.8rem; }
+.peek[hidden] { display:none; }
+.peek-backdrop { position:fixed; inset:0; z-index:40; background:rgb(0 0 0 / .35); }
+.peek-sheet { position:fixed; inset:12vh 0 0; z-index:41; display:flex; flex-direction:column; border-radius:.9rem .9rem 0 0; background:var(--surface); color:var(--ink); box-shadow:0 -6px 30px rgb(0 0 0 / .25); }
+.peek-head { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem; border-bottom:1px solid var(--line); }
+.peek-head strong { flex:1; min-width:0; overflow:hidden; font-size:.95rem; text-overflow:ellipsis; white-space:nowrap; }
+.peek-close { flex:none; width:2.25rem; height:2.25rem; border:0; border-radius:50%; background:var(--tag); color:var(--ink); font:inherit; font-size:1rem; cursor:pointer; }
+.peek-body { flex:1; overflow-y:auto; padding:.25rem 1rem 40vh; font-size:.95rem; line-height:1.45; overscroll-behavior:contain; }
+.peek-body section { margin:0 -.6rem; padding:.1rem .6rem .3rem; border-left:4px solid transparent; border-radius:.3rem; }
+.peek-body section.is-current { border-left-color:#ffd60a; background:rgb(255 214 10 / .16); }
+.peek-body h2 { margin:1rem 0 .3rem; padding-bottom:.15rem; border-bottom:1px solid var(--line); font-size:1.05rem; }
+.peek-body h3 { margin:.8rem 0 .2rem; font-size:1rem; }
+.peek-body p, .peek-body li { margin:.25rem 0; }
+.peek-body ul, .peek-body ol { margin:.2rem 0; padding-left:1.2rem; }
+.peek-body img { max-width:100%; height:auto; }
+.peek-body table { width:100%; border-collapse:collapse; font-size:.85em; }
+.peek-body th, .peek-body td { padding:.2rem .35rem; border:1px solid var(--line); text-align:left; vertical-align:top; }
+.peek-body blockquote, .peek-body aside { margin:.4rem 0; padding:.3rem .6rem; border-left:3px solid var(--line); color:var(--muted); font-size:.9em; }
+.peek-body code { padding:0 .2em; border-radius:.2em; background:var(--tag); font-size:.88em; }
+.peek-body pre { padding:.4rem .6rem; border:1px solid var(--line); border-radius:.3rem; font:12px/1.35 ui-monospace, Menlo, monospace; white-space:pre-wrap; }
+.peek-body mark.key-term { padding:0 .12em; border-radius:.2em; background:#ffe066; color:#000; font-weight:700; }
+body.peeking { overflow:hidden; }
+@media (min-width: 900px) {
+  .peek-backdrop { display:none; }
+  .peek-sheet { inset:0 0 0 auto; width:min(42vw, 30rem); border-radius:0; border-left:1px solid var(--line); box-shadow:none; }
+  body.peeking { overflow:auto; }
+  body.peeking .activity-page { margin-right:calc(min(42vw, 30rem) + 1.5rem); }
+}

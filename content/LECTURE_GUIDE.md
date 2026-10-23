@@ -100,6 +100,10 @@ lecture with it already in place.
 - It **opens 7:00 AM Pacific the Monday a week after the lecture** (`refresherOpens` in
   `data/lectures.json` overrides it); until then students see when it opens. Instructor view can
   always open it.
+- After one miss (right away on a short answer), **👀 Peek at the notes** opens the follow-along
+  notes, filled in, at the question's slide: a sheet on a phone, a side panel on a wide screen. It
+  doesn't cost a try; the deliverable counts which questions were peeked at. It finds the slide by
+  the question's slide title, so a question has to sit under the slide it's about.
 - Students can hand it in unfinished (they're warned first). It records tries, clicks, and time
   per question.
 
@@ -113,7 +117,7 @@ A good mix is about half multiple choice, a third fill in the blank, and a few s
 
 **Keep it quick.** The Big Picture's first refresher had 45 questions and was too tedious; it's now
 20, almost all three-option multiple choice with one-line prompts and short main points. Around
-20 is a better target than one per idea: pick the ideas that matter most, merge the small ones into
+20 is a better target than one per idea (up to about 25 if the lecture needs it to be covered): pick the ideas that matter most, merge the small ones into
 another question's main point, and skip short answers when the lecture is mostly facts.
 
 ### The three kinds
