@@ -100,9 +100,9 @@ lecture with it already in place.
 - It **opens 7:00 AM Pacific the Monday a week after the lecture** (`refresherOpens` in
   `data/lectures.json` overrides it); until then students see when it opens. Instructor view can
   always open it.
-- After one miss (right away on a short answer), **👀 Peek at the notes** opens the follow-along
-  notes, filled in, at the question's slide: a sheet on a phone, a side panel on a wide screen. It
-  doesn't cost a try; the deliverable counts which questions were peeked at. It finds the slide by
+- **👀 Peek at the notes** opens the follow-along notes, filled in, at the question's slide,
+  anytime: a sheet on a phone, a side panel on a wide screen. It closes once the question is
+  finished. It doesn't cost a try; the deliverable counts which questions were peeked at. It finds the slide by
   the question's slide title, so a question has to sit under the slide it's about.
 - Students can hand it in unfinished (they're warned first). It records tries, clicks, and time
   per question.

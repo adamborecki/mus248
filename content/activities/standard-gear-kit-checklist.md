@@ -6,7 +6,7 @@ coreSkillAreas:
   - Audio Capture
   - Video Capture
 status: In Development
-revised: "2026-10-16"
+revised: "2026-10-23"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -171,7 +171,10 @@ adjust for the ensemble, the mics, and the distance.
 
 **Camera configuration**
 
-- 🚩 **White balance:** set **both** cameras to **Indoor** — they have to match.
+- 🚩 **White balance:** set **both** cameras to **Indoor** (3200 K) — they have to match.
+  Some theatrical productions look better a little higher, around 4000 K, or even on
+  **Outdoor**. That's fine, as long as every camera is set the same: matching matters more than
+  the exact number.
 - 🚩 Start from the default exposure:
 
 | Setting | Default |

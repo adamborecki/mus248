@@ -118,13 +118,13 @@ A single gig may include:
 
 - Complete post-production and delivery as assigned.
 
-**Q2 (multiple choice).** What do you wear to a gig?
+**Q2 (multiple choice).** What do you wear for most gigs in Oliphant or Bertea? (Note: the Musco dress code is all black if you go on stage.)
 
 - a) Anything comfortable
 - ✅ b) Closed-toed shoes, and no logos on your shirt
 - c) A Chapman logo shirt
 
-✅ **Answer.** Closed-toed shoes and no logos. At Musco, all black: you'll likely go out on stage there.
+✅ **Answer.** Closed-toed shoes and no logos. At Musco, all black if you might go on stage.
 
 ### Slide 6: The 7 Gig Families (categories)
 
@@ -219,7 +219,7 @@ The [Musco gig checklist](../../musco-gig-checklist/) should be used.
 **Q6 (multiple choice).** Who's on a Musco multicam crew?
 
 - a) One engineer who runs everything
-- ✅ b) A switcher, two camera operators, and a score reader
+- ✅ b) A switcher, two camera operators, and one or two score readers
 - c) Two switchers and one camera operator
 
 ✅ **Answer.** A switcher, two camera operators, and one or two score readers, working as one crew.
@@ -400,13 +400,13 @@ IF using boundary microphones, put into 3/4 or 5/6. Check Dual channel!
 
 ✅ **Answer.** Ask house staff for concert lighting and set exposure under it. Pre-show is much darker.
 
-**Q14 (multiple choice).** On a Standard Gear Kit gig, what white balance do both AX100s get?
+**Q14 (multiple choice).** What white balance do both AX100s usually get?
 
 - a) Auto
 - ✅ b) Indoor (3200 K)
 - c) Outdoor
 
-✅ **Answer.** Indoor, or 3200 K. What matters is that both cameras match.
+✅ **Answer.** Usually Indoor (3200 K). Some theatrical productions look better a bit higher, around 4000 K, or even on Outdoor. Whatever you pick, every camera has to match.
 
 ### Slide 16: 5. Portable Live Sound
 
@@ -459,13 +459,13 @@ Students should understand the difference between:
 
 Click track
 
-**Q16 (multiple choice).** A film workshop recording studio musicians uses which tools?
+**Q16 (multiple choice).** A multitrack recording session, such as a film workshop or a band, would likely use one of the following:
 
-- ✅ a) The Zoom LiveTrak L-20 and Zoom F8
+- ✅ a) The Zoom LiveTrak L-20
 - b) The ATEM and two AX100s
 - c) The CL5
 
-✅ **Answer.** Not every gig is a concert hall. Studio and multitrack work uses the L-20 or the F8.
+✅ **Answer.** Not every gig is a concert hall. Multitrack sessions use the Zoom LiveTrak L-20.
 
 ### Slide 18: 7. Specialty Productions
 
@@ -489,7 +489,7 @@ October 18 electroacoustic concert:
 
 - a) A Salmon recital
 - ✅ b) An electroacoustic concert
-- c) Chapman Jams
+- c) TCO in Musco
 
 ✅ **Answer.** Electroacoustic music, opera, and multimedia shows each need a custom plan.
 

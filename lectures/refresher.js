@@ -12,9 +12,9 @@
 // It records tries, clicks, and active time per question, for the instructor to see where people
 // got stuck. Nothing leaves the browser except what the student pastes into Canvas.
 //
-// 👀 Peek: after one miss (right away for a short answer), a question can open the follow-along
-// notes, filled in, at the slide it's about: a sheet over the page on a phone, a side panel on a
-// wide screen. Peeks are counted in the deliverable; they don't cost a try.
+// 👀 Peek: any question can open the follow-along notes, filled in, at the slide it's about: a sheet
+// over the page on a phone, a side panel on a wide screen. It closes once the question is finished
+// (right, or the answer shown). Peeks are counted in the deliverable; they don't cost a try.
 
 import { blankShown, escapeHtml, inline, renderMarkdown } from '../markdown.js';
 import { parseActivity } from '../worksheet.js';
@@ -176,9 +176,7 @@ function card(question, item = {}) {
       ? `<p class="fill-yours">You wrote: ${escapeHtml(item.text || '')}</p>${pointHtml}`
       : `<textarea class="fill-text" rows="3" placeholder="Your answer">${escapeHtml(item.text || '')}</textarea><button type="button" class="fill-check">Done</button>`;
   }
-  const canPeek = Boolean(status) || tries > 0 || (!question.options.length && !question.terms.length);
-  const peek = `<p class="fill-peek-row"><button type="button" class="fill-peek"${canPeek ? '' : ' disabled'}>👀 Peek at the notes</button>`
-    + `${canPeek ? '' : ' <small class="quiet">opens after one miss</small>'}</p>`;
+  const peek = '<p class="fill-peek-row"><button type="button" class="fill-peek">👀 Peek at the notes</button></p>';
   return `<li class="fill-card${status ? ' done' : ''}" id="q${question.number}" data-number="${question.number}">`
     + `${question.section ? `<em class="fill-where">${escapeHtml(question.section)}</em>` : ''}`
     + `<p class="fill-prompt"><span class="q-number">Q${question.number}</span> ${prompt}</p>${body}${peek}</li>`;
@@ -217,6 +215,7 @@ function peekPanel(markdown) {
   panel.querySelectorAll('[data-close]').forEach((node) => node.addEventListener('click', close));
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !panel.hidden) close(); });
   return {
+    close,
     open(question) {
       const want = normalize(question.section || '');
       const groups = [...body.querySelectorAll('section')];
@@ -350,10 +349,11 @@ export async function mountRefresher(root) {
           if (item.tries >= MAX_TRIES) item.status = 'revealed';
         }
         save(id, state);
+        if (item.status) peek.close();
         render(item.status ? next(number) : `#q${number}`);
       }));
       const peekButton = element.querySelector('.fill-peek');
-      if (peekButton && !peekButton.disabled) peekButton.addEventListener('click', () => {
+      if (peekButton) peekButton.addEventListener('click', () => {
         tick();
         active = number;
         const item = state.items[number] || (state.items[number] = {});
@@ -397,6 +397,7 @@ export async function mountRefresher(root) {
           }
         }
         save(id, state);
+        if (state.items[number].status) peek.close();
         render(state.items[number].status ? next(number) : `#q${number}`);
       });
     });
