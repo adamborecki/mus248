@@ -95,7 +95,7 @@ export function joinWrappedLines(markdown) {
 // don't restart the count). Numbers come from position, so they move when steps are added — the
 // page's `revised` date says which version a number belongs to. Keyed by line index in the
 // frontmatter-stripped, wrap-joined lines that the page renderer and the worksheet parser both use.
-const UNNUMBERED_SECTIONS = ['what this is', 'key terms', 'technical verification', 'ai use disclosure', 'core skill area'];
+const UNNUMBERED_SECTIONS = ['what this is', 'key terms', 'practice first', 'technical verification', 'ai use disclosure', 'core skill area'];
 const LIST_ITEM = /^(?:[-*]|\d+\.)\s+/;
 
 export function stepNumbers(lines) {

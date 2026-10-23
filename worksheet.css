@@ -87,6 +87,7 @@
   .ws-qr { width:5rem; }
   .ws-qr-cue { font-size:6.5pt; }
   .ws-qr-url { font-size:6pt; }
+  .ws-practice li { font-size:8.5pt; }
   .ws-block { margin-top:.85rem; }
   .ws-block h2 { margin-bottom:.3rem; }
   .ticks li, .flow li.tick, .option, .terms li, .q-prompt { font-size:9.5pt; }
@@ -96,6 +97,9 @@
   .key-answer { color:#000; }
   .ws-foot { margin-top:.9rem; font-size:7.5pt; }
 }
+/* Practice first: a QR code per simulator, with what it rehearses beside it. */
+.ws-practice { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.6rem 1.25rem; margin:0; padding:0; list-style:none; }
+.ws-practice li { display:flex; gap:.6rem; align-items:flex-start; font-size:.8rem; break-inside:avoid; }
 .step-id { font-family:ui-monospace, monospace; font-size:.85em; font-weight:700; }
 /* The Repo Improvement form, last on every student worksheet. */
 .ws-form-row { display:flex; gap:1rem; align-items:center; justify-content:space-between; }

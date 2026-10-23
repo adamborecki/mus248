@@ -152,7 +152,11 @@ const blockFor = (part) => {
 
 // Groups whose worksheet content lives under one heading rather than scattered
 // through the activity — they enter the flow once, at that heading's position.
-const GROUPS = { 'key terms': 'keyTerms', 'definition of done': 'done', 'before you leave': 'beforeYouLeave' };
+const GROUPS = { 'key terms': 'keyTerms', 'practice first': 'practice', 'definition of done': 'done', 'before you leave': 'beforeYouLeave' };
+
+// "## 🕹️ Practice first": one bullet per simulator or page to rehearse on, each starting with its
+// link. The page shows the links; the paper can't click, so each one prints as a QR code.
+const PRACTICE_LINK = /^\[([^\]]+)\]\(([^)\s]+)\)\s*[:—–-]?\s*(.*)$/;
 
 // Sections that put nothing on the paper still exist on the web page — the worksheet says so at
 // the point they were skipped, so a student holding only the printout knows the QR has more
@@ -164,7 +168,7 @@ export function parseActivity(markdown) {
   const lines = joinWrappedLines(markdown.replace(FRONTMATTER, '')).split('\n');
   const numbers = stepNumbers(lines);
   const result = {
-    frontmatter, done: [], doneIds: [], keyTerms: [], alsoKnow: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
+    frontmatter, done: [], doneIds: [], keyTerms: [], alsoKnow: [], practice: [], beforeYouLeave: [], checkpoints: [], questions: [], flow: [],
   };
   let section = '';
   let sectionTitle = '';
@@ -226,6 +230,12 @@ export function parseActivity(markdown) {
         if (primary) result.keyTerms.push(primary[1].trim());
         else result.alsoKnow.push(term.replace(/\*\*/g, '').trim());
       });
+      return;
+    }
+
+    if (section === 'practice first') {
+      const link = bullet && bullet[1].trim().match(PRACTICE_LINK);
+      if (link) result.practice.push({ label: link[1].trim(), url: link[2], note: link[3].trim() });
       return;
     }
 
@@ -361,6 +371,15 @@ export function renderWorksheet(activity, options = {}) {
         activity.keyTerms.length
           ? `<ul class="terms">${activity.keyTerms.map((term) => `<li><b>${inline(term)}</b>${rule()}</li>`).join('')}</ul>${
             activity.alsoKnow.length ? `<p class="also">Also know: ${activity.alsoKnow.map((term) => inline(term)).join(' · ')}</p>` : ''}`
+          : '');
+    }
+    if (key === 'practice') {
+      // A relative link is relative to the activity's Markdown in content/activities/.
+      const absolute = (url) => new URL(url, `${SITE_ORIGIN}/content/activities/`).href;
+      return block('Practice first', 'scan to rehearse before the gig',
+        activity.practice.length
+          ? `<ul class="ws-practice">${activity.practice.map((item) => `<li>${
+            qrBlock(absolute(item.url), item.label, `QR code for ${item.label}`)}<span>${inline(item.note)}</span></li>`).join('')}</ul>`
           : '');
     }
     return block('Before you leave', '',
