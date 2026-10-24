@@ -8,7 +8,7 @@ coreSkillAreas:
   - Data Management
   - Post Production
 status: In Development
-revised: "2026-10-22"
+revised: "2026-10-24"
 estimatedTime: "10 minutes to read"
 access:
   mode: "Any location"
@@ -74,7 +74,7 @@ the front page) for what this one needs.
 | Gig family | Checklists |
 |---|---|
 | 1. Salmon standard A/V and livestream | [Salmon Gig Checklist](../../salmon-gig-checklist/), then [Salmon Reset](../../salmon-reset/) |
-| 2. Salmon FOH | [Vocal Jazz Gig Checklist](../../vocal-jazz-gig-checklist/), then [Vocal Jazz Reset](../../vocal-jazz-reset/) |
+| 2. Salmon FOH | A few wireless mics: [Super Simple Salmon](../../super-simple-salmon/). Vocal Jazz: [Vocal Jazz Gig Checklist](../../vocal-jazz-gig-checklist/), then [Vocal Jazz Reset](../../vocal-jazz-reset/) |
 | 3. Musco | [Musco Gig Checklist](../../musco-gig-checklist/) |
 | 4. Standard Gear Kit (Memorial Hall, Fish Chapel, etc.) | [Standard Gear Kit Checklist](../../standard-gear-kit-checklist/), [Memorial Hall Gig Checklist](../../memorial-gig-checklist/), then [Standard Gear Kit Reset](../../standard-gear-kit-reset/) |
 | 5. Portable live sound | [COB Gig Checklist](../../cob-gig-checklist/) |
