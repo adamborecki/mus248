@@ -19,6 +19,7 @@ import { numberSlides } from '../lectures/view.js';
 import { applyEdits, editProblem, slideBlocks } from '../lectures/presenter.js';
 import { renderFormBlock, stripQuestions } from '../worksheet.js';
 import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
+import { EVALS, parseEval, renderEvalSheet } from '../performance-evals/evals.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -382,6 +383,26 @@ const converted = deckMarkdown(unzip(readFileSync(join(root, 'tools', 'fixtures'
   .forEach((expected) => check(converted.includes(expected), `pptx-to-lecture: output is missing "${expected}"`));
 check(converted.indexOf('Slide 1: Agenda') < converted.indexOf('Slide 2: Gain'), 'pptx-to-lecture: slides out of presentation order');
 check(renderMarkdown(converted).includes('<table>'), 'pptx-to-lecture: the table does not render');
+
+// Performance evals: each station has a goal and something to check (unless the eval is a draft),
+// its 📖 links land on real pages, and the printed sheet leaves no raw underscores behind.
+EVALS.forEach((id) => {
+  const where = `content/performance-evals/${id}.md`;
+  const text = read('content', 'performance-evals', `${id}.md`);
+  const { front, sections } = parseEval(text);
+  const stations = sections.filter((section) => section.kind === 'station');
+  check(Boolean(front.title && front.revised), `${where}: needs title and revised in its frontmatter`);
+  check(stations.length > 0 && sections.some((section) => section.kind === 'about'), `${where}: needs "## 🙋 About you" and at least one station`);
+  stations.forEach((station) => {
+    check(Boolean(station.goal), `${where}: "${station.heading}" needs a **Goal:** line`);
+    check(front.status === 'draft' || station.items > 0, `${where}: "${station.heading}" has nothing to check (only a draft may)`);
+  });
+  [...text.replace(/<!--[\s\S]*?-->/g, "").matchAll(/\]\(\.\.\/\.\.\/([^)#]+?)\/?\)/g)].forEach((match) => {
+    check(existsSync(join(root, match[1], 'index.html')), `${where}: links to /${match[1]}/, which doesn't exist`);
+  });
+  check(!/forms\.gle|docs\.google\.com|drive\.google\.com/.test(text), `${where}: contains a Google Docs, form, or Drive link`);
+  check(!/_{3,}/.test(renderEvalSheet(text, id).replace(/<code>[\s\S]*?<\/code>/g, '')), `${where}: the sheet shows literal underscores`);
+});
 
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);

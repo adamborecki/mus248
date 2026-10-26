@@ -105,3 +105,18 @@
 .ws-form-row { display:flex; gap:1rem; align-items:center; justify-content:space-between; }
 .ws-form-row h2 { margin:0 0 .2rem; }
 .ws-form-row p { margin:0; font-size:.85rem; }
+/* Performance eval sheets (performance-evals/evals.js): a station per block, written on by the
+   student and ticked by the checker. */
+.ev-about { margin-top:1rem; }
+.ev-station { margin-top:1.6rem; }
+.ev-prompt { margin:.5rem 0 .25rem; font-size:.9rem; }
+.ev-pending { color:var(--muted); font-style:italic; }
+.ev-lines { margin:.25rem 0 .5rem !important; }
+.ev-lines li { display:flex; gap:.4rem; align-items:baseline; margin:.55rem 0; font-size:.9rem; }
+.ev-rule { display:flex; height:1.3rem; margin:.3rem 0; }
+.ev-station .ticks { margin:.4rem 0 .2rem; }
+.ev-notes { margin-top:.8rem; }
+@media print {
+  .ev-station { margin-top:1rem; }
+  .ev-prompt, .ev-lines li { font-size:9.5pt; }
+}

@@ -262,12 +262,14 @@ The metronome drifts. That's the point.
 
 - Like the midterm: you **==show==** specific skills, one at a time
 - Goal: everyone who passes can work the normal gig types
-- The skills list: coming
+- Six stations, all required ([Performance Evals](../../performance-evals/#final), still a draft):
+  Salmon A/V + livestream · Standard Gear Kit (Memorial layout) · data transfer · X32 Compact +
+  basic FOH/A2 · Musco multicam (simulated) · post-production (take-home)
+- Retakes if there's time, not if you leave a station to the end
 
-> 🧑‍🏫 Placeholder for the Performance Evaluation session's skills list (midterm and final). The
-> Big Picture lecture's preliminary areas: Salmon A/V and livestream, a Standard Gear Kit recording,
-> Musco with multicamera, basic live sound / FOH, data management and post, troubleshooting and gig
-> conduct. Budget about 10 minutes of discussion here.
+> 🧑‍🏫 Draft list from the Performance Evaluation session; the page is the source, so change it
+> there. Big Picture also named troubleshooting and gig conduct: the X32 station's planted errors
+> cover troubleshooting. Budget about 10 minutes of discussion here.
 
 ### Why WTF 248 is cut down to these
 
