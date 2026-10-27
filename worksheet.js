@@ -224,7 +224,8 @@ export function parseActivity(markdown) {
     }
 
     if (section === 'key terms') {
-      if (!line.trim() || bullet) return;
+      // A definitions table is the web page's answer to the blanks, not more terms.
+      if (!line.trim() || bullet || line.trim().startsWith('|')) return;
       line.split('·').map((term) => term.trim()).filter(Boolean).forEach((term) => {
         const primary = term.match(/^\*\*(.+)\*\*$/);
         if (primary) result.keyTerms.push(primary[1].trim());
