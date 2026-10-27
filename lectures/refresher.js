@@ -90,7 +90,7 @@ export function deliverable(lecture, questions, state, feedback = '') {
   const minutes = Math.round((items.reduce((sum, item) => sum + item.seconds, 0) / 60) * 10) / 10;
   const peeked = items.filter((item) => item.peeks).length;
   const describe = (item) => {
-    if (item.status === 'skipped') return 'skipped';
+    if (item.status === 'skipped') return item.tries ? `skipped after ${item.tries} miss${item.tries > 1 ? 'es' : ''}` : 'skipped';
     if (item.status === 'answered') return `answered: "${item.answer}"`;
     if (item.status === 'revealed') return `answer shown after ${item.tries} tries`;
     return item.tries ? `right after ${item.tries} miss${item.tries > 1 ? 'es' : ''}` : 'right on the first try';

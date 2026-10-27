@@ -86,7 +86,7 @@ site changes.
 is one repo.
 
 **Q3 (fill in the blank).** The GitHub feature that turns a repo into a website is GitHub
-==Pages==.
+==Pages|GitHub Pages==.
 
 ✅ **Answer.** GitHub Pages publishes a repo as a website: change a file, and a minute later the
 site changes.
@@ -252,7 +252,7 @@ Look at what it did **not** do:
 ✅ **Answer.** Photos, dictated notes, and a one-line prompt: the same recipe works for any gig.
 
 **Q11 (fill in the blank).** In the COB checklist, anything the AI couldn't confirm went in a
-section called ==Technical verification==.
+section called ==Technical verification|Technical verification section==.
 
 ✅ **Answer.** Unconfirmed details get marked as open questions, not guessed: a student will follow
 this page in a room where the show happens once.
@@ -306,7 +306,7 @@ show in Irvine: twelve performers on **wireless headset mics**.
 
 Readable ==as-is==: `##` starts a ==heading==, `**` makes text ==bold==, and `-` starts a ==bullet==.
 
-**Q13 (fill in the blank).** In Markdown, a line that starts with `##` is a ==heading==.
+**Q13 (fill in the blank).** In Markdown, a line that starts with `##` is a ==heading|header==.
 
 ✅ **Answer.** Markdown is plain text with a few symbols: `##` for a heading, `**` for bold, `-`
 for a bullet.
