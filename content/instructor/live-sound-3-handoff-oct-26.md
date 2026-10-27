@@ -16,6 +16,10 @@ was set to open at 7:00 PM. Public repo: no access codes here.
 
 ## To do tonight
 
+> **Done (evening of Oct 26):** items 1–3. Live Sound 3 is lecture 09, its Homework review has both
+> lines, and it has 57 follow-along blanks in six numbered sections. Still no refresher questions,
+> and the quiz decisions below are still open.
+
 1. **Make Live Sound 3 lecture 09** in `data/lectures.json`: `"date": "2026-10-26"`, `"week": 10`,
    `"lecture": 9`, and move its entry above Vibecoding 1 (newest first; Vibecoding 2 stays on top).
    `lectures/live-sound-3/index.html` already exists.
