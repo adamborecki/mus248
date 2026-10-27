@@ -14,16 +14,28 @@
     .ev-print { display:flex; flex-wrap:wrap; gap:.4rem 1rem; align-items:baseline; margin:.5rem 0 0; }
     .ev-print a { color:var(--accent); font-weight:650; text-decoration:none; }
     .ev-print a:hover { text-decoration:underline; }
-    .ev-section { margin-top:1.75rem; }
-    .ev-section h3 { margin:0 0 .35rem; font-size:1.15rem; }
-    .ev-goal { margin:0 0 .5rem; font-weight:600; }
-    .instructions .task { list-style:none; margin-left:-1.2rem; }
+    .ev-intro > p { margin:.75rem 0 1rem; color:var(--muted); }
+    .ev-grid { margin-top:.5rem; }
+    .ev-card summary { gap:.6rem; }
+    .ev-card .card-copy small { overflow-wrap:anywhere; }
+    .ev-status { flex:0 0 auto; margin-left:auto; white-space:nowrap; }
+    .ev-status + .arrow { margin-left:0; }
+    .ev-card .card-details { padding-left:.25rem; padding-right:.25rem; }
+    .ev-card .card-details > :first-child { margin-top:.75rem; }
+    .ev-card .card-details ul, .ev-card .card-details ol { padding-left:1.2rem; }
+    .ev-card .task { list-style:none; margin-left:-1.2rem; }
+    @media (max-width:480px) {
+      .ev-card summary { flex-wrap:wrap; }
+      .ev-card .card-copy { flex:1 1 calc(100% - 5rem); }
+      .ev-status { order:3; margin-left:2.95rem; }
+      .ev-status + .arrow { order:2; margin-left:auto; }
+    }
   </style>
 </head>
 <body>
   <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Performance Evals</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
   <main class="ev-page">
-    <p class="quiet">Hands-on checks of what you can do by yourself: one station at a time, with a notecard and no phone. Each eval comes from <code>content/performance-evals/</code>, and its printed sheet is generated from the same file.</p>
+    <p class="quiet">Hands-on checks of what you can do by yourself: one station at a time, with a notecard and no phone. Tap a station to see what it asks.</p>
     <div id="evals"><p class="quiet">Loading…</p></div>
   </main>
   <footer>Canvas remains the place for submissions and grades.</footer>
