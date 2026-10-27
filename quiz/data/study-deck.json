@@ -1987,6 +1987,78 @@
       "front": "Public means public",
       "back": "A username or persona is plenty. No full name, phone, address, or schedule. When in doubt, leave it out.",
       "verified": false
+    },
+    {
+      "id": "ls3_di_box",
+      "skill": "di_box",
+      "category": "Live sound",
+      "front": "What a DI box does",
+      "back": "Instrument or unbalanced source → balanced, low-impedance, mic-level XLR. Active DIs need phantom or a battery; ground lift for hum.",
+      "verified": false
+    },
+    {
+      "id": "ls3_di_needed",
+      "skill": "di_needed",
+      "category": "Live sound",
+      "front": "Do you need a DI?",
+      "back": "Passive guitar/bass pickups: yes. Interface line outputs: often not (gain down). Headphone jack: maybe; if it hums, DI + ground lift.",
+      "verified": false
+    },
+    {
+      "id": "ls3_box_snake",
+      "skill": "stage_box_snake",
+      "category": "Live sound",
+      "front": "Stage box vs. DI box vs. snake",
+      "back": "DI: 1–2 channels, converts the signal. Snake: many cables in one jacket. Digital stage box: preamps on stage, one network cable to the console.",
+      "verified": false
+    },
+    {
+      "id": "ls3_channel_order",
+      "skill": "channel_order",
+      "category": "Live sound",
+      "front": "Drum channel order",
+      "back": "Kick, snare, hi-hat, toms (high to low), overheads. Then bass, guitars, keys, lead vocal, backing vocals.",
+      "verified": false
+    },
+    {
+      "id": "ls3_labels",
+      "skill": "channel_labels",
+      "category": "Live sound",
+      "front": "What to label",
+      "back": "What someone can’t figure out in five seconds. Always: channel names, inputs in use, which output feeds which speaker.",
+      "verified": false
+    },
+    {
+      "id": "ls3_gain_fader",
+      "skill": "gain_vs_fader",
+      "category": "Live sound",
+      "front": "Gain vs. fader",
+      "back": "Gain is upstream of everything. Pre-fader monitors ignore the fader, not the gain: change gain mid-show and every mix changes.",
+      "verified": false
+    },
+    {
+      "id": "ls3_pfl_afl",
+      "skill": "gain_vs_fader",
+      "category": "Live sound",
+      "front": "PFL vs. AFL",
+      "back": "PFL: pre-fader listen, ignores the fader. AFL: after-fader listen, follows it.",
+      "verified": false
+    },
+    {
+      "id": "ls3_line_sound",
+      "skill": "line_check",
+      "category": "Live sound",
+      "front": "Line check vs. sound check",
+      "back": "Line check: fast, is everything there? Sound check: gain, tone, monitors with the performers. Still not a rehearsal.",
+      "verified": false
+    },
+    {
+      "id": "ls3_reset",
+      "skill": "live_reset",
+      "category": "Live sound",
+      "front": "A good reset",
+      "back": "Amplified speakers off first. Mute (lower only if the levels are saved). Don’t overwrite shared scenes. Leave notes.",
+      "verified": false
     }
   ]
 }

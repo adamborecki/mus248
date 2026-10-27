@@ -30,7 +30,28 @@ was set to open at 7:00 PM. Public repo: no access codes here.
    refresher yet. Add blanks only if the instructor wants printed notes tonight.
 4. **Presenter view works on it as is** (`/lectures/live-sound-3/?presenter=1`).
 
-## The quiz: decide first
+## The quiz: done (7 PM, Oct 26)
+
+- **Quiz 6 is tonight's**, Live Sound 3, version `2026-10-26`, 6/9 minutes. Its code is in
+  `quiz/data/curriculum.json`.
+- **The GitHub Pages quiz is now Quiz 7**: same code, still opens Nov 2 at 7:00 PM. `quiz_number`
+  is **6**, so until then its code only says when it opens.
+- **Eight new Practice skills** from Live Sound 3 (`di_box`, `di_needed`, `stage_box_snake`,
+  `channel_order`, `channel_labels`, `gain_vs_fader`, `line_check`, `live_reset`), 31 questions
+  and 9 study cards, all unverified. They lead tonight's bonus queue.
+- **The instructor's calls:** the six Vibecoding 2 skills are `inactive` until Nov 2; the
+  Vibecoding 1 skills stay Practice until their questions are verified.
+- **The editor was not synced first and not republished.** Nothing existing was edited, so a sync
+  shouldn't conflict, but the new questions won't show in the editor until it's republished.
+
+### On Nov 2, before 7 PM (not automatic)
+
+1. `quiz_number` → **7** in `quiz/data/curriculum.json`.
+2. The six Vibecoding 2 skills (`github_pages`, `mus248_sandbox`, `markdown_vs_html`,
+   `readme_vs_index`, `branch_workflow`, `public_site_privacy`) → `practice`.
+3. `cd quiz && npm test`. Its "new skills lead the bonus queue" test fails if step 2 is missed.
+
+## The quiz: what this section said before tonight
 
 - **Is there a quiz tonight?**
   - **No:** nothing to do. Quiz 6 (GitHub Pages) runs Nov 2.

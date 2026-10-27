@@ -118,6 +118,14 @@
     "markdown_vs_html": {"lecture": "2026-10-26-vibecoding-2", "confirmed": true},
     "readme_vs_index": {"lecture": "2026-10-26-vibecoding-2", "confirmed": true},
     "branch_workflow": {"lecture": "2026-10-26-vibecoding-2", "confirmed": true},
-    "public_site_privacy": {"lecture": "2026-10-26-vibecoding-2", "confirmed": true}
+    "public_site_privacy": {"lecture": "2026-10-26-vibecoding-2", "confirmed": true},
+    "di_box": {"lecture": "live-sound-3", "confirmed": true},
+    "di_needed": {"lecture": "live-sound-3", "confirmed": true},
+    "stage_box_snake": {"lecture": "live-sound-3", "confirmed": true},
+    "channel_order": {"lecture": "live-sound-3", "confirmed": true},
+    "channel_labels": {"lecture": "live-sound-3", "confirmed": true},
+    "gain_vs_fader": {"lecture": "live-sound-3", "confirmed": true},
+    "line_check": {"lecture": "live-sound-3", "confirmed": true},
+    "live_reset": {"lecture": "live-sound-3", "confirmed": true}
   }
 }

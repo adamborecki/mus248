@@ -11,7 +11,10 @@
     "5": { "label": "Quiz 5", "version": "2026-10-19", "access_code": "githubrepo", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["repo", "commit", "fork", "pull_request", "markdown_basics", "frontier_model", "context_window",
                           "ai_usage", "ai_ethics", "prompting"] },
-    "6": { "label": "Quiz 6", "version": "2026-11-02", "opens": "2026-11-02T19:00:00-08:00", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
+    "6": { "label": "Quiz 6", "version": "2026-10-26", "access_code": "dibox", "expected_minutes": 6, "window_minutes": 9,
+           "new_skills": ["di_box", "di_needed", "stage_box_snake", "channel_order", "channel_labels", "gain_vs_fader",
+                          "line_check", "live_reset"] },
+    "7": { "label": "Quiz 7", "version": "2026-11-02", "opens": "2026-11-02T19:00:00-08:00", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["github_pages", "mus248_sandbox", "markdown_vs_html", "readme_vs_index", "branch_workflow",
                           "public_site_privacy"] }
   },
@@ -164,11 +167,20 @@
     "ai_ethics": "practice",
     "prompting": "practice",
 
-    "github_pages": "practice",
-    "mus248_sandbox": "practice",
-    "markdown_vs_html": "practice",
-    "readme_vs_index": "practice",
-    "branch_workflow": "practice",
-    "public_site_privacy": "practice"
+    "github_pages": "inactive",
+    "mus248_sandbox": "inactive",
+    "markdown_vs_html": "inactive",
+    "readme_vs_index": "inactive",
+    "branch_workflow": "inactive",
+    "public_site_privacy": "inactive",
+
+    "di_box": "practice",
+    "di_needed": "practice",
+    "stage_box_snake": "practice",
+    "channel_order": "practice",
+    "channel_labels": "practice",
+    "gain_vs_fader": "practice",
+    "line_check": "practice",
+    "live_reset": "practice"
   }
 }

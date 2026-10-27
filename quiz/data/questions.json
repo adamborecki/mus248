@@ -114,7 +114,15 @@
     "markdown_vs_html": "Markdown vs. HTML",
     "readme_vs_index": "README vs. index.html",
     "branch_workflow": "Fork, branch, pull request",
-    "public_site_privacy": "Privacy on a public site"
+    "public_site_privacy": "Privacy on a public site",
+    "di_box": "DI boxes",
+    "di_needed": "Do you need a DI?",
+    "stage_box_snake": "Stage box vs. DI box vs. snake",
+    "channel_order": "Channel order (drums first)",
+    "channel_labels": "What to label",
+    "gain_vs_fader": "Gain vs. fader (and what monitors hear)",
+    "line_check": "Line check vs. sound check",
+    "live_reset": "Resetting a live station"
   },
   "questions": [
     {
@@ -7897,6 +7905,564 @@
       ],
       "answer_index": 0,
       "explanation": "Public means public: anyone can find and read your site and every file in the repo.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DI_001",
+      "skill": "di_box",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does a DI box do?",
+      "choices": [
+        "Turns an instrument or unbalanced source into a balanced, mic-level signal",
+        "Adds phantom power to a microphone that doesn’t have any",
+        "Raises a line-level signal to speaker level",
+        "Combines several stage inputs into one channel"
+      ],
+      "answer_index": 0,
+      "explanation": "A DI takes an instrument or unbalanced source and gives the mixer a balanced, low-impedance, mic-level signal that can run a long way without picking up noise.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DI_002",
+      "skill": "di_box",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An active DI on a mic input makes no sound. A passive DI in the same spot works fine. What is the active one most likely missing?",
+      "choices": [
+        "Phantom power or a battery",
+        "A ground lift",
+        "A TRS cable on its output",
+        "A higher gain setting on the speaker"
+      ],
+      "answer_index": 0,
+      "explanation": "An active DI has electronics inside, so it needs phantom power or a battery. A passive DI needs neither.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DI_003",
+      "skill": "di_box",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A bass through a DI hums. Which switch on the DI is worth trying first?",
+      "choices": [
+        "Ground lift",
+        "Pad",
+        "Phantom power on the console",
+        "The bass’s volume knob, all the way up"
+      ],
+      "answer_index": 0,
+      "explanation": "Many DIs have a ground lift switch for exactly this: hum from a ground loop.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DI_004",
+      "skill": "di_box",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the usual path Instrument → DI → mixer, which connector carries the signal from the DI toward the mixer?",
+      "choices": [
+        "XLR",
+        "1/4\" TS (guitar cable)",
+        "3.5 mm (headphone)",
+        "RCA"
+      ],
+      "answer_index": 0,
+      "explanation": "The DI’s output is a balanced mic-level signal on XLR, ready for a mic input on the mixer, snake, or stage box.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DINEED_001",
+      "skill": "di_needed",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these most clearly needs a DI before it goes into a mic input?",
+      "choices": [
+        "A passive electric bass",
+        "An audio interface’s balanced line outputs",
+        "A dynamic vocal mic",
+        "A wireless receiver’s XLR output"
+      ],
+      "answer_index": 0,
+      "explanation": "Passive guitar and bass pickups are high impedance. Straight into a mic input they sound thin and quiet, so they get a DI.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DINEED_002",
+      "skill": "di_needed",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "An audio interface’s balanced line outputs go straight into the stage box, no DI. What do you need to watch?",
+      "choices": [
+        "Keep the input gain down: it’s already line level",
+        "Turn on phantom power so the signal becomes balanced",
+        "Nothing: a stage box sets its own level",
+        "It can’t work: line outputs always need a DI"
+      ],
+      "answer_index": 0,
+      "explanation": "Interface line outputs are often already balanced and low impedance, so they can skip the DI. They’re hot, though, so the gain goes down.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DINEED_003",
+      "skill": "di_needed",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A laptop’s headphone jack goes straight into the stage box, and that channel hums. What’s the fix?",
+      "choices": [
+        "Put it through a DI and try the ground lift",
+        "Raise the gain to cover the hum",
+        "Use a longer cable",
+        "Turn on phantom power for that channel"
+      ],
+      "answer_index": 0,
+      "explanation": "A headphone jack is unbalanced. A short run may work without a DI, but when it hums, a DI with a ground lift is the fix.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_DINEED_004",
+      "skill": "di_needed",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At the Electroacoustic Showcase, several laptops and interfaces went straight into the stage box with no DI and sounded fine. What’s the takeaway?",
+      "choices": [
+        "A DI isn’t always required, but bring them and line check every source",
+        "Digital stage boxes have made DI boxes unnecessary",
+        "Only microphones ever need a DI",
+        "Never put a DI before a stage box"
+      ],
+      "answer_index": 0,
+      "explanation": "A DI is usually a good idea, not always a requirement. It won’t always work without one, so bring DIs and check every source.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_BOX_001",
+      "skill": "stage_box_snake",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the main difference between an analog snake and a digital stage box?",
+      "choices": [
+        "A stage box has preamps and converters on stage and sends many channels down one network cable; a snake is many cables in one jacket",
+        "A snake has preamps on stage; a stage box is just a bundle of cables",
+        "A stage box handles one or two channels; a snake handles many",
+        "There is no difference: they’re two names for one thing"
+      ],
+      "answer_index": 0,
+      "explanation": "A snake is long cables bundled together and doesn’t change the signal. A digital stage box digitizes it on stage and sends it to the console over a network cable (AES50, Dante).",
+      "verified": false
+    },
+    {
+      "id": "LIVE_BOX_002",
+      "skill": "stage_box_snake",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where does a DI box usually plug in?",
+      "choices": [
+        "Into an input on the snake or stage box",
+        "Into the mixer’s main output",
+        "Into a powered speaker, in place of the mixer",
+        "It replaces the stage box"
+      ],
+      "answer_index": 0,
+      "explanation": "A DI plugs into a snake or stage box. It doesn’t replace either one.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_BOX_003",
+      "skill": "stage_box_snake",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a digital stage box, where is each input’s preamp gain usually set?",
+      "choices": [
+        "From the console",
+        "With a knob on each DI",
+        "On the speaker",
+        "Nowhere: stage box inputs have no gain"
+      ],
+      "answer_index": 0,
+      "explanation": "The preamps live in the stage box on stage, but their gain is set remotely from the console.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_BOX_004",
+      "skill": "stage_box_snake",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Someone asks you to “grab the stage box.” Why might you ask which one they mean?",
+      "choices": [
+        "People also call the stage end of an analog snake a “stage box”",
+        "Every DI box is also called a stage box",
+        "“Stage box” means the mixer itself",
+        "Stage boxes only exist in Dante systems"
+      ],
+      "answer_index": 0,
+      "explanation": "The words overlap: the box of XLR jacks at the stage end of an analog snake gets called a stage box too. Ask.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_ORDER_001",
+      "skill": "channel_order",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On most input lists, what’s on channel 1?",
+      "choices": [
+        "Kick",
+        "Lead vocal",
+        "Snare",
+        "Overheads"
+      ],
+      "answer_index": 0,
+      "explanation": "Drums come first, and kick is almost always first among them. Most engineers can find the kick on channel 1 without looking.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_ORDER_002",
+      "skill": "channel_order",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the usual order for drum channels?",
+      "choices": [
+        "Kick, snare, hi-hat, toms, overheads",
+        "Overheads, toms, hi-hat, snare, kick",
+        "Snare, kick, overheads, toms, hi-hat",
+        "Hi-hat, snare, kick, overheads, toms"
+      ],
+      "answer_index": 0,
+      "explanation": "Kick first, snare second, overheads last, with hi-hat and toms (high to low) in between.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_ORDER_003",
+      "skill": "channel_order",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The exact channel order varies from engineer to engineer. What’s the habit that matters?",
+      "choices": [
+        "Consistency",
+        "Alphabetical order",
+        "Loudest source first",
+        "Whatever order the cables reach the stage"
+      ],
+      "answer_index": 0,
+      "explanation": "Group similar sources and keep the same order every time, so you can work quickly.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_ORDER_004",
+      "skill": "channel_order",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the common live layout, where do vocals usually go?",
+      "choices": [
+        "After the instruments: lead vocal, then backing vocals",
+        "On channels 1 and 2, before the drums",
+        "Between the kick and the snare",
+        "Wherever there’s an open channel"
+      ],
+      "answer_index": 0,
+      "explanation": "A common layout runs drums, bass, guitars, keys/playback, lead vocal, backing vocals, then special sources.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LABEL_001",
+      "skill": "channel_labels",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How do you decide whether something needs a label?",
+      "choices": [
+        "Label what someone can’t figure out in five seconds",
+        "Label everything, no exceptions",
+        "Label only the expensive gear",
+        "Label only what belongs to you"
+      ],
+      "answer_index": 0,
+      "explanation": "Not everything needs a label. Label what the next person can’t figure out at a glance.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LABEL_002",
+      "skill": "channel_labels",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these always gets a label?",
+      "choices": [
+        "The channel names on the console",
+        "Every mic stand",
+        "A single mic you can see from the console",
+        "Each coiled cable in its bin"
+      ],
+      "answer_index": 0,
+      "explanation": "Always label channel names, the snake or stage box inputs in use, and which output feeds which speaker or monitor.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_LABEL_003",
+      "skill": "channel_labels",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Two devices on a shared cart have power supplies that look alike. Why label them?",
+      "choices": [
+        "The wrong supply can fit the plug and still be wrong for the device",
+        "So nobody borrows them",
+        "Power supplies must be labeled by law",
+        "So the speakers know which one to use"
+      ],
+      "answer_index": 0,
+      "explanation": "Using the wrong power supply because the plug fits is a classic mistake. Keep each supply with its own device.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GAINFADER_001",
+      "skill": "gain_vs_fader",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does a channel’s gain (trim) set?",
+      "choices": [
+        "The level early in the channel path, before everything else",
+        "How much of the channel goes to Main L/R",
+        "The volume of the main speakers",
+        "Only the level in the monitor mix"
+      ],
+      "answer_index": 0,
+      "explanation": "Gain sets the level at the start of the channel. The fader sets how much of that prepared channel goes into a destination mix.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GAINFADER_002",
+      "skill": "gain_vs_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer’s monitor send is pre-fader. Mid-show, FOH turns that vocal’s gain up. What happens?",
+      "choices": [
+        "The vocal gets louder in the monitor too, and in Main and PFL",
+        "Only the Main mix changes; the monitor stays the same",
+        "Nothing changes until the fader moves",
+        "Only the PFL level changes"
+      ],
+      "answer_index": 0,
+      "explanation": "Gain is upstream of everything. Pre-fader sends ignore the fader, but not the gain, so changing gain changes every mix at once.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GAINFADER_003",
+      "skill": "gain_vs_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "PFL and AFL: which one changes when you move the channel fader?",
+      "choices": [
+        "AFL",
+        "PFL",
+        "Both",
+        "Neither"
+      ],
+      "answer_index": 0,
+      "explanation": "PFL is pre-fader listen, so it ignores the fader. AFL is after-fader listen, so it follows it.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GAINFADER_004",
+      "skill": "gain_vs_fader",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What goes wrong when a channel’s gain is set too high?",
+      "choices": [
+        "The preamp can clip before the fader can fix it",
+        "The fader stops working",
+        "The channel gets noisy, but never distorts",
+        "The monitor sends switch off"
+      ],
+      "answer_index": 0,
+      "explanation": "Too much gain clips early in the channel, and pulling the fader down can’t undo that. Too little gain makes noise more noticeable.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GAINFADER_005",
+      "skill": "gain_vs_fader",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Mid-show, a performer says their monitor suddenly got louder. Nobody touched the aux sends, and the sends are pre-fader. What did FOH most likely change?",
+      "choices": [
+        "That channel’s gain/trim",
+        "That channel’s fader",
+        "The Main L/R master",
+        "The PFL button"
+      ],
+      "answer_index": 0,
+      "explanation": "With pre-fader sends, the fader and the Main master don’t reach the monitors. The gain does.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_CHECK_001",
+      "skill": "line_check",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What question does a line check answer?",
+      "choices": [
+        "Does every input arrive on the right channel, with signal?",
+        "Does the mix sound great?",
+        "Are the performers ready to start?",
+        "Will the set finish on time?"
+      ],
+      "answer_index": 0,
+      "explanation": "A line check is fast: everything arrives where it should, nothing muted, broken, or mis-patched.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_CHECK_002",
+      "skill": "line_check",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is a sound check, not a line check?",
+      "choices": [
+        "Setting gain, tone, and monitor mixes with the performers playing",
+        "Each singer says “check” into their mic",
+        "Confirming the laptop arrives on its two channels",
+        "Finding the one channel that’s muted"
+      ],
+      "answer_index": 0,
+      "explanation": "A sound check properly sets gain, tone, and monitors with the performers. A line check just confirms everything is there.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_CHECK_003",
+      "skill": "line_check",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Doors open in ten minutes. The band sound checked this afternoon. What do you do now?",
+      "choices": [
+        "A quick line check",
+        "A full sound check",
+        "Nothing: it was checked this afternoon",
+        "Have the band run their first song"
+      ],
+      "answer_index": 0,
+      "explanation": "A line check happens every time, even right before doors. It takes minutes and catches whatever changed since.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_CHECK_004",
+      "skill": "line_check",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why is a sound check not a rehearsal?",
+      "choices": [
+        "It’s for setting up the system, not for running the set",
+        "Sound checks are only for drummers",
+        "A rehearsal needs an audience",
+        "Sound checks happen without the performers"
+      ],
+      "answer_index": 0,
+      "explanation": "A sound check is slower than a line check, but it’s still for the system. Running the set is a rehearsal.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_RESET_001",
+      "skill": "live_reset",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Resetting a station: what gets turned off first?",
+      "choices": [
+        "The amplified speakers",
+        "The mixer",
+        "The stage box",
+        "The microphones"
+      ],
+      "answer_index": 0,
+      "explanation": "Amplified speakers go off first, before anything upstream of them, so nothing pops through them.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_RESET_002",
+      "skill": "live_reset",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "During a reset, when is it OK to lower faders instead of just muting?",
+      "choices": [
+        "When you know where they belong, for example saved in a scene",
+        "Always: lowering is safer than muting",
+        "Never: faders stay where they are",
+        "Only on an analog mixer"
+      ],
+      "answer_index": 0,
+      "explanation": "Mute by default. Lower levels only if you can put them back, like when the right levels are saved in a scene.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_RESET_003",
+      "skill": "live_reset",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What should you avoid doing to a shared console during a reset?",
+      "choices": [
+        "Overwriting its saved scenes",
+        "Muting channels",
+        "Leaving a note for the next person",
+        "Labeling what you changed"
+      ],
+      "answer_index": 0,
+      "explanation": "Don’t overwrite shared console scenes. Leave clear labels or notes instead.",
       "verified": false
     }
   ]
