@@ -28,7 +28,7 @@ Everything due this week, with due dates: **see Canvas**.
 
 ### Live Sound Part 3: System Workflow
 
-**Previously:** One channel can feed more than one destination.
+**Previously:** One channel can feed more than one ==destination==.
 
 **Today:** Build a system that is organized, audible, and understandable to the next person.
 
@@ -36,12 +36,12 @@ Everything due this week, with due dates: **see Canvas**.
 
 A working system is not enough.
 
-Can another engineer quickly tell:
+Can another ==engineer== quickly tell:
 
 - What each channel is?
 - Where each cable goes?
 - Which output feeds which speaker?
-- What has changed since the last setup?
+- What has ==changed== since the last setup?
 
 ### Today
 
@@ -58,7 +58,7 @@ Can another engineer quickly tell:
 
 A typical live path:
 
-Source → microphone / DI → stage cable → mixer input → channel → buses → outputs → speakers
+Source → microphone / ==DI== → stage cable → mixer input → channel → buses → outputs → speakers
 
 The ==physical patch== and the mixer's internal ==routing== both matter.
 
@@ -133,9 +133,9 @@ It won't always work. Bring DIs anyway, and line check every source.
 
 Channel order should help you work quickly.
 
-A common live-sound layout groups similar sources together:
+A common live-sound layout groups ==similar== sources together:
 
-1. Drums / percussion
+1. ==Drums== / percussion
 2. Bass
 3. Guitars
 4. Keys / playback
@@ -152,7 +152,7 @@ Inside the drums, the order is almost always the same:
 1. ==Kick==
 2. ==Snare== (top, then bottom if there is one)
 3. Hi-hat
-4. Toms (high to low)
+4. ==Toms== (high to low)
 5. ==Overheads== (left, then right)
 
 **Kick first, snare second, overheads last.** Most input lists start this way, so most engineers
@@ -225,9 +225,9 @@ the performers' monitors.
 ### Line Check vs. Sound Check
 
 **==Line check==:** fast. Does every input arrive on the right channel, with signal? Nothing
-muted, broken, or mis-patched. Minutes, not an hour.
+muted, broken, or mis-patched. ==Minutes==, not an hour.
 
-**==Sound check==:** slower. Properly setting gain, tone, and monitor mixes with the performers
+**==Sound check==:** slower. Properly setting gain, tone, and monitor mixes with the ==performers==
 playing.
 
 A sound check is still **not a ==rehearsal==**. It's for the system, not for running the set.
@@ -257,8 +257,8 @@ Setting gain properly (and tone, and monitor mixes) is the sound check.
 ### Example Line Check
 
 - **Vocal Jazz or A cappella:** Each person says "==check==."
-- **Band:** Each instrument plays a few notes.
-- **Laptop or playback:** A few seconds of the actual track, both left and right.
+- **Band:** Each instrument plays a few ==notes==.
+- **Laptop or playback:** A few seconds of the actual track, both ==left and right==.
 
 ## 5. Mistakes and Resets
 
@@ -295,9 +295,9 @@ From a patch plan, you should be able to:
 
 1. Patch a microphone.
 2. Patch a DI or line-level source (and say whether it needs the DI).
-3. Label the channels.
-4. Set gain for each source.
-5. Complete a short line check.
+3. ==Label== the channels.
+4. Set ==gain== for each source.
+5. Complete a short ==line check==.
 6. Send the needed sources to Main and Aux destinations.
 7. Explain the entire ==signal path==.
 
@@ -308,7 +308,7 @@ Live Sound 4 combines the full system:
 - Troubleshooting signal flow
 - Main mix versus monitor mix versus recording feed
 - Stereo board feeds and multitrack feeds
-- Finding the actual fault
+- Finding the actual ==fault==
 - Resetting and handing off a working rig
 
 ## 🗝️ Key terms
