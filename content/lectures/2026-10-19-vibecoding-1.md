@@ -165,13 +165,7 @@ Every saved change is a ==commit==, and the history keeps every one.
 ✅ **Answer.** A fork is your own copy. A commit is one save, a pull request asks the owner to take
 your change, and a merge is the owner saying yes.
 
-**Q7 (fill in the blank).** One save in a repo, plus a note about what changed, is called a
-==commit==.
-
-✅ **Answer.** A commit is one save with a note, and the repo's history keeps every one, so any
-change can be found and undone.
-
-**Q8 (multiple choice).** You open a pull request on someone's repo. What has to happen before your
+**Q7 (multiple choice).** You open a pull request on someone's repo. What has to happen before your
 change is part of their repo?
 
 - a) Nothing; it's already in
@@ -193,12 +187,6 @@ The simulators you've used are their own ==repos==, each its own small site:
 - [Salmon](https://adamborecki.github.io/salmon/)
 
 Each repo does ==one thing==, so a change to one can't ==break== another.
-
-**Q9 (short answer).** Why are camera-lab, mixer-lab, and this course site separate repos instead
-of one big one?
-
-✅ **Answer.** Each repo does one thing, so a change to one can't break another, and each can be
-worked on (and fixed) on its own.
 
 ### 🙈 How a change gets in
 
@@ -243,7 +231,7 @@ Look at what it did **not** do:
 - Anything it couldn't ==confirm== went in a section called ==Technical verification==, instead of
   being guessed
 
-**Q10 (multiple choice).** What three things did the AI get to build the COB checklist?
+**Q8 (multiple choice).** What three things did the AI get to build the COB checklist?
 
 - a) A finished checklist, a template, and a video
 - ✅ b) Photos from the gig, dictated notes, and a one-line prompt
@@ -251,13 +239,13 @@ Look at what it did **not** do:
 
 ✅ **Answer.** Photos, dictated notes, and a one-line prompt: the same recipe works for any gig.
 
-**Q11 (fill in the blank).** In the COB checklist, anything the AI couldn't confirm went in a
+**Q9 (fill in the blank).** In the COB checklist, anything the AI couldn't confirm went in a
 section called ==Technical verification|Technical verification section==.
 
 ✅ **Answer.** Unconfirmed details get marked as open questions, not guessed: a student will follow
 this page in a room where the show happens once.
 
-**Q12 (multiple choice).** How did the COB build handle the students in the photos and notes?
+**Q10 (multiple choice).** How did the COB build handle the students in the photos and notes?
 
 - a) It listed their names in the checklist
 - ✅ b) It replaced names with roles, and blurred faces
@@ -306,7 +294,7 @@ show in Irvine: twelve performers on **wireless headset mics**.
 
 Readable ==as-is==: `##` starts a ==heading==, `**` makes text ==bold==, and `-` starts a ==bullet==.
 
-**Q13 (fill in the blank).** In Markdown, a line that starts with `##` is a ==heading|header==.
+**Q11 (fill in the blank).** In Markdown, a line that starts with `##` is a ==heading|header==.
 
 ✅ **Answer.** Markdown is plain text with a few symbols: `##` for a heading, `**` for bold, `-`
 for a bullet.
@@ -321,7 +309,7 @@ Every saved change is a ==commit==.
 
 The slides show the word; your notes print a ==blank==. One file, two ==outputs==.
 
-**Q14 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`,
+**Q12 (multiple choice).** You paste an AI's answer into Canvas and see `**phantom power**`,
 asterisks and all. What happened?
 
 - a) The AI made a typo
@@ -356,7 +344,7 @@ think.
 > 🌀 **Portal: AI on your own computer.** Some models run **offline**, on your own laptop: free,
 > and nothing you type leaves the machine. They're smaller and slower. A later lecture.
 
-**Q15 (multiple choice).** What's this class's general approach to using AI?
+**Q13 (multiple choice).** What's this class's general approach to using AI?
 
 - a) Everyone has to use it for everything
 - ✅ b) Nobody is required to use it if they don't want to; today's PantherAI activity is an exception
@@ -377,7 +365,7 @@ So it's very important to be ==thoughtful== about how you use it.
 - A good prompt: "Help me ==understand== this without giving me the answers."
 - Go at least ==three== rounds of replies, sometimes more: ask, push back, ask again.
 
-**Q16 (fill in the blank).** A prompt that gets help without cheating: "Help me understand this
+**Q14 (fill in the blank).** A prompt that gets help without cheating: "Help me understand this
 without giving me the ==answers|answer==."
 
 ✅ **Answer.** Use AI to understand, not to skip the thinking: ask it to explain without handing
@@ -395,7 +383,7 @@ A good rule of thumb for whether to use AI:
 
 Nobody gets stronger by watching a forklift lift the weights.
 
-**Q17 (multiple choice).** Which of these is "forklifting," where AI is probably a good fit?
+**Q15 (multiple choice).** Which of these is "forklifting," where AI is probably a good fit?
 
 - a) Practicing gain staging until it's second nature
 - ✅ b) Reformatting a long list of file names to match the naming convention
@@ -412,7 +400,7 @@ voices are common, and whose are ==missing==.
 - It sounds just as ==sure== when it's wrong or one-sided
 - Be most careful with anything it says about ==people==
 
-**Q18 (fill in the blank).** Because AI learns from huge amounts of human writing, it picks up that
+**Q16 (fill in the blank).** Because AI learns from huge amounts of human writing, it picks up that
 writing's ==bias|biases==.
 
 ✅ **Answer.** AI repeats the bias in what it learned from, and sounds just as sure when it's
@@ -427,7 +415,7 @@ Every AI answer runs in a ==data center== that uses ==electricity==, and ==water
 
 **Using less is the habit that's cheaper, faster, and kinder to the planet.**
 
-**Q19 (multiple choice).** Which of these uses the least AI (and the least energy)?
+**Q17 (multiple choice).** Which of these uses the least AI (and the least energy)?
 
 - a) A long chat with the biggest model on maximum thinking
 - ✅ b) A clear, small question in a fresh chat
@@ -444,16 +432,12 @@ they're usually faster too.
   people
 - Follow each ==assignment=='s own AI ==rules==
 
-**Q20 (short answer).** Name one thing you should never paste into an AI tool, and why.
-
-✅ **Answer.** Private information (a name, a door code, a password, a recording of a person):
-once it's sent, you can't take it back.
-
-**Q21 (fill in the blank).** When you've used AI on something you hand in, you should ==disclose==
+**Q18 (fill in the blank).** When you've used AI on something you hand in, you should ==disclose==
 it.
 
 ✅ **Answer.** Say when you used AI, like the note at the top of this lecture, and you still own
-what you hand in, mistakes included.
+what you hand in, mistakes included. And never paste private information (a name, a door code, a
+password): once it's sent, you can't take it back.
 
 > 🧑‍🏫 Say your own rule for AI on quizzes out loud here.
 
@@ -468,20 +452,11 @@ Claude comes in sizes: ==Haiku== (small), ==Sonnet== (middle), ==Opus== (largest
 ==PantherAI== gives you the highest **Claude Sonnet** available (Sonnet 5, right now): very good,
 just not the biggest.
 
-**Q22 (fill in the blank).** One of the newest, most capable models from the big AI labs is called
+**Q19 (fill in the blank).** One of the newest, most capable models from the big AI labs is called
 a ==frontier model|frontier==.
 
 ✅ **Answer.** "Frontier" means the leading edge: the newest, most capable, and most expensive
 models to run.
-
-**Q23 (multiple choice).** Which is the smallest of Claude's three sizes?
-
-- ✅ a) Haiku
-- b) Sonnet
-- c) Opus
-
-✅ **Answer.** Haiku is small, Sonnet is the middle, Opus is the largest. PantherAI gives you the
-highest Sonnet.
 
 ### The context window
 
@@ -491,13 +466,13 @@ unless you paste them.
 
 When a chat gets long or confused, start a ==new chat== with a short summary.
 
-**Q24 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
+**Q20 (fill in the blank).** Everything an AI can "see" at once (your messages, its replies, and
 whatever you pasted) is its ==context window==.
 
 ✅ **Answer.** The context window is all the AI can see. In a long chat, early instructions fade,
 so start a fresh chat with a short summary.
 
-**Q25 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
+**Q21 (multiple choice).** Your PantherAI chat is very long, and it keeps ignoring a rule you gave
 at the start. Best move?
 
 - a) Repeat the rule in ALL CAPS
@@ -553,7 +528,7 @@ Open the preview link from the build we started, and read the new checklist toge
 
 It's done when a ==person== opened it and ==checked== it, not when the AI says "this works!"
 
-**Q26 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
+**Q22 (multiple choice).** Your group's bad tuner looks great in the AI's reply. When is it done?
 
 - a) When the AI says it works
 - ✅ b) When you've opened it, on a phone too, and it does what you asked
@@ -608,7 +583,7 @@ PantherAI is just a ==chatbot== here: it writes the code, and you copy it. No co
 > 🧑‍🏫 Where the share links go (a Canvas discussion, an assignment, or GitHub Issues later) is
 > still to be decided. Say it here, and set a prompt budget if you want one.
 
-**Q27 (multiple choice).** You've got your app's code from PantherAI. How do you try it?
+**Q23 (multiple choice).** You've got your app's code from PantherAI. How do you try it?
 
 - a) Email it to yourself
 - ✅ b) Paste it into the Playground and press Run
@@ -624,11 +599,6 @@ so anyone can open it.
 | "make it ==better==" | "The drift is too fast to notice. Make it drift about 1 BPM every 4 bars, and keep everything else the same." |
 | "it doesn't ==work==" | "On my phone, tapping Start does nothing. On my laptop it works." |
 | Three new ideas at once | ==One== change, then test |
-
-**Q28 (short answer).** Rewrite this prompt so it earns its place: *"make it better."*
-
-✅ **Answer.** One specific change, plus what you saw. For example: "The tuner's insults repeat
-too often. Give it 20 different ones, and keep everything else the same."
 
 > 🌀 **Portal: from playground to repo.** Next, your app goes live on your own GitHub Pages
 > site, and you fork someone else's repo and open a pull request. Vibecoding 2.

@@ -5,7 +5,7 @@ For anyone (person or AI) adding **follow-along notes** or an **online refresher
 page, you mark up the lecture. `CLAUDE.md` (Lectures) has the short version; this is the long one,
 including the mistakes that have already happened once.
 
-Worked example: `content/lectures/2026-10-19-vibecoding-1.md` (126 blanks, 26 questions).
+Worked example: `content/lectures/2026-10-19-vibecoding-1.md` (144 blanks, 23 questions).
 
 ## What students get, and when
 
