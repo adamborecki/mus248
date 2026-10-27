@@ -41,16 +41,36 @@ export function parseEval(markdown) {
 
 // ---------- the page ----------
 
-// Everything but the name lines, as ordinary Markdown. The 📖 line links to the activity.
-export function renderEvalPage(markdown, { assetBase = '../content/performance-evals/' } = {}) {
+// A short status for a closed card, so the list reads at a glance: how many items a station has, or
+// that it isn't written yet.
+function cardStatus(section) {
+  if (section.kind === 'how') return `${section.items} steps`;
+  const pending = section.lines.some((line) => line.includes('🚧'));
+  if (!section.items) return '🚧 Not written yet';
+  return `${pending ? '🚧 Draft · ' : ''}${section.items} ${section.items === 1 ? 'item' : 'items'}`;
+}
+
+// The intro, then one closed card per section (the hub's activity card): emoji, title, and goal
+// on the outside, everything else inside. The name lines are for paper only.
+export function renderEvalPage(markdown, { assetBase = '../content/performance-evals/', id = '' } = {}) {
   const parsed = parseEval(markdown);
   const options = { assetBase };
-  const stations = parsed.sections.filter((section) => section.kind !== 'about');
-  return renderMarkdown(parsed.intro, options) + stations.map((section) => {
+  const cards = parsed.sections.filter((section) => section.kind !== 'about').map((section) => {
+    const [, emoji = '', title = section.heading] = section.heading.match(/^([^\p{L}\p{N}]*)(.*)$/u) || [];
     const body = section.lines.filter((line) => !GOAL.test(line)).join('\n');
-    return `<section class="ev-section ev-${section.kind}"><h3>${inline(section.heading, options)}</h3>`
-      + `${section.goal ? `<p class="ev-goal">${inline(section.goal, options)}</p>` : ''}${renderMarkdown(body, options)}</section>`;
+    const goal = section.kind === 'how' ? 'The procedure, start to finish' : section.goal;
+    const anchor = id && `${id}-${words(section.heading).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+    return `<details class="activity-card ev-card"${anchor ? ` id="${anchor}"` : ''}>
+        <summary>
+          <span class="activity-emoji" aria-hidden="true">${escapeHtml(emoji.trim() || '•')}</span>
+          <span class="card-copy"><strong>${inline(title.trim(), options)}</strong>${goal ? `<small>${inline(goal, options)}</small>` : ''}</span>
+          <span class="chip ev-status">${escapeHtml(cardStatus(section))}</span>
+          <span class="arrow" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="card-details instructions">${renderMarkdown(body, options)}</div>
+      </details>`;
   }).join('');
+  return `${renderMarkdown(parsed.intro, options)}<div class="activity-grid ev-grid">${cards}</div>`;
 }
 
 // ---------- the sheet ----------
@@ -136,10 +156,15 @@ async function mountPage(root) {
         <h2 class="section-title">${escapeHtml(front.emoji || '')} ${escapeHtml(front.title || id)}${draft ? ' <span class="ev-draft">Draft</span>' : ''}</h2>
         <p class="ev-print"><a href="sheet/?id=${id}"><span aria-hidden="true">🖨️</span> ${draft ? 'Preview' : 'Print'} the ${escapeHtml((front.title || id).toLowerCase())} sheet</a>
           ${front.revised ? `<span class="quiet">Rev. ${escapeHtml(front.revised)}</span>` : ''}</p>
-        <div class="instructions">${renderEvalPage(sources[index])}</div>
+        <div class="ev-intro">${renderEvalPage(sources[index], { id })}</div>
       </section>`;
   }).join('');
-  if (window.location.hash) document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
+  // A link to one station (#final-data-transfer) opens that card.
+  const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+  if (target) {
+    if (target.tagName === 'DETAILS') target.open = true;
+    target.scrollIntoView();
+  }
 }
 
 async function mountSheet(root) {
