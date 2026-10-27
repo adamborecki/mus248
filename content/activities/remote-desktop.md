@@ -144,8 +144,8 @@ Everything below came from one spoken walkthrough and three photos. Open items (
 above):
 
 - **Which Mac** has Remote Desktop set up for the lab, and where it is.
-- **The freeze software.** The walkthrough called its password "the polar bear," which suggests
-  Faronics **Deep Freeze**. Confirm the product, whether freezing and thawing restarts the iMac,
+- **The freeze software.** The walkthrough referred to it as "the polar bear" (its icon), which
+  suggests Faronics **Deep Freeze**. Confirm the product, whether freezing and thawing restarts the iMac,
   and whether **Computer Info #1** really reports its state (all 22 read **Frozen** in the photos).
 - **What Thaw Computers and Freeze Computers are.** Their sidebar icon matches **Send UNIX
   Command**, so they look like saved commands. Confirm, and say whether they need the freeze
