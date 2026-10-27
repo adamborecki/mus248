@@ -5,7 +5,11 @@ view; this file is public in the repo like everything else, so nothing private g
 
 ## ✅ To do (from the Oct 20 planning conversation)
 
-**Before Vibecoding 2 (Mon Oct 26).** The order matters: each one feeds the next.
+**Before Vibecoding 2 (Mon Nov 2; moved from Oct 26, when Live Sound 3 ran instead).** The order
+matters: each one feeds the next.
+
+**Decided Oct 26, not yet applied to the lecture:** less is more. Nov 2 is the GitHub Pages site plus
+HTML and Markdown; section 3 (WTF 248: fork, branch, pull request) moves to the following week.
 
 1. **Performance Evaluation session** (separate conversation): finalize the midterm/final skills
    list. It's the basis of WTF 248, and VC2 section 4 discusses it (~10 minutes; placeholder now).
@@ -64,7 +68,7 @@ the lecture Markdown (or ask Claude to). Then Clear all.
 
 ## 🗺️ The series
 
-| | Vibecoding 1 (Oct 19) | Vibecoding 2: Going Live (Oct 26) | Vibecoding 3 (drafted, not scheduled) |
+| | Vibecoding 1 (Oct 19) | Vibecoding 2: Going Live (Nov 2) | Vibecoding 3 (drafted, not scheduled) |
 |---|---|---|---|
 | Tools | Browser only: GitHub web + PantherAI | Browser only, **no AI**: GitHub web + GitHub Pages | Terminal, git CLI, a coding agent |
 | Practice | Bad webapps in the Playground | `mus248-sandbox` site (4 files) + a pull request on WTF 248 | Real Repo Improvement on mus248 |
@@ -80,7 +84,7 @@ the lecture Markdown (or ask Claude to). Then Clear all.
 | 6. Effort and usage | The settings gear; agents use far more | VC3 · 3. Agents and usage |
 | 8. Make every prompt count | From playground to repo (fork + pull request) | VC2 · 1. Your own website, and 3. Fix WTF 248 |
 
-VC2 (Oct 26) took over the old draft's "Your own repo" section; the rest of that draft (terminal,
+VC2 (Nov 2) took over the old draft's "Your own repo" section; the rest of that draft (terminal,
 git CLI, coding agents) is now `content/lectures/vibecoding-3.md`.
 
 **Open: the feedback route.** How do students hand in bad webapps and give feedback? Options:

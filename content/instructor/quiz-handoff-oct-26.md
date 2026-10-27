@@ -1,5 +1,9 @@
 # Quiz handoff: the Oct 26 quiz (and catching up on Oct 19)
 
+> ✅ **Done, then changed (Oct 26).** The quiz session built Quiz 5 (the Oct 19 quiz, take-home) and
+> Quiz 6 (Vibecoding 2). Then Vibecoding 2 moved to Nov 2, and Quiz 6 with it. Kept for the record;
+> the current state is `quiz/data/curriculum.json` and `/quiz/overview/`.
+
 For the separate session that builds this week's quiz. Written Oct 22 from the lecture-planning
 session. Public repo: no access codes here; the instructor picks the new one.
 

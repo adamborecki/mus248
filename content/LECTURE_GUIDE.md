@@ -49,7 +49,7 @@ So the same Sunday, students hand in **this** lecture's notes and **last** lectu
 - **Maybe later:** a lecture's easy questions go Core on Monday B and its harder ones on Monday C
   (per-question `tier` overrides already allow this).
 
-**Fall 2026 Mondays left** (from Oct 26): Oct 26 (lecture 09), Nov 2, Nov 9, Nov 16, no class Nov 23
+**Fall 2026 Mondays left** (from Oct 26): Oct 26 (lecture 09, Live Sound 3), Nov 2 (lecture 10, Vibecoding 2), Nov 9, Nov 16, no class Nov 23
 (Thanksgiving), Nov 30, and Dec 7 (the finals-week meeting).
 
 ## New lectures: outline first, instructor writes, questions last

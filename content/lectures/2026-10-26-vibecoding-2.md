@@ -2,7 +2,8 @@
 > 20–21). The instructor writes the slides from this outline. Part 2 of the Vibecoding series. The
 > students' work this week uses no AI.
 
-> 🧑‍🏫 **Outline draft for Oct 26: write it in your voice.** Bullet fragments are prompts for what
+> 🧑‍🏫 **Outline draft for Nov 2 (moved from Oct 26, when Live Sound 3 ran instead): write it in
+> your voice.** Bullet fragments are prompts for what
 > to say; rewrite them as slides. Reference material (the click steps, the file table, the
 > troubleshooting table, the two starters) is meant to be close to final. Section 3 is the
 > roughest, since the activity isn't settled. No refresher questions yet: they get written from your
@@ -15,15 +16,15 @@
 
 ### Homework review
 
-**Today:** Week 10 · Class 9
+**Today:** Week 11 · Class 10
 
-**After today:** 5 classes (4 + 1 meeting in finals week)
+**After today:** 4 classes (3 + 1 meeting in finals week)
 
 Everything due this week, with due dates: **see Canvas**.
 
 - **Your `mus248-sandbox` site**, live with four files, no AI (today's sections 1 and 2)
 - **Follow-along notes:** photos of today's notes, on Canvas
-- **Online refresher for Vibecoding 1:** open since this morning. Copy the Canvas deliverable into
+- **Online refresher for Live Sound 3:** open since this morning. Copy the Canvas deliverable into
   the Canvas assignment
 - **Finished an activity or a checklist?** Fill out the Repo Improvement form
 
