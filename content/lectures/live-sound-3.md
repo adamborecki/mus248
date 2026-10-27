@@ -1,6 +1,6 @@
 > 🤖 **AI use:** imported from the lecture deck *MUS248 Live Sound 4 parts.pptx* (Part 3), then
 > reorganized into numbered sections, with follow-along blanks and new slides (DI or no DI, stage
-> box vs. snake, PFL vs. AFL, line check vs. sound check) written with Claude Code from the
+> box vs. snake, pre- vs. post-fader, line check vs. sound check) written with Claude Code from the
 > instructor's notes on Oct 26.
 
 > 🧑‍🏫 Moved up to Oct 26 (lecture 09); Vibecoding 2 is now Nov 2. Follow-along blanks are in, so
@@ -202,18 +202,23 @@ Gain and fader are not interchangeable controls.
 
 **Channel Fader / Level:** Sets how much of that prepared channel enters a ==destination== mix.
 
-### Reminder: PFL vs. AFL
+### Reminder: Pre-Fader vs. Post-Fader
 
-- **PFL** (pre-fader listen) hears the channel ==before== the fader.
-- **AFL** (after-fader listen) hears it ==after== the fader.
+A send taps the channel either ==before== or ==after== the channel fader.
 
-Monitor sends are often **pre-fader** too. So:
+- **Pre-fader:** ignores the fader. Monitor sends are often pre-fader.
+- **Post-fader:** follows the fader. Common for effects sends.
+
+With pre-fader monitor sends:
 
 - Change the **fader** (the Main level): the monitor mix ==doesn't change==.
-- Change the **gain/trim**: the monitor mix ==changes==. So do PFL, Main, and every other send.
+- Change the **gain/trim**: the monitor mix ==changes==. So do Main and every other send.
 
 Gain is ==upstream== of everything. Touching it during a show changes every mix at once, including
 the performers' monitors.
+
+**Same idea for listening:** **PFL** (pre-fader listen) hears the channel before the fader;
+**AFL** (after-fader listen) hears it after.
 
 ## 4. Line Check and Sound Check
 
@@ -309,7 +314,7 @@ Live Sound 4 combines the full system:
 ## 🗝️ Key terms
 
 **DI box** · **snake** · **stage box** · **balanced / unbalanced** · **impedance** · **ground lift**
-· **gain staging** · **gain / trim** · **clipping** · **PFL / AFL** · **pre-fader send** ·
+· **gain staging** · **gain / trim** · **clipping** · **pre-fader / post-fader** · **PFL / AFL** ·
 **line check** · **sound check** · **scene**
 
 ## 💭 Before you leave
