@@ -3,7 +3,7 @@
 
 html.presenter-open, html.presenter-open body { height: 100%; margin: 0; overflow: hidden; background: #111118; }
 html.presenter-open main { max-width: none; margin: 0; padding: 0; }
-.pv { position: fixed; inset: 0; display: grid; grid-template-columns: 254px minmax(0, 1fr) minmax(320px, 27vw); grid-template-rows: minmax(0, 1fr); background: #111118; color: #f2f2f7;
+.pv { position: fixed; inset: 0; display: grid; grid-template-columns: 254px minmax(0, 1fr) var(--pv-notes-w, minmax(320px, 27vw)); grid-template-rows: minmax(0, 1fr); background: #111118; color: #f2f2f7;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
 
 /* ---- left: thumbnails ---- */
@@ -50,36 +50,48 @@ html.presenter-open main { max-width: none; margin: 0; padding: 0; }
 .pv .pv-primary, .pv-modal .pv-primary { background: #0a84ff; color: #fff; }
 
 /* ---- right: the follow-along notes, as printed ---- */
-.pv-notes { display: flex; flex-direction: column; min-width: 0; background: #fbfaf6; color: #1c1c1e; }
+.pv-notes { position: relative; display: flex; flex-direction: column; min-width: 0; background: #fbfaf6; color: #1c1c1e; }
+/* The divider between deck and notes: drag it, double-click it to put it back. */
+.pv-resize { position: absolute; left: -5px; top: 0; bottom: 0; z-index: 5; width: 10px; cursor: col-resize; touch-action: none; }
+.pv-resize::after { content: ""; position: absolute; left: 4px; top: 0; bottom: 0; width: 2px; background: transparent; transition: background .15s; }
+.pv-resize:hover::after, .pv-resize:focus-visible::after, .pv.is-resizing .pv-resize::after { background: #0a84ff; }
+.pv-resize:focus-visible { outline: none; }
+.pv.is-resizing { cursor: col-resize; user-select: none; }
+.pv.is-resizing iframe { pointer-events: none; } /* or the deck swallows the drag */
 .pv-bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: #1c1c24; color: #f2f2f7; }
 .pv-bar .pv-count { margin-right: auto; font-variant-numeric: tabular-nums; }
 .pv-bar button { padding: 5px 9px; font-size: 13px; }
 .pv-bar button[aria-pressed="true"] { background: #ffd60a; color: #1c1c1e; }
 .pv-bar a { padding: 4px 8px; color: #a1a1aa; text-decoration: none; }
+/* Notes text size, tucked in the bottom corner: faint until you reach for it. */
+.pv-zoom { position: absolute; right: 14px; bottom: 12px; z-index: 4; display: flex; gap: 3px; padding: 3px; border-radius: 10px; background: rgb(28 28 36 / .85); opacity: .35; transition: opacity .2s; }
+.pv-zoom:hover, .pv-zoom:focus-within { opacity: 1; }
+.pv .pv-zoom button { padding: 4px 9px; font-size: 13px; }
+.pv .pv-zoom button[aria-pressed="true"] { background: #ffd60a; color: #1c1c1e; }
 .pv-notes-body { position: relative; flex: 1; overflow-y: auto; padding: 8px 18px 60vh; font-size: 15px; line-height: 1.45; }
-.pv-notes-title { margin: 6px 0 0; color: #6e6e78; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.pv-notes-title { margin: 6px 0 0; color: #6e6e78; font-size: .8em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .pv-notes-body section { margin: 0 -10px; padding: 2px 10px 4px; border-left: 4px solid transparent; border-radius: 4px; transition: background .3s; }
 .pv-notes-body section.is-current { border-left-color: #ffd60a; background: #fff6c7; }
-.pv-notes-body h2 { margin: 1.1rem 0 .3rem; padding-bottom: .15rem; border-bottom: 1px solid #d1d1d6; font-size: 1.1rem; }
-.pv-notes-body h3 { margin: .8rem 0 .2rem; font-size: 1rem; }
-.pv-notes-body p, .pv-notes-body li { margin: .25rem 0; }
-.pv-notes-body ul, .pv-notes-body ol { margin: .2rem 0; padding-left: 1.2rem; }
+.pv-notes-body h2 { margin: 1em 0 .25em; padding-bottom: .15em; border-bottom: 1px solid #d1d1d6; font-size: 1.15em; }
+.pv-notes-body h3 { margin: .75em 0 .2em; font-size: 1.05em; }
+.pv-notes-body p, .pv-notes-body li { margin: .25em 0; }
+.pv-notes-body ul, .pv-notes-body ol { margin: .2em 0; padding-left: 1.3em; }
 .pv-notes-body table { width: 100%; border-collapse: collapse; font-size: .85em; }
-.pv-notes-body th, .pv-notes-body td { padding: .2rem .35rem; border: 1px solid #d1d1d6; text-align: left; vertical-align: top; }
+.pv-notes-body th, .pv-notes-body td { padding: .2em .35em; border: 1px solid #d1d1d6; text-align: left; vertical-align: top; }
 .pv-notes-body code { padding: 0 .2em; border-radius: .2em; background: #ececf0; font-family: ui-monospace, monospace; font-size: .88em; }
-.pv-notes-body pre { margin: .3rem 0; padding: .4rem .6rem; border: 1px solid #d1d1d6; border-radius: .3rem; font: 12px/1.35 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+.pv-notes-body pre { margin: .3em 0; padding: .4em .6em; border: 1px solid #d1d1d6; border-radius: .3em; font: .8em/1.35 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
 .pv-notes-body pre code { padding: 0; background: none; }
-.pv-notes-body aside, .pv-notes-body blockquote { margin: .4rem 0; padding: .3rem .6rem; border-left: 3px solid #d1d1d6; color: #55555f; font-size: .9em; }
+.pv-notes-body aside, .pv-notes-body blockquote { margin: .4em 0; padding: .3em .6em; border-left: 3px solid #d1d1d6; color: #55555f; font-size: .9em; }
 .pv-notes-body img { max-width: 100%; height: auto; }
 /* Blanks fill in as their slide comes up; later ones stay blank lines, like the paper. */
 .pv-notes-body mark.key-term { padding: 0 .12em; border-radius: .2em; background: #ffe066; color: #000; font-weight: 700; }
 .pv-notes-body section.is-past mark.key-term { background: #fff1a8; }
 .pv-notes-body section.is-future mark.key-term { background: none; color: transparent; border-bottom: 1.5px solid #1c1c1e; border-radius: 0; user-select: none; }
 .pv-notes-body section.is-skipped > :not(.pv-margin) { opacity: .5; text-decoration: line-through; }
-.pv-notes-body section.is-skipped > h2:first-child::after, .pv-notes-body section.is-skipped > h3:first-child::after { content: "✂️ skipped: cross it off"; display: inline-block; margin-left: .5rem; padding: 0 .45rem; border-radius: .3rem; background: #ffd60a; color: #1c1c1e; font-size: .75rem; text-decoration: none; vertical-align: .1em; }
-.pv-margin { margin: .4rem 0 .5rem; padding: .45rem .6rem; border: 2px dashed #ff9f0a; border-radius: .4rem; background: #fff4e0; }
-.pv-margin > strong { display: block; color: #a05a00; font-size: .85rem; }
-.pv-margin p, .pv-margin li { margin: .15rem 0; }
+.pv-notes-body section.is-skipped > h2:first-child::after, .pv-notes-body section.is-skipped > h3:first-child::after { content: "✂️ skipped: cross it off"; display: inline-block; margin-left: .5em; padding: 0 .45em; border-radius: .3em; background: #ffd60a; color: #1c1c1e; font-size: .75em; text-decoration: none; vertical-align: .1em; }
+.pv-margin { margin: .4em 0 .5em; padding: .45em .6em; border: 2px dashed #ff9f0a; border-radius: .4em; background: #fff4e0; }
+.pv-margin > strong { display: block; color: #a05a00; font-size: .85em; }
+.pv-margin p, .pv-margin li { margin: .15em 0; }
 
 /* ---- changes (export) ---- */
 .pv-modal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 24px; background: rgb(0 0 0 / .6); }

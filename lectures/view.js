@@ -12,6 +12,13 @@
 // site: the Markdown is still public in the repo.
 export const isVisible = (lecture, now = Date.now()) => !lecture.hiddenUntil || now >= Date.parse(lecture.hiddenUntil);
 
+// A guest lecture ("guest": "the course it's for") is one given to another class on this same
+// engine. It never appears on this course's lecture list or in its Older/Newer links (instructor
+// view lists it on its own), but once visible its page, slides, and notes open for anyone with the
+// link, so that class can be sent it. Add `hiddenUntil` to keep even the link instructor-only.
+export const isGuest = (lecture) => Boolean(lecture.guest);
+export const courseOf = (lecture) => lecture.guest || 'MUS 248';
+
 const HIDDEN_HEADING = /^(#{2,3})\s+(?:\d+\.\s+)?🙈/u;
 const NOTE = /^>\s*🧑‍🏫/u;
 const HEADING = /^(#{2,6})\s/;

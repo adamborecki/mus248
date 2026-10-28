@@ -106,7 +106,12 @@ screen onto it.
 01 is Aug 24 and Labor Day has none), and optionally `hiddenUntil` (ISO time with offset, e.g.
 `2026-10-19T22:00:00-07:00`). That hides it from the site until then, but the Markdown stays public
 in the repo, so it's not a secret; `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
-lecture needs a `lectures/<id>/index.html` shell (copy one, change `data-lecture-id`). Slide decks
+lecture needs a `lectures/<id>/index.html` shell (copy one, change `data-lecture-id`). A **guest
+lecture** for another course on this same engine gets `"guest": "<that course>"` and no `lecture`
+number or `week`: it stays off this course's list and Older/Newer links (instructor view lists it
+under 🎟️ Guest lectures), its page and notes say that course instead of MUS 248 and leave off the
+Repo Improvement form and Canvas line, and it skips the Announcements/Homework review rule. Its link
+works for anyone, so it can be sent to that class; add `hiddenUntil` to keep it instructor-only. Slide decks
 are full of student names (group lists, survey answers), quiz access codes, and Drive/form links.
 Redact all of them on import (`[names — ask instructor]`) and say so at the top of the file; the
 checker fails on a quiz access code or a form/Drive folder link, but it can't spot a name.
@@ -139,7 +144,9 @@ on wide screens) is how the instructor teaches: one projected screen with slide 
 left (current boxed, it and the next larger), the deck in an iframe of the same page (`?embed=deck`),
 and the follow-along notes on the right, filling in up to the current slide. It shows only the
 student view, never notes or 🙈 slides. Shift+X strikes a slide through ("skipped, cross it off");
-Shift+E edits a slide's text as a scratchpad. Edits live in that browser's localStorage only: the
+Shift+E edits a slide's text as a scratchpad. The deck/notes divider drags (double-click resets
+it), and the notes' corner buttons size their text: A−/A+, or 📄 Fit to paper, which breaks lines
+where the printed notes do (one printed column holds 28.8em). That layout is kept per computer. Edits live in that browser's localStorage only: the
 deck shows them, the notes column keeps the printed text plus a "write this in the margin" box, and
 📤 Changes copies them (or opens a GitHub issue) so someone folds them into the Markdown by hand
 after class. Presenter view maps deck slide n to the nth `##`/`###` block; the checker fails if the

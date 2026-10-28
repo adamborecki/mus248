@@ -288,6 +288,11 @@ lectures.forEach((lecture) => {
   check(['delivered', 'upcoming', 'no-class'].includes(lecture.status), `${where}: unknown status "${lecture.status}"`);
   check(lecture.date === null || /^\d{4}-\d{2}-\d{2}$/.test(lecture.date), `${where}: date must be YYYY-MM-DD or null`);
   if ('refresherDraft' in lecture) check(typeof lecture.refresherDraft === 'boolean', `${where}: refresherDraft must be true or false`);
+  // A guest lecture (another course, same engine) names that course, and isn't numbered in this one.
+  if ('guest' in lecture) {
+    check(typeof lecture.guest === 'string' && lecture.guest.trim() !== '', `${where}: guest names the course it's for, like "guest": "MUS 101"`);
+    check(!lecture.lecture && !lecture.week, `${where}: a guest lecture has no lecture number or week in this course`);
+  }
   if ('hiddenUntil' in lecture) {
     check(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?[+-]\d{2}:\d{2}$/.test(lecture.hiddenUntil) && !Number.isNaN(Date.parse(lecture.hiddenUntil)),
       `${where}: hiddenUntil needs a full time with its UTC offset, like 2026-10-19T22:00:00-07:00`);
@@ -309,7 +314,7 @@ lectures.forEach((lecture) => {
   // Every week opens the same way: an upcoming lecture's first section is 📣 Announcements, and its
   // first slide is the Homework review (a "see Canvas" placeholder is fine). Delivered lectures are
   // left as they were. content/lectures/_template.md has the shape.
-  if (lecture.status === 'upcoming') {
+  if (lecture.status === 'upcoming' && !lecture.guest) {
     const headings = student.split('\n').filter((line) => /^#{2,3}\s/.test(line));
     check(/^##\s+📣 Announcements/u.test(headings[0] || '') && /^###\s+Homework review/.test(headings[1] || ''),
       `${where}: an upcoming lecture opens with "## 📣 Announcements" and its first slide "### Homework review" (see content/lectures/_template.md)`);
@@ -342,8 +347,9 @@ lectures.forEach((lecture) => {
     const notes = renderNotes(text, lecture);
     check(!notes.replace(/<pre[\s\S]*?<\/pre>/g, '').includes('=='), `${where}: the follow-along notes still show a literal == (outside a code block)`);
     check(!notes.includes('key-term'), `${where}: the follow-along notes show a filled-in blank`);
-    check(notes.includes('ws-form') && !renderNotes(text, lecture, { key: true }).includes('ws-form'),
-      `${where}: the follow-along notes should end with the Repo Improvement form (and the key shouldn't)`);
+    // The Repo Improvement form is this course's, so a guest lecture's notes leave it off.
+    check(notes.includes('ws-form') === !lecture.guest && !renderNotes(text, lecture, { key: true }).includes('ws-form'),
+      `${where}: the follow-along notes should end with the Repo Improvement form, unless it's a guest lecture (and the key shouldn't)`);
   }
 
   // The refresher: questions shaped like an activity's, every fill-in with its answer marked.

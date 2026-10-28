@@ -14,11 +14,16 @@
 //
 // The slide, the skips, and the edits are kept in localStorage per lecture, so closing the tab (or
 // the deck reloading after an edit) loses nothing.
+//
+// The divider between deck and notes drags (double-click puts it back), A−/A+ size the notes text,
+// and 📄 sizes it to break lines exactly where the printed notes do, so you see what students see.
+// That layout is kept per computer, not per lecture.
 
 import { escapeHtml, inline, isFence, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
 import { notesMarkdown } from './notes.js';
 import { lectureText } from './text.js';
+import { courseOf } from './view.js';
 
 const REPO = 'https://github.com/adamborecki/mus248';
 const storageKey = (id) => `mus248:presenter:${id}`;
@@ -34,6 +39,18 @@ export function loadState(id) {
 function saveState(id, state) {
   try { window.localStorage.setItem(storageKey(id), JSON.stringify(state)); } catch { /* nowhere to keep it */ }
 }
+
+const LAYOUT_KEY = 'mus248:presenter-layout';
+const loadLayout = () => {
+  try { return { width: null, size: null, ...JSON.parse(window.localStorage.getItem(LAYOUT_KEY)) }; } catch { return { width: null, size: null }; }
+};
+const saveLayout = (layout) => {
+  try { window.localStorage.setItem(LAYOUT_KEY, JSON.stringify(layout)); } catch { /* nowhere to keep it */ }
+};
+// One column of the printed notes (notes.css): letter paper, .5in margins, two columns .3in apart,
+// 9pt text. (8.5 − 1 − .3) / 2 = 3.6in = 259.2pt, so a line holds 28.8em of text.
+const PAPER_EMS = 28.8;
+const NOTES_SIZE = 15;
 
 // The lecture's text split the way the deck splits it: block 0 is everything before the first
 // heading (it goes on the title slide), then one block per ## or ### heading. Deck slide n is block
@@ -124,7 +141,7 @@ export function mountPresenter({ root, lecture, source }) {
   const titleOf = (at) => (at === 0 ? escapeHtml(lecture.title) : at === last ? '🎉 That\'s the lecture!' : inline(headingText(live(at))));
   const plainTitle = (at) => (at === 0 ? lecture.title : at === last ? 'End' : headingText(live(at)).replace(/[*`]/g, ''));
 
-  document.title = `${lecture.title} · Presenter · MUS 248`;
+  document.title = `${lecture.title} · Presenter · ${courseOf(lecture)}`;
   document.documentElement.classList.add('presenter-open');
   root.innerHTML = `
     <div class="pv">
@@ -145,6 +162,7 @@ export function mountPresenter({ root, lecture, source }) {
         </form>
       </div>
       <aside class="pv-notes" aria-label="Follow-along notes">
+        <div class="pv-resize" role="separator" aria-orientation="vertical" aria-label="Resize the notes column" tabindex="0" title="Drag to resize · double-click to put it back"></div>
         <div class="pv-bar">
           <strong class="pv-count"></strong>
           <button type="button" data-pv="skip" title="Shift+X">✂️ Skip</button>
@@ -154,6 +172,11 @@ export function mountPresenter({ root, lecture, source }) {
           <a href="./" title="Leave presenter view" aria-label="Leave presenter view">✕</a>
         </div>
         <div class="pv-notes-body"></div>
+        <div class="pv-zoom" role="group" aria-label="Notes text size">
+          <button type="button" data-pv="smaller" title="Smaller notes text" aria-label="Smaller notes text">A−</button>
+          <button type="button" data-pv="bigger" title="Bigger notes text" aria-label="Bigger notes text">A+</button>
+          <button type="button" data-pv="paper" title="Same line breaks as the printed notes">📄 Fit to paper</button>
+        </div>
       </aside>
     </div>
     <div class="pv-modal" hidden role="dialog" aria-modal="true" aria-label="Changes from class">
@@ -188,6 +211,52 @@ export function mountPresenter({ root, lecture, source }) {
     toastTimer = setTimeout(() => toast.classList.remove('shown'), 2600);
   };
   const save = () => { state.slide = current; saveState(id, state); };
+
+  // ----- layout: the divider and the notes' text size -----
+  const pv = root.querySelector('.pv');
+  const handle = root.querySelector('.pv-resize');
+  const layout = loadLayout();
+  // Keep at least 600px for the thumbnails and the deck, and enough notes to read.
+  const clampWidth = (width) => Math.round(Math.max(240, Math.min(width, window.innerWidth - 254 - 360)));
+  // The notes' text runs the column's width less its padding (18px a side) and the current-slide bar.
+  const paperSize = () => Math.max(8, (notes.clientWidth - 40) / PAPER_EMS);
+  const notesSize = () => (layout.size === 'paper' ? paperSize() : (layout.size || NOTES_SIZE));
+  const applyLayout = () => {
+    if (layout.width) pv.style.setProperty('--pv-notes-w', `${clampWidth(layout.width)}px`);
+    else pv.style.removeProperty('--pv-notes-w');
+    notes.style.fontSize = `${notesSize().toFixed(2)}px`;
+    root.querySelector('[data-pv="paper"]').setAttribute('aria-pressed', String(layout.size === 'paper'));
+  };
+  const relayout = () => { applyLayout(); saveLayout(layout); show({ scroll: true }); };
+  const zoom = (by) => {
+    layout.size = Math.round(Math.max(9, Math.min(40, notesSize() * by)) * 10) / 10;
+    relayout();
+  };
+  handle.addEventListener('pointerdown', (event) => {
+    event.preventDefault();
+    handle.setPointerCapture(event.pointerId);
+    pv.classList.add('is-resizing');
+    const move = (moved) => { layout.width = clampWidth(pv.getBoundingClientRect().right - moved.clientX); applyLayout(); };
+    const done = () => {
+      handle.removeEventListener('pointermove', move);
+      handle.removeEventListener('pointerup', done);
+      handle.removeEventListener('pointercancel', done);
+      pv.classList.remove('is-resizing');
+      relayout();
+    };
+    handle.addEventListener('pointermove', move);
+    handle.addEventListener('pointerup', done);
+    handle.addEventListener('pointercancel', done);
+  });
+  handle.addEventListener('dblclick', () => { layout.width = null; relayout(); });
+  handle.addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    event.stopPropagation();
+    layout.width = clampWidth(root.querySelector('.pv-notes').offsetWidth + (event.key === 'ArrowLeft' ? 20 : -20));
+    relayout();
+  });
+  window.addEventListener('resize', () => { if (layout.size === 'paper') applyLayout(); });
   const tellDeck = (message) => { if (frame.contentWindow) frame.contentWindow.postMessage({ source: 'mus248-presenter', ...message }, window.location.origin); };
 
   // ----- thumbnails -----
@@ -440,9 +509,16 @@ export function mountPresenter({ root, lecture, source }) {
     if (action === 'changes') openChanges();
     if (action === 'full') toggleFull();
   });
+  root.querySelector('.pv-zoom').addEventListener('click', (event) => {
+    const action = event.target.closest('[data-pv]')?.dataset.pv;
+    if (action === 'smaller') zoom(1 / 1.1);
+    if (action === 'bigger') zoom(1.1);
+    if (action === 'paper') { layout.size = 'paper'; relayout(); }
+  });
 
   drawThumbs();
   drawNotes();
+  applyLayout();
   show();
   loadDeck();
 }

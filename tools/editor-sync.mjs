@@ -58,7 +58,7 @@ if (command === 'baseline') {
   const cards = deck.cards.map((c) => ({ ...c, verified: Boolean(c.verified) }));
   // Where each skill was taught, and the lectures' names, so the editor can group by lecture.
   const sources = readJson(path('skill-sources.json')).skills;
-  const lectures = readJson(join(root, 'data', 'lectures.json')).filter((l) => l.date)
+  const lectures = readJson(join(root, 'data', 'lectures.json')).filter((l) => l.date && !l.guest)
     .map(({ id, title, date, lecture }) => ({ id, title, date, lecture: lecture ?? null }));
   // Each quiz's date, opening time and new skills (not its access code), so the editor can show one week.
   const quizzes = Object.entries(curriculum.quizzes).map(([number, q]) => ({

@@ -4,7 +4,7 @@
 
 import { escapeHtml, renderMarkdown } from '../markdown.js';
 import { openDeck } from './deck.js';
-import { instructorView, isVisible, lectureView, setInstructorView } from './view.js';
+import { courseOf, instructorView, isGuest, isVisible, lectureView, setInstructorView } from './view.js';
 import { hasBlanks } from './notes.js';
 import { lectureText } from './text.js';
 import { opensLabel, refresherOpen } from './refresher.js';
@@ -20,8 +20,9 @@ export { isVisible };
 export const hasQuestions = (markdown) => /^\*\*Q\d+/m.test(markdown);
 
 
-const badge = (lecture) => (lecture.lecture
-  ? `<span class="lecture-badge">Lecture ${String(lecture.lecture).padStart(2, '0')}</span>` : '');
+const badgeText = (lecture) => (isGuest(lecture) ? `Guest lecture · ${lecture.guest}`
+  : lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : '');
+const badge = (lecture) => (badgeText(lecture) ? `<span class="lecture-badge">${escapeHtml(badgeText(lecture))}</span>` : '');
 
 const formatDate = (iso, options) => new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', options);
 
@@ -34,7 +35,7 @@ export function when(lecture, { long = false } = {}) {
 }
 
 const row = (lecture) => {
-  const hidden = isVisible(lecture) ? '' : ' · 🙈 hidden from students';
+  const hidden = !isVisible(lecture) ? ' · 🙈 hidden from students' : isGuest(lecture) ? ' · 🔗 off the list, link works' : '';
   const body = `<span class="activity-emoji" aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span>
     <span class="card-copy"><small>${badge(lecture)}${escapeHtml(when(lecture) + hidden)}</small><strong>${escapeHtml(lecture.title)}</strong>${lecture.summary ? `<small>${escapeHtml(lecture.summary)}</small>` : ''}</span>`;
   return lecture.contentFile
@@ -44,11 +45,15 @@ const row = (lecture) => {
 
 export async function mountList(root) {
   const instructor = instructorView();
-  const lectures = (await fetch('../data/lectures.json').then((response) => response.json())).filter((lecture) => instructor || isVisible(lecture));
+  const all = (await fetch('../data/lectures.json').then((response) => response.json())).filter((lecture) => instructor || isVisible(lecture));
+  // Guest lectures belong to another course: only instructor view lists them, and on their own.
+  const lectures = all.filter((lecture) => !isGuest(lecture));
+  const guests = instructor ? all.filter(isGuest) : [];
   const upcoming = lectures.filter((lecture) => lecture.status === 'upcoming');
   const past = lectures.filter((lecture) => lecture.status !== 'upcoming');
   root.innerHTML = (upcoming.length ? `<h2 class="section-title">Coming up</h2><div class="activity-grid">${upcoming.map(row).join('')}</div>` : '')
-    + `<h2 class="section-title">Past lectures</h2><div class="activity-grid">${past.map(row).join('')}</div>`;
+    + `<h2 class="section-title">Past lectures</h2><div class="activity-grid">${past.map(row).join('')}</div>`
+    + (guests.length ? `<h2 class="section-title">🎟️ Guest lectures <small>(other courses · instructor view only)</small></h2><div class="activity-grid">${guests.map(row).join('')}</div>` : '');
 }
 
 const locked = (note) => `<span class="extra-locked" aria-disabled="true">🔁 Online refresher <small>${escapeHtml(note)}</small></span>`;
@@ -64,17 +69,18 @@ export async function mountLecture(root, id) {
   const lectures = await fetch('../../data/lectures.json').then((response) => response.json());
   const instructor = instructorView();
   const readable = lectures.filter((lecture) => lecture.contentFile && (instructor || isVisible(lecture)));
-  const index = readable.findIndex((lecture) => lecture.id === id);
-  const lecture = readable[index];
+  const lecture = readable.find((item) => item.id === id);
   if (!lecture) throw new Error(`No lecture ${id}`);
+  const guest = isGuest(lecture);
   const source = await fetch(`../../content/lectures/${lecture.contentFile}.md`).then((response) => {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);
     return response.text();
   });
   const deck = {
     lecture,
-    endHtml: formQr(),
-    badge: lecture.lecture ? `Lecture ${String(lecture.lecture).padStart(2, '0')}` : (lecture.status === 'upcoming' ? 'Coming up' : ''),
+    // The Repo Improvement form is this course's; a guest lecture's class doesn't get it.
+    endHtml: guest ? '' : formQr(),
+    badge: escapeHtml(badgeText(lecture) || (lecture.status === 'upcoming' ? 'Coming up' : '')),
     when: when(lecture, { long: true }),
   };
   // Presenter view (?presenter=1) and the deck inside it (?embed=deck): see presenter.js. Both show
@@ -100,13 +106,16 @@ export async function mountLecture(root, id) {
     // GitHub's own editor works on a phone and commits straight to main; the page updates a minute later.
     instructor && `<a href="https://github.com/adamborecki/mus248/edit/main/content/lectures/${encodeURIComponent(lecture.contentFile)}.md" target="_blank" rel="noopener">✏️ Edit on GitHub</a>`,
   ].filter(Boolean).join('');
-  // The list runs newest first, so the entry before this one is the newer lecture.
-  const newer = readable[index - 1];
-  const older = readable[index + 1];
+  // The list runs newest first, so the entry before this one is the newer lecture. A guest lecture
+  // isn't part of the series, so it links to neither.
+  const series = readable.filter((item) => !isGuest(item));
+  const index = series.indexOf(lecture);
+  const newer = index > 0 ? series[index - 1] : null;
+  const older = index >= 0 ? series[index + 1] : null;
   const link = (target, label) => (target
     ? `<a class="lecture-nav-link" href="../${escapeHtml(target.id)}/">${label}<span>${escapeHtml(target.title)}</span></a>`
     : '<span></span>');
-  document.title = `${lecture.title} · MUS 248`;
+  document.title = `${lecture.title} · ${courseOf(lecture)}`;
   root.innerHTML = `
     ${crumbs([['Lectures', 'lectures/'], [lecture.title]])}
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
@@ -114,7 +123,7 @@ export async function mountLecture(root, id) {
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button><a class="present-presenter" href="?presenter=1"><span aria-hidden="true">🖥️</span> Presenter view</a></p>
     ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}
     <article class="instructions">${renderMarkdown(markdown, { assetBase: '../../content/lectures/', blanks: instructor ? 'mark' : 'plain' })}</article>
-    ${renderFormSection(LECTURE_FORM_NOTE)}
+    ${guest ? '' : renderFormSection(LECTURE_FORM_NOTE)}
     <nav class="lecture-nav" aria-label="More lectures">${link(older, '← Older')}${link(newer, 'Newer →')}</nav>
     <p class="instructor-switch"><button type="button" data-instructor="${instructor ? 'off' : 'on'}">${instructor ? 'Leave instructor view' : 'π'}</button></p>`;
 

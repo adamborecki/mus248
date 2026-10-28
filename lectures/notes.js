@@ -8,7 +8,7 @@ import { blankTerms, escapeHtml, isFence, renderMarkdown } from '../markdown.js'
 import { renderFormBlock, renderQr } from '../worksheet.js';
 import { LECTURE_FORM_NOTE } from '../feedback.js';
 import { crumbs } from '../crumbs.js';
-import { instructorView, isVisible } from './view.js';
+import { courseOf, instructorView, isGuest, isVisible } from './view.js';
 import { lectureText } from './text.js';
 
 export function notesMarkdown(markdown) {
@@ -48,15 +48,15 @@ export function renderNotes(markdown, lecture, { key = false } = {}) {
       <div class="ws-headrow">
         <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span>
           <div><h1>${escapeHtml(lecture.title)} <span class="${key ? 'key-tag' : 'ws-tag'}">${key ? 'Notes key' : 'Follow-along notes'}</span></h1>
-          <p class="ws-meta">MUS 248${meta ? ` · ${meta}` : ''} · fill each blank from the slides</p></div>
+          <p class="ws-meta">${escapeHtml(courseOf(lecture))}${meta ? ` · ${meta}` : ''} · fill each blank from the slides</p></div>
         </div>
         ${renderQr(`lectures/${lecture.id}`, lecture.title, 'Scan for the slides')}
       </div>
       ${nameLine}
-      ${key ? '' : '<p class="notes-photo">📸 When you\'re done, take photos of these notes and submit them on Canvas.</p>'}
+      ${key || isGuest(lecture) ? '' : '<p class="notes-photo">📸 When you\'re done, take photos of these notes and submit them on Canvas.</p>'}
     </header>
     <article class="notes-body">${renderMarkdown(notesMarkdown(markdown), { blanks: key ? 'mark' : 'blank' })}</article>
-    ${key ? '' : renderFormBlock(LECTURE_FORM_NOTE)}
+    ${key || isGuest(lecture) ? '' : renderFormBlock(LECTURE_FORM_NOTE)}
     <footer class="ws-foot">Generated from <code>content/lectures/${escapeHtml(lecture.contentFile)}.md</code> — edit the lecture, not this page.</footer>`;
 }
 
@@ -86,7 +86,7 @@ export async function mountNotes(root) {
     if (!response.ok) throw new Error(`No Markdown for ${id}`);
     return response.text();
   });
-  document.title = `${lecture.title} · ${key ? 'notes key' : 'follow-along notes'} · MUS 248`;
+  document.title = `${lecture.title} · ${key ? 'notes key' : 'follow-along notes'} · ${courseOf(lecture)}`;
   root.innerHTML = crumbs([['Lectures', 'lectures/'], [lecture.title, `lectures/${lecture.id}/`], [key ? 'Notes key' : 'Follow-along notes']])
     + renderNotes(markdown, lecture, { key })
     + `<p class="no-print print-cue"><button type="button" class="print-button">Print ${key ? 'the key' : 'these notes'}</button>${
