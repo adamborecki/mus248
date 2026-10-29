@@ -4,9 +4,8 @@
 work with.
 
 > 🧑‍🏫 Guest lecture for Chapman Jams: musicians with some experience. Aim for 8–10 minutes and
-> leave most of class for making music. Photos still to add (the notes below say where); put them
-> in `content/activities/media/chapman-jams/` or `content/lectures/media/chapman-jams/` and drop
-> the line in where the note is.
+> leave most of class for making music. No photos on purpose: show gear from a separate browser
+> window.
 
 ### Live Sound: The Big Picture
 
@@ -20,7 +19,6 @@ Microphone → Stage Box → Mixer → Speakers
 - **Gain:** controls the ==input== signal level.
 - **Fader:** controls how much of a signal goes into a ==mix==.
 
-> 🧑‍🏫 Photo: a live sound mixer.
 
 ### Cables and Connectors
 
@@ -31,7 +29,6 @@ Microphone → Stage Box → Mixer → Speakers
 **Important:** instrument cables and speaker cables may look identical, but they are NOT
 ==interchangeable==. Speaker cables are designed to handle much higher ==power==.
 
-> 🧑‍🏫 Photos: XLR, ¼-inch TS, and ¼-inch TRS connectors, side by side if you can.
 
 ### DI Boxes, Snakes, and Stage Boxes
 
@@ -43,7 +40,6 @@ Microphone → Stage Box → Mixer → Speakers
 
 Some stage boxes are analog; others convert audio to ==digital== signals.
 
-> 🧑‍🏫 Photos: a DI box and a stage box.
 
 ### Speakers and Amplifiers
 
@@ -55,7 +51,6 @@ Some stage boxes are analog; others convert audio to ==digital== signals.
 **Stage volume matters!** If everyone keeps turning up, the entire band gets louder, and the mix
 becomes harder to control.
 
-> 🧑‍🏫 Photos: an active speaker and a passive speaker (the back panels show the difference).
 
 ### Line Check vs. Soundcheck vs. Rehearsal
 
