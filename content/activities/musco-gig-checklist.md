@@ -7,7 +7,7 @@ coreSkillAreas:
   - Audio Capture
   - Data Management
 status: In Development
-revised: "2026-10-17"
+revised: "2026-10-30"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -29,8 +29,9 @@ roundsSupported: false
 
 ## 🎚️ What this is
 
-The field checklist for a gig at **Musco Center for the Arts**. It works like the **Salmon Gig
-Checklist** — every line is something you do or check — but the room is different in three ways:
+The field checklist for a gig at **Musco Center for the Arts**. It works like the
+[Salmon Gig Checklist](../../salmon-gig-checklist/) — every line is something you do or check —
+but the room is different in three ways:
 
 - **You bring the backup recording with you** and set it up in the booth.
 - **You work alongside the Musco crew.** Seiyua, the Musco video tech, runs the recorders in the
@@ -38,10 +39,42 @@ Checklist** — every line is something you do or check — but the room is diff
 - **It's a live multicam edit.** Remote-controlled cameras, a switcher, and a crew on headsets —
   and every camera has to match.
 
+Where Musco sits among the other gig types: [Lifespan of a Recording](../../recording-lifespan/).
+
 ## 🗝️ Key terms
 
 **static wide** · **program** · **preview** · **multiview** · **cut** · **white balance** ·
 **gain** · **pedestal** · **brightest cue** · **calling shots** · **board feed**
+
+## 🎒 First: start in BH 208/209
+
+Every Musco gig starts in BH 208/209, not at Musco.
+
+- 🚩 Go to **BH 208/209** first.
+- 🚩 Check for unfinished business from the last gig — cards or SSDs that still need cleaning, or
+  a data transfer that never got finished. Finish that first.
+- 🚩 Grab the **Standard Gear Kit** — the black backpack with the red stripes — and the Musco
+  extras on the **Equipment and materials** list. What's in the kit:
+  [Standard Gear Kit Checklist](../../standard-gear-kit-checklist/).
+- 🚩 Then walk it all over to **Musco**.
+
+## 🧰 Equipment and materials
+
+Pack this in BH 208/209 before you leave.
+
+- [ ] The **black backpack with the red stripes** — the Standard Gear Kit — with the **Sony
+  AX100** inside
+- [ ] The **AX100 power cable** — don't count on the battery for a full concert
+- [ ] **Zoom H4n** — the backup audio recorder. (The Zoom F8 also lives in the Standard Gear Kit;
+  you only need **one** backup recorder, so if the H4n is going, the F8 isn't needed.)
+- [ ] **Fresh AA batteries for the H4n** — rechargeables are fine. It takes two; bring **four**,
+  in case some turn out to be dead.
+- [ ] **Clean SD cards**: the **128 GB** for the AX100, plus a smaller one for the H4n
+- [ ] **One tripod** for the AX100 — confirm the **plate on the AX100 matches this tripod** before
+  you leave
+- [ ] **One light stand** with a screw adapter, for the H4n
+- [ ] **Three SSDs** — one each for the static wide, the program feed, and the conductor cam
+- [ ] **Headphones** with a **¼-inch adapter**
 
 ## 👔 Dress code
 
@@ -62,28 +95,8 @@ Same as every gig, Salmon included — you're visible from the house and backsta
 The backup recording (AX100 + H4n) sits in the booth next to you; whoever is free keeps an eye on
 it.
 
-## 🧰 Equipment and materials
-
-Pack this in BH 208/209 before you leave.
-
-- [ ] The **black backpack with the red stripes** — the Standard Gear Kit — with the **Sony
-  AX100** inside
-- [ ] The **AX100 power cable** — don't count on the battery for a full concert
-- [ ] **Zoom H4n** — the backup audio recorder. (The Zoom F8 also lives in the Standard Gear Kit;
-  you only need **one** backup recorder, so if the H4n is going, the F8 isn't needed.)
-- [ ] **Fresh AA batteries for the H4n** — rechargeables are fine. It takes two; bring **four**,
-  in case some turn out to be dead.
-- [ ] **Clean SD cards**: the **128 GB** for the AX100, plus a smaller one for the H4n
-- [ ] **One tripod** for the AX100 — confirm the **plate on the AX100 matches this tripod** before
-  you leave
-- [ ] **One light stand** with a screw adapter, for the H4n
-- [ ] **Three SSDs** — one each for the static wide, the program feed, and the conductor cam
-- [ ] **Headphones** with a **¼-inch adapter**
-
 ## 🚗 Pre-arrival
 
-- 🚩 Check for unfinished business from the last gig — cards or SSDs that still need cleaning, or
-  a data transfer that never got finished. Finish that first.
 - 🚩 Dressed per the **Dress code**.
 - 🚩 If you're going to be late, text your fellow engineers before your call time.
 
@@ -94,7 +107,6 @@ you actually got there. It's a log entry, not a test.
 
 ## 🚪 Arrival
 
-- 🚩 Walk the gear over to Musco.
 - 🚩 Go in through the **stage door** and **sign in**.
 - 🚩 Make your way around to **front of house** — the booth at the back of the house.
 - 🚩 Get on **headset**. It's a Clear-Com beltpack with two channels: **MCA Stage** and **Digital
@@ -293,10 +305,11 @@ it, including bows.
 - 🚩 Pick up the **three SSDs** from Seiyua — **the same night**.
 - 🚩 Get the **separate audio file** from him, if he has one.
 - 🚩 Pack everything you brought, and carry it back to BH 208/209.
+- 🚩 Put the Standard Gear Kit back per the [Standard Gear Kit Reset](../../standard-gear-kit-reset/).
 
 ## 💾 Data transfer
 
-Same procedure as the **Salmon Gig Checklist** — two drives, `YYMMDD Full Event Name` folders,
+Same procedure as the [Salmon Gig Checklist](../../salmon-gig-checklist/)'s **Data transfer** — two drives, `YYMMDD Full Event Name` folders,
 `From [source name]` subfolders, and the **Triple Triple Check** before anything gets wiped.
 
 Tonight's sources:
