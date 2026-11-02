@@ -8,7 +8,7 @@ coreSkillAreas:
   - Live Sound
   - Data Management
 status: In Development
-revised: "2026-10-15"
+revised: "2026-11-02"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual gig."
 access:
   mode: On campus
@@ -65,15 +65,17 @@ Every line below is something you do or check; the "why" lives in the other Salm
 ## 🚗 Pre-arrival
 
 - 🚩 Check for unfinished business from the last gig — SD cards that still need cleaning, or a
-  data transfer that never got finished. If there's something left over, finish that first,
-  before you start your own setup.
+  data transfer that never got finished. If there's something left over and you have the time,
+  finish it before you start your own setup. Tonight's concert comes first, though: if finishing
+  it would cut into your setup, leave it until after the show.
 - 🚩 If you're going to be late, text your fellow engineer(s) before your call time — don't leave
   them wondering.
 
-**Q1 (short answer).** Call time: ______ · Concert: ______ · Arrival time: ______
+**Q1 (short answer).** Write your call time: ______ · The concert's downbeat time: ______ · Your
+arrival time: ______
 
-✅ **Answer.** There's no fixed answer — write in tonight's call time, tonight's concert, and when
-you actually got there. It's a log entry, not a test.
+✅ **Answer.** There's no fixed answer — write in tonight's call time, the time the concert
+starts, and when you actually got there. It's a log entry, not a test.
 
 ## 🔌 Initial setup — audio and video
 

@@ -15,6 +15,12 @@ const ONLY_BLANK = /^_{3,}$/;
 const GOAL = /^\*\*Goal:\*\*\s*(.*)$/;
 const SOURCE = /^📖/u;
 const words = (heading) => heading.replace(/^[^\p{L}\p{N}]+/u, '').trim().toLowerCase();
+export const stationSlug = (heading) => words(heading).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// "- [ ] Says which card goes in the H6 ✅ 8 GB": the part after ✅ is what the checker looks for.
+// Only the checker copy shows it; the page and the student's sheet stop at the ✅.
+const ANSWER = /\s*✅\s*(.*)$/u;
+const withoutAnswer = (line) => line.replace(ANSWER, '');
 
 // Split into the intro and one entry per ## section. A section is "how it works" (page only),
 // "about you" (the name lines on the sheet), or a station.
@@ -57,9 +63,14 @@ export function renderEvalPage(markdown, { assetBase = '../content/performance-e
   const options = { assetBase };
   const cards = parsed.sections.filter((section) => section.kind !== 'about').map((section) => {
     const [, emoji = '', title = section.heading] = section.heading.match(/^([^\p{L}\p{N}]*)(.*)$/u) || [];
-    const body = section.lines.filter((line) => !GOAL.test(line)).join('\n');
+    const body = section.lines.filter((line) => !GOAL.test(line)).map(withoutAnswer).join('\n');
     const goal = section.kind === 'how' ? 'The procedure, start to finish' : section.goal;
-    const anchor = id && `${id}-${words(section.heading).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+    const slug = stationSlug(section.heading);
+    const anchor = id && `${id}-${slug}`;
+    const prints = id && section.kind === 'station' && section.items
+      ? `<p class="ev-print ev-station-print"><a href="sheet/?id=${id}&amp;station=${slug}"><span aria-hidden="true">🖨️</span> This station's sheet</a>`
+        + `<a href="sheet/?id=${id}&amp;station=${slug}&amp;checker=1"><span aria-hidden="true">✅</span> Checker copy</a></p>`
+      : '';
     return `<details class="activity-card ev-card"${anchor ? ` id="${anchor}"` : ''}>
         <summary>
           <span class="activity-emoji" aria-hidden="true">${escapeHtml(emoji.trim() || '•')}</span>
@@ -67,7 +78,7 @@ export function renderEvalPage(markdown, { assetBase = '../content/performance-e
           <span class="chip ev-status">${escapeHtml(cardStatus(section))}</span>
           <span class="arrow" aria-hidden="true">⌄</span>
         </summary>
-        <div class="card-details instructions">${renderMarkdown(body, options)}</div>
+        <div class="card-details instructions">${prints}${renderMarkdown(body, options)}</div>
       </details>`;
   }).join('');
   return `${renderMarkdown(parsed.intro, options)}<div class="activity-grid ev-grid">${cards}</div>`;
@@ -79,43 +90,61 @@ const rule = '<span class="rule"></span>';
 const writable = (text) => inline(text).replace(BLANK, '<span class="blank"></span>');
 const field = (label) => `<span>${inline(label)} ${rule}</span>`;
 
-function renderStation(section) {
+// A station's lines, in order. A ### heading starts a part (Audio, Video…) with its own list; a part
+// with nothing to tick yet prints as "Not written yet" so the paper shows what's coming.
+function renderStation(section, { checker = false, signed = false } = {}) {
   const parts = [];
   let list = null;
+  let partItems = null;
   const open = (kind) => {
     if (list === kind) return;
     if (list) parts.push(list === 'lines' ? '</ol>' : '</ul>');
     list = kind;
     if (kind) parts.push(kind === 'lines' ? '<ol class="ev-lines">' : '<ul class="ticks">');
   };
+  const closePart = () => {
+    open(null);
+    if (partItems === 0) parts.push('<p class="ev-prompt ev-pending">Not written yet.</p>');
+  };
+  const tickHtml = (text) => {
+    const answer = text.match(ANSWER);
+    return writable(withoutAnswer(text)) + (checker && answer && answer[1] ? ` <span class="ev-answer">${inline(answer[1])}</span>` : '');
+  };
   section.lines.forEach((raw) => {
     const line = raw.trim();
     if (!line || GOAL.test(line) || SOURCE.test(line) || line.startsWith('>')) return;
+    const part = line.match(/^###\s+(.+)$/);
     const tick = line.match(/^-\s+\[[ xX]\]\s+(.+)$/);
     const numbered = line.match(/^(\d+)\.\s+(.+)$/);
-    if (tick) { open('ticks'); parts.push(`<li>${writable(tick[1])}</li>`); return; }
+    if (part) { closePart(); partItems = 0; parts.push(`<h3 class="ev-part">${inline(part[1])}</h3>`); return; }
+    if (tick || numbered) partItems = partItems === null ? null : partItems + 1;
+    if (tick) { open('ticks'); parts.push(`<li>${tickHtml(tick[1])}</li>`); return; }
     if (numbered) {
       open('lines');
-      const text = numbered[2].replace(/\s*_{3,}\s*$/, '');
+      const text = withoutAnswer(numbered[2]).replace(/\s*_{3,}\s*$/, '');
       parts.push(`<li><b>${numbered[1]}.</b>${ONLY_BLANK.test(numbered[2]) ? '' : ` ${writable(text)}`}${rule}</li>`);
       return;
     }
     open(null);
     if (ONLY_BLANK.test(line)) parts.push(`<p class="ev-rule">${rule}</p>`);
-    else parts.push(`<p class="ev-prompt">${writable(line.replace(/^-\s+/, ''))}</p>`);
+    else parts.push(`<p class="ev-prompt">${writable(withoutAnswer(line).replace(/^-\s+/, ''))}</p>`);
   });
-  open(null);
+  closePart();
   const empty = !section.items;
   return `<section class="ws-block ev-station">
       <h2>${inline(section.heading)}${section.goal ? `<small>${inline(section.goal)}</small>` : ''}</h2>
       <p class="name-line">${field('Date')}${field('Total time to complete')}</p>
       ${empty ? '<p class="ev-prompt ev-pending">Not written yet.</p>' : parts.join('')}
-      <p class="name-line ev-notes">${field('Additional notes')}</p>
+      <p class="name-line ev-notes">${field('Additional notes')}${signed ? field('Checked by') : ''}</p>
     </section>`;
 }
 
-export function renderEvalSheet(markdown, id) {
+// options.station prints one station (its slug); options.checker adds what to look for.
+export function renderEvalSheet(markdown, id, { station = '', checker = false } = {}) {
   const { front, sections } = parseEval(markdown);
+  const stations = sections.filter((section) => section.kind === 'station'
+    && (!station || stationSlug(section.heading) === station));
+  const signed = String(front.checkedBy) === 'true';
   const title = `MUS 248 ${front.title || id}`;
   const draft = front.status === 'draft';
   const about = sections.find((section) => section.kind === 'about');
@@ -127,15 +156,16 @@ export function renderEvalSheet(markdown, id) {
     <header class="ws-head">
       <div class="ws-headrow">
         <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(front.emoji || '🏅')}</span>
-          <div><h1>${escapeHtml(title)} <span class="ws-tag">${draft ? 'Draft' : 'Eval sheet'}</span></h1>
+          <div><h1>${escapeHtml(title)} <span class="${checker ? 'key-tag' : 'ws-tag'}">${checker ? 'Checker copy' : draft ? 'Draft' : 'Eval sheet'}</span></h1>
           <p class="ws-meta">${escapeHtml(meta)}</p></div>
         </div>
-        ${renderQr(`performance-evals/#${id}`, title, 'Scan for how it works')}
+        ${renderQr(`performance-evals/#${id}${station ? `-${station}` : ''}`, title, 'Scan for how it works')}
       </div>
-      ${draft ? '<p class="key-banner">Draft: still being written. Not the sheet you\'ll get.</p>' : ''}
+      ${checker ? '<p class="key-banner">Checker copy: what to look for is printed after each item. Don\'t hand this one to the student.</p>' : ''}
+      ${draft && !checker ? '<p class="key-banner">Draft: still being written. Not the sheet you\'ll get.</p>' : ''}
       <p class="name-line ev-about">${fields}</p>
     </header>
-    ${sections.filter((section) => section.kind === 'station').map(renderStation).join('')}
+    ${stations.map((section) => renderStation(section, { checker, signed })).join('')}
     <footer class="ws-foot">Generated from <code>content/performance-evals/${escapeHtml(id)}.md</code>. Edit that, not this page.</footer>
   `;
 }
@@ -168,13 +198,17 @@ async function mountPage(root) {
 }
 
 async function mountSheet(root) {
-  const requested = new URLSearchParams(window.location.search).get('id');
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get('id');
   const id = EVALS.includes(requested) ? requested : 'midterm';
+  const station = params.get('station') || '';
+  const checker = params.get('checker') === '1';
   const markdown = await fetchEval('../../', id);
   const { front } = parseEval(markdown);
-  document.title = `${front.title || id} sheet · MUS 248`;
-  root.innerHTML = crumbs([['Performance Evals', 'performance-evals/'], [`${front.title || id} sheet`]])
-    + renderEvalSheet(markdown, id)
+  const label = `${front.title || id} ${checker ? 'checker copy' : 'sheet'}`;
+  document.title = `${label} · MUS 248`;
+  root.innerHTML = crumbs([['Performance Evals', `performance-evals/#${id}${station ? `-${station}` : ''}`], [label]])
+    + renderEvalSheet(markdown, id, { station, checker })
     + '<p class="no-print print-cue"><button type="button" class="print-button">Print this sheet</button></p>';
   root.querySelector('.print-button').addEventListener('click', () => window.print());
 }
