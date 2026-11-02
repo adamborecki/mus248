@@ -26,16 +26,26 @@ const badge = (lecture) => (badgeText(lecture) ? `<span class="lecture-badge">${
 
 const formatDate = (iso, options) => new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', options);
 
+// Pacific date today, YYYY-MM-DD, so "Today" flips at local midnight for the class, not UTC's.
+const todayIso = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+
 export function when(lecture, { long = false } = {}) {
-  if (lecture.status === 'upcoming') return 'Upcoming';
+  if (lecture.status === 'upcoming' && !lecture.date) return 'Upcoming';
   const date = lecture.date
     ? formatDate(lecture.date, long ? { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' } : { month: 'short', day: 'numeric' })
     : (lecture.dateNote || '');
-  return [lecture.week && `Week ${lecture.week}`, date].filter(Boolean).join(' · ');
+  const today = todayIso();
+  const lead = lecture.status !== 'upcoming' || lecture.date < today ? '' : lecture.date === today ? 'Today' : 'Upcoming';
+  return [lead, lecture.week && `Week ${lecture.week}`, date].filter(Boolean).join(' · ');
 }
 
+// "draft": true on a lecture in data/lectures.json: the instructor is still writing it. Students
+// can read it, with a line saying it will change; remove the flag once it's final.
+const DRAFT_NOTE = 'Draft: the instructor is still writing this lecture, so it will change before (and maybe during) class.';
+
 const row = (lecture) => {
-  const hidden = !isVisible(lecture) ? ' · 🙈 hidden from students' : isGuest(lecture) ? ' · 🔗 off the list, link works' : '';
+  const hidden = (lecture.draft ? ' · ✏️ draft' : '')
+    + (!isVisible(lecture) ? ' · 🙈 hidden from students' : isGuest(lecture) ? ' · 🔗 off the list, link works' : '');
   const body = `<span class="activity-emoji" aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span>
     <span class="card-copy"><small>${badge(lecture)}${escapeHtml(when(lecture) + hidden)}</small><strong>${escapeHtml(lecture.title)}</strong>${lecture.summary ? `<small>${escapeHtml(lecture.summary)}</small>` : ''}</span>`;
   return lecture.contentFile
@@ -49,9 +59,15 @@ export async function mountList(root) {
   // Guest lectures belong to another course: only instructor view lists them, and on their own.
   const lectures = all.filter((lecture) => !isGuest(lecture));
   const guests = instructor ? all.filter(isGuest) : [];
+  // Only the next dated lecture is out in the open. Everything after it sits in a closed "Later"
+  // section that slides open on a tap, since plans that far out still change.
   const upcoming = lectures.filter((lecture) => lecture.status === 'upcoming');
+  const next = upcoming.filter((lecture) => lecture.date).sort((a, b) => a.date.localeCompare(b.date))[0];
+  const later = upcoming.filter((lecture) => lecture !== next);
   const past = lectures.filter((lecture) => lecture.status !== 'upcoming');
-  root.innerHTML = (upcoming.length ? `<h2 class="section-title">Coming up</h2><div class="activity-grid">${upcoming.map(row).join('')}</div>` : '')
+  root.innerHTML = (next ? `<h2 class="section-title">Coming up</h2><div class="activity-grid">${row(next)}</div>` : '')
+    + (later.length ? `<details class="lecture-later"><summary><span class="lecture-later-label">${next ? 'Later lectures' : 'Coming up'}</span> <small>${later.length} planned</small></summary>`
+      + `<div class="lecture-later-body"><p class="quiet">These are plans, not promises: what's in a future lecture may change before we get to it.</p><div class="activity-grid">${later.map(row).join('')}</div></div></details>` : '')
     + `<h2 class="section-title">Past lectures</h2><div class="activity-grid">${past.map(row).join('')}</div>`
     + (guests.length ? `<h2 class="section-title">🎟️ Guest lectures <small>(other courses · instructor view only)</small></h2><div class="activity-grid">${guests.map(row).join('')}</div>` : '');
 }
@@ -119,6 +135,7 @@ export async function mountLecture(root, id) {
   root.innerHTML = `
     ${crumbs([['Lectures', 'lectures/'], [lecture.title]])}
     <header class="activity-header"><span aria-hidden="true">${escapeHtml(lecture.emoji || '🎤')}</span><div>${badge(lecture)}<h1>${escapeHtml(lecture.title)}</h1><p>${escapeHtml(when(lecture, { long: true }))}${lecture.status === 'upcoming' ? ' · not presented yet' : ''}</p></div></header>
+    ${lecture.draft ? `<p class="draft-banner">✏️ ${escapeHtml(DRAFT_NOTE)}</p>` : ''}
     ${instructor ? '<p class="instructor-banner">🧑‍🏫 Instructor view: notes and 🙈 hidden slides are showing. <a href="https://github.com/adamborecki/mus248/tree/main/content/instructor">📓 Instructor notes</a> <button type="button" data-instructor="off">Turn off</button></p>' : ''}
     <p class="lecture-present"><button type="button" class="present-main" data-present="slides"><span aria-hidden="true">▶</span> Present slides</button><button type="button" class="present-outline" data-present="outline"><span aria-hidden="true">🗺️</span> Outline</button><a class="present-presenter" href="?presenter=1"><span aria-hidden="true">🖥️</span> Presenter view</a></p>
     ${extras ? `<p class="lecture-extras">${extras}</p>` : ''}

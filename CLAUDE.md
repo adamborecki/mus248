@@ -105,7 +105,10 @@ screen onto it.
 `no-class`), its `lecture` number (the LECTURE ## badge; matches the Canvas follow-along notes, so
 01 is Aug 24 and Labor Day has none), and optionally `hiddenUntil` (ISO time with offset, e.g.
 `2026-10-19T22:00:00-07:00`). That hides it from the site until then, but the Markdown stays public
-in the repo, so it's not a secret; `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
+in the repo, so it's not a secret. `"hidden": true` hides it with no end date (a planned lecture with
+no slot yet), and `"draft": true` shows students a "still being written, will change" line on it.
+The list shows only the next dated upcoming lecture openly; the rest sit in a closed "Later
+lectures" section with a may-change note; `content/lectures/<id>.md` holds only the slides' text, in slide order; each readable
 lecture needs a `lectures/<id>/index.html` shell (copy one, change `data-lecture-id`). A **guest
 lecture** for another course on this same engine gets `"guest": "<that course>"` and no `lecture`
 number or `week`: it stays off this course's list and Older/Newer links (instructor view lists it

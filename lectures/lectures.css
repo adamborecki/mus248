@@ -25,6 +25,19 @@ body[data-lecture-id] .activity-header h1 { font-size:clamp(1.45rem,5.5vw,2.25re
 .instructor-banner { margin:1rem 0 0; padding:.6rem .9rem; border-radius:.5rem; background:#fff4d6; color:#5c4300; font-size:.9rem; }
 .instructor-banner button { margin-left:.4rem; font:inherit; font-weight:650; color:inherit; background:none; border:0; text-decoration:underline; cursor:pointer; }
 @media (prefers-color-scheme: dark) { .instructor-banner { background:#3a2f12; color:#ffe29a; } }
+.draft-banner { margin:1rem 0 0; padding:.6rem .9rem; border-radius:.5rem; border:1px dashed var(--line); background:var(--tag); font-size:.9rem; }
+/* Later lectures: closed by default; opening slides the list down. */
+.lecture-later { margin-top:1.5rem; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.lecture-later > summary { display:flex; align-items:baseline; gap:.5rem; padding:.8rem .25rem; cursor:pointer; list-style:none; font-weight:700; }
+.lecture-later > summary::-webkit-details-marker { display:none; }
+.lecture-later > summary::before { content:'▸'; display:inline-block; color:var(--muted); transition:transform .2s ease; }
+.lecture-later[open] > summary::before { transform:rotate(90deg); }
+.lecture-later > summary small { color:var(--muted); font-weight:400; }
+.lecture-later > summary:focus-visible { outline:3px solid var(--accent); outline-offset:-3px; }
+.lecture-later-body > .quiet { margin:0 .25rem .5rem; font-size:.9rem; }
+.lecture-later[open] .lecture-later-body { animation:lecture-slide-down .28s ease-out; }
+@keyframes lecture-slide-down { from { opacity:0; transform:translateY(-.6rem); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .lecture-later[open] .lecture-later-body { animation:none; } .lecture-later > summary::before { transition:none; } }
 /* The way in is deliberately quiet: a π at the foot of the page, the way old films hid an easter egg. */
 .instructor-switch { margin:2.5rem 0 0; text-align:right; }
 .instructor-switch button { padding:.2rem .4rem; border:0; background:none; color:var(--line); font:inherit; font-size:.8rem; cursor:pointer; }

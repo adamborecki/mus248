@@ -2,7 +2,12 @@
 > 20–21). The instructor writes the slides from this outline. Part 2 of the Vibecoding series. The
 > students' work this week uses no AI.
 
-> 🧑‍🏫 **Outline draft for Nov 2 (moved from Oct 26, when Live Sound 3 ran instead): write it in
+> 🧑‍🏫 **Unscheduled (hidden from students).** Moved off Nov 2, when the Salmon FOH deep dive
+> ran instead; its Markdown vs. HTML tables went into that lecture. Give it a date, lecture number,
+> and week in `data/lectures.json` (and remove `"hidden": true`) when it's back on the calendar.
+> Before then, update the Homework review below.
+
+> 🧑‍🏫 **Outline draft (moved from Oct 26, when Live Sound 3 ran instead): write it in
 > your voice.** Bullet fragments are prompts for what
 > to say; rewrite them as slides. Reference material (the click steps, the file table, the
 > troubleshooting table, the two starters) is meant to be close to final. Section 3 is the
@@ -16,9 +21,9 @@
 
 ### Homework review
 
-**Today:** Week 11 · Class 10
+**Today:** Week [n] · Class [n]
 
-**After today:** 4 classes (3 + 1 meeting in finals week)
+**After today:** [y] classes ([x] + 1 meeting in finals week)
 
 Everything due this week, with due dates: **see Canvas**.
 

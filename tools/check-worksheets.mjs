@@ -287,7 +287,9 @@ lectures.forEach((lecture) => {
   const where = `lecture ${lecture.id}`;
   check(['delivered', 'upcoming', 'no-class'].includes(lecture.status), `${where}: unknown status "${lecture.status}"`);
   check(lecture.date === null || /^\d{4}-\d{2}-\d{2}$/.test(lecture.date), `${where}: date must be YYYY-MM-DD or null`);
-  if ('refresherDraft' in lecture) check(typeof lecture.refresherDraft === 'boolean', `${where}: refresherDraft must be true or false`);
+  ['refresherDraft', 'draft', 'hidden'].forEach((flag) => {
+    if (flag in lecture) check(typeof lecture[flag] === 'boolean', `${where}: ${flag} must be true or false`);
+  });
   // A guest lecture (another course, same engine) names that course, and isn't numbered in this one.
   if ('guest' in lecture) {
     check(typeof lecture.guest === 'string' && lecture.guest.trim() !== '', `${where}: guest names the course it's for, like "guest": "MUS 101"`);

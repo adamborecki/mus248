@@ -8,9 +8,10 @@
 // No secrets go in a note, any more than anywhere else on this site.
 
 // A lecture with `hiddenUntil` (an ISO time with its UTC offset) stays off the list, its page, its
-// worksheet, and its fill-in until then — except in instructor view. This only hides it on the
-// site: the Markdown is still public in the repo.
-export const isVisible = (lecture, now = Date.now()) => !lecture.hiddenUntil || now >= Date.parse(lecture.hiddenUntil);
+// worksheet, and its fill-in until then — except in instructor view. `"hidden": true` does the same
+// with no end date (a planned lecture that isn't scheduled yet). Either only hides it on the site:
+// the Markdown is still public in the repo.
+export const isVisible = (lecture, now = Date.now()) => !lecture.hidden && (!lecture.hiddenUntil || now >= Date.parse(lecture.hiddenUntil));
 
 // A guest lecture ("guest": "the course it's for") is one given to another class on this same
 // engine. It never appears on this course's lecture list or in its Older/Newer links (instructor
