@@ -262,6 +262,12 @@ What's most likely?
 
 ![Two guitar amps at the rehearsal, with an SM57 on a short stand in front of the near one.](media/cme/guitar-amps-sm57.jpg)
 
+![The Boss Katana-50, the guitar amp on the cart: its MASTER knob sets what the SM57 hears.](media/cme/katana-50.jpg)
+
+![The Boss Katana-110 Bass, on the cart.](media/cme/katana-110-bass.jpg)
+
+![The Behringer Ultratone K450FX keyboard amp, on the cart.](media/cme/ultratone-k450fx.jpg)
+
 ## 📝 Levels: write them down
 
 The dress rehearsal is right before the show, so what you write down at soundcheck is what gets
