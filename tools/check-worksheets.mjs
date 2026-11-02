@@ -19,7 +19,7 @@ import { numberSlides } from '../lectures/view.js';
 import { applyEdits, editProblem, slideBlocks } from '../lectures/presenter.js';
 import { renderFormBlock, stripQuestions } from '../worksheet.js';
 import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
-import { EVALS, parseEval, renderEvalSheet } from '../performance-evals/evals.js';
+import { EVALS, parseEval, renderEvalPage, renderEvalSheet, stationSlug } from '../performance-evals/evals.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
@@ -410,6 +410,16 @@ EVALS.forEach((id) => {
   });
   check(!/forms\.gle|docs\.google\.com|drive\.google\.com/.test(text), `${where}: contains a Google Docs, form, or Drive link`);
   check(!/_{3,}/.test(renderEvalSheet(text, id).replace(/<code>[\s\S]*?<\/code>/g, '')), `${where}: the sheet shows literal underscores`);
+  // The part after ✅ is for the checker: never on the student's sheet or the page, always on the checker copy.
+  const answers = text.replace(/<!--[\s\S]*?-->/g, '').split('\n').filter((line) => /^\s*-\s+\[[ xX]\].*✅/u.test(line)).length;
+  const studentSheet = renderEvalSheet(text, id);
+  check(!studentSheet.includes('✅') && !studentSheet.includes('ev-answer'), `${where}: the student sheet shows a checker answer`);
+  check(!renderEvalPage(text, { id }).includes('ev-answer') && !/<li[^>]*>[^<]*☐[^✅]*✅/u.test(renderEvalPage(text, { id })), `${where}: the page shows a checker answer`);
+  check((renderEvalSheet(text, id, { checker: true }).match(/class="ev-answer"/g) || []).length === answers, `${where}: the checker copy is missing an answer`);
+  stations.forEach((station) => {
+    const one = renderEvalSheet(text, id, { station: stationSlug(station.heading) });
+    check((one.match(/class="ws-block ev-station"/g) || []).length === 1, `${where}: printing "${station.heading}" alone doesn't give exactly one station`);
+  });
 });
 
 console.table(rows);

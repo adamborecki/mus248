@@ -1,13 +1,19 @@
 ---
 title: "Final"
 emoji: "🎓"
-revised: "2026-10-26"
+revised: "2026-11-02"
 status: "draft"
+checkedBy: "true"
 ---
 
 <!--
-Same format as midterm.md (its header comment has the rules). Stations still marked 🚧 have no
-checked items yet; they're being written one at a time, Salmon first.
+Same format as midterm.md (its header comment has the rules), plus two things the final uses:
+
+  ### 🎙️ Audio recording       a part of a station, with its own list
+  - [ ] item ✅ what to look for   only the checker copy prints the part after ✅
+
+Stations still marked 🚧 have no checked items yet; they're being written one at a time, Salmon
+first. checkedBy adds a "Checked by" line to every station.
 -->
 
 Like the midterm: you show specific skills, one station at a time, by yourself. The goal is that
@@ -40,7 +46,40 @@ everyone who passes MUS 248 can work the normal gig types, not that you speciali
 
 > **Where and when:** a mock setup in Salmon, during class time on one of four dates in November.
 
-> 🚧 What gets checked: being written next.
+> **How the test runs:** like a real gig, in four parts: audio, video, livestream, and downstairs
+> (the hall, the green room, and grabbing the program). The recordings are tiny on purpose: each
+> recorder rolls for only 5 or 6 seconds, so the files stay small and the cards go straight into
+> the SD card reader for the data transfer.
+
+> 🚧 Audio is written. Video is next, then the livestream and downstairs.
+
+### 🎙️ Audio recording
+
+- [ ] Battery backup on ✅ a single tap on the power button
+- [ ] Zoom F8 on ✅ the switch at the lower right, held about 2 seconds (a quick tap does nothing)
+- [ ] Zoom H6 on ✅ hold the switch on the left
+- [ ] Says which card size goes in the backup recorder (Zoom H6) ✅ 8 GB
+- [ ] Says which card size goes in the Zoom F8 ✅ 32 GB
+- [ ] A clean card in each recorder ✅ the F8's slot is on its far left side
+- [ ] Headphones on: clean signal on both recorders ✅ checks the F8 and the H6; left and right are different, not one signal doubled
+- [ ] F8 preamps: looks, doesn't touch ✅ all set the same; one that looks off gets reported, not adjusted
+- [ ] All 8 F8 channels record-enabled ✅ a red light under each one
+- [ ] A 5–6 second test recording on both the F8 and the H6 ✅ the counters actually moving on both, not just a button pressed
+- [ ] Stops both recorders ✅ on the F8, the STOP button, not the red record button
+- [ ] Both cards out and into the SD card reader
+- [ ] Powers off what they turned on ✅ the F8 needs the same 2-second hold to turn off
+
+### 🎥 Video recording
+
+> 🚧 Next: the HyperDeck's fast card, the primary wide's framing, and the AX100 backup wide.
+
+### 📡 Livestream
+
+> 🚧 Then: the Vimeo event, the embed on Canvas, the stream key into ATEM, On Air.
+
+### 🏛️ Downstairs and the hall
+
+> 🚧 Then: CRESTRON (hallway TV and audio), the green room TV, and grabbing the program.
 
 ## 🧳 Standard Gear Kit (Memorial Hall Layout)
 
