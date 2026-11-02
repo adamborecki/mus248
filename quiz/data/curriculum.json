@@ -14,7 +14,7 @@
     "6": { "label": "Quiz 6", "version": "2026-10-26", "access_code": "dibox", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["di_box", "di_needed", "stage_box_snake", "channel_order", "channel_labels", "gain_vs_fader",
                           "line_check", "live_reset"] },
-    "7": { "label": "Quiz 7", "version": "2026-11-02", "opens": "2026-11-02T19:00:00-08:00", "access_code": "githubpages", "expected_minutes": 6, "window_minutes": 9,
+    "7": { "label": "Quiz 7", "version": "2026-11-02", "opens": "2026-11-02T19:00:00-08:00", "access_code": "aes50fromX32toS32", "expected_minutes": 6, "window_minutes": 9,
            "new_skills": ["sgk_kit", "sgk_audio", "sgk_cameras", "line_check"] }
   },
   "targets": {
