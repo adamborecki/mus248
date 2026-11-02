@@ -23,6 +23,20 @@ week, and a copied question tests memory of the wording.
 | What any quiz can ask, every code | `/quiz/overview/` (instructor view) | generated, read-only |
 | Review, verify, edit on a phone | the content-editor artifact | the instructor |
 
+## Only what was taught
+
+**A quiz only asks what was taught (instructor, Nov 2).** A skill stays `inactive` until the
+lecture that teaches it has been given, and its questions come from that lecture's **final** text.
+Lectures are often finished the day of class, so in practice:
+
+- A quiz's `new_skills` lists only skills taught in a lecture that has already been given, or
+  re-taught in that day's lecture from an earlier one (Nov 2: the Standard Gear Kit skills).
+- A lecture finished the day of class gets its skills and questions written **after** class; they
+  show up on the **next** week's quiz as Practice, and go Core once the instructor verifies them.
+- A lecture that moves takes its skills with it: back to `inactive`, and off `new_skills`.
+- Practice and bonus questions don't count toward the grade, but they still shouldn't ask about
+  something nobody has taught.
+
 ## The weekly build
 
 1. **Sync the editor first** (`tools/editor-sync.mjs`, its header says how). Editing the data files
@@ -34,7 +48,8 @@ week, and a copied question tests memory of the wording.
 4. **Write questions and cards** (below). All `verified: false`.
 5. **Add the quiz entry**: label `Quiz N`, `version` = the Monday it's for, the instructor's
    `access_code`, `expected_minutes` 6 / `window_minutes` 9 unless told otherwise, and
-   `new_skills` = this lecture's skills, so its questions lead the bonus queue.
+   `new_skills` = skills from a lecture already given (see **Only what was taught**), so their
+   questions lead the bonus queue.
 6. **Ask before changing any skill's status during a teaching week.** The rhythm says last week's
    lecture goes Core, but a skill with no verified questions can't be graded (the test fails), so
    the instructor verifies first. `/quiz/overview/` shows what's ready.

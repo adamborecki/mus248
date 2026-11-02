@@ -28,10 +28,22 @@ One lecture, one quiz, every Monday. For lecture X on Monday A:
 
 | When | Lecture X's follow-along notes | X's online refresher | X's material in the quiz |
 |---|---|---|---|
-| **Monday A** (class) | filled in during class | | **Practice** on that day's quiz |
+| **Monday A** (class) | filled in during class | | not yet (the lecture was finished today) |
 | **Sunday before Monday B** | photos **due** on Canvas | | |
-| **Monday B** | | **opens** 7:00 AM | moves to **Core** |
+| **Monday B** | | **opens** 7:00 AM | **Practice** (`new_skills`); **Core** once verified |
 | **Sunday before Monday C** | | **due** on Canvas | |
+
+**A quiz only asks what was taught (instructor, Nov 2).** A skill stays `inactive` until the
+lecture that teaches it has been given, and its questions come from that lecture's **final** text.
+Lectures are often finished the day of class, so in practice:
+
+- A quiz's `new_skills` lists only skills taught in a lecture that has already been given, or
+  re-taught in that day's lecture from an earlier one (Nov 2: the Standard Gear Kit skills).
+- A lecture finished the day of class gets its skills and questions written **after** class; they
+  show up on the **next** week's quiz as Practice, and go Core once the instructor verifies them.
+- A lecture that moves takes its skills with it: back to `inactive`, and off `new_skills`.
+- Practice and bonus questions don't count toward the grade, but they still shouldn't ask about
+  something nobody has taught.
 
 So the same Sunday, students hand in **this** lecture's notes and **last** lecture's refresher.
 

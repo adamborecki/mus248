@@ -46,6 +46,10 @@ was set to open at 7:00 PM. Public repo: no access codes here.
 
 ### On Nov 2, before 7 PM (not automatic)
 
+> **Done Nov 2, with a change:** `quiz_number` is 7. Vibecoding 2 moved off Nov 2 (the Salmon FOH
+> lecture ran instead), so its six skills stay `inactive` and Quiz 7's `new_skills` are the Standard
+> Gear Kit skills plus `line_check`, which that lecture re-teaches. Steps 2 and 3 below no longer apply.
+
 1. `quiz_number` → **7** in `quiz/data/curriculum.json`.
 2. The six Vibecoding 2 skills (`github_pages`, `mus248_sandbox`, `markdown_vs_html`,
    `readme_vs_index`, `branch_workflow`, `public_site_privacy`) → `practice`.

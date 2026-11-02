@@ -188,11 +188,15 @@ good Repo Improvement task. The 🔁 button says where a refresher stands: **not
 questions), **being written** (`"refresherDraft": true` on the lecture in `data/lectures.json`;
 students can't open it, instructor view can), or ready (opens on its date).
 
-**The weekly rhythm** (full table in `content/LECTURE_GUIDE.md`): lecture X on Monday A, with that
-day's quiz covering X as **Practice**; X's notes photos due the Sunday before Monday B; Monday B,
-X's refresher opens (due the Sunday before Monday C) and X's quiz skills move to **Core**. The quiz
+**The weekly rhythm** (full table in `content/LECTURE_GUIDE.md`): lecture X on Monday A; X's notes
+photos due the Sunday before Monday B; Monday B, X's refresher opens (due the Sunday before Monday
+C) and X's quiz skills are **Practice** on that quiz, moving to **Core** once their questions are
+verified. The quiz
 is the quiz engine's weekly quiz from the question bank, taken in class (take-home, due that
 Sunday, if it doesn't fit). A quiz "skill" is a topic tag in `curriculum.json`, not a lecture.
+**A quiz only asks what was taught:** a lecture's skills stay `inactive` until it has been given and
+its questions are written from the final text. Lectures are often finished the day of, so they
+usually first appear on the next week's quiz (`content/QUIZ_GUIDE.md`, "Only what was taught").
 
 **New lectures start as an outline, and the instructor writes them.** The order is: a planning
 conversation, then an outline draft (headings plus short bullet fragments for anything in the
