@@ -126,6 +126,15 @@
     "channel_labels": {"lecture": "live-sound-3", "confirmed": true},
     "gain_vs_fader": {"lecture": "live-sound-3", "confirmed": true},
     "line_check": {"lecture": "live-sound-3", "confirmed": true},
-    "live_reset": {"lecture": "live-sound-3", "confirmed": true}
+    "live_reset": {"lecture": "live-sound-3", "confirmed": true},
+
+    "salmon_aes50": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "salmon_mains": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "salmon_wedges": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "gain_chain": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "salmon_gains": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "wedge_check": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "clone": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "account_vs_pages": {"lecture": "2026-11-02-salmon-foh", "confirmed": true}
   }
 }

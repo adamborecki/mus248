@@ -122,7 +122,15 @@
     "channel_labels": "What to label",
     "gain_vs_fader": "Gain vs. fader (and what monitors hear)",
     "line_check": "Line check vs. sound check",
-    "live_reset": "Resetting a live station"
+    "live_reset": "Resetting a live station",
+    "salmon_aes50": "Salmon: in at the X32, out through the S32",
+    "salmon_mains": "Salmon: the mains (the hall’s and CME’s own)",
+    "salmon_wedges": "Salmon: wedges, one mix or three",
+    "gain_chain": "Gain staging: one job per control",
+    "salmon_gains": "Salmon: gain rules for Vocal Jazz and CME",
+    "wedge_check": "Salmon: test in order, signal and level",
+    "clone": "Clones",
+    "account_vs_pages": "Your GitHub account vs. your Pages site"
   },
   "questions": [
     {
@@ -8427,6 +8435,602 @@
       "answer_index": 0,
       "explanation": "Don’t overwrite shared console scenes. Leave clear labels or notes instead.",
       "verified": false
+    },
+    {
+      "id": "SAL_AES_001",
+      "skill": "salmon_aes50",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Salmon, how do the wireless mics reach the X32?",
+      "choices": [
+        "On LOCAL inputs: the receivers plug into the X32’s own rear panel",
+        "Through the S32 stage box, over AES50",
+        "Over Dante, from the FOH computer",
+        "Through the hall’s mains rack"
+      ],
+      "answer_index": 0,
+      "explanation": "The wireless receivers plug into the X32 itself, so CH 1–24 are on LOCAL. The S32 brings in CH 25–32.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AES_002",
+      "skill": "salmon_aes50",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Salmon, how do the mains and the wedge mixes get from the X32 out to the speakers?",
+      "choices": [
+        "Through the S32 stage box, down one Cat5e (AES50)",
+        "Each on its own XLR run from FOH",
+        "Through the wireless receivers",
+        "Over the hall’s Wi-Fi"
+      ],
+      "answer_index": 0,
+      "explanation": "Mics come in at the X32; every output goes out through the S32, over AES50.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AES_003",
+      "skill": "salmon_aes50",
+      "topic": "salmon",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Every channel meter at the X32 is moving, but the hall speakers and all the wedges went silent at the same moment. What’s the most likely cause?",
+      "choices": [
+        "The AES50 link between the X32 and the S32",
+        "Every mic battery died at once",
+        "The channel gains are too low",
+        "Low cut is on for every channel"
+      ],
+      "answer_index": 0,
+      "explanation": "The mics come in on LOCAL, so the meters keep moving. Every output leaves through the S32, so with no AES50 link every speaker goes quiet at once.",
+      "verified": false
+    },
+    {
+      "id": "SAL_AES_004",
+      "skill": "salmon_aes50",
+      "topic": "salmon",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After another event in Salmon, no wireless mic shows on the X32’s meters, though every receiver shows signal. What do you check first?",
+      "choices": [
+        "ROUTING → INPUT: CH 1–24 should be on LOCAL, not AES50",
+        "The amps’ level knobs",
+        "The Mix5 in the hall’s mains rack",
+        "The wedges’ speakON cables"
+      ],
+      "answer_index": 0,
+      "explanation": "If the last event left CH 1–24 on AES50, no mic arrives. Check the input routing first.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAINS_001",
+      "skill": "salmon_mains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why does CME put its own speakers downstage of the band?",
+      "choices": [
+        "Every open mic is then behind the speakers, so feedback is much less likely",
+        "Passive speakers are louder than the hall’s",
+        "The hall’s speakers can’t play a band",
+        "It puts them closer to the X32"
+      ],
+      "answer_index": 0,
+      "explanation": "With the speakers in front of the band, the open mics are behind them, so feedback is much less likely.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAINS_002",
+      "skill": "salmon_mains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "For CME, how do you turn the hall’s installed speakers down?",
+      "choices": [
+        "The LEVEL of the Mix5 channel the S32 comes in on",
+        "The Mix5’s MAIN MIX knob",
+        "The X32’s MAIN fader",
+        "Unplug the cables in the hall’s mains rack"
+      ],
+      "answer_index": 0,
+      "explanation": "That channel’s LEVEL, not MAIN MIX, so a laptop or phone plugged into the rack still works.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAINS_003",
+      "skill": "salmon_mains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which amp drives CME’s two downstage Yamaha speakers?",
+      "choices": [
+        "The Crown at the bottom of the amp rack",
+        "The Crown in the hall’s mains rack",
+        "The NX3000",
+        "The Mackie Mix5"
+      ],
+      "answer_index": 0,
+      "explanation": "CME’s mains go S32 OUT 13/14 → the Crown at the bottom of the amp rack. The hall’s mains rack is a different rack.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAINS_004",
+      "skill": "salmon_mains",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Besides carrying the X32’s mains, what is the Mackie Mix5 in Salmon’s mains rack used for?",
+      "choices": [
+        "Letting a teacher plug a laptop or phone into the hall’s speakers",
+        "Powering the passive wedges",
+        "Recording the concert",
+        "Sending a mix to the wedges"
+      ],
+      "answer_index": 0,
+      "explanation": "The Mix5 also takes a laptop or phone, so a teacher can play through the hall’s speakers without the X32.",
+      "verified": false
+    },
+    {
+      "id": "SAL_WEDGE_001",
+      "skill": "salmon_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How are Vocal Jazz’s three wedges fed?",
+      "choices": [
+        "One mix, one amp channel, the wedges in a daisy chain",
+        "Three mixes on three amp channels",
+        "Each wedge straight from the X32 on its own XLR",
+        "From the hall’s mains rack"
+      ],
+      "answer_index": 0,
+      "explanation": "MIX 1 → S32 OUT 1 → NX3000 CH A → speakON → wedge → wedge → wedge.",
+      "verified": false
+    },
+    {
+      "id": "SAL_WEDGE_002",
+      "skill": "salmon_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why doesn’t CME daisy-chain its three wedges?",
+      "choices": [
+        "Every wedge in a chain plays the same mix, and CME has three different mixes",
+        "speakON cables can’t be chained",
+        "CME’s wedges are wireless",
+        "The X32 only allows one wedge per output"
+      ],
+      "answer_index": 0,
+      "explanation": "A daisy chain carries one mix. Three mixes need three amp channels.",
+      "verified": false
+    },
+    {
+      "id": "SAL_WEDGE_003",
+      "skill": "salmon_wedges",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What goes between an amp’s output and a passive 1/4\" wedge?",
+      "choices": [
+        "A thick 1/4\" speaker cable",
+        "A thin 1/4\" instrument cable",
+        "An XLR cable",
+        "A Cat5e cable"
+      ],
+      "answer_index": 0,
+      "explanation": "Same plug, different job: the thick speaker cable carries the amp’s power. Never an instrument cable.",
+      "verified": false
+    },
+    {
+      "id": "SAL_WEDGE_004",
+      "skill": "salmon_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Vocal Jazz’s monitor path, what does the XLR from S32 OUT 1 to the NX3000 carry?",
+      "choices": [
+        "The wedge mix, at line level",
+        "The amp’s power, to the wedges",
+        "48V phantom power",
+        "The mains"
+      ],
+      "answer_index": 0,
+      "explanation": "XLR carries the mix at line level into the amp; speakON carries the amp’s power out to the wedges.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GCHAIN_001",
+      "skill": "gain_chain",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer wants more of their own voice in their wedge, but not louder in the house. Which control do you change?",
+      "choices": [
+        "That channel’s send level to the wedge’s mix",
+        "The channel’s fader",
+        "The channel’s GAIN",
+        "The MAIN master"
+      ],
+      "answer_index": 0,
+      "explanation": "The fader sets the mains; the send sets each wedge. On the X32, SENDS ON FADERS.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GCHAIN_002",
+      "skill": "gain_chain",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A channel’s input is clipping at soundcheck. Which control fixes it?",
+      "choices": [
+        "GAIN",
+        "The channel’s fader",
+        "The MAIN master",
+        "The amp’s level knob"
+      ],
+      "answer_index": 0,
+      "explanation": "Fix a level where it’s wrong: too hot coming in is a GAIN problem, not a fader problem.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GCHAIN_003",
+      "skill": "gain_chain",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When are the amps’ level knobs set at a Salmon gig?",
+      "choices": [
+        "Once, during the music test, then left alone",
+        "During every song, as the music changes",
+        "Only if a wedge feeds back",
+        "After the show, for the next gig"
+      ],
+      "answer_index": 0,
+      "explanation": "The amp knobs are set once, while music plays through each wedge. After that, mix at the console.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_GCHAIN_004",
+      "skill": "gain_chain",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The channel has signal and is sent to a wedge mix, but that wedge is silent. Which stage is easy to forget?",
+      "choices": [
+        "The mix’s bus master: up and unmuted",
+        "The channel’s low cut",
+        "The channel’s pan",
+        "The channel’s 48V"
+      ],
+      "answer_index": 0,
+      "explanation": "Every stage has to be up and unmuted, or nothing comes out: GAIN, send, the bus master, the amp, the speaker.",
+      "verified": false
+    },
+    {
+      "id": "SAL_GAIN_001",
+      "skill": "salmon_gains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why does every Vocal Jazz wireless channel get the same gain (30 dB)?",
+      "choices": [
+        "So the group balances itself, like an ensemble should",
+        "So the meters all line up",
+        "Because the X32 can’t set different gains",
+        "So the wedges get louder"
+      ],
+      "answer_index": 0,
+      "explanation": "With identical gains, the balance is the singers’ own. A quiet singer is a conversation with the director, not a knob.",
+      "verified": false
+    },
+    {
+      "id": "SAL_GAIN_002",
+      "skill": "salmon_gains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Where should a CME channel’s peaks land once its GAIN is set?",
+      "choices": [
+        "About −18 to −6",
+        "Right at 0",
+        "About −40 to −30",
+        "About 0 to +6"
+      ],
+      "answer_index": 0,
+      "explanation": "GAIN each channel into the good range, peaks about −18 to −6. The faders are for the mix.",
+      "verified": false
+    },
+    {
+      "id": "SAL_GAIN_003",
+      "skill": "salmon_gains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why save CME’s levels on a level sheet, an input list, a saved scene, or photos?",
+      "choices": [
+        "So the gains stay the same from soundcheck through rehearsal and the show",
+        "So the band can grade the engineer",
+        "So the amps can be set from it",
+        "So the house speakers stay off"
+      ],
+      "answer_index": 0,
+      "explanation": "The point is that the gains don’t change between soundcheck and the show. Any of those ways of saving them works.",
+      "verified": false
+    },
+    {
+      "id": "SAL_GAIN_004",
+      "skill": "salmon_gains",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which CME channels get 48V?",
+      "choices": [
+        "The piano’s two pencil condensers",
+        "The wireless handhelds",
+        "The SM57 on the guitar amp",
+        "None of them"
+      ],
+      "answer_index": 0,
+      "explanation": "Condensers need phantom power: 48V on CH 27 and 28, the piano’s pencil condensers.",
+      "verified": false
+    },
+    {
+      "id": "SAL_GAIN_005",
+      "skill": "salmon_gains",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What processing do the Vocal Jazz wireless channels get?",
+      "choices": [
+        "Low cut at 80 Hz, and no gate or compressor",
+        "A compressor on every mic",
+        "A gate on every mic",
+        "Nothing at all, not even low cut"
+      ],
+      "answer_index": 0,
+      "explanation": "Low cut takes out handling noise and rumble below the voice. No dynamics: a compressor fights the singers’ own dynamics.",
+      "verified": false
+    },
+    {
+      "id": "SAL_TEST_001",
+      "skill": "wedge_check",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Salmon, what goes through the mains and each wedge before anyone talks into a mic?",
+      "choices": [
+        "Music you know",
+        "The first singer’s mic",
+        "A talkback mic",
+        "Nothing: the mics are checked first"
+      ],
+      "answer_index": 0,
+      "explanation": "Music you know proves the whole path, and sets a rough level, before a mic can feed back.",
+      "verified": false
+    },
+    {
+      "id": "SAL_TEST_002",
+      "skill": "wedge_check",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Music is playing through a wedge and you can hear it. Is that wedge checked?",
+      "choices": [
+        "Not yet: check the level too, on the meter and by how loud it feels on stage",
+        "Yes, hearing it is enough",
+        "Only once all three wedges play",
+        "Only after the singers arrive"
+      ],
+      "answer_index": 0,
+      "explanation": "Each wedge is checked for signal and for level. Hearing it is step one.",
+      "verified": false
+    },
+    {
+      "id": "SAL_TEST_003",
+      "skill": "wedge_check",
+      "topic": "salmon",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A singer is clearly in the mains but missing from the wedges. Where do you look?",
+      "choices": [
+        "The monitor path: the send, the mix, the amp, the cables",
+        "The mic’s battery",
+        "The mic’s mute button",
+        "ROUTING → INPUT"
+      ],
+      "answer_index": 0,
+      "explanation": "If the mic is in the mains, the mic and its channel are fine. The problem is on the way to the wedges.",
+      "verified": false
+    },
+    {
+      "id": "SAL_TEST_004",
+      "skill": "wedge_check",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before you play music through each wedge, what do you turn down?",
+      "choices": [
+        "The house, so you hear only the stage",
+        "The wedges",
+        "The amps",
+        "The test music"
+      ],
+      "answer_index": 0,
+      "explanation": "House down, then music through each wedge, so what you hear is the wedge.",
+      "verified": false
+    },
+    {
+      "id": "VC_CLONE_001",
+      "skill": "clone",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a clone of a repo?",
+      "choices": [
+        "A copy of the repo on your computer",
+        "Your own copy of the repo on GitHub",
+        "A saved snapshot of your changes",
+        "Your changes becoming part of the main version"
+      ],
+      "answer_index": 0,
+      "explanation": "A clone is a copy on your computer. A fork is a copy on GitHub.",
+      "verified": false
+    },
+    {
+      "id": "VC_CLONE_002",
+      "skill": "clone",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the difference between a fork and a clone?",
+      "choices": [
+        "A fork is a copy on GitHub; a clone is a copy on your computer",
+        "They’re the same thing",
+        "A fork is on your computer; a clone is on GitHub",
+        "A clone is a pull request"
+      ],
+      "answer_index": 0,
+      "explanation": "Fork: your own copy on GitHub. Clone: a copy on your computer.",
+      "verified": false
+    },
+    {
+      "id": "VC_CLONE_003",
+      "skill": "clone",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You want a repo’s files on your own laptop to work on. What do you make?",
+      "choices": [
+        "A clone",
+        "A merge",
+        "A commit",
+        "A pull request"
+      ],
+      "answer_index": 0,
+      "explanation": "Cloning puts a copy of the repo on your computer.",
+      "verified": false
+    },
+    {
+      "id": "VC_ACCT_001",
+      "skill": "account_vs_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do you find at github.com/your-username?",
+      "choices": [
+        "Your GitHub account: your repos, their code and history",
+        "Your published website",
+        "Only your pull requests",
+        "Your GitHub Pages settings"
+      ],
+      "answer_index": 0,
+      "explanation": "Same username, two addresses: github.com/you is the code; you.github.io is the site.",
+      "verified": false
+    },
+    {
+      "id": "VC_ACCT_002",
+      "skill": "account_vs_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do you find at your-username.github.io?",
+      "choices": [
+        "Websites published from your repos with GitHub Pages",
+        "Your repos’ code and history",
+        "Your account settings",
+        "A list of your forks"
+      ],
+      "answer_index": 0,
+      "explanation": "GitHub Pages publishes a repo as a website at your-username.github.io.",
+      "verified": false
+    },
+    {
+      "id": "VC_ACCT_003",
+      "skill": "account_vs_pages",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "This course’s code is at github.com/adamborecki/mus248. Where is the site built from it?",
+      "choices": [
+        "adamborecki.github.io/mus248/",
+        "github.com/mus248",
+        "mus248.github.com",
+        "github.com/adamborecki/mus248/site"
+      ],
+      "answer_index": 0,
+      "explanation": "The repo lives on github.com; GitHub Pages publishes it at username.github.io/repo-name/.",
+      "verified": false
+    },
+    {
+      "id": "SGK_CAM_005",
+      "skill": "sgk_cameras",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How are the two AX100s framed on a Standard Gear Kit gig?",
+      "choices": [
+        "Both static and wide; one of them is the backup",
+        "One wide, one following the soloists",
+        "Both close-ups on the performers",
+        "One wide; the other stays off as a spare"
+      ],
+      "answer_index": 0,
+      "explanation": "Both static, both wide. Different angles are fine, and one is the backup.",
+      "verified": false,
+      "draft": true
+    },
+    {
+      "id": "SGK_AUD_008",
+      "skill": "sgk_audio",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On a Standard Gear Kit gig, which F8 inputs can boundary mics use?",
+      "choices": [
+        "Inputs 3–4 or 7–8",
+        "Inputs 1–2",
+        "Inputs 5–6",
+        "None: boundary mics go into the H4n"
+      ],
+      "answer_index": 0,
+      "explanation": "The main pair is on 1–2 with Dual Channel copies on 5–6. Inputs 3–4 and 7–8 are for boundary mics and/or a board feed.",
+      "verified": false,
+      "draft": true
     }
   ]
 }

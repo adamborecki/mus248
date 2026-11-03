@@ -2059,6 +2059,70 @@
       "front": "A good reset",
       "back": "Amplified speakers off first. Mute (lower only if the levels are saved). Don’t overwrite shared scenes. Leave notes.",
       "verified": false
+    },
+    {
+      "id": "sal_aes50",
+      "skill": "salmon_aes50",
+      "category": "Salmon gigs",
+      "front": "Salmon: in and out",
+      "back": "Mics come in at the X32 (LOCAL, CH 1–24). Everything goes out through the S32 over one AES50 cable. No link: meters move, every speaker is silent.",
+      "verified": false
+    },
+    {
+      "id": "sal_mains",
+      "skill": "salmon_mains",
+      "category": "Salmon gigs",
+      "front": "Salmon mains",
+      "back": "MAIN → S32 OUT 15/16 → the hall’s mains rack (Mix5). CME adds its own downstage: S32 OUT 13/14 → the Crown at the bottom of the amp rack → two Yamahas.",
+      "verified": false
+    },
+    {
+      "id": "sal_wedges",
+      "skill": "salmon_wedges",
+      "category": "Salmon gigs",
+      "front": "Salmon wedges",
+      "back": "Vocal Jazz: one mix (MIX 1), one amp channel, three wedges daisy-chained. CME: three mixes (9–11), three amp channels. A chain plays one mix.",
+      "verified": false
+    },
+    {
+      "id": "gain_chain",
+      "skill": "gain_chain",
+      "category": "Live sound",
+      "front": "Gain staging, one job each",
+      "back": "GAIN: how hot it comes in. Fader: the mains mix. Send: each wedge. Bus master: the whole mix out. Amp: set once. Fix a level where it’s wrong.",
+      "verified": false
+    },
+    {
+      "id": "sal_gains",
+      "skill": "salmon_gains",
+      "category": "Salmon gigs",
+      "front": "Salmon gain rules",
+      "back": "Vocal Jazz: every wireless at 30 dB, low cut, no dynamics. CME: GAIN into −18 to −6, 48V on the piano mics, save the levels so they stay the same.",
+      "verified": false
+    },
+    {
+      "id": "sal_test",
+      "skill": "wedge_check",
+      "category": "Salmon gigs",
+      "front": "Test in order",
+      "back": "Music you know: mains, then house down and each wedge, checking signal and level. Amps set once. Then the mics, one at a time.",
+      "verified": false
+    },
+    {
+      "id": "vc_clone",
+      "skill": "clone",
+      "category": "Vibecoding",
+      "front": "Fork vs. clone",
+      "back": "Fork: your own copy of a repo, on GitHub. Clone: a copy of a repo on your computer.",
+      "verified": false
+    },
+    {
+      "id": "vc_account_pages",
+      "skill": "account_vs_pages",
+      "category": "Vibecoding",
+      "front": "github.com/you vs. you.github.io",
+      "back": "github.com/you: your account, repos, code. you.github.io: websites GitHub Pages publishes from those repos.",
+      "verified": false
     }
   ]
 }

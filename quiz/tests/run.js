@@ -428,7 +428,8 @@ test('this week\'s new skills lead the bonus queue, ahead of missed review', () 
   const fresh = new Set(quiz.new_skills);
   const skill = curriculum.skills;
   quiz.new_skills.forEach((name) => assert.ok(skill[name], `new_skills: ${name} missing from curriculum.json`));
-  const newIds = bank.questions.filter((question) => fresh.has(question.skill)).map(({ id }) => id);
+  // Drafts never reach the bonus queue (selectBonus skips them), so they aren't counted here.
+  const newIds = bank.questions.filter((question) => fresh.has(question.skill) && !question.draft).map(({ id }) => id);
   assert.ok(newIds.length > 0, 'this week has new_skills but no questions on them');
 
   const missedSkill = bank.questions.find((question) => !fresh.has(question.skill) && skill[question.skill] !== 'inactive').skill;

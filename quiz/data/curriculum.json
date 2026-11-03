@@ -173,6 +173,15 @@
     "branch_workflow": "inactive",
     "public_site_privacy": "inactive",
 
+    "salmon_aes50": "inactive",
+    "salmon_mains": "inactive",
+    "salmon_wedges": "inactive",
+    "gain_chain": "inactive",
+    "salmon_gains": "inactive",
+    "wedge_check": "inactive",
+    "clone": "inactive",
+    "account_vs_pages": "inactive",
+
     "di_box": "practice",
     "di_needed": "practice",
     "stage_box_snake": "practice",
