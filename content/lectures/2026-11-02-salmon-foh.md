@@ -1,16 +1,15 @@
-> 🤖 **AI use:** outlined with Claude Code from two short planning messages (Nov 2). The instructor
-> writes the slides from this outline. The Salmon facts come from the
-> [Vocal Jazz Gig Checklist](../../vocal-jazz-gig-checklist/); the Standard Gear Kit facts come from
-> the [Standard Gear Kit Checklist](../../standard-gear-kit-checklist/).
+> 🤖 **AI use:** drafted with Claude Code from the instructor's planning messages (Nov 2). The
+> Standard Gear Kit facts come from the instructor and the
+> [Standard Gear Kit Checklist](../../standard-gear-kit-checklist/); the Salmon facts come from the
+> [Vocal Jazz](../../vocal-jazz-gig-checklist/) and [CME](../../cme-gig-checklist/) gig checklists
+> and Mixer Lab.
 
-> 🧑‍🏫 **Draft for today (Nov 2): write it in your voice.** Three parts: (1) Salmon FOH, the main
-> one; (2) a Standard Gear Kit refresher at a **generic** gig, so next week can do **Memorial**
-> specifically (spaced repetition); (3) a quick vibecoding pickup and this week's homework plan.
-> Headings plus bullet fragments only; `[brackets]` are prompts for your own stories. Commercial
-> Music Ensemble is placeholders only (no CME checklist in the repo, so nothing there is verified).
-> Mariachi is left out on purpose, for later. No in-class activity yet. A few blanks (`==…==`) on
-> key terms so the follow-along notes exist; delete or add as you like. No refresher questions:
-> those come from your final text. Remove `"draft": true` in `data/lectures.json` when it's done.
+> 🧑‍🏫 **Draft for today (Nov 2).** Three parts: (1) a quick vibecoding refresher, (2) a Standard
+> Gear Kit refresher at a generic gig (Memorial specifically next week, for spaced repetition), and
+> (3) Salmon FOH signal flow and gain staging, the main part. Sections 1 and 2 are drafted; section
+> 3 is a skeleton until the planning questions are answered. Mariachi is left out on purpose, for
+> later. No refresher questions: those come from your final text. Remove `"draft": true` in
+> `data/lectures.json` when it's done.
 
 ## 📣 Announcements
 
@@ -22,185 +21,155 @@
 
 Everything due this week, with due dates: **see Canvas**.
 
-- **Your `README.md` and `index.html`** (part 3 today)
+- **Quiz 7:** tonight, in class
 - **Follow-along notes:** photos of today's notes, on Canvas
 - **Online refresher for Live Sound 3:** open since this morning
 - **Finished an activity or a checklist?** Fill out the Repo Improvement form
 
 > 🧑‍🏫 Placeholder list: confirm against Canvas.
 
-### Change of plans
-
-- Today: **Salmon FOH**, deep dive
-- Why: [what the last couple of weeks of gigs showed you]
-- Plus a Standard Gear Kit refresher, and a little vibecoding
-
 ## 🎤 Lecture: Salmon FOH Deep Dive
 
 ### Salmon FOH Deep Dive
 
-- Goal: everyone knows the whole signal path, not just the steps
+- A quick vibecoding refresher
+- The Standard Gear Kit, again
+- Then the main event: **Salmon FOH**, signal flow and gain staging
 
 ### Today
 
-1. Salmon FOH: Vocal Jazz and Commercial Music Ensemble
-2. The Standard Gear Kit at a gig
-3. Vibecoding: this week's homework
+1. Vibecoding: a quick refresher
+2. The Standard Gear Kit: a refresher
+3. Salmon FOH: signal flow and gain staging
 
-## 1. Salmon FOH
+## 1. Vibecoding: A Quick Refresher
 
-### Lessons from real gigs
+### Why are we doing this?
 
-- [lesson 1]
-- [lesson 2]
-- [lesson 3]
-- What's changing because of it: [new rule / new step]
+- **Repo Improvement:** you fix the checklists you follow
+- **Signal flow:** the diagrams, checklists, and simulators (Mixer Lab) are all built this way
+- **Training:** next semester's crew learns from what you write
+- Every checklist on this site is a text file anyone can improve
 
-> 🧑‍🏫 One example already in the checklist: the wireless rack now gets switched on at the start of
-> the gig and off at the end (earlier crews left it on).
+### Your GitHub account vs. your GitHub Pages site
 
-### The whole path
+| | GitHub account | GitHub Pages |
+|---|---|---|
+| Example | `github.com/adamborecki` | `adamborecki.github.io` |
+| What it is | You, and your ==repos== (code and history) | ==Websites== published from those repos |
+| This course | `github.com/adamborecki/mus248` | `adamborecki.github.io/mus248/` |
 
-Mic → receiver → X32 → wedges and mains
+- Same username, two addresses: one for the ==code==, one for the site
+- Coming soon: **your own website** at `your-username.github.io`
 
-1. **Wireless handheld** → **receiver** (the wireless rack)
-2. Receiver → X32's own rear panel: a **==LOCAL==** input
-3. X32 channel → **Bus 1** (the wedge mix)
-4. Bus 1 → Output 1 → **stage box OUT 1**, over **==AES50==**
-5. Stage box → XLR → **NX3000** amp, Channel A
-6. Amp → **speakON** → first wedge → **==daisy chain==** to the other two
+### Four words: fork, clone, commit, merge
 
-> 🧑‍🏫 Mains path isn't written out in the checklist. Add it here from your own notes if you want
-> it on the slide.
+| Word | What it means |
+|---|---|
+| **Fork** | Your own ==copy== of someone else's repo, on GitHub |
+| **Clone** | A copy of a repo on your ==computer== |
+| **Commit** | A saved ==snapshot== of your changes, with a note saying what changed |
+| **Merge** | Your changes become part of the ==main== version (after a pull request) |
 
-### Inputs: Local vs. AES50
+### Markdown vs. HTML
 
-- **ROUTING → INPUT**: 1–24 = **Local**, 25–32 = **AES50** (stage box)
-- Receivers plug into the **console**, not the stage box
-- 1–24 on AES50 → no mics at all. **Check this ==first==**
-- [why a saved scene isn't enough]
+| | Markdown (`.md`) | HTML (`.html`) |
+|---|---|---|
+| A heading | `# My site` | `<h1>My site</h1>` |
+| Bold | `**loud**` | `<strong>loud</strong>` |
+| A link | `[Mixer Lab](mixer-lab.html)` | `<a href="mixer-lab.html">Mixer Lab</a>` |
 
-### Outputs: the wedges
+- Markdown: **==shorthand==**, easy for people to write. Every checklist here is Markdown
+- HTML: what the ==browser== reads, every part spelled out in tags
 
-- Bus 1 = the ==wedges==
-- Stage box **OUT 1** → amp **Channel A**, every time
-- [a story about a silent wedge?]
+### Soon: your own
 
-### Recording: Dante to Logic (optional)
+- You'll edit **your own** `README.md` (Markdown) and `index.html` (HTML) soon
+- Details next week
 
-- **ROUTING → CARD**: all Local → each card out is a direct out
-- Dante Controller: X32 → FOH Mac mini, one to one (Control-click)
-- Logic: set the input device to **Dante Virtual Soundcard** **first**
+## 2. The Standard Gear Kit: A Refresher
 
-### Vocal Jazz: before 5:00
+### Any venue, same kit
 
-- Arrive about **4:30 PM**; Singers out around 4:45
-- Two engineers? Split: **mics** and **monitors**
-- [what goes wrong when you arrive late]
-
-### Vocal Jazz: the console
-
-- Every wireless channel: **30 dB** gain, the ==same== for all
-- **Low cut** at 80 Hz, no gate, no compressor
-- Why same gain: [the ensemble balances itself]
-
-### Vocal Jazz: line check
-
-- **Wedge check** first, before the singers
-- Then down the line in color order: meter moves? In the wedges?
-- Mic not in the wedges → work the list top to bottom
-  ([checklist](../../vocal-jazz-gig-checklist/))
-
-### Vocal Jazz: end of the gig
-
-- Amp off **first**
-- Batteries out; alkalines never go in the charger
-- Wireless rack off; wedges back in BH 102, door bolted
-- Run the **Vocal Jazz Reset**
-
-### Commercial Music Ensemble: what's different
-
-- [instruments, not just voices?]
-- [inputs: wireless vs. wired, stage box channels]
-- [monitors]
-- [what went wrong / what you'd tell the next crew]
-
-> 🧑‍🏫 Nothing here is verified: there's no CME checklist or reset in the repo yet. Anything you say
-> here is a good start for one (a Repo Improvement task, too).
-
-## 2. The Standard Gear Kit at a Gig
-
-### What's in the kit
-
-- Stereo pair of pencil condensers → **Zoom F8**
-- **Zoom H4n**: backup audio
-- Two **Sony AX100s**
-- Any venue where we bring the gear with us
+- Memorial, Fish, or anywhere else we bring the gear: the **Standard Gear Kit**
+- Two **AX100s**, a stereo pair into the **F8**, an **H4n** as backup
 - [Standard Gear Kit Checklist](../../standard-gear-kit-checklist/)
+- Next week: the same kit in **Memorial**, specifically
 
-> 🧑‍🏫 Refresher from The Big Picture (Oct 12). Today: a generic gig. Next week: the same kit in
-> Memorial specifically.
+### Ask for concert lighting
 
-### First: things that need other people
+- You **must** ask for ==concert lighting==: the brightest cue of the show
+- Set camera exposure **under it**, never under the pre-show lights
+- Must. Must. Must.
 
-- Ask house staff for **==concert lighting==**
-- Electronics in the concert? Ask about a **board feed**
-- Lights not ready yet? Do audio first
-- [a story about waiting on someone]
+### Cameras: two AX100s, both wide
+
+- Both **static**, both **==wide==**
+- Different angles are fine, but both wide
+- One of them is the ==backup==
+- Both on the **same** white balance
 
 ### Audio: the F8
 
-- Stereo bar, ORTF or NOS (NOS is usually easier)
-- Left → Input 1, right → Input 2 (board feed → 3 and 4)
-- **==Dual Channel==** Recording: 1 → 5, 2 → 6
-- Start at ≈ **42 dB** on 1–2, ≈ **30 dB** on 5–6
-- **PFL** to check each channel; phantom power from the same screen
-- **AC power** for the concert; batteries are backup
+- Main pencil mics in **==ORTF==** or **NOS** → Inputs **1–2**
+- **==Dual Channel== Recording** copies 1–2 to **5–6**, with the gain **==lower==** (≈ 42 dB on 1–2, ≈ 30 dB on 5–6)
+- Inputs **3–4** and **7–8**: boundary mics and/or a ==board feed==
 
 ### Backup: the H4n
 
-- Lighting stand, ¼-inch screw
-- Fresh batteries, clean card
-- Loudest passage: not clipping, not too quiet
+- The H4n is the **backup** recording
+- Gain set ==conservatively==: a quiet backup beats a clipped one
 
-### Video: the AX100s
+### SD cards
 
-- Both on **Indoor** (3200 K): they have to ==match==
-- Start: **f/4 · 3 dB · 1/60**
-- Set exposure **under concert lighting**, not pre-show
-- Level, framed slightly wide, one wide and one close
-- [your most common camera mistake]
+| Device | SD card |
+|---|---|
+| H4n | **8 GB** |
+| F8 | **32 GB** |
+| Each AX100 | **128 GB** |
 
-### Next week: Memorial
+## 3. Salmon FOH: Signal Flow and Gain Staging
 
-- Same kit, one real room: **Memorial Hall**
-- [what's different there, in one line]
+> 🧑‍🏫 Skeleton only, waiting on the planning questions. Everything below is from the Vocal Jazz
+> and CME gig checklists and Mixer Lab.
 
-## 3. Vibecoding: This Week's Homework
+### The rig in one sentence
 
-### Where we are
+- Mics come **in** at the X32; everything goes **out** through the S32
 
-- [quick pickup from Vibecoding 1]
-- Fork, branch, pull request: later
+### Inputs
 
-### This week: README.md and index.html
+- Wireless receivers → the X32's own rear panel: **LOCAL**, CH 1–24
+- The S32 stage box → **AES50 A**, CH 25–32 (CME's band, on the sub snake)
+- If CH 1–24 are left on AES50, no mic reaches the console
 
-| | `README.md` | `index.html` |
-|---|---|---|
-| Who reads it | People looking at your repo on github.com | People visiting your site |
-| Written in | ==Markdown== | ==HTML== |
+### Outputs
 
-- [the homework, in your words]
+- Every output leaves through the **S32**, down one Cat5e (AES50)
+- Mains: MAIN L/R → S32 OUT 15/16 → the hall's mains rack
+- Vocal Jazz wedges: MIX 1 → S32 OUT 1 → NX3000 → three wedges, daisy-chained
+- CME: three wedges on MIX 9–11; its own mains downstage on S32 OUT 13/14
+- No AES50 link: every meter moves, every speaker is silent
 
-> 🧑‍🏫 Your notes: the homework is a README in Markdown and an index page in HTML. Vibecoding 2
-> (hidden, unscheduled) has a starter `index.html` and `README.md` you can copy onto this slide.
+### Gain staging
+
+- **GAIN** first, into the good range (about −18 to −6); faders are for the mix
+- Vocal Jazz: every wireless channel at the **same** gain (30 dB)
+- CME: write every GAIN and every amp knob on the level sheet
+- Amp knobs set once, during the music test; after that, mix at the console
+
+### Test before the mics
+
+- Music you know through the **mains**, then through each **wedge**
+- Then the mics, one at a time
 
 ## 🗝️ Key terms
 
-**LOCAL input** · **AES50** · **stage box** · **Bus 1** · **wedge** · **daisy chain** ·
-**concert lighting** · **Dual Channel Recording** · **PFL** · **Markdown** · **HTML**
+**GitHub Pages** · **fork** · **clone** · **commit** · **merge** · **Markdown** · **HTML** ·
+**concert lighting** · **Dual Channel Recording** · **LOCAL** · **AES50** · **S32** · **gain staging**
 
 ## 💭 Before you leave
 
-- Could you draw the Salmon FOH signal path from memory?
+- What's the difference between `github.com/your-username` and `your-username.github.io`?
 - Could you set up the Standard Gear Kit without the checklist? Which step would you forget?
+- Could you draw Salmon's signal flow, from a mic to a wedge, from memory?
