@@ -9,7 +9,7 @@ revised: "2026-11-03"
 estimatedTime: "Not a timed drill. Arrive early and leave extra time: some piece of gear won't work the first time."
 access:
   mode: On campus
-  location: "Salmon Recital Hall: the FOH X32, the stage, the stage-side rack (S32), the amp rack, the hall's mains rack, and the storage closet in BH 102."
+  location: "Salmon Recital Hall: the FOH X32 and wireless rack, the stage, the stage-side rack (S32), the amp rack, the hall's mains rack, and the storage closet in BH 102."
   supervision: "Written for a crew of two: one engineer at FOH, one on stage and at the amp racks. Not a solo job."
 groupSize:
   minimum: 2
@@ -17,13 +17,13 @@ groupSize:
   maximum: 4
   solo: false
 activityFamily: "Salmon Recital Hall"
-level: "X32 · wireless handhelds · S32 + Hosa sub snake · three wedges on three mixes · downstage mains · the hall's Mix5 rack"
+level: "X32 · the FOH wireless rack · S32 + Hosa sub snake · three wedges on three mixes · downstage mains · the hall's Mix5 rack"
 roundsSupported: false
 ---
 
 > 🧪 **Status: In Development.** Drafted November 2026 from the instructor's walkthrough of the
 > Commercial Music Ensemble (CME) rehearsal in Salmon, the instructor's answers to follow-up
-> questions, and photos of the gear and the X32's routing pages. Students in the photos are
+> questions, and photos of the gear, the FOH wireless rack and the X32's routing pages. Students in the photos are
 > pixelated. The default patch below (the band on S32 IN 25–32, the wireless on CH 17–21) is the
 > plan from now on: at the first rehearsal the sub snake was on S32 IN 11–14. A few details are still
 > open. See **Technical verification**.
@@ -59,7 +59,7 @@ gig. The amps on stage are loud enough on their own.
 
 ## 🕹️ Practice first
 
-- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): thirteen scenarios on a virtual X32 with this gig's rig. The first is the whole rig working, nothing broken; the rest each break one piece, in the order this checklist runs: the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night. **CME: Advanced** (the harder troubleshooting) comes later.
+- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): fourteen scenarios on a virtual X32 with this gig's rig, wireless rack included. The first is the whole rig working, nothing broken; the rest each break one piece, in the order this checklist runs: the wireless rack's power, the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night. **CME: Advanced** (the harder troubleshooting) comes later.
 
 The simulator is still being built: where it and this checklist disagree, the checklist wins. Tell
 your supervisor what you found.
@@ -79,7 +79,8 @@ All of it lives in the Salmon storage closet, **BH 102**, unless it says otherwi
   the side, with the **amp stands**
 - [ ] **AC extension cords** (in the **black milk crates**) and **IEC cables** (in the box labeled
   **IEC**)
-- [ ] **Headphones** for the X32, and a **laptop** with test music
+- [ ] **Headphones** for the X32. Test music comes from the **FOH Mac mini**, already at FOH (through
+  its **SSL 2+** into the X32's **AUX IN 1/2**)
 - [ ] A printed copy of the **level sheet** (on the worksheet)
 
 ![The School of Rock band cart in BH 102: a Boss Katana on top, more amps and the amp stands on the shelf below.](media/cme/school-of-rock-cart.jpg)
@@ -107,10 +108,10 @@ Everyone sits on **one layer, CH 17–32**. The X32's input routing stays at **S
 
 | CH | Source | How it gets there |
 |---|---|---|
-| 17 | Red handheld: the mic over the piano | Wireless receiver → LOCAL 17 |
-| 18 | Orange handheld: lead vocal | Wireless → LOCAL 18 |
-| 19, 20 | Yellow, green handhelds: backing vocals | Wireless → LOCAL 19, 20 |
-| 21 | Blue handheld: horn (when there is one) | Wireless → LOCAL 21 |
+| 17 | Red handheld: the mic over the piano | Receiver 3, CH 1 → LOCAL 17 |
+| 18 | Orange handheld: lead vocal | Receiver 3, CH 2 → LOCAL 18 |
+| 19, 20 | Yellow, green handhelds: backing vocals | Receiver 3, CH 3, 4 → LOCAL 19, 20 |
+| 21 | Blue handheld: horn (when there is one) | Receiver 3, CH 5 → LOCAL 21 |
 | 25 | Nord, through a DI | Sub snake 1 → S32 IN 25 |
 | 26 | Spare (the Nord, if it's ever in stereo) | Sub snake 2 → S32 IN 26 |
 | 27, 28 | Grand piano: two pencil condensers, **48V** | Sub snake 3, 4 → S32 IN 27, 28 |
@@ -131,17 +132,53 @@ stage: red, orange, yellow, green, blue, purple, then black and gray.
 | OUT 15, 16 | MAIN L, R | S32 OUT 15, 16 → the Mix5 in the hall's mains rack → the hall's installed speakers |
 
 Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups use (1 and up) alone.
+The X32's own **XLR OUT 9–12** carry the same outputs, and the **IEM transmitters** in the wireless
+rack are plugged into them. CME doesn't use in-ears; leave those cables where they are.
 
 ![The X32's output routing: Output 9 carries MixBus 9 (post fader). Outputs 10 and 11 carry MixBus 10 and 11 the same way.](media/cme/x32-output-9-mixbus-9.jpg)
+
+## 📡 The wireless rack at FOH
+
+The wireless lives in its own rack at **FOH, next to the X32**, with its own power. Top to bottom:
+
+| Unit | What it does | Into the X32 |
+|---|---|---|
+| **Furman** | The rack's power switch. Off, and every receiver is dark. | — |
+| **PTU-6000** receiver 1 | 8 handhelds with **black** windscreens | LOCAL 1–8 |
+| **PTU-6000** receiver 2 | 8 handhelds with **gray** windscreens | LOCAL 9–16 |
+| **PTU-6000** receiver 3 | 8 handhelds with **no windscreen**: CME's | LOCAL 17–24 |
+| **PTU-7000** | Lav and headset mics. CME can't use it: with Salmon's default routing, CH 25–32 come from the S32, where the sub snake is. | LOCAL 25–28 |
+| **PAS-225**, **PAS-225X** | Antenna distribution. The two **antennas** sit outside the rack and plug into the PAS-225, which feeds some receivers and the PAS-225X; the PAS-225X feeds the rest. Every receiver gets **both** antenna signals (A and B). | — |
+| Drawer | **IEMs** and **body packs** | — |
+
+Every receiver is Phenyx Pro, with one XLR output per channel at **line level**.
+
+Each receiver channel has a **VOL** knob. They all sit at **9 o'clock**, which is right with the
+channel's GAIN at about 30 dB. Leave them there: set levels at the X32's GAIN.
+
+Behind the rack, a network cable runs from the X32's **CARD** slot (an **X-DANTE** card) to the
+**FOH Mac mini**, for multitrack recording. Leave it plugged in.
+
+![Salmon's FOH wireless rack: the Furman on top, three PTU-6000 receivers, the PTU-7000, the PAS-225 and PAS-225X antenna distribution, and the drawer for IEMs and body packs.](media/cme/wireless-rack.jpg)
+
+**Q1 (multiple choice).** All five handhelds are on, but CH 17–21 are dead and the receivers'
+displays are dark. What do you check first?
+
+- a) The batteries in each handheld.
+- ✅ b) The wireless rack's Furman.
+- c) The X32's input routing.
+- d) The VOL knobs on receiver 3.
+
+🕹️ In Mixer Lab: [Five mics, all silent](https://adamborecki.github.io/mixer-lab/#/x32-cme-rack).
 
 ## 🚗 Arrival — early
 
 - 🚩 Arrive early, with time to spare for something that doesn't work the first time.
 - 🚩 Split the jobs. One engineer at **FOH** (the X32), one **on stage and at the amp racks**. You'll
   talk to each other a lot: the amps' knobs are a long way from the console.
-- 🚩 Switch the **wireless rack** on at the **Furman** on top.
+- 🚩 Switch the **wireless rack** on at the **Furman** on top. Receiver 3's display should light up.
 
-**Q1 (short answer).** Arrival time: ______ · Band in at: ______ · Downbeat: ______
+**Q2 (short answer).** Arrival time: ______ · Band in at: ______ · Downbeat: ______
 
 ✅ **Answer.** There's no fixed answer. Write in tonight's times: it's a log entry, not a test.
 
@@ -154,13 +191,13 @@ Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups us
   are **1/4"**.
 - 🚩 Crown **CH 1** output → the near Yamaha speaker on the **short** 1/4" speaker cable; **CH 2** output →
   the far Yamaha speaker on the **very long** one.
-- 🚩 Play test music from the laptop (AUX IN 1/2) and confirm **both** Yamaha speakers play it.
+- 🚩 Play test music from the FOH Mac mini (SSL 2+ → AUX IN 1/2) and confirm **both** Yamaha speakers play it.
 
 🕹️ In Mixer Lab: [Put the mains downstage](https://adamborecki.github.io/mixer-lab/#/x32-cme-mains).
 
 ![A Yamaha passive speaker on its stand downstage (people behind it pixelated).](media/cme/downstage-yamaha.jpg)
 
-**Q2 (multiple choice).** Why does CME bring its own mains and put them downstage of the band?
+**Q3 (multiple choice).** Why does CME bring its own mains and put them downstage of the band?
 
 - a) The hall's installed speakers are broken.
 - ✅ b) With the speakers in front of the band, the open mics are behind them, so feedback is much less likely.
@@ -185,7 +222,7 @@ rack alone; only the Mix5's knobs change for CME.
 
 ![The Mackie Mix5 in the hall's mains rack. The two 1/4" cables in LINE IN 4/5 come from the S32; the knob to turn down is that channel's LEVEL, not MAIN MIX.](media/cme/mix5.jpg)
 
-**Q3 (multiple choice).** Which knob turns the hall's installed speakers down for CME?
+**Q4 (multiple choice).** Which knob turns the hall's installed speakers down for CME?
 
 - a) The Mix5's MAIN MIX.
 - ✅ b) The LEVEL of the Mix5 channel that S32 OUT 15/16 come in on.
@@ -207,7 +244,7 @@ rack alone; only the Mix5's knobs change for CME.
 
 ![The amp rack: the NX3000 on top, two KM750s, and the Crown at the bottom that drives the downstage Yamaha speakers.](media/cme/amp-rack.jpg)
 
-**Q4 (multiple choice).** What goes between a KM750's output and a 1/4" passive wedge?
+**Q5 (multiple choice).** What goes between a KM750's output and a 1/4" passive wedge?
 
 - a) An XLR cable.
 - b) A thin 1/4" instrument cable.
@@ -226,7 +263,7 @@ rack alone; only the Mix5's knobs change for CME.
 🕹️ In Mixer Lab: [Test each wedge with music](https://adamborecki.github.io/mixer-lab/#/x32-cme-wedge-test) and
 [The center wedge is barely there](https://adamborecki.github.io/mixer-lab/#/x32-cme-amp-knob).
 
-**Q5 (short answer).** Why does every wedge get the test music before anyone talks into a mic?
+**Q6 (short answer).** Why does every wedge get the test music before anyone talks into a mic?
 
 ✅ **Answer.** Music you know proves the whole path (the mix, the output, the cable, the amp and the
 speaker) and sets a rough level, before a mic can feed back or a singer gets blasted.
@@ -234,14 +271,17 @@ speaker) and sets a rough level, before a mic can feed back or a singer gets bla
 ## 🎤 The wireless mics
 
 - 🚩 Batteries in, the right way round; **press and hold** to switch each handheld on.
-- 🚩 Talk into each one and watch **its own channel** (CH 17–21) at the X32.
+- 🚩 Talk into each one and watch **its own channel** (CH 17–21) at the X32. Receiver 3 shows each
+  handheld's signal too: no signal there, and the problem is the mic, the rack's power or the antennas,
+  not the X32.
+- 🚩 Leave the receivers' **VOL** knobs at **9 o'clock**.
 - 🚩 Each vocal mic goes in the **mains** and **all three wedges** (MIX 9, 10, 11). Use **SENDS ON
   FADERS** on the **BUS 9-16** layer.
 
 🕹️ In Mixer Lab: [Two backing singers are silent](https://adamborecki.github.io/mixer-lab/#/x32-cme-mics) and
 [The singers in every wedge](https://adamborecki.github.io/mixer-lab/#/x32-cme-vox).
 
-**Q6 (multiple choice).** A handheld's receiver shows signal, but its channel's meter doesn't move.
+**Q7 (multiple choice).** A handheld's receiver shows signal, but its channel's meter doesn't move.
 What's most likely?
 
 - a) The battery is dead.
@@ -283,13 +323,13 @@ the show back if anything gets bumped. There's no saved scene for CME yet.
 
 🕹️ In Mixer Lab: [Set the gains, then write them down](https://adamborecki.github.io/mixer-lab/#/x32-cme-gains).
 
-**Q7 (short answer).** Level sheet, GAIN: 17 red ______ · 18 orange ______ · 19 yellow ______ ·
+**Q8 (short answer).** Level sheet, GAIN: 17 red ______ · 18 orange ______ · 19 yellow ______ ·
 20 green ______ · 21 blue ______ · 25 Nord ______ · 27 piano L ______ · 28 piano R ______ ·
 29 bass ______ · 30 guitar ______ · 31 guitar 2 ______ · 32 overhead ______
 
 ✅ **Answer.** There's no fixed answer: tonight's numbers, for getting back to them during the show.
 
-**Q8 (short answer).** Level sheet, amps: KM750 CH A (wedge 1) ______ · KM750 CH B (wedge 2) ______ ·
+**Q9 (short answer).** Level sheet, amps: KM750 CH A (wedge 1) ______ · KM750 CH B (wedge 2) ______ ·
 wedge 3 VOLUME ______ · Crown CH 1 ______ · Crown CH 2 ______
 
 ✅ **Answer.** There's no fixed answer: where each knob was set during the music test.
@@ -300,6 +340,7 @@ Work down the list and stop when it's fixed.
 
 - 🚩 **Signal at the mixer?** Watch the channel's meter.
 - 🚩 **A handheld:** is it **muted** (a tap) or **off** (press and hold)? Check the battery.
+- 🚩 **Every handheld:** is the wireless rack's **Furman** on? Are both antenna cables plugged in?
 - 🚩 **A mic on an amp, or a DI:** is the **amp or instrument's own volume** up?
 - 🚩 **In the mains but not a wedge:** the singer's send to that wedge's mix.
 - 🚩 **A wedge dead:** the amp's level knob, the active wedge's power and VOLUME, then reseat every
@@ -313,7 +354,7 @@ Work down the list and stop when it's fixed.
 
 If the band needs more than the sub snake's eight channels, plug the extra sources into the S32's
 **IN 9–16** and set the X32's **ROUTING → INPUT**: **9–16 = AES50 A9-16**. That takes CH 9–16 off
-the wireless receivers 9–16, which CME doesn't use. Put it back at the end of the gig.
+receiver 2 (the gray-windscreen handhelds), which CME doesn't use. Put it back at the end of the gig.
 
 ![ROUTING → INPUT with CH 9–16 on AES50 A9-16: what the first rehearsal used.](media/cme/x32-input-9-16-aes50.jpg)
 
@@ -339,7 +380,7 @@ the wireless receivers 9–16, which CME doesn't use. Put it back at the end of 
 
 🕹️ In Mixer Lab: [The end of the night](https://adamborecki.github.io/mixer-lab/#/x32-cme-end).
 
-**Q9 (short answer).** What's the first thing you do at the end of a CME gig, and why first?
+**Q10 (short answer).** What's the first thing you do at the end of a CME gig, and why first?
 
 ✅ **Answer.** Turn the hall's speakers back on at the Mix5 (the channel LEVEL for S32 OUT 15/16,
 back to U). It's the easiest thing to forget, and the next group expects the hall's speakers to work.
@@ -373,6 +414,12 @@ back to U). It's the easiest thing to forget, and the next group expects the hal
 - The amp rack: an NX3000, two KM750s and a Crown. Two of the wedges take 1/4" only.
 - Amps and amp stands: the School of Rock band cart in BH 102. DI boxes: BH 102. IEC cables: the
   IEC box. AC cords: the black milk crates.
+- The FOH wireless rack (instructor's photos and answers): the Furman, three Phenyx Pro PTU-6000
+  receivers (receiver 1 → LOCAL 1–8, 2 → 9–16, 3 → 17–24), a PTU-7000 on LOCAL 25–28, a PAS-225
+  fed by the two antennas outside the rack and daisy-chained to a PAS-225X for the third receiver.
+  Receiver VOL knobs default to 9 o'clock (about 30 dB of GAIN is right). The IEMs are plugged into
+  X32 XLR OUT 9–12. The X32's card is an X-DANTE, cabled to the FOH Mac mini. Test music: Mac mini →
+  SSL 2+ → AUX IN.
 - At the dress rehearsal one passive wedge never worked; the cause wasn't found (possibly a
   speakON cable). An instrument cable was briefly used as a speaker cable, and was replaced.
 
@@ -381,6 +428,11 @@ back to U). It's the easiest thing to forget, and the next group expects the hal
 - **Which Mix5 input S32 OUT 15/16 use.** The photo shows 1/4" cables in **LINE IN 4/5**; the
   instructor didn't remember which. Check before turning a knob.
 - **The wireless receivers for 17–24.** Only the red mic has been tested.
+- **Which PAS output feeds which receiver**, and how many outputs each PAS has. Mixer Lab guesses
+  PAS-225 → receiver 1, receiver 2, the PTU-7000 and the PAS-225X; PAS-225X → receiver 3.
+- **The IEM transmitters**: model, how many, and whether anything should be sent to them during a
+  CME gig (they get whatever OUT 9–12 carry: the wedge mixes).
+- **The Dante recording setup on the Mac mini** isn't written up yet; this checklist doesn't use it.
 - **The KM750's outputs.** Whether they're 1/4", speakON, or both, and which amp drives which wedge:
   the music test settles it each time.
 - **The model of the Yamaha speakers** and of the Crown in the amp rack.
