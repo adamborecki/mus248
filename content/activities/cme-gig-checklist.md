@@ -5,7 +5,7 @@ emoji: "🎸"
 coreSkillAreas:
   - Live Sound
 status: In Development
-revised: "2026-11-02"
+revised: "2026-11-03"
 estimatedTime: "Not a timed drill. Arrive early and leave extra time: some piece of gear won't work the first time."
 access:
   mode: On campus
@@ -36,7 +36,7 @@ drums, and sometimes a horn. The lineup changes from song to song.
 
 Two things make CME different from other Salmon gigs:
 
-- **Feedback is the big risk**, so CME brings its **own mains**: two passive Yamahas on stands,
+- **Feedback is the big risk**, so CME brings its **own mains**: two passive Yamaha speakers on stands,
   **downstage of the band**, so every open mic is behind them. The hall's installed speakers are
   turned down at the **Mix5** in the hall's mains rack.
 - **Three wedges, three mixes.** Each wedge has its own mix and its own amp channel. No daisy
@@ -49,7 +49,7 @@ and off at the end, and the X32 routing is the hall's default.
 mics and the Nord's DI, (3) the bass DI and a mic on the guitar amp. If time is short, (1) is the
 gig. The amps on stage are loud enough on their own.
 
-![The stage at the first rehearsal, from the balcony (students pixelated). Nord and its amp on the left, the grand piano, the lead singer's wedge on the floor in front, drums in the middle, guitar and pedalboard on the right, and a Yamaha on a stand at each front corner.](media/cme/stage-plot.jpg)
+![The stage at the first rehearsal, from the balcony (students pixelated). Nord and its amp on the left, the grand piano, the lead singer's wedge on the floor in front, drums in the middle, guitar and pedalboard on the right, and a Yamaha speaker on a stand at each front corner.](media/cme/stage-plot.jpg)
 
 ## 🗝️ Key terms
 
@@ -127,7 +127,7 @@ stage: red, orange, yellow, green, blue, purple, then black and gray.
 | OUT 9 | MIX 9 | S32 OUT 9 → KM750 → wedge 1 (house left, passive) |
 | OUT 10 | MIX 10 | S32 OUT 10 → KM750 → wedge 2 (center, passive) |
 | OUT 11 | MIX 11 | S32 OUT 11 → wedge 3 (house right, active) |
-| OUT 13, 14 | MAIN L, R | S32 OUT 13, 14 → the Crown in the amp rack → the two Yamahas downstage |
+| OUT 13, 14 | MAIN L, R | S32 OUT 13, 14 → the Crown in the amp rack → the two Yamaha speakers downstage |
 | OUT 15, 16 | MAIN L, R | S32 OUT 15, 16 → the Mix5 in the hall's mains rack → the hall's installed speakers |
 
 Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups use (1 and up) alone.
@@ -147,14 +147,14 @@ Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups us
 
 ## 🔊 The mains, downstage
 
-- 🚩 Bring the two **Yamahas** and their **stands** out of BH 102 first: they're the heavy part.
+- 🚩 Bring the two **Yamaha speakers** and their **stands** out of BH 102 first: they're the heavy part.
 - 🚩 Set them up at the **front corners of the stage, downstage of the band**, so every mic on stage
   is behind them.
 - 🚩 Run S32 **OUT 13** and **OUT 14** into the **Crown in the amp rack**: its inputs and outputs
   are **1/4"**.
-- 🚩 Crown **CH 1** output → the near Yamaha on the **short** 1/4" speaker cable; **CH 2** output →
-  the far Yamaha on the **very long** one.
-- 🚩 Play test music from the laptop (AUX IN 1/2) and confirm **both** Yamahas play it.
+- 🚩 Crown **CH 1** output → the near Yamaha speaker on the **short** 1/4" speaker cable; **CH 2** output →
+  the far Yamaha speaker on the **very long** one.
+- 🚩 Play test music from the laptop (AUX IN 1/2) and confirm **both** Yamaha speakers play it.
 
 🕹️ In Mixer Lab: [Put the mains downstage](https://adamborecki.github.io/mixer-lab/#/x32-cme-mains).
 
@@ -169,11 +169,15 @@ Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups us
 
 ## 🏠 The hall's speakers down
 
+The hall's own mains rack is permanent: the small **Mackie Mix5** on top, the rack's power below
+it, and a **Crown** inside that drives the hall's installed speakers. Leave the cables inside the
+rack alone; only the Mix5's knobs change for CME.
+
 - 🚩 In the hall's **mains rack**, find the small **Mackie Mix5**. S32 OUT 15/16 come in on two of
   its inputs (**LINE IN 4/5** in the photo).
 - 🚩 Turn **that channel's LEVEL** knob all the way down. **Not MAIN MIX**: that way someone who plugs
   a phone into the rack's 3.5 mm input still gets sound.
-- 🚩 Check that the hall's installed speakers are silent and the Yamahas still play.
+- 🚩 Check that the hall's installed speakers are silent and the Yamaha speakers still play.
 - 🚩 Check the two 1/4" cables from the S32 into the Mix5 are still there. People sometimes borrow
   them.
 
@@ -201,7 +205,7 @@ Wedges on **MIX 9–11** leave the mixes Vocal Jazz and the a cappella groups us
 
 🕹️ In Mixer Lab: [Three wedges, three mixes](https://adamborecki.github.io/mixer-lab/#/x32-cme-wedges).
 
-![The amp rack: the NX3000 on top, two KM750s, and the Crown at the bottom that drives the downstage Yamahas.](media/cme/amp-rack.jpg)
+![The amp rack: the NX3000 on top, two KM750s, and the Crown at the bottom that drives the downstage Yamaha speakers.](media/cme/amp-rack.jpg)
 
 **Q4 (multiple choice).** What goes between a KM750's output and a 1/4" passive wedge?
 
@@ -323,7 +327,7 @@ the wireless receivers 9–16, which CME doesn't use. Put it back at the end of 
 - 🚩 If you changed the X32's input routing, put it back to the default.
 - 🚩 Handhelds off (press and hold), batteries out. Rechargeables go in the charger; alkalines never do.
 - 🚩 Switch the **wireless rack off** at the **Furman**.
-- 🚩 Back to BH 102, each in its place: the Yamahas and stands, the wedges, the sub snake, the DIs,
+- 🚩 Back to BH 102, each in its place: the Yamaha speakers and stands, the wedges, the sub snake, the DIs,
   the amps and **amp stands** on the **School of Rock band cart**, the **long speaker cable in its own
   box**, **IEC cables** in the **IEC** box (or with the amp that needs one), **AC cords** in the
   **black milk crates**.
@@ -364,7 +368,7 @@ back to U). It's the easiest thing to forget, and the next group expects the hal
 - X32 **Output 9** carries **MixBus 9** (post fader); Outputs **13/14** and **15/16** carry
   **MAIN L/R**. S32 OUT 15/16 feed the Mix5 in the hall's mains rack, whose MAIN OUT feeds the Crown
   at the rack's bottom and the hall's installed speakers.
-- The downstage Yamahas: S32 OUT 13/14 into the Crown in the amp rack (1/4" in and out), 1/4"
+- The downstage Yamaha speakers: S32 OUT 13/14 into the Crown in the amp rack (1/4" in and out), 1/4"
   speaker cables to the speakers, one short, one very long (it has its own box).
 - The amp rack: an NX3000, two KM750s and a Crown. Two of the wedges take 1/4" only.
 - Amps and amp stands: the School of Rock band cart in BH 102. DI boxes: BH 102. IEC cables: the
@@ -379,7 +383,7 @@ back to U). It's the easiest thing to forget, and the next group expects the hal
 - **The wireless receivers for 17–24.** Only the red mic has been tested.
 - **The KM750's outputs.** Whether they're 1/4", speakON, or both, and which amp drives which wedge:
   the music test settles it each time.
-- **The model of the Yamahas** and of the Crown in the amp rack.
+- **The model of the Yamaha speakers** and of the Crown in the amp rack.
 - **The active wedge's model**, and where its IEC cable lives.
 - **A saved X32 scene for CME** doesn't exist yet. Until it does, the level sheet is the record.
 
