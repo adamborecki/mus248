@@ -18,7 +18,7 @@ const words = (heading) => heading.replace(/^[^\p{L}\p{N}]+/u, '').trim().toLowe
 export const stationSlug = (heading) => words(heading).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // "- [ ] Says which card goes in the H6 ✅ 8 GB": the part after ✅ is what the checker looks for.
-// Only the checker copy shows it; the page and the student's sheet stop at the ✅.
+// Only the answer key (?checker=1, which the checker uses) shows it; the page and the student's sheet stop at the ✅.
 const ANSWER = /\s*✅\s*(.*)$/u;
 const withoutAnswer = (line) => line.replace(ANSWER, '');
 
@@ -69,7 +69,7 @@ export function renderEvalPage(markdown, { assetBase = '../content/performance-e
     const anchor = id && `${id}-${slug}`;
     const prints = id && section.kind === 'station' && section.items
       ? `<p class="ev-print ev-station-print"><a href="sheet/?id=${id}&amp;station=${slug}"><span aria-hidden="true">🖨️</span> This station's sheet</a>`
-        + `<a href="sheet/?id=${id}&amp;station=${slug}&amp;checker=1"><span aria-hidden="true">✅</span> Checker copy</a></p>`
+        + `<a href="sheet/?id=${id}&amp;station=${slug}&amp;checker=1"><span aria-hidden="true">✅</span> Answer key</a></p>`
       : '';
     return `<details class="activity-card ev-card"${anchor ? ` id="${anchor}"` : ''}>
         <summary>
@@ -156,12 +156,12 @@ export function renderEvalSheet(markdown, id, { station = '', checker = false } 
     <header class="ws-head">
       <div class="ws-headrow">
         <div class="ws-title"><span class="ws-emoji" aria-hidden="true">${escapeHtml(front.emoji || '🏅')}</span>
-          <div><h1>${escapeHtml(title)} <span class="${checker ? 'key-tag' : 'ws-tag'}">${checker ? 'Checker copy' : draft ? 'Draft' : 'Eval sheet'}</span></h1>
+          <div><h1>${escapeHtml(title)} <span class="${checker ? 'key-tag' : 'ws-tag'}">${checker ? 'Answer key' : draft ? 'Draft' : 'Eval sheet'}</span></h1>
           <p class="ws-meta">${escapeHtml(meta)}</p></div>
         </div>
         ${renderQr(`performance-evals/#${id}${station ? `-${station}` : ''}`, title, 'Scan for how it works')}
       </div>
-      ${checker ? '<p class="key-banner">Checker copy: what to look for is printed after each item. Don\'t hand this one to the student.</p>' : ''}
+      ${checker ? '<p class="key-banner">Answer key: what to look for is printed after each item. Practice with it, and the checker uses it; the real test uses the sheet without answers.</p>' : ''}
       ${draft && !checker ? '<p class="key-banner">Draft: still being written. Not the sheet you\'ll get.</p>' : ''}
       <p class="name-line ev-about">${fields}</p>
     </header>
@@ -205,7 +205,7 @@ async function mountSheet(root) {
   const checker = params.get('checker') === '1';
   const markdown = await fetchEval('../../', id);
   const { front } = parseEval(markdown);
-  const label = `${front.title || id} ${checker ? 'checker copy' : 'sheet'}`;
+  const label = `${front.title || id} ${checker ? 'answer key' : 'sheet'}`;
   document.title = `${label} · MUS 248`;
   root.innerHTML = crumbs([['Performance Evals', `performance-evals/#${id}${station ? `-${station}` : ''}`], [label]])
     + renderEvalSheet(markdown, id, { station, checker })

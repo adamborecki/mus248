@@ -1,7 +1,7 @@
 ---
 title: "Final"
 emoji: "🎓"
-revised: "2026-11-02"
+revised: "2026-11-03"
 status: "draft"
 checkedBy: "true"
 ---
@@ -10,7 +10,7 @@ checkedBy: "true"
 Same format as midterm.md (its header comment has the rules), plus two things the final uses:
 
   ### 🎙️ Audio recording       a part of a station, with its own list
-  - [ ] item ✅ what to look for   only the checker copy prints the part after ✅
+  - [ ] item ✅ what to look for   only the answer key (the checker's copy) prints the part after ✅
 
 Stations still marked 🚧 have no checked items yet; they're being written one at a time, Salmon
 first. checkedBy adds a "Checked by" line to every station.
@@ -46,12 +46,13 @@ everyone who passes MUS 248 can work the normal gig types, not that you speciali
 
 > **Where and when:** a mock setup in Salmon, during class time on one of four dates in November.
 
-> **How the test runs:** like a real gig, in four parts: audio, video, livestream, and downstairs
-> (the hall, the green room, and grabbing the program). The recordings are tiny on purpose: each
-> recorder rolls for only 5 or 6 seconds, so the files stay small and the cards go straight into
-> the SD card reader for the data transfer.
+> **How the test runs:** like a real gig, in four parts: audio, video, livestream, and downstairs.
+> The recordings are tiny on purpose: each recorder rolls for only a few seconds, so the files
+> stay small and the cards go straight into the SD card reader for the data transfer. The
+> livestream part is questions only: you open Vimeo, but nobody creates a test stream.
 
-> 🚧 Audio is written. Video is next, then the livestream and downstairs.
+> **Practice with the answer key.** It's the same sheet with every answer filled in. The real test
+> uses the sheet without them.
 
 ### 🎙️ Audio recording
 
@@ -71,15 +72,30 @@ everyone who passes MUS 248 can work the normal gig types, not that you speciali
 
 ### 🎥 Video recording
 
-> 🚧 Next: the HyperDeck's fast card, the primary wide's framing, and the AX100 backup wide.
+- [ ] Powers on the video system
+- [ ] The fast card into the HyperDeck ✅ the Lexar Professional 128 GB card, in the top-left slot
+- [ ] Starts a recording and stops it after about 2 seconds ✅ the counter actually moving
+- [ ] Center wide camera: zooms out, then in ✅ zoom in RovoControl
+- [ ] Center wide camera: pans left, then right ✅ the joystick
+- [ ] Center wide camera: tilts up, then down ✅ the joystick; gain and f-stop left alone
+- [ ] How wide should the shot be? ✅ wide enough for everyone on stage, with room to bow at the end, but not crazy wide; zoom in a little when the instrumentation changes
 
 ### 📡 Livestream
 
-> 🚧 Then: the Vimeo event, the embed on Canvas, the stream key into ATEM, On Air.
+- [ ] Opens the Vimeo page ✅ on the livestream computer; normally already signed in (top right). No test event.
+- [ ] Which streaming service do we use right now? ✅ Vimeo
+- [ ] Once the event is set up, what do you need from the streaming service? ✅ the stream key
+- [ ] Where does the stream key go? ✅ ATEM Software Control
+- [ ] What do you copy from Vimeo for the audience? ✅ the embed code
+- [ ] Where does the embed code go? ✅ the livestream page in Canvas
+- [ ] How do you actually start streaming? ✅ stream key in ATEM Software Control, then On Air
 
 ### 🏛️ Downstairs and the hall
 
-> 🚧 Then: CRESTRON (hallway TV and audio), the green room TV, and grabbing the program.
+- [ ] CRESTRON: switches the hallway TV from Signage to Camera
+- [ ] CRESTRON: switches it back to Signage
+- [ ] Is there a TV in the green room? ✅ yes
+- [ ] Checker tells them: the green room TV has its own power switch, and it's fussy
 
 ## 🧳 Standard Gear Kit (Memorial Hall Layout)
 
