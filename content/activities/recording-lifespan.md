@@ -8,7 +8,7 @@ coreSkillAreas:
   - Data Management
   - Post Production
 status: In Development
-revised: "2026-10-24"
+revised: "2026-11-03"
 estimatedTime: "10 minutes to read"
 access:
   mode: "Any location"
@@ -83,8 +83,8 @@ the front page) for what this one needs.
 
 Learning Salmon before your first gig there? Its activities come first:
 [Basic A/V Capture](../../salmon-basic/), [Livestream](../../salmon-livestream/),
-[Multicam](../../salmon-multicam/), [FOH Basic](../../salmon-foh-basic/), and
-[FOH Advanced](../../salmon-foh-advanced/).
+[Multicam](../../salmon-multicam/), [FOH Learning Checklist](../../salmon-foh-basic/), and
+[FOH Fault Scenarios](../../salmon-foh-advanced/).
 
 ## 📅 1. Before the gig
 
