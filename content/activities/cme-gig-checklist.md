@@ -59,7 +59,7 @@ gig. The amps on stage are loud enough on their own.
 
 ## 🕹️ Practice first
 
-- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-mains): twelve scenarios on a virtual X32 with this gig's rig, in the order this checklist runs: the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night. **CME: Advanced** (the harder troubleshooting) comes later.
+- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): thirteen scenarios on a virtual X32 with this gig's rig. The first is the whole rig working, nothing broken; the rest each break one piece, in the order this checklist runs: the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night. **CME: Advanced** (the harder troubleshooting) comes later.
 
 The simulator is still being built: where it and this checklist disagree, the checklist wins. Tell
 your supervisor what you found.
