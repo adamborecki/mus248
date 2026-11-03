@@ -6,8 +6,8 @@
 
 > 🧑‍🏫 **Draft for today (Nov 2).** Three parts: (1) a quick vibecoding refresher, (2) a Standard
 > Gear Kit refresher at a generic gig (Memorial specifically next week, for spaced repetition), and
-> (3) Salmon FOH signal flow and gain staging, the main part. Sections 1 and 2 are drafted; section
-> 3 is a skeleton until the planning questions are answered. Mariachi is left out on purpose, for
+> (3) Salmon FOH signal flow and gain staging, the main part: Vocal Jazz and CME, the whole gain
+> chain, and Mixer Lab live. Mariachi is left out on purpose, for
 > later. No refresher questions: those come from your final text. Remove `"draft": true` in
 > `data/lectures.json` when it's done.
 
@@ -130,43 +130,116 @@ Everything due this week, with due dates: **see Canvas**.
 
 ## 3. Salmon FOH: Signal Flow and Gain Staging
 
-> 🧑‍🏫 Skeleton only, waiting on the planning questions. Everything below is from the Vocal Jazz
-> and CME gig checklists and Mixer Lab.
+> 🧑‍🏫 Built around Vocal Jazz and CME (same rig, very different setups). Every fact here is from
+> the two gig checklists and Mixer Lab; where they're silent, it isn't on a slide. Slide 3.11 is
+> the live Mixer Lab walkthrough on the projector. 3.12 is for your own gig stories.
 
-### The rig in one sentence
+### One rig, two gigs
 
-- Mics come **in** at the X32; everything goes **out** through the S32
+| | Vocal Jazz | CME |
+|---|---|---|
+| Who | Singers only | A band, with lead and backing vocals |
+| Mics | Thirteen wireless handhelds | Five wireless, plus the band on a sub snake |
+| Mains | The hall's speakers | Its own, **==downstage== of the band** |
+| Wedges | Three wedges, **one** mix | Three wedges, **three** mixes |
 
-### Inputs
+- Same X32, same S32, same routing. What changes is the **outputs**
 
-- Wireless receivers → the X32's own rear panel: **LOCAL**, CH 1–24
-- The S32 stage box → **AES50 A**, CH 25–32 (CME's band, on the sub snake)
-- If CH 1–24 are left on AES50, no mic reaches the console
+### The one rule
 
-### Outputs
+- Mics come **in** at the X32
+- Everything goes **out** through the **==S32==**, the stage box
+- One Cat5e between them: **==AES50==**
+- No AES50 link: every meter moves, **every speaker is silent**
 
-- Every output leaves through the **S32**, down one Cat5e (AES50)
-- Mains: MAIN L/R → S32 OUT 15/16 → the hall's mains rack
-- Vocal Jazz wedges: MIX 1 → S32 OUT 1 → NX3000 → three wedges, daisy-chained
-- CME: three wedges on MIX 9–11; its own mains downstage on S32 OUT 13/14
-- No AES50 link: every meter moves, every speaker is silent
+### Inputs: LOCAL vs. AES50
 
-### Gain staging
+- **ROUTING → INPUT**: CH 1–24 = **==LOCAL==**, CH 25–32 = **AES50 A** (the S32)
+- Wireless receivers plug into the X32's **own** rear panel → LOCAL
+- CME's band: sub snake → S32 IN 25–32 → AES50
+- Last event left 1–24 on AES50? Then **no mic arrives**. Check it first
 
-- **GAIN** first, into the good range (about −18 to −6); faders are for the mix
-- Vocal Jazz: every wireless channel at the **same** gain (30 dB)
-- CME: write every GAIN and every amp knob on the level sheet
-- Amp knobs set once, during the music test; after that, mix at the console
+### Outputs: the mains
 
-### Test before the mics
+- MAIN L/R → S32 **OUT 15/16** → the hall's mains rack → the hall's speakers
+- CME adds its **own**: S32 OUT 13/14 → Crown amp → two Yamaha speakers **downstage**
+- Why downstage: every open mic is **behind** the speakers → much less ==feedback==
+- CME turns the hall's speakers down at the **Mix5**: that channel's LEVEL, not MAIN MIX
 
-- Music you know through the **mains**, then through each **wedge**
-- Then the mics, one at a time
+### Outputs: Vocal Jazz wedges
+
+**MIX 1 → S32 OUT 1 → XLR → NX3000 CH A → speakON → wedge → wedge → wedge**
+
+- One mix, one amp channel, three wedges in a **==daisy chain==**
+- XLR carries the mix at **line level**; speakON carries the amp's **power**
+- The end of the row is dead? Reseat the **last link** before it
+
+### Outputs: CME wedges
+
+- **Three mixes**: MIX 9, 10, 11 → S32 OUT 9, 10, 11
+- Wedges 1 and 2 (passive): KM750 CH A and B → **1/4" speaker cable**
+- Wedge 3 (active): XLR straight in, plus its own **power** and **VOLUME** knob
+- Never daisy-chain two **different** mixes
+- **==Speaker== cable** (thick) is not instrument cable (thin): same plug, different job
+
+### Gain staging: the whole chain
+
+| Stage | Control | Its one job |
+|---|---|---|
+| Preamp | **GAIN** | How hot the signal comes **in** |
+| Channel | **Fader** | The ==mix==: who's louder than whom |
+| Bus | **MIX / MAIN master** | How much reaches that destination |
+| Amp | **Level knob** | Set **once**, during the music test |
+| Speaker | (active wedge: VOLUME) | Up, and left there |
+
+- Fix a level where it's **wrong**: too hot coming in → **GAIN**, not the fader
+- Every stage up and unmuted, or nothing comes out
+
+### Gain staging: Vocal Jazz
+
+- Every wireless channel at the **same** gain: **30 dB**
+- The group balances **itself**, like an ensemble should
+- A quiet singer is a conversation with the director, not a knob
+- **Low cut** at 80 Hz; no gate, no compressor
+
+### Gain staging: CME
+
+- **GAIN** each channel into the ==good== range: peaks about **−18 to −6**
+- **48V** on the piano's two pencil condensers (CH 27, 28)
+- Write every GAIN, and every amp knob, on the **level ==sheet==**
+- The dress rehearsal is right before the show: the sheet is how you get back to soundcheck
+
+### Test in order
+
+1. Music you know through the **mains**
+2. House down, then music through **each wedge**
+3. Amp knobs set, about the same on every channel, **while the music plays**
+4. Then the mics, one at a time: the meter, the mains, the wedges
+- In the mains but not the wedges? The mic is fine: look at the **==monitor== path**
+
+### Mixer Lab: everything working
+
+- [CME: Everything working](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): nothing is broken
+- Walk the signal from the band to **every speaker**: the house, then each wedge
+- Then one that breaks: [The mics work, the speakers don't](https://adamborecki.github.io/mixer-lab/#/x32-vj-link) (Vocal Jazz)
+- Practice on your own: the [Vocal Jazz](../../vocal-jazz-gig-checklist/) and [CME](../../cme-gig-checklist/) checklists list every scenario
+
+> 🧑‍🏫 Live on the projector. In "Everything working", tap through the X32's ROUTING page (Mixer
+> Lab now has the console's own BLOCK / PATCH POINTS screen) and each output. "The mics work, the
+> speakers don't" is the AES50 slide (3.2) as a fault.
+
+### From real gigs
+
+- Arrive **early**: at a CME dress rehearsal, one wedge never worked and there wasn't time to find out why
+- The wireless rack goes **on** at the start and **off** at the end, at the Furman
+- Cables in the hall's rack get borrowed: check they're still there
+- [your stories]
 
 ## 🗝️ Key terms
 
 **GitHub Pages** · **fork** · **clone** · **commit** · **merge** · **Markdown** · **HTML** ·
-**concert lighting** · **Dual Channel Recording** · **LOCAL** · **AES50** · **S32** · **gain staging**
+**concert lighting** · **Dual Channel Recording** · **LOCAL** · **AES50** · **S32** · **downstage** ·
+**daisy chain** · **gain staging** · **level sheet**
 
 ## 💭 Before you leave
 
