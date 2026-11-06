@@ -1,14 +1,17 @@
 // Breadcrumbs: the trail at the top of every page below the front page (MUS 248 › Activities ›
 // Salmon Gig Checklist › Worksheet), ending in the Repo improvements button. Pages hand over their
-// trail; this file decides how it looks, so the hierarchy can change in one place. Section pages with a masthead (Lectures, Quiz, Study,
-// Worksheets) already read as "MUS 248 · Section" and don't use it.
+// trail; this file decides how it looks, so the hierarchy can change in one place. Section pages (Lectures,
+// Quiz, Study, the hubs…) use it too, through data-crumbs (below).
 //
 // Every href is a path from the site root ('' is the front page). The root comes from this file's
 // own URL, so the same links work on the live site, a branch preview, and localhost.
+//
+// Static section pages (Activities, Lectures, Quiz…) don't build their trail in code: they mark a
+// spot with data-crumbs (a JSON trail, '[["Lectures"]]') and load this file, which fills it in.
 
 import { REPO_IMPROVEMENT_FORM } from './feedback.js';
 import './feedback-picker.js';
-import { HUBS, docType, hubGroup } from './catalog.js';
+import { HUBS, SECTIONS, docType, hubGroup } from './catalog.js';
 
 const ROOT = new URL('./', import.meta.url).href;
 
@@ -16,7 +19,10 @@ const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;',
 
 // The middle steps for anything in the activity catalog: its hub, then the heading it sits under
 // there (Checklists › Gig checklists), unless that heading is the hub's catch-all.
+// A family with its own section page goes through that page instead (SECTIONS in catalog.js).
 export function catalogCrumbs(entry, directory = []) {
+  const section = SECTIONS[(entry || {}).family];
+  if (section) return [[section.title, `${section.route}/`]];
   const hub = HUBS[docType(entry || {})];
   const group = hubGroup(entry || {}, directory);
   return [[hub.title, `${hub.route}/`], ...(group.named ? [[group.label, `${hub.route}/#${group.id}`]] : [])];
@@ -50,8 +56,23 @@ function addStyles() {
 .crumbs a:hover { color:var(--ink, #1d1d1f); text-decoration:underline; }
 .crumbs a:focus-visible { outline:3px solid var(--accent, #0071e3); outline-offset:2px; border-radius:.15rem; }
 .crumbs [aria-current] { color:var(--ink, #1d1d1f); font-weight:600; }
+.masthead.has-crumbs { display:block; padding-top:1.25rem; }
+.masthead.has-crumbs .crumbs { margin-bottom:1.1rem; }
+.masthead.has-crumbs h1 { margin:0; }
+.masthead.has-crumbs p { margin:.35rem 0 0; }
 .crumbs .crumbs-feedback { flex:none; color:var(--accent, #0071e3); font-weight:650; }
 @media (max-width:520px) { .crumbs { font-size:.82rem; gap:.5rem; } }
 @media print { .crumbs { display:none; } }`;
   document.head.append(style);
+}
+
+// Fill every data-crumbs spot on the page (see the note at the top).
+if (typeof document !== 'undefined') {
+  document.querySelectorAll('[data-crumbs]').forEach((spot) => {
+    try {
+      spot.outerHTML = crumbs(JSON.parse(spot.dataset.crumbs));
+    } catch {
+      spot.remove();
+    }
+  });
 }

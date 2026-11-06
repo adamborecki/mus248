@@ -296,6 +296,11 @@ root, scripts in `tools/`. Breadcrumbs come from `crumbs.js`: a page passes its 
 file owns the look and the middle steps (`catalogCrumbs`), so the hierarchy changes in one place.
 The middle steps are the hub (`/activities/`, `/checklists/`, `/reference/`) and the heading the
 entry sits under there (`hubGroup` in `catalog.js`: checklists by kind, activities by `family`).
+A family listed in `SECTIONS` (`catalog.js`; today only Post Production) has its own section page,
+and its entries' trail goes through that page instead of the hub. Static section pages (hubs,
+Lectures, Quiz, Study, Worksheets, Evals) mark a `<div data-crumbs='[["Lectures"]]'>` in their
+header and load `crumbs.js`, which fills it in. Activity pages end with previous/next links within
+their `family`, in catalog order, so the order of `data/activities.json` is the reading order.
 
 ## A note on care
 

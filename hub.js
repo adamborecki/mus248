@@ -2,7 +2,7 @@
 // type from data/activities.json under its hubGroup headings, with the "where" and skill filters.
 // The page names its type: <body data-hub="checklist">.
 
-import { DOC_TYPES, SETTINGS, SKILL_EMOJI, docType, groupLabel, hubGroup, settingsChips, typeChip, whereMatch, whereSummary } from './catalog.js';
+import { DOC_TYPES, SECTIONS, SETTINGS, SKILL_EMOJI, docType, groupLabel, hubGroup, settingsChips, typeChip, whereMatch, whereSummary } from './catalog.js';
 import './feedback-picker.js';
 import { REPO_IMPROVEMENT_FORM } from './feedback.js';
 
@@ -72,7 +72,7 @@ async function loadHub() {
     const shown = groups.map((group) => [group, visible.filter((entry) => hubGroup(entry, directory).id === group.id)])
       .filter(([, members]) => members.length);
     list.innerHTML = shown.map(([group, members]) => (groups.length > 1
-      ? `<section class="hub-group" id="${group.id}"><h2 class="section-title">${group.label}</h2><div class="activity-grid">${members.map(card).join('')}</div></section>`
+      ? `<section class="hub-group" id="${group.id}"><h2 class="section-title">${group.label}${SECTIONS[group.label] ? ` <a class="hub-section-link" href="../${SECTIONS[group.label].route}/">Open the section <span aria-hidden="true">→</span></a>` : ''}</h2><div class="activity-grid">${members.map(card).join('')}</div></section>`
       : `<div class="activity-grid">${members.map(card).join('')}</div>`)).join('')
       + (askFirst.length ? `<h3 class="ask-first">Ask the instructor first <small>these pages don't say whether they can be done ${said}</small></h3><div class="activity-grid">${askFirst.map(card).join('')}</div>` : '');
   };

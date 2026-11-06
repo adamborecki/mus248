@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Post Production</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <header class="masthead has-crumbs"><div data-crumbs='[["Post Production"]]'></div><h1>Post Production</h1></header>
   <main>
     <p class="quiet">After the gig: turning raw camera and audio files into finished, checked files someone is waiting for. We use <strong>Final Cut Pro</strong> for video and <strong>Logic</strong> for audio.</p>
     <ol class="pipeline" aria-label="The job, in order">
@@ -58,5 +58,6 @@
     import '../feedback-picker.js';
     document.querySelectorAll('a[data-feedback]').forEach((link) => { link.href = REPO_IMPROVEMENT_FORM; });
   </script>
+  <script type="module" src="../crumbs.js"></script>
 </body>
 </html>
