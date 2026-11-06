@@ -8,10 +8,10 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css">
   <style>
-    /* The job's stages as a row of steps; wraps on a phone. */
-    .pipeline { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:0 0 2rem; padding:0; list-style:none; }
-    .pipeline li { padding:.35rem .65rem; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:.9rem; }
-    .pipeline li + li::before { content:"→"; margin:0 .45rem 0 -.1rem; color:var(--muted); }
+    /* The job's stages as one line of plain text (not buttons: nothing here is a link); wraps on a phone. */
+    .pipeline { display:flex; flex-wrap:wrap; row-gap:.3rem; align-items:baseline; margin:0 0 2rem; padding:0; list-style:none; color:var(--muted); font-size:.95rem; }
+    .pipeline li { white-space:nowrap; }
+    .pipeline li + li::before { content:"→"; margin:0 .5rem; color:var(--muted); opacity:.6; }
     .nav-card .step { color:var(--muted); font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
     .nav-card.soon { opacity:.7; border-style:dashed; }
   </style>
