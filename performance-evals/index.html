@@ -33,7 +33,7 @@
   </style>
 </head>
 <body>
-  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Performance Evals</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <header class="masthead has-crumbs"><div data-crumbs='[["Performance Evals"]]'></div><h1>Performance Evals</h1></header>
   <main class="ev-page">
     <p class="quiet">Hands-on checks of what you can do by yourself: one station at a time, with a notecard and no phone. Tap a station to see what it asks.</p>
     <div id="evals"><p class="quiet">Loading…</p></div>
@@ -45,5 +45,6 @@
     document.querySelectorAll('a[data-feedback]').forEach((link) => { link.href = REPO_IMPROVEMENT_FORM; });
   </script>
   <script type="module" src="evals.js"></script>
+  <script type="module" src="../crumbs.js"></script>
 </body>
 </html>

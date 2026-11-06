@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="lectures.css">
 </head>
 <body>
-  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Lectures</p></header>
+  <header class="masthead has-crumbs"><div data-crumbs='[["Lectures"]]'></div><h1>Lectures</h1></header>
   <main>
     <p class="quiet">The text of each class's slides, in the order they were shown. Images aren't reproduced, and names and codes are left out of this public page.</p>
     <div id="lecture-list" class="lecture-list"></div>
@@ -20,5 +20,6 @@
     const root = document.getElementById('lecture-list');
     mountList(root).catch(() => { root.innerHTML = '<p class="error">The lecture list could not be loaded.</p>'; });
   </script>
+  <script type="module" src="../crumbs.js"></script>
 </body>
 </html>

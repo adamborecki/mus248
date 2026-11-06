@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body data-hub="reference">
-  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Reference</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <header class="masthead has-crumbs"><div data-crumbs='[["Reference"]]'></div><h1>Reference</h1></header>
   <main>
     <p class="quiet">The pages you read, not follow: how the job fits together, how the rooms are wired, and tools to
       practice on. For step-by-step work on a gig, use a <a href="../checklists/">checklist</a>.</p>
@@ -54,5 +54,6 @@
       })
       .catch(() => { list.innerHTML = '<p class="error">The list could not be loaded.</p>'; });
   </script>
+  <script type="module" src="../crumbs.js"></script>
 </body>
 </html>

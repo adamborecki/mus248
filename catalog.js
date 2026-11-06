@@ -101,6 +101,13 @@ export const HUBS = {
   reference: { route: 'reference', title: 'Reference' },
 };
 
+// A family big enough to have its own section page (a folder at the top level, like the hubs).
+// Its pages' breadcrumbs go through that page instead of the type's hub, whatever their type:
+// MUS 248 › Post Production › Post Mini 1.
+export const SECTIONS = {
+  'Post Production': { route: 'post-production', title: 'Post Production' },
+};
+
 const slug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // The heading an entry sits under on its hub: checklists by kind; activities by family, but only

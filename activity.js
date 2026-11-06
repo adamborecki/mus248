@@ -1,11 +1,29 @@
 import { renderMarkdown } from './markdown.js';
 import { enableImageZoom } from './image-zoom.js';
 import { parseFrontmatter, renderFormSection } from './worksheet.js';
-import { DOC_TYPES, KINDS, docType, groupLabel, settingsChips } from './catalog.js';
+import { DOC_TYPES, KINDS, SECTIONS, docType, groupLabel, settingsChips } from './catalog.js';
 import { catalogCrumbs, crumbs } from './crumbs.js';
 
 // Opt-in credit by GitHub username only, never a real name (see CLAUDE.md).
 const GITHUB_USER = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/;
+
+// Previous and next in the same family (catalog order), so a series like Post Mini 1–4 or the
+// Salmon pages reads in order without going back to the hub. A family with its own section page
+// links to it.
+function familyNav(activity, activities) {
+  const family = activities.filter((item) => item.family && item.family === activity.family);
+  const index = family.findIndex((item) => item.id === activity.id);
+  if (family.length < 2 || index < 0) return '';
+  const section = SECTIONS[activity.family];
+  const name = section ? `<a href="../${section.route}/">${activity.family}</a>` : activity.family;
+  const step = (item, rel, arrow) => (item
+    ? `<a class="family-step family-${rel}" href="../${item.route}/" rel="${rel}"><small>${rel === 'prev' ? `${arrow} Previous` : `Next ${arrow}`}</small><span><span aria-hidden="true">${item.emoji}</span> ${item.title}</span></a>`
+    : '<span class="family-step family-empty" aria-hidden="true"></span>');
+  return `<nav class="family-nav no-print" aria-label="More in ${activity.family}">
+      <p class="family-title">${index + 1} of ${family.length} in ${name}</p>
+      <div class="family-steps">${step(family[index - 1], 'prev', '←')}${step(family[index + 1], 'next', '→')}</div>
+    </nav>`;
+}
 
 async function loadActivity() {
   const root = document.body.dataset.activityId;
@@ -63,6 +81,7 @@ async function loadActivity() {
     ${worksheet}
     <article class="instructions${docType(activity) === 'checklist' ? ' numbered' : ''}">${instructions}</article>
     ${contributors.length ? `<p class="contributors"><span aria-hidden="true">🙌</span> Improved with help from ${contributors.map((name) => `<a href="https://github.com/${name}" rel="noopener">@${name}</a>`).join(', ')}</p>` : ''}
+    ${familyNav(activity, activities)}
     ${completion}
   `;
   // Lets a page add interactive pieces to its rendered instructions (Repo Improvement's
