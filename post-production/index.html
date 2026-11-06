@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MUS 248 post-production: Final Cut Pro house rules, the Post Mini training phases, and the concert post checklist.">
+  <title>Post Production · MUS 248</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* The job's stages as a row of steps; wraps on a phone. */
+    .pipeline { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:0 0 2rem; padding:0; list-style:none; }
+    .pipeline li { padding:.35rem .65rem; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:.9rem; }
+    .pipeline li + li::before { content:"→"; margin:0 .45rem 0 -.1rem; color:var(--muted); }
+    .nav-card .step { color:var(--muted); font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+    .nav-card.soon { opacity:.7; border-style:dashed; }
+  </style>
+</head>
+<body>
+  <header class="masthead"><h1><a href="../">MUS 248</a></h1><p>Post Production</p><a class="masthead-feedback" href="../repo-improvement/" target="_blank" rel="noopener" data-feedback><span aria-hidden="true">🛠️</span> Repo improvements</a></header>
+  <main>
+    <p class="quiet">After the gig: turning raw camera and audio files into finished, checked files someone is waiting for. We use <strong>Final Cut Pro</strong> for video and <strong>Logic</strong> for audio.</p>
+    <ol class="pipeline" aria-label="The job, in order">
+      <li>📂 Organize</li><li>🎚️ Set up</li><li>✂️ Edit picture</li><li>🎧 Refine audio</li><li>🔎 QC</li><li>📤 Export</li><li>✅ Verify &amp; deliver</li>
+    </ol>
+
+    <h2 class="section-title">Start here</h2>
+    <nav class="site-nav" aria-label="Start here">
+      <a class="nav-card" href="../fcp-at-chapman/"><strong><span aria-hidden="true">🎞️</span> Final Cut Pro at Chapman</strong><small>The settings we always change (with screenshots), the job in seven stages, shortcuts, file naming, and the final checklist. 15 minutes to read.</small></a>
+      <a class="nav-card" href="../recording-lifespan/"><strong><span aria-hidden="true">⏳</span> Lifespan of a Recording</strong><small>Where post fits in the whole job: gig folders, r / e / s, the Post and Backups drives, the archive.</small></a>
+    </nav>
+
+    <h2 class="section-title">Training: Post Mini</h2>
+    <p class="quiet">Bite-sized post-production jobs, each with real raw files and video tutorials. Do them in order: each phase assumes the ones before it.</p>
+    <nav class="site-nav" aria-label="Post Mini training">
+      <a class="nav-card" href="../post-mini-1/"><span class="step">Phase 1</span><strong><span aria-hidden="true">✂️</span> Sync, Trim &amp; Export</strong><small>One video file, one audio file: sync by hand, trim, fade, limiter, export H.264 and WAV.</small></a>
+      <a class="nav-card" href="../post-mini-2/"><span class="step">Phase 2</span><strong><span aria-hidden="true">🎥</span> Multicam &ldquo;Search&rdquo; Demo</strong><small>Two cameras, no separate audio: multicam clip, best angle, exposure and framing fixes.</small></a>
+      <a class="nav-card" href="../post-mini-3/"><span class="step">Phase 3</span><strong><span aria-hidden="true">🎼</span> Salmon Recital</strong><small>Logic mix, 4K complete concert file, then one file per piece and per movement (01, 02a…).</small></a>
+      <a class="nav-card" href="../post-mini-4/"><span class="step">Phase 4</span><strong><span aria-hidden="true">🎙️</span> Salmon Recording Session</strong><small>Takes instead of a concert: one file per take, take notes, backup audio, Normalize off.</small></a>
+      <div class="nav-card soon"><span class="step">Phase 5</span><strong><span aria-hidden="true">🚧</span> Two-half concert <span class="ri-badge">Not ready</span></strong><small>Two halves of video and too-quiet pre-mixed audio, with talking and an encore. Coming later.</small></div>
+    </nav>
+
+    <h2 class="section-title">On a real job</h2>
+    <nav class="site-nav" aria-label="Checklists">
+      <a class="nav-card" href="../concert-post-checklist/"><strong><span aria-hidden="true">🎬</span> Concert Post Checklist (Final Cut Pro)</strong><small>Multicam concert to delivered files: clean up, export the full concert, duplicate, divide into sections, export, final QC.</small></a>
+      <a class="nav-card" href="../sushi/"><strong><span aria-hidden="true">🍣</span> Sushi: take a plate</strong><small>Real post-production and data jobs around the studios, for class participation or paid hours.</small></a>
+    </nav>
+
+    <h2 class="section-title">Also on post</h2>
+    <nav class="site-nav" aria-label="Related">
+      <a class="nav-card" href="../lectures/2026-09-21-electricity-f8-final-cut/"><strong><span aria-hidden="true">⚡</span> Lecture 04: Intro to Final Cut</strong><small>Library, browser, viewer, timeline, and why Final Cut never changes your original files.</small></a>
+      <a class="nav-card" href="../daw/"><strong><span aria-hidden="true">💻</span> DAW Training Circuit</strong><small>The audio side: getting around a DAW.</small></a>
+    </nav>
+  </main>
+  <footer>Canvas remains the place for submissions and grades.</footer>
+  <script type="module">
+    import { REPO_IMPROVEMENT_FORM } from '../feedback.js';
+    import '../feedback-picker.js';
+    document.querySelectorAll('a[data-feedback]').forEach((link) => { link.href = REPO_IMPROVEMENT_FORM; });
+  </script>
+</body>
+</html>
