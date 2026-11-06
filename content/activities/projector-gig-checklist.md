@@ -63,19 +63,27 @@ think it won't be big enough. It is.
 - [ ] A **projector cart** to set it on
 - [ ] A **screen:** medium or large. For the large one, the **surface that matches** front or rear
   projection (see **Large screen**)
-- [ ] A **video cable** from the laptop to the projector, long enough for the route you'll tape
-  down, and any **adapter** the laptop needs (most new laptops have no HDMI port)
+- [ ] An **HDMI cable** from the laptop to the projector, long enough for the route you'll tape
+  down, and any **adapter** the laptop needs (most new laptops have no HDMI port). The projector
+  end needs nothing extra: the dark gray Panasonic keeps its own **HDMI-to-DVI adapter** on it.
 - [ ] **Audio from the laptop,** one of:
   - a **3.5 mm to XLR** cable, for a short run
-  - a **3.5 mm to dual TS** cable, a **DI box** (stereo, or two mono DIs), and **XLR cables**, for a
-    long run
-- [ ] **Power:** an extension cord or power strip for the projector (see **Power and cables**)
+  - a **stereo DI box** (the **On-Stage DB2050**), a cable from the laptop's 3.5 mm jack to the
+    DI's inputs (**3.5 mm to dual RCA** for the DB2050), and **XLR cables**, for a long run
+- [ ] **Power:** an extension cord or power strip for the projector, from the Salmon storage
+  closet, **BH 102**
 - [ ] **Gaff tape.** Rolls hang by the door in the back alcove (see **Power and cables**)
 - [ ] The **presenter's laptop** and **its power supply**
 
 ![Projector storage: the white projector on top of the dark gray one, on their cart, with an orange cord reel on the shelf below.](media/projector/storage-projectors.jpg)
 
 ![Screen storage: the medium screens, folded on their tripods, standing between the carts.](media/projector/storage-tripod-screens.jpg)
+
+BH 102 is a **double door**. For anything wide, like the large screen, open the fixed half too: it
+has a **flush bolt** on its top edge, and the door half can't open until the bolt's lever is flipped
+back.
+
+![The flush bolt on the top edge of BH 102's fixed door half.](media/projector/storage-door-bolt.jpg)
 
 ## ⚠️ Before you touch anything
 
@@ -149,12 +157,11 @@ Check you've got the right one before it goes on the frame.
 
 ![The frame on the floor with its legs and braces on. The surface is still in its bag (people pixelated).](media/projector/large-frame-on-floor.jpg)
 
+- 🚩 Fit the **matching surface** (front or rear) **while the frame is still on the floor**, so it's
+  stretched flat, with no wrinkles or gaps at the edges.
 - 🚩 Stand the frame up **together**, on a count, everyone holding it.
 
-![Five students standing the large frame up together (faces pixelated).](media/projector/large-frame-lift.jpg)
-
-- 🚩 Fit the **matching surface** (front or rear) so it's stretched flat, with no wrinkles or gaps
-  at the edges.
+![Five students standing the large frame up together (faces pixelated). This frame went up bare, and the crew had to lay it back down to fit the surface. Fit the surface first.](media/projector/large-frame-lift.jpg)
 - 🚩 For **rear projection**, leave room behind the screen for the projector and its throw. Nobody
   walks between the projector and the screen during the event.
 
@@ -202,7 +209,8 @@ Check it from the audience's side.
 ## 💻 The laptop
 
 - 🚩 Plug in the laptop's **power supply.** Don't run a presentation on battery.
-- 🚩 Connect the **video cable** from the laptop to the projector. Check the picture appears.
+- 🚩 Connect the **HDMI cable** from the laptop to the projector's HDMI-to-DVI adapter. That's the
+  only input this projector is used with. Check the picture appears.
 - 🚩 Decide **mirror** (the screen shows what the laptop shows) or **extend** (the screen is a
   second display), and set it in the laptop's display settings. Presenter view needs extend.
 - 🚩 Keep the laptop **awake.** On a Mac, the free app **Amphetamine** (Mac App Store) stops it
@@ -219,8 +227,11 @@ box. Ask whoever runs the console (FOH) which input to use.
 
 - 🚩 **A short run:** a **3.5 mm to XLR** cable from the laptop's headphone jack into the stage box
   works. It's an **unbalanced** signal on an XLR plug: fine over a short distance.
-- 🚩 **A long run:** a **3.5 mm to dual TS** cable from the laptop into a **DI box**, then **XLR**
-  out of the DI. From there you can chain XLR cables as long as you need.
+- 🚩 **A long run:** from the laptop's 3.5 mm jack into a **stereo DI box**, then **XLR** out of
+  the DI. In Salmon that's the **On-Stage DB2050**, with a **3.5 mm to dual RCA** cable into it.
+  From the DI you can chain XLR cables as long as you need.
+
+![The On-Stage DB2050 stereo DI on a small table next to the piano, with a 3.5 mm to dual RCA cable plugged into it. Its red light is on.](media/projector/stereo-di.jpg)
 - 🚩 Play something from the laptop and check with FOH that the right channel moves, in stereo if
   the laptop's sound is stereo.
 
@@ -236,7 +247,7 @@ picking up noise.
 ## 🔌 Power and cables
 
 - 🚩 Find the power. In Salmon there are **outlets in the floor** (the round covers): use the one
-  nearest the projector.
+  nearest the projector. Power strips and extension cords come from **BH 102**.
 - 🚩 Run every cable along an edge, out of walkways: along a wall, under the screen, behind a piano
   leg. Not diagonally across the floor.
 - 🚩 Tape down every cable that crosses a path, with **gaff tape**. The rolls hang by the door in
@@ -268,7 +279,10 @@ picking up noise.
 The event isn't over when the applause stops. **Finish the job:** everything back where it lives,
 in better shape than you found it.
 
+- 🚩 Set the projector's **INSTALLATION** back to **FRONT/FLOOR**, so the next crew starts from
+  front projection.
 - 🚩 Press **STANDBY** on the projector. **Wait for the fan to stop** before you unplug it.
+- 🚩 Leave the **HDMI-to-DVI adapter** on the projector. It stays with it.
 - 🚩 Lower the **medium screen** gently: let the pole down slowly, unhook the top bar, and guide
   it back into the case by hand. Don't let it snap back.
 - 🚩 Take down the **large screen** with **two or more people, ideally three**, in the reverse
@@ -276,6 +290,8 @@ in better shape than you found it.
 - 🚩 Pull up every piece of tape, and check the floor for leftover bits.
 - 🚩 Coil every cable, and put the projector, screen, cables, power strips and gaff tape back
   where they came from.
+- 🚩 Close BH 102 properly: the fixed half of the double door fully closed and its flush bolt over,
+  then the other half.
 - 🚩 Check nothing belonging to the presenter is left behind: laptop, adapter, power supply.
 
 ## ✅ Definition of done
@@ -302,25 +318,31 @@ in better shape than you found it.
   **FRONT/FLOOR** and **REAR/FLOOR**, from photos of the projector's own menu.
 - Laptop audio: 3.5 mm to XLR works for short runs; 3.5 mm to dual TS into a DI, then XLR, for long ones.
 - Gaff tape hangs by the door in the back alcove.
+- Power strips are kept in the Salmon storage closet, BH 102.
+- The large screen's surface goes on while the frame is still on the floor, before it's stood up.
+- The dark gray Panasonic keeps an HDMI-to-DVI adapter on it; that's the only input used.
+- Long laptop runs: the On-Stage DB2050 stereo DI, fed by a 3.5 mm to dual RCA cable (photo).
+- INSTALLATION goes back to FRONT/FLOOR at strike (instructor's call, November 6, 2026: there was no
+  agreed default before).
 
 **Still open:**
 
 - **Projector models:** the dark gray Panasonic's and the white one's model numbers, and the
   ViewSonics' model.
-- **Which input** on the Panasonic the laptop's video goes into (its label, and whether it's
-  HDMI), and whether the input has to be picked by hand.
+- **The input's name** on the Panasonic's panel or menu (the DVI input the adapter sits on), and
+  whether it has to be picked by hand after power-on.
+- **How the DB2050 is powered** (its red light was on in the photo: battery, adapter, or phantom
+  power from the stage box) and which output the XLRs come from.
 - **How to close the menu** (MENU again, or another button), and what **LENS**, **SHUTTER** and
   **AUTO SETUP** do on this model. SHUTTER may blank the picture without turning the projector off,
   which would be useful between items, but that's untested here.
-- **Whether INSTALLATION should be set back** to a default (FRONT/FLOOR?) at strike.
 - **How long the Panasonic's fan runs** after STANDBY before it's safe to unplug.
 - **Medium screen:** what the **blue tab** and the **blue knob** on the tripod head each do, whether
   the case has to be turned or locked level, and how the pole locks.
-- **Large screen:** whether the surface goes on **before or after** the frame is stood up (the
-  photos show the frame stood up bare); how to tell the front and rear surfaces apart; what the
-  corner labels say; the leg height setting; and the black skirt seen below the screen at a concert.
-- **Where things live:** the storage room for the projectors and screens, and **where the power
-  strips are** kept for this setup.
+- **Large screen:** how to tell the front and rear surfaces apart; what the corner labels say;
+  the leg height setting; and the black skirt seen below the screen at a concert.
+- **Where the projectors and screens live:** probably BH 102 with the power strips, but not confirmed.
+- **Which way the BH 102 flush bolt's lever goes** to lock (the same open item as Vocal Jazz).
 - **The stage box input** FOH normally uses for laptop audio in Salmon.
 - **The alcove's name** (which door the gaff tape hangs beside), so the step can say exactly where.
 - **Early Music Ensemble photos** from past concerts, if the instructor has them.
