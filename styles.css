@@ -39,3 +39,5 @@ select { min-height:2.65rem; padding:.45rem .7rem; border:1px solid var(--line);
 @media (max-width:520px) { .masthead { display:grid; grid-template-columns:1fr auto; align-items:center; column-gap:.75rem; } .masthead p { grid-column:1 / -1; grid-row:2; } .masthead-feedback { grid-column:2; grid-row:1; font-size:.85rem; } }
 main > p a:not([class]) { color:var(--accent); }
 .quiet { color:var(--muted); }
+
+.hub-section-link { margin-left:.5rem; color:var(--accent); font-size:.85rem; font-weight:600; letter-spacing:0; text-decoration:none; white-space:nowrap; }.hub-section-link:hover { text-decoration:underline; }
