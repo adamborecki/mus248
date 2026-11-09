@@ -5,7 +5,7 @@ emoji: "🎸"
 coreSkillAreas:
   - Live Sound
 status: In Development
-revised: "2026-11-03"
+revised: "2026-11-09"
 estimatedTime: "Not a timed drill. Arrive early and leave extra time: some piece of gear won't work the first time."
 access:
   mode: On campus
@@ -59,7 +59,8 @@ gig. The amps on stage are loud enough on their own.
 
 ## 🕹️ Practice first
 
-- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): fourteen scenarios on a virtual X32 with this gig's rig, wireless rack included. The first is the whole rig working, nothing broken; the rest each break one piece, in the order this checklist runs: the wireless rack's power, the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night. **CME: Advanced** (the harder troubleshooting) comes later.
+- [Mixer Lab: CME in Salmon: Essentials](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour): fourteen scenarios on a virtual X32 with this gig's rig, wireless rack included. The first is the whole rig working, nothing broken; the rest each break one piece, in the order this checklist runs: the wireless rack's power, the downstage mains, the Mix5, the three wedges and the music test, the mics, the band on the sub snake, the levels, a bad cable, and the end of the night.
+- [Mixer Lab: CME in Salmon: Advanced](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-antenna): twelve scenarios, the troubleshooting tier, due the week after Essentials. Odd faults on the same rig (a dead antenna splitter, a receiver's VOL knob, a guest on a headset, the S32 losing power, a wedge on the wrong cable or the wrong mix), ending with several at once ten minutes before downbeat.
 
 The simulator is still being built: where it and this checklist disagree, the checklist wins. Tell
 your supervisor what you found.
@@ -171,6 +172,10 @@ displays are dark. What do you check first?
 
 🕹️ In Mixer Lab: [Five mics, all silent](https://adamborecki.github.io/mixer-lab/#/x32-cme-rack).
 
+🕹️ In Mixer Lab (Advanced): [Furman on, receivers lit, still nothing](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-antenna),
+[The lead vocal distorts at any GAIN](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-vol) and
+[A guest singer on a headset](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-headset).
+
 ## 🚗 Arrival — early
 
 - 🚩 Arrive early, with time to spare for something that doesn't work the first time.
@@ -242,6 +247,10 @@ rack alone; only the Mix5's knobs change for CME.
 
 🕹️ In Mixer Lab: [Three wedges, three mixes](https://adamborecki.github.io/mixer-lab/#/x32-cme-wedges).
 
+🕹️ In Mixer Lab (Advanced): [Wedge 2 on the wrong cable](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-inst),
+[The active wedge on an amp](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-active-amp) and
+[Wedge 3 plays the house mix](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-route).
+
 ![The amp rack: the NX3000 on top, two KM750s, and the Crown at the bottom that drives the downstage Yamaha speakers.](media/cme/amp-rack.jpg)
 
 **Q5 (multiple choice).** What goes between a KM750's output and a 1/4" passive wedge?
@@ -302,6 +311,9 @@ What's most likely?
 🕹️ In Mixer Lab: [Plug in the band](https://adamborecki.github.io/mixer-lab/#/x32-cme-band) and
 [No guitar anywhere](https://adamborecki.github.io/mixer-lab/#/x32-cme-gtr).
 
+🕹️ In Mixer Lab (Advanced): [The guitar amp is dead, no lights](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-katana) and
+[The pianist sings lead tonight](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-lead).
+
 ![The Hosa "Little Bro" sub snake: eight MIC IN jacks on stage, eight tails at the S32.](media/cme/sub-snake.jpg)
 
 ![Two guitar amps at the rehearsal, with an SM57 on a short stand in front of the near one.](media/cme/guitar-amps-sm57.jpg)
@@ -341,20 +353,36 @@ Work down the list and stop when it's fixed.
 - 🚩 **Signal at the mixer?** Watch the channel's meter.
 - 🚩 **A handheld:** is it **muted** (a tap) or **off** (press and hold)? Check the battery.
 - 🚩 **Every handheld:** is the wireless rack's **Furman** on? Are both antenna cables plugged in?
+- 🚩 **Receivers lit but no signal:** check that the **antenna distribution** (PAS-225, PAS-225X) is
+  on. A receiver with no antenna feed hears nothing.
+- 🚩 **A vocal distorts with GAIN low:** check that receiver channel's **VOL** knob. Back to **9
+  o'clock**, then set GAIN.
 - 🚩 **A mic on an amp, or a DI:** is the **amp or instrument's own volume** up?
+- 🚩 **An amp with no lights:** check its **power cable** first.
+- 🚩 **The band, every wedge and the mains dead, but the wireless fine:** check the **S32's power**.
+  The wireless comes into the X32 itself; the rest goes through the S32.
 - 🚩 **In the mains but not a wedge:** the singer's send to that wedge's mix.
 - 🚩 **A wedge dead:** the amp's level knob, the active wedge's power and VOLUME, then reseat every
   cable on its path.
+- 🚩 **A wedge plays the wrong mix:** check the X32's **output routing**. Output 9 carries MixBus 9, 10
+  carries 10, 11 carries 11.
+- 🚩 **Never** connect the **active wedge** to an amp's speaker output. Speaker level can damage a
+  powered speaker. It gets an **XLR** straight from S32 OUT 11.
 - 🚩 **Everything is plugged in the right place and still nothing:** swap the cable. Cables fail
   inside. Tag the bad one with gaff tape and tell your supervisor.
 
 🕹️ In Mixer Lab: [Wedge 1 died](https://adamborecki.github.io/mixer-lab/#/x32-cme-cable).
+
+🕹️ In Mixer Lab (Advanced): [Half the stage went dead](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-s32) and
+[Ten minutes to downbeat](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-stack).
 
 ## ➕ More than eight band inputs
 
 If the band needs more than the sub snake's eight channels, plug the extra sources into the S32's
 **IN 9–16** and set the X32's **ROUTING → INPUT**: **9–16 = AES50 A9-16**. That takes CH 9–16 off
 receiver 2 (the gray-windscreen handhelds), which CME doesn't use. Put it back at the end of the gig.
+
+🕹️ In Mixer Lab (Advanced): [Two more inputs than the sub snake has](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-inputs).
 
 ![ROUTING → INPUT with CH 9–16 on AES50 A9-16: what the first rehearsal used.](media/cme/x32-input-9-16-aes50.jpg)
 
@@ -379,6 +407,8 @@ receiver 2 (the gray-windscreen handhelds), which CME doesn't use. Put it back a
   then the other half.
 
 🕹️ In Mixer Lab: [The end of the night](https://adamborecki.github.io/mixer-lab/#/x32-cme-end).
+
+🕹️ In Mixer Lab (Advanced): [The hall's speakers won't come back](https://adamborecki.github.io/mixer-lab/#/x32-cme-adv-mix5).
 
 **Q10 (short answer).** What's the first thing you do at the end of a CME gig, and why first?
 
@@ -430,6 +460,15 @@ back to U). It's the easiest thing to forget, and the next group expects the hal
 - **The wireless receivers for 17–24.** Only the red mic has been tested.
 - **Which PAS output feeds which receiver**, and how many outputs each PAS has. Mixer Lab guesses
   PAS-225 → receiver 1, receiver 2, the PTU-7000 and the PAS-225X; PAS-225X → receiver 3.
+- **A headset or lav on the PTU-7000 with CME's routing.** The PTU-7000 is on LOCAL 25–28, and
+  CME's CH 25–32 listen to the sub snake, so a headset can't be heard. Mixer Lab's workaround
+  (ROUTING → INPUT, CH 9–16 ← Local 25-32, so the guest lands on CH 9; put it back after) has
+  **not** been tried in the room. Ask your supervisor before using it.
+- **Power switches on the PAS-225X and the receivers.** Mixer Lab assumes the PAS-225X has its own
+  power switch (so it can be off while the Furman is on) and that each receiver lights up as soon
+  as the Furman is on. Neither has been checked on the real rack.
+- **The X32's output routing page, by its own labels.** The photo shows Output 9 ← MixBus 9, but
+  not the menu path to that page; Mixer Lab calls it ROUTING → PATCH POINTS → OUT.
 - **The IEM transmitters**: model, how many, and whether anything should be sent to them during a
   CME gig (they get whatever OUT 9–12 carry: the wedge mixes).
 - **The Dante recording setup on the Mac mini** isn't written up yet; this checklist doesn't use it.
