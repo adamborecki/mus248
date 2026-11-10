@@ -161,27 +161,47 @@ The **X32** is at FOH.
 
 ## 4. Musco: Big Band and Jazz Combo
 
-> 🧑‍🏫 Most of this section is a placeholder until you send the Big Band / Jazz Combo repo or notes.
-> What's here is only what the Big Picture lecture (Oct 12) and your message say.
+> 🧑‍🏫 From the [Musco Multitrack Gig Checklist](../../musco-multitrack-gig-checklist/) (Oct 29–30
+> setup). The CL5 ↔ CL3 slide treats the CL3 as the practice console; no live link between the two
+> rooms is documented. Say so if there is one.
 
 ### Not a normal Musco gig
 
-- Normal Musco: the ==multicam== crew in the booth, Seiyua's rack recorders, a board feed
-- Big Band and Jazz Combo: multicam **as normal**, **plus** a live ==multitrack==
-- About two concerts a year
-- [Musco Gig Checklist](../../musco-gig-checklist/)
+- Video: the normal ==multicam== crew in the booth ([Musco Gig Checklist](../../musco-gig-checklist/))
+- Audio: a live ==multitrack==, **40 tracks** in Logic, in the ==basement==
+- About two concerts a year. Jazz Combo uses the **same** input list and mics
 
-### Downstairs: the CL5
+### The signal flow
 
-- Audio goes down to the ==basement==: the Yamaha **==CL5==**
-- The multitrack is captured **downstairs** [how: Dante into a recorder / a computer? (confirm)]
-- [what the CL5 is mixing: the room, the stream, the recording? (confirm)]
+```
+Stage mics ─► sub snakes ─► DiGiCo (upstairs) ─► Dante 01–38
+ORTF room pair ─► Booth01VSubMix ─► Dante 39–40
 
-### The CL5 and the CL3 in OH 207
+Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
+```
 
-- OH 207 has a Yamaha **==CL3==**: the smaller version of the CL5
-- [how the CL5 downstairs connects to the CL3 in OH 207 (confirm): Dante? a file you bring up?]
-- Practice on the CL3 first: [CL3: Dante Stems from Logic](../../cl3-dante-stems/)
+- You don't patch anything on stage: the ==DiGiCo== puts every channel on ==Dante==
+- In the basement you ==subscribe== to them: channel n → Logic track n
+- Logic records through **Dante Virtual Soundcard** (==DVS==)
+
+### Dante Controller: the whole building
+
+- One Dante network carries the **live show**: the mains, every monitor mix
+- Click only the receiver row with **your own** computer's ==name==
+- ==Filter== Receivers first, so nothing else is on screen
+- [your story: the Mac Pro that wouldn't talk to Dante in October]
+
+### The CL5 writes the mix
+
+- The **==CL5==** in the basement mixes the band live
+- Its fader moves go to Logic as ==MIDI== → recorded as ==automation==
+- Automation on **==Latch==** during the show, back to **==Read==** after
+- So the basement mix is a real mix you can use later
+
+### Practice upstairs: the CL3 in OH 207
+
+- OH 207 has a Yamaha **==CL3==**: the smaller version of the CL5. Same layout, same words
+- Practice there first: [CL3: Dante Stems from Logic](../../cl3-dante-stems/) (Logic → Dante → CL3, the same subscriptions in reverse)
 - Or in a browser: [Mixer Lab: Virtual soundcheck over Dante](https://adamborecki.github.io/mixer-lab/#/cl3-dante)
 
 ## 5. Multitrack Recording on the Zoom L-20
