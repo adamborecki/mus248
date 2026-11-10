@@ -1,4 +1,4 @@
-> 🤖 **AI use:** outline drafted with Claude Code from the instructor's planning message (Nov 10),
+> 🤖 **AI use:** outline drafted with Claude Code from the instructor's planning message (Nov 9),
 > the [Vocal Jazz](../../vocal-jazz-gig-checklist/), [Mariachi](../../mariachi-gig-checklist/),
 > [CME](../../cme-gig-checklist/), [Musco](../../musco-gig-checklist/) and
 > [L-20 Multitrack](../../l20-multitrack-gig-checklist/) checklists, the
@@ -25,7 +25,7 @@ Everything due this week, with due dates: **see Canvas**.
 ### Today
 
 1. Vibecoding: an update
-2. Vocal Jazz: a reminder, plus the recording session
+2. Vocal Jazz: a reminder, plus the recording session variation
 3. Other Salmon gigs: Mariachi and CME
 4. Musco: Big Band and Jazz Combo
 5. Multitrack recording on the Zoom L-20
@@ -94,13 +94,17 @@ The **X32** is at FOH.
 - Those go into the **==S32==**, the stage box: its last bank, IN 25–32
 - S32 → ==AES50== → the X32 at FOH → ==Dante== → ==Logic== on the FOH Mac mini
 
-> 🧑‍🏫 Exact inputs (piano L/R on 25/26, room pair on 27/28?) not confirmed yet. The Vocal Jazz
-> checklist's optional Dante → Logic step covers the recording half.
+> 🧑‍🏫 Exact inputs (piano L/R on 25/26, room pair on 27/28?) not confirmed yet. Heads-up for 2.3:
+> the Vocal Jazz checklist's Dante step sets every CARD block to Local, which is right for 13
+> wireless mics on Local 1–24, but S32 inputs arrive over AES50, so block 25–32 has to be AES50 A
+> for this variation. Check it on the console before the session.
 
 ### Dante considerations
 
-- The X32's ==routing== has to be right: **ROUTING → CARD**, every block on **Local**, out the
+- The X32's ==routing== has to be right: **ROUTING → CARD** decides what goes out the
   **X-DANTE** card
+- CH 1–24 (the wireless) come from **Local**. The piano and room mics come from the S32, so
+  card 25–32 must be **==AES50== A**, not Local, or those tracks are silent
 - Dante Controller: the X32 → the FOH Mac mini, ==one-to-one==
 - Logic's **Input Device** = **Dante Virtual Soundcard**, set **before** you make the tracks
 - The ==inputs== in Logic have to be right too: a whole bunch of tracks, Input 1 with
@@ -225,7 +229,7 @@ window into a chat and ask it to explain them.
 |---|---|
 | **==Read==** | Plays the automation back. Writes nothing |
 | **Touch** | Writes while you're moving the fader, then goes back to what was there |
-| **==Latch==** | Writes from the first move, and **holds** the last value until you stop |
+| **==Latch==** | Writes from the first move, and **holds** the last value until playback stops |
 | **Write** | Overwrites everything from the start, moving or not |
 
 - During the concert: **every track on ==Latch==**. Without it, the CL5's moves aren't written
