@@ -156,7 +156,7 @@ The **X32** is at FOH.
 
 ### Mixer Lab
 
-- [Mariachi in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-mar-tour): eleven scenarios with the band's own recording
+- [Mariachi in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-tour): eleven scenarios with the band's own recording
 - [CME: Everything working](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour)
 - [Mariachi Gig Checklist](../../mariachi-gig-checklist/) · [CME Gig Checklist](../../cme-gig-checklist/)
 

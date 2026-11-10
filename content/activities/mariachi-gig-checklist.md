@@ -55,7 +55,7 @@ guitarra**. If time is short, (1) is the gig.
 
 ## 🕹️ Practice first
 
-- [Mixer Lab: Mariachi in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-mar-tour): eleven scenarios on a virtual X32 with this gig's rig and the band's own dress-rehearsal recording. The first is the whole rig working, nothing broken. The rest each break one piece, in the order this checklist runs: the hall's speakers left off, the wedges, the wedges that only take 1/4", the music test, a wedge on the wrong mix, a handheld that dies, vocals in every wedge, gains, feedback and a bad cable.
+- [Mixer Lab: Mariachi in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-tour): eleven scenarios on a virtual X32 with this gig's rig and the band's own dress-rehearsal recording. The first is the whole rig working, nothing broken. The rest each break one piece, in the order this checklist runs: the hall's speakers left off, the wedges, the wedges that only take 1/4", the music test, a wedge on the wrong mix, a handheld that dies, vocals in every wedge, gains, feedback and a bad cable.
 
 The simulator is still being built: where it and this checklist disagree, the checklist wins. Tell
 your supervisor what you found.
@@ -153,7 +153,7 @@ The hall's own mains rack is permanent: the small **Mackie Mix5** on top, the ra
   down there, at the **LEVEL** of the channel S32 OUT 15/16 come in on, and sometimes it isn't turned
   back up. Put it at **U**. Leave **MAIN MIX** alone.
 
-🕹️ In Mixer Lab: [The house is silent](https://adamborecki.github.io/mixer-lab/#/x32-mar-house).
+🕹️ In Mixer Lab: [The house is silent](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-house).
 
 **Q2 (multiple choice).** The X32's MAIN meters move, the wedges work, and the hall's speakers are
 silent. CME had the hall last night. What do you check first?
@@ -177,8 +177,8 @@ silent. CME had the hall last night. What do you check first?
 - 🚩 Look at each wedge's jack before you carry a cable to it. If a 1/4"-only wedge ends up next to a
   speakON-only amp channel, **move a wedge that takes either kind** instead.
 
-🕹️ In Mixer Lab: [Four wedges, four mixes](https://adamborecki.github.io/mixer-lab/#/x32-mar-wedges) and
-[Wedge 5 only takes 1/4"](https://adamborecki.github.io/mixer-lab/#/x32-mar-quarter).
+🕹️ In Mixer Lab: [Four wedges, four mixes](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-wedges) and
+[Wedge 5 only takes 1/4"](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-quarter).
 
 ![The amp rack from behind: the NX3000 on top (not used), the two KM750s with speakON outputs, and the Crown at the bottom with its INPUT / SPEAKER box on the right.](media/mariachi/amp-rack.jpg)
 
@@ -202,8 +202,8 @@ silent. CME had the hall last night. What do you check first?
 - 🚩 Set the **amps' level knobs**, about the same on every channel, while the music plays. Then mix at
   the console.
 
-🕹️ In Mixer Lab: [Test every wedge with music](https://adamborecki.github.io/mixer-lab/#/x32-mar-wedge-test) and
-[Two wedges, one mix](https://adamborecki.github.io/mixer-lab/#/x32-mar-route).
+🕹️ In Mixer Lab: [Test every wedge with music](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-wedge-test) and
+[Two wedges, one mix](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-route).
 
 **Q4 (short answer).** Wedges 3 and 4 play exactly the same mix, and MIX 6 has the guitarra in it.
 Where do you look, and why not at the sends?
@@ -224,8 +224,8 @@ MixBus 5. The mix is fine, so changing sends would break the wedge that was righ
 - 🚩 **Both vocal mics** go in the **house** and **every wedge** (MIX 3–8). The violins go loudest
   in the wedges in front of them.
 
-🕹️ In Mixer Lab: [No singer in wedges 5 and 6](https://adamborecki.github.io/mixer-lab/#/x32-mar-vox) and
-[Set the gains](https://adamborecki.github.io/mixer-lab/#/x32-mar-gains).
+🕹️ In Mixer Lab: [No singer in wedges 5 and 6](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-vox) and
+[Set the gains](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-gains).
 
 ![Handhelds on boom stands for the instruments, each with its colored ring.](media/mariachi/mic-stands.jpg)
 
@@ -241,7 +241,7 @@ It happens at most gigs: a handheld won't switch on, even with fresh batteries.
 - 🚩 Name the new channel on the X32 (for example "VLN 1") and write it on the level sheet.
 - 🚩 Tag the dead handheld with gaff tape and tell your supervisor. Don't put it back in the drawer.
 
-🕹️ In Mixer Lab: [The red mic died](https://adamborecki.github.io/mixer-lab/#/x32-mar-swap).
+🕹️ In Mixer Lab: [The red mic died](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-swap).
 
 **Q5 (multiple choice).** Violin 1's red handheld (CH 1) dies. She gets the gray-windscreen green
 spare, which receiver 2 puts on CH 12. What's the right fix?
@@ -260,7 +260,7 @@ The hall's speakers are well in front of the players; the **wedges** are the fee
 - 🚩 Still ringing: aim the wedge away from the mic, or ask the player to step back from it.
 - 🚩 Don't fix it by muting the whole wedge or pulling its master: the singer goes too.
 
-🕹️ In Mixer Lab: [Wedge 1 rings](https://adamborecki.github.io/mixer-lab/#/x32-mar-feedback).
+🕹️ In Mixer Lab: [Wedge 1 rings](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-feedback).
 
 **Q6 (short answer).** Wedge 1 squeals whenever the violins dig in. What do you change, and where?
 
@@ -301,7 +301,7 @@ Work down the list and stop when it's fixed.
 - 🚩 **Everything is plugged in the right place and still nothing:** swap the cable. Cables fail
   inside. Tag the bad one with gaff tape and tell your supervisor.
 
-🕹️ In Mixer Lab: [Wedge 3 died](https://adamborecki.github.io/mixer-lab/#/x32-mar-cable).
+🕹️ In Mixer Lab: [Wedge 3 died](https://adamborecki.github.io/mixer-lab/#/x32-mariachi-cable).
 
 ## 🏁 End of the gig
 
