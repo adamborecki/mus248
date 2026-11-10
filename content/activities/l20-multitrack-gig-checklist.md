@@ -46,6 +46,11 @@ Two things about the L-20 surprise people, and this page keeps coming back to th
 
 ![The L-20 from above, Nov 2: XLRs in the inputs on the right, the 48V buttons lit, MUTE lit red on channels 1–16, and each fader's green LED at the bottom, whatever the fader cap shows.](media/l20-multitrack/l20-top.jpg)
 
+## 🕹️ Practice first
+
+- [Mixer Lab: Film Recording Workshop](https://adamborecki.github.io/mixer-lab/#/l20-rec-click): five scenarios on a virtual L-20 with this session's rig (FTW's orchestra stands in for the players): no click in the headphones, someone "fixed" the mutes, a quiet track, the fader that lies, and a bank of 48V off.
+- [Mixer Lab: The fader that lies](https://adamborecki.github.io/mixer-lab/#/l20-rec-fader-lies): the L-20's faders aren't motorized. Feel a cap that does nothing until it reaches its green LED.
+
 ## 🗝️ Key terms
 
 **multitrack** · **audio interface** · **driver** · **pre-fader** · **hardware monitoring** ·
