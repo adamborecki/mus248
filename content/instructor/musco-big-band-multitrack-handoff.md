@@ -6,7 +6,10 @@ is named `261029 Jazz Combo Big Band`). This is the raw source for:
 
 - **Lecture 11, section 4** (`content/lectures/other-gigs-musco-l20.md`, "Musco: Big Band and Jazz
   Combo"). Its **(confirm)** placeholders are answered under "For the lecture" below.
-- **A new gig checklist** (`musco-multitrack-gig-checklist`), being built from this file.
+- **The gig checklist** [`musco-multitrack-gig-checklist`](../activities/musco-multitrack-gig-checklist.md)
+  (live at `/musco-multitrack-gig-checklist/`), built from this file, with cropped photos in
+  `content/activities/media/musco-multitrack/`. Link it from the lecture as
+  `[Musco Multitrack Gig Checklist](../../musco-multitrack-gig-checklist/)`.
 
 Public repo: no MAC addresses, IPs, or desktop file listings here. **Albert** (ch 35) is the
 director; the instructor said his name can stay.
