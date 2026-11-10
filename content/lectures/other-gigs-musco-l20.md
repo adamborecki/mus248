@@ -16,13 +16,12 @@
 
 **Today:** Week 12 · Class 11
 
-**After today:** 2 classes (1 + 1 meeting in finals week)
+**After today:** 3 classes (2 + 1 meeting in finals week)
 
 Everything due this week, with due dates: **see Canvas**.
 
-> 🧑‍🏫 Placeholder until the homework list is written. Date check: Week 12 on the calendar is
-> Nov 9; this file is dated Nov 16 (week 13). "After today" assumes Nov 16 (left: Nov 30 + Dec 7).
-> Fix whichever is wrong.
+> 🧑‍🏫 Placeholder until the homework list is written. Quiz 8 is take-home, opening after class
+> (access code in the quiz overview).
 
 ## 🎤 Overview
 
@@ -99,12 +98,12 @@ The **X32** is at FOH.
 
 - Add **two ==condensers== on the piano**: left and right
 - Add a **stereo pair of ==room mics==**
-- Those go into the **==S32==**, the stage box
+- Pencil condensers (like the blue Audio-Technicas), ==48V== on
+- Those go into the **==S32==**, the stage box: its last bank, IN 25–32
 - S32 → ==AES50== → the X32 at FOH → ==Dante== → ==Logic== on the FOH Mac mini
 
-> 🧑‍🏫 Keep it brief for now. **(confirm)** "S50" in your message read as AES50 (the S32's link to
-> the X32). Which S32 inputs the piano and room mics land on, and which mics they are, aren't in the
-> Vocal Jazz checklist yet. Its optional Dante → Logic step already covers the recording half.
+> 🧑‍🏫 Exact inputs (piano L/R on 25/26, room pair on 27/28?) not confirmed yet. The Vocal Jazz
+> checklist's optional Dante → Logic step covers the recording half.
 
 ## 3. Other Salmon Gigs: Mariachi and CME
 
