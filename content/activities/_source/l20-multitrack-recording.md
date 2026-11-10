@@ -36,7 +36,7 @@ differ. **[Borecki]**
 
 | L-20 input → Logic track | Source | Mic |
 | --- | --- | --- |
-| 1 | DECCA L | Telefunken **[Borecki]** (model **[open]**) |
+| 1 | DECCA L | Telefunken M61 **[Borecki]** |
 | 2 | DECCA R | Telefunken |
 | 3 | DECCA C | Telefunken |
 | 4 | Cello | spot: inexpensive small-diaphragm condenser (LyxPro or similar) **[Borecki]** |
@@ -161,10 +161,11 @@ playback only) as the default.** "Everyone also hears the band" is an option des
   a box labeled **LINK A / OUTPUT** with two TRS jacks (**L/MONO**, **R**); **INPUT A** = USB.
 - Spec sheets: Input A is 2 × ¼" TRS with USB as an alternative; Input B is XLR; link
   outputs are 2 × ¼" TRS; the USB channel can't be linked. **[manual-adjacent: spec listings]**
-- In the Nov 2 photo the Y cable is plugged into the jacks under **LINK A / OUTPUT**. **If those
-  are outputs, nothing reaches the headphones.** The photo may predate the fix. **[Borecki]**
-  Which jacks are Input A's TRS inputs **[open]**. Read the panel on the unit, then write the
-  step with its exact labels.
+- **Resolved from the uncropped photo [seen]:** there are **two pairs** of ¼" jacks there. The
+  upper pair is labeled **LINK A OUTPUT**; the **lower** pair (**L/MONO**, **R**) is bracketed with
+  **INPUT A**, and that's where the Y cable's plugs are. So the Nov 2 patch was right, and the
+  front SELECT belongs on **A**. Still worth teaching: a plug one row up is an output, and silent.
+  What INPUT A does if a USB cable is also plugged in **[open]**.
 - Front panel: each pair of headphone jacks has a **VOLUME** and a **SELECT** button (**A (USB)**
   / **B**). **Each pair must be set to the input the L-20 actually feeds.** **[Borecki]**
 - The lesson generalizes: **find out which jack is the input before you plug in.**
@@ -209,15 +210,55 @@ playback only) as the default.** "Everyone also hears the band" is an option des
 - Existing tie-in: Big Picture lecture (2026-10-12) slide 17, "Studio and Multitrack Recording",
   Q16 (L-20 for multitrack sessions)
 
+### Paste-ready section (outline, Nov 9 lecture: a short intro)
+
+No Nov 9 lecture exists in the repo yet, so this is a section to paste into it. Headings are
+slides; bullets are fragments for the instructor to say in his own words. No blanks or refresher
+questions yet: those come from the final text.
+
+```markdown
+## Multitrack Recording on the L-20
+
+### One mic, one track
+- Film Recording Workshop, Nov 2: 14 mics → 14 tracks in Logic
+- mix later, not live
+- same rig: band, choir section, studio session
+- [L-20 Multitrack Recording Checklist](../../l20-multitrack-gig-checklist/)
+
+### The faders lie
+- not motorized
+- green LED = real level
+- FADER MODE / scene → caps stay put
+- move the fader through the LED, then it takes over
+
+### Recorded vs. heard
+- USB to Logic = before the fader → only GAIN changes the recording
+- channels 1–16 muted on purpose: live mics out of the headphones
+- headphones: Logic's click → USB 1-2 → 17/18 → MONITOR OUT A → HP12U
+
+### Two monitor paths
+- L-20 mix: no delay
+- through Logic: buffer 1024 ≈ 27 ms out, 53 ms round trip
+- same mic both ways = doubled / echo
+- rule: one path per sound
+
+### Before the musicians arrive
+- MacBook Pro + Telefunken M61s from the office, arranged ahead
+- input vs. output: the HP12U's back panel
+- test recording, every track, every time
+```
+
 ## ✅ Technical verification (open)
 
 - [ ] Muting a channel on the L-20 does not stop its USB send to Logic (mute ch 1, watch track 1's meter)
 - [ ] Fader pick-up behavior after FADER MODE switch and scene recall (manual says pick-up; confirm on the unit)
-- [ ] Which HP12U rear jacks are Input A's analog inputs; SELECT position per pair
+- [x] Which HP12U rear jacks are Input A's analog inputs (the lower pair; SELECT on A)
+- [ ] HP12U INPUT A with USB also connected
 - [ ] MONITOR OUT A PHONES/SPEAKER and MASTER switch positions and what each does
 - [ ] Logic: click routing; Auto Input Monitoring / I buttons during record
 - [ ] Can the L-20 record to SD while streaming to Logic? (conflicting)
-- [ ] Telefunken model; sub-snake channel counts; Vocal 1's mic
+- [x] Telefunken model: M61
+- [ ] Sub-snake channel counts; Vocal 1's mic
 - [ ] Where the L-20, HP12U cart, snakes and headphones are stored
 - [ ] Sample rate / bit depth for film sessions, where the project is saved, and how it reaches the composers
 
@@ -225,7 +266,7 @@ playback only) as the default.** "Everyone also hears the band" is an option des
 
 Planned for `content/activities/media/l20-multitrack/` when the checklist is built, gear
 only: the L-20 top panel; Logic Settings › Audio › Devices; the Logic mixer; the Decca mics
-from behind (no people); the sub-snakes; the HP12U front, back panel and SELECT close-up; the
+seen from the ensemble's side (no people); the sub-snakes; the HP12U front, back panel and SELECT close-up; the
 L-20 MASTER OUT/MONITOR OUT close-up. **Not used, or cropped/blurred:** the two room overviews
 and the desk shot (students in frame; the desk shot also shows personal keys, wallet and phone).
 Two shots have students in the background (HP12U back, MONITOR OUT close-up), so blur them.
