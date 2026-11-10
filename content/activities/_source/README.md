@@ -30,6 +30,7 @@ a file after editing the doc.
 | X32 Compact | ✅ `x32compact.txt` | not yet |
 | Mic Stand Yoga | ✅ `mic-stands.txt` (slide text) | not yet |
 | BH 209 cameras and audio | ⏳ intake notes in `bh209-cameras.md` | part of `cameras.md` |
+| L-20 multitrack recording (Film Recording Workshop) | ⏳ intake notes in `l20-multitrack-recording.md` | not yet |
 
 ## BH 209 is waiting on its documentation
 
