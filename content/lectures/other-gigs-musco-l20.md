@@ -64,8 +64,8 @@ The **X32** is at FOH.
 
 | | The chat app | The coding agent |
 |---|---|---|
-| Anthropic | Claude | **Claude Code** |
-| OpenAI | ChatGPT | **Codex** |
+| Anthropic | Claude | **==Claude Code==** |
+| OpenAI | ChatGPT | **==Codex==** |
 
 - The chat app: you talk, it answers, **you** copy things where they go
 - The ==coding agent==: it reads the ==repo==, edits the files, runs the ==tests==, commits
@@ -86,7 +86,7 @@ The **X32** is at FOH.
 - Every wireless channel at the ==same== gain (30 dB)
 - [Vocal Jazz Gig Checklist](../../vocal-jazz-gig-checklist/)
 
-### When it's a recording session
+### Vocal Jazz: Recording Session Variation
 
 - Add **two ==condensers== on the piano**: left and right
 - Add a **stereo pair of ==room mics==**
@@ -97,15 +97,25 @@ The **X32** is at FOH.
 > 🧑‍🏫 Exact inputs (piano L/R on 25/26, room pair on 27/28?) not confirmed yet. The Vocal Jazz
 > checklist's optional Dante → Logic step covers the recording half.
 
+### Dante considerations
+
+- The X32's ==routing== has to be right: **ROUTING → CARD**, every block on **Local**, out the
+  **X-DANTE** card
+- Dante Controller: the X32 → the FOH Mac mini, ==one-to-one==
+- Logic's **Input Device** = **Dante Virtual Soundcard**, set **before** you make the tracks
+- The ==inputs== in Logic have to be right too: a whole bunch of tracks, Input 1 with
+  **==Ascending==** on, so track n gets input n
+- ==Record enable== every track, then a short test: every track has its own source
+
 ## 3. Other Salmon Gigs: Mariachi and CME
 
 ### Same hall, three gigs
 
 | | Vocal Jazz | Mariachi | CME |
 |---|---|---|---|
-| Mics | 13 wireless | ==9== wireless (no trumpet mics) | 5 wireless + band on a sub snake |
-| House | The hall's speakers | The hall's speakers | Its own, ==downstage== |
-| Wedges | 3 wedges, 1 mix | **==6== wedges, 6 mixes** | 3 wedges, 3 mixes |
+| ==Mics== | 13 wireless | ==9== wireless (no trumpet mics) | 5 wireless + band on a sub snake |
+| ==House== | The hall's speakers | The hall's speakers | Its own, ==downstage== |
+| ==Wedges== | 3 wedges, 1 mix | **==6== wedges, 6 mixes** | 3 wedges, 3 mixes |
 
 - Same X32, same S32, same default routing. What changes: the ==outputs==
 
@@ -174,7 +184,7 @@ CL5 MIDI ─► USB MIDI interface ─► USB-C dongle ─► MacBook ─► Log
 
 ### Dante Controller: the whole building
 
-- One Dante network carries the **live show**: the mains, every monitor mix
+- One ==Dante== network carries the **==live show==**: the ==mains==, every ==monitor== mix
 - Click only the receiver row with **your own** computer's ==name==
 - ==Filter== Receivers first, so nothing else is on screen
 - October: the room's Mac Pro wouldn't talk to Dante. The department MacBook recorded the
@@ -182,8 +192,8 @@ CL5 MIDI ─► USB MIDI interface ─► USB-C dongle ─► MacBook ─► Log
 
 ### One dongle, two jobs
 
-- A **USB-C dongle** with both **==Ethernet==** and **==USB-A==**
-- Ethernet: the **spare** yellow cable behind the desk → ==Dante==. Never the CL5's or the Mac Pro's
+- A **==USB-C== dongle** with both **==Ethernet==** and **==USB-A==**
+- Ethernet: the **==spare==** yellow cable behind the desk → ==Dante==. Never the CL5's or the Mac Pro's
 - USB-A: the **USB ==MIDI== interface** → the CL5's 5-pin MIDI port
 - DVS warns **480 Mbps** (USB 2 speed): click OK. It recorded 40 channels fine. The ==test
   recording== is what proves it
@@ -196,6 +206,9 @@ CL5 MIDI ─► USB MIDI interface ─► USB-C dongle ─► MacBook ─► Log
 - It took real time to set up: practice it **before** the concert
 
 ### CL5 MIDI setup
+
+**🤖 Use AI to figure out this crazy MIDI stuff!!!** Paste the CL5's MIDI table and Logic's Learn
+window into a chat and ask it to explain them.
 
 - On the CL5: **SETUP › ==MIDI/GPI==**
 - It sends two numbers per fader, **Fader H** and **Fader L**. Turn **every Fader L ==off==**
@@ -243,6 +256,14 @@ CL5 MIDI ─► USB MIDI interface ─► USB-C dongle ─► MacBook ─► Log
 - Mix ==later==, not live
 - Same rig: a band, a choir section, a studio session
 - ==48V== on all 16 inputs: every mic is a condenser, and phantom switches in banks of four
+
+### Recording in Logic
+
+- Logic's **Input Device** and **Output Device**: **ZOOM ==L-20== Driver**
+- Tracks 1–14 on **In 1–In 14**, named from the input list: input n → track n
+- **==Record enable== every track** (the R button). A track that isn't armed records nothing
+- Every track's **I** (input monitoring) ==off==: nobody hears the band through Logic
+- ==Save== with the date in the name, and after every take
 - [L-20 Multitrack Recording Checklist](../../l20-multitrack-gig-checklist/)
 
 ### The faders lie
