@@ -4,11 +4,8 @@
 > [L-20 Multitrack](../../l20-multitrack-gig-checklist/) checklists, the
 > [CL3 Dante Stems](../../cl3-dante-stems/) activity, Mixer Lab, and the previous lectures.
 
-> 🧑‍🏫 **Outline, not the lecture.** Headings are slides; bullets are fragments for you to say and
-> rewrite in your own voice. Reference rows (tables, signal chains) are close to final where a
-> checklist already confirms them. Anything marked **(confirm)** is from your message only, or not
-> in any checklist yet. No refresher questions yet: they come last, from the final text. Quiz 8's
-> skills get written from the final text too.
+> 🧑‍🏫 Every gear fact here comes from a checklist on this site; the open ones are flagged in a note
+> on their slide. Refresher questions and Quiz 8 come after class, from this text.
 
 ## 📣 Announcements
 
@@ -63,10 +60,6 @@ The **X32** is at FOH.
 - ==Markdown==: the shorthand people write. Every checklist here
 - ==HTML==: what the browser reads, every part in ==tags==
 
-### One more thing: [your topic]
-
-> 🧑‍🏫 Your message said "mention one other thing" before the Claude Code slide. Fill in or delete.
-
 ### Claude Code vs. Claude (and Codex vs. ChatGPT)
 
 | | The chat app | The coding agent |
@@ -76,14 +69,13 @@ The **X32** is at FOH.
 
 - The chat app: you talk, it answers, **you** copy things where they go
 - The ==coding agent==: it reads the ==repo==, edits the files, runs the ==tests==, commits
-- [your take: when each one is the right tool]
 
 ### A cloud session
 
 - Claude Code in a ==cloud session==: it runs on a computer in the cloud, not yours
 - It edits the ==GitHub== repo directly, from your ==phone==
-- That's how this site is built: [your example, e.g. the mariachi checklist from photos after the rehearsal]
-- [what students will do with it, if anything, before the final]
+- That's how this site is built: photos and a dictated walkthrough from the gig → a checklist
+- Today's Mariachi, Musco multitrack, and L-20 checklists were all made that way
 
 ## 2. Vocal Jazz: A Reminder
 
@@ -117,10 +109,6 @@ The **X32** is at FOH.
 
 - Same X32, same S32, same default routing. What changes: the ==outputs==
 
-> 🧑‍🏫 Your message lists "mariachi and CME" as the two other gigs. CME was most of last week's
-> section 3, so this slide treats it as the comparison point and spends the time on Mariachi.
-> Tell me if you meant a different second gig (Music at Noon?).
-
 ### Mariachi: what's the same
 
 - The hall's ==speakers== are the house, like Vocal Jazz
@@ -142,7 +130,7 @@ The **X32** is at FOH.
 - It happens at most gigs. A ==spare== comes in on **its own** channel
 - Don't re-patch the receivers: set up the spare's ==channel== like the dead one (gain, low cut, sends)
 - Sends stay ==pre-fader==
-- [your story from the Nov 6 dress rehearsal: the red handheld]
+- At the Nov 6 dress rehearsal, the **red** handheld died at soundcheck
 
 ### CME: the comparison
 
@@ -161,15 +149,13 @@ The **X32** is at FOH.
 
 ## 4. Musco: Big Band and Jazz Combo
 
-> 🧑‍🏫 From the [Musco Multitrack Gig Checklist](../../musco-multitrack-gig-checklist/) (Oct 29–30
-> setup). The CL5 ↔ CL3 slide treats the CL3 as the practice console; no live link between the two
-> rooms is documented. Say so if there is one.
-
 ### Not a normal Musco gig
 
 - Video: the normal ==multicam== crew in the booth ([Musco Gig Checklist](../../musco-gig-checklist/))
-- Audio: a live ==multitrack==, **40 tracks** in Logic, in the ==basement==
-- About two concerts a year. Jazz Combo uses the **same** input list and mics
+- Audio: a live ==multitrack==, **40 tracks** in Logic, in the ==basement== recording room
+- About two concerts a year. Jazz Combo uses the **same** input list and mics: write down which
+  player sits in which big band ==chair==
+- [Musco Multitrack Gig Checklist](../../musco-multitrack-gig-checklist/)
 
 ### The signal flow
 
@@ -177,10 +163,12 @@ The **X32** is at FOH.
 Stage mics ─► sub snakes ─► DiGiCo (upstairs) ─► Dante 01–38
 ORTF room pair ─► Booth01VSubMix ─► Dante 39–40
 
-Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
+Basement: the CL5 · the MacBook Pro (DVS ─► Logic)
+
+CL5 MIDI ─► USB MIDI interface ─► USB-C dongle ─► MacBook ─► Logic automation
 ```
 
-- You don't patch anything on stage: the ==DiGiCo== puts every channel on ==Dante==
+- Nothing to patch on stage: the ==DiGiCo== puts every channel on ==Dante==
 - In the basement you ==subscribe== to them: channel n → Logic track n
 - Logic records through **Dante Virtual Soundcard** (==DVS==)
 
@@ -189,14 +177,56 @@ Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
 - One Dante network carries the **live show**: the mains, every monitor mix
 - Click only the receiver row with **your own** computer's ==name==
 - ==Filter== Receivers first, so nothing else is on screen
-- [your story: the Mac Pro that wouldn't talk to Dante in October]
+- October: the room's Mac Pro wouldn't talk to Dante. The department MacBook recorded the
+  whole concert instead. Don't debug during the gig
+
+### One dongle, two jobs
+
+- A **USB-C dongle** with both **==Ethernet==** and **==USB-A==**
+- Ethernet: the **spare** yellow cable behind the desk → ==Dante==. Never the CL5's or the Mac Pro's
+- USB-A: the **USB ==MIDI== interface** → the CL5's 5-pin MIDI port
+- DVS warns **480 Mbps** (USB 2 speed): click OK. It recorded 40 channels fine. The ==test
+  recording== is what proves it
 
 ### The CL5 writes the mix
 
-- The **==CL5==** in the basement mixes the band live
-- Its fader moves go to Logic as ==MIDI== → recorded as ==automation==
-- Automation on **==Latch==** during the show, back to **==Read==** after
-- So the basement mix is a real mix you can use later
+- New this semester: the **==CL5==**'s fader moves go to Logic as **MIDI**
+- Logic records them as ==automation== on each track
+- So the basement mix is a **real mix** of the multitrack, ready to use later
+- It took real time to set up: practice it **before** the concert
+
+### CL5 MIDI setup
+
+- On the CL5: **SETUP › ==MIDI/GPI==**
+- It sends two numbers per fader, **Fader H** and **Fader L**. Turn **every Fader L ==off==**
+- Controller numbers run **1–31** for channels 1–31, then jump to **==64==** for 32–40
+- In Logic: move a fader, **⌘L** (==Learn==), move the CL5's fader. Fader Bank 1, not Selected
+- Learn fader 1 and fader 31; Logic fills in between. Then the block from 64
+
+> 🧑‍🏫 Why 31 → 64 is unverified. Likely: MIDI reserves controllers 32–63 as the fine half of
+> 0–31, which is what Fader L sends.
+
+### Automation modes: Latch, then Read
+
+| Mode | What it does |
+|---|---|
+| **==Read==** | Plays the automation back. Writes nothing |
+| **Touch** | Writes while you're moving the fader, then goes back to what was there |
+| **==Latch==** | Writes from the first move, and **holds** the last value until you stop |
+| **Write** | Overwrites everything from the start, moving or not |
+
+- During the concert: **every track on ==Latch==**. Without it, the CL5's moves aren't written
+- After: every track back to **Read**, so nothing gets written over by accident
+
+> 🧑‍🏫 Latch during, Read after is from the Oct 29–30 setup. The rest of the table is how Logic's
+> modes work in general. Why Latch and not Touch: the CL5 sends fader values, not "my hand let go",
+> so a mix written in Latch stays where the CL5 left it.
+
+### Save it like a gig
+
+- Save **before** anything is recorded: date and ensemble, e.g. `261029 Jazz Combo Big Band`
+- Organize as a **==Folder==**, not a Package: the audio files show up in Finder
+- Copied to a second drive **before** the MacBook leaves the room
 
 ### Practice upstairs: the CL3 in OH 207
 
@@ -209,8 +239,10 @@ Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
 ### One mic, one track
 
 - Film Recording Workshop, Nov 2: 14 mics → 14 ==tracks== in Logic
+- A **==Decca tree==** of three Telefunken M61s, plus small-diaphragm spot mics
 - Mix ==later==, not live
 - Same rig: a band, a choir section, a studio session
+- ==48V== on all 16 inputs: every mic is a condenser, and phantom switches in banks of four
 - [L-20 Multitrack Recording Checklist](../../l20-multitrack-gig-checklist/)
 
 ### The faders lie
@@ -226,9 +258,8 @@ Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
 - Channels 1–16 ==muted== on purpose: live mics out of the headphones
 - Headphones: Logic's ==click== → USB 1-2 → 17/18 → MONITOR OUT A → the HP12U
 
-> 🧑‍🏫 The checklist still lists "a mute doesn't stop the USB feed" as open (confirmed for SD in the
-> manual; the Nov 2 session recorded fine with 1–16 muted). Teach it as "what happened Nov 2" until
-> someone mutes CH 1 and watches track 1.
+> 🧑‍🏫 "A mute doesn't stop the USB feed" is what happened Nov 2 (it recorded fine with 1–16
+> muted); the manual only says so for the SD card. Still open on the checklist.
 
 ### Two monitor paths
 
@@ -243,14 +274,26 @@ Basement receivers: the CL5 · the MacBook Pro (DVS ─► Logic)
 - Input or output? The HP12U's back panel: **INPUT A** is the lower pair
 - A ==test recording==: every track, every time
 
+### Mixer Lab: Film Recording Workshop
+
+Five scenarios on a virtual L-20, each one a real mistake from the checklist:
+
+- [No click in the headphones](https://adamborecki.github.io/mixer-lab/#/l20-rec-click)
+- [Someone fixed the mutes](https://adamborecki.github.io/mixer-lab/#/l20-rec-mutes)
+- [The clarinet is tiny on its track](https://adamborecki.github.io/mixer-lab/#/l20-rec-gain)
+- [The fader that lies](https://adamborecki.github.io/mixer-lab/#/l20-rec-fader-lies)
+- [Tracks 13 and 14 are flat](https://adamborecki.github.io/mixer-lab/#/l20-rec-48v)
+
 ## 🗝️ Key terms
 
 **GitHub Pages** · **Markdown** · **HTML** · **Claude Code** · **cloud session** · **room mics** ·
 **AES50** · **Dante** · **active wedge** · **spare handheld** · **downstage** · **CL5** · **CL3** ·
-**multitrack** · **pre-fader** · **latency** · **test recording**
+**DVS** · **MIDI** · **automation** · **Latch** · **Read** · **multitrack** · **Decca tree** ·
+**pre-fader** · **latency** · **test recording**
 
 ## 💭 Before you leave
 
 - What's one thing a coding agent can do that the chat app can't?
 - Mariachi and Vocal Jazz both use the hall's speakers. What's the biggest difference at the wedges?
+- Why is every track on Latch during the Big Band concert, and back on Read after?
 - On the L-20, which control changes what's recorded, and which only changes what's heard?
