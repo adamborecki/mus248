@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "quiz_number": 7,
+  "quiz_number": 8,
   "quizzes": {
     "1": { "label": "Quiz 1", "version": "2026-09-14", "access_code": "phantompower" },
     "2": { "label": "Quiz 2", "version": "2026-09-21", "access_code": "exposuretriangle", "expected_minutes": 6, "window_minutes": 9 },
@@ -15,7 +15,9 @@
            "new_skills": ["di_box", "di_needed", "stage_box_snake", "channel_order", "channel_labels", "gain_vs_fader",
                           "line_check", "live_reset"] },
     "7": { "label": "Quiz 7", "version": "2026-11-02", "opens": "2026-11-02T19:00:00-08:00", "access_code": "aes50fromX32toS32", "expected_minutes": 6, "window_minutes": 9,
-           "new_skills": ["sgk_kit", "sgk_audio", "sgk_cameras", "line_check"] }
+           "new_skills": ["sgk_kit", "sgk_audio", "sgk_cameras", "line_check"] },
+    "8": { "label": "Quiz 8", "version": "2026-11-09", "opens": "2026-11-09T19:00:00-08:00", "access_code": "cl3inoh207cl5inmuscobasement", "expected_minutes": 6, "window_minutes": 9,
+           "new_skills": ["coding_agent", "vj_recording", "multitrack_logic", "salmon_gig_compare", "mariachi_wedges", "wireless_spare", "musco_multitrack", "dante_shared_network", "cl5_midi", "automation_modes", "l20_faders", "l20_recorded_heard", "monitor_paths", "salmon_aes50", "salmon_mains", "salmon_wedges", "gain_chain", "salmon_gains", "wedge_check", "clone", "account_vs_pages"] }
   },
   "targets": {
     "graded_questions": 12
@@ -173,14 +175,14 @@
     "branch_workflow": "inactive",
     "public_site_privacy": "inactive",
 
-    "salmon_aes50": "inactive",
-    "salmon_mains": "inactive",
-    "salmon_wedges": "inactive",
-    "gain_chain": "inactive",
-    "salmon_gains": "inactive",
-    "wedge_check": "inactive",
-    "clone": "inactive",
-    "account_vs_pages": "inactive",
+    "salmon_aes50": "practice",
+    "salmon_mains": "practice",
+    "salmon_wedges": "practice",
+    "gain_chain": "practice",
+    "salmon_gains": "practice",
+    "wedge_check": "practice",
+    "clone": "practice",
+    "account_vs_pages": "practice",
 
     "di_box": "practice",
     "di_needed": "practice",
@@ -189,6 +191,19 @@
     "channel_labels": "practice",
     "gain_vs_fader": "practice",
     "line_check": "practice",
-    "live_reset": "practice"
+    "live_reset": "practice",
+    "coding_agent": "practice",
+    "vj_recording": "practice",
+    "multitrack_logic": "practice",
+    "salmon_gig_compare": "practice",
+    "mariachi_wedges": "practice",
+    "wireless_spare": "practice",
+    "musco_multitrack": "practice",
+    "dante_shared_network": "practice",
+    "cl5_midi": "practice",
+    "automation_modes": "practice",
+    "l20_faders": "practice",
+    "l20_recorded_heard": "practice",
+    "monitor_paths": "practice"
   }
 }

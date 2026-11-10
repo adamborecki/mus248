@@ -130,7 +130,20 @@
     "salmon_gains": "Salmon: gain rules for Vocal Jazz and CME",
     "wedge_check": "Salmon: test in order, signal and level",
     "clone": "Clones",
-    "account_vs_pages": "Your GitHub account vs. your Pages site"
+    "account_vs_pages": "Your GitHub account vs. your Pages site",
+    "coding_agent": "Coding agents and cloud sessions",
+    "vj_recording": "Vocal Jazz: the recording session variation",
+    "multitrack_logic": "Multitrack in Logic: inputs in order, every track armed",
+    "salmon_gig_compare": "Salmon gigs: same rig, different outputs",
+    "mariachi_wedges": "Mariachi: six wedges, six mixes",
+    "wireless_spare": "When a wireless handheld dies",
+    "musco_multitrack": "Musco Big Band: the basement multitrack",
+    "dante_shared_network": "Dante: one network, touch only your own receiver",
+    "cl5_midi": "The CL5 writes the mix: faders to MIDI",
+    "automation_modes": "Automation modes: Latch and Read",
+    "l20_faders": "L-20: the faders lie",
+    "l20_recorded_heard": "L-20: what’s recorded vs. what’s heard",
+    "monitor_paths": "One monitor path per sound"
   },
   "questions": [
     {
@@ -9031,6 +9044,780 @@
       "explanation": "The main pair is on 1–2 with Dual Channel copies on 5–6. Inputs 3–4 and 7–8 are for boundary mics and/or a board feed.",
       "verified": false,
       "draft": true
+    },
+    {
+      "id": "VC_AGENT_001",
+      "skill": "coding_agent",
+      "topic": "vibecoding",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which of these is a coding agent rather than a chat app?",
+      "choices": [
+        "Claude Code",
+        "ChatGPT",
+        "Claude (the chat app)",
+        "A Markdown file"
+      ],
+      "answer_index": 0,
+      "explanation": "Claude Code (Anthropic) and Codex (OpenAI) are coding agents; Claude and ChatGPT are the chat apps.",
+      "verified": false
+    },
+    {
+      "id": "VC_AGENT_002",
+      "skill": "coding_agent",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does a coding agent do that a chat app leaves to you?",
+      "choices": [
+        "Edits the repo’s files, runs the tests, and commits",
+        "Answers questions in plain language",
+        "Explains what a piece of code does",
+        "Writes a first draft you copy somewhere"
+      ],
+      "answer_index": 0,
+      "explanation": "With a chat app, you copy its answer where it goes. A coding agent works in the repo itself.",
+      "verified": false
+    },
+    {
+      "id": "VC_AGENT_003",
+      "skill": "coding_agent",
+      "topic": "vibecoding",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What is a cloud session?",
+      "choices": [
+        "Claude Code running on a computer in the cloud, editing the GitHub repo, even from your phone",
+        "A chat saved to your Google Drive",
+        "A website published with GitHub Pages",
+        "A backup of your laptop’s files"
+      ],
+      "answer_index": 0,
+      "explanation": "A cloud session runs the coding agent on a cloud computer, so you can change a repo from a phone.",
+      "verified": false
+    },
+    {
+      "id": "SAL_VJREC_001",
+      "skill": "vj_recording",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "When Vocal Jazz is a recording session, which mics get added?",
+      "choices": [
+        "Two condensers on the piano and a stereo pair of room mics",
+        "Three more wireless handhelds",
+        "A kick and snare mic",
+        "A boundary mic on each wedge"
+      ],
+      "answer_index": 0,
+      "explanation": "Piano left and right, plus a stereo pair of room mics: pencil condensers with 48V on.",
+      "verified": false
+    },
+    {
+      "id": "SAL_VJREC_002",
+      "skill": "vj_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the Vocal Jazz recording variation, where do the piano and room mics plug in?",
+      "choices": [
+        "The S32 stage box",
+        "The X32’s rear panel, with the wireless receivers",
+        "The FOH Mac mini",
+        "The Mix5 in the hall’s mains rack"
+      ],
+      "answer_index": 0,
+      "explanation": "The added mics go into the S32. From there: AES50 → the X32 → Dante → Logic.",
+      "verified": false
+    },
+    {
+      "id": "SAL_VJREC_003",
+      "skill": "vj_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What path does a Vocal Jazz recording take from the S32 to Logic?",
+      "choices": [
+        "S32 → AES50 → X32 → Dante → Logic on the FOH Mac mini",
+        "S32 → USB → Logic",
+        "S32 → Mix5 → Logic",
+        "S32 → wedges → Logic"
+      ],
+      "answer_index": 0,
+      "explanation": "The stage box talks to the X32 over AES50; the X32’s Dante card sends every channel to Logic.",
+      "verified": false
+    },
+    {
+      "id": "SAL_VJREC_004",
+      "skill": "vj_recording",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The pencil condensers on the piano show no signal at all. What’s the first thing to check?",
+      "choices": [
+        "48V phantom power on their channels",
+        "The wedge mix",
+        "The Mix5’s LEVEL",
+        "The channels’ pan"
+      ],
+      "answer_index": 0,
+      "explanation": "Condensers need 48V. No phantom, no signal.",
+      "verified": false
+    },
+    {
+      "id": "MT_LOGIC_001",
+      "skill": "multitrack_logic",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You make 40 new tracks in Logic for a multitrack. How do you give them inputs 1 to 40 in order?",
+      "choices": [
+        "Start at Input 1 with Ascending on",
+        "Set every track to Input 1",
+        "Pick each input by hand after recording",
+        "Leave the inputs on their defaults"
+      ],
+      "answer_index": 0,
+      "explanation": "Ascending gives track n input n, so the tracks match the input list.",
+      "verified": false
+    },
+    {
+      "id": "MT_LOGIC_002",
+      "skill": "multitrack_logic",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You press Record and one track records nothing, though its meter moves. What’s the likely cause?",
+      "choices": [
+        "That track wasn’t record enabled",
+        "Its input was set with Ascending",
+        "Its fader was too low",
+        "It was panned center"
+      ],
+      "answer_index": 0,
+      "explanation": "Only armed tracks record. Record enable every track, then run a test recording.",
+      "verified": false
+    },
+    {
+      "id": "MT_LOGIC_003",
+      "skill": "multitrack_logic",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "For a Dante multitrack from a mixer, which two settings both have to be right?",
+      "choices": [
+        "The mixer’s routing to Dante, and each track’s input in Logic",
+        "The wedge mixes and the main fader",
+        "The pan and the EQ",
+        "The buffer size and the tempo"
+      ],
+      "answer_index": 0,
+      "explanation": "The mixer decides what goes onto Dante; Logic’s inputs decide which track gets which channel.",
+      "verified": false
+    },
+    {
+      "id": "MT_LOGIC_004",
+      "skill": "multitrack_logic",
+      "topic": "audio_fundamentals",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In a 14-track test recording, the cello is on the Viola track and the viola on the Cello track. Where do you look?",
+      "choices": [
+        "The tracks’ inputs in Logic (or which XLR is in which input)",
+        "The cello’s GAIN",
+        "48V on that bank",
+        "The headphone mix"
+      ],
+      "answer_index": 0,
+      "explanation": "Input n should feed track n. Swapped sources mean a swapped input or a swapped cable, not a level problem.",
+      "verified": false
+    },
+    {
+      "id": "SAL_CMP_001",
+      "skill": "salmon_gig_compare",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Vocal Jazz, Mariachi, and CME all use the same X32, S32, and default routing. What mostly changes between them?",
+      "choices": [
+        "The outputs: the house speakers and the wedges",
+        "The console",
+        "The input routing",
+        "Which room the gig is in"
+      ],
+      "answer_index": 0,
+      "explanation": "Same rig. What changes is where the mixes go: the house and the wedges.",
+      "verified": false
+    },
+    {
+      "id": "SAL_CMP_002",
+      "skill": "salmon_gig_compare",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which Salmon gig brings its own speakers downstage instead of using the hall’s?",
+      "choices": [
+        "CME",
+        "Mariachi",
+        "Vocal Jazz",
+        "All three"
+      ],
+      "answer_index": 0,
+      "explanation": "CME’s own mains sit downstage so every open mic is behind them. Vocal Jazz and Mariachi use the hall’s speakers.",
+      "verified": false
+    },
+    {
+      "id": "SAL_CMP_003",
+      "skill": "salmon_gig_compare",
+      "topic": "salmon",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The night after CME, Mariachi’s X32 MAIN meters move but the hall’s speakers are silent. What’s the likely cause?",
+      "choices": [
+        "CME left the hall’s speakers turned down at the Mix5",
+        "A wireless receiver is off",
+        "The wedges are on the wrong mixes",
+        "The S32 lost power"
+      ],
+      "answer_index": 0,
+      "explanation": "CME turns the hall’s speakers down at the Mix5, and the next gig has to turn them back up.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAR_001",
+      "skill": "mariachi_wedges",
+      "topic": "salmon",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How many wedges and mixes does Mariachi use?",
+      "choices": [
+        "Six wedges, six mixes",
+        "Three wedges, one mix",
+        "Three wedges, three mixes",
+        "Six wedges, one mix"
+      ],
+      "answer_index": 0,
+      "explanation": "One mix per wedge, no daisy chain. Patching and checking them takes extra time: arrive early.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAR_002",
+      "skill": "mariachi_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At Mariachi, which output carries MIX 5?",
+      "choices": [
+        "Output 5",
+        "Output 1",
+        "Output 15",
+        "Whichever output is free"
+      ],
+      "answer_index": 0,
+      "explanation": "MIX n on output n, so nobody has to guess which knob is whose.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAR_003",
+      "skill": "mariachi_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A passive wedge only has a 1/4\" jack. Which amp in Salmon’s rack can drive it?",
+      "choices": [
+        "The Crown: its outputs are 1/4\"",
+        "A KM750: its outputs are speakON",
+        "The S32, straight from an output",
+        "The Mix5"
+      ],
+      "answer_index": 0,
+      "explanation": "Look at each wedge’s jack before you carry a cable to it.",
+      "verified": false
+    },
+    {
+      "id": "SAL_MAR_004",
+      "skill": "mariachi_wedges",
+      "topic": "salmon",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At Mariachi, what matters most if time is short?",
+      "choices": [
+        "The two vocal mics, in the house and in every wedge",
+        "The trumpets",
+        "A mic on every guitar",
+        "The room mics"
+      ],
+      "answer_index": 0,
+      "explanation": "Vocals first, then violins, then guitarrón, vihuela, and guitarra. The trumpets get no mic.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_SPARE_001",
+      "skill": "wireless_spare",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A handheld dies and the player gets a spare, which comes in on its own channel. What do you do?",
+      "choices": [
+        "Set up the spare’s channel like the dead one: gain, low cut, sends",
+        "Swap the receivers’ XLRs so the spare lands on the old channel",
+        "Turn up the dead channel’s GAIN",
+        "Move the spare to the house only"
+      ],
+      "answer_index": 0,
+      "explanation": "Don’t re-patch the receivers. Set up the spare’s own channel to match.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_SPARE_002",
+      "skill": "wireless_spare",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You set up a spare handheld’s sends to the wedges halfway through soundcheck. Pre-fader or post-fader?",
+      "choices": [
+        "Pre-fader, like the others",
+        "Post-fader, so FOH controls the wedges",
+        "Either: it makes no difference",
+        "No sends: spares are house-only"
+      ],
+      "answer_index": 0,
+      "explanation": "Pre-fader sends keep the wedges steady while FOH rides the house faders.",
+      "verified": false
+    },
+    {
+      "id": "LIVE_SPARE_003",
+      "skill": "wireless_spare",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How often does a wireless handheld die at a gig?",
+      "choices": [
+        "It happens at most gigs: plan for a spare",
+        "Almost never",
+        "Only with rechargeable batteries",
+        "Only outdoors"
+      ],
+      "answer_index": 0,
+      "explanation": "Have spares and fresh batteries ready; at the mariachi dress rehearsal one died at soundcheck.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MT_001",
+      "skill": "musco_multitrack",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "At a Big Band or Jazz Combo concert at Musco, where is the multitrack recorded?",
+      "choices": [
+        "In the basement recording room",
+        "In the video booth",
+        "On stage",
+        "On the H4n"
+      ],
+      "answer_index": 0,
+      "explanation": "40 tracks in Logic, in the basement, while the video crew works as normal in the booth.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MT_002",
+      "skill": "musco_multitrack",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What puts the Musco stage mics onto Dante?",
+      "choices": [
+        "The DiGiCo upstairs",
+        "The CL5 in the basement",
+        "The MacBook Pro",
+        "The ATEM switcher"
+      ],
+      "answer_index": 0,
+      "explanation": "Nothing gets patched on stage: the DiGiCo puts every channel on Dante, and the basement subscribes.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MT_003",
+      "skill": "musco_multitrack",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "The Jazz Combo plays into the Big Band’s mics. What do you need before they start?",
+      "choices": [
+        "A map of which player sits in which big band chair",
+        "A new input list and new mics",
+        "A second Logic project with new track names",
+        "Nothing: the tracks are named for the players"
+      ],
+      "answer_index": 0,
+      "explanation": "Same list, same mics. Without a chair map, nobody can tell later which track is which player.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MT_004",
+      "skill": "musco_multitrack",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "How do you save the Logic project for the Musco multitrack?",
+      "choices": [
+        "As a Folder, so the audio files show up in Finder",
+        "As a Package, so it’s one file",
+        "Only on the Desktop",
+        "After the concert"
+      ],
+      "answer_index": 0,
+      "explanation": "Save before recording, organized as a Folder, and copy it to a second drive before the laptop leaves.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_NET_001",
+      "skill": "dante_shared_network",
+      "topic": "dante",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What does Musco’s Dante network carry?",
+      "choices": [
+        "The whole live show: stage mics, mains, and monitor mixes",
+        "Only the recording",
+        "Only the video",
+        "Only the CL5’s inputs"
+      ],
+      "answer_index": 0,
+      "explanation": "One network for the building. A click in the wrong place can change what the audience and the band hear.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_NET_002",
+      "skill": "dante_shared_network",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In Dante Controller in the Musco basement, which receiver rows may you click?",
+      "choices": [
+        "Only your own computer’s row",
+        "Any row that’s missing a channel",
+        "The CL5’s rows",
+        "Any row, as long as you’re quick"
+      ],
+      "answer_index": 0,
+      "explanation": "Filter Receivers to your computer’s name first, so nothing else is even on screen.",
+      "verified": false
+    },
+    {
+      "id": "DANTE_NET_003",
+      "skill": "dante_shared_network",
+      "topic": "dante",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Before clicking anything in Dante Controller at Musco, what do you do first?",
+      "choices": [
+        "Filter Receivers to your own computer’s name",
+        "Clear every subscription",
+        "Restart the CL5",
+        "Unplug the other yellow cables"
+      ],
+      "answer_index": 0,
+      "explanation": "Filtering leaves only your receiver on screen. Never unplug the CL5’s or the Mac Pro’s cable.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MIDI_001",
+      "skill": "cl5_midi",
+      "topic": "gigs",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What happens to the CL5’s fader moves during a Big Band recording?",
+      "choices": [
+        "They go to Logic as MIDI and are recorded as automation",
+        "They change the stage monitors",
+        "Nothing: the CL5 is only for listening",
+        "They change the DiGiCo’s gains"
+      ],
+      "answer_index": 0,
+      "explanation": "So the basement mix becomes a real mix of the multitrack.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MIDI_002",
+      "skill": "cl5_midi",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why does the Musco laptop need a USB-C dongle with both Ethernet and USB-A?",
+      "choices": [
+        "Ethernet for Dante, USB-A for the MIDI interface",
+        "Ethernet for the internet, USB-A for a backup drive",
+        "Both carry Dante",
+        "Both carry MIDI"
+      ],
+      "answer_index": 0,
+      "explanation": "One dongle, two jobs: Dante on the spare yellow cable, MIDI from the CL5.",
+      "verified": false
+    },
+    {
+      "id": "MUSCO_MIDI_003",
+      "skill": "cl5_midi",
+      "topic": "gigs",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "In the CL5’s MIDI/GPI setup, what do you turn off?",
+      "choices": [
+        "Every Fader L",
+        "Every Fader H",
+        "The MIDI channel",
+        "The faders’ ON keys"
+      ],
+      "answer_index": 0,
+      "explanation": "The CL5 sends two numbers per fader. Use Fader H only.",
+      "verified": false
+    },
+    {
+      "id": "DAW_AUTO_001",
+      "skill": "automation_modes",
+      "topic": "audio_fundamentals",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which automation mode plays automation back without writing anything?",
+      "choices": [
+        "Read",
+        "Latch",
+        "Touch",
+        "Write"
+      ],
+      "answer_index": 0,
+      "explanation": "Read plays it back. Put tracks back on Read after a recording, so nothing gets written over.",
+      "verified": false
+    },
+    {
+      "id": "DAW_AUTO_002",
+      "skill": "automation_modes",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "During the Musco concert, which automation mode is every track on?",
+      "choices": [
+        "Latch",
+        "Read",
+        "Off",
+        "Write"
+      ],
+      "answer_index": 0,
+      "explanation": "Latch writes from the first move and holds the value, so the CL5’s mix is recorded.",
+      "verified": false
+    },
+    {
+      "id": "DAW_AUTO_003",
+      "skill": "automation_modes",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Which automation mode writes while you move a fader, then goes back to what was there?",
+      "choices": [
+        "Touch",
+        "Latch",
+        "Read",
+        "Write"
+      ],
+      "answer_index": 0,
+      "explanation": "Touch returns to the old automation when you let go; Latch holds where you left it.",
+      "verified": false
+    },
+    {
+      "id": "L20_FADER_001",
+      "skill": "l20_faders",
+      "topic": "live_sound",
+      "level": 0,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "On the L-20, where do you read a channel’s real fader level?",
+      "choices": [
+        "The green LED beside the fader",
+        "The fader cap",
+        "The GAIN knob",
+        "Logic’s track fader"
+      ],
+      "answer_index": 0,
+      "explanation": "The faders aren’t motorized. After FADER MODE or a scene recall, the caps stay put; the LED is the truth.",
+      "verified": false
+    },
+    {
+      "id": "L20_FADER_002",
+      "skill": "l20_faders",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "You move an L-20 fader and nothing changes. Why?",
+      "choices": [
+        "It hasn’t reached the green LED yet; once it passes it, it takes over",
+        "The fader is broken",
+        "MUTE is on",
+        "The L-20 is recording"
+      ],
+      "answer_index": 0,
+      "explanation": "Move the fader through the LED, then it takes over.",
+      "verified": false
+    },
+    {
+      "id": "L20_FADER_003",
+      "skill": "l20_faders",
+      "topic": "live_sound",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "After someone switches FADER MODE and back, channel 1’s cap is near 0 but its LED is at the bottom. What’s its level?",
+      "choices": [
+        "At the bottom, where the LED is",
+        "Near 0, where the cap is",
+        "Unity",
+        "Muted"
+      ],
+      "answer_index": 0,
+      "explanation": "The cap lies; the LED shows the level until you move the fader through it.",
+      "verified": false
+    },
+    {
+      "id": "L20_REC_001",
+      "skill": "l20_recorded_heard",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "A player is too quiet in the L-20 recording. Which control fixes it?",
+      "choices": [
+        "GAIN",
+        "The channel fader",
+        "MUTE",
+        "The MASTER fader"
+      ],
+      "answer_index": 0,
+      "explanation": "USB to Logic comes from before the fader, so only GAIN changes the recording.",
+      "verified": false
+    },
+    {
+      "id": "L20_REC_002",
+      "skill": "l20_recorded_heard",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why are channels 1–16 muted on the L-20 at the Film Recording Workshop?",
+      "choices": [
+        "To keep the live mics out of the headphones",
+        "To stop them recording",
+        "To save power",
+        "To set the gain"
+      ],
+      "answer_index": 0,
+      "explanation": "The mutes keep the mics out of the headphone mix. The recording comes from before the fader.",
+      "verified": false
+    },
+    {
+      "id": "L20_REC_003",
+      "skill": "l20_recorded_heard",
+      "topic": "live_sound",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What do the players hear in their headphones at the Film Recording Workshop?",
+      "choices": [
+        "The click (and playback), from Logic",
+        "Every mic, live",
+        "Only the Decca tree",
+        "Nothing until playback"
+      ],
+      "answer_index": 0,
+      "explanation": "Logic’s click → USB 1-2 → channel 17/18 → MONITOR OUT A → the HP12U. Each other they hear in the room.",
+      "verified": false
+    },
+    {
+      "id": "MON_PATH_001",
+      "skill": "monitor_paths",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "What’s the rule for getting a sound into the headphones?",
+      "choices": [
+        "One path per sound",
+        "Two paths, for a backup",
+        "As many paths as possible",
+        "Only through the DAW"
+      ],
+      "answer_index": 0,
+      "explanation": "The same mic through two paths sounds doubled, like an echo.",
+      "verified": false
+    },
+    {
+      "id": "MON_PATH_002",
+      "skill": "monitor_paths",
+      "topic": "audio_fundamentals",
+      "level": 1,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Why does hearing a live mic through Logic sound late?",
+      "choices": [
+        "The buffer delays it: at 1024 samples, about 50 ms round trip",
+        "The mic is too far away",
+        "The preamp is slow",
+        "The headphones are wireless"
+      ],
+      "answer_index": 0,
+      "explanation": "The mixer’s own mix has no delay; anything through the computer and back is late by the buffer.",
+      "verified": false
+    },
+    {
+      "id": "MON_PATH_003",
+      "skill": "monitor_paths",
+      "topic": "audio_fundamentals",
+      "level": 2,
+      "activity_gate": null,
+      "type": "multiple_choice",
+      "prompt": "Players hear themselves doubled, like a slap echo, in the headphones. What’s the likely cause?",
+      "choices": [
+        "A live mic is reaching the headphones twice: directly and through Logic",
+        "The click is too loud",
+        "48V is off",
+        "The test recording was skipped"
+      ],
+      "answer_index": 0,
+      "explanation": "One path per sound. Turn off input monitoring in Logic, or keep the mic out of the mixer’s headphone mix.",
+      "verified": false
     }
   ]
 }
