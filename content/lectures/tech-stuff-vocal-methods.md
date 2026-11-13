@@ -22,18 +22,20 @@ Microphone → Mixer → Amplifier → Speakers
 > 🧑‍🏫 Point at the real thing: the karaoke rig on the piano and the StagePass. Same flow, two
 > sizes.
 
-### Today's Two Systems
+### 🕹️ Training Simulators: Mixer Lab
 
-**Karaoke rig (BH 109):** SM58 mics → small Behringer mixer → the room's rack amplifier → the
-wall speakers. A laptop plays the backing tracks into the same mixer.
+Practice on a virtual mixer before you touch a real one. Scan a code or tap a link:
 
-**Yamaha StagePass:** a portable PA. The mixer and amplifier live in one box; the speakers sit on
-stands.
+- [Mixer Lab](https://adamborecki.github.io/mixer-lab/): every scenario, all in the browser.
+- [Mixer Lab: Vocal Jazz in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-vj-local): a vocal group's whole rig on a virtual X32.
+- [Mic 5 can't hear themselves](https://adamborecki.github.io/mixer-lab/#/x32-vj-send): a singer's monitor mix, from the engineer's side.
+- [Mic 8 is dead everywhere](https://adamborecki.github.io/mixer-lab/#/x32-vj-muted): a silent mic, and how to find why.
 
-Same signal flow, different boxes. Find the ==mixer== and the ==speakers== on each.
+Each scenario breaks one thing. Your job: follow the ==signal== until you find it.
 
-> 🧑‍🏫 Hands-on moment: have two or three students trace the cable from a mic to the mixer on
-> each system.
+> 🧑‍🏫 Pick the scenarios you'll actually open in class; swap these links for others if better.
+> The real systems in the room today: the karaoke rig (SM58s → Xenyx → the room's rack → wall
+> speakers) and the Yamaha StagePass.
 
 ### Cables (the Short Version)
 
@@ -150,3 +152,20 @@ Grab a mic. Try each:
 2. Hear proximity effect: close, then farther.
 3. Ask the engineer for a monitor change, out loud and with a hand signal.
 4. Sing one song like the show.
+
+### Your Turn: Listen
+
+One mic runs through the **Zoom V3** vocal processor. Sing the same phrase each time and listen
+for the difference:
+
+- **High frequencies:** brightness, air, the "s" sounds. Too much: harsh.
+- **Low frequencies:** warmth, body. Too much: boomy, muddy.
+- **==Compression==:** evens out loud and soft. Quiet notes come up, loud notes come down.
+- **==Echo==:** distinct repeats of what you just sang.
+- **==Delay==:** the effect that makes echoes; short delays thicken, long delays repeat.
+- **==Reverb==:** the sound of a room or hall around your voice.
+
+**Listen first, then name it.** What changed: brighter, darker, more even, bigger room?
+
+> 🧑‍🏫 Use the V3 presets for these; check which preset gives which effect before class rather
+> than naming menus from memory.

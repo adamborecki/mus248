@@ -5,7 +5,7 @@
 // which are the online refresher's), minus the 🌀 portals, which are for exploring on a screen.
 
 import { blankTerms, escapeHtml, isFence, renderMarkdown } from '../markdown.js';
-import { renderFormBlock, renderQr } from '../worksheet.js';
+import { qrBlock, renderFormBlock, renderQr } from '../worksheet.js';
 import { LECTURE_FORM_NOTE } from '../feedback.js';
 import { crumbs } from '../crumbs.js';
 import { courseOf, instructorView, isGuest, isVisible } from './view.js';
@@ -60,6 +60,26 @@ export function renderNotes(markdown, lecture, { key = false } = {}) {
     <footer class="ws-foot">Generated from <code>content/lectures/${escapeHtml(lecture.contentFile)}.md</code> — edit the lecture, not this page.</footer>`;
 }
 
+// Paper can't click: under a slide whose heading has 🕹️ (simulators to try), every bullet that
+// starts with a link prints that link as a QR code, the way an activity's "Practice first" does.
+function addLinkQrs(root) {
+  root.querySelectorAll('.notes-body h2, .notes-body h3').forEach((heading) => {
+    if (!heading.textContent.includes('🕹️')) return;
+    let node = heading.nextElementSibling;
+    while (node && !/^H[23]$/.test(node.tagName)) {
+      if (node.tagName === 'UL') {
+        node.classList.add('ws-practice', 'notes-links');
+        node.querySelectorAll(':scope > li').forEach((item) => {
+          const link = item.querySelector('a[href^="http"]');
+          if (!link || item.firstElementChild !== link) return;
+          item.innerHTML = `${qrBlock(link.href, link.textContent, `QR code for ${link.textContent}`)}<span>${item.innerHTML}</span>`;
+        });
+      }
+      node = node.nextElementSibling;
+    }
+  });
+}
+
 // Room to write: a couple of lines under each short-answer question and each "Before you leave"
 // prompt. Done on the rendered page, where the structure is easy to see.
 function addWritingRoom(root) {
@@ -92,5 +112,6 @@ export async function mountNotes(root) {
     + `<p class="no-print print-cue"><button type="button" class="print-button">Print ${key ? 'the key' : 'these notes'}</button>${
       key ? ` <a href="${base}lectures/worksheet/key/?id=${encodeURIComponent(lecture.id)}">Question answers →</a>` : ''}</p>`;
   addWritingRoom(root);
+  addLinkQrs(root);
   root.querySelector('.print-button').addEventListener('click', () => window.print());
 }
