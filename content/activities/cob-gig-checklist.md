@@ -5,7 +5,7 @@ emoji: "🎭"
 coreSkillAreas:
   - Live Sound
 status: In Development
-revised: "2026-10-18"
+revised: "2026-11-16"
 estimatedTime: "Not a timed drill — this is the checklist you run start to finish across an actual show."
 access:
   mode: Off campus
@@ -50,6 +50,19 @@ which mics and tracks.
 **AES50** · **stage box** · **input routing** · **LOCAL** · **output routing** · **Main L/R** ·
 **mix bus** · **Sends on Faders** · **pre-fader** · **RF / AF lights** · **bodypack** ·
 **powered mixer** · **passive speaker** · **daisy chain** · **scene**
+
+## 🕹️ Practice first
+
+- [Mixer Lab: COB in Irvine](https://adamborecki.github.io/mixer-lab/#/x32c-cob-usb): ten faults from this checklist, on a virtual
+  X32 Compact with this gig's rig: the SD8 on AES50, the StagePas and its two passive speakers, and
+  a chain of B207MP3 wedges. Inputs left on USB, gains, the track missing from the house, a dead
+  AES50 link, one main speaker silent, the wrong speaker cable, a broken THRU, post-fader wedge
+  sends, the track missing from the wedges, and saving the scene. Free play on the X32 Compact has
+  it too: pick **Song: COB in Irvine**.
+
+The simulator is still being built, and it has eleven headsets, not twelve; its backing track is
+silent. Where it and this checklist disagree, the checklist wins. Tell your supervisor what you
+found.
 
 ## 🧰 Equipment and materials
 
@@ -190,6 +203,11 @@ through L → 12**.
 - 🚩 **SD8 OUT 1** → the first wedge's input. Then that wedge's **THRU** → the next wedge's input,
   and so on down the line.
 
+🕹️ In Mixer Lab: [The floor is dead](https://adamborecki.github.io/mixer-lab/#/x32c-cob-link) (the AES50 cable),
+[Only the left speaker](https://adamborecki.github.io/mixer-lab/#/x32c-cob-one-side) (OUT 7 and 8),
+[The wrong cable](https://adamborecki.github.io/mixer-lab/#/x32c-cob-speaker-cable) (speaker cables), and
+[The last wedge is silent](https://adamborecki.github.io/mixer-lab/#/x32c-cob-thru) (the THRU chain).
+
 ![A B207MP3 wedge's control panel: its input jacks, a LEVEL knob for each, and the MAIN LEVEL knob.](media/cob/b207-wedge.jpg)
 
 **Q2 (fill in the blank).** The performer wearing bodypack **G** is on receiver channel ______,
@@ -234,6 +252,10 @@ instead of the jacks on its back.
 - 🚩 Set the channels' sends to **Bus 1 to pre-fader**, so a change in the house mix doesn't
   change what the performers hear.
 - 🚩 Bus 1's master is unmuted and up.
+
+🕹️ In Mixer Lab: [Eleven mics, no sound](https://adamborecki.github.io/mixer-lab/#/x32c-cob-usb) (input routing),
+[The first number's track](https://adamborecki.github.io/mixer-lab/#/x32c-cob-tracks) (the tracks in Main LR), and
+[The ensemble disappears](https://adamborecki.github.io/mixer-lab/#/x32c-cob-prefader) (pre-fader sends).
 
 **Q3 (multiple choice).** Every receiver's RF and AF lights are on, but the X32's input meters
 for channels 1–12 show nothing. What do you check first?
@@ -286,6 +308,10 @@ For each mic, A to L:
   speakers.
 - 🚩 Run one full song with tracks and mics.
 - 🚩 **Save a scene** — under a new name. Never overwrite someone else's scene without permission.
+
+🕹️ In Mixer Lab: [Eleven new headsets](https://adamborecki.github.io/mixer-lab/#/x32c-cob-gain) (gain),
+[We can't hear the track](https://adamborecki.github.io/mixer-lab/#/x32c-cob-tracks-wedge) (the tracks in the wedges), and
+[Save the show](https://adamborecki.github.io/mixer-lab/#/x32c-cob-scene) (the scene).
 
 **Q4 (multiple choice).** In the first number you push a performer's fader up for a solo, but the
 house doesn't get any louder — and the performers say their wedges keep changing. What is
