@@ -80,6 +80,7 @@ async function loadActivity() {
     <header class="activity-header"><span aria-hidden="true">${activity.emoji}</span><div><h1>${activity.title}</h1><p>${docType(activity) === 'activity' ? '' : `${DOC_TYPES[docType(activity)].emoji} ${DOC_TYPES[docType(activity)].label} · `}${KINDS[activity.kind] ? `${KINDS[activity.kind].emoji} ${KINDS[activity.kind].label} · ` : ''}${[activity.time, activity.access, groupLabel(activity.group)].filter(Boolean).join(' · ')}${external ? ' · Instructions hosted externally' : ''}</p>${settings}</div></header>
     ${worksheet}
     <article class="instructions${docType(activity) === 'checklist' ? ' numbered' : ''}">${instructions}</article>
+    ${activity.contentFile ? `<p class="edit-source"><a href="https://github.com/adamborecki/mus248/edit/main/content/activities/${encodeURIComponent(activity.contentFile)}.md" target="_blank" rel="noopener"><span aria-hidden="true">✏️</span> Edit this page on GitHub</a> <span>Free GitHub account needed. Your change goes to the instructor as a proposal.</span></p>` : ''}
     ${contributors.length ? `<p class="contributors"><span aria-hidden="true">🙌</span> Improved with help from ${contributors.map((name) => `<a href="https://github.com/${name}" rel="noopener">@${name}</a>`).join(', ')}</p>` : ''}
     ${familyNav(activity, activities)}
     ${completion}
