@@ -24,6 +24,14 @@
     .ev-card .card-details > :first-child { margin-top:.75rem; }
     .ev-card .card-details ul, .ev-card .card-details ol { padding-left:1.2rem; }
     .ev-card .task { list-style:none; margin-left:-1.2rem; }
+    .ev-lectures { margin:.4rem 0 0; padding:0 !important; list-style:none; }
+    .ev-lectures li { display:flex; flex-wrap:wrap; gap:.15rem .9rem; align-items:baseline; padding:.45rem 0; border-top:1px solid var(--line); }
+    .ev-lecture { color:var(--ink); font-weight:600; text-decoration:none; }
+    .ev-lecture:hover { color:var(--accent); text-decoration:underline; }
+    .ev-lecture-extras { display:flex; flex-wrap:wrap; gap:.2rem .8rem; font-size:.88rem; }
+    .ev-lecture-extras a { color:var(--accent); font-weight:600; text-decoration:none; }
+    .ev-lecture-extras a:hover { text-decoration:underline; }
+    .ev-card [data-lecture-links] h3 { margin:1.1rem 0 .2rem; font-size:1rem; }
     @media (max-width:480px) {
       .ev-card summary { flex-wrap:wrap; }
       .ev-card .card-copy { flex:1 1 calc(100% - 5rem); }

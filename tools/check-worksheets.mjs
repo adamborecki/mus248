@@ -405,6 +405,10 @@ EVALS.forEach((id) => {
     check(stations.length === 0, `${where}: format "exam" has no stations; a ## heading other than How it works / Practice games reads as one`);
     const games = sections.find((section) => section.kind === 'games');
     check(Boolean(games && games.games > 0), `${where}: format "exam" needs a "## 🕹️ Practice games" list of game links`);
+    // ✅ starts a checker's answer and is cut off the page, so in an exam (no checker) it eats text.
+    text.replace(/<!--[\s\S]*?-->/g, '').split('\n').forEach((line, i) => {
+      check(!line.includes('✅'), `${where}:${i + 1}: ✅ hides the rest of the line on the page (it marks a checker's answer); use another emoji`);
+    });
   } else check(stations.length > 0 && sections.some((section) => section.kind === 'about'), `${where}: needs "## 🙋 About you" and at least one station`);
   stations.forEach((station) => {
     check(Boolean(station.goal), `${where}: "${station.heading}" needs a **Goal:** line`);
@@ -453,6 +457,18 @@ CHAINS.forEach((chain) => {
   check(easier.length >= 100 && easier.length < standard.length, `${where}: Easier has ${easier.length} questions; expected at least 100 and fewer than Standard`);
   const salmon = easier.filter((q) => tierOf(curriculum, q) !== 'core').length;
   check(salmon >= 10, `${where}: Easier has only ${salmon} ${SALMON_FLOW} questions beyond Core`);
+}
+
+// Helpful stuff / the games' miss review: every activity a quiz skill was taught in must land on a
+// real page (helpful.js ACTIVITY_PAGES, or a top-level folder of the same name).
+{
+  const { ACTIVITY_PAGES } = await import('../performance-evals/helpful.js');
+  const skillSources = JSON.parse(read('quiz', 'data', 'skill-sources.json')).skills;
+  const activities = new Set(Object.values(skillSources).map((source) => source.activity).filter(Boolean));
+  activities.forEach((activity) => {
+    const path = ACTIVITY_PAGES[activity] ? ACTIVITY_PAGES[activity][0].split('#')[0] : `${activity}/`;
+    check(existsSync(join(root, path, 'index.html')), `performance-evals/helpful.js: quiz activity "${activity}" has no page (add it to ACTIVITY_PAGES)`);
+  });
 }
 
 console.table(rows);

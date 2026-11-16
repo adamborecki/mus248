@@ -52,3 +52,12 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 > The other three games use the quiz question bank, including questions that haven't been checked
 > yet, but never one on a topic we haven't covered. Each game ends with the questions you missed and
 > why. One looks wrong? Send a Repo improvement with its id.
+
+## 📚 Helpful stuff
+
+**Goal:** Where to review: the lectures with their notes and refreshers, and the pages behind the games.
+
+- 🐟 **Salmon signal flow:** the [Salmon FOH Deep Dive](../../lectures/2026-11-02-salmon-foh/) lecture, the [Salmon Gig Checklist](../../salmon-gig-checklist/), the [CME Gig Checklist](../../cme-gig-checklist/) and [Vocal Jazz Gig Checklist](../../vocal-jazz-gig-checklist/), and Mixer Lab's [CME in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-cme-tour) and [Vocal Jazz in Salmon](https://adamborecki.github.io/mixer-lab/#/x32-vj-link) scenarios.
+- 🗂️ [Study cards](../../study/): every skill on a flash card. Paste a quiz code there to see just the ones you missed.
+- 🎤 [All lectures](../../lectures/) · 🧪 [Activities](../../activities/) · 📋 [Checklists](../../checklists/) · 📖 [Reference](../../reference/)
+- Every game's review of your misses links to the lecture or activity that taught each one.

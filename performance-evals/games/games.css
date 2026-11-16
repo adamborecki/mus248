@@ -38,6 +38,10 @@
 .gm-wrong { margin-top:.35rem !important; color:var(--bad); }
 .gm-right { margin-top:.2rem !important; color:var(--good); font-weight:600; }
 .gm-why { margin-top:.35rem !important; color:var(--muted); font-size:.92rem; }
+.gm-src { margin-top:.4rem !important; font-size:.88rem; }
+.gm-src a { color:var(--accent); font-weight:600; }
+.gm-helpful { margin:.9rem 0 0; font-size:.9rem; }
+.gm-helpful a { color:var(--accent); font-weight:600; }
 .gm-tag { margin-top:.35rem !important; color:var(--muted); font-size:.75rem; letter-spacing:.02em; }
 .gm-note { margin:1.5rem 0 0; color:var(--muted); font-size:.85rem; }
 

@@ -13,6 +13,7 @@
 
 import { crumbs } from '../../crumbs.js';
 import { tierOf } from '../../quiz/js/engine.js';
+import { loadSkillSources } from '../helpful.js';
 
 const BANK_URL = new URL('../../quiz/data/questions.json', import.meta.url);
 const CURRICULUM_URL = new URL('../../quiz/data/curriculum.json', import.meta.url);
@@ -210,6 +211,7 @@ export async function mountGame(root, game) {
           <label class="gm-sound"><input type="checkbox"${sound.on ? ' checked' : ''}> Sound</label>
         </div>
         <button type="button" class="gm-start">${escapeHtml(game.startLabel || 'Start')}</button>
+        <p class="gm-helpful"><a href="../../#final-helpful-stuff">📚 Helpful stuff: lectures, notes, and checklists</a></p>
         <p class="gm-best">${Object.keys(best).length ? `🏆 Best (${escapeHtml(MODES[mode].label.replace(/^\S+\s/, ''))}): ${Object.entries(best).map(([t, s]) => `${escapeHtml(t === 'all' ? 'All topics' : topicLabel(t))} ${s}`).join(' · ')}` : `🏆 No ${escapeHtml(MODES[mode].label.replace(/^\S+\s/, '').toLowerCase())} best score yet on this device.`}</p>
       </section>`;
     stage.querySelectorAll('.gm-modes input').forEach((input) => input.addEventListener('change', () => {
@@ -250,6 +252,7 @@ export async function mountGame(root, game) {
             ${m.picked !== undefined && m.picked !== null ? `<p class="gm-wrong">✗ ${escapeHtml(m.picked)}</p>` : ''}
             <p class="gm-right">✓ ${escapeHtml(m.choices[m.answer])}</p>
             ${m.explanation ? `<p class="gm-why">${escapeHtml(m.explanation)}</p>` : ''}
+            ${m.skill ? `<p class="gm-src" data-skill="${escapeHtml(m.skill)}"></p>` : ''}
             <p class="gm-tag">${escapeHtml(topicLabel(m.topic))} · ${escapeHtml(m.id)}</p></li>`).join('')}</ol>`
         : '<p class="quiet">No misses. Nothing to review!</p>'}
         ${game.outro || ''}
@@ -258,6 +261,17 @@ export async function mountGame(root, game) {
       </section>`;
     stage.querySelector('.gm-start').addEventListener('click', lobby);
     stage.querySelector('.gm-start').focus();
+    // Each miss links to where its skill was taught. A source marked unconfirmed in
+    // quiz/data/skill-sources.json is a guess, so it says "Probably from" instead of "Review".
+    if (stage.querySelector('.gm-src')) {
+      loadSkillSources().then((sourceOf) => {
+        stage.querySelectorAll('.gm-src').forEach((slot) => {
+          const source = sourceOf(slot.dataset.skill);
+          if (!source) { slot.remove(); return; }
+          slot.innerHTML = `📖 ${source.confirmed ? 'Review' : 'Probably from'}: <a href="${escapeHtml(source.url)}">${escapeHtml(source.label)}</a>`;
+        });
+      }).catch(() => stage.querySelectorAll('.gm-src').forEach((slot) => slot.remove()));
+    }
     import('../../feedback.js').then(({ REPO_IMPROVEMENT_FORM }) => {
       stage.querySelectorAll('a[data-feedback]').forEach((link) => { link.href = REPO_IMPROVEMENT_FORM; link.target = '_blank'; link.rel = 'noopener'; });
     }).catch(() => {});

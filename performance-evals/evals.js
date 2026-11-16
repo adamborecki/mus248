@@ -3,7 +3,8 @@
 // come from that file, the same way a worksheet comes from its activity, so the two can't drift.
 // midterm.md's header comment lists the conventions. An eval with `format: "exam"` (the final)
 // is a written exam instead: no stations and no sheet, just its intro, "How it works", and
-// "Practice games" (links to the games in /performance-evals/games/).
+// "Practice games" (links to the games in /performance-evals/games/), and "Helpful stuff" (its own
+// links, then every lecture so far, filled in from helpful.js).
 
 import { escapeHtml, inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseFrontmatter, renderQr } from '../worksheet.js';
@@ -34,7 +35,7 @@ export function parseEval(markdown) {
   body.split('\n').forEach((line) => {
     const heading = line.match(/^##\s+(.+)$/);
     if (heading) {
-      const kind = { 'how it works': 'how', 'about you': 'about', 'practice games': 'games' }[words(heading[1])] || 'station';
+      const kind = { 'how it works': 'how', 'about you': 'about', 'practice games': 'games', 'helpful stuff': 'help' }[words(heading[1])] || 'station';
       sections.push({ heading: heading[1].trim(), kind, lines: [] });
     } else if (sections.length) sections[sections.length - 1].lines.push(line);
     else intro.push(line);
@@ -54,6 +55,7 @@ export function parseEval(markdown) {
 // that it isn't written yet.
 function cardStatus(section) {
   if (section.kind === 'how') return `${section.items} steps`;
+  if (section.kind === 'help') return '📚 Lectures & notes';
   if (section.kind === 'games') return `🕹️ ${section.games} ${section.games === 1 ? 'game' : 'games'}`;
   const pending = section.lines.some((line) => line.includes('🚧'));
   if (!section.items) return '🚧 Not written yet';
@@ -75,14 +77,15 @@ export function renderEvalPage(markdown, { assetBase = '../content/performance-e
       ? `<p class="ev-print ev-station-print"><a href="sheet/?id=${id}&amp;station=${slug}"><span aria-hidden="true">🖨️</span> This station's sheet</a>`
         + `<a href="sheet/?id=${id}&amp;station=${slug}&amp;checker=1"><span aria-hidden="true">✅</span> Answer key</a></p>`
       : '';
-    return `<details class="activity-card ev-card${section.kind === 'games' ? ' ev-games' : ''}"${anchor ? ` id="${anchor}"` : ''}${section.kind === 'games' ? ' open' : ''}>
+    const opened = section.kind === 'games' || section.kind === 'help';
+    return `<details class="activity-card ev-card${section.kind === 'games' ? ' ev-games' : ''}"${anchor ? ` id="${anchor}"` : ''}${opened ? ' open' : ''}>
         <summary>
           <span class="activity-emoji" aria-hidden="true">${escapeHtml(emoji.trim() || '•')}</span>
           <span class="card-copy"><strong>${inline(title.trim(), options)}</strong>${goal ? `<small>${inline(goal, options)}</small>` : ''}</span>
           <span class="chip ev-status">${escapeHtml(cardStatus(section))}</span>
           <span class="arrow" aria-hidden="true">⌄</span>
         </summary>
-        <div class="card-details instructions">${prints}${renderMarkdown(body, options)}</div>
+        <div class="card-details instructions">${prints}${renderMarkdown(body, options)}${section.kind === 'help' ? '<div data-lecture-links></div>' : ''}</div>
       </details>`;
   }).join('');
   return `${renderMarkdown(parsed.intro, options)}<div class="activity-grid ev-grid">${cards}</div>`;
@@ -194,6 +197,17 @@ async function mountPage(root) {
         <div class="ev-intro">${renderEvalPage(sources[index], { id })}</div>
       </section>`;
   }).join('');
+  // Helpful stuff's lecture list comes from data/lectures.json, so it's filled in after the page.
+  const slots = root.querySelectorAll('[data-lecture-links]');
+  if (slots.length) {
+    try {
+      const { renderLectureLinks } = await import('./helpful.js');
+      const html = await renderLectureLinks();
+      slots.forEach((slot) => { slot.innerHTML = html; });
+    } catch {
+      slots.forEach((slot) => { slot.innerHTML = '<p>See <a href="../lectures/">all lectures</a>.</p>'; });
+    }
+  }
   // A link to one station (#final-data-transfer) opens that card.
   const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
   if (target) {
