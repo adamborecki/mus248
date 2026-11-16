@@ -30,12 +30,16 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 
 ## 🕹️ Practice games
 
-**Goal:** Practice with every question in the quiz bank, and have some fun doing it.
+**Goal:** Practice Salmon's signal flow and every question in the quiz bank, and have some fun doing it.
 
+- ⚡ [Follow the Signal](../../performance-evals/games/follow-the-signal/): you are the signal. Trace Salmon's real paths, from the mic to the speaker, hop by hop, and dodge the decoys. Built from the Salmon FOH lecture, the CME Gig Checklist, and Mixer Lab.
 - 🐟 [Salmon Run](../../performance-evals/games/salmon-run/): swim upstream into the gate with the right answer. Wrong gate, and the bear eats.
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
 - 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open in 90 seconds. Patch every question to its answer before the clock runs out.
 
-> The games use the whole quiz question bank, including questions that haven't been checked yet
+> **Start with Salmon's signal flow.** Follow the Signal is all Salmon, and the other three have a
+> **🐟 Salmon signal flow** topic at the top of their topic list.
+
+> The other three games use the whole quiz question bank, including questions that haven't been checked yet
 > and topics we haven't covered. Each game ends with the questions you missed and why. One looks
 > wrong? Send a Repo improvement with its id.

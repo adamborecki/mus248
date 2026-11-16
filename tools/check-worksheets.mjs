@@ -427,6 +427,16 @@ EVALS.forEach((id) => {
   });
 });
 
+// Follow the Signal's Salmon paths: each tile appears once, and no decoy is on its own path.
+const { CHAINS } = await import('../performance-evals/games/follow-the-signal/chains.js');
+CHAINS.forEach((chain) => {
+  const where = `performance-evals/games/follow-the-signal/chains.js: "${chain.id}"`;
+  const tiles = [...chain.hops, ...chain.decoys];
+  check(chain.hops.length >= 3 && chain.decoys.length >= 1, `${where} needs at least 3 hops and a decoy`);
+  check(new Set(tiles).size === tiles.length, `${where} repeats a tile (a hop twice, or a decoy that is also a hop)`);
+  check(Boolean(chain.why && chain.source && chain.lab), `${where} needs why, source, and lab`);
+});
+
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);
 console.log(`${rows.length} worksheets · ${total('checkpoints')} checkpoints · ${total('questions')} questions · ${total('terms')} key terms`);

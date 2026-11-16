@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Follow the Signal: trace Salmon's real signal paths, a final-exam practice game for MUS 248.">
+  <title>Follow the Signal · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .fs-scene { padding:.9rem 1rem 1rem; border-radius:.6rem; background:var(--rack); color:var(--rack-ink); transition:box-shadow .3s; }
+    .fs-scene.fs-live { box-shadow:0 0 0 2px var(--good), 0 0 26px -6px var(--good); }
+    .fs-gig { margin:0; color:#ffd166; font-size:.75rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .fs-title { margin:.1rem 0 .7rem; font-size:1.25rem; letter-spacing:-.02em; }
+    .fs-track { display:flex; flex-wrap:wrap; gap:.45rem 0; align-items:center; min-height:2.4rem; margin:0; padding:0; list-style:none; }
+    .fs-hop { padding:.35rem .6rem; border-radius:.35rem; background:#3a3a40; font-size:.88rem; font-weight:600; }
+    .fs-arrow { margin:0 .35rem; color:#8e8e93; }
+    .fs-new { animation:gm-pop .35s ease-out; }
+    .fs-live .fs-hop { background:var(--good); color:#fff; animation:fs-flow .9s ease-out both; animation-delay:calc(var(--i) * 80ms); }
+    @keyframes fs-flow { from { background:#3a3a40; transform:scale(1); } 40% { transform:scale(1.08); } }
+    .fs-spark { font-size:1.4rem; animation:fs-zap .6s steps(2) infinite; }
+    @keyframes fs-zap { 50% { opacity:.3; transform:rotate(-15deg); } }
+    .fs-callout { min-height:1.5em; margin:.6rem 0; font-weight:800; text-align:center; }
+    .fs-tray { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
+    .fs-tile { padding:.65rem .85rem; border:2px solid var(--line); border-radius:.5rem; background:var(--surface); color:var(--ink); font-size:.95rem; font-weight:600; box-shadow:0 3px 0 var(--line); touch-action:manipulation; }
+    .fs-tile:hover:not(:disabled) { border-color:var(--accent); }
+    .fs-tile:active:not(:disabled) { transform:translateY(2px); box-shadow:0 1px 0 var(--line); }
+    .fs-used { visibility:hidden; }
+    .fs-decoy { border-color:var(--bad); color:var(--bad); text-decoration:line-through; opacity:.55; box-shadow:none; }
+    .fs-buzz { animation:gm-shake .35s; border-color:var(--bad); }
+    .fs-after { text-align:center; }
+    .fs-why { margin:.25rem 0 .4rem; font-size:1.02rem; }
+    .fs-src { margin:0 0 1rem; color:var(--muted); font-size:.82rem; }
+    .fs-src a { color:var(--accent); font-weight:600; }
+    @media (max-width:560px) { .fs-tile { font-size:.88rem; padding:.55rem .7rem; } .fs-hop { font-size:.8rem; } }
+    @media (prefers-reduced-motion: reduce) { .fs-spark, .fs-new, .fs-live .fs-hop { animation:none; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="follow-the-signal.js"></script>
+</body>
+</html>

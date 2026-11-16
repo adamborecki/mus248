@@ -8,12 +8,20 @@ import { crumbs } from '../../crumbs.js';
 
 const BANK_URL = new URL('../../quiz/data/questions.json', import.meta.url);
 
+// A preset across topics: the skills behind Salmon's routing and gain staging (the Salmon FOH lecture,
+// its gig checklists, and Mixer Lab's Salmon scenarios). Listed first in every game's topic picker.
+export const SALMON_FLOW = 'salmon-flow';
+const SALMON_FLOW_SKILLS = ['signal_flow', 'live_signal_flow', 'gain_chain', 'sends_on_fader', 'buses', 'stage_box_snake',
+  'salmon_audio_setup', 'salmon_aes50', 'salmon_mains', 'salmon_wedges', 'salmon_gains', 'salmon_gig_compare', 'wedge_check'];
+const inTopic = (q, topic) => topic === 'all' || (topic === SALMON_FLOW ? SALMON_FLOW_SKILLS.includes(q.skill) : q.topic === topic);
+
 // The bank's topic ids, as students read them. Anything new falls back to Title Case.
 const TOPIC_LABELS = {
   audio_fundamentals: 'Audio basics', professionalism: 'The job', live_sound: 'Live sound',
   video_fundamentals: 'Video', stereo_capture: 'Stereo recording', dante: 'Dante',
   live_looping: 'Live looping', power: 'Power', zoom_f8: 'Zoom F8', final_cut: 'Final Cut',
   data_management: 'Data management', salmon: 'Salmon gigs', gigs: 'Gigs & venues', vibecoding: 'Vibecoding',
+  [SALMON_FLOW]: '🐟 Salmon signal flow',
 };
 export const topicLabel = (id) => TOPIC_LABELS[id] || id.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -105,14 +113,15 @@ export async function mountGame(root, game) {
   const trail = crumbs([['Performance Evals', 'performance-evals/#final'], [game.title]]);
   root.innerHTML = `${trail}<div class="gm-stage" data-game="${game.id}"><p class="quiet">Loading the question bank…</p></div>`;
   const stage = root.querySelector('.gm-stage');
-  let questions;
-  try { questions = await loadBank(); } catch {
+  let questions = [];
+  if (game.useBank !== false) try { questions = await loadBank(); } catch {
     stage.innerHTML = '<p class="quiet">The question bank could not be loaded. Check your connection and reload.</p>';
     return;
   }
   const counts = {};
   questions.forEach((q) => { counts[q.topic] = (counts[q.topic] || 0) + 1; });
   const topics = Object.keys(counts).sort((a, b) => topicLabel(a).localeCompare(topicLabel(b)));
+  counts[SALMON_FLOW] = questions.filter((q) => inTopic(q, SALMON_FLOW)).length;
 
   const lobby = () => {
     const best = loadPrefs(game.id).best || {};
@@ -124,10 +133,11 @@ export async function mountGame(root, game) {
         <p class="gm-tagline">${game.tagline}</p>
         <ol class="gm-rules">${game.rules.map((rule) => `<li>${rule}</li>`).join('')}</ol>
         <div class="gm-setup">
-          <label>Topic <select class="gm-topic">
+          ${game.useBank === false ? '' : `<label>Topic <select class="gm-topic">
             <option value="all">All topics (${questions.length})</option>
+            ${counts[SALMON_FLOW] ? `<option value="${SALMON_FLOW}"${topic === SALMON_FLOW ? ' selected' : ''}>${topicLabel(SALMON_FLOW)} (${counts[SALMON_FLOW]})</option>` : ''}
             ${topics.map((t) => `<option value="${escapeHtml(t)}"${t === topic ? ' selected' : ''}>${escapeHtml(topicLabel(t))} (${counts[t]})</option>`).join('')}
-          </select></label>
+          </select></label>`}
           <label class="gm-sound"><input type="checkbox"${sound.on ? ' checked' : ''}> Sound</label>
         </div>
         <button type="button" class="gm-start">${escapeHtml(game.startLabel || 'Start')}</button>
@@ -139,9 +149,9 @@ export async function mountGame(root, game) {
       sound.good();
     });
     stage.querySelector('.gm-start').addEventListener('click', () => {
-      const chosen = stage.querySelector('.gm-topic').value;
+      const chosen = stage.querySelector('.gm-topic')?.value || 'all';
       savePrefs(game.id, { topic: chosen });
-      const pool = chosen === 'all' ? questions : questions.filter((q) => q.topic === chosen);
+      const pool = questions.filter((q) => inTopic(q, chosen));
       stage.innerHTML = '';
       game.start({ deck: makeDeck(pool), topic: chosen, stage, finish: (result) => finish(chosen, result) });
     });
@@ -166,8 +176,9 @@ export async function mountGame(root, game) {
             ${m.explanation ? `<p class="gm-why">${escapeHtml(m.explanation)}</p>` : ''}
             <p class="gm-tag">${escapeHtml(topicLabel(m.topic))} · ${escapeHtml(m.id)}</p></li>`).join('')}</ol>`
         : '<p class="quiet">No misses. Nothing to review!</p>'}
-        <p class="gm-note">These come straight from the quiz question bank, including questions that haven't been checked yet.
-          One looks wrong? Tell us with <a data-feedback href="#">🛠️ Repo improvements</a> and mention its id.</p>
+        ${game.outro || ''}
+        ${game.useBank === false ? '' : `<p class="gm-note">These come straight from the quiz question bank, including questions that haven't been checked yet.
+          One looks wrong? Tell us with <a data-feedback href="#">🛠️ Repo improvements</a> and mention its id.</p>`}
       </section>`;
     stage.querySelector('.gm-start').addEventListener('click', lobby);
     stage.querySelector('.gm-start').focus();
