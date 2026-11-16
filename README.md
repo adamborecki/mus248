@@ -124,7 +124,8 @@ PAGES — every folder here is a URL on the live site
   worksheets/          index of every printable worksheet
   activities/, checklists/, reference/   the hub pages (new folders, so no old URL moved)
   performance-evals/   the midterm and final, page and printed sheet (sheet/?id=…), from
-                       content/performance-evals/<id>.md
+                       content/performance-evals/<id>.md; plus the final-exam practice games
+                       (games/<game>/), which read quiz/data/questions.json directly
 
 SOURCE — never served as a page
   content/activities/  activity Markdown (the source of truth) and its media/

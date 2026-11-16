@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Salmon Run: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Salmon Run · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .sr-c0 { --lane:#e8453c; } .sr-c1 { --lane:#f2a900; } .sr-c2 { --lane:#2ea44f; } .sr-c3 { --lane:#8a4fd8; }
+    .sr-card { padding:.85rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .sr-prompt { margin:0 0 .6rem; font-size:1.08rem; font-weight:650; line-height:1.35; }
+    .sr-choices { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.4rem; margin:0; padding:0; list-style:none; }
+    .sr-choices button { display:flex; gap:.5rem; align-items:flex-start; width:100%; height:100%; padding:.45rem .55rem; border:2px solid var(--line); border-radius:.45rem; background:var(--paper); color:var(--ink); text-align:left; font-size:.92rem; line-height:1.3; }
+    .sr-choices b { flex:0 0 auto; display:grid; place-items:center; width:1.5rem; height:1.5rem; border-radius:.3rem; background:var(--lane); color:#fff; font-size:.85rem; }
+    .sr-picked button { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); }
+    .sr-right button { border-color:var(--good); background:color-mix(in srgb, var(--good) 14%, var(--paper)); }
+    .sr-wrong button { border-color:var(--bad); background:color-mix(in srgb, var(--bad) 14%, var(--paper)); }
+    .sr-dim button { opacity:.45; }
+    .sr-river { position:relative; display:grid; grid-template-columns:repeat(4,1fr); height:clamp(240px, 40vh, 360px); margin-top:.75rem; overflow:hidden; border-radius:.6rem; user-select:none; -webkit-user-select:none; touch-action:manipulation;
+      background:repeating-linear-gradient(180deg, transparent 0 22px, color-mix(in srgb, var(--water-deep) 60%, transparent) 22px 25px), linear-gradient(180deg, var(--water-deep), var(--water));
+      background-size:100% 50px, 100% 100%; animation:sr-flow 1.2s linear infinite; }
+    @keyframes sr-flow { to { background-position:0 50px, 0 0; } }
+    .sr-lane { border-right:2px dashed color-mix(in srgb, var(--paper) 55%, transparent); cursor:pointer; }
+    .sr-lane:last-of-type { border-right:0; }
+    .sr-gates { position:absolute; inset:6px 0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:0 6px; pointer-events:none; }
+    .sr-gate { display:grid; place-items:center; height:2.8rem; border-radius:.4rem .4rem 1rem 1rem; background:var(--lane); color:#fff; font-size:1.4rem; font-weight:800; box-shadow:0 4px 0 rgba(0,0,0,.25); transition:opacity .3s, transform .3s; }
+    .sr-gate.sr-shut { opacity:.25; transform:scale(.85); }
+    .sr-gate.sr-open { box-shadow:0 0 0 4px #fff, 0 0 22px 6px var(--lane); }
+    .sr-fish { position:absolute; bottom:8px; left:37.5%; width:3.5rem; height:3.5rem; transform:translateX(-50%); transition:left .14s ease-out; pointer-events:none; }
+    .sr-fish span { display:block; font-size:3rem; line-height:1; text-align:center; transform:rotate(90deg); animation:sr-wiggle .5s ease-in-out infinite; }
+    @keyframes sr-wiggle { 50% { transform:rotate(100deg); } }
+    .sr-fish.sr-jump span { animation:sr-jump .9s ease-out; }
+    @keyframes sr-jump { 40% { transform:translateY(-40px) rotate(90deg) scale(1.4); } }
+    .sr-bear { position:absolute; bottom:-6rem; font-size:4.5rem; transform:translateX(-50%); transition:bottom .25s cubic-bezier(.3,1.6,.6,1); pointer-events:none; }
+    .sr-chomp .sr-bear { bottom:0; }
+    .sr-chomp .sr-fish { opacity:0; transition:opacity .2s .15s; }
+    .sr-controls { display:grid; grid-template-columns:4rem 1fr 4rem; gap:.5rem; margin-top:.6rem; }
+    .sr-controls button { min-height:3.2rem; border:1px solid var(--line); border-radius:.5rem; background:var(--surface); color:var(--ink); font-size:1.2rem; font-weight:700; touch-action:manipulation; }
+    .sr-leap { background:var(--accent) !important; color:#fff !important; border:0 !important; }
+    .sr-leap small { font-weight:500; opacity:.8; font-size:.75rem; }
+    @media (max-width:560px) {
+      .sr-choices { grid-template-columns:1fr; }
+      .sr-prompt { font-size:1rem; }
+      .sr-gate { height:2.3rem; font-size:1.15rem; }
+      .sr-leap small { display:none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .sr-river, .sr-fish span { animation:none; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="salmon-run.js"></script>
+</body>
+</html>

@@ -400,7 +400,12 @@ EVALS.forEach((id) => {
   const { front, sections } = parseEval(text);
   const stations = sections.filter((section) => section.kind === 'station');
   check(Boolean(front.title && front.revised), `${where}: needs title and revised in its frontmatter`);
-  check(stations.length > 0 && sections.some((section) => section.kind === 'about'), `${where}: needs "## 🙋 About you" and at least one station`);
+  if (front.format === 'exam') {
+    // A written exam (the final): no stations or sheet, but its practice games must be real pages.
+    check(stations.length === 0, `${where}: format "exam" has no stations; a ## heading other than How it works / Practice games reads as one`);
+    const games = sections.find((section) => section.kind === 'games');
+    check(Boolean(games && games.games > 0), `${where}: format "exam" needs a "## 🕹️ Practice games" list of game links`);
+  } else check(stations.length > 0 && sections.some((section) => section.kind === 'about'), `${where}: needs "## 🙋 About you" and at least one station`);
   stations.forEach((station) => {
     check(Boolean(station.goal), `${where}: "${station.heading}" needs a **Goal:** line`);
     check(front.status === 'draft' || station.items > 0, `${where}: "${station.heading}" has nothing to check (only a draft may)`);

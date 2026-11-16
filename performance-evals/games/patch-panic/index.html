@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Patch Panic: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Patch Panic · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .pp-hint { margin:0 0 .6rem; color:var(--muted); font-size:.9rem; }
+    .pp-time.pp-low { color:var(--bad); animation:pp-blink .5s steps(2) infinite; }
+    @keyframes pp-blink { 50% { opacity:.35; } }
+    .pp-board-wrap { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem, 9vw, 5rem); padding:.8rem; border-radius:.6rem; background:var(--rack); }
+    .pp-col h2 { margin:0 0 .5rem; color:var(--rack-ink); font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; }
+    .pp-right h2 { text-align:right; }
+    .pp-jacks { display:grid; gap:.5rem; }
+    .pp-jack { position:relative; display:flex; gap:.5rem; align-items:center; width:100%; min-height:4.2rem; padding:.5rem .6rem; border:2px solid transparent; border-radius:.45rem; background:var(--surface); color:var(--ink); text-align:left; font-size:.88rem; line-height:1.28; transition:border-color .15s, transform .1s; }
+    .pp-jack:hover:not(.pp-locked) { border-color:var(--accent); }
+    .pp-text { flex:1 1 auto; min-width:0; overflow-wrap:anywhere; }
+    .pp-num { flex:0 0 auto; padding:.1rem .35rem; border-radius:.25rem; background:var(--tag); color:var(--muted); font-size:.7rem; font-weight:800; white-space:nowrap; }
+    .pp-dot { position:absolute; top:50%; width:16px; height:16px; border-radius:50%; background:#111; box-shadow:0 0 0 3px #888, inset 0 0 0 4px #333; transform:translateY(-50%); }
+    .pp-in .pp-dot { right:-13px; }
+    .pp-out .pp-dot { left:-13px; }
+    .pp-in { padding-right:1rem; }
+    .pp-out { padding-left:1rem; }
+    .pp-selected { border-color:var(--accent); transform:scale(1.02); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent); }
+    .pp-selected .pp-dot { box-shadow:0 0 0 3px var(--accent), 0 0 12px 3px var(--accent); }
+    .pp-locked { border-color:var(--cable); opacity:.72; cursor:default; }
+    .pp-locked .pp-dot { box-shadow:0 0 0 3px var(--cable); }
+    .pp-buzz { animation:gm-shake .35s, pp-red .7s; }
+    @keyframes pp-red { from, 60% { border-color:var(--bad); } }
+    .pp-cables { position:absolute; inset:0; pointer-events:none; overflow:visible; }
+    .pp-cable { stroke-dasharray:600; stroke-dashoffset:600; animation:pp-run .35s ease-out forwards; }
+    @keyframes pp-run { to { stroke-dashoffset:0; } }
+    @media (max-width:560px) {
+      .pp-board-wrap { gap:1.6rem; padding:.55rem; }
+      .pp-jack { font-size:.78rem; min-height:3.6rem; padding:.4rem .45rem; }
+      .pp-in { padding-right:.75rem; } .pp-out { padding-left:.75rem; }
+      .pp-num { display:none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .pp-cable { animation:none; stroke-dashoffset:0; } .pp-time.pp-low { animation:none; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="patch-panic.js"></script>
+</body>
+</html>

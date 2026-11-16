@@ -1,7 +1,9 @@
 // Performance evals: the midterm and the final, each one Markdown file in content/performance-evals/.
 // The page (/performance-evals/) and the printed sheet (/performance-evals/sheet/?id=midterm) both
 // come from that file, the same way a worksheet comes from its activity, so the two can't drift.
-// midterm.md's header comment lists the conventions.
+// midterm.md's header comment lists the conventions. An eval with `format: "exam"` (the final)
+// is a written exam instead: no stations and no sheet, just its intro, "How it works", and
+// "Practice games" (links to the games in /performance-evals/games/).
 
 import { escapeHtml, inline, joinWrappedLines, renderMarkdown } from '../markdown.js';
 import { parseFrontmatter, renderQr } from '../worksheet.js';
@@ -32,7 +34,7 @@ export function parseEval(markdown) {
   body.split('\n').forEach((line) => {
     const heading = line.match(/^##\s+(.+)$/);
     if (heading) {
-      const kind = { 'how it works': 'how', 'about you': 'about' }[words(heading[1])] || 'station';
+      const kind = { 'how it works': 'how', 'about you': 'about', 'practice games': 'games' }[words(heading[1])] || 'station';
       sections.push({ heading: heading[1].trim(), kind, lines: [] });
     } else if (sections.length) sections[sections.length - 1].lines.push(line);
     else intro.push(line);
@@ -41,6 +43,7 @@ export function parseEval(markdown) {
     const goal = section.lines.map((line) => line.match(GOAL)).find(Boolean);
     section.goal = goal ? goal[1].trim() : '';
     section.items = section.lines.filter((line) => /^(?:-\s+\[[ xX]\]|\d+\.)\s/.test(line.trim())).length;
+    section.games = section.lines.filter((line) => /^-\s+.*\]\([^)]*games\/[^)]+\)/.test(line.trim())).length;
   });
   return { front, intro: intro.join('\n').trim(), sections };
 }
@@ -51,6 +54,7 @@ export function parseEval(markdown) {
 // that it isn't written yet.
 function cardStatus(section) {
   if (section.kind === 'how') return `${section.items} steps`;
+  if (section.kind === 'games') return `🕹️ ${section.games} ${section.games === 1 ? 'game' : 'games'}`;
   const pending = section.lines.some((line) => line.includes('🚧'));
   if (!section.items) return '🚧 Not written yet';
   return `${pending ? '🚧 Draft · ' : ''}${section.items} ${section.items === 1 ? 'item' : 'items'}`;
@@ -71,7 +75,7 @@ export function renderEvalPage(markdown, { assetBase = '../content/performance-e
       ? `<p class="ev-print ev-station-print"><a href="sheet/?id=${id}&amp;station=${slug}"><span aria-hidden="true">🖨️</span> This station's sheet</a>`
         + `<a href="sheet/?id=${id}&amp;station=${slug}&amp;checker=1"><span aria-hidden="true">✅</span> Answer key</a></p>`
       : '';
-    return `<details class="activity-card ev-card"${anchor ? ` id="${anchor}"` : ''}>
+    return `<details class="activity-card ev-card${section.kind === 'games' ? ' ev-games' : ''}"${anchor ? ` id="${anchor}"` : ''}${section.kind === 'games' ? ' open' : ''}>
         <summary>
           <span class="activity-emoji" aria-hidden="true">${escapeHtml(emoji.trim() || '•')}</span>
           <span class="card-copy"><strong>${inline(title.trim(), options)}</strong>${goal ? `<small>${inline(goal, options)}</small>` : ''}</span>
@@ -182,9 +186,10 @@ async function mountPage(root) {
   root.innerHTML = EVALS.map((id, index) => {
     const { front } = parseEval(sources[index]);
     const draft = front.status === 'draft';
+    const exam = front.format === 'exam';
     return `<section class="ev-eval" id="${id}">
         <h2 class="section-title">${escapeHtml(front.emoji || '')} ${escapeHtml(front.title || id)}${draft ? ' <span class="ev-draft">Draft</span>' : ''}</h2>
-        <p class="ev-print"><a href="sheet/?id=${id}"><span aria-hidden="true">🖨️</span> ${draft ? 'Preview' : 'Print'} the ${escapeHtml((front.title || id).toLowerCase())} sheet</a>
+        <p class="ev-print">${exam ? '' : `<a href="sheet/?id=${id}"><span aria-hidden="true">🖨️</span> ${draft ? 'Preview' : 'Print'} the ${escapeHtml((front.title || id).toLowerCase())} sheet</a>`}
           ${front.revised ? `<span class="quiet">Rev. ${escapeHtml(front.revised)}</span>` : ''}</p>
         <div class="ev-intro">${renderEvalPage(sources[index], { id })}</div>
       </section>`;
@@ -205,6 +210,13 @@ async function mountSheet(root) {
   const checker = params.get('checker') === '1';
   const markdown = await fetchEval('../../', id);
   const { front } = parseEval(markdown);
+  if (front.format === 'exam') {
+    document.title = `${front.title || id} · MUS 248`;
+    root.innerHTML = crumbs([['Performance Evals', `performance-evals/#${id}`], [front.title || id]])
+      + `<p>The ${escapeHtml((front.title || id).toLowerCase())} is a written exam on the quiz engine, so there's no sheet to print. `
+      + `<a href="../#${id}">See how it works, and practice with the games</a>.</p>`;
+    return;
+  }
   const label = `${front.title || id} ${checker ? 'answer key' : 'sheet'}`;
   document.title = `${label} · MUS 248`;
   root.innerHTML = crumbs([['Performance Evals', `performance-evals/#${id}${station ? `-${station}` : ''}`], [label]])
