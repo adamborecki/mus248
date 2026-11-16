@@ -437,6 +437,24 @@ CHAINS.forEach((chain) => {
   check(Boolean(chain.why && chain.source && chain.lab), `${where} needs why, source, and lab`);
 });
 
+// The games' two modes, held to the quiz engine's own rules (tierOf). Standard: what a quiz can
+// ask, so no drafts and nothing on an inactive skill. Easier: inside Standard, level 0-1 only, on
+// Core skills or the Salmon signal-flow preset, with enough Salmon questions to be worth picking.
+{
+  const { modePools, SALMON_FLOW } = await import('../performance-evals/games/bank.js');
+  const { tierOf } = await import('../quiz/js/engine.js');
+  const bank = JSON.parse(read('quiz', 'data', 'questions.json'));
+  const curriculum = JSON.parse(read('quiz', 'data', 'curriculum.json'));
+  const { standard, easier } = modePools(bank.questions, curriculum);
+  const where = 'performance-evals/games/bank.js modePools';
+  check(standard.every((q) => !q.draft && tierOf(curriculum, q) !== 'inactive'), `${where}: Standard deals a draft or an untaught (inactive) question`);
+  const inStandard = new Set(standard.map((q) => q.id));
+  check(easier.every((q) => inStandard.has(q.id) && (q.level ?? 0) <= 1), `${where}: Easier deals something harder than level 1, or outside Standard`);
+  check(easier.length >= 100 && easier.length < standard.length, `${where}: Easier has ${easier.length} questions; expected at least 100 and fewer than Standard`);
+  const salmon = easier.filter((q) => tierOf(curriculum, q) !== 'core').length;
+  check(salmon >= 10, `${where}: Easier has only ${salmon} ${SALMON_FLOW} questions beyond Core`);
+}
+
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);
 console.log(`${rows.length} worksheets · ${total('checkpoints')} checkpoints · ${total('questions')} questions · ${total('terms')} key terms`);

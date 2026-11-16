@@ -2,12 +2,18 @@
 // A row of four lettered gates floats down the river while you read; pick a lane (tap an answer,
 // tap the river, arrows, 1–4 or A–D) and either wait for the gate or hit Leap for a time bonus.
 
-import { escapeHtml, mountGame, sound } from '../bank.js';
+import { escapeHtml, mountGame, sound, teach } from '../bank.js';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
-const LIVES = 3;
+// Easier mode: more lives, more reading time, a gentler speed-up, and a teaching card after a miss.
+const TUNING = {
+  standard: { lives: 3, time: 1, fastest: 0.45 },
+  easier: { lives: 5, time: 1.6, fastest: 0.8 },
+};
 
-function start({ deck, stage, finish }) {
+function start({ deck, stage, finish, easy }) {
+  const tune = TUNING[easy ? 'easier' : 'standard'];
+  const LIVES = tune.lives;
   const state = { score: 0, lives: LIVES, streak: 0, speed: 1, lane: 1, q: null, p: 0, duration: 10, leaping: false, done: false, misses: [], last: 0, raf: 0, resolving: false };
 
   stage.innerHTML = `
@@ -31,7 +37,8 @@ function start({ deck, stage, finish }) {
       <button type="button" class="sr-move" data-dir="-1" aria-label="Swim left">◀</button>
       <button type="button" class="sr-leap">Leap! <small>(space)</small></button>
       <button type="button" class="sr-move" data-dir="1" aria-label="Swim right">▶</button>
-    </div>`;
+    </div>
+    <div class="gm-teachbox"></div>`;
 
   const $ = (sel) => stage.querySelector(sel);
   const river = $('.sr-river');
@@ -71,7 +78,7 @@ function start({ deck, stage, finish }) {
     state.resolving = false;
     const chars = state.q.prompt.length + state.q.choices.join('').length;
     // Reading time: generous at first (about 4 s plus 28 characters a second), shrinking as the streak grows.
-    state.duration = (4 + chars / 28) * state.speed;
+    state.duration = (4 + chars / 28) * state.speed * tune.time;
     $('.sr-prompt').textContent = state.q.prompt;
     $('.sr-choices').innerHTML = state.q.choices.map((choice, i) => `<li><button type="button" data-lane="${i}"><b class="sr-c${i}">${LETTERS[i]}</b><span>${escapeHtml(choice)}</span></button></li>`).join('');
     stage.querySelectorAll('.sr-choices button').forEach((button) => button.addEventListener('click', () => moveTo(Number(button.dataset.lane))));
@@ -92,7 +99,7 @@ function start({ deck, stage, finish }) {
       state.streak += 1;
       const points = Math.round((100 + 200 * timeLeft) * Math.min(state.streak, 5));
       state.score += points;
-      state.speed = Math.max(0.45, state.speed * 0.94);
+      state.speed = Math.max(tune.fastest, state.speed * 0.94);
       fish.classList.remove('sr-jump');
       void fish.offsetWidth;
       fish.classList.add('sr-jump');
@@ -111,15 +118,18 @@ function start({ deck, stage, finish }) {
       sound.bad();
     }
     hud();
-    setTimeout(() => {
+    const after = () => {
       if (state.lives <= 0) return end('The bear got you 🐻');
       next();
-    }, right ? 1100 : 2600);
+    };
+    // Easier mode stops on a miss to show the right answer and why, until the player taps Got it.
+    if (!right && easy) setTimeout(() => { if (!state.done) teach($('.gm-teachbox'), q, after); }, 900);
+    else setTimeout(after, right ? 1100 : 2600);
   };
 
   const tick = (now) => {
     if (state.done) return;
-    const dt = Math.min(0.1, (now - state.last) / 1000);
+    const dt = Math.min(0.1, Math.max(0, (now - state.last) / 1000));
     state.last = now;
     if (!state.resolving && state.q) {
       state.p += state.leaping ? dt * 2.5 : dt / state.duration;
@@ -145,7 +155,7 @@ function start({ deck, stage, finish }) {
   };
 
   const onKey = (event) => {
-    if (event.target.closest && event.target.closest('select, input, textarea')) return;
+    if (event.target.closest && event.target.closest('select, input, textarea, .gm-teach')) return;
     const key = event.key.toLowerCase();
     if (key === 'arrowleft') moveTo(state.lane - 1);
     else if (key === 'arrowright') moveTo(state.lane + 1);
@@ -179,8 +189,12 @@ mountGame(document.getElementById('game'), {
     'A question appears with answers <b>A–D</b>. A row of gates floats down the river toward you.',
     'Swim into the lane of the right answer: tap an answer, tap a lane, or use ← → / 1–4 / A–D.',
     'Sure already? Hit <b>Leap!</b> (space, or tap your lane again) for a speed bonus.',
-    'Streaks multiply your points (up to ×5), and the river speeds up. Three wrong gates and you\'re bear food.',
+    'Streaks multiply your points (up to ×5), and the river speeds up. Run out of fish and you\'re bear food.',
   ],
+  modeBlurbs: {
+    easier: 'Simpler questions, 5 lives, a slower river. A wrong gate stops to show you why.',
+    standard: 'Every question a quiz can ask, 3 lives, and the river speeds up. Closest to the final.',
+  },
   startLabel: 'Swim! 🐟',
   start,
 });

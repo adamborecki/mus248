@@ -26,6 +26,8 @@
     .fs-tile:hover:not(:disabled) { border-color:var(--accent); }
     .fs-tile:active:not(:disabled) { transform:translateY(2px); box-shadow:0 1px 0 var(--line); }
     .fs-used { visibility:hidden; }
+    .fs-hint { border-color:var(--good); animation:fs-glow .7s ease-in-out infinite; }
+    @keyframes fs-glow { 50% { box-shadow:0 0 0 5px color-mix(in srgb, var(--good) 35%, transparent); } }
     .fs-decoy { border-color:var(--bad); color:var(--bad); text-decoration:line-through; opacity:.55; box-shadow:none; }
     .fs-buzz { animation:gm-shake .35s; border-color:var(--bad); }
     .fs-after { text-align:center; }

@@ -12,6 +12,9 @@ The final is a written exam on the quiz engine, not a performance eval with stat
 shows the intro, "How it works", and "Practice games" (each bullet a link to a game in
 /performance-evals/games/, which draw from quiz/data/questions.json on their own).
 
+Each game has two modes, Easier and Standard; performance-evals/games/bank.js says what each
+deals, using the quiz engine's own rules.
+
 The six hands-on stations this file used to hold (Salmon A/V, Standard Gear Kit, data transfer,
 X32 + FOH, Musco multicam, post-production) are in git history: revised 2026-11-03.
 -->
@@ -30,16 +33,22 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 
 ## 🕹️ Practice games
 
-**Goal:** Practice Salmon's signal flow and every question in the quiz bank, and have some fun doing it.
+**Goal:** Practice Salmon's signal flow and the quiz questions, at your level, and have some fun doing it.
 
 - ⚡ [Follow the Signal](../../performance-evals/games/follow-the-signal/): you are the signal. Trace Salmon's real paths, from the mic to the speaker, hop by hop, and dodge the decoys. Built from the Salmon FOH lecture, the CME Gig Checklist, and Mixer Lab.
 - 🐟 [Salmon Run](../../performance-evals/games/salmon-run/): swim upstream into the gate with the right answer. Wrong gate, and the bear eats.
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
-- 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open in 90 seconds. Patch every question to its answer before the clock runs out.
+- 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open soon. Patch every question to its answer before the clock runs out.
+
+> **Two modes in every game.** 🌱 **Easier** is the essentials: simpler questions (recognizing and
+> recalling, no troubleshooting) on the Core skills the weekly quizzes grade, plus Salmon's signal
+> flow, at a slower pace, and a miss stops to show you the right answer and why. 🎯 **Standard** is
+> every question a quiz can ask, the harder troubleshooting ones included, at full speed: the
+> closest to the final. Feeling behind? Start on Easier, then move up.
 
 > **Start with Salmon's signal flow.** Follow the Signal is all Salmon, and the other three have a
 > **🐟 Salmon signal flow** topic at the top of their topic list.
 
-> The other three games use the whole quiz question bank, including questions that haven't been checked yet
-> and topics we haven't covered. Each game ends with the questions you missed and why. One looks
-> wrong? Send a Repo improvement with its id.
+> The other three games use the quiz question bank, including questions that haven't been checked
+> yet, but never one on a topic we haven't covered. Each game ends with the questions you missed and
+> why. One looks wrong? Send a Repo improvement with its id.

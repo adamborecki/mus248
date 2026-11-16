@@ -1,19 +1,26 @@
-// 🔌 Patch Panic: doors open in 90 seconds and the stage box isn't patched. Each input is a
+// 🔌 Patch Panic: doors open soon and the stage box isn't patched. Each input is a
 // question, each mixer channel an answer; tap one, then its match, to run a cable. Right patches
 // add time, wrong ones spark and cost time. Clear the board and a new one rolls in.
 
 import { escapeHtml, mountGame, shuffle, sound } from '../bank.js';
 
 const COLORS = ['#e8453c', '#f2a900', '#2ea44f', '#2f74c0', '#8a4fd8'];
-const START_SECONDS = 90;
+// Easier mode: more time, three pairs a board even on a wide screen, a cheaper wrong patch, and
+// the right channel lights up after a wrong one.
+const TUNING = {
+  standard: { seconds: 90, penalty: 6, pairs: 4 },
+  easier: { seconds: 150, penalty: 3, pairs: 3 },
+};
 
-function start({ deck, stage, finish }) {
+function start({ deck, stage, finish, easy }) {
+  const tune = TUNING[easy ? 'easier' : 'standard'];
+  const START_SECONDS = tune.seconds;
   const state = { time: START_SECONDS, score: 0, board: 0, pairs: [], picked: null, done: false, misses: [], missedIds: new Set(), last: 0, raf: 0 };
 
   stage.innerHTML = `
     <div class="gm-hud">
       <span class="pp-score">0 patched</span>
-      <span class="pp-time" aria-live="off">⏱ 90</span>
+      <span class="pp-time" aria-live="off">⏱ ${START_SECONDS}</span>
       <span class="pp-board">Board 1</span>
       <button type="button" class="gm-quit">Call it</button>
     </div>
@@ -38,7 +45,7 @@ function start({ deck, stage, finish }) {
 
   // Questions from different skills with different right answers, so no two outputs could both be right.
   const dealBoard = () => {
-    const count = window.innerWidth < 560 ? 3 : 4;
+    const count = window.innerWidth < 560 ? 3 : tune.pairs;
     const pairs = [];
     let guard = 0;
     while (pairs.length < count && guard < 60) {
@@ -128,7 +135,7 @@ function start({ deck, stage, finish }) {
         setTimeout(() => { if (!state.done) dealBoard(); }, 700);
       }
     } else {
-      state.time = Math.max(0, state.time - 6);
+      state.time = Math.max(0, state.time - tune.penalty);
       if (!state.missedIds.has(pair.id)) {
         state.missedIds.add(pair.id);
         state.misses.push({ ...pair, picked: picked.choices[picked.answer] });
@@ -136,7 +143,12 @@ function start({ deck, stage, finish }) {
       drawCables([center(inJack), center(outJack)]);
       setTimeout(() => { if (!state.done) drawCables(); }, 600);
       [inJack, outJack].forEach((el) => { el.classList.remove('pp-buzz'); void el.offsetWidth; el.classList.add('pp-buzz'); });
-      pop('−6s', 'var(--bad)', outJack);
+      pop(`−${tune.penalty}s`, 'var(--bad)', outJack);
+      if (easy) {
+        const partner = stage.querySelector(`.pp-out[data-n="${pair.n}"]`);
+        partner.classList.add('pp-hint');
+        setTimeout(() => partner.classList.remove('pp-hint'), 1800);
+      }
       sound.bad();
     }
     hud();
@@ -144,7 +156,7 @@ function start({ deck, stage, finish }) {
 
   const tick = (now) => {
     if (state.done) return;
-    state.time = Math.max(0, state.time - Math.min(0.1, (now - state.last) / 1000));
+    state.time = Math.max(0, state.time - Math.min(0.1, Math.max(0, (now - state.last) / 1000)));
     state.last = now;
     hud();
     if (state.time <= 0) return end('Doors are open. Out of time! 🚪');
@@ -171,13 +183,17 @@ mountGame(document.getElementById('game'), {
   id: 'patch-panic',
   title: 'Patch Panic',
   emoji: '🔌',
-  tagline: 'Doors open in 90 seconds and nothing is patched.',
+  tagline: 'Doors open soon and nothing is patched.',
   rules: [
     'Each stage-box input is a question. Each mixer channel is an answer.',
     'Tap an input, then the channel it belongs to (either order works) to run a cable.',
-    'Right patch: <b>+4 s</b>. Wrong patch: it sparks, <b>−6 s</b>. Clear the board: <b>+6 s</b> and a new one.',
+    'Right patch: <b>+4 s</b>. Wrong patch: it sparks and costs time. Clear the board: <b>+6 s</b> and a new one.',
     'Keep patching until the clock runs out.',
   ],
+  modeBlurbs: {
+    easier: 'Simpler questions, 150 seconds, three pairs a board. A wrong patch costs 3 s and lights up the right channel.',
+    standard: 'Every question a quiz can ask, 90 seconds, a wrong patch costs 6 s. Closest to the final.',
+  },
   startLabel: 'Load in 🔌',
   start,
 });

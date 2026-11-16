@@ -48,4 +48,26 @@
 @keyframes gm-float { to { transform:translateY(-60px) scale(1.3); opacity:0; } }
 .gm-shake { animation:gm-shake .35s; }
 @keyframes gm-shake { 20% { transform:translate(-8px, 2px) rotate(-1deg); } 40% { transform:translate(7px,-3px) rotate(1deg); } 60% { transform:translate(-5px, 1px); } 80% { transform:translate(3px,-1px); } }
-@media (prefers-reduced-motion: reduce) { .gm-hero, .gm-shake, .gm-pop, .gm-record { animation:none !important; } }
+@media (prefers-reduced-motion: reduce) { .gm-hero, .gm-shake, .gm-pop, .gm-record, .gm-teach { animation:none !important; } }
+
+/* mode picker (lobby) */
+.gm-modes { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; max-width:32rem; margin:0 auto 1rem; padding:0; border:0; text-align:left; }
+.gm-modes legend { margin:0 auto .45rem; padding:0; font-weight:700; text-align:center; }
+.gm-mode { position:relative; display:block; cursor:pointer; }
+.gm-mode input { position:absolute; opacity:0; width:1px; height:1px; }
+.gm-mode > span { display:grid; gap:.2rem; height:100%; padding:.7rem .8rem; border:2px solid var(--line); border-radius:.6rem; background:var(--surface); }
+.gm-mode small { color:var(--muted); font-size:.82rem; line-height:1.35; }
+.gm-mode input:checked + span { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); background:color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+.gm-mode input:focus-visible + span { outline:3px solid var(--accent); outline-offset:2px; }
+.gm-mode-tag { margin:-.5rem 0 1rem; color:var(--muted); font-size:.85rem; }
+@media (max-width:420px) { .gm-modes { grid-template-columns:1fr; } }
+
+/* easier mode: the teaching card after a miss */
+.gm-teach { margin:.75rem 0 0; padding:.85rem 1rem; border:2px solid var(--warn); border-radius:.6rem; background:color-mix(in srgb, var(--warn) 10%, var(--surface)); text-align:left; animation:gm-rise .25s ease-out; }
+@keyframes gm-rise { from { opacity:0; transform:translateY(8px); } }
+.gm-teach p { margin:0; }
+.gm-teach-head { font-weight:800; }
+.gm-teach .gm-right { margin-top:.35rem; }
+.gm-teach .gm-why { margin-top:.3rem; color:var(--ink); }
+.gm-gotit { margin-top:.7rem; padding:.55rem 1.1rem; border:0; border-radius:999px; background:var(--accent); color:#fff; font-weight:700; }
+.gm-easy-badge { padding:.1rem .5rem; border-radius:999px; background:color-mix(in srgb, var(--good) 18%, var(--surface)); color:var(--good); font-size:.75rem; font-weight:800; }

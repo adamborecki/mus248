@@ -1,18 +1,38 @@
 // Shared plumbing for the final-exam practice games (/performance-evals/games/<game>/).
-// Every game draws from the quiz's own question bank (quiz/data/questions.json, the whole bank,
-// verified or not), so there is nothing to author here: new quiz questions show up in the games
-// on their own. Each game gets: a lobby (topic picker + best score), a deck that deals questions
-// with their choices shuffled, and an end screen that reviews every miss with its explanation.
+// Every game draws from the quiz's own question bank (quiz/data/questions.json), so there is
+// nothing to author here: new quiz questions show up in the games on their own. Each game gets: a
+// lobby (mode, topic, best score), a deck that deals questions with their choices shuffled, and an
+// end screen that reviews every miss with its explanation.
+//
+// Two modes, both judged by the quiz engine's own rules (tierOf, from quiz/js/engine.js):
+//   standard  everything a quiz can ask: no drafts, nothing on an inactive (untaught) skill, every
+//             level, including the level 2-3 troubleshooting ones the weekly graded set leaves out.
+//   easier    the essentials, simpler questions: level 0-1 (recognition and recall) on Core skills,
+//             plus the Salmon signal-flow skills, which are Practice but essential. Games also slow
+//             down, forgive more, and stop to teach after a miss.
 
 import { crumbs } from '../../crumbs.js';
+import { tierOf } from '../../quiz/js/engine.js';
 
 const BANK_URL = new URL('../../quiz/data/questions.json', import.meta.url);
+const CURRICULUM_URL = new URL('../../quiz/data/curriculum.json', import.meta.url);
+
+export const MODES = {
+  easier: {
+    label: '🌱 Easier', blurb: 'The essentials, simpler questions, slower pace. A miss stops to show you why.',
+  },
+  standard: {
+    label: '🎯 Standard', blurb: 'Every question a quiz can ask, harder ones included, at full speed. Closest to the final.',
+  },
+};
+const MODE_IDS = Object.keys(MODES);
 
 // A preset across topics: the skills behind Salmon's routing and gain staging (the Salmon FOH lecture,
 // its gig checklists, and Mixer Lab's Salmon scenarios). Listed first in every game's topic picker.
 export const SALMON_FLOW = 'salmon-flow';
 const SALMON_FLOW_SKILLS = ['signal_flow', 'live_signal_flow', 'gain_chain', 'sends_on_fader', 'buses', 'stage_box_snake',
   'salmon_audio_setup', 'salmon_aes50', 'salmon_mains', 'salmon_wedges', 'salmon_gains', 'salmon_gig_compare', 'wedge_check'];
+const isSalmonFlow = (q) => SALMON_FLOW_SKILLS.includes(q.skill);
 const inTopic = (q, topic) => topic === 'all' || (topic === SALMON_FLOW ? SALMON_FLOW_SKILLS.includes(q.skill) : q.topic === topic);
 
 // The bank's topic ids, as students read them. Anything new falls back to Title Case.
@@ -36,13 +56,25 @@ export function shuffle(items) {
   return copy;
 }
 
+const getJson = (url) => fetch(url, { cache: 'no-cache' }).then((response) => {
+  if (!response.ok) throw new Error(`Could not load ${url}`);
+  return response.json();
+});
+
+// Which questions each mode may deal. `curriculum` is quiz/data/curriculum.json; exported so the
+// checker can hold the pools to the same rules the page uses.
+export function modePools(questions, curriculum) {
+  const usable = questions.filter((q) => Array.isArray(q.choices) && q.choices.length >= 2
+    && Number.isInteger(q.answer_index) && q.choices[q.answer_index] !== undefined);
+  const standard = usable.filter((q) => !q.draft && tierOf(curriculum, q) !== 'inactive');
+  const easier = standard.filter((q) => (q.level ?? 0) <= 1 && (tierOf(curriculum, q) === 'core' || isSalmonFlow(q)));
+  return { standard, easier };
+}
+
 let bankPromise = null;
 export function loadBank() {
-  bankPromise ||= fetch(BANK_URL, { cache: 'no-cache' }).then((response) => {
-    if (!response.ok) throw new Error('Could not load the question bank');
-    return response.json();
-  }).then((bank) => bank.questions.filter((q) => Array.isArray(q.choices) && q.choices.length >= 2
-    && Number.isInteger(q.answer_index) && q.choices[q.answer_index] !== undefined));
+  bankPromise ||= Promise.all([getJson(BANK_URL), getJson(CURRICULUM_URL)])
+    .then(([bank, curriculum]) => modePools(bank.questions, curriculum));
   return bankPromise;
 }
 
@@ -102,10 +134,36 @@ export const sound = {
   bad() { this.blip(140, 260, 'sawtooth', 0.06); },
 };
 
+// Best scores are kept per mode, as "mode|topic". Keys from before modes existed (just the topic)
+// were standard games.
+function bestFor(best = {}, mode) {
+  const out = {};
+  Object.entries(best || {}).forEach(([key, score]) => {
+    const [m, t] = key.includes('|') ? key.split('|') : ['standard', key];
+    if (m === mode) out[t] = Math.max(out[t] || 0, score);
+  });
+  return out;
+}
+
+// Easier mode's teaching card after a miss: the right answer and why, until the player taps Got it.
+export function teach(container, q, onDone) {
+  container.innerHTML = `<div class="gm-teach" role="status">
+      <p class="gm-teach-head">Not quite. Here's the idea:</p>
+      <p class="gm-right">✓ ${escapeHtml(q.choices[q.answer])}</p>
+      ${q.explanation ? `<p class="gm-why">${escapeHtml(q.explanation)}</p>` : ''}
+      <button type="button" class="gm-gotit">Got it ▶</button>
+    </div>`;
+  const button = container.querySelector('.gm-gotit');
+  const done = () => { container.innerHTML = ''; onDone(); };
+  button.addEventListener('click', done, { once: true });
+  button.focus({ preventScroll: true });
+  container.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+}
+
 // ---------- the frame every game shares ----------
 
-// Mounts the lobby into root and calls start({ deck, topic, root: stage }) when the player hits
-// Start. The game calls the `finish` it was handed with { score, label, misses } to show the end screen.
+// Mounts the lobby into root and calls start({ deck, topic, mode, easy, stage, finish }) when the
+// player hits Start. The game calls the `finish` it was handed with { score, label, misses } to show the end screen.
 export async function mountGame(root, game) {
   const prefs = loadPrefs(game.id);
   sound.on = Boolean(prefs.sound);
@@ -113,25 +171,36 @@ export async function mountGame(root, game) {
   const trail = crumbs([['Performance Evals', 'performance-evals/#final'], [game.title]]);
   root.innerHTML = `${trail}<div class="gm-stage" data-game="${game.id}"><p class="quiet">Loading the question bank…</p></div>`;
   const stage = root.querySelector('.gm-stage');
-  let questions = [];
-  if (game.useBank !== false) try { questions = await loadBank(); } catch {
+  let pools = { standard: [], easier: [] };
+  if (game.useBank !== false) try { pools = await loadBank(); } catch {
     stage.innerHTML = '<p class="quiet">The question bank could not be loaded. Check your connection and reload.</p>';
     return;
   }
-  const counts = {};
-  questions.forEach((q) => { counts[q.topic] = (counts[q.topic] || 0) + 1; });
-  const topics = Object.keys(counts).sort((a, b) => topicLabel(a).localeCompare(topicLabel(b)));
-  counts[SALMON_FLOW] = questions.filter((q) => inTopic(q, SALMON_FLOW)).length;
+  // ?mode=easier in a link picks the mode (and remembers it), so a student can be sent straight there.
+  const asked = new URLSearchParams(window.location.search).get('mode');
+  if (MODE_IDS.includes(asked)) savePrefs(game.id, { mode: asked });
+  const currentMode = () => (MODE_IDS.includes(loadPrefs(game.id).mode) ? loadPrefs(game.id).mode : 'standard');
 
   const lobby = () => {
-    const best = loadPrefs(game.id).best || {};
-    const topic = loadPrefs(game.id).topic && counts[loadPrefs(game.id).topic] ? loadPrefs(game.id).topic : 'all';
+    const mode = currentMode();
+    const questions = pools[mode];
+    const counts = {};
+    questions.forEach((q) => { counts[q.topic] = (counts[q.topic] || 0) + 1; });
+    const topics = Object.keys(counts).sort((a, b) => topicLabel(a).localeCompare(topicLabel(b)));
+    counts[SALMON_FLOW] = questions.filter((q) => inTopic(q, SALMON_FLOW)).length;
+    const best = bestFor(loadPrefs(game.id).best, mode);
+    const saved = loadPrefs(game.id).topic;
+    const topic = saved && counts[saved] ? saved : 'all';
     stage.innerHTML = `
       <section class="gm-lobby">
         <div class="gm-hero" aria-hidden="true">${game.emoji}</div>
         <h1>${escapeHtml(game.title)}</h1>
         <p class="gm-tagline">${game.tagline}</p>
         <ol class="gm-rules">${game.rules.map((rule) => `<li>${rule}</li>`).join('')}</ol>
+        <fieldset class="gm-modes"><legend>Mode</legend>
+          ${MODE_IDS.map((id) => `<label class="gm-mode"><input type="radio" name="gm-mode" value="${id}"${id === mode ? ' checked' : ''}>
+            <span><strong>${MODES[id].label}</strong><small>${escapeHtml((game.modeBlurbs || {})[id] || MODES[id].blurb)}</small></span></label>`).join('')}
+        </fieldset>
         <div class="gm-setup">
           ${game.useBank === false ? '' : `<label>Topic <select class="gm-topic">
             <option value="all">All topics (${questions.length})</option>
@@ -141,8 +210,13 @@ export async function mountGame(root, game) {
           <label class="gm-sound"><input type="checkbox"${sound.on ? ' checked' : ''}> Sound</label>
         </div>
         <button type="button" class="gm-start">${escapeHtml(game.startLabel || 'Start')}</button>
-        <p class="gm-best">${Object.keys(best).length ? `🏆 Best: ${Object.entries(best).map(([t, s]) => `${escapeHtml(t === 'all' ? 'All topics' : topicLabel(t))} ${s}`).join(' · ')}` : '🏆 No best score yet on this device.'}</p>
+        <p class="gm-best">${Object.keys(best).length ? `🏆 Best (${escapeHtml(MODES[mode].label.replace(/^\S+\s/, ''))}): ${Object.entries(best).map(([t, s]) => `${escapeHtml(t === 'all' ? 'All topics' : topicLabel(t))} ${s}`).join(' · ')}` : `🏆 No ${escapeHtml(MODES[mode].label.replace(/^\S+\s/, '').toLowerCase())} best score yet on this device.`}</p>
       </section>`;
+    stage.querySelectorAll('.gm-modes input').forEach((input) => input.addEventListener('change', () => {
+      savePrefs(game.id, { mode: input.value });
+      lobby();
+      stage.querySelector(`.gm-modes input[value="${input.value}"]`).focus();
+    }));
     stage.querySelector('.gm-sound input').addEventListener('change', (event) => {
       sound.on = event.target.checked;
       savePrefs(game.id, { sound: sound.on });
@@ -153,19 +227,21 @@ export async function mountGame(root, game) {
       savePrefs(game.id, { topic: chosen });
       const pool = questions.filter((q) => inTopic(q, chosen));
       stage.innerHTML = '';
-      game.start({ deck: makeDeck(pool), topic: chosen, stage, finish: (result) => finish(chosen, result) });
+      stage.dataset.mode = mode;
+      game.start({ deck: makeDeck(pool), topic: chosen, mode, easy: mode === 'easier', stage, finish: (result) => finish(mode, chosen, result) });
     });
-    stage.querySelector('.gm-start').focus();
   };
 
-  const finish = (topic, { score, label = 'points', headline = 'Game over', misses = [] }) => {
+  const finish = (mode, topic, { score, label = 'points', headline = 'Game over', misses = [] }) => {
     const all = loadPrefs(game.id).best || {};
-    const record = score > (all[topic] || 0);
-    if (record) savePrefs(game.id, { best: { ...all, [topic]: score } });
+    const key = `${mode}|${topic}`;
+    const record = score > (bestFor(all, mode)[topic] || 0);
+    if (record) savePrefs(game.id, { best: { ...all, [key]: score } });
     stage.innerHTML = `
       <section class="gm-over">
         <h1>${escapeHtml(headline)}</h1>
         <p class="gm-final"><strong>${score}</strong> ${escapeHtml(label)}${record && score > 0 ? ' <span class="gm-record">🏆 New best!</span>' : ''}</p>
+        <p class="gm-mode-tag">${MODES[mode].label} mode${mode === 'easier' ? ' · ready for more? Switch to Standard in the lobby.' : ''}</p>
         <div class="gm-again"><button type="button" class="gm-start">Play again</button>
           <a href="../../#final">All games</a></div>
         ${misses.length ? `<h2>Worth another look (${misses.length})</h2>

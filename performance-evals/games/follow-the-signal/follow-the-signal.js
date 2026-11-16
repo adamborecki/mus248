@@ -5,7 +5,8 @@
 import { escapeHtml, mountGame, shuffle, sound } from '../bank.js';
 import { CHAINS, MIXER_LAB } from './chains.js';
 
-function start({ stage, finish }) {
+// Easier mode: no decoys, the first hop is placed for you, and after a slip the right next tile glows.
+function start({ stage, finish, easy }) {
   const rounds = shuffle(CHAINS);
   const state = { round: 0, score: 0, placed: 0, mistakes: [], startedAt: 0, done: false, misses: [], clean: 0 };
 
@@ -42,15 +43,16 @@ function start({ stage, finish }) {
 
   const showRound = () => {
     const c = chain();
-    state.placed = 0;
+    state.placed = easy ? 1 : 0;
     state.mistakes = [];
     state.startedAt = performance.now();
     $('.fs-gig').textContent = c.gig;
     $('.fs-title').textContent = c.title;
-    $('.fs-callout').textContent = 'Where does the signal start?';
+    $('.fs-callout').textContent = easy ? `It starts at ${c.hops[0]}. Where does it go next?` : 'Where does the signal start?';
     $('.fs-after').hidden = true;
     $('.fs-scene').classList.remove('fs-live');
-    const tiles = shuffle([...c.hops.map((hop, i) => ({ text: hop, step: i })), ...c.decoys.map((text) => ({ text, step: -1 }))]);
+    const hops = c.hops.map((hop, i) => ({ text: hop, step: i })).filter((tile) => tile.step >= state.placed);
+    const tiles = shuffle([...hops, ...(easy ? [] : c.decoys.map((text) => ({ text, step: -1 })))]);
     $('.fs-tray').innerHTML = tiles.map((tile) => `<button type="button" class="fs-tile" data-step="${tile.step}">${escapeHtml(tile.text)}</button>`).join('');
     stage.querySelectorAll('.fs-tile').forEach((tile) => tile.addEventListener('click', () => tap(tile)));
     drawTrack();
@@ -63,6 +65,7 @@ function start({ stage, finish }) {
     tile.classList.add('fs-buzz');
     $('.fs-callout').textContent = message;
     sound.bad();
+    if (easy) stage.querySelector(`.fs-tile[data-step="${state.placed}"]`)?.classList.add('fs-hint');
   };
 
   const tap = (tile) => {
@@ -72,6 +75,7 @@ function start({ stage, finish }) {
     if (step === state.placed) {
       tile.disabled = true;
       tile.classList.add('fs-used');
+      stage.querySelectorAll('.fs-hint').forEach((hinted) => hinted.classList.remove('fs-hint'));
       state.placed += 1;
       sound.blip(440 + state.placed * 90, 70);
       drawTrack();
@@ -139,6 +143,10 @@ mountGame(document.getElementById('game'), {
   ],
   startLabel: 'Plug in ⚡',
   useBank: false,
+  modeBlurbs: {
+    easier: 'No decoys, the first hop is placed for you, and the right next hop glows if you slip.',
+    standard: 'Decoys included: real Salmon gear that belongs somewhere else. Closest to the final.',
+  },
   outro: `<p class="gm-note">Every path comes from the Salmon FOH lecture (Nov 2) and the CME Gig Checklist.
     Practice the real thing in Mixer Lab: <a href="${MIXER_LAB}x32-cme-tour" target="_blank" rel="noopener">CME in Salmon</a>
     · <a href="${MIXER_LAB}x32-vj-link" target="_blank" rel="noopener">Vocal Jazz in Salmon</a>.</p>`,
