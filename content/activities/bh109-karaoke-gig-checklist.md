@@ -5,11 +5,11 @@ emoji: "🎤"
 coreSkillAreas:
   - Live Sound
 status: In Development
-revised: "2026-10-22"
+revised: "2026-11-16"
 estimatedTime: "Not a timed drill. About an hour to set up the first time, with the reset at the end."
 access:
   mode: On campus
-  location: "BH 109, the choir room, using the room's own rack and wall speakers. The gear comes from the Salmon storage closet (BH 102) or upstairs (BH 208/209). Ask Borecki where it is before you start: gear moves."
+  location: "BH 109, the choir room, using the room's own rack and wall speakers. The gear is in the Salmon storage closet (BH 102) or the recording studio that overlooks Salmon (BH 208/209). Check with Borecki before you start: gear moves."
   supervision: "For engineers who have run a small analog mixer before. The room's rack is shared: change only what this page names."
 groupSize:
   minimum: 1
@@ -23,8 +23,9 @@ roundsSupported: false
 
 > 🧪 **Status: In Development.** Written October 2026 from the instructor's walkthrough of a
 > karaoke setup in BH 109, recorded while a student engineer set it up, and from photos of the
-> rig. The settings below are the ones that worked that day. A few details are still open. See
-> **Technical verification**.
+> rig, with the instructor's answers to its open questions added in November 2026. The settings
+> below are the ones that worked that day. A few details are still open. See **Technical
+> verification**.
 
 ## 🎚️ What this is
 
@@ -44,6 +45,10 @@ Two parts:
 
 ![The rig on the grand piano in BH 109: the karaoke laptop in front, the Xenyx mixer and the Zoom V3 behind it, SM58s and coiled cables beside them.](media/bh109-karaoke/laptop.jpg)
 
+## 🕹️ Practice first
+
+- [Mixer Lab: Karaoke in BH 109](https://adamborecki.github.io/mixer-lab/#/x1204usb-ky-house): Twelve scenarios on a virtual Xenyx QX1204USB with this rig, the room's rack and wall speakers included. Most are about connecting things: the rack's cables, CONTROL ROOM OUT, the V3, a mic in the wrong jack, the laptop in 2-TRACK IN. The rest are knobs from this page: −10, COMP, MUTE / ALT 3-4, the reverb return, the preset, LOW CUT.
+
 ## 🗝️ Key terms
 
 **signal flow** · **line mixer** · **power amp** · **passive speaker** · **gain** · **low cut** ·
@@ -59,7 +64,7 @@ SM58 ×4 ──XLR──► Xenyx CH 1–4 (MIC)
 Laptop headphone jack ──3.5 mm → dual 1/4"──► Xenyx LINE IN 5/6 (L + R)
 SM58 ──XLR──► Zoom V3 MIC IN … V3 OUTPUT L ──1/4" TS──► Xenyx LINE IN 7/8 L (MONO)
 
-Xenyx CH 1–4 FX sends ──► built-in effects (DLY + REV) ──► STEREO AUX RETURN 2 ──► MAIN MIX
+Xenyx CH 1–4 and 7/8 FX sends ──► built-in effects (28, DLY + REV) ──► STEREO AUX RETURN 2 ──► MAIN MIX
 
 Xenyx MAIN OUTPUTS L/R (XLR) ──XLR → TRS──► rack AUX AUDIO INPUT LEFT/RIGHT
   ──► Ashly LX-308B Ch.1 "AUX AUDIO" ──► Crown XLi 2500 amp ──► the room's passive wall speakers
@@ -93,14 +98,16 @@ Xenyx MAIN OUTPUTS L/R (XLR) ──XLR → TRS──► rack AUX AUDIO INPUT LEF
   level. That's instant feedback through the wall speakers.
 - 🔇 **The Crown amp is always on**, so the speakers are live the moment anything reaches them.
   Keep the Xenyx's **MAIN MIX faders down** while you plug in, power up, or unplug anything.
-- 🎹 **Ask before using the piano as a table.** The photos show the rig on the grand piano's lid.
-  See **Technical verification**.
+- 🎹 **Keep gear off the piano.** Set up on a table or another flat surface if the room has one.
+  Use the grand piano's lid (as in the photos) only if there's no better option, and then be very
+  careful with it.
 - 🙋 **Ask when you're not sure.** A wrong guess on the rack affects every class that uses the room.
 
 ## 🚚 Get the gear
 
-- 🚩 Ask Borecki where the gear is today: the **Salmon storage closet (BH 102)** or **upstairs
-  (BH 208/209)**. It moves.
+- 🚩 Check with Borecki before you start: gear moves. Look in two places: the **Salmon storage
+  closet (BH 102)** and **BH 208/209**, the recording studio that overlooks Salmon. Both are a bit
+  of a mess, so look through each before deciding something is missing.
 - 🚩 Take everything in **Equipment and materials**. Check the five mics and five XLR cables before
   you leave the closet.
 
@@ -108,7 +115,7 @@ Xenyx MAIN OUTPUTS L/R (XLR) ──XLR → TRS──► rack AUX AUDIO INPUT LEF
 
 ## 🔌 Power
 
-- 🚩 Power strip into a wall outlet near the piano.
+- 🚩 Power strip into a wall outlet near where you set up.
 - 🚩 Xenyx: **MAIN MIX faders down**, IEC cord into the back, then **POWER on**.
 - 🚩 Xenyx rear **PHANTOM: off**. SM58s are dynamic mics and don't need it.
 - 🚩 Zoom V3: its USB brick into the **Furman** power strip at the top of the room's rack, or into
@@ -164,6 +171,11 @@ Do these on every mic channel you use, top to bottom:
 - 🚩 **LEVEL switch** above each, at the top of the board: **−10** (pressed down) on **both**. The
   laptop and the V3 are consumer-level gear; at **+4** they come in about 12 dB too quiet.
 - 🚩 **EQ: flat. BAL: center. MUTE / ALT 3-4: up**.
+- 🚩 **FX on 5/6 (the laptop): down.** The karaoke track is a finished mix with its own reverb.
+  More on top smears it.
+- 🚩 **FX on 7/8 (the V3): up, like the mics.** The V3 is a singer, and the reverb puts them in the
+  same room as the others. If the V3's own **REVERB** knob is up too, that voice gets reverb twice:
+  turn one of them down.
 - 🚩 Faders: set by ear in the sound check.
 - 🚩 The **laptop's own volume** is a level control too. Pick a level and leave it. If someone turns
   it down, the Xenyx can't make up for it.
@@ -176,8 +188,8 @@ device like a laptop comes in about 12 dB low.
 
 ## ✨ Xenyx: effects (reverb and delay)
 
-- 🚩 The effects display should show the preset **DLY + REV**, one of the **COMBINATION FX**
-  (27–29). If not, turn **PROGRAM / VALUE** to it.
+- 🚩 The effects display should show preset **28, DLY + REV** (one of the **COMBINATION FX**). If
+  not, turn **PROGRAM / VALUE** to **28**.
 - 🚩 It's saved with **balance at +25**, favoring the reverb over the delay, and **reverb decay at
   1 second**. **TAP** tempo doesn't matter here.
 - 🚩 **AUX SENDS 2 (FX)** master: at **unity**.
@@ -186,9 +198,9 @@ device like a laptop comes in about 12 dB low.
 
 **Q3 (short answer).** No singer has any reverb. Name three places on the Xenyx to check.
 
-✅ **Answer.** Any three: each mic channel's **FX** knob; the **AUX SENDS 2 (FX)** master; the
-**STEREO AUX RETURN 2** level; RETURN 2's button set to **MAIN MIX**, not ALT 3-4; the **PROGRAM**
-(DLY + REV). The send goes out on aux 2 and has to come back through the return.
+✅ **Answer.** Any three: each singer's **FX** knob (channels 1–4 and 7/8); the **AUX SENDS 2 (FX)**
+master; the **STEREO AUX RETURN 2** level; RETURN 2's button set to **MAIN MIX**, not ALT 3-4; the
+**PROGRAM** (28, DLY + REV). The send goes out on aux 2 and has to come back through the return.
 
 ## 🎚️ Xenyx: master section
 
@@ -275,8 +287,9 @@ The known-good state. Set every item, even ones that look right.
 - 🚩 **Xenyx, rear:** POWER on, **PHANTOM off**.
 - 🚩 **Xenyx, CH 1–4:** LOW CUT on · GAIN 3 o'clock · COMP 3 o'clock · EQ flat · FX up · PAN center ·
   MUTE / ALT 3-4 up · fader about −10.
-- 🚩 **Xenyx, 5/6 and 7/8:** LEVEL **−10** · EQ flat · BAL center · MUTE / ALT 3-4 up.
-- 🚩 **Xenyx, effects:** DLY + REV · AUX SENDS 2 at unity · STEREO AUX RETURN 2 at unity, to MAIN
+- 🚩 **Xenyx, 5/6 and 7/8:** LEVEL **−10** · EQ flat · BAL center · MUTE / ALT 3-4 up · FX **down on
+  5/6**, **up on 7/8**.
+- 🚩 **Xenyx, effects:** 28, DLY + REV · AUX SENDS 2 at unity · STEREO AUX RETURN 2 at unity, to MAIN
   MIX.
 - 🚩 **Xenyx, master:** USB/2-TR TO MAIN up · ALT 3-4 faders down · MODE on PFL · MAIN MIX faders
   down for packing (about 0 in use).
@@ -292,7 +305,7 @@ The known-good state. Set every item, even ones that look right.
 - 🚩 Power off the Xenyx and the V3. Take the V3's USB brick **out of the Furman** if you used it.
 - 🚩 Coil every cable and put it back in its own bin (XLR in **XLR**, power in **AC**).
 - 🚩 Mics back in their pouches in the **Live Sound Mics** case. Count them: five out, five back.
-- 🚩 Everything back to the closet it came from.
+- 🚩 Everything back where it came from: BH 102 or BH 208/209.
 
 ## ✅ Definition of done
 
@@ -315,34 +328,38 @@ The known-good state. Set every item, even ones that look right.
   MIC on Ch.1 caused feedback during the test.
 - Xenyx mic channels: LOW CUT on, GAIN and COMP about 3 o'clock, EQ flat, faders about −10. LINE IN
   5/6 and 7/8 at −10. MODE on PFL.
-- Effects: DLY + REV, balance +25, reverb decay 1 s; AUX SENDS 2 and STEREO AUX RETURN 2 at unity,
-  return 2 to MAIN MIX.
+- Effects: preset 28, DLY + REV (the instructor confirmed it by ear, November 2026), balance +25,
+  reverb decay 1 s; AUX SENDS 2 and STEREO AUX RETURN 2 at unity, return 2 to MAIN MIX.
+- FX sends on the stereo channels (reasoned from the signal flow at the instructor's request,
+  November 2026): down on 5/6, because the karaoke track is a finished mix; up on 7/8, because the V3
+  is a singer like the mics.
+- Storage: BH 102 (the Salmon storage closet) and BH 208/209 (the recording studio that overlooks
+  Salmon). Gear moves, so check with the instructor first.
+- The piano: keep gear off it. Use a table or another surface if there is one, and the lid only as
+  a last resort, carefully.
 - Zoom V3: phantom off, mic gain about 3 o'clock, output all the way up, OUTPUT L into 7/8 L,
   powered by a USB brick (Furman or the AC strip). ENHANCE on.
 - Xenyx phantom off.
 
 **Still open:**
 
-- **The DLY + REV preset number** (27, 28 or 29) and how to show its balance and decay on the
-  display (the PARAMETER buttons).
+- **How to show DLY + REV's balance and decay** on the display (the PARAMETER buttons).
 - **The V3's USB connector.** It was described as USB to micro-USB; in the photo the plug in the V3
   looks like USB-C. Check before packing a spare cable.
 - **The exact labels of the V3's mic gain and output level knobs** on its back panel.
-- **Whether channels 5/6 and 7/8's FX knobs should be down**, so only the mics get the reverb.
 - **The starting fader positions** for 5/6, 7/8, and the MAIN MIX (the photo shows MAIN MIX near the
   top).
 - **How Ashly Ch.1 takes L and R.** It has a single pan control, so the room may effectively be
   mono. That doesn't change any step.
 - **The V3's KEY dial:** from the panel's layout, the blue-outlined effects (PITCH CORRECT KEY,
   VOCODER, TALK BOX, HARMONY) follow it. Not tested.
-- **The piano:** whether it's OK to set the rig on the grand piano's lid, as in the photos, or a
-  table should be brought.
-- **Where the gear lives**: BH 102 or BH 208/209, and which bins and cases.
+- **Where the V3's own REVERB knob is usually left**, so 7/8 doesn't get reverb twice.
 
 ## 🤖 AI use disclosure
 
 Drafted by AI (Claude, via Claude Code) from the instructor's spoken walkthrough of a karaoke setup
 in BH 109 (October 22, 2026), with a student engineer setting it up, and from the photos taken that
 day. The settings are theirs; the AI arranged them into the site's checklist format, wrote the
-questions and the standard safety lines, and listed what isn't confirmed. Not yet run step by step
-from this page.
+questions and the standard safety lines, and listed what isn't confirmed. The instructor's answers
+to the open questions were added in November 2026, and the FX settings for 5/6 and 7/8 were reasoned
+out from the signal flow, as he asked. Not yet run step by step from this page.
