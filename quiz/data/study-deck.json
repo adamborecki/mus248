@@ -2123,6 +2123,110 @@
       "front": "github.com/you vs. you.github.io",
       "back": "github.com/you: your account, repos, code. you.github.io: websites GitHub Pages publishes from those repos.",
       "verified": false
+    },
+    {
+      "id": "l11_coding_agent",
+      "skill": "coding_agent",
+      "category": "Vibecoding",
+      "front": "Chat app vs. coding agent",
+      "back": "Chat app (Claude, ChatGPT): it answers, you copy. Coding agent (Claude Code, Codex): reads the repo, edits, runs tests, commits. A cloud session runs it from your phone.",
+      "verified": false
+    },
+    {
+      "id": "l11_vj_recording",
+      "skill": "vj_recording",
+      "category": "Salmon gigs",
+      "front": "Vocal Jazz: recording session variation",
+      "back": "Add two piano condensers (L/R) and a stereo pair of room mics, 48V on, into the S32. S32 → AES50 → X32 → Dante → Logic.",
+      "verified": false
+    },
+    {
+      "id": "l11_multitrack_logic",
+      "skill": "multitrack_logic",
+      "category": "DAW & files",
+      "front": "Setting up a multitrack in Logic",
+      "back": "Make the tracks from Input 1 with Ascending on (track n = input n), record enable every one, then a test recording.",
+      "verified": false
+    },
+    {
+      "id": "l11_salmon_gig_compare",
+      "skill": "salmon_gig_compare",
+      "category": "Salmon gigs",
+      "front": "Vocal Jazz vs. Mariachi vs. CME",
+      "back": "Same X32, S32, routing. Outputs change: VJ 3 wedges/1 mix, Mariachi 6/6, CME 3/3 plus its own downstage mains.",
+      "verified": false
+    },
+    {
+      "id": "l11_mariachi_wedges",
+      "skill": "mariachi_wedges",
+      "category": "Salmon gigs",
+      "front": "Mariachi wedges",
+      "back": "Six wedges, six mixes, MIX n on output n. Active wedge on XLR; KM750s on speakON; 1/4\"-only wedges on the Crown.",
+      "verified": false
+    },
+    {
+      "id": "l11_wireless_spare",
+      "skill": "wireless_spare",
+      "category": "Live sound",
+      "front": "A handheld dies",
+      "back": "The spare comes in on its own channel. Don’t re-patch: set that channel up like the dead one, sends pre-fader.",
+      "verified": false
+    },
+    {
+      "id": "l11_musco_multitrack",
+      "skill": "musco_multitrack",
+      "category": "Gigs & venues",
+      "front": "Musco Big Band multitrack",
+      "back": "DiGiCo upstairs → Dante → basement: CL5 + MacBook (DVS → Logic), 40 tracks. Jazz Combo: same mics, write a chair map. Save as a Folder.",
+      "verified": false
+    },
+    {
+      "id": "l11_dante_shared_network",
+      "skill": "dante_shared_network",
+      "category": "Dante",
+      "front": "Dante at Musco",
+      "back": "One network carries the whole show. Filter Receivers to your computer; click only your own row.",
+      "verified": false
+    },
+    {
+      "id": "l11_cl5_midi",
+      "skill": "cl5_midi",
+      "category": "Gigs & venues",
+      "front": "The CL5 writes the mix",
+      "back": "CL5 MIDI → USB MIDI interface → dongle (USB-A; Ethernet = Dante) → Logic automation. Turn off every Fader L.",
+      "verified": false
+    },
+    {
+      "id": "l11_automation_modes",
+      "skill": "automation_modes",
+      "category": "DAW & files",
+      "front": "Latch, then Read",
+      "back": "Read plays back. Touch writes while moving, then returns. Latch writes and holds. Concert: Latch. After: Read.",
+      "verified": false
+    },
+    {
+      "id": "l11_l20_faders",
+      "skill": "l20_faders",
+      "category": "Live sound",
+      "front": "L-20: the faders lie",
+      "back": "Not motorized. The green LED is the real level. Move the fader through the LED, then it takes over.",
+      "verified": false
+    },
+    {
+      "id": "l11_l20_recorded_heard",
+      "skill": "l20_recorded_heard",
+      "category": "Live sound",
+      "front": "L-20: recorded vs. heard",
+      "back": "USB to Logic is before the fader: only GAIN changes the recording. Mutes on 1–16 keep mics out of the headphones.",
+      "verified": false
+    },
+    {
+      "id": "l11_monitor_paths",
+      "skill": "monitor_paths",
+      "category": "Audio basics",
+      "front": "One path per sound",
+      "back": "Mixer’s own mix: no delay. Through Logic: buffer delay (~50 ms at 1024). Both at once = doubled, echo.",
+      "verified": false
     }
   ]
 }

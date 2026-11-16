@@ -135,6 +135,19 @@
     "salmon_gains": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
     "wedge_check": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
     "clone": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
-    "account_vs_pages": {"lecture": "2026-11-02-salmon-foh", "confirmed": true}
+    "account_vs_pages": {"lecture": "2026-11-02-salmon-foh", "confirmed": true},
+    "coding_agent": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "vj_recording": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "multitrack_logic": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "salmon_gig_compare": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "mariachi_wedges": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "wireless_spare": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "musco_multitrack": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "dante_shared_network": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "cl5_midi": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "automation_modes": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "l20_faders": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "l20_recorded_heard": {"lecture": "other-gigs-musco-l20", "confirmed": true},
+    "monitor_paths": {"lecture": "other-gigs-musco-l20", "confirmed": true}
   }
 }

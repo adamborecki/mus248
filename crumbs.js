@@ -1,7 +1,7 @@
 // Breadcrumbs: the trail at the top of every page below the front page (MUS 248 › Activities ›
 // Salmon Gig Checklist › Worksheet), ending in the Repo improvements button. Pages hand over their
-// trail; this file decides how it looks, so the hierarchy can change in one place. Section pages (Lectures,
-// Quiz, Study, the hubs…) use it too, through data-crumbs (below).
+// trail; this file decides how it looks, so the hierarchy can change in one place. Section pages
+// (Lectures, Quiz, Study, the hubs…) use it too, through data-crumbs (below).
 //
 // Every href is a path from the site root ('' is the front page). The root comes from this file's
 // own URL, so the same links work on the live site, a branch preview, and localhost.
