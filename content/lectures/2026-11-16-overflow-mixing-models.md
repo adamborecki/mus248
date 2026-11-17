@@ -1,6 +1,6 @@
 > 🤖 **AI use:** outline drafted with Claude Code from the instructor's planning messages (Nov 16)
 > and photos, the new [Choir Room Overflow](../../choir-room-overflow-gig-checklist/) checklist,
-> Lecture 11, Post Mini 1, and the unfinished Live Sound Part 4.
+> Lecture 3 (data management), Lecture 11, Post Mini 1, and the unfinished Live Sound Part 4.
 
 > 🧑‍🏫 **Outline, not final.** Headings and short fragments; the bullets in your voice are
 > placeholders to rewrite. Last day of new material eligible for the final. Announcements beyond
@@ -31,7 +31,8 @@ update.
 
 1. Choir Room Overflow
 2. Three Kinds of Mix
-3. Vibecoding: Picking a Model
+3. Data Management: A Reminder
+4. Vibecoding: Picking a Model
 
 ## 1. Choir Room Overflow
 
@@ -129,7 +130,53 @@ A board feed captures the mixer's decisions as they happen. A multitrack lets yo
 
 > 🧑‍🏫 [Anything else about the multitrack mix]
 
-## 3. Vibecoding: Picking a Model
+## 3. Data Management: A Reminder
+
+> 🧑‍🏫 A recap of Lecture 3 (Data Management + Dante) and the Salmon Gig Checklist's Data transfer,
+> plus one new slide (3.4).
+
+### One source, two destinations
+
+- Copy **everything** from each card or SSD
+- Destination 1: the ==Post== drive
+- Destination 2: the ==Backups== drive
+- A drive can ==fail== at any time: one copy is not enough
+
+### Naming: where it came from
+
+- Gig folder: ==YYMMDD== Full Event Name
+- Inside it: `r [abbr]` for the raw recordings
+- One subfolder per source, named ==From== the card: `From Mus128_1842`, `From F8_03`
+- The same structure on **both** drives
+
+> 🧑‍🏫 [Why "From": six months later, you can tell which card every file came from]
+
+### Triplets: the Triple Triple Check
+
+Three copies:
+
+1. The ==original==: the card or SSD
+2. The Post copy
+3. The Backups copy
+
+Three checks, before you wipe anything:
+
+1. Approximate ==GB== match
+2. The last ==three digits== of the exact bytes match
+3. The ==location==: the source plus both drives
+
+**If you're 99% sure, don't delete. Ask.**
+
+### Deleted something by accident?
+
+1. ==Stop== using that drive. Right now. Every new file can overwrite what you lost.
+2. Switch it to ==read-only==
+3. Then ==recovery== software, or an AI subscription to walk you through it
+4. Tell Borecki
+
+> 🧑‍🏫 [How you switch a drive to read-only on our Macs. A story about a near miss]
+
+## 4. Vibecoding: Picking a Model
 
 ### Four Claude models
 
@@ -177,6 +224,7 @@ They line up loosely:
 
 **overflow** · **program audio** · **Original sound** · **echo cancellation** · **board feed** ·
 **multitrack** · **limiter** · **gain reduction** · **clip gain** · **Spectral De-noise** ·
+**Triple Triple Check** · **read-only** ·
 **automation** · **effort**
 
 ## 💭 Before you leave
