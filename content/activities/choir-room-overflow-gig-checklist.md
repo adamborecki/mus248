@@ -69,7 +69,8 @@ gets, the overflow room gets.
 
 - 🛑 **BH 109's rack stays on.** It's labeled **DO NOT SHUT DOWN THIS RACK**. You turn one knob on
   it at most.
-- 🛑 **On the Ashly, only Ch.3 (PC/ZOOM) is yours.** Every other channel stays as you found it.
+- 🛑 **On the Ashly, only Ch.3 (PC/ZOOM) and the Stereo Output are yours.** Every other channel
+  stays as you found it.
 - 🔇 **The BH 109 PC's microphone stays muted and its camera off.** The meeting should carry one
   thing: the hall.
 - 🙋 **Ask Borecki ahead of time** to start the meeting. Without it there's nothing to join.
@@ -147,8 +148,8 @@ Overflow audio comes in on **Ch.3, PC/ZOOM**.
 ![BH 109's rack: the Furman power conditioner on top, the Ashly LX-308B with labels above its channels (AUX AUDIO, AUX VIDEO, PC/ZOOM, BLURAY, APPLE TV, LAPTOP HDMI), the Extron switcher below it, and the Crown amp at the bottom. A finger points at Ch.3, PC/ZOOM.](media/choir-room-overflow/rack.jpg)
 
 - 🚩 **Ch.3 Mute / On:** its green light is **on**. That's unmuted.
-- 🚩 **Ch.3 Level:** leave it where it is (about 12 o'clock in the photo). If the room needs more
-  or less, this is the knob.
+- 🚩 **Ch.3 Level:** leave it where it is (about 12 o'clock in the photo).
+- 🚩 **Room volume: the Ashly's Stereo Output knob.** Turn that one if the room needs more or less.
 - 🚩 Every other channel: leave it as you found it.
 
 ![Ashly Ch.3 close up: the PC/ZOOM label above it, the green light on, and the level cap pointing about straight up.](media/choir-room-overflow/ashly-ch3.jpg)
@@ -159,7 +160,7 @@ channel do you check first?
 - a) Ch.1, AUX AUDIO
 - ✅ b) Ch.3, PC/ZOOM
 - c) Ch.4, BLURAY
-- d) The Ashly's Stereo Output
+- d) Ch.5, APPLE TV
 
 ✅ **Answer.** **Ch.3, PC/ZOOM**: its green light on and its level up. The room PC's audio arrives
 there.
@@ -179,7 +180,7 @@ noise (and the wall speakers playing the show) back into the meeting.
 
 - 🚩 **No picture in BH 109:** the panel's source is **PC (Zoom)** and the projector is **On**; the
   sender's camera is **Blackmagic Design**; the ATEM is running.
-- 🚩 **Picture, no sound:** Ashly **Ch.3** green light on and level up; the sender's microphone is
+- 🚩 **Picture, no sound:** Ashly **Ch.3** green light on and level up, **Stereo Output** up; the sender's microphone is
   **Blackmagic Design**; the room PC's Zoom isn't muted on its speaker side.
 - 🚩 **Sound pumps, cuts out, or quiet notes vanish:** the sender isn't on **Original sound for
   musicians**. Check the banner.
@@ -213,7 +214,7 @@ noise (and the wall speakers playing the show) back into the meeting.
 - Borecki starts the meeting; the student joins it.
 - BH 109: **Press here to begin** → **PC (Zoom)** → Projector **On**; the screen comes down on its
   own. Overflow audio is on Ashly **Ch.3, PC/ZOOM**, left where it is, green light on (unmuted).
-  The room level is set on the Ashly. Shutdown is **System Off**, rack left on.
+  The room volume is set on the Ashly's **Stereo Output** (instructor, November 16). Shutdown is **System Off**, rack left on.
 - The BH 109 PC's mic is muted and its camera off.
 - Used for very popular Salmon gigs, for example Mariachi.
 
@@ -225,6 +226,8 @@ noise (and the wall speakers playing the show) back into the meeting.
 - **Whether someone stays in BH 109** during the show.
 - **The room PC's audio path** to Ashly Ch.3: directly, or through the Extron. It doesn't change a
   step.
+- **Where the Stereo Output goes back to after the show.** The karaoke checklist says it normally
+  sits lower than you'd expect and stays put; if you turn it for overflow, note where it started.
 - **Two knobs on the rack** the instructor pointed at (to the right of AUX AUDIO INPUT, under the
   Ashly's Stereo Output and Mono/Phones Output): one may be a master and one an input. Not
   identified; leave them alone.
