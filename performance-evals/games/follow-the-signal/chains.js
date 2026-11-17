@@ -9,8 +9,18 @@
 //   Mains rack  the hall's own, permanent: the Mix5 on top, a Crown inside for the installed speakers
 //   Amp rack    the NX3000, two KM750s, and a Crown at the bottom (CME's downstage Yamahas)
 //
+// photo: optional, shown once the path is done. The rack photos are the instructor's own, from the
+// Salmon Simulator project (adamborecki/salmon, photos-working/stage-side), resized with their
+// metadata stripped; checked full-frame for names and screens.
+//
 // hops: the path in order, source first. decoys: real Salmon gear that is NOT on this path (each one
 // is the wrong answer to a question in the same source). why: the one-line point, shown after the chain.
+
+const PHOTOS = {
+  racks: { src: 'media/racks.jpg', caption: 'The two racks, side by side. Left: the hall\'s mains rack, the Mix5 in its open lid and its own Crown at the bottom (the hall\'s installed speakers). Right: the amp rack, with the NX3000, two KM750s, and a different Crown at the bottom (CME\'s downstage speakers).' },
+  ampRack: { src: 'media/amp-rack.jpg', caption: 'The amp rack: the Furman for power on top, then the NX3000 (Vocal Jazz\'s wedge chain), two KM750s (CME\'s passive wedges), and its Crown at the bottom (CME\'s downstage speakers).' },
+  x32: { src: '../../../content/activities/media/super-simple-salmon/x32-top.jpg', caption: 'The X32 at FOH: GAIN in the CONFIG/PREAMP section at the top left, the channel faders along the bottom.' },
+};
 
 export const CHAINS = [
   {
@@ -22,6 +32,7 @@ export const CHAINS = [
     why: 'One mix, one amp channel, three wedges in a daisy chain. XLR carries the mix at line level; speakON carries the amp\'s power.',
     source: 'lecture: Outputs: Vocal Jazz wedges',
     lab: 'x32-vj-chain',
+    photo: PHOTOS.ampRack,
   },
   {
     id: 'vj-mains',
@@ -32,6 +43,7 @@ export const CHAINS = [
     why: 'Mics come in at the X32; everything goes out through the S32 over AES50. The hall\'s own mains rack has the Mix5 on top and its own Crown inside. The amp rack\'s Crown is a different amp, for CME\'s downstage speakers.',
     source: 'lecture: Using AES50 · Inputs: LOCAL vs. AES50 · Outputs: the mains · cme: The hall\'s speakers down, and its notes (the Mix5\'s MAIN OUT feeds the Crown at the rack\'s bottom)',
     lab: 'x32-vj-link',
+    photo: PHOTOS.racks,
   },
   {
     id: 'cme-bass',
@@ -52,6 +64,7 @@ export const CHAINS = [
     why: 'Downstage of the band, every open mic is behind the speakers: much less feedback. These run on the amp rack\'s Crown. The hall\'s own speakers, on the mains rack\'s Crown, get turned down at the Mix5.',
     source: 'lecture: Outputs: the mains · cme: the S32 output table (OUT 13, 14)',
     lab: 'x32-cme-tour',
+    photo: PHOTOS.racks,
   },
   {
     id: 'cme-wedge-1',
@@ -62,6 +75,7 @@ export const CHAINS = [
     why: 'Each CME wedge has its own mix, so each gets its own amp channel. Speaker cable (thick) is not instrument cable (thin): same plug, different job.',
     source: 'lecture: Outputs: CME wedges · cme: the passive wedge step',
     lab: 'x32-cme-tour',
+    photo: PHOTOS.ampRack,
   },
   {
     id: 'cme-wedge-3',
@@ -72,6 +86,7 @@ export const CHAINS = [
     why: 'An active wedge has its amp inside: XLR straight in, plus its own IEC power cable and VOLUME knob.',
     source: 'lecture: Outputs: CME wedges · cme: the active wedge step',
     lab: 'x32-cme-tour',
+    photo: PHOTOS.ampRack,
   },
   {
     id: 'gain-house',
@@ -82,6 +97,7 @@ export const CHAINS = [
     why: 'GAIN is how hot it comes in, the fader is the mix in the mains, the master is how much of the mix leaves. Every stage up and unmuted, or nothing comes out.',
     source: 'lecture: Gain staging: the whole chain',
     lab: 'x32-vj-gain',
+    photo: PHOTOS.x32,
   },
   {
     id: 'gain-wedge',
@@ -92,6 +108,7 @@ export const CHAINS = [
     why: 'The fader sets the mains; the send sets each wedge. On the X32: SENDS ON FADERS.',
     source: 'lecture: Gain staging: the whole chain',
     lab: 'x32-vj-send',
+    photo: PHOTOS.x32,
   },
 ];
 
