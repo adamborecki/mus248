@@ -2,11 +2,9 @@
 > and photos, the new [Choir Room Overflow](../../choir-room-overflow-gig-checklist/) checklist,
 > Lecture 3 (data management), Lecture 11, Post Mini 1, and the unfinished Live Sound Part 4.
 
-> 🧑‍🏫 **Outline, not final.** Headings and short fragments; the bullets in your voice are
-> placeholders to rewrite. Last day of new material eligible for the final. Announcements beyond
-> the first slide live in Google Slides. Live Sound Part 4 stays shelved: only its "stereo board
-> feed vs. multitrack" line made it in (2.1). Refresher questions come after class, from the final
-> text.
+> 🧑‍🏫 **Delivered Nov 16.** The last day of new material eligible for the final. Live Sound
+> Part 4 stays shelved: only its "stereo board feed vs. multitrack" line made it in (2.1).
+> Refresher questions come next, from this text.
 
 ## 📣 Announcements
 
