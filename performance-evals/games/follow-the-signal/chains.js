@@ -9,6 +9,9 @@
 //   Mains rack  the hall's own, permanent: the Mix5 on top, a Crown inside for the installed speakers
 //   Amp rack    the NX3000, two KM750s, and a Crown at the bottom (CME's downstage Yamahas)
 //
+// diagram: optional, Mixer Lab's own Stage & patch drawing of the gig, shown under the photo. The
+// Vocal Jazz one is a screenshot of Mixer Lab's "Vocal Jazz in Salmon" scenario 1, floating bars hidden.
+//
 // photo: optional, shown once the path is done. The rack photos are the instructor's own, from the
 // Salmon Simulator project (adamborecki/salmon, photos-working/stage-side), resized with their
 // metadata stripped; checked full-frame for names and screens.
@@ -19,6 +22,7 @@
 const PHOTOS = {
   racks: { src: 'media/racks.jpg', caption: 'The two racks, side by side. Left: the hall\'s mains rack, the Mix5 in its open lid and its own Crown at the bottom (the hall\'s installed speakers). Right: the amp rack, with the NX3000, two KM750s, and a different Crown at the bottom (CME\'s downstage speakers).' },
   ampRack: { src: 'media/amp-rack.jpg', caption: 'The amp rack: the Furman for power on top, then the NX3000 (Vocal Jazz\'s wedge chain), two KM750s (CME\'s passive wedges), and its Crown at the bottom (CME\'s downstage speakers).' },
+  vjPatch: { src: 'media/mixer-lab-vj-patch.jpg', caption: 'The same rig in Mixer Lab\'s Stage & patch view (Vocal Jazz in Salmon): sources on the left, then the S32, the X32, the amps, and the speakers. Mixer Lab draws the racks in one column: the NX3000 is the amp rack\'s; the Mackie mini mixer (the Mix5) and the mains amp under it are the hall\'s mains rack.' },
   x32: { src: '../../../content/activities/media/super-simple-salmon/x32-top.jpg', caption: 'The X32 at FOH: GAIN in the CONFIG/PREAMP section at the top left, the channel faders along the bottom.' },
 };
 
@@ -33,6 +37,7 @@ export const CHAINS = [
     source: 'lecture: Outputs: Vocal Jazz wedges',
     lab: 'x32-vj-chain',
     photo: PHOTOS.ampRack,
+    diagram: PHOTOS.vjPatch,
   },
   {
     id: 'vj-mains',
@@ -44,6 +49,7 @@ export const CHAINS = [
     source: 'lecture: Using AES50 · Inputs: LOCAL vs. AES50 · Outputs: the mains · cme: The hall\'s speakers down, and its notes (the Mix5\'s MAIN OUT feeds the Crown at the rack\'s bottom)',
     lab: 'x32-vj-link',
     photo: PHOTOS.racks,
+    diagram: PHOTOS.vjPatch,
   },
   {
     id: 'cme-bass',

@@ -439,6 +439,7 @@ CHAINS.forEach((chain) => {
   check(chain.hops.length >= 3 && chain.decoys.length >= 1, `${where} needs at least 3 hops and a decoy`);
   check(new Set(tiles).size === tiles.length, `${where} repeats a tile (a hop twice, or a decoy that is also a hop)`);
   check(Boolean(chain.why && chain.source && chain.lab), `${where} needs why, source, and lab`);
+  if (chain.diagram) check(existsSync(join(root, 'performance-evals/games/follow-the-signal', chain.diagram.src)) && Boolean(chain.diagram.caption), `${where}: its diagram ${chain.diagram.src} is missing, or has no caption`);
   if (chain.photo) check(existsSync(join(root, 'performance-evals/games/follow-the-signal', chain.photo.src)) && Boolean(chain.photo.caption), `${where}: its photo ${chain.photo.src} is missing, or has no caption`);
 });
 

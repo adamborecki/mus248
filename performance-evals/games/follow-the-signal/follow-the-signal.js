@@ -109,9 +109,8 @@ function start({ stage, finish, easy }) {
     const last = state.round === rounds.length - 1;
     const after = $('.fs-after');
     // Photos resolve against this page, so chains.js names them relative to it.
-    const photo = c.photo
-      ? `<figure class="fs-photo"><a href="${escapeHtml(c.photo.src)}" target="_blank" rel="noopener"><img src="${escapeHtml(c.photo.src)}" alt="${escapeHtml(c.photo.caption)}" loading="lazy"></a><figcaption>${escapeHtml(c.photo.caption)}</figcaption></figure>`
-      : '';
+    const figure = (pic) => `<figure class="fs-photo"><a href="${escapeHtml(pic.src)}" target="_blank" rel="noopener"><img src="${escapeHtml(pic.src)}" alt="${escapeHtml(pic.caption)}" loading="lazy"></a><figcaption>${escapeHtml(pic.caption)} <span class="fs-zoom">Tap to open it full size.</span></figcaption></figure>`;
+    const photo = [c.photo, c.diagram].filter(Boolean).map(figure).join('');
     after.innerHTML = `<p class="fs-why">${escapeHtml(c.why)}</p>${photo}
       <p class="fs-src">From ${escapeHtml(c.source)} · <a href="${MIXER_LAB}${escapeHtml(c.lab)}" target="_blank" rel="noopener">Try it in Mixer Lab ↗</a></p>
       <button type="button" class="gm-start fs-next">${last ? 'See your score' : 'Next path ⚡'}</button>`;
