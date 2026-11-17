@@ -18,7 +18,7 @@ const TUNING = {
 
 function start({ deck, stage, finish, easy }) {
   const tune = TUNING[easy ? 'easier' : 'standard'];
-  const state = { level: 25, rate: tune.rate, notches: 0, combo: 0, ring: 6, cuts: BANDS.map(() => 0), q: null, paused: false, done: false, misses: [], last: 0, raf: 0, tone: null };
+  const state = { answered: 0, level: 25, rate: tune.rate, notches: 0, combo: 0, ring: 6, cuts: BANDS.map(() => 0), q: null, paused: false, done: false, misses: [], last: 0, raf: 0, tone: null };
 
   stage.innerHTML = `
     <div class="gm-hud">
@@ -97,6 +97,7 @@ function start({ deck, stage, finish, easy }) {
   const answer = (picked) => {
     if (state.paused || state.done) return;
     state.paused = true;
+    state.answered += 1;
     const q = state.q;
     const buttons = [...stage.querySelectorAll('.ro-choices button')];
     buttons.forEach((button, i) => { button.disabled = true; button.classList.add(i === q.answer ? 'ro-right' : i === picked ? 'ro-wrong' : 'ro-dim'); });
@@ -142,7 +143,7 @@ function start({ deck, stage, finish, easy }) {
     cancelAnimationFrame(state.raf);
     window.removeEventListener('keydown', onKey);
     if (state.tone) { try { state.tone.osc.stop(); } catch { /* already stopped */ } }
-    finish({ score: state.notches, label: state.notches === 1 ? 'frequency notched' : 'frequencies notched', headline, misses: state.misses });
+    finish({ score: state.notches, label: state.notches === 1 ? 'frequency notched' : 'frequencies notched', headline, misses: state.misses, answered: state.answered, correct: state.notches });
   };
 
   const onKey = (event) => {

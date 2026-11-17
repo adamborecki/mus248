@@ -81,3 +81,9 @@
 .gm-option input { margin-top:.3rem; }
 .gm-option span { display:grid; font-weight:600; }
 .gm-option small { color:var(--muted); font-size:.82rem; font-weight:400; }
+
+/* end screen: the Canvas deliverable */
+.gm-deliver { margin:0 0 1.25rem; padding:.8rem .9rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+.gm-copy { padding:.6rem 1.1rem; border:2px solid var(--accent); border-radius:999px; background:var(--surface); color:var(--accent); font-weight:700; }
+.gm-copy-status { margin:.5rem 0 0; color:var(--muted); font-size:.85rem; }
+.gm-receipt { max-height:14rem; margin:.6rem 0 0; padding:.6rem; overflow:auto; border-radius:.4rem; background:var(--tag); font-size:.72rem; text-align:left; white-space:pre-wrap; overflow-wrap:anywhere; }

@@ -17,7 +17,7 @@ function start({ deck, stage, finish, easy, options = {} }) {
   const leisure = Boolean(options.leisure);
   const tune = TUNING[easy ? 'easier' : 'standard'];
   const LIVES = tune.lives;
-  const state = { score: 0, lives: LIVES, streak: 0, speed: 1, lane: 1, q: null, p: 0, duration: 10, leaping: false, done: false, misses: [], last: 0, raf: 0, resolving: false };
+  const state = { answered: 0, correct: 0, score: 0, lives: LIVES, streak: 0, speed: 1, lane: 1, q: null, p: 0, duration: 10, leaping: false, done: false, misses: [], last: 0, raf: 0, resolving: false };
 
   stage.innerHTML = `
     <div class="gm-hud">
@@ -96,6 +96,8 @@ function start({ deck, stage, finish, easy, options = {} }) {
     state.resolving = true;
     const q = state.q;
     const right = state.lane === q.answer;
+    state.answered += 1;
+    if (right) state.correct += 1;
     // No clock in Leisure swim, so no speed bonus either: a right gate is a flat 100 (times the streak).
     const timeLeft = state.leaping && !leisure ? Math.max(0, 1 - state.leapAt) : 0;
     gates.querySelectorAll('.sr-gate').forEach((gate, i) => gate.classList.add(i === q.answer ? 'sr-open' : 'sr-shut'));
@@ -159,7 +161,7 @@ function start({ deck, stage, finish, easy, options = {} }) {
     state.done = true;
     cancelAnimationFrame(state.raf);
     window.removeEventListener('keydown', onKey);
-    finish({ score: state.score, label: 'points', headline, misses: state.misses, practice: leisure ? '🛟 Leisure swim: no clock, so no best score' : '' });
+    finish({ score: state.score, label: 'points', headline, misses: state.misses, answered: state.answered, correct: state.correct, practice: leisure ? '🛟 Leisure swim: no clock, so no best score' : '' });
   };
 
   const onKey = (event) => {

@@ -8,7 +8,7 @@ import { CHAINS, MIXER_LAB } from './chains.js';
 // Easier mode: no decoys, the first hop is placed for you, and after a slip the right next tile glows.
 function start({ stage, finish, easy }) {
   const rounds = shuffle(CHAINS);
-  const state = { round: 0, score: 0, placed: 0, mistakes: [], startedAt: 0, done: false, misses: [], clean: 0 };
+  const state = { paths: [], round: 0, score: 0, placed: 0, mistakes: [], startedAt: 0, done: false, misses: [], clean: 0 };
 
   stage.innerHTML = `
     <div class="gm-hud">
@@ -99,6 +99,7 @@ function start({ stage, finish, easy }) {
     const seconds = (performance.now() - state.startedAt) / 1000;
     const points = Math.max(20, 100 - 25 * state.mistakes.length) + Math.round(Math.max(0, 50 - seconds * 2));
     state.score += points;
+    state.paths.push({ id: c.id, slips: state.mistakes.length, seconds: Math.round(seconds) });
     if (!state.mistakes.length) state.clean += 1;
     else state.misses.push({ id: c.id, topic: 'salmon', prompt: `${c.gig}: ${c.title}`, choices: [c.hops.join(' → ')], answer: 0, picked: state.mistakes.join(' · '), explanation: c.why });
     $('.fs-scene').classList.add('fs-live');
@@ -127,7 +128,7 @@ function start({ stage, finish, easy }) {
   const end = (headline) => {
     if (state.done) return;
     state.done = true;
-    finish({ score: state.score, label: 'points', headline, misses: state.misses });
+    finish({ score: state.score, label: 'points', headline, misses: state.misses, answered: state.paths.length, correct: state.clean, tally: `${state.paths.length} of ${rounds.length} paths traced, ${state.clean} clean`, details: { paths: state.paths, of: rounds.length } });
   };
 
   $('.gm-quit').addEventListener('click', () => end('Unplugged mid-gig 🔌'));

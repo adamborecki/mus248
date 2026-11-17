@@ -14,6 +14,7 @@
 import { crumbs } from '../../crumbs.js';
 import { tierOf } from '../../quiz/js/engine.js';
 import { loadSkillSources } from '../helpful.js';
+import { sha256Hex } from '../../lectures/refresher.js';
 
 const BANK_URL = new URL('../../quiz/data/questions.json', import.meta.url);
 const CURRICULUM_URL = new URL('../../quiz/data/curriculum.json', import.meta.url);
@@ -135,6 +136,49 @@ export const sound = {
   bad() { this.blip(140, 260, 'sawtooth', 0.06); },
 };
 
+// ---------- the Canvas deliverable ----------
+
+// Every run ends in a Canvas deliverable, the online refresher's shape: a summary to read, then a
+// JSON receipt with a SHA-256 checksum of the payload (same sha256Hex, same "sha256:" prefix).
+// Exported so the checker can prove its shape without a browser.
+export const DELIVERABLE_SCHEMA = 'mus248-games-v1';
+export function gameDeliverable({ game, mode, topic, options = {}, run, result }) {
+  const { score, label = 'points', headline = '', misses = [], answered = 0, correct = 0, practice = '', details, tally } = result;
+  const seconds = Math.max(0, Math.round((Date.parse(run.finishedAt) - Date.parse(run.startedAt)) / 1000));
+  const minutes = Math.round((seconds / 60) * 10) / 10;
+  const on = Object.keys(options).filter((key) => options[key]);
+  const where = [MODES[mode].label, ...(game.useBank === false ? [] : [topic === 'all' ? 'All topics' : topicLabel(topic)]), ...on.map((key) => (game.options || []).find((o) => o.id === key)?.label || key)];
+  const lines = [
+    `MUS 248 practice game: ${game.title} (${where.join(' · ')})`,
+    `${score} ${label} · ${tally || `${answered} answered, ${correct} right`} · about ${minutes} min${headline ? ` · ended: ${headline}` : ''}`,
+    misses.length ? `Missed (${misses.length}): ${misses.map((m) => m.id).join(', ')}` : 'Missed: none',
+  ];
+  const payload = {
+    schema: DELIVERABLE_SCHEMA,
+    game: { id: game.id, title: game.title },
+    mode,
+    topic,
+    options: on,
+    practice: Boolean(practice),
+    sessionId: run.sessionId,
+    startedAt: run.startedAt,
+    generatedAt: run.finishedAt,
+    activeMinutes: minutes,
+    score,
+    answered,
+    correct,
+    missed: misses.map((m) => ({ id: m.id, picked: m.picked ?? null })),
+    ...(details ? { details } : {}),
+  };
+  return { lines, payload };
+}
+
+async function deliverableText(info) {
+  const { lines, payload } = gameDeliverable(info);
+  const final = { ...payload, checksum: `sha256:${await sha256Hex(JSON.stringify(payload))}` };
+  return `${lines.join('\n')}\n\n${JSON.stringify(final, null, 2)}`;
+}
+
 // Best scores are kept per mode, as "mode|topic". Keys from before modes existed (just the topic)
 // were standard games.
 function bestFor(best = {}, mode) {
@@ -234,12 +278,15 @@ export async function mountGame(root, game) {
       const pool = questions.filter((q) => inTopic(q, chosen));
       stage.innerHTML = '';
       stage.dataset.mode = mode;
-      game.start({ deck: makeDeck(pool), topic: chosen, mode, easy: mode === 'easier', options, stage, finish: (result) => finish(mode, chosen, result) });
+      const run = { sessionId: (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)), startedAt: new Date().toISOString() };
+      game.start({ deck: makeDeck(pool), topic: chosen, mode, easy: mode === 'easier', options, stage,
+        finish: (result) => finish(mode, chosen, result, { options, run: { ...run, finishedAt: new Date().toISOString() } }) });
     });
   };
 
   // A run with `practice` set (no clock, nothing to lose) is never a best score.
-  const finish = (mode, topic, { score, label = 'points', headline = 'Game over', misses = [], practice = '' }) => {
+  const finish = (mode, topic, result, { options = {}, run } = {}) => {
+    const { score, label = 'points', headline = 'Game over', misses = [], practice = '' } = result;
     const all = loadPrefs(game.id).best || {};
     const key = `${mode}|${topic}`;
     const record = !practice && score > (bestFor(all, mode)[topic] || 0);
@@ -251,6 +298,11 @@ export async function mountGame(root, game) {
         <p class="gm-mode-tag">${MODES[mode].label} mode${practice ? ` · ${escapeHtml(practice)}` : ''}${mode === 'easier' && !practice ? ' · ready for more? Switch to Standard in the lobby.' : ''}</p>
         <div class="gm-again"><button type="button" class="gm-start">Play again</button>
           <a href="../../#final">All games</a></div>
+        ${run ? `<div class="gm-deliver">
+          <button type="button" class="gm-copy">📋 Copy Canvas deliverable</button>
+          <p class="gm-copy-status" aria-live="polite">Doing this for homework? Copy this run's deliverable and paste it into the Canvas assignment.</p>
+          <pre class="gm-receipt" hidden></pre>
+        </div>` : ''}
         ${misses.length ? `<h2>Worth another look (${misses.length})</h2>
           <ol class="gm-misses">${misses.map((m) => `<li>
             <p class="gm-q">${escapeHtml(m.prompt)}</p>
@@ -266,6 +318,24 @@ export async function mountGame(root, game) {
       </section>`;
     stage.querySelector('.gm-start').addEventListener('click', lobby);
     stage.querySelector('.gm-start').focus();
+    const copy = stage.querySelector('.gm-copy');
+    if (copy) copy.addEventListener('click', async () => {
+      const receipt = stage.querySelector('.gm-receipt');
+      const status = stage.querySelector('.gm-copy-status');
+      const text = await deliverableText({ game, mode, topic, options, run, result });
+      receipt.textContent = text;
+      receipt.hidden = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        status.textContent = 'Copied. Paste it into the Canvas assignment.';
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(receipt);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        status.textContent = 'Couldn\'t copy automatically: the text is selected, so press Copy (or Cmd/Ctrl+C).';
+      }
+    });
     // Each miss links to where its skill was taught. A source marked unconfirmed in
     // quiz/data/skill-sources.json is a guess, so it says "Probably from" instead of "Review".
     if (stage.querySelector('.gm-src')) {

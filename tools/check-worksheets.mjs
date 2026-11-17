@@ -472,6 +472,41 @@ CHAINS.forEach((chain) => {
   });
 }
 
+// Every games module parses as a module. A game page's own script is imported by nothing else, so a
+// syntax error there would otherwise ship (one nearly did: an \`else\` split from its \`if\`).
+{
+  const { spawnSync } = await import('node:child_process');
+  const { readdirSync } = await import('node:fs');
+  const dir = join(root, 'performance-evals', 'games');
+  const modules = readdirSync(dir, { withFileTypes: true }).flatMap((entry) => (entry.isDirectory()
+    ? readdirSync(join(dir, entry.name)).filter((f) => f.endsWith('.js')).map((f) => join(entry.name, f))
+    : (entry.name.endsWith('.js') ? [entry.name] : [])));
+  modules.forEach((file) => {
+    const result = spawnSync(process.execPath, ['--input-type=module', '--check'], { input: readFileSync(join(dir, file)) });
+    check(result.status === 0, `performance-evals/games/${file}: doesn't parse: ${String(result.stderr).split('\n').find((line) => /Error/.test(line)) || ''}`);
+  });
+}
+
+// The games' Canvas deliverable: the refresher's shape (summary lines, then a JSON receipt whose
+// checksum is sha256 of the payload), with each miss named by question id.
+{
+  const { gameDeliverable, DELIVERABLE_SCHEMA } = await import('../performance-evals/games/bank.js');
+  const { sha256Hex } = await import('../lectures/refresher.js');
+  const where = 'performance-evals/games/bank.js gameDeliverable';
+  const { lines, payload } = gameDeliverable({
+    game: { id: 'salmon-run', title: 'Salmon Run', options: [{ id: 'leisure', label: '🛟 Leisure swim' }] },
+    mode: 'easier', topic: 'salmon-flow', options: { leisure: true },
+    run: { sessionId: 'test', startedAt: '2026-11-17T10:00:00.000Z', finishedAt: '2026-11-17T10:03:00.000Z' },
+    result: { score: 300, misses: [{ id: 'SAL_X_001', picked: 'Vocal Jazz' }], answered: 4, correct: 3, practice: 'leisure' },
+  });
+  check(lines[0].includes('Salmon Run') && lines[0].includes('Easier') && lines[0].includes('Leisure swim'), `${where}: the summary doesn't name the game, mode, and options`);
+  check(lines[1].includes('4 answered, 3 right') && lines[1].includes('about 3 min'), `${where}: the summary doesn't count answers and minutes`);
+  check(lines[2].includes('SAL_X_001'), `${where}: the summary doesn't list missed question ids`);
+  check(payload.schema === DELIVERABLE_SCHEMA && payload.practice === true && payload.missed[0].id === 'SAL_X_001' && payload.options[0] === 'leisure', `${where}: the receipt is missing a field`);
+  const sum = await sha256Hex(JSON.stringify(payload));
+  check(/^[0-9a-f]{64}$/.test(sum) && sum === await sha256Hex(JSON.stringify(JSON.parse(JSON.stringify(payload)))), `${where}: the checksum isn't a stable sha256 of the payload`);
+}
+
 console.table(rows);
 const total = (field) => rows.reduce((sum, row) => sum + row[field], 0);
 console.log(`${rows.length} worksheets · ${total('checkpoints')} checkpoints · ${total('questions')} questions · ${total('terms')} key terms`);

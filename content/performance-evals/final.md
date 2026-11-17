@@ -46,6 +46,9 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 > every question a quiz can ask, the harder troubleshooting ones included, at full speed: the
 > closest to the final. Feeling behind? Start on Easier, then move up.
 
+> **Homework from the games?** Every game ends with **📋 Copy Canvas deliverable**: a summary of
+> that run plus a receipt, like the online refresher's. Paste it into the Canvas assignment.
+
 > **Start with Salmon's signal flow.** Follow the Signal is all Salmon, and the other three have a
 > **🐟 Salmon signal flow** topic at the top of their topic list.
 

@@ -15,7 +15,7 @@ const TUNING = {
 function start({ deck, stage, finish, easy }) {
   const tune = TUNING[easy ? 'easier' : 'standard'];
   const START_SECONDS = tune.seconds;
-  const state = { time: START_SECONDS, score: 0, board: 0, pairs: [], picked: null, done: false, misses: [], missedIds: new Set(), last: 0, raf: 0 };
+  const state = { answered: 0, time: START_SECONDS, score: 0, board: 0, pairs: [], picked: null, done: false, misses: [], missedIds: new Set(), last: 0, raf: 0 };
 
   stage.innerHTML = `
     <div class="gm-hud">
@@ -120,6 +120,7 @@ function start({ deck, stage, finish, easy }) {
     state.picked.el.classList.remove('pp-selected');
     state.picked = null;
     const pair = state.pairs[Number(inJack.dataset.n)];
+    state.answered += 1;
     const picked = state.pairs[Number(outJack.dataset.n)];
     if (pair.n === picked.n) {
       pair.done = true;
@@ -169,7 +170,7 @@ function start({ deck, stage, finish, easy }) {
     state.done = true;
     cancelAnimationFrame(state.raf);
     window.removeEventListener('resize', onResize);
-    finish({ score: state.score, label: state.score === 1 ? 'cable patched' : 'cables patched', headline, misses: state.misses });
+    finish({ score: state.score, label: state.score === 1 ? 'cable patched' : 'cables patched', headline, misses: state.misses, answered: state.answered, correct: state.score });
   };
 
   window.addEventListener('resize', onResize);
