@@ -1,7 +1,7 @@
 ---
 title: "Final"
 emoji: "🎓"
-revised: "2026-11-16"
+revised: "2026-11-17"
 status: "draft"
 format: "exam"
 ---
