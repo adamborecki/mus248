@@ -1,6 +1,8 @@
 // 🐟 Salmon Run: swim upstream through the gate with the right answer. Wrong gate, the bear eats.
 // A row of four lettered gates floats down the river while you read; pick a lane (tap an answer,
 // tap the river, arrows, 1–4 or A–D) and either wait for the gate or hit Leap for a time bonus.
+// Leisure swim (a lobby option): no clock and no lives. The gates just float at the top of the
+// river until you hit Swim!, and every wrong gate stops to teach. It never counts as a best score.
 
 import { escapeHtml, mountGame, sound, teach } from '../bank.js';
 
@@ -11,7 +13,8 @@ const TUNING = {
   easier: { lives: 5, time: 1.6, fastest: 0.8 },
 };
 
-function start({ deck, stage, finish, easy }) {
+function start({ deck, stage, finish, easy, options = {} }) {
+  const leisure = Boolean(options.leisure);
   const tune = TUNING[easy ? 'easier' : 'standard'];
   const LIVES = tune.lives;
   const state = { score: 0, lives: LIVES, streak: 0, speed: 1, lane: 1, q: null, p: 0, duration: 10, leaping: false, done: false, misses: [], last: 0, raf: 0, resolving: false };
@@ -35,19 +38,20 @@ function start({ deck, stage, finish, easy }) {
     </div>
     <div class="sr-controls">
       <button type="button" class="sr-move" data-dir="-1" aria-label="Swim left">◀</button>
-      <button type="button" class="sr-leap">Leap! <small>(space)</small></button>
+      <button type="button" class="sr-leap">${leisure ? 'Swim! 🐟' : 'Leap!'} <small>(space)</small></button>
       <button type="button" class="sr-move" data-dir="1" aria-label="Swim right">▶</button>
     </div>
     <div class="gm-teachbox"></div>`;
 
   const $ = (sel) => stage.querySelector(sel);
   const river = $('.sr-river');
+  river.classList.toggle('sr-leisure', leisure);
   const gates = $('.sr-gates');
   const fish = $('.sr-fish');
 
   const hud = () => {
     $('.sr-score').textContent = `${state.score} pts`;
-    $('.sr-lives').textContent = '🐟'.repeat(state.lives) + '🦴'.repeat(LIVES - state.lives);
+    $('.sr-lives').textContent = leisure ? '🛟 Leisure swim' : '🐟'.repeat(state.lives) + '🦴'.repeat(LIVES - state.lives);
     $('.sr-streak').textContent = state.streak > 1 ? `🔥 ×${state.streak}` : '';
   };
 
@@ -83,7 +87,7 @@ function start({ deck, stage, finish, easy }) {
     $('.sr-choices').innerHTML = state.q.choices.map((choice, i) => `<li><button type="button" data-lane="${i}"><b class="sr-c${i}">${LETTERS[i]}</b><span>${escapeHtml(choice)}</span></button></li>`).join('');
     stage.querySelectorAll('.sr-choices button').forEach((button) => button.addEventListener('click', () => moveTo(Number(button.dataset.lane))));
     gates.querySelectorAll('.sr-gate').forEach((gate) => gate.classList.remove('sr-open', 'sr-shut'));
-    river.classList.remove('sr-chomp');
+    river.classList.remove('sr-chomp', 'sr-going');
     moveTo(state.lane);
     state.last = performance.now();
   };
@@ -92,7 +96,8 @@ function start({ deck, stage, finish, easy }) {
     state.resolving = true;
     const q = state.q;
     const right = state.lane === q.answer;
-    const timeLeft = state.leaping ? Math.max(0, 1 - state.leapAt) : 0;
+    // No clock in Leisure swim, so no speed bonus either: a right gate is a flat 100 (times the streak).
+    const timeLeft = state.leaping && !leisure ? Math.max(0, 1 - state.leapAt) : 0;
     gates.querySelectorAll('.sr-gate').forEach((gate, i) => gate.classList.add(i === q.answer ? 'sr-open' : 'sr-shut'));
     stage.querySelectorAll('.sr-choices li').forEach((li, i) => li.classList.add(i === q.answer ? 'sr-right' : (i === state.lane ? 'sr-wrong' : 'sr-dim')));
     if (right) {
@@ -107,7 +112,7 @@ function start({ deck, stage, finish, easy }) {
       sound.good();
     } else {
       state.streak = 0;
-      state.lives -= 1;
+      if (!leisure) state.lives -= 1;
       state.misses.push({ ...q, picked: q.choices[state.lane] });
       river.classList.add('sr-chomp');
       $('.sr-bear').style.left = fish.style.left;
@@ -123,7 +128,7 @@ function start({ deck, stage, finish, easy }) {
       next();
     };
     // Easier mode stops on a miss to show the right answer and why, until the player taps Got it.
-    if (!right && easy) setTimeout(() => { if (!state.done) teach($('.gm-teachbox'), q, after); }, 900);
+    if (!right && (easy || leisure)) setTimeout(() => { if (!state.done) teach($('.gm-teachbox'), q, after); }, 900);
     else setTimeout(after, right ? 1100 : 2600);
   };
 
@@ -132,7 +137,9 @@ function start({ deck, stage, finish, easy }) {
     const dt = Math.min(0.1, Math.max(0, (now - state.last) / 1000));
     state.last = now;
     if (!state.resolving && state.q) {
-      state.p += state.leaping ? dt * 2.5 : dt / state.duration;
+      // In Leisure swim the gates wait (floating, in CSS) until you swim.
+      if (state.leaping) state.p += dt * 2.5;
+      else if (!leisure) state.p += dt / state.duration;
       if (state.p >= 1) { state.p = 1; resolve(); }
       const travel = river.clientHeight - gates.offsetHeight - fish.offsetHeight - 8;
       gates.style.transform = `translateY(${state.p * travel}px)`;
@@ -144,6 +151,7 @@ function start({ deck, stage, finish, easy }) {
     if (state.resolving || state.leaping || state.done) return;
     state.leaping = true;
     state.leapAt = state.p;
+    river.classList.add('sr-going');
   };
 
   const end = (headline) => {
@@ -151,7 +159,7 @@ function start({ deck, stage, finish, easy }) {
     state.done = true;
     cancelAnimationFrame(state.raf);
     window.removeEventListener('keydown', onKey);
-    finish({ score: state.score, label: 'points', headline, misses: state.misses });
+    finish({ score: state.score, label: 'points', headline, misses: state.misses, practice: leisure ? '🛟 Leisure swim: no clock, so no best score' : '' });
   };
 
   const onKey = (event) => {
@@ -195,6 +203,9 @@ mountGame(document.getElementById('game'), {
     easier: 'Simpler questions, 5 lives, a slower river. A wrong gate stops to show you why.',
     standard: 'Every question a quiz can ask, 3 lives, and the river speeds up. Closest to the final.',
   },
+  options: [
+    { id: 'leisure', label: '🛟 Leisure swim', hint: 'No clock and no lives: the gates float while you think, and you swim when you\'re ready.' },
+  ],
   startLabel: 'Swim! 🐟',
   start,
 });

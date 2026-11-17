@@ -208,6 +208,7 @@ export async function mountGame(root, game) {
             ${counts[SALMON_FLOW] ? `<option value="${SALMON_FLOW}"${topic === SALMON_FLOW ? ' selected' : ''}>${topicLabel(SALMON_FLOW)} (${counts[SALMON_FLOW]})</option>` : ''}
             ${topics.map((t) => `<option value="${escapeHtml(t)}"${t === topic ? ' selected' : ''}>${escapeHtml(topicLabel(t))} (${counts[t]})</option>`).join('')}
           </select></label>`}
+          ${(game.options || []).map((option) => `<label class="gm-option"><input type="checkbox" data-option="${option.id}"${(loadPrefs(game.id).options || {})[option.id] ? ' checked' : ''}><span>${escapeHtml(option.label)}<small>${escapeHtml(option.hint)}</small></span></label>`).join('')}
           <label class="gm-sound"><input type="checkbox"${sound.on ? ' checked' : ''}> Sound</label>
         </div>
         <button type="button" class="gm-start">${escapeHtml(game.startLabel || 'Start')}</button>
@@ -226,24 +227,28 @@ export async function mountGame(root, game) {
     });
     stage.querySelector('.gm-start').addEventListener('click', () => {
       const chosen = stage.querySelector('.gm-topic')?.value || 'all';
-      savePrefs(game.id, { topic: chosen });
+      // A game's own options (game.options, e.g. Salmon Run's Leisure swim), remembered per device.
+      const options = {};
+      stage.querySelectorAll('[data-option]').forEach((box) => { options[box.dataset.option] = box.checked; });
+      savePrefs(game.id, { topic: chosen, options });
       const pool = questions.filter((q) => inTopic(q, chosen));
       stage.innerHTML = '';
       stage.dataset.mode = mode;
-      game.start({ deck: makeDeck(pool), topic: chosen, mode, easy: mode === 'easier', stage, finish: (result) => finish(mode, chosen, result) });
+      game.start({ deck: makeDeck(pool), topic: chosen, mode, easy: mode === 'easier', options, stage, finish: (result) => finish(mode, chosen, result) });
     });
   };
 
-  const finish = (mode, topic, { score, label = 'points', headline = 'Game over', misses = [] }) => {
+  // A run with `practice` set (no clock, nothing to lose) is never a best score.
+  const finish = (mode, topic, { score, label = 'points', headline = 'Game over', misses = [], practice = '' }) => {
     const all = loadPrefs(game.id).best || {};
     const key = `${mode}|${topic}`;
-    const record = score > (bestFor(all, mode)[topic] || 0);
+    const record = !practice && score > (bestFor(all, mode)[topic] || 0);
     if (record) savePrefs(game.id, { best: { ...all, [key]: score } });
     stage.innerHTML = `
       <section class="gm-over">
         <h1>${escapeHtml(headline)}</h1>
         <p class="gm-final"><strong>${score}</strong> ${escapeHtml(label)}${record && score > 0 ? ' <span class="gm-record">🏆 New best!</span>' : ''}</p>
-        <p class="gm-mode-tag">${MODES[mode].label} mode${mode === 'easier' ? ' · ready for more? Switch to Standard in the lobby.' : ''}</p>
+        <p class="gm-mode-tag">${MODES[mode].label} mode${practice ? ` · ${escapeHtml(practice)}` : ''}${mode === 'easier' && !practice ? ' · ready for more? Switch to Standard in the lobby.' : ''}</p>
         <div class="gm-again"><button type="button" class="gm-start">Play again</button>
           <a href="../../#final">All games</a></div>
         ${misses.length ? `<h2>Worth another look (${misses.length})</h2>

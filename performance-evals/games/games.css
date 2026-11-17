@@ -75,3 +75,9 @@
 .gm-teach .gm-why { margin-top:.3rem; color:var(--ink); }
 .gm-gotit { margin-top:.7rem; padding:.55rem 1.1rem; border:0; border-radius:999px; background:var(--accent); color:#fff; font-weight:700; }
 .gm-easy-badge { padding:.1rem .5rem; border-radius:999px; background:color-mix(in srgb, var(--good) 18%, var(--surface)); color:var(--good); font-size:.75rem; font-weight:800; }
+
+/* a game's own lobby options (e.g. Salmon Run's Leisure swim) */
+.gm-setup .gm-option { flex:1 1 100%; justify-content:center; align-items:flex-start; text-align:left; max-width:26rem; margin-inline:auto; }
+.gm-option input { margin-top:.3rem; }
+.gm-option span { display:grid; font-weight:600; }
+.gm-option small { color:var(--muted); font-size:.82rem; font-weight:400; }
