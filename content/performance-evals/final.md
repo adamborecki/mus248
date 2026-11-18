@@ -36,7 +36,7 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 **Goal:** Practice Salmon's signal flow and the quiz questions, at your level, and have some fun doing it.
 
 - ⚡ [Follow the Signal](../../performance-evals/games/follow-the-signal/): you are the signal. Trace Salmon's real paths, from the mic to the speaker, hop by hop, and dodge the decoys. Built from the Salmon FOH lecture, the CME Gig Checklist, and Mixer Lab.
-- 🐭 [The Mouse's Mixing Simulator](../../performance-evals/games/mouse-mixing-simulator/): a mouse snuck into Salmon to sing, and he can't hear himself. Run the four cables from the wireless receiver to his wedge, then bring up the send and the amp without making it squeal. A student's idea, built on Vocal Jazz's wedge chain from the Salmon FOH lecture.
+- 🐭 [The Mouse's Mixing Simulator](../../performance-evals/games/mouse-mixing-simulator/): a mouse snuck into Salmon to sing, and he can't hear himself. Walk him through the hall, running the four cables from the wireless receiver to his wedge, then bring up the send and the amp without making it squeal. A student's idea, built on Vocal Jazz's wedge chain from the Salmon FOH lecture.
 - 🐟 [Salmon Run](../../performance-evals/games/salmon-run/): swim upstream into the gate with the right answer. Wrong gate, and the bear eats. Want more time to think? Turn on 🛟 Leisure swim: no clock, and the gates just float.
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
 - 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open soon. Patch every question to its answer before the clock runs out.
