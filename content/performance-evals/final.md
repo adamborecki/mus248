@@ -1,7 +1,7 @@
 ---
 title: "Final"
 emoji: "🎓"
-revised: "2026-11-17"
+revised: "2026-11-18"
 status: "draft"
 format: "exam"
 ---
@@ -36,6 +36,7 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 **Goal:** Practice Salmon's signal flow and the quiz questions, at your level, and have some fun doing it.
 
 - ⚡ [Follow the Signal](../../performance-evals/games/follow-the-signal/): you are the signal. Trace Salmon's real paths, from the mic to the speaker, hop by hop, and dodge the decoys. Built from the Salmon FOH lecture, the CME Gig Checklist, and Mixer Lab.
+- 🐭 [The Mouse's Mixing Simulator](../../performance-evals/games/mouse-mixing-simulator/): a mouse snuck into Salmon to sing, and he can't hear himself. Run the four cables from the wireless receiver to his wedge, then bring up the send and the amp without making it squeal. A student's idea, built on Vocal Jazz's wedge chain from the Salmon FOH lecture.
 - 🐟 [Salmon Run](../../performance-evals/games/salmon-run/): swim upstream into the gate with the right answer. Wrong gate, and the bear eats. Want more time to think? Turn on 🛟 Leisure swim: no clock, and the gates just float.
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
 - 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open soon. Patch every question to its answer before the clock runs out.
@@ -49,10 +50,10 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 > **Homework from the games?** Every game ends with **📋 Copy Canvas deliverable**: a summary of
 > that run plus a receipt, like the online refresher's. Paste it into the Canvas assignment.
 
-> **Start with Salmon's signal flow.** Follow the Signal is all Salmon, and the other three have a
+> **Start with Salmon's signal flow.** Follow the Signal and the Mouse's Mixing Simulator are all Salmon, and the other three have a
 > **🐟 Salmon signal flow** topic at the top of their topic list.
 
-> The other three games use the quiz question bank, including questions that haven't been checked
+> Those three games use the quiz question bank, including questions that haven't been checked
 > yet, but never one on a topic we haven't covered. Each game ends with the questions you missed and
 > why. One looks wrong? Send a Repo improvement with its id.
 
