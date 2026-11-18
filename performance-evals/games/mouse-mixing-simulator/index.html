@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Mouse's Mixing Simulator: cable up a wedge in Salmon so a mouse can hear himself sing. A final-exam practice game for MUS 248.">
+  <title>The Mouse's Mixing Simulator · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .mm-hall { position:relative; display:grid; gap:1.1rem; padding:.9rem; border-radius:.6rem; background:var(--rack); color:var(--rack-ink); transition:box-shadow .3s; }
+    .mm-hall.mm-live { box-shadow:0 0 0 2px var(--good), 0 0 26px -6px var(--good); }
+    .mm-zone h2 { margin:0 0 .5rem; color:#ffd166; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .mm-row { display:grid; gap:1.5rem 1.4rem; }
+    .mm-foh .mm-row { grid-template-columns:repeat(2, minmax(0, 11rem)); justify-content:center; }
+    .mm-stage .mm-row { grid-template-columns:repeat(4, minmax(0, 1fr)); }
+    .mm-card { position:relative; z-index:1; display:grid; gap:.4rem; align-content:start; padding:.45rem; border:2px solid #4a4a52; border-radius:.5rem; background:#3a3a40; }
+    .mm-plug { display:grid; gap:.1rem; justify-items:center; width:100%; padding:.35rem .2rem; border:0; border-radius:.35rem; background:transparent; color:inherit; text-align:center; touch-action:manipulation; }
+    .mm-plug:hover { background:#4a4a52; }
+    .mm-icon { font-size:1.9rem; line-height:1.1; }
+    .mm-icon svg { display:block; width:3.4rem; height:3.4rem; }
+    .mm-name { font-size:.86rem; font-weight:700; line-height:1.2; }
+    .mm-sub { color:#b9b9c0; font-size:.7rem; line-height:1.2; }
+    .mm-led { position:absolute; top:.4rem; right:.4rem; width:.6rem; height:.6rem; border-radius:50%; background:#1c1c1f; box-shadow:inset 0 0 0 1px #5a5a62; }
+    .mm-card.mm-on .mm-led { background:var(--good); box-shadow:0 0 8px var(--good); }
+    .mm-card.mm-end { border-color:#ffd166; box-shadow:0 0 0 3px rgba(255,209,102,.35); }
+    .mm-card.mm-hint { border-color:var(--good); animation:mm-glow .7s ease-in-out infinite; }
+    @keyframes mm-glow { 50% { box-shadow:0 0 0 5px color-mix(in srgb, var(--good) 35%, transparent); } }
+    .mm-card.mm-buzz { animation:gm-shake .35s; border-color:var(--bad); }
+    .mm-ctl { display:grid; gap:.15rem; font-size:.7rem; }
+    .mm-ctl label { color:#d6d6dc; line-height:1.2; }
+    .mm-ctl input[type=range] { width:100%; margin:0; accent-color:#ffd166; }
+    .mm-switch { padding:.3rem .4rem; border:1px solid #6a6a72; border-radius:999px; background:#232327; color:#f5f5f7; font-size:.75rem !important; font-weight:700; }
+    .mm-switch[aria-pressed=true] { background:var(--good); border-color:var(--good); color:#fff; }
+    .mm-meter { position:relative; height:.5rem; border-radius:999px; background:#1c1c1f; overflow:hidden; }
+    .mm-meter i { position:absolute; inset:0 auto 0 0; width:0; background:var(--good); transition:width .1s; }
+    .mm-meter.mm-hot i { background:var(--bad); }
+    .mm-meter::after { content:''; position:absolute; top:0; bottom:0; left:20%; right:28%; border-inline:2px solid #ffd166; }
+    .mm-wires { position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; overflow:visible; }
+    .mm-wires path { fill:none; stroke-width:5; stroke-linecap:round; filter:drop-shadow(0 2px 1px rgba(0,0,0,.5)); }
+    .mm-wires .mm-radio { stroke:#9cc9f5; stroke-width:2.5; stroke-dasharray:3 7; filter:none; animation:mm-radio 1s linear infinite; }
+    @keyframes mm-radio { to { stroke-dashoffset:-20; } }
+    .mm-callout { min-height:3em; margin:.7rem 0; font-weight:700; text-align:center; }
+    .mm-tray { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
+    .mm-cable { display:flex; gap:.45rem; align-items:center; padding:.6rem .85rem; border:2px solid var(--line); border-radius:.5rem; background:var(--surface); color:var(--ink); font-size:.95rem; font-weight:600; box-shadow:0 3px 0 var(--line); touch-action:manipulation; }
+    .mm-cable i { width:1.5rem; height:.4rem; border-radius:999px; background:var(--c); }
+    .mm-cable[aria-pressed=true] { border-color:var(--accent); background:color-mix(in srgb, var(--accent) 10%, var(--surface)); transform:translateY(2px); box-shadow:0 1px 0 var(--line); }
+    .mm-cable.mm-hint { border-color:var(--good); animation:mm-glow .7s ease-in-out infinite; }
+    .mm-list { margin:.8rem auto 0; padding:0; max-width:30rem; list-style:none; color:var(--muted); font-size:.85rem; }
+    .mm-list li::before { content:'◻️ '; }
+    .mm-list li.mm-done { color:var(--good); font-weight:600; }
+    .mm-list li.mm-done::before { content:'🔌 '; }
+    .mm-after { text-align:center; }
+    .mm-why { margin:.25rem auto .4rem; max-width:34rem; font-size:1.02rem; }
+    .mm-flow { margin:.4rem auto; max-width:34rem; font-weight:700; }
+    .mm-src { margin:0 0 1rem; color:var(--muted); font-size:.82rem; }
+    .mm-src a { color:var(--accent); font-weight:600; }
+    .mm-sing .mm-note { animation:mm-note 1.2s ease-out infinite; }
+    .mm-note { opacity:0; }
+    @keyframes mm-note { 20% { opacity:1; } to { opacity:0; transform:translate(6px,-14px); } }
+    @media (max-width:640px) {
+      .mm-stage .mm-row { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .mm-foh .mm-row { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .mm-cable { font-size:.88rem; padding:.55rem .7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { .mm-card.mm-hint, .mm-cable.mm-hint, .mm-radio, .mm-sing .mm-note { animation:none; } .mm-sing .mm-note { opacity:1; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="mouse-mixing-simulator.js"></script>
+</body>
+</html>
