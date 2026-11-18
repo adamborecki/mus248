@@ -2,8 +2,9 @@
 // the four cables (rig.js: Vocal Jazz's wedge chain), switch the mic on, and bring up the send and
 // the amp until the wedge is loud enough to hear and not so loud it feeds back.
 //
-// Pick a cable, then tap the two things it goes between. A wrong cable or a wrong pair isn't
-// plugged in: it costs points and says why. Each card's light shows how far the signal gets.
+// Pick a cable, then tap the two things it goes between: the mouse walks through the hall to each
+// one, dragging the cable behind him. A wrong cable or a wrong pair isn't plugged in: it costs
+// points and says why. Each card's light shows how far the signal gets.
 
 import { escapeHtml, mountGame, sound } from '../bank.js';
 import { CABLES, GEAR, LINKS, MIXER_LAB, NO_LINK, SOURCE, STOPS } from './rig.js';
@@ -11,7 +12,7 @@ import { CABLES, GEAR, LINKS, MIXER_LAB, NO_LINK, SOURCE, STOPS } from './rig.js
 const QUIET = 20;   // wedge level (send × amp, 0–100) the mouse can hear himself at
 const SQUEAL = 72;  // and where the wedge feeds back into his mic
 
-const MOUSE = `<svg viewBox="0 0 64 64" role="img" aria-label="A mouse holding a wireless mic">
+const MOUSE = `<svg viewBox="0 0 64 64" role="img" aria-label="The mouse">
   <circle cx="19" cy="15" r="9" fill="#9a9aa5"/><circle cx="45" cy="15" r="9" fill="#9a9aa5"/>
   <circle cx="19" cy="15" r="5" fill="#f4b6c2"/><circle cx="45" cy="15" r="5" fill="#f4b6c2"/>
   <ellipse cx="32" cy="46" rx="14" ry="15" fill="#b4b4be"/><ellipse cx="32" cy="48" rx="8" ry="10" fill="#e6e6ec"/>
@@ -20,7 +21,7 @@ const MOUSE = `<svg viewBox="0 0 64 64" role="img" aria-label="A mouse holding a
   <ellipse cx="32" cy="29" rx="2.2" ry="1.6" fill="#f4b6c2"/><ellipse class="mm-mouth" cx="32" cy="33.5" rx="2.5" ry="1" fill="#5a2a35"/>
   <path d="M19 42 Q10 40 12 31" stroke="#b4b4be" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M12 31 l-3 -1" stroke="#b4b4be" stroke-width="3" stroke-linecap="round"/>
   <path d="M45 42 Q52 40 49 33" stroke="#b4b4be" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M49 33 l3 -2" stroke="#b4b4be" stroke-width="3" stroke-linecap="round"/>
-  <rect x="46.5" y="27" width="4" height="12" rx="2" fill="#2a2a2e" transform="rotate(-18 48.5 33)"/><circle cx="46.2" cy="25" r="4" fill="#6a6a72"/>
+  <g class="mm-held"><rect x="46.5" y="27" width="4" height="12" rx="2" fill="#2a2a2e" transform="rotate(-18 48.5 33)"/><circle cx="46.2" cy="25" r="4" fill="#6a6a72"/></g>
   <path d="M18 58 Q4 62 8 50" stroke="#f4b6c2" stroke-width="2" fill="none" stroke-linecap="round"/>
   <text class="mm-note" x="52" y="16" font-size="12" fill="#ffd166">♪</text>
 </svg>`;
@@ -36,12 +37,12 @@ const cableOf = (id) => CABLES.find((cable) => cable.id === id);
 // next cable and the two things it goes between glow.
 function start({ stage, finish, easy }) {
   const cables = CABLES.filter((cable) => !(easy && cable.decoy));
-  const state = { cable: null, end: null, plugged: new Set(), mic: false, send: 0, amp: 0, slips: [], startedAt: performance.now(), done: false, squeals: 0 };
+  const state = { cable: null, end: null, plugged: new Set(), mic: false, send: 0, amp: 0, slips: [], startedAt: performance.now(), done: false, squeals: 0, at: null, pos: { x: 0, y: 0 }, walking: false };
 
   const card = (gear) => `<div class="mm-card" data-gear="${gear.id}">
       <span class="mm-led" aria-hidden="true"></span>
       <button type="button" class="mm-plug" aria-label="${escapeHtml(gear.name)}, ${escapeHtml(gear.sub)}">
-        <span class="mm-icon" aria-hidden="true">${gear.id === 'mic' ? MOUSE : gear.icon}</span>
+        <span class="mm-icon" aria-hidden="true">${gear.icon}</span>
         <span class="mm-name">${escapeHtml(gear.name)}</span><span class="mm-sub">${escapeHtml(gear.sub)}</span>
       </button>
       ${{
@@ -62,7 +63,9 @@ function start({ stage, finish, easy }) {
     <div class="mm-hall">
       <svg class="mm-wires" aria-hidden="true"></svg>
       ${zone('foh', 'FOH · the back of the hall')}
+      <div class="mm-seats" aria-hidden="true">${'💺'.repeat(24)}</div>
       ${zone('stage', 'The stage')}
+      <div class="mm-mouse" aria-hidden="true">${MOUSE}</div>
     </div>
     <p class="mm-callout" aria-live="polite"></p>
     <div class="mm-tray" role="group" aria-label="Cables">
@@ -110,7 +113,49 @@ function start({ stage, finish, easy }) {
     };
     const wires = LINKS.filter((link) => has(link.id)).map((link) => `<path d="${run(link.a, link.b)}" stroke="${cableOf(link.cable).color}"/>`);
     if (state.mic) wires.push(`<path class="mm-radio" d="${run('receiver', 'mic')}"/>`);
+    // The cable in his paws: one end plugged in, the other following him across the hall.
+    if (state.cable && state.end) {
+      const from = box(state.end);
+      const m = $('.mm-mouse').getBoundingClientRect();
+      const [mx, my] = [m.left - hall.left + m.width / 2, m.top - hall.top + m.height * 0.7];
+      wires.push(`<path d="M${from.cx} ${from.b - 6} Q${(from.cx + mx) / 2} ${Math.max(from.b, my) + 26} ${mx} ${my}" stroke="${cableOf(state.cable).color}"/>`);
+    }
     $('.mm-wires').innerHTML = wires.join('');
+  };
+
+  // ----- the mouse on the floor -----
+  const mouse = $('.mm-mouse');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Where he stands for each piece of gear: at its top left corner. No gear: by the door.
+  const spot = (id) => {
+    const hall = $('.mm-hall').getBoundingClientRect();
+    if (!id) return { x: 2, y: hall.height - 46 };
+    const r = cardOf(id).getBoundingClientRect();
+    return { x: r.left - hall.left - 14, y: r.top - hall.top - 20 };
+  };
+  const stand = (p) => { state.pos = p; mouse.style.transform = `translate(${p.x}px, ${p.y}px)`; };
+  let trip = 0;
+  // Walk to a piece of gear, then do `done`. A new walk cancels the one before it.
+  const walkTo = (id, done) => {
+    const [from, to] = [state.pos, spot(id)];
+    const far = Math.hypot(to.x - from.x, to.y - from.y);
+    const ms = still || far < 4 ? 0 : Math.min(1300, Math.max(220, far / 0.42));
+    const mine = ++trip;
+    state.at = id;
+    state.walking = true;
+    mouse.classList.add('mm-walking');
+    if (Math.abs(to.x - from.x) > 4) mouse.classList.toggle('mm-left', to.x < from.x);
+    mouse.style.transitionDuration = `${ms}ms`;
+    stand(to);
+    const follow = () => { if (mine === trip && state.walking) { drawWires(); requestAnimationFrame(follow); } };
+    requestAnimationFrame(follow);
+    setTimeout(() => {
+      if (mine !== trip) return;
+      state.walking = false;
+      mouse.classList.remove('mm-walking');
+      drawWires();
+      if (done) done();
+    }, ms + 30);
   };
 
   const draw = () => {
@@ -125,6 +170,7 @@ function start({ stage, finish, easy }) {
     const mic = $('[data-ctl="mic"]');
     mic.setAttribute('aria-pressed', String(state.mic));
     mic.textContent = state.mic ? 'Mic: ON' : 'Mic: OFF';
+    mouse.classList.toggle('mm-has-mic', state.mic);
     const shown = at >= 5 ? level() : 0;
     $('.mm-meter i').style.width = `${shown}%`;
     $('.mm-meter').classList.toggle('mm-hot', shown >= SQUEAL);
@@ -166,7 +212,7 @@ function start({ stage, finish, easy }) {
       if (level() < QUIET) return say('🐭 "Is this thing on?" The wedge is barely there. The send sets how much of the mic goes to the wedge; the amp knob sets how loud the wedge is.');
       return;
     }
-    if (!state.plugged.size && !state.mic) return say('🐭 "I can\'t hear myself!" Pick a cable, then tap the two things it goes between.');
+    if (!state.plugged.size && !state.mic) return say('🐭 "I can\'t hear myself!" Pick a cable, then tap the two things it goes between, and he\'ll walk it over.');
     if (easy || state.plugged.size === LINKS.length) return say(`🐭 ${STOPS[at]}`);
     say('Follow the green lights: where does the mouse\'s voice stop?');
   };
@@ -197,15 +243,17 @@ function start({ stage, finish, easy }) {
   };
 
   const tapGear = (id) => {
-    if (state.done) return;
-    if (!state.cable) return say('Pick a cable first, then tap the two things it goes between.');
+    if (state.done || state.walking) return;
+    if (!state.cable) return walkTo(id, () => say(`🐭 At the ${gearName(id)}, empty-pawed. Pick a cable first, then tap the two things it goes between.`));
     if (state.end === id) { state.end = null; return draw(); }
     if (!state.end) {
-      state.end = id;
-      say(`One end of the ${cableOf(state.cable).name} at the ${gearName(id)}. Where does the other end go?`);
-      return draw();
+      return walkTo(id, () => {
+        state.end = id;
+        say(`One end of the ${cableOf(state.cable).name} at the ${gearName(id)}. Where does he drag the other end?`);
+        draw();
+      });
     }
-    attempt(state.end, id);
+    walkTo(id, () => attempt(state.end, id));
   };
 
   // After anything changes: has he been heard, is it squealing, or where did the signal stop?
@@ -233,8 +281,11 @@ function start({ stage, finish, easy }) {
     draw();
     $('.mm-score').textContent = `${state.final} pts`;
     $('.mm-hall').classList.add('mm-live');
-    cardOf('mic').classList.add('mm-sing');
-    stage.querySelector('.mm-mouth')?.setAttribute('ry', '3');
+    // Back to center stage for the song.
+    walkTo('mic', () => {
+      mouse.classList.add('mm-sing');
+      stage.querySelector('.mm-mouth')?.setAttribute('ry', '3');
+    });
     $$('.mm-cable, .mm-plug, [data-ctl]').forEach((el) => { el.disabled = true; });
     $('.mm-tray').hidden = true;
     sound.good();
@@ -264,7 +315,7 @@ function start({ stage, finish, easy }) {
   };
 
   $$('.mm-cable').forEach((button) => button.addEventListener('click', () => {
-    if (state.done) return;
+    if (state.done || state.walking) return;
     state.cable = state.cable === button.dataset.cable ? null : button.dataset.cable;
     state.end = null;
     clearHints();
@@ -273,18 +324,32 @@ function start({ stage, finish, easy }) {
   }));
   GEAR.forEach((gear) => cardOf(gear.id).querySelector('.mm-plug').addEventListener('click', () => tapGear(gear.id)));
   $('[data-ctl="mic"]').addEventListener('click', () => {
-    state.mic = !state.mic;
-    sound.blip(state.mic ? 990 : 330, 60);
-    check();
+    if (state.walking) return;
+    walkTo('mic', () => {
+      state.mic = !state.mic;
+      sound.blip(state.mic ? 990 : 330, 60);
+      check();
+    });
   });
   // The meter follows the slider as it moves; the verdict waits until the player lets go.
   [['send', '[data-ctl="send"]'], ['amp', '[data-ctl="amp"]']].forEach(([name, sel]) => {
+    // He scurries over to whichever knob is being turned (unless he's mid-errand).
+    const over = () => { const id = name === 'send' ? 'x32' : 'amp'; if (!state.done && !state.walking && state.at !== id) walkTo(id); };
+    $(sel).addEventListener('pointerdown', over);
+    $(sel).addEventListener('focus', over);
     $(sel).addEventListener('input', (event) => { state[name] = Number(event.target.value); draw(); });
     $(sel).addEventListener('change', (event) => { state[name] = Number(event.target.value); check(); });
   });
   $('.gm-quit').addEventListener('click', () => { if (state.final === undefined) end('The mouse scurried off, still unheard 🐭'); });
   // The cables are drawn from where the cards really are, so redraw when the layout moves.
-  if (window.ResizeObserver) new ResizeObserver(() => { if ($('.mm-hall')) drawWires(); }).observe($('.mm-hall'));
+  // He's placed the same way, so he moves with them.
+  mouse.style.transitionDuration = '0ms';
+  stand(spot(null));
+  if (window.ResizeObserver) new ResizeObserver(() => {
+    if (!$('.mm-hall')) return;
+    if (!state.walking) { mouse.style.transitionDuration = '0ms'; stand(spot(state.at)); }
+    drawWires();
+  }).observe($('.mm-hall'));
 
   status();
   draw();
@@ -296,8 +361,8 @@ mountGame(document.getElementById('game'), {
   emoji: '🐭',
   tagline: 'A mouse snuck into Salmon to sing, and he can\'t hear himself. Get his wedge working.',
   rules: [
-    'The mouse has a wireless mic, arms, and opposable thumbs. What he doesn\'t have is a working <b>wedge</b>.',
-    'Pick a cable, then tap the <b>two things it goes between</b>. Four cables, from the receiver at FOH to the wedge on stage.',
+    'The mouse has arms and opposable thumbs. What he doesn\'t have is a working <b>wedge</b>.',
+    'Pick a cable, then tap the <b>two things it goes between</b>. He walks through the hall to each one, dragging the cable. Four cables, from the receiver at FOH to the wedge on stage.',
     'Switch the mic on, then bring up its <b>send</b> on the X32 and the <b>amp\'s knob</b>, slowly. Too loud and the wedge feeds back.',
     'The green lights show how far his voice gets. A wrong cable or a wrong pair costs points, and tells you why.',
   ],

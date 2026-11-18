@@ -16,7 +16,7 @@ export const MIXER_LAB = 'https://adamborecki.github.io/mixer-lab/#/x32-vj-chain
 export const GEAR = [
   { id: 'receiver', zone: 'foh', icon: '📡', name: 'Wireless receiver', sub: 'FOH wireless rack' },
   { id: 'x32', zone: 'foh', icon: '🎛️', name: 'X32 mixer', sub: 'FOH' },
-  { id: 'mic', zone: 'stage', icon: '🎤', name: 'Wireless mic', sub: 'in the mouse\'s paws' },
+  { id: 'mic', zone: 'stage', icon: '🎤', name: 'Wireless mic', sub: 'on its stand' },
   { id: 's32', zone: 'stage', icon: '🗄️', name: 'S32 stage box', sub: 'stage-side rack' },
   { id: 'amp', zone: 'stage', icon: '🔋', name: 'NX3000 amp', sub: 'amp rack · CH A' },
   { id: 'wedge', zone: 'stage', icon: '🔈', name: 'Wedge', sub: 'passive, on the floor' },
