@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Speed Read: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Speed Read · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    /* The pivot letter of every word lands on --sr-at, marked by the two ticks. */
+    .sr-reader { --sr-at:38%; position:relative; height:9rem; overflow:hidden; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .sr-reader::before, .sr-reader::after { content:""; position:absolute; left:var(--sr-at); width:2px; height:1.1rem; margin-left:-1px; background:var(--accent); opacity:.55; }
+    .sr-reader::before { top:1rem; }
+    .sr-reader::after { bottom:1.4rem; }
+    .sr-word { position:absolute; left:var(--sr-at); top:50%; margin-top:-.2rem; transform:translateY(-50%); font-size:clamp(1.7rem, 8vw, 3rem); font-weight:600; line-height:1.2; letter-spacing:0; white-space:nowrap; }
+    .sr-token { display:inline-block; }
+    .sr-token b { color:var(--bad); font-weight:600; }
+    .sr-dot { color:var(--muted); }
+    .sr-progress { position:absolute; inset:auto 0 0; height:5px; background:var(--tag); }
+    .sr-progress i { display:block; width:0; height:100%; background:var(--accent); }
+    .sr-status { min-height:1.5em; margin:.55rem 0; font-weight:700; text-align:center; }
+    .sr-card { padding:.85rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .sr-prompt { margin:0 0 .7rem; font-size:1.05rem; font-weight:650; line-height:1.35; }
+    .sr-choices { display:grid; gap:.45rem; }
+    .sr-choices button { display:flex; gap:.6rem; align-items:flex-start; padding:.6rem .7rem; border:2px solid var(--line); border-radius:.45rem; background:var(--paper); color:var(--ink); text-align:left; font-size:.95rem; line-height:1.3; }
+    .sr-choices button:hover:not(:disabled) { border-color:var(--accent); }
+    .sr-choices b { flex:0 0 auto; display:grid; place-items:center; width:1.45rem; height:1.45rem; border-radius:50%; background:var(--tag); font-size:.8rem; }
+    .sr-right { border-color:var(--good) !important; background:color-mix(in srgb, var(--good) 14%, var(--paper)) !important; }
+    .sr-wrong { border-color:var(--bad) !important; background:color-mix(in srgb, var(--bad) 14%, var(--paper)) !important; }
+    .sr-dim { opacity:.45; }
+    .sr-actions { display:flex; justify-content:center; }
+    .sr-actions button { margin-top:.75rem; padding:.55rem 1.1rem; border:2px solid var(--accent); border-radius:999px; background:var(--surface); color:var(--accent); font-weight:700; }
+    .sr-actions .sr-next { background:var(--accent); color:#fff; }
+    @media (max-width:560px) { .sr-reader { height:7.5rem; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="speed-read.js"></script>
+</body>
+</html>
