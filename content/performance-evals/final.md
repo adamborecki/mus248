@@ -1,7 +1,7 @@
 ---
 title: "Final"
 emoji: "🎓"
-revised: "2026-11-18"
+revised: "2026-11-21"
 status: "draft"
 format: "exam"
 ---
@@ -40,6 +40,7 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 - 🐟 [Salmon Run](../../performance-evals/games/salmon-run/): swim upstream into the gate with the right answer. Wrong gate, and the bear eats. Want more time to think? Turn on 🛟 Leisure swim: no clock, and the gates just float.
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
 - 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open soon. Patch every question to its answer before the clock runs out.
+- 📖 [Speed Read](../../performance-evals/games/speed-read/): the question flashes by one word at a time, then it's gone. Answer right and the next one comes faster. Practice at catching the one word a question turns on.
 
 > **Two modes in every game.** 🌱 **Easier** is the essentials: simpler questions (recognizing and
 > recalling, no troubleshooting) on the Core skills the weekly quizzes grade, plus Salmon's signal
@@ -50,10 +51,10 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 > **Homework from the games?** Every game ends with **📋 Copy Canvas deliverable**: a summary of
 > that run plus a receipt, like the online refresher's. Paste it into the Canvas assignment.
 
-> **Start with Salmon's signal flow.** Follow the Signal and the Mouse's Mixing Simulator are all Salmon, and the other three have a
+> **Start with Salmon's signal flow.** Follow the Signal and the Mouse's Mixing Simulator are all Salmon, and the other four have a
 > **🐟 Salmon signal flow** topic at the top of their topic list.
 
-> Those three games use the quiz question bank, including questions that haven't been checked
+> Those four games use the quiz question bank, including questions that haven't been checked
 > yet, but never one on a topic we haven't covered. Each game ends with the questions you missed and
 > why. One looks wrong? Send a Repo improvement with its id.
 
