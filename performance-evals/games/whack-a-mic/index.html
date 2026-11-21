@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Whack-a-Mic: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Whack-a-Mic · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .qz-card { padding:.85rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .qz-prompt { margin:0 0 .7rem; font-size:1.08rem; font-weight:650; line-height:1.35; }
+    .qz-choices { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; }
+    .qz-choices button, .qz-choices li.qz-static { display:flex; gap:.6rem; align-items:flex-start; width:100%; padding:.55rem .7rem; border:2px solid var(--line); border-radius:.45rem; background:var(--paper); color:var(--ink); text-align:left; font-size:.95rem; line-height:1.3; }
+    .qz-choices button:hover:not(:disabled) { border-color:var(--accent); }
+    .qz-choices b { flex:0 0 auto; display:grid; place-items:center; width:1.5rem; height:1.5rem; border-radius:.3rem; background:var(--tag); font-size:.82rem; }
+    .qz-right { border-color:var(--good) !important; background:color-mix(in srgb, var(--good) 14%, var(--paper)) !important; }
+    .qz-wrong { border-color:var(--bad) !important; background:color-mix(in srgb, var(--bad) 14%, var(--paper)) !important; }
+    .qz-dim { opacity:.45; }
+    @media (max-width:560px) { .qz-prompt { font-size:1rem; } }
+    .wm-c0 { --lane:#e8453c; } .wm-c1 { --lane:#f2a900; } .wm-c2 { --lane:#2ea44f; } .wm-c3 { --lane:#8a4fd8; }
+    .qz-choices b[class^="wm-c"] { background:var(--lane); color:#fff; }
+    .wm-field { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin-top:.75rem; padding:.8rem; border-radius:.6rem; background:var(--rack); touch-action:manipulation; user-select:none; -webkit-user-select:none; }
+    .wm-hole { position:relative; height:5.4rem; overflow:hidden; border-radius:50% 50% .6rem .6rem / 30% 30% .6rem .6rem; background:radial-gradient(ellipse at 50% 100%, #000 0 55%, #1c1c1e 56%); }
+    .wm-field .wm-mole { position:absolute; inset:auto 12% -100% 12%; height:88%; display:grid; place-items:center; border:0; border-radius:2.2rem 2.2rem .4rem .4rem; background:var(--lane); color:#fff; font-size:1.9rem; font-weight:800; padding-top:.9rem; transition:bottom .16s ease-out; box-shadow:inset 0 -10px 0 rgba(0,0,0,.2); }
+    .wm-mole::before { content:"🎤"; position:absolute; top:.15rem; font-size:.95rem; }
+    .wm-field .wm-mole.wm-up { bottom:0; }
+    .wm-mole.wm-bonk { filter:brightness(1.8); transform:scaleY(.6); transform-origin:bottom; }
+    @media (max-width:560px) { .wm-hole { height:4.6rem; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="whack-a-mic.js"></script>
+</body>
+</html>

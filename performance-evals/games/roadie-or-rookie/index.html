@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Roadie or Rookie?: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Roadie or Rookie? · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .qz-card { padding:.85rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .qz-prompt { margin:0 0 .7rem; font-size:1.08rem; font-weight:650; line-height:1.35; }
+    .qz-choices { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; }
+    .qz-choices button, .qz-choices li.qz-static { display:flex; gap:.6rem; align-items:flex-start; width:100%; padding:.55rem .7rem; border:2px solid var(--line); border-radius:.45rem; background:var(--paper); color:var(--ink); text-align:left; font-size:.95rem; line-height:1.3; }
+    .qz-choices button:hover:not(:disabled) { border-color:var(--accent); }
+    .qz-choices b { flex:0 0 auto; display:grid; place-items:center; width:1.5rem; height:1.5rem; border-radius:.3rem; background:var(--tag); font-size:.82rem; }
+    .qz-right { border-color:var(--good) !important; background:color-mix(in srgb, var(--good) 14%, var(--paper)) !important; }
+    .qz-wrong { border-color:var(--bad) !important; background:color-mix(in srgb, var(--bad) 14%, var(--paper)) !important; }
+    .qz-dim { opacity:.45; }
+    @media (max-width:560px) { .qz-prompt { font-size:1rem; } }
+    html, body { overflow-x:clip; }
+    .rr-zone { position:relative; touch-action:pan-y; min-height:9rem; }
+    .rr-swipe { position:relative; padding:1rem; border:2px solid var(--line); border-radius:.9rem; background:var(--surface); box-shadow:0 6px 0 var(--line); user-select:none; -webkit-user-select:none; cursor:grab; transition:transform .18s, border-color .15s; }
+    .rr-swipe.rr-drag { transition:none; cursor:grabbing; }
+    .rr-q { margin:0 0 .8rem; font-size:1.08rem; font-weight:650; line-height:1.35; }
+    .rr-says { margin:0; color:var(--muted); font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .rr-claim { margin:.2rem 0 0; padding:.6rem .75rem; border-radius:.5rem; background:var(--tag); font-size:1.02rem; line-height:1.35; }
+    .rr-swipe.rr-yes { border-color:var(--good); } .rr-swipe.rr-no { border-color:var(--bad); }
+    .rr-buttons { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:1.4rem; }
+    .rr-buttons button { min-height:3.6rem; border:0; border-radius:.7rem; color:#fff; font-size:1.05rem; font-weight:800; touch-action:manipulation; }
+    .rr-buttons small { display:block; font-weight:500; opacity:.85; font-size:.72rem; }
+    .rr-nope { background:var(--bad); } .rr-yep { background:var(--good); }
+    .rr-buttons button:disabled { opacity:.4; }
+    .rr-verdict { min-height:3.2em; margin:.7rem 0 0; text-align:center; font-weight:700; }
+    .rr-verdict small { display:block; color:var(--muted); font-weight:500; }
+    .rr-time.rr-low { color:var(--bad); }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="roadie-or-rookie.js"></script>
+</body>
+</html>

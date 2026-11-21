@@ -41,6 +41,9 @@ The final is a written exam on the quiz engine, in class at the finals-week meet
 - 🔊 [Ring Out!](../../performance-evals/games/ring-out/): the room is feeding back. Right answers notch the ringing frequency before the speakers blow.
 - 🔌 [Patch Panic](../../performance-evals/games/patch-panic/): doors open soon. Patch every question to its answer before the clock runs out.
 - 📖 [Speed Read](../../performance-evals/games/speed-read/): the question flashes by one word at a time, then it's gone. Answer right and the next one comes faster. Practice at catching the one word a question turns on.
+- 👹 [Gig Gremlins](../../performance-evals/games/gig-gremlins/): six gremlins are wrecking the gig, from The Hum to the Feedback Banshee. Right answers land hits, three in a row crits, and wrong ones cost you a heart.
+- 🤘 [Roadie or Rookie?](../../performance-evals/games/roadie-or-rookie/): one question, one answer somebody gave. Swipe right if a roadie would say it, left if it's a rookie mistake. Every call shows the real answer.
+- 🔨 [Whack-a-Mic](../../performance-evals/games/whack-a-mic/): wireless mics pop out of the stage carrying letters. Whack the one with the right answer's letter.
 
 > **Two modes in every game.** 🌱 **Easier** is the essentials: simpler questions (recognizing and
 > recalling, no troubleshooting) on the Core skills the weekly quizzes grade, plus Salmon's signal

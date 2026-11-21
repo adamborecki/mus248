@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gig Gremlins: a final-exam practice game for MUS 248, using the quiz question bank.">
+  <title>Gig Gremlins · MUS 248</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../games.css">
+  <style>
+    .qz-card { padding:.85rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    .qz-prompt { margin:0 0 .7rem; font-size:1.08rem; font-weight:650; line-height:1.35; }
+    .qz-choices { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; }
+    .qz-choices button, .qz-choices li.qz-static { display:flex; gap:.6rem; align-items:flex-start; width:100%; padding:.55rem .7rem; border:2px solid var(--line); border-radius:.45rem; background:var(--paper); color:var(--ink); text-align:left; font-size:.95rem; line-height:1.3; }
+    .qz-choices button:hover:not(:disabled) { border-color:var(--accent); }
+    .qz-choices b { flex:0 0 auto; display:grid; place-items:center; width:1.5rem; height:1.5rem; border-radius:.3rem; background:var(--tag); font-size:.82rem; }
+    .qz-right { border-color:var(--good) !important; background:color-mix(in srgb, var(--good) 14%, var(--paper)) !important; }
+    .qz-wrong { border-color:var(--bad) !important; background:color-mix(in srgb, var(--bad) 14%, var(--paper)) !important; }
+    .qz-dim { opacity:.45; }
+    @media (max-width:560px) { .qz-prompt { font-size:1rem; } }
+    .gg-arena { display:grid; grid-template-columns:1fr auto; gap:.75rem; align-items:center; padding:.8rem 1rem; margin-bottom:.6rem; border-radius:.6rem; background:var(--rack); color:var(--rack-ink); overflow:hidden; }
+    .gg-name { margin:0; font-size:1.15rem; font-weight:800; }
+    .gg-taunt { margin:.15rem 0 .5rem; color:#c7c7cc; font-size:.88rem; font-style:italic; min-height:1.3em; }
+    .gg-hp { height:.8rem; border-radius:999px; background:#000; overflow:hidden; }
+    .gg-hp i { display:block; height:100%; background:linear-gradient(90deg, #ff453a, #ffb340); transition:width .35s; }
+    .gg-boss { font-size:4.5rem; line-height:1; animation:gm-bob 1.6s ease-in-out infinite; }
+    .gg-boss.gg-hit { animation:gg-hit .4s; }
+    .gg-boss.gg-attack { animation:gg-attack .5s; }
+    .gg-boss.gg-dead { animation:gg-dead .8s forwards; }
+    @keyframes gg-hit { 30% { transform:translateX(14px) rotate(12deg); filter:brightness(3); } }
+    @keyframes gg-attack { 40% { transform:translate(-30px, 12px) scale(1.5); } }
+    @keyframes gg-dead { to { transform:rotate(180deg) scale(0); opacity:0; } }
+    .gg-callout { min-height:1.5em; margin:.4rem 0; font-weight:800; text-align:center; }
+    @media (prefers-reduced-motion: reduce) { .gg-boss { animation:none !important; } }
+  </style>
+</head>
+<body>
+  <main class="gm-page" id="game"><p class="quiet">Loading…</p></main>
+  <script type="module" src="gig-gremlins.js"></script>
+</body>
+</html>
